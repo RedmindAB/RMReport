@@ -10,13 +10,11 @@ public class Main {
 	public static void main(String[] args) {
 		staticFileLocation("/static");
 		get(new Route("/hello") {
-			
 			@Override
 			public Object handle(Request request, Response response) {
 				return "Hello world";
 			}
 		});
-		
 	}
 
 }
