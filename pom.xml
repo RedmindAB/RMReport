@@ -3,6 +3,25 @@
   <artifactId>RMT-web</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <groupId>se.redmin</groupId>
+  <build>
+  <plugins>
+    <plugin>
+	      <!-- Build an executable JAR -->
+	      <groupId>org.apache.maven.plugins</groupId>
+	      <artifactId>maven-jar-plugin</artifactId>
+	      <version>2.4</version>
+	      <configuration>
+	        <archive>
+	          <manifest>
+	            <addClasspath>true</addClasspath>
+	            <classpathPrefix>lib/</classpathPrefix>
+	            <mainClass>se.redmind.rmtest.web.Main</mainClass>
+	          </manifest>
+	        </archive>
+	      </configuration>
+	    </plugin>
+	  </plugins>
+  </build>
   <dependencies>
   	<dependency>
   		<groupId>com.sparkjava</groupId>
