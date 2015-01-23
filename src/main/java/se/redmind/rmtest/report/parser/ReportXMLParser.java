@@ -20,7 +20,13 @@ public class ReportXMLParser {
 	public ReportXMLParser() {
 		
 	}
-
+	
+	/**
+	 * Return a NodeList from a file, this should only be used if you want to do something else than getting a report-Object.
+	 * @param xmlFile - the file to be extracted.
+	 * @param tagName - the tag you want to extract in a file.
+	 * @return
+	 */
 	public NodeList getNodeList(File xmlFile, String tagName) {
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
@@ -39,6 +45,11 @@ public class ReportXMLParser {
 		}
 	}
 	
+	/**
+	 * Converts a report XML-file to a report object
+	 * @param file - the report xml-file.
+	 * @return - Report-object representing the report XML-file.
+	 */
 	public Report getReportFromFile(File file){
 		Element report = (Element) getNodeList(file, "testsuite").item(0);
 		return new Report(report);
