@@ -8,6 +8,7 @@ import spark.Route;
 public class Main {
 	
 	public static void main(String[] args) {
+		staticFileLocation("/static");
 		get(new Route("/hello") {
 			
 			@Override
@@ -15,6 +16,7 @@ public class Main {
 				return "Hello world";
 			}
 		});
+		
 	}
 
 }
