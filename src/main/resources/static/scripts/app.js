@@ -4,12 +4,23 @@ angular.module('webLog', ['ui.router'])
     $stateProvider
         .state('home',{
             url: '/',
-            templateUrl: 'partials/test.html',
-            controller: 'HelloCtrl'
+            templateUrl: 'partials/home.html',
+            controller: 'HomeCtrl'
         })
-        .state('error',{url:'/error',
+        .state('error',{
+        url:'/error',
         templateUrl: 'partials/error.html',
-        controller: 'HelloCtrl'
+        controller: 'ErrorCtrl'
+        })
+        .state('graphview',{
+        url:'/graphview',
+        templateUrl: 'partials/graphview.html',
+        controller: 'ErrorCtrl'
+        })         
+        .state('logs',{
+        url:'/logs',
+        templateUrl: 'partials/logs.html',
+        controller: 'LogsCtrl'
         });
 
         $urlRouterProvider.otherwise('/');

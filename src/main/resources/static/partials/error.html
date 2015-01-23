@@ -1,2 +1,10 @@
-<h1>{{message}}</h1>
-<h1>{{errorReport.error}}</h1>
+<div ng-controller="ErrorCtrl">
+	<h1>{{message}}</h1>
+	<h1>{{errorReport.error}}</h1>
+	<div>
+	{{list.name}} {{list.age}}
+	</div>
+	<div ng-repeat="skill in list.skills">
+	{{skill}}
+	</div>
+</div>
