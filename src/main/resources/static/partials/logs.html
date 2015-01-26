@@ -1,5 +1,8 @@
+
 <div ng-repeat="test in log">
 	<h5>Test: {{test.suiteName}}		<button ng-click="populateLog(test.suiteName, test.timestamp)">{{getButtonValue(test.timestamp)}}</button></h5>
+populateLog(test.suiteName, test.timestamp)">{{getButtonValue(test.timestamp)}}</button></h5>
+
 	<div ng-if="display.name == test.name">
 			Tests run: {{display.tests}}<br/>
 			Errors: {{display.errors}}<br/>
