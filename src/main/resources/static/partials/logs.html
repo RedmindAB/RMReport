@@ -24,6 +24,22 @@
 	            <td>{{test.time}}</td>
 	        </tr>
 	    </tbody>
+	    <tbody>
+	    	<tr>
+	    		<td colspan='5'><a href='#' id='show'>Show More</a></td>
+	    	</tr>
+	    </tbody>
 	    </table>
     </div>
+    <script>
+$(document).ready(function(){
+  $("#hide").click(function(){
+    $("show").hide();
+  });
+  $("#show").click(function(){
+    $("show").show();
+  });
+});
+</script>
+</head>
 </div>
