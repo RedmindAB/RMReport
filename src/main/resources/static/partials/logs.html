@@ -1,9 +1,9 @@
 <div ng-repeat="test in log">
-	Test: <a ng-click="populateLog()">{{test.name}}</a>
+	Test: <a ng-click="populateLog(test.suiteName, test.timestamp)">{{test.name}}</a>
 	<br/>
 	<br/>
-	<div ng-show="display" ng-repeat="case in display">
-	{{case}}
+	<div ng-if="display.name == test.name" ng-repeat="case in display">
+			{{case}}
 	</div>
 	--------------------------------------------------------------------------
 

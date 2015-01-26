@@ -9,23 +9,27 @@ angular.module('webLog')
     	if(data){
     		$scope.log = data;
     		console.log($scope.log);
-
     	}
     }).error(function(data, status, headers, config){
     	console.log(data);
     });
-    $scope.populateLog=function(){
-    getTestSuite("CreateLogTest", "(20150121-160711)");
+    
+    $scope.populateLog = function(name, timestamp){
+    	$scope.display = getTestSuite(name, timestamp);
+    	console.log($scope.display);
     }
 
     var getTestSuite = function(suiteName, timeStamp){
             var suiteToReturn = {};
 
             for(var suite in $scope.log){
-                console.log(suite);
-                if(suite.name.indexOf(suiteName) > -1 && suite.name.indexOf(timeStamp) > -1){
-                $scope.suiteToReturn=suite;
-                console.log($scope.suiteToReturn);
+            	var log = $scope.log;
+                if(log[suite].name.indexOf(suiteName) > -1 && log[suite].name.indexOf(timeStamp) > -1){
+                	if ($scope.display === log[suite]) {
+						display = {};
+						return;
+					}
+                suiteToReturn=log[suite];
                 }
 
             };
