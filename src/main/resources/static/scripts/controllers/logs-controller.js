@@ -16,7 +16,6 @@ angular.module('webLog')
     
     $scope.populateLog = function(name, timestamp){
     	$scope.display = getTestSuite(name, timestamp);
-    	console.log($scope.display);
     }
 
     var getTestSuite = function(suiteName, timeStamp){
@@ -36,4 +35,15 @@ angular.module('webLog')
     return suiteToReturn;
     }
 
+    $scope.getButtonValue = function(timestamp){
+    	if (!$scope.display) {
+			return "Expand";
+		}
+    	if ($scope.display.timestamp != timestamp) {
+			return "Expand";
+		} else {
+			return "Collapse";
+		}
+    }
+    
     }]);
