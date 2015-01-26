@@ -19,7 +19,7 @@ public class Report{
 	private Element file;
 	private boolean simpleReport;
 
-	public Report(Element element) {
+	public Report() {
 		this.jsonObject = new JsonObject();
 		this.jsonObject.add("simpleReport", new JsonPrimitive(false));
 		this.simpleReport = false;

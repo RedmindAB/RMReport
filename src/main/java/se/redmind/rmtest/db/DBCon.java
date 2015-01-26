@@ -12,28 +12,32 @@ public class DBCon {
             Class.forName("org.sqlite.JDBC");
             Connection conn = DriverManager.getConnection("jdbc:sqlite:test.db");
             Statement stat = conn.createStatement();
-            stat.executeUpdate("drop table if exists people;");
-            stat.executeUpdate("create table people (name, title);");
-            PreparedStatement prep = conn.prepareStatement("insert into people values (?, ?);");
+            stat.executeUpdate("drop table if exists reports");
+            stat.executeUpdate("drop table if exists testcases");
+            stat.executeUpdate("create table reports (name, suitename, timestamp, tests, skipped, failures, time, id integer primary key autoincrement)");
+            stat.executeUpdate("create table testcases (driver, name, error, time, passed, reportid)");
+            PreparedStatement prep = conn.prepareStatement("insert into testcases values (?,?,?,?,?,?);");
 
             prep.setString(1, "Gustav");
             prep.setString(2, "optimeringfascist");
-            prep.addBatch();
-            prep.setString(1, "Lukas");
-            prep.setString(2, "in your face");
-            prep.addBatch();
-            prep.setString(1, "Mattias");
-            prep.setString(2, "mr javascript");
+            prep.setString(3, "Gustav");
+            prep.setString(4, "Gustav");
+            prep.setString(5, "Gustav");
+            prep.setString(6, "Gustav");
             prep.addBatch();
 
             conn.setAutoCommit(false);
             prep.executeBatch();
             conn.setAutoCommit(true);
 
-            ResultSet rs = stat.executeQuery("select * from people;");
+            ResultSet rs = stat.executeQuery("select * from testcases;");
             while (rs.next()) {
+                System.out.println("driver = " + rs.getString("driver"));
                 System.out.println("name = " + rs.getString("name"));
-                System.out.println("title = " + rs.getString("title"));
+                System.out.println("error = " + rs.getString("error"));
+                System.out.println("time = " + rs.getString("time"));
+                System.out.println("passed = " + rs.getString("passed"));
+                System.out.println("values = " + rs.getString("values"));
             }
             rs.close();
             conn.close();
