@@ -1,15 +1,20 @@
 package se.redmind.rmtest.web;
 
-import static spark.Spark.*;
+import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.web.route.RMTRoute;
-import spark.Request;
-import spark.Response;
-import spark.Route;
+
+import java.sql.SQLException;
+
 
 public class Main {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException, ClassNotFoundException {
+
+		DBCon Con = new DBCon();
+		Con.connect();
+
 		new RMTRoute();
 	}
+
 
 }
