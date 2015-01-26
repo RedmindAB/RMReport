@@ -59,7 +59,6 @@ public class ReportTestCase{
 	}
 	
 	public String checkDriverName(String name){
-		System.out.println(name);
 		if (name.contains("[")) {
 		int start = name.lastIndexOf("[");
 		int end = name.lastIndexOf("]");
