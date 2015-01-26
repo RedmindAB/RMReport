@@ -25,7 +25,7 @@ public class ReportHandler {
 		 List<File> files = loader.getXMLReports();
 		 JsonArray reports = new JsonArray();
 		 for (File file : files) {
-			 reports.add(parser.getSimpleReportFromFile(file).getAsJsonObject());
+			 reports.add(parser.getReportFromFile(file).getAsJsonObject());
 		 }
 		 return reports;
 	}

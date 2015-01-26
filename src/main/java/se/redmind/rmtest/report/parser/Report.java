@@ -1,10 +1,13 @@
 package se.redmind.rmtest.report.parser;
 
 
+import java.util.HashSet;
+
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
@@ -61,6 +64,25 @@ public class Report{
 		
 
 		if (!simpleReport) {
+			NodeList testCaseNodes = element.getElementsByTagName("testcase");
+			JsonArray testCases = new JsonArray();
+			HashSet<String> driverSet = new HashSet<String>();
+			for (int i = 0; i < testCaseNodes.getLength(); i++) {
+				Element testCase = (Element) testCaseNodes.item(i);
+				ReportTestCase test = new ReportTestCase(testCase);
+				String driver = test.getDriverNameAsString();
+				if (!driverSet.contains(driver)) {
+					driverSet.add(driver);
+				}
+				testCases.add(test.getAsJsonObject());
+			}
+			JsonArray drivers = new JsonArray();
+			for (String driver : driverSet) {
+				drivers.add(new JsonPrimitive(driver));
+			}
+			this.jsonObject.add("drivers", drivers);
+			this.jsonObject.add(TESTCASES, testCases);
+			
 			NodeList propertyNodes = element.getElementsByTagName("property");
 			JsonObject properties = new JsonObject();
 			for (int i = 0; i < propertyNodes.getLength(); i++) {
@@ -75,14 +97,6 @@ public class Report{
 				properties.add(propKey, propertyObject);
 			}
 			this.jsonObject.add("properties", properties);
-			
-			NodeList testCaseNodes = element.getElementsByTagName("testcase");
-			JsonArray testCases = new JsonArray();
-			for (int i = 0; i < testCaseNodes.getLength(); i++) {
-				Element testCase = (Element) testCaseNodes.item(i);
-				testCases.add(new ReportTestCase(testCase).getAsJsonObject());
-			}
-			this.jsonObject.add(TESTCASES, testCases);
 		}
 	}
 	

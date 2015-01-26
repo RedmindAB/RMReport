@@ -1,9 +1,8 @@
 package se.redmind.rmtest.report.parser;
 
-import java.util.HashMap;
-
 import org.w3c.dom.Element;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
@@ -22,6 +21,8 @@ public class ReportTestCase{
 	private void generateTestCaseFromElement(Element element){
 		name = element.getAttribute("name");
 		this.jsonObject.add("name", new JsonPrimitive(name));
+		
+		this.jsonObject.add("driverName", new JsonPrimitive(checkDriverName(name)));
 		
 		classname = element.getAttribute("classname");
 		this.jsonObject.add("classname", new JsonPrimitive(classname));
@@ -57,8 +58,26 @@ public class ReportTestCase{
 		this.jsonObject.add("time", new JsonPrimitive(time));
 	}
 	
+	public String checkDriverName(String name){
+		System.out.println(name);
+		if (name.contains("[")) {
+		int start = name.lastIndexOf("[");
+		int end = name.lastIndexOf("]");
+			return name.substring(start+1, end);
+		}
+		return name;
+	}
+	
 	public String getName() {
 		return name;
+	}
+	
+	public String getDriverNameAsString(){
+		return this.jsonObject.get("driverName").getAsString();
+	}
+	
+	public JsonElement getDriverName(){
+		return this.jsonObject.get("driverName");
 	}
 
 	public String getClassName() {
