@@ -101,13 +101,13 @@ public class Report{
 	public String getSuiteName(String name){
 		int start = name.lastIndexOf(".");
 		int end = name.lastIndexOf("(");
-		return name.substring(start+1, end-1);
+		return name.substring(start+1, end);
 	}
 	
 	public String getTimestamp(String name){
 		int start = name.lastIndexOf("(");
 		int end = name.lastIndexOf(")");
-		return name.substring(start+1, end-1);
+		return name.substring(start+1, end);
 	}
 
 	public double getTime() {
