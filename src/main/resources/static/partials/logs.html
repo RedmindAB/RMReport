@@ -1,11 +1,12 @@
 <div ng-repeat="test in log">
-	Test: <a ng-click="populateLog()">{{test.name}}</a>
-	<br/>
-	<br/>
-	<div ng-show="display" ng-repeat="case in display">
-	{{case}}
+	<h5>Test: {{test.name}}		<button ng-click="populateLog(test.suiteName, test.timestamp)">{{getButtonValue(test.timestamp)}}</button></h5>
+	<div ng-if="display.name == test.name">
+			Tests run: {{display.tests}}<br/>
+			Errors: {{display.errors}}<br/>
+			Skipped: {{display.skipped}}<br/>
+			Failures: {{display.failures}}<br/>
+			Time to run: {{display.time}}<br/>
+			<button>Details</button>
 	</div>
-	--------------------------------------------------------------------------
-
-
+	<br/>
 </div>
