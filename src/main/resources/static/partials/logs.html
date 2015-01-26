@@ -1,12 +1,14 @@
-<div ng-repeat="test in log" style="background-color: getSuiteColor(test)">
-	<h5>Test: {{test.name}}		<button ng-click="populateLog(test.suiteName, test.timestamp)">{{getButtonValue(test.timestamp)}}</button></h5>
-	<div ng-if="display.name == test.name">
-			Tests run: {{display.tests}}<br/>
-			Errors: {{display.errors}}<br/>
-			Skipped: {{display.skipped}}<br/>
-			Failures: {{display.failures}}<br/>
-			Time to run: {{display.time}}<br/>
-			<button>Details</button>
-	</div>
+<div ng-repeat="test in log" class="suite-container" ng-style="{ 'background-color': getSuiteColor() }">
+
+	<h5>Test: {{test.name}}</h5>
+	<table>
+		<div>
+				<td>Tests run: {{test.tests}} <TAB></td>
+				<td>Errors: {{test.errors}} </td>
+				<td>Skipped: {{test.skipped}} </td>
+				<td>Failures: {{test.failures}} </td>
+				<td>Time to run: {{test.time}} </td>
+		</div>
+	</table>
 	<br/>
 </div>

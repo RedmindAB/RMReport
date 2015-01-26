@@ -46,4 +46,7 @@ angular.module('webLog')
 		}
     }
     
-    }]);
+    $scope.getSuiteColor = function(){
+    	return '#7f8c8d';
+    }    
+}]);
