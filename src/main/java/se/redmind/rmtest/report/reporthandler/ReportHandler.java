@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.JsonArray;
+
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
@@ -19,11 +21,11 @@ public class ReportHandler {
 		this.parser = new ReportXMLParser();
 	}
 	
-	public List<Report> getLogList(){
+	public JsonArray getLogList(){
 		 List<File> files = loader.getXMLReports();
-		 List<Report> reports = new ArrayList<Report>();
+		 JsonArray reports = new JsonArray();
 		 for (File file : files) {
-			 reports.add(parser.getReportFromFile(file));
+			 reports.add(parser.getSimpleReportFromFile(file).getAsJsonObject());
 		 }
 		 return reports;
 	}

@@ -14,6 +14,7 @@ public class ReportLoaderTest {
 	
 	
 	public static String path = System.getProperty("user.dir")+"/testfiles";
+	public static String specificReportFileName = "TEST-test.java.se.redmind.rmtest.selenium.example.CreateLogTests-20150121-160622.xml";
 	private static ReportLoader loader;
 	
 	@BeforeClass
@@ -52,9 +53,8 @@ public class ReportLoaderTest {
 	
 	@Test
 	public void getSpecificXMLReport(){
-		String fileName = "TEST-test.java.se.redmind.rmtest.selenium.example.CreateLogTests-20150121-160622.xml";
-		File file = loader.getXMLReportByFileName(fileName);
-		assertEquals(fileName, file.getName());
+		File file = loader.getXMLReportByFileName(specificReportFileName);
+		assertEquals(specificReportFileName, file.getName());
 		
 	}
 	

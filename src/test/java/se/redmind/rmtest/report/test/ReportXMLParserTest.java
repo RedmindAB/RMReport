@@ -10,6 +10,8 @@ import org.junit.Test;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import com.google.gson.JsonArray;
+
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
@@ -51,17 +53,27 @@ public class ReportXMLParserTest {
 		Report report = parser.getReportFromFile(file);
 		assertEquals("test.java.se.redmind.rmtest.selenium.example.CreateLogTests(20150121-160906)", report.getName());
 		assertTrue(0.031 == report.getTime());
-		assertEquals("10.9.5", report.getProperties().get("os.version"));
-		ArrayList<ReportTestCase> caseList = report.getTestCases();
+		assertEquals("10.9.5", report.getProperties().get("osversion").getAsJsonObject().get("value").getAsString());
+		assertEquals("os version", report.getProperties().get("osversion").getAsJsonObject().get("readName").getAsString());
+		JsonArray caseList = report.getTestCases();
 		assertEquals(12, caseList.size());
 	}
 	
 	@Test
 	public void convertSimpleReportToFullReport(){
 		Report report = parser.getSimpleReportFromFile(file);
-		assertEquals(0, report.getTestCases().size());
+		System.out.println(report);
+		assertNull(report.getTestCases());
 		report.convertToFullReport();
+		System.out.println(report.getTestCases());
 		assertEquals(12, report.getTestCases().size());
+	}
+	
+	@Test
+	public void convertPropName(){
+		Report report = parser.getSimpleReportFromFile(file);
+		String convertedString = report.removePunctuations("dot.dot.dot", "");
+		assertEquals("dotdotdot", convertedString);
 	}
 
 }
