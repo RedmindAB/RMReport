@@ -5,7 +5,7 @@ angular.module('webLog', ['ui.router'])
         .state('home',{
             url: '/',
             templateUrl: 'partials/home.html',
-            controller: 'HomeCtrl'
+            controller: ''
         })
         .state('error',{
         url:'/error',
