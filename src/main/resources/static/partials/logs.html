@@ -1,9 +1,9 @@
-<div ng-repeat="test in log" ng-class="getAlert(test.passed)" style='margin-top: 10px'>
+<div ng-repeat="test in log" ng-class="getAlert(test.passed)" style='margin-top: 15px'>
 	<div>
 		<table class="table">
 	    <thead>
 	    <tr>
-	    	<th colspan='5'>Test: {{test.name}}</th>
+	    	<th colspan='5'>Test: {{test.suiteName}} - {{test.timestamp}}</th>
 	    </tr>
 	    </thead>
 	    <thead>
