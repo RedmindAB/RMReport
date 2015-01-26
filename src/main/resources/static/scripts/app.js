@@ -15,14 +15,13 @@ angular.module('webLog', ['ui.router'])
         .state('graphview',{
         url:'/graphview',
         templateUrl: 'partials/graphview.html',
-        controller: 'ErrorCtrl'
-        })         
+        controller: 'GraphViewCtrl'
+        })     
         .state('logs',{
         url:'/logs',
         templateUrl: 'partials/logs.html',
         controller: 'LogsCtrl'
-        });
-
+        })        
         $urlRouterProvider.otherwise('/');
     });
 
