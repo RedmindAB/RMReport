@@ -62,6 +62,8 @@ public class Report{
 		double time = Double.valueOf(timeString);
 		this.jsonObject.add("time", new JsonPrimitive(time));
 		
+		this.jsonObject.add("passed", new JsonPrimitive(isTestPassed(errors, failures)));
+		
 
 		if (!simpleReport) {
 			NodeList testCaseNodes = element.getElementsByTagName("testcase");
@@ -122,6 +124,10 @@ public class Report{
 		int start = name.lastIndexOf("(");
 		int end = name.lastIndexOf(")");
 		return name.substring(start+1, end);
+	}
+	
+	public boolean isTestPassed(int errors, int failures){
+		return errors == 0 && failures == 0;
 	}
 
 	public double getTime() {
