@@ -46,7 +46,10 @@ angular.module('webLog')
 		}
     }
     
-    $scope.getSuiteColor = function(){
-    	return '#7f8c8d';
+    $scope.getAlert = function(passed){
+    	if(passed)
+    		return 'alert alert-success';
+    	else
+    		return 'alert alert-danger';
     }    
 }]);

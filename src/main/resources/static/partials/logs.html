@@ -1,14 +1,29 @@
-<div ng-repeat="test in log" class="suite-container" ng-style="{ 'background-color': getSuiteColor() }">
-
-	<h5>Test: {{test.name}}</h5>
-		<div>
-	<table>
-				<td>Tests run: {{test.tests}}</td>
-				<td>Errors: {{test.errors}} </td>
-				<td>Skipped: {{test.skipped}} </td>
-				<td>Failures: {{test.failures}} </td>
-				<td>Time to run: {{test.time}} </td>
-	</table>
-		</div>
-	<br/>
+<div ng-repeat="test in log" ng-class="getAlert(test.passed)" style='margin-top: 10px'>
+	<div>
+		<table class="table">
+	    <thead>
+	    <tr>
+	    	<th colspan='5'>Test: {{test.name}}</th>
+	    </tr>
+	    </thead>
+	    <thead>
+	        <tr>
+	            <th>Tests run</th>
+	            <th>Errors</th>
+	            <th>Skipped</th>
+	            <th>Failures</th>
+	            <th>Time to run</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr>
+	            <td>{{test.tests}}</td>
+	            <td>{{test.errors}}</td>
+	            <td>{{test.skipped}}</td>
+	            <td>{{test.failures}}</td>
+	            <td>{{test.time}}</td>
+	        </tr>
+	    </tbody>
+	    </table>
+    </div>
 </div>
