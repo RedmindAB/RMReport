@@ -3,6 +3,7 @@ package se.redmind.rmtest.report.test;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -51,6 +52,15 @@ public class ReportXMLParserTest {
 		assertEquals("test.java.se.redmind.rmtest.selenium.example.CreateLogTests(20150121-160906)", report.getName());
 		assertTrue(0.031 == report.getTime());
 		assertEquals("10.9.5", report.getProperties().get("os.version"));
+		ArrayList<ReportTestCase> caseList = report.getTestCases();
+		assertEquals(12, caseList.size());
+	}
+	
+	@Test
+	public void convertSimpleReportToFullReport(){
+		Report report = parser.getSimpleReportFromFile(file);
+		assertEquals(0, report.getTestCases().size());
+		report.convertToFullReport();
 		assertEquals(12, report.getTestCases().size());
 	}
 

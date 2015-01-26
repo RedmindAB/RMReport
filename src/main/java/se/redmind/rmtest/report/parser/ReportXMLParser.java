@@ -39,7 +39,7 @@ public class ReportXMLParser {
 
 			NodeList nList = doc.getElementsByTagName(tagName);
 			return nList;
-		} catch (SAXException | IOException | ParserConfigurationException e) {
+		} catch (IOException | ParserConfigurationException | SAXException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -54,5 +54,14 @@ public class ReportXMLParser {
 		Element report = (Element) getNodeList(file, "testsuite").item(0);
 		return new Report(report);
 	}
-
+	
+	/**
+	 * This method only return, a simple report object, only containing the basic information about the test.
+	 * @param file - the file that should be converted into a object.
+	 * @return - Report object containing the most basic information about the object.
+	 */
+	public Report getSimpleReportFromFile(File file){
+		Element report = (Element) getNodeList(file, TESTSUITE_TAG).item(0);
+		return new Report(report, true);
+	}
 }

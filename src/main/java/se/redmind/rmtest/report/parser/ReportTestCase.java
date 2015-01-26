@@ -50,7 +50,7 @@ public class ReportTestCase {
 		return error;
 	}
 
-	public HashMap<String, String> getFaliure() {
+	public HashMap<String, String> getFailure() {
 		return faliure;
 	}
 
