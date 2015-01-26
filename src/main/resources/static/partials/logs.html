@@ -1,4 +1,11 @@
 <div ng-repeat="test in log">
-	{{test.name}}
-	<br/> 
+	Test: <a ng-click="populateLog()">{{test.name}}</a>
+	<br/>
+	<br/>
+	<div ng-show="display" ng-repeat="case in display">
+	{{case}}
+	</div>
+	--------------------------------------------------------------------------
+
+
 </div>
