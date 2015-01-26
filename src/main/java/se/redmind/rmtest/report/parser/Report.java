@@ -18,7 +18,7 @@ public class Report{
 	private Element file;
 	private boolean simpleReport;
 
-	public Report() {
+	public Report(Element element) {
 		this.jsonObject = new JsonObject();
 		this.jsonObject.add("simpleReport", new JsonPrimitive(false));
 		this.simpleReport = false;

@@ -11,7 +11,7 @@ public class SaveToDB {
 
         public void saveTestCase(Report report){
 
-            PreparedStatement prep = conn.prepareStatement("insert into testcases values (?,?,?,?,?,?);");
+//            PreparedStatement prep = conn.prepareStatement("insert into testcases values (?,?,?,?,?,?);");
 
         }
 }
