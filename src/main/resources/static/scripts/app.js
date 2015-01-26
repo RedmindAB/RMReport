@@ -21,8 +21,7 @@ angular.module('webLog', ['ui.router'])
         url:'/logs',
         templateUrl: 'partials/logs.html',
         controller: 'LogsCtrl'
-        })        
-        $urlRouterProvider.otherwise('/');
+        })          
     });
 
 
