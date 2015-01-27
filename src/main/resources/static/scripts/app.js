@@ -17,7 +17,7 @@ angular.module('webLog', ['ui.router', 'chart.js','ui.bootstrap'])
         .state('testSuites',{
 	        url:'/test-suites',
 	        templateUrl: 'partials/test-suites.html',
-	        controller: ''
+	        controller: 'ChartCtrl'
         })          
     });
 
