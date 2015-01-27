@@ -8,6 +8,19 @@ import com.google.gson.JsonPrimitive;
 
 public class ReportTestCase{
 
+	public static final String 	
+	NAME = "name",
+	DRIVER_NAME = "driverName",
+	CLASSNAME = "className",
+	ERROR = "error",
+	FAILURE = "failure",
+	TYPE = "type",
+	MESSAGE = "message",
+	PASSED = "passed",
+	TIME = "time";
+	
+								
+	
 	private String name, classname;
 	private boolean passed;
 	private JsonObject jsonObject;
@@ -19,43 +32,43 @@ public class ReportTestCase{
 	}
 	
 	private void generateTestCaseFromElement(Element element){
-		name = element.getAttribute("name");
-		this.jsonObject.add("name", new JsonPrimitive(name));
+		name = element.getAttribute(NAME);
+		this.jsonObject.add(NAME, new JsonPrimitive(name));
 		
 		this.jsonObject.add("driverName", new JsonPrimitive(checkDriverName(name)));
 		
-		classname = element.getAttribute("classname");
-		this.jsonObject.add("classname", new JsonPrimitive(classname));
+		classname = element.getAttribute(CLASSNAME);
+		this.jsonObject.add(CLASSNAME, new JsonPrimitive(classname));
 		
-		Element errorElement = (Element) element.getElementsByTagName("error").item(0);
+		Element errorElement = (Element) element.getElementsByTagName(ERROR).item(0);
 		
-		Element failureElement = (Element) element.getElementsByTagName("failure").item(0);
+		Element failureElement = (Element) element.getElementsByTagName(FAILURE).item(0);
 		if (errorElement != null) {
 			String message = errorElement.getTextContent();
-			String type = errorElement.getAttribute("type");
+			String type = errorElement.getAttribute(TYPE);
 			
 			JsonObject error = new JsonObject();
-			error.add("message", new JsonPrimitive(message));
-			error.add("type", new JsonPrimitive(type));
-			this.jsonObject.add("error", error);
+			error.add(MESSAGE, new JsonPrimitive(message));
+			error.add(TYPE, new JsonPrimitive(type));
+			this.jsonObject.add(ERROR, error);
 		}
 		else if(failureElement != null){
 			String message = failureElement.getTextContent();
-			String type = failureElement.getAttribute("type");
+			String type = failureElement.getAttribute(TYPE);
 			
 			JsonObject failureObject = new JsonObject();
-			failureObject.add("message", new JsonPrimitive(message));
-			failureObject.add("type", new JsonPrimitive(type));
-			this.jsonObject.add("failure", failureObject);
+			failureObject.add(MESSAGE, new JsonPrimitive(message));
+			failureObject.add(TYPE, new JsonPrimitive(type));
+			this.jsonObject.add(FAILURE, failureObject);
 		}
 		else passed = true;
 		
-		this.jsonObject.add("passed", new JsonPrimitive(this.passed));
+		this.jsonObject.add(PASSED, new JsonPrimitive(this.passed));
 		
-		String timeValue = element.getAttribute("time");
+		String timeValue = element.getAttribute(TIME);
 		double time = Double.parseDouble(timeValue);
 		
-		this.jsonObject.add("time", new JsonPrimitive(time));
+		this.jsonObject.add(TIME, new JsonPrimitive(time));
 	}
 	
 	public String checkDriverName(String name){
@@ -72,11 +85,11 @@ public class ReportTestCase{
 	}
 	
 	public String getDriverName(){
-		return this.jsonObject.get("driverName").getAsString();
+		return this.jsonObject.get(DRIVER_NAME).getAsString();
 	}
 	
 	public JsonElement getDriverNameAsJson(){
-		return this.jsonObject.get("driverName");
+		return this.jsonObject.get(DRIVER_NAME);
 	}
 
 	public String getClassName() {
@@ -84,19 +97,19 @@ public class ReportTestCase{
 	}
 
 	public int getError() {
-		return this.jsonObject.get("error").getAsInt();
+		return this.jsonObject.get(ERROR).getAsInt();
 	}
 
 	public int getFailure() {
-		return this.jsonObject.get("failure").getAsInt();
+		return this.jsonObject.get(FAILURE).getAsInt();
 	}
 
 	public double getTime() {
-		return this.jsonObject.get("time").getAsDouble();
+		return this.jsonObject.get(TIME).getAsDouble();
 	}
 
 	public boolean isPassed() {
-		return this.jsonObject.get("passed").getAsBoolean();
+		return this.jsonObject.get(PASSED).getAsBoolean();
 	}
 	
 	public JsonObject getAsJsonObject(){
