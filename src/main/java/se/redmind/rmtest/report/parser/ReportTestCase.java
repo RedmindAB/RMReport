@@ -107,6 +107,10 @@ public class ReportTestCase{
 	public JsonObject getFailure() {
 		return this.jsonObject.get(FAILURE).getAsJsonObject();
 	}
+	
+	public String getFailureMessage(){
+		return this.jsonObject.get(FAILURE).getAsJsonObject().get(MESSAGE).getAsString();
+	}
 
 	public double getTime() {
 		return this.jsonObject.get(TIME).getAsDouble();
