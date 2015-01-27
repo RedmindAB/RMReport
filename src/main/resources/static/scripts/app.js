@@ -12,10 +12,10 @@ angular.module('webLog', ["ui.router", "chart.js"])
         templateUrl: 'partials/error.html',
         controller: 'ErrorCtrl'
         })
-        .state('graphview',{
-        url:'/graphview',
-        templateUrl: 'partials/graphview.html',
-        controller: 'GraphViewCtrl'
+        .state('testCases',{
+        url:'/test-case',
+        templateUrl: 'partials/test-case.html',
+        controller: 'TestCtrl'
         })     
         .state('testSuites',{
         url:'/test-suites',
