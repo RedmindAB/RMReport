@@ -1,8 +1,16 @@
 <div ng-controller="HomeCtrl">
-	<h3>Total tests</h3>
-	<h3>Successfully tests</h3>
-	<h3>Failed tests</h3>
-	<h1>{{message}}</h1>
-	<canvas id="pieefsdfsdfs" class="chart chart-pie" data="data" labels="labels"></canvas> 
-	
+	<table>
+	</table>
+	<div id='total'>
+		<h3>Total tests</h3>
+		<canvas height="50px" legend="true" id="pieefsdfsdfs" class="chart chart-pie" data="data" labels="labels"></canvas>
+	</div> 
+	<div id='success'>
+		<h3>Successfully tests</h3>
+		<canvas height="50px" legend="true" id="pieefsdfsdfs" class="chart chart-pie" data="data" labels="labels"></canvas>
+	</div> 
+	<div id='failed'>
+		<h3>Failed tests</h3>
+		<canvas height="50px" legend="true" id="pieefsdfsdfs" class="chart chart-pie" data="data" labels="labels"></canvas>
+	</div> 
 </div>
