@@ -10,9 +10,7 @@ public class Main {
 	
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
-//		DBCon Con = new DBCon();
-//		Con.connect();
-
+		DBCon.getDbTestInstance();
 		new RMTRoute();
 	}
 
