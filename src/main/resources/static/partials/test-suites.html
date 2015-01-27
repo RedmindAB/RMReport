@@ -1,8 +1,8 @@
-<accordion ng-controller="CollapseCtrl" close-others="closeOthers">
+<accordion ng-controller="CollapseCtrl" close-others="true">
 
 	<!-- repeated content -->
 	<div ng-repeat="test in suites" style='margin-top: 15px'>
-	    <accordion-group ng-class='getPanel(test.passed)' ng-style="{'background-color': getCo(test.passed)}">
+	    <accordion-group is-open="test.open" ng-class='getPanel(test.passed)' ng-style="{'background-color': getCo(test.passed)}">
 	   
 	    <!-- non collapsing header -->
 	        <accordion-heading>
