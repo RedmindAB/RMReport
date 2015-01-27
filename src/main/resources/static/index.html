@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="libs/chart/angular-chart.css">
-    <link rel="stylesheet" href="libs/chart/angular-chart.css.map">
 	<link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -14,7 +13,7 @@
 
 	
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-custom">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -30,11 +29,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
             <ul class="nav navbar-nav">
-                <li class="active"><a ng-href="#/error">Error Report</a></li>
-                <!-- log button -->
-                <li><a ng-href="#/logs">Logs<span class="sr-only">(current)</span></a></li>
-                <!-- Graph View button -->
-                <li><a href="#/graphview">Graph View</a></li>
+                
+                <!-- test suite button -->
+                <li><a ng-href="#/test-suites">Tests Suites<span class="sr-only">(current)</span></a></li>
+                
             </ul>
             <ul class="nav navbar-nav navbar-right">
             </ul>
@@ -54,14 +52,11 @@
 <script src="libs/angular-1.3.10/angular.min.js"></script>
 <script src="libs/chart/Chart.min.js"></script>
 <script src="libs/chart/angular-chart.js"></script>
-<script src="libs/chart/angular-chart.js.map"></script>
   <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
 <script src="scripts/app.js"></script>
 <script src="scripts/controllers/home-controller.js"></script>
-<script src="scripts/controllers/error-controller.js"></script>
-<script src="scripts/controllers/graphview-controller.js"></script>
-<script src="scripts/controllers/logs-controller.js"></script>
+<script src="scripts/controllers/test-controller.js"></script>
 </body>
 </html>
