@@ -2,7 +2,7 @@
 
 
   <accordion ng-controller="CollapseCtrl" close-others="closeOthers">
-<div ng-repeat="test in log" ng-class="getAlert(test.passed)" style='margin-top: 15px'>
+<div ng-repeat="test in suites" ng-class="getAlert(test.passed)" style='margin-top: 15px'>
     <accordion-group>
         <accordion-heading>
             Test: {{test.suiteName}} - {{test.timestamp}}
@@ -29,7 +29,7 @@
 	    </tbody>
 	    <tbody>
 	    	<tr>
-	    		<td colspan='5'><a href='#' id='show' ng-click="goToTestCases(test.name)">Get Specifics</a></td>
+	    		<td colspan='5'><a id='show' ng-click="goToTestCases(test.name)">Get Specifics</a></td>
 	    	</tr>
 	    </tbody>
 	    </table>
