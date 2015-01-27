@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
@@ -28,6 +29,10 @@ public class ReportHandler {
 			 reports.add(parser.getReportFromFile(file).getAsJsonObject());
 		 }
 		 return reports;
+	}
+	
+	public JsonObject getReportByTimestamp(String timestamp){
+		return null;
 	}
 	
 }

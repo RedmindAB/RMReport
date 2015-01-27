@@ -6,6 +6,7 @@ import se.redmind.rmtest.web.route.api.getlogs.GetLogListWS;
 public class ApiRouter {
 
 	
+	
 	public ApiRouter() {
 		init();
 	}

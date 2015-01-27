@@ -1,50 +1,46 @@
+<accordion ng-controller="CollapseCtrl" close-others="closeOthers">
 
-
-
-  <accordion ng-controller="CollapseCtrl" close-others="closeOthers">
-<div ng-repeat="test in suites" ng-class="getAlert(test.passed)" style='margin-top: 15px'>
-    <accordion-group>
-        <accordion-heading>
-            Test: {{test.suiteName}} - {{test.timestamp}}
-        </accordion-heading>
-        	<div>
-		<table class="table">
-	    <thead>
-	        <tr>
-	            <th>Tests run</th>
-	            <th>Errors</th>
-	            <th>Skipped</th>
-	            <th>Failures</th>
-	            <th>Time to run</th>
-	        </tr>
-	    </thead>
-	    <tbody>
-	        <tr>
-	            <td>{{test.tests}}</td>
-	            <td>{{test.errors}}</td>
-	            <td>{{test.skipped}}</td>
-	            <td>{{test.failures}}</td>
-	            <td>{{test.time}}</td>
-	        </tr>
-	    </tbody>
-	    <tbody>
-	    	<tr>
-	    		<td colspan='5'><a id='show' ng-click="goToTestCases(test.name)">Get Specifics</a></td>
-	    	</tr>
-	    </tbody>
-	    </table>
-    </div>
-    </accordion-group>
-</div>
-  </accordion>
-    <script>
-$(document).ready(function(){
-  $("#hide").click(function(){
-    $("show").hide();
-  });
-  $("#show").click(function(){
-    $("show").show();
-  });
-});
-</script>
-</head>
+	<!-- repeated content -->
+	<div ng-repeat="test in suites" ng-class="getAlert(test.passed)" style='margin-top: 15px'>
+	    <accordion-group>
+	    
+	    <!-- non collapsing header -->
+	        <accordion-heading>
+	            Test: {{test.suiteName}} - {{test.timestamp}}
+	        </accordion-heading>
+	    <!-- non collapsing header End-->
+	    
+	    <!-- Content in collapsing Div -->
+		<div>
+			<table class="table">
+		    <thead>
+		        <tr>
+		            <th>Tests run</th>
+		            <th>Errors</th>
+		            <th>Skipped</th>
+		            <th>Failures</th>
+		            <th>Time to run</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr>
+		            <td>{{test.tests}}</td>
+		            <td>{{test.errors}}</td>
+		            <td>{{test.skipped}}</td>
+		            <td>{{test.failures}}</td>
+		            <td>{{test.time}}</td>
+		        </tr>
+		    </tbody>
+		    <tbody>
+		    	<tr>
+		    		<td colspan='5'><a id='show' ng-click="goToTestCases(test.name)">Get Specifics</a></td>
+		    	</tr>
+		    </tbody>
+		    </table>
+	    </div>
+	    <!-- Content in collapsing Div End -->
+	    
+	    </accordion-group>
+	</div>
+	<!-- repeated content  End-->
+</accordion>
