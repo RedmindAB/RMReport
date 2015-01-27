@@ -17,10 +17,10 @@ angular.module('webLog', ["ui.router", "chart.js"])
         templateUrl: 'partials/graphview.html',
         controller: 'GraphViewCtrl'
         })     
-        .state('logs',{
-        url:'/logs',
-        templateUrl: 'partials/logs.html',
-        controller: 'LogsCtrl'
+        .state('testSuites',{
+        url:'/test-suites',
+        templateUrl: 'partials/test-suites.html',
+        controller: 'TestCtrl'
         })          
     });
 

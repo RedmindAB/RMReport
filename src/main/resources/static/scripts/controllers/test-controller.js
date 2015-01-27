@@ -1,5 +1,5 @@
 angular.module('webLog')
-    .controller('LogsCtrl',['$scope', '$http', function($scope, $http){
+    .controller('TestCtrl',['$scope', '$http', function($scope, $http){
     $scope.message = "Logs Controller";
     $scope.errorReport={};
     $scope.log = {};
