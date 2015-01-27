@@ -38,8 +38,8 @@ public class Report{
 		String name = element.getAttribute("name");
 		this.jsonObject.add("name", new JsonPrimitive(name));
 		
-		this.jsonObject.add("suiteName", new JsonPrimitive(getSuiteName(name)));
-		this.jsonObject.add("timestamp", new JsonPrimitive(getTimestamp(name)));
+		this.jsonObject.add("suiteName", new JsonPrimitive(extractSuiteName(name)));
+		this.jsonObject.add("timestamp", new JsonPrimitive(extractTimestamp(name)));
 		
 		String testString = element.getAttribute("tests");
 		int tests = Integer.valueOf(testString);
@@ -71,7 +71,7 @@ public class Report{
 			for (int i = 0; i < testCaseNodes.getLength(); i++) {
 				Element testCase = (Element) testCaseNodes.item(i);
 				ReportTestCase test = new ReportTestCase(testCase);
-				String driver = test.getDriverNameAsString();
+				String driver = test.getDriverName();
 				if (!driverSet.contains(driver)) {
 					driverSet.add(driver);
 				}
@@ -113,13 +113,13 @@ public class Report{
 		
 	}
 	
-	public String getSuiteName(String name){
+	public String extractSuiteName(String name){
 		int start = name.lastIndexOf(".");
 		int end = name.lastIndexOf("(");
 		return name.substring(start+1, end);
 	}
 	
-	public String getTimestamp(String name){
+	public String extractTimestamp(String name){
 		int start = name.lastIndexOf("(");
 		int end = name.lastIndexOf(")");
 		return name.substring(start+1, end);
@@ -135,6 +135,14 @@ public class Report{
 
 	public String getName() {
 		return this.jsonObject.get("name").getAsString();
+	}
+	
+	public String getSuiteName() {
+		return this.jsonObject.get("suiteName").getAsString();
+	}
+	
+	public String getTimestamp() {
+		return this.jsonObject.get("timestamp").getAsString();
 	}
 
 	public int getTests() {
