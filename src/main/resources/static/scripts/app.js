@@ -1,4 +1,4 @@
-angular.module('webLog', ["ui.router", "chart.js"])
+angular.module('webLog', ['ui.router', 'chart.js','ui.bootstrap'])
     .config(function($urlRouterProvider, $stateProvider){
 
     $stateProvider
@@ -7,20 +7,15 @@ angular.module('webLog', ["ui.router", "chart.js"])
             templateUrl: 'partials/home.html',
             controller: ''
         })
-        .state('error',{
-        url:'/error',
-        templateUrl: 'partials/error.html',
-        controller: 'ErrorCtrl'
-        })
         .state('testCases',{
-        url:'/test-case',
-        templateUrl: 'partials/test-case.html',
-        controller: 'TestCtrl'
+	        url:'/test-case',
+	        templateUrl: 'partials/test-case.html',
+	        controller: ''
         })     
         .state('testSuites',{
-        url:'/test-suites',
-        templateUrl: 'partials/test-suites.html',
-        controller: 'TestCtrl'
+	        url:'/test-suites',
+	        templateUrl: 'partials/test-suites.html',
+	        controller: ''
         })          
     });
 

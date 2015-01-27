@@ -1,7 +1,8 @@
 body{
-background-color: #D4D9DD;
+	background-color: #D4D9DD;
 }
 
+/* Redmind triangle */
 .triangle-overlay {
 	display: block;
 	position: fixed;
@@ -11,21 +12,43 @@ background-color: #D4D9DD;
 	width: 105px;
 	height: 172px;
 }
-
+/* Site content */
 .container{
 	-moz-border-radius-bottomright: 10px;
 	border-bottom-right-radius: 3px;
 	border-bottom-left-radius: 3px;
 	border-top-right-radius: 3px;
 	border-top-left-radius: 3px;
-	background-color: #FFFFFF;
+	background-color: #ecf0f1;
+	margin-top: 50px;
 }
-
+/* Bootstrap menu */
 .navbar-custom {
-    color: #FFFFFF;
     background-color: #D4D9DD;
+    margin-left: 50px;
+    margin-top: 25px;
+}
+.navbar-custom .navbar-inner{
+	color: fff;
+}
+/* Bootstrap hover */
+.navbar-custom .navbar-nav > li > a:hover{
+	background-color: #00967F;
+	color: white;
 }
 
-.navbar-custom navbar-brand:hover{
-	background-color: #FFF;
+/* Google charts*/
+.chart-pie options{
+	width: 10px;
+	height: 10px;
 }
+
+table.home td{
+	float: left;
+	text-align:center;
+}
+
+.canvas-home{
+	height: 200px;
+}
+
