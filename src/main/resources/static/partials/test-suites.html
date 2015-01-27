@@ -1,17 +1,17 @@
 <accordion ng-controller="CollapseCtrl" close-others="closeOthers">
 
 	<!-- repeated content -->
-	<div ng-repeat="test in suites" ng-class="getAlert(test.passed)" style='margin-top: 15px'>
-	    <accordion-group>
-	    
+	<div ng-repeat="test in suites" style='margin-top: 15px'>
+	    <accordion-group ng-class='getPanel(test.passed)' ng-style="{'background-color': getCo(test.passed)}">
+	   
 	    <!-- non collapsing header -->
 	        <accordion-heading>
-	            Test: {{test.suiteName}} - {{test.timestamp}} <button id='suite-button' style="float: right" ng-click="goToTestCases(test.name)">View Test Cases</button>
+	            Test: {{test.suiteName}} - {{test.timestamp}} <div style='text-align:right'><button class='btn' ng-click="goToTestCases(test.name)">View Test Cases</button></div>
 	        </accordion-heading>
 	    <!-- non collapsing header End-->
 	    
 	    <!-- Content in collapsing Div -->
-		<div>
+		<div ng-class='getBG(test.passed)'>
 			<table class="table">
 			    <thead>
 			        <tr>
