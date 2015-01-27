@@ -62,10 +62,8 @@ public class ReportXMLParserTest {
 	@Test
 	public void convertSimpleReportToFullReport(){
 		Report report = parser.getSimpleReportFromFile(file);
-		System.out.println(report);
 		assertNull(report.getTestCases());
 		report.convertToFullReport();
-		System.out.println(report.getTestCases());
 		assertEquals(12, report.getTestCases().size());
 	}
 	

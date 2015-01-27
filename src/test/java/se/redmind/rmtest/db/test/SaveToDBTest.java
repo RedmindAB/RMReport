@@ -2,6 +2,7 @@ package se.redmind.rmtest.db.test;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import se.redmind.rmtest.db.CommitToDB;
 import se.redmind.rmtest.db.DBCon;
 
 import se.redmind.rmtest.db.ReportStatementBuilder;
@@ -13,6 +14,7 @@ import se.redmind.rmtest.report.test.ReportLoaderTest;
 
 import java.io.File;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * Created by johan on 15-01-27.
@@ -36,12 +38,28 @@ public class SaveToDBTest {
     @Test
     public void saveReportToDBTest(){
         Report report = parser.getReportFromFile(file);
-        new ReportStatementBuilder(con).reportStatement(report);
+        try {
+            new ReportStatementBuilder(con).reportStatement(report).executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
     @Test
     public void saveTestCaseToDBtest(){
-        Report report =parser.getReportFromFile(file);
-        new TestCaseStatementBuilder(con).testCaseStatement(report.getTestCaseArray());
+        Report report = parser.getReportFromFile(file);
+        try {
+            new TestCaseStatementBuilder(con).testCaseStatement(report.getTestCaseArray()).executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    
+    public void hej(){
+    	System.out.println("hej");
     }
 
 }
