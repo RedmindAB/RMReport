@@ -6,36 +6,31 @@
 	    
 	    <!-- non collapsing header -->
 	        <accordion-heading>
-	            Test: {{test.suiteName}} - {{test.timestamp}}
+	            Test: {{test.suiteName}} - {{test.timestamp}} <button id='suite-button' style="float: right" ng-click="goToTestCases(test.name)">View Test Cases</button>
 	        </accordion-heading>
 	    <!-- non collapsing header End-->
 	    
 	    <!-- Content in collapsing Div -->
 		<div>
 			<table class="table">
-		    <thead>
-		        <tr>
-		            <th>Tests run</th>
-		            <th>Errors</th>
-		            <th>Skipped</th>
-		            <th>Failures</th>
-		            <th>Time to run</th>
-		        </tr>
-		    </thead>
-		    <tbody>
-		        <tr>
-		            <td>{{test.tests}}</td>
-		            <td>{{test.errors}}</td>
-		            <td>{{test.skipped}}</td>
-		            <td>{{test.failures}}</td>
-		            <td>{{test.time}}</td>
-		        </tr>
-		    </tbody>
-		    <tbody>
-		    	<tr>
-		    		<td colspan='5'><a id='show' ng-click="goToTestCases(test.name)">Get Specifics</a></td>
-		    	</tr>
-		    </tbody>
+			    <thead>
+			        <tr>
+			            <th>Tests run</th>
+			            <th>Errors</th>
+			            <th>Skipped</th>
+			            <th>Failures</th>
+			            <th>Time to run</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			        <tr>
+			            <td>{{test.tests}}</td>
+			            <td>{{test.errors}}</td>
+			            <td>{{test.skipped}}</td>
+			            <td>{{test.failures}}</td>
+			            <td>{{test.time}}</td>
+			        </tr>
+			    </tbody>
 		    </table>
 	    </div>
 	    <!-- Content in collapsing Div End -->
