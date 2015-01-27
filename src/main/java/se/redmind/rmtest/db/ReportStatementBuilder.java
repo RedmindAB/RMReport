@@ -21,7 +21,6 @@ public class ReportStatementBuilder {
     public PreparedStatement reportStatement(Report report){
 
         try {
-            Statement stat = conn.createStatement();
             PreparedStatement prep = conn.prepareStatement("insert into reports (name, suitename, timestamp, tests, skipped, failures, time) values (?,?,?,?,?,?,?);");
 
             prep.setString(1, report.getName());
@@ -33,18 +32,6 @@ public class ReportStatementBuilder {
             prep.setDouble(7, report.getTime());
             prep.addBatch();
 
-            ResultSet rs = stat.executeQuery("select * from reports;");
-            while (rs.next()) {
-                System.out.println("Report name = " + rs.getString("name"));
-                System.out.println("Report suitename = " + rs.getString("suitename"));
-                System.out.println("Report timestamp = " + rs.getString("timestamp"));
-                System.out.println("Report tests = " + rs.getString("tests"));
-                System.out.println("Report skipped = " + rs.getString("skipped"));
-                System.out.println("Report failures = " + rs.getString("failures"));
-                System.out.println("Report time = " + rs.getString("time"));
-                System.out.println("Report id = " + rs.getString("id"));
-            }
-            rs.close();
             return prep;
 
         } catch (SQLException e) {

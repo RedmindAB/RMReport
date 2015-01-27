@@ -1,5 +1,5 @@
 angular.module('webLog')
-    .controller('MainCtrl',['$scope', '$http','$location', function($scope, $http, $location){
+    .controller('MainCtrl',['$scope', '$http','$location', '$timeout', function($scope, $http, $location, $timeout){
     	
     $scope.errorReport={};
     $scope.suites = {};
@@ -24,11 +24,25 @@ angular.module('webLog')
         }
     };
 
-    $scope.getAlert = function(passed){
+    $scope.getPanel = function(passed){
     	if(passed)
-    		return 'alert alert-success';
+    		return 'panel panel-success bg-success success';
     	else
-    		return 'alert alert-danger';
+    		return 'panel panel-danger bg-danger';
+    };
+    
+    $scope.getBG = function(passed){
+    	if(passed)
+    		return 'bg-success';
+    	else
+    		return 'bg-danger';
+    };
+    
+    $scope.getCo = function(passed){
+    	if(passed)
+    		return '#DFF0D8';
+    	else
+    		return '#F2DEDE';
     };
     
     $scope.goToTestCases = function(testName){
@@ -36,4 +50,7 @@ angular.module('webLog')
     	console.log($scope.currentTestSuite);
     	$location.path('/test-case');
     };
+    $scope.labels2 = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
+    $scope.data2 = [300, 500, 100];
+    
 }]);
