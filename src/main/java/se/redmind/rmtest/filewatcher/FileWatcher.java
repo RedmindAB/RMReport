@@ -8,10 +8,11 @@ import java.nio.file.WatchService;
 
 import static java.nio.file.StandardWatchEventKinds.*;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
+import se.redmind.rmtest.web.properties.PropertiesReader;
 
 public class FileWatcher {
 
-	public static String directoryPath = new ReportLoader(System.getProperty("user.dir")+"/testfiles", false).getReportFolderPath();
+	public static String directoryPath = new PropertiesReader().getTestDirectory();
 	
 	public static void Run(){
 		System.out.println("File watcher starting to check: "+directoryPath);
