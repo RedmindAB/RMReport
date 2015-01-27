@@ -101,7 +101,11 @@ public class ReportTestCase{
 	}
 	
 	public String getErrorMessage(){
-		return this.jsonObject.get(ERROR).getAsJsonObject().get(MESSAGE).getAsString();
+		Object error = this.jsonObject.get(ERROR);
+		if (error != null) {
+			return this.jsonObject.get(ERROR).getAsJsonObject().get(MESSAGE).getAsString();
+		}
+		return null;
 	}
 
 	public JsonObject getFailure() {
@@ -109,7 +113,11 @@ public class ReportTestCase{
 	}
 	
 	public String getFailureMessage(){
-		return this.jsonObject.get(FAILURE).getAsJsonObject().get(MESSAGE).getAsString();
+		Object error = this.jsonObject.get(FAILURE);
+		if (error != null) {
+			return this.jsonObject.get(FAILURE).getAsJsonObject().get(MESSAGE).getAsString();
+		}
+		return null;
 	}
 
 	public double getTime() {
