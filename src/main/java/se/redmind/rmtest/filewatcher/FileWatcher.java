@@ -4,5 +4,5 @@ import se.redmind.rmtest.report.reportloader.ReportLoader;
 
 public class FileWatcher {
 
-	public static String directoryPath = ReportLoader.reportFolderPath;
+	public static String directoryPath = "";
 }
