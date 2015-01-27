@@ -1,4 +1,4 @@
-angular.module('webLog', ['ui.router'])
+angular.module('webLog', ["ui.router", "chart.js"])
     .config(function($urlRouterProvider, $stateProvider){
 
     $stateProvider
