@@ -29,7 +29,8 @@
 			            <td>{{test.className}}</td>
 			            <td>{{test.time}}</td>
 			            <td>{{test.passed}}</td>
-			            <td>{{test.failure.type}}</td>
+			            <td ng-if="test.failure.type">{{test.failure.type}}</td>
+			            <td ng-if="test.error.type">{{test.error.type}}</td>
 			        </tr>
 			    </tbody>
 		    </table>
@@ -41,7 +42,8 @@
 			    </thead>
 			    <tbody>
 			        <tr>
-			            <td>{{test.failure.message}}</td>
+			            <td ng-if="test.failure.message">{{test.failure.message}}</td>
+			            <td ng-if="test.error.message">{{test.error.message}}</td>
 			        </tr>
 			    </tbody>
 		    </table>
