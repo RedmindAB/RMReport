@@ -140,6 +140,10 @@ public class Report{
 	public String getSuiteName() {
 		return this.jsonObject.get("suiteName").getAsString();
 	}
+	
+	public String getTimestamp() {
+		return this.jsonObject.get("timestamp").getAsString();
+	}
 
 	public int getTests() {
 		return this.jsonObject.get("tests").getAsInt();
