@@ -48,7 +48,7 @@ public class SaveToDBTest {
     }
     @Test
     public void saveTestCaseToDBtest(){
-        Report report =parser.getReportFromFile(file);
+        Report report = parser.getReportFromFile(file);
         try {
             new TestCaseStatementBuilder(con).testCaseStatement(report.getTestCaseArray()).executeBatch();
         } catch (SQLException e) {
