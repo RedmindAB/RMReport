@@ -1,6 +1,8 @@
 angular.module('webLog', ['ui.router', 'chart.js','ui.bootstrap'])
     .config(function($urlRouterProvider, $stateProvider){
-
+    	
+    $urlRouterProvider.otherwise("/");
+    
     $stateProvider
         .state('home',{
             url: '/',
