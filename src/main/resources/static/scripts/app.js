@@ -1,11 +1,11 @@
-angular.module('webLog', ['ui.router'])
+angular.module('webLog', ["ui.router", "chart.js"])
     .config(function($urlRouterProvider, $stateProvider){
 
     $stateProvider
         .state('home',{
             url: '/',
             templateUrl: 'partials/home.html',
-            controller: 'HomeCtrl'
+            controller: ''
         })
         .state('error',{
         url:'/error',
