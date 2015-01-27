@@ -1,11 +1,14 @@
+
+
+
+  <accordion ng-controller="CollapseCtrl" close-others="closeOthers">
 <div ng-repeat="test in log" ng-class="getAlert(test.passed)" style='margin-top: 15px'>
-	<div ng-click="goToTestCases()">
+    <accordion-group>
+        <accordion-heading>
+            Test: {{test.suiteName}} - {{test.timestamp}}
+        </accordion-heading>
+        	<div>
 		<table class="table">
-	    <thead>
-	    <tr>
-	    	<th colspan='5'>Test: {{test.suiteName}} - {{test.timestamp}}</th>
-	    </tr>
-	    </thead>
 	    <thead>
 	        <tr>
 	            <th>Tests run</th>
@@ -26,11 +29,14 @@
 	    </tbody>
 	    <tbody>
 	    	<tr>
-	    		<td colspan='5'><a href='#' id='show'>Show More</a></td>
+	    		<td colspan='5'><a href='#' id='show' ng-click="goToTestCases(test.name)">Get Specifics</a></td>
 	    	</tr>
 	    </tbody>
 	    </table>
     </div>
+    </accordion-group>
+</div>
+  </accordion>
     <script>
 $(document).ready(function(){
   $("#hide").click(function(){
@@ -42,4 +48,3 @@ $(document).ready(function(){
 });
 </script>
 </head>
-</div>

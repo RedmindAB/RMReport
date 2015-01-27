@@ -4,6 +4,7 @@ angular.module('webLog')
     $scope.errorReport={};
     $scope.log = {};
     $scope.display ={};
+    $scope.currentTestSuite = {};
     
     $http.get('/api/log/getloglist')
     .success(function(data, status, headers, config){ 
@@ -53,8 +54,9 @@ angular.module('webLog')
     		return 'alert alert-danger';
     };
     
-    $scope.goToTestCases = function(){
+    $scope.goToTestCases = function(testName){
     	
+    	console.log(testName);
     	$location.path('/test-case');
     	
     };
