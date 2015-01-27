@@ -3,6 +3,8 @@ package se.redmind.rmtest.report.reportloader;
 import java.io.File;
 import java.util.ArrayList;
 
+import se.redmind.rmtest.web.properties.PropertiesReader;
+
 public class ReportLoader {
 	
 	public static String reportFolderPath;
@@ -25,10 +27,8 @@ public class ReportLoader {
 	}
 	
 	private String searchReportFolderPath(){
-		String baseDir = System.getProperty("user.dir");
-		String reportDir = "/target/surefire-reports";
-		String path = baseDir + reportDir;
-		return findFolder(path, false);
+		String reportDir = new PropertiesReader().getTestDirectory();
+		return findFolder(reportDir, false);
 	}
 	
 	/**
