@@ -71,7 +71,7 @@ public class Report{
 			for (int i = 0; i < testCaseNodes.getLength(); i++) {
 				Element testCase = (Element) testCaseNodes.item(i);
 				ReportTestCase test = new ReportTestCase(testCase);
-				String driver = test.getDriverNameAsString();
+				String driver = test.getDriverName();
 				if (!driverSet.contains(driver)) {
 					driverSet.add(driver);
 				}

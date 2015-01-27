@@ -71,11 +71,11 @@ public class ReportTestCase{
 		return name;
 	}
 	
-	public String getDriverNameAsString(){
+	public String getDriverName(){
 		return this.jsonObject.get("driverName").getAsString();
 	}
 	
-	public JsonElement getDriverName(){
+	public JsonElement getDriverNameAsJson(){
 		return this.jsonObject.get("driverName");
 	}
 
@@ -83,12 +83,12 @@ public class ReportTestCase{
 		return classname;
 	}
 
-	public JsonObject getError() {
-		return this.jsonObject.get("error").getAsJsonObject();
+	public int getError() {
+		return this.jsonObject.get("error").getAsInt();
 	}
 
-	public JsonObject getFailure() {
-		return this.jsonObject.get("failure").getAsJsonObject();
+	public int getFailure() {
+		return this.jsonObject.get("failure").getAsInt();
 	}
 
 	public double getTime() {
@@ -102,5 +102,5 @@ public class ReportTestCase{
 	public JsonObject getAsJsonObject(){
 		return this.jsonObject;
 	}
-
+	
 }
