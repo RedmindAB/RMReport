@@ -1,6 +1,54 @@
-<div>
-	<h3>{{currentTestSuite.name}}</h3>
-	<div ng-repeat="testCase in currentTestSuite.testcases">
-		Test Name:	{{testCase.name}}	-	Passed: {{testCase.passed}}
+<h3>{{currentTestSuite.name}}</h3>
+<accordion ng-controller="CollapseCtrl" close-others="closeOthers">
+
+	<!-- repeated content -->
+	<div ng-repeat="test in currentTestSuite.testcases" ng-class="getAlert(test.passed)" style='margin-top: 15px'>
+	    <accordion-group>
+	    
+	    <!-- non collapsing header -->
+	        <accordion-heading>
+	            Test Name:	{{test.name}}
+	        </accordion-heading>
+	    <!-- non collapsing header End-->
+	    
+	    <!-- Content in collapsing Div -->
+		<div>
+			<table class="table">
+			    <thead>
+			        <tr>
+			            <th>Driver used</th>
+			            <th>Class name</th>
+			            <th>Time to run</th>
+			            <th>Passed</th>
+			            <th>Error type</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			        <tr>
+			            <td>{{test.driverName}}</td>
+			            <td>{{test.className}}</td>
+			            <td>{{test.time}}</td>
+			            <td>{{test.passed}}</td>
+			            <td>{{test.failure.type}}</td>
+			        </tr>
+			    </tbody>
+		    </table>
+		    <table class="table">
+				<thead>
+			        <tr>
+			            <th>Error Message</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			        <tr>
+			            <td>{{test.failure.message}}</td>
+			        </tr>
+			    </tbody>
+		    </table>
+	    </div>
+	    <!-- Content in collapsing Div End -->
+	    
+	    </accordion-group>
 	</div>
-</div>
+	<!-- repeated content  End-->
+</accordion>
