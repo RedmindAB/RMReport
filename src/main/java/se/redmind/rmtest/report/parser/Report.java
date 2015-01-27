@@ -136,6 +136,10 @@ public class Report{
 	public String getName() {
 		return this.jsonObject.get("name").getAsString();
 	}
+	
+	public String getSuiteName() {
+		return this.jsonObject.get("suiteName").getAsString();
+	}
 
 	public int getTests() {
 		return this.jsonObject.get("tests").getAsInt();
