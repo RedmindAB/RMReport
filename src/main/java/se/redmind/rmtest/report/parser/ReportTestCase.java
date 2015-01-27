@@ -96,12 +96,20 @@ public class ReportTestCase{
 		return classname;
 	}
 
-	public int getError() {
-		return this.jsonObject.get(ERROR).getAsInt();
+	public JsonObject getError() {
+		return this.jsonObject.get(ERROR).getAsJsonObject();
+	}
+	
+	public String getErrorMessage(){
+		return this.jsonObject.get(ERROR).getAsJsonObject().get(MESSAGE).getAsString();
 	}
 
-	public int getFailure() {
-		return this.jsonObject.get(FAILURE).getAsInt();
+	public JsonObject getFailure() {
+		return this.jsonObject.get(FAILURE).getAsJsonObject();
+	}
+	
+	public String getFailureMessage(){
+		return this.jsonObject.get(FAILURE).getAsJsonObject().get(MESSAGE).getAsString();
 	}
 
 	public double getTime() {

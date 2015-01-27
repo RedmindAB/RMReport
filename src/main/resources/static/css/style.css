@@ -25,14 +25,16 @@ body{
 /* Bootstrap menu */
 .navbar-custom {
     background-color: #D4D9DD;
-    margin-left: 50px;
     margin-top: 25px;
+    text-decoration: none;
 }
-.navbar-custom .navbar-inner{
-	color: fff;
+
+.navbar .nav > li > a {
+    color:  #000000;
 }
+
 /* Bootstrap hover */
-.navbar-custom .navbar-nav > li > a:hover{
+.navbar-custom .nav > li > a:hover{
 	background-color: #00967F;
 	color: white;
 }
@@ -42,13 +44,8 @@ body{
 	width: 10px;
 	height: 10px;
 }
-
+/* Home.html table style*/
 table.home td{
 	float: left;
 	text-align:center;
 }
-
-.canvas-home{
-	height: 200px;
-}
-

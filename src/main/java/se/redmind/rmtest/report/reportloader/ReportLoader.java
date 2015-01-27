@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class ReportLoader {
 	
-	private String reportFolderPath;
+	public static String reportFolderPath;
 	private File reportFolder = null;
 	
 	/**
