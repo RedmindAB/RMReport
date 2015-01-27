@@ -1,7 +1,9 @@
 package se.redmind.rmtest.report.parser;
 
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -34,12 +36,14 @@ public class Report{
 	private JsonObject jsonObject;
 	private Element file;
 	private boolean simpleReport;
+	private List<ReportTestCase> testCaseArray;
 
 	public Report(Element element) {
 		this.jsonObject = new JsonObject();
 		this.jsonObject.add(SIMPLE_REPORT, new JsonPrimitive(false));
 		this.simpleReport = false;
 		this.file = element;
+		this.testCaseArray = new ArrayList<ReportTestCase>();
 		generateReportFromElement(element);
 	}
 	
@@ -48,6 +52,7 @@ public class Report{
 		this.jsonObject.add(SIMPLE_REPORT, new JsonPrimitive(simpleReport));
 		this.simpleReport = simpleReport;
 		this.file = element;
+		this.testCaseArray = new ArrayList<ReportTestCase>();
 		generateReportFromElement(element);
 	}
 
@@ -88,6 +93,7 @@ public class Report{
 			for (int i = 0; i < testCaseNodes.getLength(); i++) {
 				Element testCase = (Element) testCaseNodes.item(i);
 				ReportTestCase test = new ReportTestCase(testCase);
+				testCaseArray.add(test);
 				String driver = test.getDriverName();
 				if (!driverSet.contains(driver)) {
 					driverSet.add(driver);
@@ -190,6 +196,10 @@ public class Report{
 	
 	public JsonArray getDrivers(){
 		return this.jsonObject.get(DRIVERS).getAsJsonArray();
+	}
+	
+	public List<ReportTestCase> getTestCaseArray(){
+		return testCaseArray;
 	}
 	
 	public JsonObject getAsJsonObject(){
