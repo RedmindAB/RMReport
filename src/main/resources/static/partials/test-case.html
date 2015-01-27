@@ -1,5 +1,5 @@
 <h3>{{currentTestSuite.name}}</h3>
-<accordion ng-controller="CollapseCtrl" close-others="closeOthers">
+<accordion ng-controller="ChartCtrl" others="closeOthers">
 
 	<!-- repeated content -->
 	<div ng-repeat="test in currentTestSuite.testcases" ng-class="getAlert(test.passed)" style='margin-top: 15px'>
@@ -7,7 +7,7 @@
 	    
 	    <!-- non collapsing header -->
 	        <accordion-heading>
-	            Test Name:	{{test.name}}
+	            Test Method Name:	{{test.name}}
 	        </accordion-heading>
 	    <!-- non collapsing header End-->
 	    
