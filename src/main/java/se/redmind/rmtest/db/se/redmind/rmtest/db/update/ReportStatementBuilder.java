@@ -1,4 +1,4 @@
-package se.redmind.rmtest.db;
+package se.redmind.rmtest.db.se.redmind.rmtest.db.update;
 
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
@@ -31,6 +31,7 @@ public class ReportStatementBuilder {
             prep.setInt   (6, report.getFailures());
             prep.setDouble(7, report.getTime());
             prep.addBatch();
+
 
             return prep;
 

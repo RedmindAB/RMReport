@@ -1,4 +1,4 @@
-package se.redmind.rmtest.db;
+package se.redmind.rmtest.db.se.redmind.rmtest.db.create;
 
 import java.sql.*;
 
@@ -71,7 +71,7 @@ public class DBCon {
 
             stat = conn.createStatement();
             stat.executeUpdate("create table if not exists reports (name, suitename, timestamp, tests, skipped, failures, time, id integer primary key autoincrement)");
-            stat.executeUpdate("create table if not exists testcases (name, driver, error, time, failures, passed, reportid)");
+            stat.executeUpdate("create table if not exists testcases (name, driver, error, time, failures, passed, reportid, id integer autoincrement)");
         } catch (SQLException e) {
             e.printStackTrace();
         }
