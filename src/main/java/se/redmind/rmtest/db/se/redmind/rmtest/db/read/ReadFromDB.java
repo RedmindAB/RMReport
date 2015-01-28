@@ -16,7 +16,7 @@ public class ReadFromDB {
         conn=connection;
     }
 
-    public void getMaxId(){
+    public void getMaxIdFromReports(){
 
         Statement stat = null;
 
