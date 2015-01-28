@@ -2,11 +2,11 @@ package se.redmind.rmtest.db.test;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import se.redmind.rmtest.db.CommitToDB;
-import se.redmind.rmtest.db.DBCon;
+import se.redmind.rmtest.db.se.redmind.rmtest.db.create.DBCon;
 
-import se.redmind.rmtest.db.ReportStatementBuilder;
-import se.redmind.rmtest.db.TestCaseStatementBuilder;
+import se.redmind.rmtest.db.se.redmind.rmtest.db.read.ReadFromDB;
+import se.redmind.rmtest.db.se.redmind.rmtest.db.update.ReportStatementBuilder;
+import se.redmind.rmtest.db.se.redmind.rmtest.db.update.TestCaseStatementBuilder;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
@@ -57,9 +57,6 @@ public class SaveToDBTest {
 
 
     }
-    
-    public void hej(){
-    	System.out.println("hej");
-    }
+
 
 }
