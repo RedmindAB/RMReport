@@ -77,6 +77,6 @@ public class ReadFromDBTest {
     }
     @Test
     public void getMaxIdTest(){
-        new ReadFromDB(conn).getMaxId();
+        new ReadFromDB(conn).getMaxID();
     }
 }
