@@ -34,7 +34,8 @@ angular.module('webLog')
 		};
 		
 		function getTestStats(suite){
-			statHolder.testStat = [suite.errors, suite.failures, suite.skipped];
+			statHolder.testStat = [suite.errors, suite.failures];
+			statHolder.testStat[2] = (suite.tests - (suite.errors + suite.failures));
 		}
 		
 		$scope.$watch('suites', function(suites){
