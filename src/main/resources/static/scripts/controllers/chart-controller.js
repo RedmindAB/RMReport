@@ -3,8 +3,14 @@ angular.module('webLog')
 
 		$scope.openSuite;
 		
-		$scope.labels = ["Fire Fox", "Chrome"];
-		$scope.data = [100, 5];
+		$scope.allDriversLabels = ["Fire Fox", "Chrome", "Safari"];
+		$scope.allDrivers = [15, 7, 13];
+		
+		$scope.allTestsLabels = ["Error", "Failure", "Passed"];
+		$scope.allTests = [20, 10, 32];
+		
+		$scope.allDriversFailsLabels = ["Fire Fox", "Chrome", "Safari"];
+		$scope.allDriversFails= [12, 3, 8];
 		
 		$scope.isOpenSuite = function(testName){
 			if ($scope.openSuite) {
