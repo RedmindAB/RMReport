@@ -1,4 +1,4 @@
-<h3>Test: {{test.suiteName}} - {{test.timestamp}}</h3>
+<h3>Test: {{currentTestSuite.suiteName}} - {{currentTestSuite.timestamp}}</h3>
 <accordion close-others="true">
 
 	<!-- repeated content -->
@@ -34,19 +34,25 @@
 			        </tr>
 			    </tbody>
 		    </table>
-		    <table class="table">
-				<thead>
-			        <tr>
-			            <th>Error Message</th>
-			        </tr>
-			    </thead>
-			    <tbody>
-			        <tr>
-			            <td ng-if="test.failure.message">{{test.failure.message}}</td>
-			            <td ng-if="test.error.message">{{test.error.message}}</td>
-			        </tr>
-			    </tbody>
-		    </table>
+		    
+		    <accordion ng-if="test.failure.message || test.error.message" close others="true">
+			    <accordion-group ng-class='getPanel(test.passed)' ng-style="{'background-color': getCo(test.passed)}">
+					<accordion-heading>
+						Display Error Message
+		        	</accordion-heading>
+		            
+					<div ng-if="test.failure.message">
+			            {{test.failure.message}}
+		            </div>
+		            <div ng-if="test.error.message">
+			            {{test.error.message}}
+		            </div>
+			    </accordion-group>
+		    </accordion>
+			            
+			            
+			            
+			            
 	    </div>
 	    <!-- Content in collapsing Div End -->
 	    
