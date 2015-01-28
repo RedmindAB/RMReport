@@ -17,7 +17,7 @@ import java.util.List;
  * Created by johan on 15-01-27.
  */
 public class ReadFromDBTest {
-    Connection conn = DBCon.getDbTestInstance().getConnection();
+    Connection conn = DBCon.getDbInstance().getConnection();
 
     @Test
     public void readFromTestcases(){

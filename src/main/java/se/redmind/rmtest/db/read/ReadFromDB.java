@@ -14,12 +14,23 @@ public class ReadFromDB {
 	
     Connection conn;
 
+    String GET_MAX_ID_FROM_REPORTS = "select * from reports order by id desc limit 1";
+
+
+
     public ReadFromDB(Connection connection){
         conn=connection;
     }
     
-    public void getMaxID(){
-    	ResultSet rs = getResulSet("select MAX(id) from reports");
+    public Integer getMaxID(){
+    	ResultSet rs = getResulSet(GET_MAX_ID_FROM_REPORTS);
+        try {
+            System.out.println("Max id: "+rs.getString("id"));
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public ResultSet getResulSet(String query){
