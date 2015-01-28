@@ -1,9 +1,9 @@
-<h3>{{currentTestSuite.name}}</h3>
+<h3>Test: {{test.suiteName}} - {{test.timestamp}}</h3>
 <accordion close-others="true">
 
 	<!-- repeated content -->
-	<div ng-repeat="test in currentTestSuite.testcases" ng-class="getAlert(test.passed)" style='margin-top: 15px'>
-	    <accordion-group>
+	<div ng-repeat="test in currentTestSuite.testcases" style='margin-top: 10px'>
+	    <accordion-group ng-class='getPanel(test.passed)' ng-style="{'background-color': getCo(test.passed)}">
 	    
 	    <!-- non collapsing header -->
 	        <accordion-heading>
@@ -12,7 +12,7 @@
 	    <!-- non collapsing header End-->
 	    
 	    <!-- Content in collapsing Div -->
-		<div>
+		<div ng-class='getBG(test.passed)'>
 			<table class="table">
 			    <thead>
 			        <tr>

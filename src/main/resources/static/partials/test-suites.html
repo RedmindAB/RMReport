@@ -1,14 +1,16 @@
 <accordion close-others="true">
 	<!-- repeated content -->
-	<div ng-repeat="test in suites" style='margin-top: 15px'>
+	<div ng-repeat="test in suites" style='margin-top: 10px'>
 	    <accordion-group is-open="test.open" ng-class='getPanel(test.passed)' ng-style="{'background-color': getCo(test.passed)}">
 	   
 	    <!-- non collapsing header -->
 	        <accordion-heading>
-	            Test: {{test.suiteName}} - {{test.timestamp}} <div style='text-align:right'><button class='btn' ng-click="goToTestCases(test.name)">View Test Cases</button></div>
+	        	<div style='overflow: hidden;position:relative'>
+	        		<div style='display:inline'>Test: {{test.suiteName}} - {{test.timestamp}} </div>
+	        		<div style='float:right;display:inline'><button class='btn' ng-click="goToTestCases(test.name)">View Test Cases</button></div>
+	        	</div>
 	        </accordion-heading>
 	    <!-- non collapsing header End-->
-	    
 		    <!-- Content in collapsing Div -->
 			<div ng-class='getBG(test.passed)'>
 				<table class="table">
@@ -36,7 +38,6 @@
 			    </div>
 		    </div>
 		    <!-- Content in collapsing Div End -->
-	    
 	    </accordion-group>
 	</div>
 	<!-- repeated content  End-->
