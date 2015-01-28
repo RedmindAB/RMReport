@@ -1,9 +1,9 @@
 package se.redmind.rmtest.db.test;
 
 import org.junit.Test;
-import org.junit.experimental.results.ResultMatchers;
 
-import se.redmind.rmtest.db.DBCon;
+import se.redmind.rmtest.db.se.redmind.rmtest.db.create.DBCon;
+import se.redmind.rmtest.db.se.redmind.rmtest.db.read.ReadFromDB;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -35,6 +35,7 @@ public class ReadFromDBTest {
                 System.out.println("testcase failures = " + rs.getString("failures"));
                 System.out.println("testcase passed = " + rs.getString("passed"));
                 System.out.println("testcase reportid = " + rs.getString("reportid"));
+                System.out.println("testcase id = " + rs.getString("id"));
 
                 rs.close();
             }
@@ -59,23 +60,23 @@ public class ReadFromDBTest {
 			}
             while (rs.next()) {
             	
-            	for (int i = 1; i < columnNames.size(); i++) {
-            		System.out.println(columnNames.get(i)+": "+rs.getObject(i));
-				}
-            	
-//                System.out.println("Report name = " + rs.getString("name"));
-//                System.out.println("Report suitename = " + rs.getString("suitename"));
-//                System.out.println("Report timestamp = " + rs.getString("timestamp"));
-//                System.out.println("Report tests = " + rs.getString("tests"));
-//                System.out.println("Report skipped = " + rs.getString("skipped"));
-//                System.out.println("Report failures = " + rs.getString("failures"));
-//                System.out.println("Report time = " + rs.getString("time"));
-//                System.out.println("Report id = " + rs.getString("id"));
+                System.out.println("Report name = " + rs.getString("name"));
+                System.out.println("Report suitename = " + rs.getString("suitename"));
+                System.out.println("Report timestamp = " + rs.getString("timestamp"));
+                System.out.println("Report tests = " + rs.getString("tests"));
+                System.out.println("Report skipped = " + rs.getString("skipped"));
+                System.out.println("Report failures = " + rs.getString("failures"));
+                System.out.println("Report time = " + rs.getString("time"));
+                System.out.println("Report id = " + rs.getString("id"));
 
                 rs.close();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    @Test
+    public void getMaxIdTest(){
+        new ReadFromDB(conn).getMaxId();
     }
 }

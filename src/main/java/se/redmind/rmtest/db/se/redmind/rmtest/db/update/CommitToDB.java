@@ -1,4 +1,4 @@
-package se.redmind.rmtest.db;
+package se.redmind.rmtest.db.se.redmind.rmtest.db.update;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,8 @@ import java.sql.SQLException;
  * Created by johan on 15-01-27.
  */
 public class CommitToDB {
-        Connection conn;
+
+    Connection conn;
 
     public CommitToDB(Connection connection){
         conn = connection;
