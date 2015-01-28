@@ -1,9 +1,12 @@
 package se.redmind.rmtest.db.read;
 
+import se.redmind.rmtest.util.StringKeyValueParser;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashSet;
 
 /**
  * Created by johan on 15-01-26.
@@ -16,11 +19,12 @@ public class ReadFromDB {
 
     String GET_MAX_ID_FROM_REPORTS = "select * from reports order by id desc limit 1";
     String REPORT_EXISTS = "select timestamp from reports where timestamp=";
-
-
+    String GET_ALL_REPORT_NAMES = "select name from reports";
 
     public ReadFromDB(Connection connection){
         conn=connection;
+
+
     }
     
     public Integer getMaxID(){
@@ -47,6 +51,18 @@ public class ReadFromDB {
             e.printStackTrace();
         }
         return false;
+    }
+    public HashSet getAllReportNames(){
+        HashSet hs = new HashSet();
+        ResultSet rs = getResulSet(GET_ALL_REPORT_NAMES);
+        try {
+            while(rs.next())
+                hs.add(rs.getString(1));
+            return hs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    return null;
     }
 
     public ResultSet getResulSet(String query){
