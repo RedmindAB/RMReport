@@ -6,7 +6,7 @@ body{
 .triangle-overlay {
 	display: block;
 	position: fixed;
-	z-index: 1000;
+	z-index: 2000;
 	top: 0px;
 	right: 0px;
 	width: 105px;
@@ -14,26 +14,38 @@ body{
 }
 /* Site content */
 .container{
-	-moz-border-radius-bottomright: 10px;
 	border-bottom-right-radius: 3px;
 	border-bottom-left-radius: 3px;
 	border-top-right-radius: 3px;
 	border-top-left-radius: 3px;
 	background-color: #ecf0f1;
-	margin-top: 50px;
+	position:relative;
 }
+
 /* Bootstrap menu */
 .navbar-custom {
     background-color: #D4D9DD;
     margin-top: 25px;
-    text-decoration: none;
 }
 
-.navbar .nav > li > a {
-    color:  #000000;
+.navbar-toggle {
+	   background-color: #ecf0f1;
+	   float:left;
 }
 
-/* Bootstrap hover */
+.navbar-toggle .icon-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #cccccc;
+  border-radius: 1px;
+}
+
+.navbar-custom .nav > li > a{
+	color: #000;
+	text-transform: uppercase;
+}
+
 .navbar-custom .nav > li > a:hover{
 	background-color: #00967F;
 	color: white;
