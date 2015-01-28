@@ -1,4 +1,4 @@
-package se.redmind.rmtest.db.se.redmind.rmtest.db.update;
+package se.redmind.rmtest.db.update;
 
 import se.redmind.rmtest.report.parser.ReportTestCase;
 

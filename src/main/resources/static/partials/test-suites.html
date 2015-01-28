@@ -32,10 +32,26 @@
 				            <td>{{test.time}}</td>
 				        </tr>
 				    </tbody>
+				    <tbody>
+					    <tr>
+						    <td>
+							    <div ng-if="test.name == openSuite.name">
+						    		<canvas id="pie" class="chart chart-pie" data="allDrivers" labels="allDriversLabels"></canvas> 
+						   		</div>
+					   		</td>
+					   		<td>
+							    <div ng-if="test.name == openSuite.name">
+						    		<canvas id="pie" class="chart chart-pie" data="allTests" labels="allTestsLabels"></canvas> 
+						   		</div>
+					   		</td>
+					   		<td>
+						    	<div ng-if="test.name == openSuite.name">
+					    			<canvas id="pie" class="chart chart-pie" data="allDriversFails" labels="allDriversFailsLabels"></canvas> 
+					   		 	</div>
+					   		</td>
+				   		</tr>
+			   		</tbody>
 			    </table>
-			    <div ng-if="test.name == openSuite.name">
-			    	<canvas id="pie" class="chart chart-pie" data="data" labels="labels"></canvas> 
-			    </div>
 		    </div>
 		    <!-- Content in collapsing Div End -->
 	    </accordion-group>

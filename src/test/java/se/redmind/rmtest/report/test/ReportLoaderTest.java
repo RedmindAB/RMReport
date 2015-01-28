@@ -9,12 +9,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import se.redmind.rmtest.report.reportloader.ReportLoader;
-import se.redmind.rmtest.web.properties.PropertiesReader;
 
 public class ReportLoaderTest {
 	
-	
-	public static String path = new PropertiesReader().getTestDirectory();
+	public static String path = System.getProperty("user.dir")+"/testfiles";
 	public static String specificReportFileName = "TEST-test.java.se.redmind.rmtest.selenium.example.CreateLogTests-20150121-160622.xml";
 	private static ReportLoader loader;
 	
