@@ -1,5 +1,5 @@
 <h3>{{currentTestSuite.name}}</h3>
-<accordion ng-controller="ChartCtrl" others="closeOthers">
+<accordion close-others="true">
 
 	<!-- repeated content -->
 	<div ng-repeat="test in currentTestSuite.testcases" ng-class="getAlert(test.passed)" style='margin-top: 15px'>
