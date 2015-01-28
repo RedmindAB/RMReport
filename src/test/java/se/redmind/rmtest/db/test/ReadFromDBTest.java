@@ -2,8 +2,8 @@ package se.redmind.rmtest.db.test;
 
 import org.junit.Test;
 
-import se.redmind.rmtest.db.se.redmind.rmtest.db.create.DBCon;
-import se.redmind.rmtest.db.se.redmind.rmtest.db.read.ReadFromDB;
+import se.redmind.rmtest.db.create.DBCon;
+import se.redmind.rmtest.db.read.ReadFromDB;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

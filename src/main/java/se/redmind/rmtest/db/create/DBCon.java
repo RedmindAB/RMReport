@@ -1,4 +1,4 @@
-package se.redmind.rmtest.db.se.redmind.rmtest.db.create;
+package se.redmind.rmtest.db.create;
 
 import java.sql.*;
 

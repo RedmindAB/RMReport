@@ -4,6 +4,8 @@ import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 
+import static java.nio.file.StandardWatchEventKinds.*;
+
 public class FileWatcherQueueReader implements Runnable {
 
 	private WatchService watchService;
@@ -11,6 +13,7 @@ public class FileWatcherQueueReader implements Runnable {
 		this.watchService = watchService;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unused" })
 	@Override
 	public void run() {
 		System.out.println("Running file watcher");
@@ -21,9 +24,15 @@ public class FileWatcherQueueReader implements Runnable {
                 // we have a polled event, now we traverse it and 
                 // receive all the states from it
                 for (WatchEvent event : key.pollEvents()) {
-                    System.out.printf("Received %s event for file: %s\n",
-                                      event.kind(), event.context() );
+//                    System.out.printf("Received %s event for file: %s\n",
+//                                      event.kind(), event.context() );
+                	String context = (String) event.context();
+                    if (event.kind().equals(ENTRY_CREATE)) {
+                    	
+                    }
                 }
+                
+                
                 key.reset();
                 key = watchService.take();
             }
@@ -32,5 +41,5 @@ public class FileWatcherQueueReader implements Runnable {
         }
         System.out.println("Stopping thread");
 	}
-
+	
 }
