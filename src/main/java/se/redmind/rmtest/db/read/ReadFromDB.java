@@ -37,4 +37,9 @@ public class ReadFromDB {
     public void readTableTestcases(){
 
     }
+    
+    
+    public boolean reportExists(String reportTimeStamp){
+    	return false;
+    }
 }
