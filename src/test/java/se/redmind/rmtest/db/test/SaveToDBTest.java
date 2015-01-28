@@ -21,7 +21,7 @@ import java.sql.SQLException;
  */
 public class SaveToDBTest {
 
-    Connection con = DBCon.getDbTestInstance().getConnection();
+    Connection con = DBCon.getDbInstance().getConnection();
 
     private static ReportLoader loader;
     private static ReportXMLParser parser;
