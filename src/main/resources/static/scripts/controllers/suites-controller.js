@@ -3,7 +3,9 @@ angular.module('webLog')
 
 		$scope.openSuite;
 		
-		$scope.allDriversLabels = ["Fire Fox", "Chrome", "Safari"];
+		var statHolder= {};
+		
+		$scope.allDriversLabels = [];
 		$scope.allDrivers = [15, 7, 13];
 		
 		$scope.allTestsLabels = ["Error", "Failure", "Passed"];
@@ -19,16 +21,27 @@ angular.module('webLog')
 			}
 		};
 		
+		function readDataToCharts(suite){
+			getDriverNames(suite);
+			getTestStats(suite);
+			
+			$scope.allDriversLabels = statHolder.drivers;
+			$scope.allTests = statHolder.testStat;
+		};
 		  
+		function getDriverNames(suite) {
+			statHolder.drivers = suite.drivers;
+		};
 		
-		
-		
+		function getTestStats(suite){
+			statHolder.testStat = [suite.errors, suite.failures, suite.skipped];
+		}
 		
 		$scope.$watch('suites', function(suites){
 		    angular.forEach(suites, function(test, idx){
 		      if (test.open) {
 		    	  $scope.openSuite = test;
-		        console.log($scope.openSuite.name + " is open");
+		    	  readDataToCharts($scope.openSuite);
 		      }
 		    })   
 		}, true);
