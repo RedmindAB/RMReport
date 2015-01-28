@@ -12,7 +12,7 @@ public class GetLogListDAO {
 	}
 	
 	public String getReports(){
-		JsonArray reportList = new ReportHandler().getLogList();
+		JsonArray reportList = new ReportHandler().getReportList();
 		return new Gson().toJson(reportList);
 	}
 }

@@ -2,8 +2,8 @@ package se.redmind.rmtest.db.test;
 
 import org.junit.Test;
 
-import se.redmind.rmtest.db.se.redmind.rmtest.db.create.DBCon;
-import se.redmind.rmtest.db.se.redmind.rmtest.db.read.ReadFromDB;
+import se.redmind.rmtest.db.create.DBCon;
+import se.redmind.rmtest.db.read.ReadFromDB;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -17,7 +17,7 @@ import java.util.List;
  * Created by johan on 15-01-27.
  */
 public class ReadFromDBTest {
-    Connection conn = DBCon.getDbTestInstance().getConnection();
+    Connection conn = DBCon.getDbInstance().getConnection();
 
     @Test
     public void readFromTestcases(){
@@ -77,6 +77,6 @@ public class ReadFromDBTest {
     }
     @Test
     public void getMaxIdTest(){
-        new ReadFromDB(conn).getMaxId();
+        new ReadFromDB(conn).getMaxID();
     }
 }

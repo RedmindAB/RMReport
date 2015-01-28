@@ -31,7 +31,6 @@ public class PropertiesReader {
 	}
 	
 	public void checkPropFile(){
-		System.out.println("Checking property file");
 		String testDir = properties.getProperty(TEST_DIR);
 		if (testDir == null) {
 			System.err.println("No properties file was detected, creating template file:");

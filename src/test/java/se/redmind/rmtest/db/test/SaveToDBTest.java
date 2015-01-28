@@ -2,11 +2,11 @@ package se.redmind.rmtest.db.test;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import se.redmind.rmtest.db.se.redmind.rmtest.db.create.DBCon;
 
-import se.redmind.rmtest.db.se.redmind.rmtest.db.read.ReadFromDB;
-import se.redmind.rmtest.db.se.redmind.rmtest.db.update.ReportStatementBuilder;
-import se.redmind.rmtest.db.se.redmind.rmtest.db.update.TestCaseStatementBuilder;
+import se.redmind.rmtest.db.create.DBCon;
+import se.redmind.rmtest.db.read.ReadFromDB;
+import se.redmind.rmtest.db.update.ReportStatementBuilder;
+import se.redmind.rmtest.db.update.TestCaseStatementBuilder;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
@@ -21,7 +21,7 @@ import java.sql.SQLException;
  */
 public class SaveToDBTest {
 
-    Connection con = DBCon.getDbTestInstance().getConnection();
+    Connection con = DBCon.getDbInstance().getConnection();
 
     private static ReportLoader loader;
     private static ReportXMLParser parser;

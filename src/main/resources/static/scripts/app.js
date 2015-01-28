@@ -12,12 +12,12 @@ angular.module('webLog', ['ui.router', 'chart.js','ui.bootstrap'])
         .state('testCases',{
 	        url:'/test-case',
 	        templateUrl: 'partials/test-case.html',
-	        controller: 'ChartCtrl'
+	        controller: 'TestCaseCtrl'
         })     
         .state('testSuites',{
 	        url:'/test-suites',
 	        templateUrl: 'partials/test-suites.html',
-	        controller: 'ChartCtrl'
+	        controller: 'SuitesCtrl'
         })          
     });
 
