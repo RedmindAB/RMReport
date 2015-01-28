@@ -1,13 +1,11 @@
 package se.redmind.rmtest.filewatcher;
 
 import java.io.IOException;
-import java.nio.channels.UnsupportedAddressTypeException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.WatchService;
 
 import static java.nio.file.StandardWatchEventKinds.*;
-import se.redmind.rmtest.report.reportloader.ReportLoader;
 import se.redmind.rmtest.web.properties.PropertiesReader;
 
 public class FileWatcher {
@@ -20,7 +18,6 @@ public class FileWatcher {
 		if (path == null) {
 			throw new UnsupportedOperationException();
 		}
-		
 		try {
 			WatchService watcher = path.getFileSystem().newWatchService();
 			FileWatcherQueueReader queueReader = new FileWatcherQueueReader(watcher);

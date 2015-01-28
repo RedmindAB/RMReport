@@ -1,13 +1,11 @@
 package se.redmind.rmtest.report.reporthandler;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
 
@@ -17,12 +15,15 @@ public class ReportHandler {
 	private ReportXMLParser parser;
 	
 	public ReportHandler() {
-		String whereAmI = System.getProperty("user.dir");
-		this.loader = new ReportLoader(whereAmI+"/testfiles", false);
+		this.loader = new ReportLoader();
 		this.parser = new ReportXMLParser();
 	}
 	
-	public JsonArray getLogList(){
+	public List<File> getReportFiles(){
+		return loader.getXMLReports();
+	}
+	
+	public JsonArray getReportList(){
 		 List<File> files = loader.getXMLReports();
 		 JsonArray reports = new JsonArray();
 		 for (File file : files) {
