@@ -15,6 +15,7 @@ public class ReadFromDB {
     Connection conn;
 
     String GET_MAX_ID_FROM_REPORTS = "select * from reports order by id desc limit 1";
+    String REPORT_EXISTS = "select timestamp from reports where timestamp=";
 
 
 
@@ -32,6 +33,21 @@ public class ReadFromDB {
         }
         return null;
     }
+    public boolean reportExists(String reportTimeStamp){
+        ResultSet rs = getResulSet(REPORT_EXISTS+"'"+reportTimeStamp+"'");
+        System.out.println(REPORT_EXISTS+reportTimeStamp);
+        try {
+            System.out.println(rs.next());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public ResultSet getResulSet(String query){
         Statement stat = null;
@@ -45,12 +61,4 @@ public class ReadFromDB {
             return null;
     }
 
-    public void readTableTestcases(){
-
-    }
-    
-    
-    public boolean reportExists(String reportTimeStamp){
-    	return false;
-    }
 }

@@ -79,4 +79,8 @@ public class ReadFromDBTest {
     public void getMaxIdTest(){
         new ReadFromDB(conn).getMaxID();
     }
+    @Test
+    public void reportExists(){
+        new ReadFromDB(conn).reportExists("20150121-160906");
+    }
 }
