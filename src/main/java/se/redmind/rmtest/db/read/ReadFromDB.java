@@ -42,6 +42,8 @@ public class ReadFromDB {
         }
         return null;
     }
+    
+    //TODO: Return a boolean if the report exits, try to limit the result to 1.
     public boolean reportExists(String reportTimeStamp){
         ResultSet rs = getResulSet(REPORT_EXISTS+"'"+reportTimeStamp+"'");
         System.out.println(REPORT_EXISTS+reportTimeStamp);
@@ -81,5 +83,17 @@ public class ReadFromDB {
 			}
             return null;
     }
-
+    
+    public int getSuitID(String suiteName){
+    	return 0;
+    }
+    
+    public int getClassID(String className){
+    	return 0;
+    }
+    
+    public int getTestCaseID(String testCaseName){
+    	return 0;
+    }
+    
 }
