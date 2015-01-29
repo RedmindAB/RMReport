@@ -11,14 +11,12 @@ import java.util.HashSet;
 /**
  * Created by johan on 15-01-26.
  */
-public class ReadFromDB {
+public class ReadReportFromDB {
 
-	public static 
-	
-    Connection conn;
+	public static Connection conn;
 
     String GET_MAX_ID_FROM_REPORTS = "select * from reports order by id desc limit 1";
-    String REPORT_EXISTS = "select timestamp from reports where timestamp=";
+    String REPORT_EXISTS = "select timestamp from testruns where timestamp =";
     String GET_ALL_REPORT_NAMES = "select name from reports";
     String GET_ID_FROM_REPORTNAME = "select id from reports where name =";
     String GET_DATE_AND_TIME_FROM_REPORTS_AFTER = "select * from reports where timestamp >";
@@ -26,7 +24,7 @@ public class ReadFromDB {
     String GET_RUNTIME_FROM_REPORT = "select time from reports where name =";
     String GET_RUNTIME_FROM_ALL_REPORTS = "";
 
-    public ReadFromDB(Connection connection){
+    public ReadReportFromDB(Connection connection){
         conn=connection;
 
 
@@ -42,10 +40,12 @@ public class ReadFromDB {
         }
         return null;
     }
+
     
     //TODO: Return a boolean if the report exits, try to limit the result to 1.
+
     public boolean reportExists(String reportTimeStamp){
-        ResultSet rs = getResulSet(REPORT_EXISTS+"'"+reportTimeStamp+"'");
+        ResultSet rs = getResulSet(REPORT_EXISTS+"'"+reportTimeStamp+"'"+"limit 1");
         System.out.println(REPORT_EXISTS+reportTimeStamp);
         try {
             System.out.println(rs.next());
@@ -84,16 +84,9 @@ public class ReadFromDB {
             return null;
     }
     
-    public int getSuitID(String suiteName){
-    	return 0;
-    }
+
+
     
-    public int getClassID(String className){
-    	return 0;
-    }
-    
-    public int getTestCaseID(String testCaseName){
-    	return 0;
-    }
+
     
 }
