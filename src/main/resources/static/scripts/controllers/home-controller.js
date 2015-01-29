@@ -7,6 +7,8 @@ angular.module('webLog')
         $location.path('/project');
     };
     
+    $scope.imagePaths = ['img/logo1.png', 'img/logo2.jpg', 'img/logo3.jpg'];
+    
     $scope.projects = {
     	projectOne: {
 			labels: ['AftonBladet 1', 'AftonBladet 2', 
@@ -17,7 +19,9 @@ angular.module('webLog')
 			data: [
 			       [65, 59, 80, 81, 56],
 			       [28, 48, 40, 19, 86]
-			       ]
+			       ],
+    		color: '#FFFFFF'
+    
     				},
     	projectTwo: {
 			labels: ['AftonBladetTV 1', 'AftonBladetTV 2', 

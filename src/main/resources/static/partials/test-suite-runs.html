@@ -1,17 +1,12 @@
 <accordion close-others="true">
 	<!-- repeated content -->
-	<div ng-repeat="test in suites" style='margin-top: 10px' ng-click="goToTestCases(test.name)">
-	    <accordion-group is-open="test.open" ng-class='getPanel(test.passed)' ng-style="{'background-color': getCo(test.passed)}">
+	<div ng-repeat="test in suites" style='margin-top: 10px' ng-click="goToTestCases(test.name)" ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
 	   
 	    <!-- non collapsing header -->
-	        <accordion-heading>
-	        	<div style='overflow: hidden;position:relative'>
-	        		<div style='display:inline'>Test: {{test.suiteName}} - {{test.timestamp}} </div>
+	        <div ng-style="{'color' : getCo(test.passed)}">
+	        		<div style='padding-left:10px'><h3>Test: {{test.suiteName}} - {{test.timestamp}}</h3></div>
 	        		<div style='float:right;display:inline'></div>
-	        	</div>
-	        </accordion-heading>
-	    <!-- non collapsing header End-->
-	    </accordion-group>
+	        </div>
 	</div>
 	<!-- repeated content  End-->
 </accordion>

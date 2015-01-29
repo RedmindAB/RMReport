@@ -42,11 +42,25 @@ angular.module('webLog')
     		return 'bg-danger';
     };
     
-    $scope.getCo = function(passed){
+    $scope.getBgCo = function(passed){
     	if(passed)
     		return '#DFF0D8';
     	else
     		return '#F2DEDE';
+    };
+    $scope.getCo = function(passed){
+    	if(passed)
+    		return '#3C763D';
+    	else
+    		return '#A94442';
+    };
+    $scope.getLogo = function(passed){
+    	if(passed == 1)
+    		return "img/logo1.png";
+    	else if(passed == 2)
+    		return 'img/logo1.jpg';
+    	else
+    		return 'img/logo3.jpg';    
     };
     
     $scope.goToTestCases = function(testName){

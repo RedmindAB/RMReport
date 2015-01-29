@@ -1,3 +1,5 @@
-	<div ng-click="goToSuiteRuns()" style='margin-top: 10px' ng-class='getPanel(test.passed)' ng-style="{'background-color': getCo(test.passed)}">
-		<h3> Suite: {{suites[0].suiteName}}</h3>
+<div ng-click="goToSuiteRuns()" style='margin-top: 10px' ng-class='getPanel(test.passed)' ng-style="{'background-color' : getBgCo(test.passed), 'color' : getCo(test.passed) }">	
+	<div style='overflow: hidden;position:relative;height:55px' >
+		<div style='float:left;padding-left:10px;'><h3>Suite: {{suites[0].suiteName}}</h3></div>
 	</div>
+</div>
