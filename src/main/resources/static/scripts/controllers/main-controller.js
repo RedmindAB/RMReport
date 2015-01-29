@@ -42,11 +42,17 @@ angular.module('webLog')
     		return 'bg-danger';
     };
     
-    $scope.getCo = function(passed){
+    $scope.getBgCo = function(passed){
     	if(passed)
     		return '#DFF0D8';
     	else
     		return '#F2DEDE';
+    };
+    $scope.getCo = function(passed){
+    	if(passed)
+    		return '#3C763D';
+    	else
+    		return '#A94442';
     };
     
     $scope.goToTestCases = function(testName){
