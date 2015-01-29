@@ -38,7 +38,7 @@ public class ReadReportFromDB {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return -1;
     }
 
     
