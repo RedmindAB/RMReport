@@ -18,15 +18,15 @@ angular.module('webLog')
     	$scope.currentTestSuite = suites;
     }
     
-//    var getTestSuite = function(testName){
-//        var suiteToReturn = {};
-//        for(var suite in $scope.suites){
-//        	var suiteCol = $scope.suites;
-//            if(suiteCol[suite].name === testName){
-//            	$scope.currentTestSuite = suiteCol[suite];
-//            }
-//        }
-//    };
+    var getTestSuiteRuns = function(testName){
+        var suiteToReturn = {};
+        for(var suite in $scope.suites){
+        	var suiteCol = $scope.suites;
+            if(suiteCol[suite].name === testName){
+            	$scope.currentTestSuite = suiteCol[suite];
+            }
+        }
+    };
 
     $scope.getPanel = function(passed){
     	if(passed)
@@ -50,7 +50,7 @@ angular.module('webLog')
     };
     
     $scope.goToTestCases = function(testName){
-    	getTestSuite(testName);
+    	getTestSuiteRuns(testName);
     	console.log($scope.currentTestSuite);
     	$location.path('/test-case');
     };
