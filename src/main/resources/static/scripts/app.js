@@ -14,8 +14,8 @@ angular.module('webLog', ['ui.router', 'chart.js','ui.bootstrap'])
 	        templateUrl: 'partials/test-case.html',
 	        controller: 'TestCaseCtrl'
         })     
-        .state('testSuites',{
-	        url:'/test-suites',
+        .state('suiteRunClasses',{
+	        url:'/suite-run-classes.html',
 	        templateUrl: 'partials/test-suites.html',
 	        controller: 'SuitesCtrl'
         })
