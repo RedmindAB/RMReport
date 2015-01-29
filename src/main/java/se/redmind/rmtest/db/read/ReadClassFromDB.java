@@ -12,7 +12,7 @@ public class ReadClassFromDB {
 
     public static Connection conn;
 
-    String GET_CLASS_ID = "select id from class where name= ";
+    String GET_CLASS_ID = "select id from class where name =";
 
     public ReadClassFromDB(Connection connection){
         conn=connection;
@@ -25,7 +25,7 @@ public class ReadClassFromDB {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-            return 0;
+            return -1;
     }
 
 

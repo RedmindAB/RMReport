@@ -24,7 +24,7 @@ public class ReadTestcaseFromDB {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0;
+        return -1;
     }
 
     public ResultSet getResulSet(String query){
