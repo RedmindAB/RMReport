@@ -11,11 +11,19 @@ import java.sql.Statement;
 public class ReadTestcaseFromDB {
 
     public static Connection conn;
+    String GET_TESTCASE_ID = "select id from testcase where name= ";
 
     public ReadTestcaseFromDB(Connection connection){
         conn=connection;
     }
     public int getTestCaseID(String testCaseName){
+        ResultSet rs = getResulSet(GET_TESTCASE_ID);
+        try {
+            System.out.println("testcase Id: "+rs.getString("id"));
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 
