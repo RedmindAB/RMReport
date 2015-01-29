@@ -1,9 +1,12 @@
 package se.redmind.rmtest.db.read;
 
+import se.redmind.rmtest.util.StringKeyValueParser;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashSet;
 
 /**
  * Created by johan on 15-01-26.
@@ -16,11 +19,17 @@ public class ReadFromDB {
 
     String GET_MAX_ID_FROM_REPORTS = "select * from reports order by id desc limit 1";
     String REPORT_EXISTS = "select timestamp from reports where timestamp=";
-
-
+    String GET_ALL_REPORT_NAMES = "select name from reports";
+    String GET_ID_FROM_REPORTNAME = "select id from reports where name =";
+    String GET_DATE_AND_TIME_FROM_REPORTS_AFTER = "select * from reports where timestamp >";
+    String GET_DATE_AND_TIME_FROM_REPORTS_BEFORE = "select * from reports where timestamp <";
+    String GET_RUNTIME_FROM_REPORT = "select time from reports where name =";
+    String GET_RUNTIME_FROM_ALL_REPORTS = "";
 
     public ReadFromDB(Connection connection){
         conn=connection;
+
+
     }
     
     public Integer getMaxID(){
@@ -48,9 +57,21 @@ public class ReadFromDB {
         }
         return false;
     }
+    public HashSet getAllReportNames(){
+        HashSet hs = new HashSet();
+        ResultSet rs = getResulSet(GET_ALL_REPORT_NAMES);
+        try {
+            while(rs.next())
+                hs.add(rs.getString(1));
+            return hs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    return null;
+    }
 
     public ResultSet getResulSet(String query){
-        Statement stat = null;
+        Statement stat;
             try {
             	stat = conn.createStatement();
 				return stat.executeQuery(query);

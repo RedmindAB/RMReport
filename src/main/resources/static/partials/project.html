@@ -1,0 +1,28 @@
+<div align='center'>
+	<table class='home'>
+		<tr>
+		    <td class='home'><h3>Impressively Specific Data</h3><canvas 
+		    														id="line" 
+		    														width='600px'
+		    														height='200px'
+		    														class="chart chart-line" 
+		    														data="project.data"
+  																	labels="project.labels"
+  																	series="project.series" 
+  																	legend="true" 
+  																	series="series"
+  																	click="onClick">
+																</canvas></td>
+		</tr>
+		<tr>
+			<td ng-repeat="serie in project.series">
+				<input type="checkbox"
+       						ng-model="serie"
+       						name="serie">
+				</input>
+			</td>
+		</tr>
+	</table>
+	<canvas id="myChart2" ></canvas>
+	</div>
+</div>

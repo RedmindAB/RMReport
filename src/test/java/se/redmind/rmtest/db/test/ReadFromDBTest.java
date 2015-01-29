@@ -80,7 +80,11 @@ public class ReadFromDBTest {
         new ReadFromDB(conn).getMaxID();
     }
     @Test
-    public void reportExists(){
+    public void reportExistsTest(){
         new ReadFromDB(conn).reportExists("20150121-160906");
+    }
+    @Test
+    public void getAllReportNamesTest(){
+        new ReadFromDB(conn).getAllReportNames();
     }
 }
