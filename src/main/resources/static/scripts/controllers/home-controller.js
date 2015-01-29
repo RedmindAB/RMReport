@@ -7,6 +7,8 @@ angular.module('webLog')
         $location.path('/project');
     };
     
+    $scope.imagePaths = ['img/logo1.png', 'img/logo2.jpg', 'img/logo3.jpg'];
+    
     $scope.projects = {
     	projectOne: {
 			labels: ['AftonBladet 1', 'AftonBladet 2', 

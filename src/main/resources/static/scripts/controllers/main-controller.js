@@ -54,6 +54,14 @@ angular.module('webLog')
     	else
     		return '#A94442';
     };
+    $scope.getLogo = function(passed){
+    	if(passed == 1)
+    		return "img/logo1.png";
+    	else if(passed == 2)
+    		return 'img/logo1.jpg';
+    	else
+    		return 'img/logo3.jpg';    
+    };
     
     $scope.goToTestCases = function(testName){
     	getTestSuiteRuns(testName);
