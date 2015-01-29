@@ -37,7 +37,7 @@ public class ReportTestCase{
 		
 		this.jsonObject.add("driverName", new JsonPrimitive(checkDriverName(name)));
 		
-		classname = element.getAttribute(CLASSNAME);
+		classname = element.getAttribute("classname");
 		this.jsonObject.add(CLASSNAME, new JsonPrimitive(classname));
 		
 		Element errorElement = (Element) element.getElementsByTagName(ERROR).item(0);

@@ -11,11 +11,9 @@ import java.util.HashSet;
 /**
  * Created by johan on 15-01-26.
  */
-public class ReadFromDB {
+public class ReadReportFromDB {
 
-	public static 
-	
-    Connection conn;
+	public static Connection conn;
 
     String GET_MAX_ID_FROM_REPORTS = "select * from reports order by id desc limit 1";
     String REPORT_EXISTS = "select timestamp from testruns where timestamp =";
@@ -26,7 +24,7 @@ public class ReadFromDB {
     String GET_RUNTIME_FROM_REPORT = "select time from reports where name =";
     String GET_RUNTIME_FROM_ALL_REPORTS = "";
 
-    public ReadFromDB(Connection connection){
+    public ReadReportFromDB(Connection connection){
         conn=connection;
 
 
@@ -40,7 +38,7 @@ public class ReadFromDB {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return -1;
     }
 
     
@@ -86,16 +84,9 @@ public class ReadFromDB {
             return null;
     }
     
-    public int getSuitID(String suiteName){
-    	return 0;
-    }
+
+
     
-    public int getClassID(String className){
-    	return 0;
-    }
-    
-    public int getTestCaseID(String testCaseName){
-    	return 0;
-    }
+
     
 }
