@@ -46,8 +46,17 @@ public class DBCon {
         Statement stat = null;
         try {
             stat = conn.createStatement();
-            stat.executeUpdate("create table if not exists reports (name, suitename, timestamp, tests, skipped, failures, time, id integer primary key autoincrement)");
-            stat.executeUpdate("create table if not exists testcases (name, driver, error, time, failures, passed, reportid, id integer primary key autoincrement)");
+
+
+            stat.executeUpdate("create table if not exists suite (name, suite_id integer primary key autoincrement)");
+
+            stat.executeUpdate("create table if not exists class (name, class_id integer primary key autoincrement)");
+
+            stat.executeUpdate("create table if not exists testcase (name, testcase_id integer primary key autoincrement)");
+
+            stat.executeUpdate("create table if not exists testruns (suite_id integer, class_id integer, testcase_id integer, timestamp, result, message, name, time float, " +
+                    "foreign key (suite_id) references suite (suite_id), foreign key (class_id) references class (class_id), foreign key (testcase_id) references testcase (testcase_id))");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
