@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import se.redmind.rmtest.db.create.DBCon;
-import se.redmind.rmtest.db.read.ReadFromDB;
+import se.redmind.rmtest.db.read.ReadReportFromDB;
 import se.redmind.rmtest.db.update.ReportStatementBuilder;
 import se.redmind.rmtest.db.update.TestCaseStatementBuilder;
 import se.redmind.rmtest.report.parser.Report;
@@ -15,7 +15,7 @@ import se.redmind.rmtest.report.reportloader.ReportLoader;
 
 public class ReportValidator {
 	
-	private ReadFromDB readFromDB;
+	private ReadReportFromDB readFromDB;
 	private ReportLoader loader;
 	private ReportXMLParser parser;
 	private Connection connection;
@@ -26,7 +26,7 @@ public class ReportValidator {
 	public ReportValidator(String filename) {
 		this.filename = filename;
 		this.connection = DBCon.getDbInstance().getConnection();
-		this.readFromDB = new ReadFromDB(connection);
+		this.readFromDB = new ReadReportFromDB(connection);
 		this.loader = new ReportLoader();
 		this.parser = new ReportXMLParser();
 		loadReport();
