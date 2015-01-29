@@ -5,12 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import se.redmind.rmtest.util.StringKeyValueParser;
+
 public class DBInserter {
 
-	Connection connection;
+	protected Connection connection;
+	protected StringKeyValueParser stringParser;
 	
 	public DBInserter() {
 		connection = DBCon.getDbInstance().getConnection();
+		this.stringParser = new StringKeyValueParser();
 	}
 	
 	public boolean insertToDB(String sql){

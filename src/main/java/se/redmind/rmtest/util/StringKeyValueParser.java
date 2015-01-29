@@ -20,13 +20,18 @@ public class StringKeyValueParser {
     Matcher matcher;
 
     public StringKeyValueParser(String template) {
-        this.template = template;
-        pattern = Pattern.compile("\\{(.+?)\\}");
-        matcher = pattern.matcher(template);
+        initMatcher(template);
+    }
+
+    public StringKeyValueParser() {
     }
     
-    public StringKeyValueParser() {
+	private void initMatcher(String template) {
+		this.template = template;
+        pattern = Pattern.compile("\\{(.+?)\\}");
+        matcher = pattern.matcher(template);
 	}
+    
 
     
     /**
@@ -41,7 +46,7 @@ public class StringKeyValueParser {
      * @param map - map with keys equal to the string thats should be parsed.
      * @return - a new string with the values of the keys inserted.
      */
-    public String getString(HashMap<?, ?> map) {
+    public String getString(HashMap<String, String> map) {
         StringBuffer stringBuffer = new StringBuffer();
         int i = 0;
         while (matcher.find()) {
@@ -64,6 +69,11 @@ public class StringKeyValueParser {
         
         matcher.reset();
         return stringBuffer.toString();
+    }
+    
+    public String getString(String template, HashMap<String, String> map){
+    	initMatcher(template);
+    	return getString(map);
     }
     
 }

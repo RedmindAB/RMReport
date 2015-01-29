@@ -11,7 +11,7 @@ public class ReportTestCase{
 	public static final String 	
 	NAME = "name",
 	DRIVER_NAME = "driverName",
-	CLASSNAME = "className",
+	CLASSNAME = "classname",
 	ERROR = "error",
 	FAILURE = "failure",
 	TYPE = "type",
