@@ -1,13 +1,13 @@
 angular.module('webLog', ['ui.router', 'chart.js','ui.bootstrap'])
     .config(function($urlRouterProvider, $stateProvider){
     	
-    $urlRouterProvider.otherwise("/");
+    $urlRouterProvider.otherwise("/home");
     
     $stateProvider
         .state('home',{
-            url: '/',
+            url: '/home',
             templateUrl: 'partials/home.html',
-            controller: ''
+            controller: 'HomeCtrl'
         })
         .state('testCases',{
 	        url:'/test-case',
@@ -18,7 +18,17 @@ angular.module('webLog', ['ui.router', 'chart.js','ui.bootstrap'])
 	        url:'/test-suites',
 	        templateUrl: 'partials/test-suites.html',
 	        controller: 'SuitesCtrl'
-        })          
+        })
+        .state('project',{
+	        url:'/project',
+	        templateUrl: 'partials/project.html',
+	        controller: 'ProjectCtrl'
+        })
+        .state('suiteRuns',{
+	        url:'/test-suite-runs',
+	        templateUrl: 'partials/test-suite-runs.html',
+	        controller: 'SuitesCtrl'
+        })
     });
 
 

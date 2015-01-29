@@ -1,5 +1,5 @@
 angular.module('webLog')
-	.controller('SuitesCtrl',[ '$scope', function($scope){
+	.controller('SuitesCtrl',[ '$scope', '$location', function($scope, $location){
 
 		$scope.openSuite;
 		
@@ -36,6 +36,10 @@ angular.module('webLog')
 		function getTestStats(suite){
 			statHolder.testStat = [suite.errors, suite.failures];
 			statHolder.testStat[2] = (suite.tests - (suite.errors + suite.failures));
+		}
+		
+		$scope.goToSuiteRuns = function(){
+			$location.path('/test-suite-runs');
 		}
 		
 		$scope.$watch('suites', function(suites){

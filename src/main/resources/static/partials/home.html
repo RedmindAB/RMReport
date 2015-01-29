@@ -1,9 +1,18 @@
-<div ng-controller="HomeCtrl" align='center'>
+<div align='center'>
+	<div ng-repeat="project in projects">
 	<table class='home'>
 		<tr>
-			<td class='home'><h3>Total tests</h3> <canvas height='200px' id="pieefsdfsdfs" class="chart chart-pie" data="data" labels="labels"></canvas></td>
-			<td class='home'><h3>Successfully tests</h3><canvas height='200px' id="pieefsdfsdfs" class="chart chart-pie" data="data" labels="labels"></canvas></td>
-		    <td class='home'><h3>Failed tests</h3><canvas height='200px' id="pieefsdfsdfs" class="chart chart-pie" data="data" labels="labels"></canvas></td>
+		    <td class='home'><h3>Impressively Relevant Data</h3><canvas id="bar"
+		    													width='600px'
+		    													height='200px'
+		    													class="chart chart-bar" 
+		    													data="project.data"
+		    													labels="project.labels"
+		    													series="project.series"
+		    													click="onClick"
+		    													legend="true">
+		    												</canvas></td>
 		</tr>
 	</table>
+	</div>
 </div>
