@@ -1,4 +1,24 @@
 <h3>Test: {{currentTestSuite.suiteName}} - {{currentTestSuite.timestamp}}</h3>
+				<table class="table suite">
+				    <thead>
+				        <tr>
+				            <th>Tests run</th>
+				            <th>Errors</th>
+				            <th>Skipped</th>
+				            <th>Failures</th>
+				            <th>Time to run</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				        <tr>
+				            <td>{{currentTestSuite.tests}}</td>
+				            <td>{{currentTestSuite.errors}}</td>
+				            <td>{{currentTestSuite.skipped}}</td>
+				            <td>{{currentTestSuite.failures}}</td>
+				            <td>{{currentTestSuite.time}}</td>
+				        </tr>
+				    </tbody>
+			    </table>
 <accordion close-others="true">
 
 	<!-- repeated content -->
