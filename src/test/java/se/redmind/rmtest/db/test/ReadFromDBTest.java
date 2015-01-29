@@ -25,16 +25,10 @@ public class ReadFromDBTest {
 
         try {
             stat = conn.createStatement();
-            ResultSet rs = stat.executeQuery("select * from testcases;");
+            ResultSet rs = stat.executeQuery("select * from testcase;");
             while(rs.next()){
             	
                 System.out.println("testcase name = " + rs.getString("name"));
-                System.out.println("testcase driver = " + rs.getString("driver"));
-                System.out.println("testcase error = " + rs.getString("error"));
-                System.out.println("testcase time = " + rs.getString("time"));
-                System.out.println("testcase failures = " + rs.getString("failures"));
-                System.out.println("testcase passed = " + rs.getString("passed"));
-                System.out.println("testcase reportid = " + rs.getString("reportid"));
                 System.out.println("testcase id = " + rs.getString("id"));
 
                 rs.close();
