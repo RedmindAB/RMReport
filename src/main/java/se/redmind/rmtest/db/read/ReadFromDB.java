@@ -18,7 +18,7 @@ public class ReadFromDB {
     Connection conn;
 
     String GET_MAX_ID_FROM_REPORTS = "select * from reports order by id desc limit 1";
-    String REPORT_EXISTS = "select timestamp from testruns where timestamp limit 1=";
+    String REPORT_EXISTS = "select timestamp from testruns where timestamp =";
     String GET_ALL_REPORT_NAMES = "select name from reports";
     String GET_ID_FROM_REPORTNAME = "select id from reports where name =";
     String GET_DATE_AND_TIME_FROM_REPORTS_AFTER = "select * from reports where timestamp >";
@@ -45,8 +45,9 @@ public class ReadFromDB {
 
     
     //TODO: Return a boolean if the report exits, try to limit the result to 1.
+
     public boolean reportExists(String reportTimeStamp){
-        ResultSet rs = getResulSet(REPORT_EXISTS+"'"+reportTimeStamp+"'");
+        ResultSet rs = getResulSet(REPORT_EXISTS+"'"+reportTimeStamp+"'"+"limit 1");
         System.out.println(REPORT_EXISTS+reportTimeStamp);
         try {
             System.out.println(rs.next());
