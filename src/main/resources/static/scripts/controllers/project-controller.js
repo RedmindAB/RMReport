@@ -2,8 +2,10 @@ angular.module('webLog')
     .controller('ProjectCtrl',['$scope', '$location', function($scope, $location){
     $scope.message = "Welcome to the home page!";
     
+    $scope.boolToClick = false;
+    
     $scope.onClick = function (points, evt) {
-        console.log(points, evt);
+//        console.log(points, evt);
         $location.path('/test-suites');
     };
     
@@ -26,5 +28,7 @@ angular.module('webLog')
 					[23, 69, 38, 78, 15, 89, 56]
 					]
     };
-      
+    
+    
+    
 }]);
