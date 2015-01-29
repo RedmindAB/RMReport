@@ -19,7 +19,9 @@ angular.module('webLog')
 			data: [
 			       [65, 59, 80, 81, 56],
 			       [28, 48, 40, 19, 86]
-			       ]
+			       ],
+    		color: '#FFFFFF'
+    
     				},
     	projectTwo: {
 			labels: ['AftonBladetTV 1', 'AftonBladetTV 2', 
