@@ -7,7 +7,7 @@ angular.module('webLog')
         $location.path('/project');
     };
     
-    $scope.imagePaths = ['img/logo1.png', 'img/logo2.jpg', 'img/logo3.jpg'];
+    $scope.imagePaths = ['img/logo.gif', 'img/logo3.gif', 'img/logo.gif'];
     
     $scope.projects = {
     	projectOne: {
@@ -22,16 +22,16 @@ angular.module('webLog')
 			       ],
 			       colours: [
 			                  { // grey
-			                    fillColor: "rgba(148,159,177,0.2)",
-			                    strokeColor: "rgba(148,159,177,1)",
+			                    fillColor: "rgba(0, 151, 117,0.7)",
+			                    strokeColor: "rgba(0, 151, 117,0)",
 			                    pointColor: "rgba(148,159,177,1)",
 			                    pointStrokeColor: "#fff",
 			                    pointHighlightFill: "#fff",
 			                    pointHighlightStroke: "rgba(148,159,177,0.8)"
 			                  },
 			                  { // dark grey
-			                    fillColor: "rgba(77,83,96,0.2)",
-			                    strokeColor: "rgba(77,83,96,1)",
+			                    fillColor: "rgba(200,16,46,0.7)",
+			                    strokeColor: "rgba(200,16,46,0)",
 			                    pointColor: "rgba(77,83,96,1)",
 			                    pointStrokeColor: "#fff",
 			                    pointHighlightFill: "#fff",
@@ -48,8 +48,27 @@ angular.module('webLog')
 			data: [
 			       [23, 67, 88, 25, 96],
 			       [38, 37, 78, 56, 46]
-			       ]
+			       ],
+			       colours: [
+			                  { // grey
+			                    fillColor: "rgba(0, 151, 117,0.7)",
+			                    strokeColor: "rgba(0, 151, 117,0)",
+			                    pointColor: "rgba(148,159,177,1)",
+			                    pointStrokeColor: "#fff",
+			                    pointHighlightFill: "#fff",
+			                    pointHighlightStroke: "rgba(148,159,177,0.8)"
+			                  },
+			                  { // dark grey
+			                    fillColor: "rgba(200,16,46,0.7)",
+			                    strokeColor: "rgba(200,16,46,0)",
+			                    pointColor: "rgba(77,83,96,1)",
+			                    pointStrokeColor: "#fff",
+			                    pointHighlightFill: "#fff",
+			                    pointHighlightStroke: "rgba(77,83,96,1)"
+			                  }
+			                ]
 			},
+			
     	projectThree: {
 			labels: ['AftonBladetMobil 1', 'AftonBladetMobil2', 
 			         'AftonBladetMobil 3', 'AftonBladetMobil 4', 
@@ -59,7 +78,25 @@ angular.module('webLog')
 			data: [
 			       [63, 65, 35, 98, 24],
 			       [28, 48, 12, 98, 84]
-			       ]
+			       ],
+			       colours: [
+			                  { // grey
+			                    fillColor: "rgba(0, 151, 117,0.7)",
+			                    strokeColor: "rgba(0, 151, 117,0)",
+			                    pointColor: "rgba(148,159,177,1)",
+			                    pointStrokeColor: "#fff",
+			                    pointHighlightFill: "#fff",
+			                    pointHighlightStroke: "rgba(148,159,177,0.8)"
+			                  },
+			                  { // dark grey
+			                    fillColor: "rgba(200,16,46,0.7)",
+			                    strokeColor: "rgba(200,16,46,0)",
+			                    pointColor: "rgba(77,83,96,1)",
+			                    pointStrokeColor: "#fff",
+			                    pointHighlightFill: "#fff",
+			                    pointHighlightStroke: "rgba(77,83,96,1)"
+			                  }
+			                ]
 			}
     				
     };

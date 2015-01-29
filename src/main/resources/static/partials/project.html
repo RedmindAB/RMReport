@@ -18,6 +18,7 @@
 		<tr>
 			<td ng-repeat="serie in project.series">
 				<input type="checkbox"
+							ng-click="toggleInfo($index)"
        						ng-model="serie"
        						name="serie">
 				</input>
