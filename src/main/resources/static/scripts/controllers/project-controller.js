@@ -6,7 +6,7 @@ angular.module('webLog')
     
     $scope.onClick = function (points, evt) {
 //        console.log(points, evt);
-        $location.path('/test-suites');
+        $location.path('/test-suite-runs');
     };
     
     var projectData = {
@@ -50,13 +50,13 @@ angular.module('webLog')
     };
     
     $scope.toggleInfo = function(index){
+    	console.log(index);
     	
-    	if($scope.project.series[index] === undefined){
-    		$scope.project.series[index] = projectData.series[index];
+    	if($scope.project.data[index] != projectData.data[index]){
     		$scope.project.data[index] = projectData.data[index];
     	} else {
-    		$scope.project.series[index] = null;
-    		$scope.project.data[index] = null;
+    		delete $scope.project.data[index];
+    		delete $scope.project.series[index];
     	}
     	
     }

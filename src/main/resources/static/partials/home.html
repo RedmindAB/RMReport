@@ -1,13 +1,14 @@
 <div align='center' ng-controller="HomeCtrl">
 	<div ng-repeat="project in projects">
-	<table class='home'>
+		<table class='table' style='margin-top: 15px;display:block;overflow-x: auto;'>
 		<tr>
-		    <td>
-				<img ng-src="{{imagePaths[$index]}}"></img>
-		    </td>
-		    <td class='home'>
-		    	<h3>Impressively Relevant Data</h3>
-		    	Test<canvas id="bar" width='600px' height='200px' class="chart chart-bar" colours="project.colours" data="project.data" labels="project.labels" series="project.series" click="onClick" legend="true"></canvas>
+			<td style='border:0'>
+			<img width='200px' style='position:relative;float:left;' ng-src="{{imagePaths[$index]}}"></img>
+			</td>
+		</tr>
+		<tr>
+		    <td style='border:0;'>
+		    	<canvas id="bar" width='600px' height='200px' class="chart chart-bar" colours="project.colours" data="project.data" labels="project.labels" series="project.series" click="onClick" legend="true"></canvas>
 		    </td>
 		</tr>
 	</table>
