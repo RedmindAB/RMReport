@@ -1,16 +1,14 @@
 <div align='center' ng-controller="HomeCtrl">
 	<div ng-repeat="project in projects">
-	<table class='home' style='margin-top: 70px'>
-		<tr style='margin-top: 100px'>
-			<td align='center'>
-			<img width='450px' style='position:relative;text-align: center' ng-src="{{imagePaths[$index]}}"></img>
+		<table class='table' style='margin-top: 15px;display:block;overflow-x: auto;'>
+		<tr>
+			<td style='border:0'>
+			<img width='200px' style='position:relative;float:left;' ng-src="{{imagePaths[$index]}}"></img>
 			</td>
 		</tr>
-	</table>
-	<table class='home' style='margin-top: 20px'>
 		<tr>
-		    <td class='home'>
-		    	<div style='position:relative;right:0'><canvas id="bar" width='600px' height='200px' class="chart chart-bar" colours="project.colours" data="project.data" labels="project.labels" series="project.series" click="onClick" legend="true"></canvas></div>
+		    <td style='border:0;'>
+		    	<canvas id="bar" width='600px' height='200px' class="chart chart-bar" colours="project.colours" data="project.data" labels="project.labels" series="project.series" click="onClick" legend="true"></canvas>
 		    </td>
 		</tr>
 	</table>
