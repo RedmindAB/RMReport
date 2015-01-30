@@ -1,6 +1,6 @@
 angular.module('webLog')
     .controller('MainCtrl',['$scope', '$http','$location', '$timeout', function($scope, $http, $location, $timeout){
-    	
+    $scope.currentPage = "currentPage";
     $scope.errorReport={};
     $scope.suites = {};
     $scope.currentSuite = {};
@@ -94,6 +94,9 @@ angular.module('webLog')
     		return 'img/logo3.jpg';    
     };
     
+    $scope.getPageHeader = function(){
+    	return "CurrentPage";
+    }
     $scope.labels2 = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
     $scope.data2 = [300, 500, 100];
     
