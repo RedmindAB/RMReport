@@ -31,7 +31,7 @@
                 <li><a>{{getPageHeader()}}<span class="sr-only">(current)</span></a></li>
            		<li><form class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" ng-model='searchText' placeholder="Filter">
+          <input ng-hide="getPageHeader()=='Home' || getPageHeader()=='Project View'" type="text" class="form-control" ng-model='searchText' placeholder="Filter">
         </div>
       </form></li>
            

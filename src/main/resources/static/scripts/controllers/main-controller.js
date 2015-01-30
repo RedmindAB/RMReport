@@ -25,9 +25,9 @@ angular.module('webLog')
     	$scope.currentSuiteRun = run;
     	for(var testCase in $scope.currentSuiteRun.testcases){
     		if ($scope.currentSuiteRun.testcases[testCase].failure) {
-    			$scope.currentSuiteRun.testcases[testCase].failure.message.replace(/at /g, '<br/>at ');
+    			$scope.currentSuiteRun.testcases[testCase].failure.message.replace(/at /g, '\nat ');
 			} else if($scope.currentSuiteRun.testcases[testCase].error) {
-				$scope.currentSuiteRun.testcases[testCase].error.message.replace(/at /g, '<br/>at ');
+				$scope.currentSuiteRun.testcases[testCase].error.message.replace(/at /g, '\nat ');
 			}
     	}
     	console.log($scope.currentSuiteRun);
