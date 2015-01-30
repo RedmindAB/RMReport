@@ -4,8 +4,8 @@ angular.module('webLog')
 		$scope.suiteTests;
 		$scope.runRightNow;
 		
-		$scope.testClasses = [ "se.redmind.rmtest.selenium.example.CreateLogsTest(20150121-160622)",
-		                       "se.redmind.rmtest.selenium.example.CreateLogsTestSecond(20150121-160622)"
+		$scope.testClasses = [ "se.redmind.rmtest.selenium.example.CreateLogsTest",
+		                       "se.redmind.rmtest.selenium.example.CreateLogsTestSecond"
 		                      ];
 		
 		
