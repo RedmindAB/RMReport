@@ -43,9 +43,9 @@ public class ReadReportFromDB {
     
     //TODO: Return a boolean if the report exits, try to limit the result to 1.
 
-    public boolean reportExists(String reportName){
-        ResultSet rs = getResultSet(REPORT_EXISTS + "'" + reportName + "'" + "limit 1");
-        System.out.println(REPORT_EXISTS+reportName);
+    public boolean reportExists(String reportTimeStamp){
+        ResultSet rs = getResultSet(REPORT_EXISTS + "'" + reportTimeStamp + "'" + "limit 1");
+        System.out.println(REPORT_EXISTS+reportTimeStamp);
         try {
             System.out.println("Report exists: "+rs.next());
         } catch (SQLException e) {
