@@ -21,9 +21,8 @@ public class ReadSuiteFromDB {
         try {
             return rs.getInt(1);
         } catch (SQLException e) {
-            e.printStackTrace();
+        	return -1;
         }
-        return -1;
     }
 
     public ResultSet getResulSet(String query){
