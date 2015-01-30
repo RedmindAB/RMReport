@@ -78,6 +78,17 @@ public class DBCon {
     }
     
     public void dropDatabase(){
-		dbInstance.dropDatabase();
+		Statement stat = null;
+		try {
+			stat = conn.createStatement();
+			stat.execute("DELETE FROM report");
+			stat.execute("DELETE FROM class");
+			stat.execute("DELETE FROM suite");
+			stat.execute("DELETE FROM testcase");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
     }
 }

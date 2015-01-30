@@ -90,7 +90,7 @@ public class ReportValidator {
 		if (success) {
 			return readTestcaseFromDB.getTestCaseID(testCaseName);
 		}
-		return 0;
+		return -1;
 	}
 
 	public int getSuiteID(String suiteName){
@@ -119,14 +119,21 @@ public class ReportValidator {
 		HashMap<String, Integer> testClassIDs = new HashMap<String,Integer>();
 		for (String testClassName : testClassNames) {
 			int id = readClassFromDB.getClassID(testClassName);
+			System.out.println("ID: "+id);
 			if (!(id > 0)) {
+				System.out.println("ID to low: "+id);
 				int id_new = insertTestClass(testClassName);
-				if (!(id_new > 0)) {
+				System.out.println("new id: "+id_new);
+				if (id_new > 0) {
 					testClassIDs.put(testClassName, id_new);
-				}else return null;
+				}else {
+					System.out.println("FUCK!");
+					return null;
+				}
 			}
 			else testClassIDs.put(testClassName, id);
 		}
+		System.out.println(testClassIDs);
 		return testClassIDs;
 	}
 	
