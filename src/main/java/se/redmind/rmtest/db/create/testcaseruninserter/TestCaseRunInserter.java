@@ -35,7 +35,6 @@ public class TestCaseRunInserter extends DBInserter {
 			for (ReportTestCase testCase : testCaseArray) {
 				HashMap<String, String> map = new HashMap<String,String>();
 				map.put("suite_id", ""+suiteID);
-				System.out.println(classIDs);
 				Integer classID = classIDs.get(testCase.getClassName());
 				map.put("class_id", ""+classID);
 				map.put("testcase_id", ""+getTestCaseID(testCase.getMethodName()));

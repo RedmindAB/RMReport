@@ -32,7 +32,6 @@ public class ReadReportFromDB {
     public Integer getMaxID(){
     	ResultSet rs = getResultSet(GET_MAX_ID_FROM_REPORT);
         try {
-            System.out.println("Max id: "+rs.getString("id"));
             return rs.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -45,7 +44,6 @@ public class ReadReportFromDB {
 
     public boolean reportExists(String reportTimeStamp){
         ResultSet rs = getResultSet(REPORT_EXISTS + "'" + reportTimeStamp + "'" + "limit 1");
-        System.out.println(REPORT_EXISTS+reportTimeStamp);
         try {
             return rs.next();
         } catch (SQLException e) {
