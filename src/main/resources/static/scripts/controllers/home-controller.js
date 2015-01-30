@@ -7,7 +7,7 @@ angular.module('webLog')
         $location.path('/project');
     };
     
-    $scope.imagePaths = ['img/logo.gif', 'img/logo3.gif', 'img/logo.gif'];
+    $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];
     
     $scope.projects = {
     	projectOne: {
@@ -21,7 +21,7 @@ angular.module('webLog')
 			       [28, 48, 40, 19, 86]
 			       ],
 			       colours: [
-			                  { // grey
+			                  {
 			                    fillColor: "rgba(0, 151, 117,0.7)",
 			                    strokeColor: "rgba(0, 151, 117,0)",
 			                    pointColor: "rgba(148,159,177,1)",
@@ -29,7 +29,7 @@ angular.module('webLog')
 			                    pointHighlightFill: "#fff",
 			                    pointHighlightStroke: "rgba(148,159,177,0.8)"
 			                  },
-			                  { // dark grey
+			                  {
 			                    fillColor: "rgba(200,16,46,0.7)",
 			                    strokeColor: "rgba(200,16,46,0)",
 			                    pointColor: "rgba(77,83,96,1)",
@@ -45,6 +45,7 @@ angular.module('webLog')
 			         'TestBuild 5'],
 			series: ['Passed', 
 			         'Failed'],
+			         
 			data: [
 			       [23, 67, 88, 25, 96],
 			       [38, 37, 78, 56, 46]

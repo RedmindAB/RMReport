@@ -1,5 +1,5 @@
 <div style='margin-top:10px' ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
-<h3>Test: {{currentTestSuite.suiteName}} - {{currentTestSuite.timestamp}}</h3>
+<h3>Test: {{currentSuiteRun.suiteName}} - {{currentSuiteRun.timestamp}}</h3>
 				<table class="table suite">
 				    <thead>
 				        <tr>
@@ -12,11 +12,11 @@
 				    </thead>
 				    <tbody>
 				        <tr>
-				            <td>{{currentTestSuite.tests}}</td>
-				            <td>{{currentTestSuite.errors}}</td>
-				            <td>{{currentTestSuite.skipped}}</td>
-				            <td>{{currentTestSuite.failures}}</td>
-				            <td>{{currentTestSuite.time}}</td>
+				            <td>{{currentSuiteRun.tests}}</td>
+				            <td>{{currentSuiteRun.errors}}</td>
+				            <td>{{currentSuiteRun.skipped}}</td>
+				            <td>{{currentSuiteRun.failures}}</td>
+				            <td>{{currentSuiteRun.time}}</td>
 				        </tr>
 				    </tbody>
 			    </table>
@@ -24,7 +24,7 @@
 <accordion close-others="true">
 
 	<!-- repeated content -->
-	<div ng-repeat="test in currentTestSuite.testcases" style='margin-top: 10px'>
+	<div ng-repeat="test in currentSuiteRun.testcases  | orderBy:'passed'" style='margin-top: 10px'>
 	    <accordion-group ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
 	    
 	    <!-- non collapsing header -->
@@ -51,8 +51,8 @@
 			            <td>{{test.className}}</td>
 			            <td>{{test.time}}</td>
 			            <td>{{test.passed}}</td>
-			            <td ng-if="test.failure.type">{{test.failure.type}}</td>
-			            <td ng-if="test.error.type">{{test.error.type}}</td>
+			            <td ng-if="test.failure.type">{{currentClass.failure.type}}</td>
+			            <td ng-if="test.error.type">{{currentClass.error.type}}</td>
 			        </tr>
 			    </tbody>
 		    </table>
