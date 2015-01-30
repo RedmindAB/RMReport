@@ -63,11 +63,10 @@ public class ReportValidator {
 	
 	public void saveReport(){
 		report.convertToFullReport();
-		HashMap<String, Integer> classIDs = getTestClassIDs(report.getPresentTestClasses());
-		int suiteID = getSuiteID(report.getSuiteName());
 		try {
 			connection.setAutoCommit(false);
-			
+			HashMap<String, Integer> classIDs = getTestClassIDs(report.getPresentTestClasses());
+			int suiteID = getSuiteID(report.getSuiteName());
 			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

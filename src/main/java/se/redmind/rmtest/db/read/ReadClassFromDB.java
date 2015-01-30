@@ -12,18 +12,18 @@ public class ReadClassFromDB {
 
     public static Connection conn;
 
-    String GET_CLASS_ID = "select id from class where name =";
+    String GET_CLASS_ID = "select class_id from class where name =";
 
     public ReadClassFromDB(Connection connection){
         conn=connection;
     }
     public int getClassID(String className){
-        ResultSet rs = getResulSet(GET_CLASS_ID);
+        ResultSet rs = getResulSet(GET_CLASS_ID+"'"+className+"'");
         try {
-            System.out.println("Class id: "+rs.getString("id"));
+            System.out.println("Class id: "+rs.getString("class_id"));
             return rs.getInt(1);
         } catch (SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
             return -1;
     }
