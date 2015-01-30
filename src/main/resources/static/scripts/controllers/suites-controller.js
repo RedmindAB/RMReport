@@ -4,6 +4,32 @@ angular.module('webLog')
 		$scope.suiteTests;
 		$scope.runRightNow;
 		
+	    $scope.onClick = function (points, evt) {
+	        $location.path('/test-suite-runs');
+	    };
+		
+	    $scope.project = {
+	    		labels: ["January", 
+	    		         "February", 
+						 "March", 
+						 "April", 
+						 "May", 
+						 "June", 
+						 "July"],
+				series: ["",
+				         'Mac OSX',
+				         'Windows',
+				         'Andriod',
+				         'iPhone'],
+				data: [
+				       	[null, null, null, null, null, null, null],
+				        [65, 59, 80, 81, 56, 55, 40],
+						[28, 48, 40, 19, 86, 27, 90],
+				        [34, 27, 63, 83, 23, 96, 45],
+						[23, 69, 38, 78, 15, 89, 56],
+						]
+	    };
+		
 		$scope.testClasses = [ "se.redmind.rmtest.selenium.example.CreateLogsTest",
 		                       "se.redmind.rmtest.selenium.example.CreateLogsTestSecond"
 		                      ];
