@@ -16,10 +16,10 @@
 																</canvas></td>
 		</tr>
 		<tr>
-			<td ng-repeat="serie in project.series">
-				<input type="checkbox"
+			<td ng-repeat="serie in project.series track by $index">
+				{{serie}}<input type="checkbox"
        						ng-model="newObject[serie]"
-       						name="serie">
+       						name="serie" ng-click='toggleInfo($index)'>
 				</input>
 			</td>
 		</tr>

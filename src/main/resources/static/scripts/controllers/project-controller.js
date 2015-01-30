@@ -17,11 +17,13 @@ angular.module('webLog')
 					 "May", 
 					 "June", 
 					 "July"],
-			series: ['mac OSX', 
+			series: ["", 
+			         'Mac OSX',
 			         'Windows',
 			         'Andriod',
 			         'iPhone'],
 			data: [
+			       	[null, null, null, null, null, null, null],
 			        [65, 59, 80, 81, 56, 55, 40],
 					[28, 48, 40, 19, 86, 27, 90],
 			        [34, 27, 63, 83, 23, 96, 45],
@@ -37,28 +39,30 @@ angular.module('webLog')
 					 "May", 
 					 "June", 
 					 "July"],
-			series: ['mac OSX', 
+			series: ["",
+			         'Mac OSX',
 			         'Windows',
 			         'Andriod',
 			         'iPhone'],
 			data: [
+			       	[null, null, null, null, null, null, null],
 			        [65, 59, 80, 81, 56, 55, 40],
 					[28, 48, 40, 19, 86, 27, 90],
 			        [34, 27, 63, 83, 23, 96, 45],
-					[23, 69, 38, 78, 15, 89, 56]
+					[23, 69, 38, 78, 15, 89, 56],
 					]
     };
     
     $scope.toggleInfo = function(index){
     	console.log(index);
-    	
-    	if($scope.project.data[index] != projectData.data[index]){
-    		$scope.project.data[index] = projectData.data[index];
-    	} else {
-    		delete $scope.project.data[index];
-    		delete $scope.project.series[index];
-    	}
-    	
+    	console.log($scope.project.series[index]);
+	    	if($scope.project.series[index] == projectData.series[index]){
+	    		$scope.project.data[index] = "";
+	    	}
+	    	else if($scope.project.data[index] == ""){
+	    		$scope.project.series[index] = projectData.series[index];
+	    		$scope.project.data[index] = projectData.data[index];
+	    	}	
     }
     
     
