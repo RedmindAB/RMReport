@@ -15,7 +15,7 @@ public class CommitToDB {
         conn = connection;
     }
 
-    public void commitReport(PreparedStatement prep){
+    public void commitToDb(PreparedStatement prep){
 
 
         try {
@@ -27,16 +27,5 @@ public class CommitToDB {
             e.printStackTrace();
         }
     }
-    public void commitTestcase(PreparedStatement prep){
 
-        try {
-            conn.setAutoCommit(false);
-            prep.executeBatch();
-            conn.setAutoCommit(true);
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
 }
