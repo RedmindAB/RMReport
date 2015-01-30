@@ -19,7 +19,7 @@ public class ReadSuiteFromDB {
     public int getSuitID(String suiteName){
         ResultSet rs = getResulSet(GET_SUIT_ID+"'"+suiteName+"'");
         try {
-            System.out.println("suit Id: "+rs.getString("suite_id"));
+            //System.out.println("suit Id: "+rs.getString("suite_id"));
             return rs.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();

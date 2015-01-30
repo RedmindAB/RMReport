@@ -48,7 +48,7 @@ public class ReadReportFromDB {
         ResultSet rs = getResultSet(REPORT_EXISTS + "'" + reportTimeStamp + "'" + "limit 1");
         System.out.println(REPORT_EXISTS+reportTimeStamp);
         try {
-            System.out.println(rs.next());
+            System.out.println("Report exists: "+rs.next());
         } catch (SQLException e) {
             e.printStackTrace();
         }
