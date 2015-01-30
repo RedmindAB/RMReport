@@ -30,7 +30,7 @@
                 <!-- test suite button -->
                 <li><a>{{getPageHeader()}}<span class="sr-only">(current)</span></a></li>
            		<li><form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
+        <div class="form-group" ng-if="getPageHeader() != 'Project View' && getPageHeader() != 'Home'">
           <input type="text" class="form-control" ng-model='searchText' placeholder="Filter">
         </div>
       </form></li>

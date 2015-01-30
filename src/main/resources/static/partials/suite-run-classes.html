@@ -1,6 +1,6 @@
 <accordion close-others="true">
 	<!-- repeated content -->
-	<div ng-repeat="class in testClasses" style='margin-top: 10px' ng-click="setCurrentClass(class); goToTestCases(currentSuiteRun)" ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
+	<div ng-repeat="class in testClasses" style='margin-top: 10px' ng-click="setCurrentClass(class); goToTestCases(currentSuiteRun); resetFilterField()" ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
 	   
 	    <!-- non collapsing header -->
 	        <div ng-style="{'color' : getCo(test.passed)}">
