@@ -9,7 +9,9 @@ public class DBCon {
 
     private static DBCon dbInstance = null;
     private static Connection conn;
-
+    private static boolean testMode;
+    
+    
     private DBCon(){
         conn = null;
     }
@@ -21,15 +23,26 @@ public class DBCon {
     public static DBCon getDbInstance()  {
         if(dbInstance == null){
             dbInstance = new DBCon();
-                dbInstance.connect();
+                dbInstance.connect("RMTest.db");
                 dbInstance.create(conn);
+                testMode = true;
+        }
+        return dbInstance;
+    }
+    
+    public static DBCon getDbTestInstance()  {
+        if(dbInstance == null){
+            dbInstance = new DBCon();
+                dbInstance.connect("testRMTest.db");
+                dbInstance.create(conn);
+                testMode = true;
         }
         return dbInstance;
     }
 
-    private Connection connect() {
+    private Connection connect(String dbname) {
         try {
-            conn = DriverManager.getConnection("jdbc:sqlite:RMtest.db");
+            conn = DriverManager.getConnection("jdbc:sqlite:"+dbname);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -62,5 +75,9 @@ public class DBCon {
             e.printStackTrace();
         }
 
+    }
+    
+    public void dropDatabase(){
+		dbInstance.dropDatabase();
     }
 }
