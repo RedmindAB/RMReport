@@ -5,7 +5,6 @@ angular.module('webLog')
     $scope.boolToClick = false;
     
     $scope.onClick = function (points, evt) {
-//        console.log(points, evt);
         $location.path('/test-suite-runs');
     };
     

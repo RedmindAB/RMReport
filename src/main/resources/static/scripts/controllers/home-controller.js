@@ -4,7 +4,7 @@ angular.module('webLog')
     
     $scope.onClick = function (points, evt) {
         console.log(points, evt);
-        $location.path('/project');
+        $location.path('/test-suite-runs');
     };
     
     $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];
