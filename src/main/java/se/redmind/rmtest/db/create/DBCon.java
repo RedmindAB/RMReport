@@ -54,7 +54,7 @@ public class DBCon {
 
             stat.executeUpdate("create table if not exists testcase (name, testcase_id integer primary key autoincrement, class_id integer, foreign key (class_id) references class (class_id))");
 
-            stat.executeUpdate("create table if not exists report (suite_id integer, class_id integer, testcase_id integer, timestamp, result, message, name, time float, " +
+            stat.executeUpdate("create table if not exists report (suite_id integer, class_id integer, testcase_id integer, timestamp, result, message, name, driver, time float, " +
                     "foreign key (suite_id) references suite (suite_id), foreign key (class_id) references class (class_id), foreign key (testcase_id) references testcase (testcase_id))");
 
             stat.executeUpdate("insert into suite (name) values ('testsuite01')");

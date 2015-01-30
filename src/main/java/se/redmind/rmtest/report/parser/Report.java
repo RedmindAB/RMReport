@@ -37,6 +37,7 @@ public class Report{
 	private Element file;
 	private boolean simpleReport;
 	private List<ReportTestCase> testCaseArray;
+	private List<String> presentTestClasses;
 
 	public Report(Element element) {
 		this.jsonObject = new JsonObject();
@@ -44,6 +45,7 @@ public class Report{
 		this.simpleReport = false;
 		this.file = element;
 		this.testCaseArray = new ArrayList<ReportTestCase>();
+		this.presentTestClasses = new ArrayList<String>();
 		generateReportFromElement(element);
 	}
 	
@@ -53,6 +55,7 @@ public class Report{
 		this.simpleReport = simpleReport;
 		this.file = element;
 		this.testCaseArray = new ArrayList<ReportTestCase>();
+		this.presentTestClasses = new ArrayList<String>();
 		generateReportFromElement(element);
 	}
 
@@ -97,6 +100,10 @@ public class Report{
 				String driver = test.getDriverName();
 				if (!driverSet.contains(driver)) {
 					driverSet.add(driver);
+				}
+				String testClass = test.getClassName();
+				if (!getPresentTestClasses().contains(testClass)) {
+					getPresentTestClasses().add(testClass);
 				}
 				testCases.add(test.getAsJsonObject());
 			}
@@ -204,6 +211,10 @@ public class Report{
 	
 	public JsonObject getAsJsonObject(){
 		return this.jsonObject;
+	}
+
+	public List<String> getPresentTestClasses() {
+		return presentTestClasses;
 	}
 
 }

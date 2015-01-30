@@ -18,15 +18,15 @@ public class DBInserter {
 	}
 	
 	public boolean insertToDB(String sql){
-		boolean result;
+		int result;
 		try {
 			Statement statement = connection.createStatement();
-			result = statement.execute(sql);
+			result = statement.executeUpdate(sql);
 		} catch (SQLException e) {
 			return false;
 		}
 		
-		return result;
+		return result > 1;
 	}
 	public void insertToDB(Statement statement){
 		try {

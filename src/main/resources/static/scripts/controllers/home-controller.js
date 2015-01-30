@@ -45,6 +45,7 @@ angular.module('webLog')
 			         'TestBuild 5'],
 			series: ['Passed', 
 			         'Failed'],
+			         
 			data: [
 			       [23, 67, 88, 25, 96],
 			       [38, 37, 78, 56, 46]

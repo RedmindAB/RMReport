@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -72,6 +73,15 @@ public class ReportXMLParserTest {
 		Report report = parser.getSimpleReportFromFile(file);
 		String convertedString = report.removePunctuations("dot.dot.dot", "");
 		assertEquals("dotdotdot", convertedString);
+	}
+	
+	@Test
+	public void containsTestClasses(){
+		Report report = parser.getReportFromFile(file);
+		List<String> classes = report.getPresentTestClasses();
+		assertEquals(2, classes.size());
+		assertTrue(classes.contains("se.redmind.rmtest.selenium.example.CreateLogsTest"));
+		assertTrue(classes.contains("se.redmind.rmtest.selenium.example.CreateLogsTestSecond"));
 	}
 
 }

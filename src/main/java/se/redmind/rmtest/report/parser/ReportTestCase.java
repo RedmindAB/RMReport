@@ -38,6 +38,7 @@ public class ReportTestCase{
 		this.jsonObject.add("driverName", new JsonPrimitive(checkDriverName(name)));
 		
 		classname = element.getAttribute("classname");
+		classname = getTestClassName(classname);
 		this.jsonObject.add(CLASSNAME, new JsonPrimitive(classname));
 		
 		Element errorElement = (Element) element.getElementsByTagName(ERROR).item(0);
@@ -71,6 +72,14 @@ public class ReportTestCase{
 		this.jsonObject.add(TIME, new JsonPrimitive(time));
 	}
 	
+	private String getTestClassName(String testCaseName) {
+		int end = testCaseName.indexOf("(");
+		if (end > 0) {
+			return testCaseName.substring(0, end);
+		}
+		return testCaseName;
+	}
+
 	public String checkDriverName(String name){
 		if (name.contains("[")) {
 		int start = name.lastIndexOf("[");
@@ -78,6 +87,21 @@ public class ReportTestCase{
 			return name.substring(start+1, end);
 		}
 		return name;
+	}
+	
+	public String getMethodName(){
+		int end = name.indexOf("[");
+		if (end > 0) {
+			return name.substring(0, end);
+		}
+		return "No method name found";
+	}
+	
+	//TODO: Not returning skipped, skipped is not supported yet.
+	public String getResult(){
+		if (isPassed()) 				return PASSED;
+		else if(getFailure() != null) 	return FAILURE;
+		else							return ERROR;
 	}
 	
 	public String getName() {
@@ -130,6 +154,21 @@ public class ReportTestCase{
 	
 	public JsonObject getAsJsonObject(){
 		return this.jsonObject;
+	}
+	
+	//TODO: Add support for skipped?
+	public String getMessage() {
+		String result = getResult();
+		switch (result) {
+		case PASSED:
+			return "";
+		case ERROR:
+			return getErrorMessage();
+		case FAILURE:
+			return getFailureMessage();
+		default:
+			return "";
+		}
 	}
 	
 }
