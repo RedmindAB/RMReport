@@ -1,8 +1,8 @@
 <div style='margin-top:10px' ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
 <h3>Test: {{currentSuiteRun.suiteName}} - {{currentSuiteRun.timestamp}}</h3>
-				<table class="table suite">
-				    <thead>
-				        <tr>
+				<table class="table suite" border='0'>
+				    <thead border='0'>
+				        <tr border='0'>
 				            <th>Tests run</th>
 				            <th>Errors</th>
 				            <th>Skipped</th>
@@ -10,8 +10,8 @@
 				            <th>Time to run</th>
 				        </tr>
 				    </thead>
-				    <tbody>
-				        <tr>
+				    <tbody border='0'>
+				        <tr style='border-style: hidden'>
 				            <td>{{currentSuiteRun.tests}}</td>
 				            <td>{{currentSuiteRun.errors}}</td>
 				            <td>{{currentSuiteRun.skipped}}</td>
@@ -37,7 +37,7 @@
 		<div ng-class='getBG(test.passed)'>
 			<table class="table">
 			    <thead>
-			        <tr>
+			        <tr style='border-style: hidden'>
 			            <th>Driver used</th>
 			            <th>Class name</th>
 			            <th>Time to run</th>
@@ -46,7 +46,7 @@
 			        </tr>
 			    </thead>
 			    <tbody>
-			        <tr>
+			        <tr border='0'>
 			            <td>{{test.driverName}}</td>
 			            <td>{{test.className}}</td>
 			            <td>{{test.time}}</td>

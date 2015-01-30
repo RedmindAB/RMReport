@@ -1,31 +1,4 @@
-<div align='center'>
-	<table class='home'>
-		<tr>
-		    <td class='home'><h3>Impressively Specific Data</h3><canvas 
-		    														id="line" 
-		    														width='600px'
-		    														height='200px'
-		    														class="chart chart-line" 
-		    														data="project.data"
-  																	labels="project.labels"
-  																	series="project.series" 
-  																	legend="true" 
-  																	series="series"
-  																	options="options"
-  																	click="onClick">
-																</canvas></td>
-		</tr>
-		<tr>
-			<td ng-repeat="serie in project.series track by $index">
-				{{serie}}
-			</td>
-		</tr>
-		<tr>
-			<td ng-repeat="serie in project.series track by $index">
-				</td>
-		</tr>
-		
-	</table>
-	<canvas id="myChart2" ></canvas>
-	</div>
+<div align='center' style='margin-top:20px'>
+	<img ng-src="img/aftonbladet.png" class='image-paths'></img>
+	<canvas id="line" width='600px' height='200px' class="chart chart-line" data="project.data" labels="project.labels" series="project.series" legend="true" series="series" options="options" click="onClick"></canvas>
 </div>
