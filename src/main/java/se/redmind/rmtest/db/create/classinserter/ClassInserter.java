@@ -12,7 +12,7 @@ public class ClassInserter extends DBInserter {
 	public ClassInserter() {
 	}
 	
-	public boolean insertSuite(String className){
+	public boolean insertTestClass(String className){
 		HashMap<String,String> map = new HashMap<String, String>();
 		map.put("classname", className);
 		String sql = stringParser.getString(INSERT_SUITE, map);
