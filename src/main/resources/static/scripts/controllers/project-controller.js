@@ -57,6 +57,7 @@ angular.module('webLog')
     	console.log(index);
     	console.log($scope.project.series[index]);
 	    	if($scope.project.series[index] == projectData.series[index]){
+	    		$scope.project.series[index] = "";
 	    		$scope.project.data[index] = "";
 	    	}
 	    	else if($scope.project.data[index] == ""){
