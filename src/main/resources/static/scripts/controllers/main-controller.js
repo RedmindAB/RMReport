@@ -3,19 +3,40 @@ angular.module('webLog')
     	
     $scope.errorReport={};
     $scope.suites = {};
-    $scope.currentTestSuite = {};
+    $scope.currentSuite = {};
+    $scope.currentSuiteRun;
+    $scope.currentClass = {};
     
     $http.get('/api/log/getloglist')
     .success(function(data, status, headers, config){ 
     	if(data){
     		$scope.suites = data;
+    		getTestSuite();
     	};
     }).error(function(data, status, headers, config){
     	console.log(data);
     });
+    
+    $scope.setCurrentSuiteRun = function(run){
+    	console.log("setting current suite run");
+    	$scope.currentSuiteRun = run;
+    	console.log($scope.currentSuiteRun);
+    }
+    
+    $scope.setCurrentClass = function(testClass){
+    	console.log($scope.currentSuiterun);
+//    	var run = $scope.currentSuiterun;
+//    	for(var testCase in run){
+//    		console.log(run.testcases[testCase]);
+//    		if (run.testcases[testCase].className === testclass) {
+//				currentClass["testCase"+testCase] = run.testcases[testCase];
+//			}
+//    	}
+//    	console.log($scope.currentClass);
+    }
 
     function getTestSuite(){
-    	$scope.currentTestSuite = suites;
+    	$scope.currentSuite = $scope.suites;
     }
     
     var getTestSuiteRuns = function(testName){
@@ -27,6 +48,16 @@ angular.module('webLog')
             }
         }
     };
+    
+	function getClassMethods(classname, suite) {
+		console.log(classname);
+		for (var testCase in suite.testcases) {
+			if (suite.testcases[testCase].className === classname) {
+				$scope.currentClass.push(suite.testcases[testCase]);
+			}
+		}
+		console.log($scope.currentClass);
+	}
 
     $scope.getPanel = function(passed){
     	if(passed)
@@ -63,11 +94,6 @@ angular.module('webLog')
     		return 'img/logo3.jpg';    
     };
     
-    $scope.goToTestCases = function(testName){
-    	getTestSuiteRuns(testName);
-    	console.log($scope.currentTestSuite);
-    	$location.path('/test-case');
-    };
     $scope.labels2 = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
     $scope.data2 = [300, 500, 100];
     
