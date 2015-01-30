@@ -1,6 +1,6 @@
 angular.module('webLog')
     .controller('MainCtrl',['$scope', '$http','$location', '$timeout', function($scope, $http, $location, $timeout){
-    $scope.currentPage = "currentPage";
+    $scope.currentPage = "Home";
     $scope.errorReport={};
     $scope.suites = {};
     $scope.currentSuite = {};
@@ -95,8 +95,33 @@ angular.module('webLog')
     };
     
     $scope.getPageHeader = function(){
-    	return "CurrentPage";
+    	switch($location.url()) {
+        case '/home':
+            return "Home";
+            break;
+            
+        case '/project':
+            return "Project View";
+            break;
+            
+        case '/test-suite-runs':
+            return "Suite Runs";
+            break;
+            
+        case '/suite-run-classes':
+            return "Test Classes";
+            break;
+            
+        case '/test-case':
+            return "Test Cases";
+            break;
+            
+        default:
+            return "Reports";
+        	break;
+    	}
     }
+    
     $scope.labels2 = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
     $scope.data2 = [300, 500, 100];
     
