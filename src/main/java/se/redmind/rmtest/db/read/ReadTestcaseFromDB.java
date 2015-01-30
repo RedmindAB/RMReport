@@ -19,10 +19,10 @@ public class ReadTestcaseFromDB {
     public int getTestCaseID(String testCaseName){
         ResultSet rs = getResulSet(GET_TESTCASE_ID+"'"+testCaseName+"'");
         try {
-            System.out.println("testcase Id: "+rs.getString("testcase_id"));
+//            System.out.println("testcase Id: "+rs.getString("testcase_id"));
             return rs.getInt(1);
         } catch (SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return -1;
     }

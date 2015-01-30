@@ -2,6 +2,7 @@ package se.redmind.rmtest.db.create.testcaseruninserter;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,16 +21,16 @@ public class TestCaseRunInserter extends DBInserter {
 	
 	
 	private final static String INSERT_TESTCASERUN = "INSERT INTO report (suite_id, class_id, testcase_id, timestamp, result, message, name, driver, time) "
-																	+ "VALUES ({suite_id},{class_id},{testcase_id},'{timestamp'},'{result}','{message}','{name}','{driver}',{time})";
+																	+ "VALUES ({suite_id},{class_id},{testcase_id},'{timestamp}','{result}','{message}','{name}','{driver}',{time})";
 
 	public TestCaseRunInserter() {
 		testCaseInserter = new TestCaseInserter();
 		readTestcaseFromDB = new ReadTestcaseFromDB(connection);
 	}
 	
-	public void insertTestCases(Report report, int suiteID, HashMap<String, Integer> classIDs, int testCaseID){
+	public void insertTestCases(Report report, int suiteID, HashMap<String, Integer> classIDs){
 		try {
-			PreparedStatement pStatement = connection.prepareStatement(INSERT_TESTCASERUN);
+			Statement pStatement = connection.createStatement();
 			List<ReportTestCase> testCaseArray = report.getTestCaseArray();
 			StringKeyValueParser parser = new StringKeyValueParser(INSERT_TESTCASERUN);
 			for (ReportTestCase testCase : testCaseArray) {
@@ -40,7 +41,7 @@ public class TestCaseRunInserter extends DBInserter {
 				map.put("testcase_id", ""+getTestCaseID(testCase.getMethodName()));
 				map.put("timestamp", report.getTimestamp());
 				map.put("result", testCase.getResult());
-				map.put("message", testCase.getMessage());
+				map.put("message", "\""+testCase.getMessage()+"\"");
 				map.put("name", testCase.getMethodName());
 				map.put("driver", testCase.getDriverName());
 				map.put("time", ""+testCase.getTime());
