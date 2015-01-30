@@ -81,4 +81,6 @@ public class ReadFromDBTest {
     public void getAllReportNamesTest(){
         new ReadReportFromDB(conn).getAllReportNames();
     }
+    @Test
+    public void getSuiteClassAndCaseIdTest(){ new ReadReportFromDB(conn).getSuiteClassCaseId();}
 }
