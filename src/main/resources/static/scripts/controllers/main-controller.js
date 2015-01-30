@@ -23,6 +23,13 @@ angular.module('webLog')
     $scope.setCurrentSuiteRun = function(run){
     	console.log("setting current suite run");
     	$scope.currentSuiteRun = run;
+    	for(var testCase in $scope.currentSuiteRun.testcases){
+    		if ($scope.currentSuiteRun.testcases[testCase].failure) {
+    			$scope.currentSuiteRun.testcases[testCase].failure.message.replace(/at /g, '<br/>at ');
+			} else if($scope.currentSuiteRun.testcases[testCase].error) {
+				$scope.currentSuiteRun.testcases[testCase].error.message.replace(/at /g, '<br/>at ');
+			}
+    	}
     	console.log($scope.currentSuiteRun);
     }
     
@@ -59,7 +66,6 @@ angular.module('webLog')
 				$scope.currentClass.push(suite.testcases[testCase]);
 			}
 		}
-		console.log($scope.currentClass);
 	}
 
     $scope.getPanel = function(passed){
@@ -126,7 +132,7 @@ angular.module('webLog')
     };
     
     $scope.resetFilterField = function(){
-    	$scope.searchText='';
+    	$scope.searchText="";
     };
     
     $scope.labels2 = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
