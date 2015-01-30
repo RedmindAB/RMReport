@@ -53,6 +53,7 @@ public class StringKeyValueParser {
         	
         	// strip { and } from string and get value from map 
             String replacement = (String) map.get(matcher.group(1));
+            System.out.println(replacement);
             
             // if value doesn't exist, set it to be the expected token
             if (replacement == null) {
@@ -60,7 +61,8 @@ public class StringKeyValueParser {
             }
             
             // replace template token with the new value
-            matcher.appendReplacement(stringBuffer, replacement);
+            matcher.appendReplacement(stringBuffer, replacement.replace("$", ""));
+            System.out.println(stringBuffer.toString());
             i = matcher.end();
         }
         

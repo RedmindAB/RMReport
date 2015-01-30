@@ -48,6 +48,7 @@ public class ReportValidator {
 		this.readClassFromDB = new ReadClassFromDB(connection);
 		this.readSuiteFromDB = new ReadSuiteFromDB(connection);
 		this.suiteInserter = new SuiteInserter();
+		this.testCaseRunInserter = new TestCaseRunInserter();
 		loadReport();
 	}
 	
@@ -67,6 +68,7 @@ public class ReportValidator {
 			connection.setAutoCommit(false);
 			HashMap<String, Integer> classIDs = getTestClassIDs(report.getPresentTestClasses());
 			int suiteID = getSuiteID(report.getSuiteName());
+			testCaseRunInserter.insertTestCases(report, suiteID, classIDs);
 			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
