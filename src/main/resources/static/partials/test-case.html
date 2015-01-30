@@ -24,7 +24,7 @@
 <accordion close-others="true">
 
 	<!-- repeated content -->
-	<div ng-repeat="test in currentSuiteRun.testcases" style='margin-top: 10px'>
+	<div ng-repeat="test in currentSuiteRun.testcases  | orderBy:'passed'" style='margin-top: 10px'>
 	    <accordion-group ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
 	    
 	    <!-- non collapsing header -->
