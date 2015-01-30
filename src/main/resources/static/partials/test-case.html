@@ -67,7 +67,7 @@
 			            <pre ng-style="{'background-color': getBgCo(test.passed)}">{{test.failure.message}}</pre>
 		            </div>
 		            <div ng-if="test.error.message">
-			            <pre>{{test.error.message}}</pre>
+			            <pre ng-style="{'background-color': getBgCo(test.passed)}">{{test.failure.message}}>{{test.error.message}}</pre>
 		            </div>
 			    </accordion-group>
 		    </accordion>
