@@ -9,7 +9,6 @@ import java.util.List;
 import se.redmind.rmtest.db.create.DBInserter;
 import se.redmind.rmtest.db.create.testcaseinserter.TestCaseInserter;
 import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
-import se.redmind.rmtest.db.test.ReadFromDBTest;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
 import se.redmind.rmtest.util.StringKeyValueParser;

@@ -17,7 +17,6 @@ public class ReadReportFromDB {
     String GET_MAX_ID_FROM_REPORT = "select * from report order by id desc limit 1";
     String REPORT_EXISTS = "select timestamp from report where timestamp =";
     String GET_ALL_REPORT_NAMES = "select name from report";
-    String GET_SUITE_CLASS_CASE_ID = "select suite_id, class_id, testcase_id from report";
     String GET_ID_FROM_REPORTNAME = "select id from report where name =";
     String GET_DATE_AND_TIME_FROM_REPORT_AFTER = "select * from report where timestamp >";
     String GET_DATE_AND_TIME_FROM_REPORT_BEFORE = "select * from report where timestamp <";
@@ -44,11 +43,11 @@ public class ReadReportFromDB {
     
     //TODO: Return a boolean if the report exits, try to limit the result to 1.
 
-    public boolean reportExists(String reportTimeStamp){
-        ResultSet rs = getResultSet(REPORT_EXISTS + "'" + reportTimeStamp + "'" + "limit 1");
-        System.out.println(REPORT_EXISTS+reportTimeStamp);
+    public boolean reportExists(String reportName){
+        ResultSet rs = getResultSet(REPORT_EXISTS + "'" + reportName + "'" + "limit 1");
+        System.out.println(REPORT_EXISTS+reportName);
         try {
-            System.out.println(rs.next());
+            System.out.println("Report exists: "+rs.next());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -72,18 +71,7 @@ public class ReadReportFromDB {
         }
     return null;
     }
-    public HashSet getSuiteClassCaseId(){
-        HashSet hs = new HashSet();
-        ResultSet rs = getResultSet(GET_SUITE_CLASS_CASE_ID);
-        try {
-            while(rs.next())
-                hs.add(rs.getString(3));
-            return hs;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+
 
     public ResultSet getResultSet(String query){
         Statement stat;

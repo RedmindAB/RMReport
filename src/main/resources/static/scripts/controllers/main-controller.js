@@ -1,6 +1,9 @@
 angular.module('webLog')
     .controller('MainCtrl',['$scope', '$http','$location', '$timeout', function($scope, $http, $location, $timeout){
-    $scope.currentPage = "currentPage";
+    	
+    $scope.currentPage = "Home";
+    $scope.searchText = "";
+    
     $scope.errorReport={};
     $scope.suites = {};
     $scope.currentSuite = {};
@@ -20,6 +23,13 @@ angular.module('webLog')
     $scope.setCurrentSuiteRun = function(run){
     	console.log("setting current suite run");
     	$scope.currentSuiteRun = run;
+    	for(var testCase in $scope.currentSuiteRun.testcases){
+    		if ($scope.currentSuiteRun.testcases[testCase].failure) {
+    			$scope.currentSuiteRun.testcases[testCase].failure.message.replace(/at /g, '<br/>at ');
+			} else if($scope.currentSuiteRun.testcases[testCase].error) {
+				$scope.currentSuiteRun.testcases[testCase].error.message.replace(/at /g, '<br/>at ');
+			}
+    	}
     	console.log($scope.currentSuiteRun);
     }
     
@@ -56,7 +66,6 @@ angular.module('webLog')
 				$scope.currentClass.push(suite.testcases[testCase]);
 			}
 		}
-		console.log($scope.currentClass);
 	}
 
     $scope.getPanel = function(passed){
@@ -95,8 +104,37 @@ angular.module('webLog')
     };
     
     $scope.getPageHeader = function(){
-    	return "CurrentPage";
-    }
+    	switch($location.url()) {
+        case '/home':
+            return "Home";
+            break;
+            
+        case '/project':
+            return "Project View";
+            break;
+            
+        case '/test-suite-runs':
+            return "Suite Runs";
+            break;
+            
+        case '/suite-run-classes':
+            return "Test Classes";
+            break;
+            
+        case '/test-case':
+            return "Test Cases";
+            break;
+            
+        default:
+            return "Reports";
+        	break;
+    	}
+    };
+    
+    $scope.resetFilterField = function(){
+    	$scope.searchText="";
+    };
+    
     $scope.labels2 = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
     $scope.data2 = [300, 500, 100];
     

@@ -16,6 +16,8 @@ public class ReadTestcaseFromDB {
     public ReadTestcaseFromDB(Connection connection){
         conn=connection;
     }
+
+
     public int getTestCaseID(String testCaseName){
         ResultSet rs = getResulSet(GET_TESTCASE_ID+"'"+testCaseName+"'");
         try {
