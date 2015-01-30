@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import se.redmind.rmtest.db.create.DBCon;
 import se.redmind.rmtest.report.reportvalidation.ReportValidator;
 
 public class ReportValidatorTest {
@@ -12,6 +13,7 @@ public class ReportValidatorTest {
 	
 	@Test
 	public void insertReport() {
+//		DBCon.getDbInstance().dropDatabase();
 		ReportValidator reportValidator = new ReportValidator(filename);
 		boolean exists = reportValidator.reportExists();
 		if (!exists) {
