@@ -47,11 +47,6 @@ public class ReadReportFromDB {
         ResultSet rs = getResultSet(REPORT_EXISTS + "'" + reportTimeStamp + "'" + "limit 1");
         System.out.println(REPORT_EXISTS+reportTimeStamp);
         try {
-            System.out.println("Report exists: "+rs.next());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
             return rs.next();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -59,8 +54,8 @@ public class ReadReportFromDB {
         return false;
     }
 
-    public HashSet getAllReportNames(){
-        HashSet hs = new HashSet();
+    public HashSet<String> getAllReportNames(){
+        HashSet<String> hs = new HashSet<String>();
         ResultSet rs = getResultSet(GET_ALL_REPORT_NAMES);
         try {
             while(rs.next())

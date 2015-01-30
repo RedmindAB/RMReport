@@ -26,7 +26,7 @@ public class DBInserter {
 			return false;
 		}
 		
-		return result > 1;
+		return result > 0;
 	}
 	public void insertToDB(Statement statement){
 		try {
