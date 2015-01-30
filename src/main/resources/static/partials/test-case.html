@@ -64,10 +64,10 @@
 		        	</accordion-heading>
 		            
 					<div ng-if="test.failure.message">
-			            <pre ng-style="{'background-color': getBgCo(test.passed)}">{{test.failure.message}}</pre>
+			            <pre>{{test.failure.message}}</pre>
 		            </div>
 		            <div ng-if="test.error.message">
-			            <pre ng-style="{'background-color': getBgCo(test.passed)}">{{test.failure.message}}>{{test.error.message}}</pre>
+			            <pre>{{test.failure.message}}>{{test.error.message}}</pre>
 		            </div>
 			    </accordion-group>
 		    </accordion>
