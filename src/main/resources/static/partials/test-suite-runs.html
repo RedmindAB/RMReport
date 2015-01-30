@@ -1,6 +1,6 @@
 <accordion close-others="true">
 	<!-- repeated content -->
-	<div ng-repeat="run in currentSuite | orderBy:['suiteName','passed']" style='margin-top: 10px' ng-click="goToSuiteClasses(run); setCurrentSuiteRun(run)" ng-class='getPanel(run.passed)' ng-style="{'background-color': getBgCo(run.passed)}">
+	<div ng-repeat="run in currentSuite | filter:searchText | orderBy:['suiteName','passed']" style='margin-top: 10px' ng-click="goToSuiteClasses(run); setCurrentSuiteRun(run)" ng-class='getPanel(run.passed)' ng-style="{'background-color': getBgCo(run.passed)}">
 	   
 	    <!-- non collapsing header -->
 	        <div ng-style="{'color' : getCo(run.passed)}">

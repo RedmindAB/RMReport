@@ -54,7 +54,10 @@ public class SaveToDBTest {
             e.printStackTrace();
         }
 
-
+        }
+    @Test
+    public void createDbTest(){
+        DBCon.getDbInstance();
     }
 
 
