@@ -3,6 +3,7 @@ package se.redmind.rmtest.db.test;
 import org.junit.Test;
 
 import se.redmind.rmtest.db.create.DBCon;
+import se.redmind.rmtest.db.read.ReadClassFromDB;
 import se.redmind.rmtest.db.read.ReadReportFromDB;
 
 import java.sql.Connection;
@@ -82,5 +83,5 @@ public class ReadFromDBTest {
         new ReadReportFromDB(conn).getAllReportNames();
     }
     @Test
-    public void getSuiteClassAndCaseIdTest(){ new ReadReportFromDB(conn).getSuiteClassCaseId();}
+    public void getClassNameOnTestcaseIdTest(){ new ReadClassFromDB(conn).getClassNameOnTestcaseId();}
 }
