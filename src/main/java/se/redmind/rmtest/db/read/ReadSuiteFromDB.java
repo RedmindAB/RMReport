@@ -29,11 +29,11 @@ public class ReadSuiteFromDB extends DBBridge{
     }
 
     public List<HashMap<String,Object>> getAllSuites(){
-        HashMap<String, Object> hm = new HashMap<String, Object>();
         ResultSet rs = readFromDB(GET_ALL_SUITS);
         List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
         try {
             while(rs.next()) {
+            	HashMap<String, Object> hm = new HashMap<String, Object>();
                 hm.put("name", rs.getString("name"));
                 hm.put("id", rs.getString("suite_id"));
                 result.add(hm);
