@@ -72,13 +72,11 @@ public class ReadFromDBTest {
         }
     }
     @Test
-    public void getSuitIdTest(){
-    new ReadSuiteFromDB().getSuiteID("name");
-    }
+    public void getClassIDTest(){new ReadClassFromDB().getClassID("name");}
     @Test
-    public void getMaxIdTest(){
-        new ReadReportFromDB().getMaxID();
-    }
+    public void getSuitIdTest(){new ReadSuiteFromDB().getSuiteID("name");}
+    @Test
+    public void getMaxIdTest(){new ReadReportFromDB().getMaxID();}
     @Test
     public void reportExistsTest(){
         new ReadReportFromDB().reportExists("20150121-160906");
@@ -89,4 +87,8 @@ public class ReadFromDBTest {
     }
     @Test
     public void getClassNameOnTestcaseIdTest(){ new ReadClassFromDB().getClassNameOnTestcaseId();}
+    @Test
+    public void getAllSuitesTest(){
+        new ReadSuiteFromDB().getAllSuites();
+    }
 }
