@@ -53,6 +53,9 @@ public class ReadFromDBTest {
     }
 
     @Test
+    public void getClassIDTest(){new ReadClassFromDB().getClassID("name");}
+
+    @Test
     public void getSuitIdTest(){
     new ReadSuiteFromDB().getSuiteID("name");
     }
@@ -67,6 +70,10 @@ public class ReadFromDBTest {
         for (String string : allReportNames) {
 			System.out.println("reportname: "+string);
 		}
+    }
+    @Test
+    public void getAllSuitesTest() {
+        new ReadSuiteFromDB().getAllSuites();
     }
     @Test
     public void getClassNameOnTestcaseIdTest(){ 
