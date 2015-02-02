@@ -15,7 +15,7 @@ public class ReportValidatorTest {
 	public void insertReport() {
 		DBCon.getDbInstance().dropDatabase();
 		ReportValidator reportValidator = new ReportValidator(filename);
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 1000; i++) {
 			boolean exists = reportValidator.reportExists();
 //			if (exists) {
 				reportValidator.saveReport();
