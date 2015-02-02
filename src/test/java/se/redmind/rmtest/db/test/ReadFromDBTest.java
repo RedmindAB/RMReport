@@ -83,4 +83,13 @@ public class ReadFromDBTest {
 			System.out.println("Key: "+string);
 		}
     }
+    
+    @Test
+    public void getSuiteList(){
+    	List<HashMap<String, Object>> allSuites = new ReadSuiteFromDB().getAllSuites();
+    	for (HashMap<String, Object> hashMap : allSuites) {
+    		System.out.println(hashMap.get("name"));
+    		System.out.println(hashMap.get("id"));
+		}
+    }
 }
