@@ -101,7 +101,7 @@ public class ReadFromDBTest {
     }
     @Test
     public void getAllClassNamesTest(){
-         List<HashMap> classname = new ReadClassFromDB().getAllClassNames(1);
+         List<HashMap<String, Object>> classname = new ReadClassFromDB().getAllClassNames(1);
          System.out.println(classname.toString());
         for (HashMap hashMap : classname) {
 			System.out.println(hashMap);

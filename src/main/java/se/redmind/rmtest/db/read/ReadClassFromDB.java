@@ -2,7 +2,6 @@ package se.redmind.rmtest.db.read;
 
 import se.redmind.rmtest.db.create.DBBridge;
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class ReadClassFromDB extends DBBridge{
         }
         return null;
     }
-    public List getAllClassNames(int suiteID){
+    public List<HashMap<String, Object>> getAllClassNames(int suiteID){
         ResultSet rs = readFromDB(GET_CLASS_FROM_SUITE_ID+suiteID);
         List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
         try {
