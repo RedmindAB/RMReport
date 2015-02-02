@@ -1,7 +1,7 @@
 <accordion close-others="true">
 
 	<!-- repeated content -->
-	<div ng-repeat="method in methods | filter:searchText | orderBy:['passed', 'name']" style='margin-top: 10px'>
+	<div ng-repeat="method in methods | filter:searchText | orderBy:['passed']" style='margin-top: 10px'>
 	    <accordion-group ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
 	    
 	    <!-- non collapsing header -->
