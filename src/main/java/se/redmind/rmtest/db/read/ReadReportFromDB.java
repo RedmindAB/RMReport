@@ -24,16 +24,6 @@ public class ReadReportFromDB extends DBBridge{
     String GET_RUNTIME_FROM_ALL_REPORT = "";
 
     
-    public Integer getMaxID(){
-    	ResultSet rs = readFromDB(GET_MAX_ID_FROM_REPORT);
-        try {
-            return rs.getInt(1);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
     public boolean reportExists(String reportTimeStamp){
         ResultSet rs = readFromDB(REPORT_EXISTS + "'" + reportTimeStamp + "'" + "limit 1");
         try {

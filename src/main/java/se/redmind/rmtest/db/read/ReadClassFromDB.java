@@ -20,12 +20,12 @@ public class ReadClassFromDB extends DBBridge{
         try {
             return rs.getInt(1);
         } catch (SQLException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }
             return -1;
     }
 
-    public HashMap getClassNameOnTestcaseId(){
+    public HashMap<String, String> getClassNameOnTestcaseId(){
         HashMap<String, String> hm = new HashMap();
         ResultSet rs = readFromDB(GET_SUITE_CLASS_CASE_ID);
         try {
