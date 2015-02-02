@@ -56,7 +56,7 @@ angular.module('webLog')
 	    $scope.goToTestCases = function(currentRun){
 	    	console.log("in suite controller: " + currentRun);
 	    	$scope.runRightNow = currentRun;
-	    	$location.path('/test-case');
+	    	  $state.transitionTo('reports.cases');
 	    	console.log($scope.runRightNow);
 	    };
 		
