@@ -2,10 +2,8 @@ package se.redmind.rmtest.db.read;
 
 import se.redmind.rmtest.db.create.DBBridge;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
 import java.util.HashSet;
 
