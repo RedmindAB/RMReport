@@ -2,7 +2,6 @@ package se.redmind.rmtest.db.read;
 
 import se.redmind.rmtest.db.create.DBBridge;
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -28,7 +27,7 @@ public class ReadSuiteFromDB extends DBBridge{
     }
 
     public Object[] getAllSuites(){
-        HashMap<String, Object> hm = new HashMap();
+        HashMap<String, Object> hm = new HashMap<String, Object>();
         ResultSet rs = readFromDB(GET_ALL_SUITS);
         try {
             while(rs.next()) {
