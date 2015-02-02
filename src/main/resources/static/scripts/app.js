@@ -9,6 +9,21 @@ angular.module('webLog', ['ui.router', 'chart.js','ui.bootstrap'])
             templateUrl: 'partials/home.html',
             controller: 'HomeCtrl'
         })
+        .state('reports',{
+	        url:'/reports',
+	        templateUrl: 'partials/reports.html',
+	        controller: 'SuitesCtrl'
+        })
+        .state('reports.classes',{
+	        url:'/classes',
+	        templateUrl: 'partials/classes.html',
+	        controller: 'SuitesCtrl'
+        })
+        .state('reports.cases',{
+	        url:'/cases',
+	        templateUrl: 'partials/cases.html',
+	        controller: 'SuitesCtrl'
+        })
         .state('testCases',{
 	        url:'/test-case',
 	        templateUrl: 'partials/test-case.html',
@@ -28,7 +43,8 @@ angular.module('webLog', ['ui.router', 'chart.js','ui.bootstrap'])
 	        url:'/test-suite-runs',
 	        templateUrl: 'partials/test-suite-runs.html',
 	        controller: 'SuitesCtrl'
-        })
+        });
+    
     });
 
 
