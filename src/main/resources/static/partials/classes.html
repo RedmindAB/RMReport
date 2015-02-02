@@ -1,7 +1,12 @@
 <accordion close-others="true">
 	<!-- repeated content -->
 	<div ng-repeat="class in classes | filter:searchText" style='margin-top: 10px' ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
-        <input type="checkbox" aria-label="..." style="float:left">
+	
+	<div class="squaredOne">
+		<input type="checkbox" value="None" id="squaredOne" name="check" />
+		<label for="squaredOne"></label>
+	</div>
+	
 	    <!-- non collapsing header -->
 	        <div ng-style="{'color' : getCo(test.passed)}" ng-click="goToTestCases(); resetFilterField()">
 	        		<div style='padding-left:10px'><h3>{{class.classname}}</div>
