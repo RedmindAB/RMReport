@@ -2,10 +2,10 @@ package se.redmind.rmtest.db.create.suiteinserter;
 
 import java.util.HashMap;
 
-import se.redmind.rmtest.db.create.DBInserter;
+import se.redmind.rmtest.db.create.DBBridge;
 import se.redmind.rmtest.util.StringKeyValueParser;
 
-public class SuiteInserter extends DBInserter {
+public class SuiteInserter extends DBBridge {
 
 	private final static String INSERT_SUITE = "INSERT INTO suite (name) VALUES ('{suitename}')";
 	

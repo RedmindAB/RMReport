@@ -6,14 +6,14 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 
-import se.redmind.rmtest.db.create.DBInserter;
+import se.redmind.rmtest.db.create.DBBridge;
 import se.redmind.rmtest.db.create.testcaseinserter.TestCaseInserter;
 import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
 import se.redmind.rmtest.util.StringKeyValueParser;
 
-public class TestCaseRunInserter extends DBInserter {
+public class TestCaseRunInserter extends DBBridge {
 	
 	private TestCaseInserter testCaseInserter;
 	private ReadTestcaseFromDB readTestcaseFromDB;
