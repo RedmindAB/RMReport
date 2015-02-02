@@ -11,22 +11,20 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 public class GetSuitesDAO {
-	
-	public String getSuites(){
+
+	public String getSuites() {
 		JsonArray jsonArray = new JsonArray();
 		List<HashMap<String, Object>> allSuites = new ReadSuiteFromDB().getAllSuites();
 		for (HashMap<String, Object> hashMap : allSuites) {
-			try {
-				JsonObject suiteObject = new JsonObject();
-				System.out.println(hashMap.toString());
-				suiteObject.add("name", new JsonPrimitive((String)hashMap.get("name")));
-				suiteObject.add("id", new JsonPrimitive((int)hashMap.get("id")));
-				jsonArray.add(suiteObject);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			JsonObject suiteObject = new JsonObject();
+			System.out.println(hashMap.toString());
+			suiteObject.add("name",
+					new JsonPrimitive((String) hashMap.get("name")));
+			JsonPrimitive id = new JsonPrimitive(
+					Integer.valueOf((String) hashMap.get("id")));
+			suiteObject.add("id", id);
+			jsonArray.add(suiteObject);
 		}
 		return new Gson().toJson(jsonArray);
 	}
-
 }
