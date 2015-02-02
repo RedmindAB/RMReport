@@ -37,7 +37,7 @@ public class TestCaseRunInserter extends DBBridge {
 				map.put("suite_id", ""+suiteID);
 				Integer classID = classIDs.get(testCase.getClassName());
 				map.put("class_id", ""+classID);
-				map.put("testcase_id", ""+getTestCaseID(testCase.getMethodName()));
+				map.put("testcase_id", ""+getTestCaseID(testCase.getMethodName(), classID));
 				map.put("timestamp", report.getTimestamp());
 				map.put("result", testCase.getResult());
 				map.put("message", "\""+testCase.getMessage()+"\"");
@@ -56,17 +56,17 @@ public class TestCaseRunInserter extends DBBridge {
 		
 	}
 	
-	public int getTestCaseID(String testCaseName){
+	public int getTestCaseID(String testCaseName, int classid){
 		int testCaseID = readTestcaseFromDB.getTestCaseID(testCaseName);
 		if (testCaseID < 0) {
-			testCaseID = insertTestCase(testCaseName);
+			testCaseID = insertTestCase(testCaseName, classid);
 		}
 		return testCaseID;
 	}
 	
 	
-	private int insertTestCase(String testCaseName) {
-		boolean success = testCaseInserter.insertTestCase(testCaseName);
+	private int insertTestCase(String testCaseName, int classid) {
+		boolean success = testCaseInserter.insertTestCase(testCaseName, classid);
 		if (success) {
 			return readTestcaseFromDB.getTestCaseID(testCaseName);
 		}

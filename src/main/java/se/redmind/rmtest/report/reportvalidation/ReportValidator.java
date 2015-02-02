@@ -41,6 +41,9 @@ public class ReportValidator {
 	
 	public ReportValidator(String filename) {
 		this.filename = filename;
+		this.readFromDB = new ReadReportFromDB();
+		this.readClassFromDB = new ReadClassFromDB();
+		this.readSuiteFromDB = new ReadSuiteFromDB();
 		this.connection = DBCon.getDbInstance().getConnection();
 		this.loader = new ReportLoader();
 		this.parser = new ReportXMLParser();
@@ -55,7 +58,8 @@ public class ReportValidator {
 	}
 	
 	public boolean reportExists(){
-		return readFromDB.reportExists(report.getTimestamp());
+		String timestamp = report.getTimestamp();
+		return readFromDB.reportExists(timestamp);
 	}
 	
 	public void saveReport(){
@@ -70,23 +74,6 @@ public class ReportValidator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	public int getTestCaseID(String testCaseName){
-		int testCaseID = readTestcaseFromDB.getTestCaseID(testCaseName);
-		if (testCaseID < 0) {
-			testCaseID = insertTestCase(testCaseName);
-		}
-		return testCaseID;
-	}
-	
-	
-	private int insertTestCase(String testCaseName) {
-		boolean success = testCaseInserter.insertTestCase(testCaseName);
-		if (success) {
-			return readTestcaseFromDB.getTestCaseID(testCaseName);
-		}
-		return -1;
 	}
 
 	public int getSuiteID(String suiteName){
