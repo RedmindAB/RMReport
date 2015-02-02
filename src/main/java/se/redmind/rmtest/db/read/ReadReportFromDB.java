@@ -38,7 +38,6 @@ public class ReadReportFromDB extends DBBridge{
         return null;
     }
 
-
     public boolean reportExists(String reportTimeStamp){
         ResultSet rs = readFromDB(REPORT_EXISTS + "'" + reportTimeStamp + "'" + "limit 1");
         try {
