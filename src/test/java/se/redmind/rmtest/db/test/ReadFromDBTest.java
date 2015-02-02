@@ -92,4 +92,11 @@ public class ReadFromDBTest {
     		System.out.println(hashMap.get("id"));
 		}
     }
+    @Test
+    public void getDriverFromTestcaseTest() {
+        List<String> drivers = new ReadReportFromDB().getDriverFromTestcase(1, 1);
+        for (int i = 0; i < drivers.size(); i++) {
+            System.out.println(drivers.get(i));
+        }
+    }
 }

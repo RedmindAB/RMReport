@@ -22,7 +22,7 @@ public class ReadReportFromDB extends DBBridge{
     String GET_RUNTIME_FROM_REPORT = "select time from reports where name =";
     String GET_RUNTIME_FROM_ALL_REPORT = "";
     String GET_DRIVER_FROM_REPORT = "select distinct driver from report where suite_id = ";
-    String AND_TESTCASE_ID = "and testcase_id =";
+    String AND_TESTCASE_ID = " and testcase_id =";
 
     public List getDriverFromTestcase(Integer suite_id, Integer testcase_id){
         List<String> ls = new ArrayList<>();
@@ -30,12 +30,11 @@ public class ReadReportFromDB extends DBBridge{
         try {
             while(rs.next()){
                 ls.add(rs.getString("driver"));
-                return ls;
             }
+            return ls;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 
