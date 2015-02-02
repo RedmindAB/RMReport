@@ -1,6 +1,11 @@
 package se.redmind.rmtest.db.test;
 
+import org.junit.Rule;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+import org.junit.rules.Timeout;
 
 import se.redmind.rmtest.db.create.DBCon;
 import se.redmind.rmtest.db.read.ReadClassFromDB;
@@ -13,13 +18,19 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by johan on 15-01-27.
  */
 public class ReadFromDBTest {
     Connection conn = DBCon.getDbInstance().getConnection();
+    
+    @Rule
+    public Timeout timeout = new Timeout(200);
 
     @Test
     public void readFromTestcases(){
@@ -31,7 +42,7 @@ public class ReadFromDBTest {
             while(rs.next()){
             	
                 System.out.println("testcase name = " + rs.getString("name"));
-                System.out.println("testcase id = " + rs.getString("id"));
+                System.out.println("testcase id = " + rs.getString("testcase_id"));
 
                 rs.close();
             }
@@ -41,54 +52,35 @@ public class ReadFromDBTest {
 
     }
 
-    @Test
-    public void readFromReports(){
-
-        Statement stat = null;
-        try {
-            stat = conn.createStatement();
-            ResultSet rs = stat.executeQuery("select * from reports;");
-            ResultSetMetaData meta = rs.getMetaData();
-            int columnCount = meta.getColumnCount();
-            List<String> columnNames = new ArrayList<String>();
-            for (int i = 1; i <= columnCount; i++) {
-            	columnNames.add(meta.getColumnLabel(i));
-			}
-            while (rs.next()) {
-            	
-                System.out.println("Report name = " + rs.getString("name"));
-                System.out.println("Report suitename = " + rs.getString("suitename"));
-                System.out.println("Report timestamp = " + rs.getString("timestamp"));
-                System.out.println("Report tests = " + rs.getString("tests"));
-                System.out.println("Report skipped = " + rs.getString("skipped"));
-                System.out.println("Report failures = " + rs.getString("failures"));
-                System.out.println("Report time = " + rs.getString("time"));
-                System.out.println("Report id = " + rs.getString("id"));
-
-                rs.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
     @Test
     public void getClassIDTest(){new ReadClassFromDB().getClassID("name");}
+
     @Test
-    public void getSuitIdTest(){new ReadSuiteFromDB().getSuiteID("name");}
-    @Test
-    public void getMaxIdTest(){new ReadReportFromDB().getMaxID();}
+    public void getSuitIdTest(){
+    new ReadSuiteFromDB().getSuiteID("name");
+    }
     @Test
     public void reportExistsTest(){
-        new ReadReportFromDB().reportExists("20150121-160906");
+        boolean b = new ReadReportFromDB().reportExists("20150121-160906");
+        assertTrue(b);
     }
     @Test
     public void getAllReportNamesTest(){
-        new ReadReportFromDB().getAllReportNames();
+        HashSet<String> allReportNames = new ReadReportFromDB().getAllReportNames();
+        for (String string : allReportNames) {
+			System.out.println("reportname: "+string);
+		}
     }
     @Test
-    public void getClassNameOnTestcaseIdTest(){ new ReadClassFromDB().getClassNameOnTestcaseId();}
-    @Test
-    public void getAllSuitesTest(){
+    public void getAllSuitesTest() {
         new ReadSuiteFromDB().getAllSuites();
+    }
+    @Test
+    public void getClassNameOnTestcaseIdTest(){ 
+    	HashMap<String, String> classNameOnTestcaseId = new ReadClassFromDB().getClassNameOnTestcaseId();
+    	Set<String> keySet = classNameOnTestcaseId.keySet();
+    	for (String string : keySet) {
+			System.out.println("Key: "+string);
+		}
     }
 }
