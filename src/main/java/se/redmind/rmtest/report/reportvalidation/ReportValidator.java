@@ -42,10 +42,8 @@ public class ReportValidator {
 	public ReportValidator(String filename) {
 		this.filename = filename;
 		this.connection = DBCon.getDbInstance().getConnection();
-		this.readFromDB = new ReadReportFromDB(connection);
 		this.loader = new ReportLoader();
 		this.parser = new ReportXMLParser();
-		this.readClassFromDB = new ReadClassFromDB(connection);
 		this.suiteInserter = new SuiteInserter();
 		this.testCaseRunInserter = new TestCaseRunInserter();
 		loadReport();

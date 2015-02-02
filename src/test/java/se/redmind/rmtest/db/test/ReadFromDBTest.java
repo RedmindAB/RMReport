@@ -73,20 +73,20 @@ public class ReadFromDBTest {
     }
     @Test
     public void getSuitIdTest(){
-    new ReadSuiteFromDB(conn).getSuitID();
+    new ReadSuiteFromDB().getSuiteID("name");
     }
     @Test
     public void getMaxIdTest(){
-        new ReadReportFromDB(conn).getMaxID();
+        new ReadReportFromDB().getMaxID();
     }
     @Test
     public void reportExistsTest(){
-        new ReadReportFromDB(conn).reportExists("20150121-160906");
+        new ReadReportFromDB().reportExists("20150121-160906");
     }
     @Test
     public void getAllReportNamesTest(){
-        new ReadReportFromDB(conn).getAllReportNames();
+        new ReadReportFromDB().getAllReportNames();
     }
     @Test
-    public void getClassNameOnTestcaseIdTest(){ new ReadClassFromDB(conn).getClassNameOnTestcaseId();}
+    public void getClassNameOnTestcaseIdTest(){ new ReadClassFromDB().getClassNameOnTestcaseId();}
 }
