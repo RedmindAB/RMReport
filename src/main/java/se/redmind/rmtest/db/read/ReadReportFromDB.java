@@ -22,17 +22,16 @@ public class ReadReportFromDB extends DBBridge{
     String GET_DATE_AND_TIME_FROM_REPORT_BEFORE = "select * from report where timestamp <";
     String GET_RUNTIME_FROM_REPORT = "select time from reports where name =";
     String GET_RUNTIME_FROM_ALL_REPORT = "";
+    String GET_DRIVER_FROM_REPORT = "select distinct driver from report where suite_id = ";
+    String AND_TESTCASE_ID = "and testcase_id =";
 
-    
-    public Integer getMaxID(){
-    	ResultSet rs = readFromDB(GET_MAX_ID_FROM_REPORT);
-        try {
-            return rs.getInt(1);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return -1;
+    public HashMap getDriverFromTestcase(Integer suite_id, Integer testcase_id){
+
+        ResultSet rs = readFromDB(GET_DRIVER_FROM_REPORT+""+AND_TESTCASE_ID+"");
+
+        return null;
     }
+
 
     public boolean reportExists(String reportTimeStamp){
         ResultSet rs = readFromDB(REPORT_EXISTS + "'" + reportTimeStamp + "'" + "limit 1");

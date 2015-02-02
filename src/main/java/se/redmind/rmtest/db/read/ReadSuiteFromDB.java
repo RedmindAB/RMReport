@@ -22,7 +22,7 @@ public class ReadSuiteFromDB extends DBBridge{
         try {
             return rs.getInt(1);
         } catch (SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return -1;
     }
