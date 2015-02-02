@@ -4,6 +4,13 @@ angular.module('webLog')
     $scope.currentPage = "Home";
     $scope.searchText = "";
     
+    $scope.classes = {};
+    $scope.methods = {};
+    
+    $scope.navLinks = ["home",
+                       "classes",
+                       "methods"];
+    
     $scope.errorReport={};
     $scope.suites = {};
     $scope.currentSuite = {};
@@ -15,6 +22,24 @@ angular.module('webLog')
     	if(data){
     		$scope.suites = data;
     		getTestSuite();
+    	};
+    }).error(function(data, status, headers, config){
+    	console.log(data);
+    });
+    
+    $http.get('/api/class/getclasses?suiteid=1')
+    .success(function(data, status, headers, config){ 
+    	if(data){
+    		$scope.classes = data;
+    	};
+    }).error(function(data, status, headers, config){
+    	console.log(data);
+    });
+    
+    $http.get('/api/method/getmethods?classid=1')
+    .success(function(data, status, headers, config){ 
+    	if(data){
+    		$scope.methods = data;
     	};
     }).error(function(data, status, headers, config){
     	console.log(data);
