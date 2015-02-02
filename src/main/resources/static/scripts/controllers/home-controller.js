@@ -1,10 +1,10 @@
 angular.module('webLog')
-    .controller('HomeCtrl',['$scope', '$location', function($scope, $location){
+    .controller('HomeCtrl',['$scope', '$location', '$state', function($scope, $location, $state){
     $scope.message = "Welcome to the home page!";
     
     $scope.onClick = function (points, evt) {
         console.log(points, evt);
-        $location.path('/test-suite-runs');
+        $state.transitionTo('reports.classes');
     };
     
     $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];

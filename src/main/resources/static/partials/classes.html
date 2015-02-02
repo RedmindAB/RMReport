@@ -1,0 +1,12 @@
+<accordion close-others="true">
+	<!-- repeated content -->
+	<div ng-repeat="class in testClasses | filter:searchText" style='margin-top: 10px' ng-click="setCurrentClass(class); goToTestCases(currentSuiteRun); resetFilterField()" ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
+	   
+	    <!-- non collapsing header -->
+	        <div ng-style="{'color' : getCo(test.passed)}">
+	        		<div style='padding-left:10px'><h3>Class Name: {{class}}</div>
+	        		<div style='float:right;display:inline'></div>
+	        </div>
+	</div>
+	<!-- repeated content  End-->
+</accordion>
