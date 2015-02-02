@@ -1,5 +1,10 @@
 package se.redmind.rmtest.web.route.api.getclasses;
 
+import java.util.HashMap;
+import java.util.List;
+
+import se.redmind.rmtest.db.read.ReadClassFromDB;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -11,10 +16,14 @@ public class GetClassesDAO {
 	
 	public String getClasses(int suiteid){
 		JsonArray array = new JsonArray();
-		for (int i = 0; i < 10; i++) {
-			JsonObject jsonObject = new JsonObject();
-			jsonObject.add("classname", new JsonPrimitive("testclass"+i));
-			array.add(jsonObject);
+		List<HashMap<String, Object>> allClassNames = new ReadClassFromDB().getAllClassNames(suiteid);
+		for (HashMap<String, Object> hashMap : allClassNames) {
+			JsonObject classObject = new JsonObject();
+			String name = (String) hashMap.get("name");
+			int id = Integer.valueOf((String) hashMap.get("id"));
+			classObject.add("id", new JsonPrimitive(id));
+			classObject.add("name", new JsonPrimitive(name));
+			array.add(classObject);
 		}
 		return new Gson().toJson(array);
 	}
