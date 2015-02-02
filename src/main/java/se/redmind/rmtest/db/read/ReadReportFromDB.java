@@ -4,8 +4,9 @@ import se.redmind.rmtest.db.create.DBBridge;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * Created by johan on 15-01-26.
@@ -23,9 +24,17 @@ public class ReadReportFromDB extends DBBridge{
     String GET_DRIVER_FROM_REPORT = "select distinct driver from report where suite_id = ";
     String AND_TESTCASE_ID = "and testcase_id =";
 
-    public HashMap getDriverFromTestcase(Integer suite_id, Integer testcase_id){
-
-        ResultSet rs = readFromDB(GET_DRIVER_FROM_REPORT+""+AND_TESTCASE_ID+"");
+    public List getDriverFromTestcase(Integer suite_id, Integer testcase_id){
+        List<String> ls = new ArrayList<>();
+        ResultSet rs = readFromDB(GET_DRIVER_FROM_REPORT+suite_id+AND_TESTCASE_ID+testcase_id);
+        try {
+            while(rs.next()){
+                ls.add(rs.getString("driver"));
+                return ls;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return null;
     }
