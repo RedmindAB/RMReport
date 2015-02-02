@@ -9,13 +9,15 @@ public class GetSuitesDAO {
 	
 	public String getSuites(){
 		JsonArray jsonArray = new JsonArray();
-		JsonObject suiteObject = new JsonObject();
-		suiteObject.add("name", new JsonPrimitive("CreateLogsTest"));
-		suiteObject.add("id", new JsonPrimitive(1));
-		suiteObject.add("tests", new JsonPrimitive(12));
-		suiteObject.add("error", new JsonPrimitive(4));
-		suiteObject.add("success", new JsonPrimitive(8));
-		jsonArray.add(suiteObject);
+		for (int i = 1; i <= 2; i++) {
+			JsonObject suiteObject = new JsonObject();
+			suiteObject.add("name", new JsonPrimitive("CreateLogsTest"+i));
+			suiteObject.add("id", new JsonPrimitive(i));
+			suiteObject.add("tests", new JsonPrimitive(12*i));
+			suiteObject.add("error", new JsonPrimitive(4*i));
+			suiteObject.add("success", new JsonPrimitive(8*i));
+			jsonArray.add(suiteObject);
+		}
 		return new Gson().toJson(jsonArray);
 	}
 

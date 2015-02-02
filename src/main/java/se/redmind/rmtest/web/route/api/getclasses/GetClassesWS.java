@@ -12,7 +12,7 @@ public class GetClassesWS extends Route {
 
 	@Override
 	public Object handle(Request request, Response response) {
-		int suiteid = (int) request.attribute("suiteid");
+		int suiteid = Integer.valueOf(request.queryParams("suiteid"));
 		return new GetClassesDAO().getClasses(suiteid);
 	}
 
