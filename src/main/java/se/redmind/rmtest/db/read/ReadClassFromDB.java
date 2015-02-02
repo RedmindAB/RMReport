@@ -22,7 +22,6 @@ public class ReadClassFromDB {
     public int getClassID(String className){
         ResultSet rs = getResultSet(GET_CLASS_ID+"'"+className+"'");
         try {
-            System.out.println("Class id: "+rs.getString("class_id"));
             return rs.getInt(1);
         } catch (SQLException e) {
 //            e.printStackTrace();

@@ -15,10 +15,11 @@ public class ReportValidatorTest {
 	public void insertReport() {
 //		DBCon.getDbInstance().dropDatabase();
 		ReportValidator reportValidator = new ReportValidator(filename);
-		boolean exists = reportValidator.reportExists();
-		System.out.println("Report exists: "+exists);
-		if (!exists) {
-			reportValidator.saveReport();
+		for (int i = 0; i < 1000; i++) {
+			boolean exists = reportValidator.reportExists();
+//			if (exists) {
+				reportValidator.saveReport();
+//			}
 		}
 		
 	}
