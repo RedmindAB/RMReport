@@ -20,11 +20,11 @@ import java.sql.SQLException;
  */
 public class SaveToDBTest {
 
-    Connection con = DBCon.getDbInstance().getConnection();
+    Connection con = DBCon.getDbTestInstance().getConnection();
 
     private static ReportLoader loader;
     private static ReportXMLParser parser;
-    private static final String testFileName = "TEST-test.java.se.redmind.rmtest.selenium.example.CreateLogTests-20150121-160906.xml";
+    private static final String testFileName = "TEST-test.java.se.redmind.rmtest.selenium.example.CreateLogTests-20150202-140728.xml";
     private static File file;
 
     @BeforeClass
@@ -34,27 +34,6 @@ public class SaveToDBTest {
         file = loader.getXMLReportByFileName(testFileName);
     }
 
-    @Test
-    public void saveReportToDBTest(){
-        Report report = parser.getReportFromFile(file);
-        try {
-            new ReportStatementBuilder(con).reportStatement(report).executeBatch();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-    @Test
-    public void saveTestCaseToDBtest(){
-        Report report = parser.getReportFromFile(file);
-        try {
-            new TestCaseStatementBuilder(con).testCaseStatement(report.getTestCaseArray()).executeBatch();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        }
     @Test
     public void createDbTest(){
         DBCon.getDbInstance();

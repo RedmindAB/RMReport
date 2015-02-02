@@ -101,7 +101,7 @@ public class ReadFromDBTest {
     }
     @Test
     public void getAllClassNamesTest(){
-         List<String> classname = new ReadClassFromDB().getAllClassNames(2);
+         List<String> classname = new ReadClassFromDB().getAllClassNames(1);
         for (int i = 0; i < classname.size(); i++) {
             System.out.println(classname.get(i));
         }
