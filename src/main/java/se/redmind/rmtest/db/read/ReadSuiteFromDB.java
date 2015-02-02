@@ -2,10 +2,11 @@ package se.redmind.rmtest.db.read;
 
 import se.redmind.rmtest.db.create.DBBridge;
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -27,14 +28,17 @@ public class ReadSuiteFromDB extends DBBridge{
         return -1;
     }
 
-    public Object[] getAllSuites(){
-        HashMap<String, Object> hm = new HashMap();
+    public List<HashMap<String,Object>> getAllSuites(){
+        HashMap<String, Object> hm = new HashMap<String, Object>();
         ResultSet rs = readFromDB(GET_ALL_SUITS);
+        List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
         try {
             while(rs.next()) {
-                hm.put("Name", "id");
+                hm.put("name", rs.getString("name"));
+                hm.put("id", rs.getString("suite_id"));
+                result.add(hm);
             }
-            return hm.entrySet().toArray();
+            return result;
         } catch (SQLException e) {
             e.printStackTrace();
         }

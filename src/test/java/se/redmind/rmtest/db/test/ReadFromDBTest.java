@@ -83,4 +83,27 @@ public class ReadFromDBTest {
 			System.out.println("Key: "+string);
 		}
     }
+    
+    @Test
+    public void getSuiteList(){
+    	List<HashMap<String, Object>> allSuites = new ReadSuiteFromDB().getAllSuites();
+    	for (HashMap<String, Object> hashMap : allSuites) {
+    		System.out.println(hashMap.get("name"));
+    		System.out.println(hashMap.get("id"));
+		}
+    }
+    @Test
+    public void getDriverFromTestcaseTest() {
+        List<String> drivers = new ReadReportFromDB().getDriverFromTestcase(1, 1);
+        for (int i = 0; i < drivers.size(); i++) {
+            System.out.println(drivers.get(i));
+        }
+    }
+    @Test
+    public void getAllClassNamesTest(){
+         List<String> classname = new ReadClassFromDB().getAllClassNames(2);
+        for (int i = 0; i < classname.size(); i++) {
+            System.out.println(classname.get(i));
+        }
+    }
 }

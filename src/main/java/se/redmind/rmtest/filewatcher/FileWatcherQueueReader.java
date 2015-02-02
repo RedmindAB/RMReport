@@ -26,7 +26,7 @@ public class FileWatcherQueueReader implements Runnable {
                 for (WatchEvent event : key.pollEvents()) {
 //                    System.out.printf("Received %s event for file: %s\n",
 //                                      event.kind(), event.context() );
-                	String context = (String) event.context();
+                	String context = event.context().toString();
                     if (event.kind().equals(ENTRY_CREATE)) {
                     	
                     }
