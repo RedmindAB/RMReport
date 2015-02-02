@@ -5,6 +5,7 @@ import org.junit.Test;
 import se.redmind.rmtest.db.create.DBCon;
 import se.redmind.rmtest.db.read.ReadClassFromDB;
 import se.redmind.rmtest.db.read.ReadReportFromDB;
+import se.redmind.rmtest.db.read.ReadSuiteFromDB;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -69,6 +70,10 @@ public class ReadFromDBTest {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    @Test
+    public void getSuitIdTest(){
+    new ReadSuiteFromDB(conn).getSuitID();
     }
     @Test
     public void getMaxIdTest(){

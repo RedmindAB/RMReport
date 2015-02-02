@@ -1,5 +1,7 @@
 package se.redmind.rmtest.db.read;
 
+import se.redmind.rmtest.db.create.DBBridge;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +10,7 @@ import java.sql.Statement;
 /**
  * Created by johan on 15-01-29.
  */
-public class ReadTestcaseFromDB {
+public class ReadTestcaseFromDB extends DBBridge {
 
     public static Connection conn;
     String GET_TESTCASE_ID = "select testcase_id from testcase where name= ";
@@ -19,7 +21,7 @@ public class ReadTestcaseFromDB {
 
 
     public int getTestCaseID(String testCaseName){
-        ResultSet rs = getResulSet(GET_TESTCASE_ID+"'"+testCaseName+"'");
+        ResultSet rs = readFromDB(GET_TESTCASE_ID+"'"+testCaseName+"'");
         try {
             return rs.getInt(1);
         } catch (SQLException e) {
@@ -28,15 +30,5 @@ public class ReadTestcaseFromDB {
         return -1;
     }
 
-    public ResultSet getResulSet(String query){
-        Statement stat;
-        try {
-            stat = conn.createStatement();
-            return stat.executeQuery(query);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return null;
-    }
+
 }

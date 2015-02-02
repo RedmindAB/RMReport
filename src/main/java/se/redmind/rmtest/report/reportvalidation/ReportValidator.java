@@ -46,7 +46,6 @@ public class ReportValidator {
 		this.loader = new ReportLoader();
 		this.parser = new ReportXMLParser();
 		this.readClassFromDB = new ReadClassFromDB(connection);
-		this.readSuiteFromDB = new ReadSuiteFromDB(connection);
 		this.suiteInserter = new SuiteInserter();
 		this.testCaseRunInserter = new TestCaseRunInserter();
 		loadReport();
@@ -93,7 +92,7 @@ public class ReportValidator {
 	}
 
 	public int getSuiteID(String suiteName){
-		int suiteID = readSuiteFromDB.getSuitID(suiteName);
+		int suiteID = readSuiteFromDB.getSuiteID(suiteName);
 		if (suiteID < 0) {
 			suiteID = insertSuite(suiteName);
 		}
@@ -104,7 +103,7 @@ public class ReportValidator {
 	private int insertSuite(String suiteName) {
 		boolean success = suiteInserter.insertSuite(suiteName);
 		if (success) {
-			return readSuiteFromDB.getSuitID(suiteName);
+			return readSuiteFromDB.getSuiteID(suiteName);
 		}
 		return -1;
 	}

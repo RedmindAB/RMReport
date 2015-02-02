@@ -1,5 +1,7 @@
 package se.redmind.rmtest.db.read;
 
+import se.redmind.rmtest.db.create.DBBridge;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,9 +12,7 @@ import java.util.HashSet;
 /**
  * Created by johan on 15-01-26.
  */
-public class ReadReportFromDB {
-
-	public static Connection conn;
+public class ReadReportFromDB extends DBBridge{
 
     String GET_MAX_ID_FROM_REPORT = "select * from report order by id desc limit 1";
     String REPORT_EXISTS = "select timestamp from report where timestamp =";
@@ -23,14 +23,9 @@ public class ReadReportFromDB {
     String GET_RUNTIME_FROM_REPORT = "select time from reports where name =";
     String GET_RUNTIME_FROM_ALL_REPORT = "";
 
-    public ReadReportFromDB(Connection connection){
-        conn=connection;
-
-
-    }
     
     public Integer getMaxID(){
-    	ResultSet rs = getResultSet(GET_MAX_ID_FROM_REPORT);
+    	ResultSet rs = readFromDB(GET_MAX_ID_FROM_REPORT);
         try {
             return rs.getInt(1);
         } catch (SQLException e) {
@@ -39,11 +34,8 @@ public class ReadReportFromDB {
         return -1;
     }
 
-    
-    //TODO: Return a boolean if the report exits, try to limit the result to 1.
-
     public boolean reportExists(String reportTimeStamp){
-        ResultSet rs = getResultSet(REPORT_EXISTS + "'" + reportTimeStamp + "'" + "limit 1");
+        ResultSet rs = readFromDB(REPORT_EXISTS + "'" + reportTimeStamp + "'" + "limit 1");
         try {
             return rs.next();
         } catch (SQLException e) {
@@ -54,7 +46,7 @@ public class ReadReportFromDB {
 
     public HashSet<String> getAllReportNames(){
         HashSet<String> hs = new HashSet<String>();
-        ResultSet rs = getResultSet(GET_ALL_REPORT_NAMES);
+        ResultSet rs = readFromDB(GET_ALL_REPORT_NAMES);
         try {
             while(rs.next())
                 hs.add(rs.getString(1));
@@ -64,23 +56,5 @@ public class ReadReportFromDB {
         }
     return null;
     }
-
-
-    public ResultSet getResultSet(String query){
-        Statement stat;
-            try {
-            	stat = conn.createStatement();
-				return stat.executeQuery(query);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-            return null;
-    }
-    
-
-
-    
-
     
 }
