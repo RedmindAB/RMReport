@@ -16,29 +16,28 @@
 </div>
 
 <div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-    Amount Of Suites To Show
-    <span class="caret"></span>
-  </button>
-            <ul class="dropdown-menu scrollable-menu" role="menu">
-                <li ng-repeat="suite in mockSuites"><a href="#">{{suite}}</a></li>
-            </ul>
+	<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+	  Amount Of Suites To Show
+	  <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu scrollable-menu" role="menu">
+	    <li ng-repeat="suite in mockSuites"><a href="#">{{suite}}</a></li>
+	</ul>
 </div>
-
-  {{getCurrentState()}}
+<br/>
+<div>
 <!-- navigation links -->
-<div style="float:left">Home&nbsp;</p></div>
-<div style="float:left" ui-sref-active="getCurrentState()">> Classes&nbsp;</p></div>
-<div style="float:left" ui-sref-active="reports.methods">> Methods&nbsp;</p></div>
-<div style="float:left" ui-sref-active="reports.cases">> Cases&nbsp;</p></div><br/>
+	<div ng-click="goToHome()" class="navTextStuff">Home&nbsp;</p></div>
+	<div ng-click="goToClasses()" class="navTextStuff" ng-show="getCurrentState('reports.classes') || getCurrentState('reports.methods') || getCurrentState('reports.cases')">> Classes&nbsp;</p></div>
+	<div ng-click="goToMethods()" class="navTextStuff" ng-show="getCurrentState('reports.methods')  || getCurrentState('reports.cases')">> Methods&nbsp;</p></div>
+	<div class="navTextStuff" ng-show="getCurrentState('reports.cases')">> Cases&nbsp;</p></div><br/><br/>
+</div>
 
 
 <!-- search field -->
-<form class="navbar-form" role="search">
         <div>
-          <input type="text" class="form-control" ng-model='searchText' placeholder="Filter">
+          <input type="text" class="form-control" style="width:200px" ng-model='searchText' placeholder="Filter">
         </div>
-      </form>
 
 <!-- classes/methods -->
 <div ui-view></div>

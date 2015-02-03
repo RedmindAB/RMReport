@@ -49,6 +49,22 @@ angular.module('webLog')
     	console.log(data);
     });
     
+    $scope.goToHome= function(){
+    	$state.transitionTo('home');
+    }
+    
+    $scope.goToClasses = function(){
+    	$state.transitionTo('reports.classes');
+    }
+    
+    $scope.goToMethods = function(){
+    	$state.transitionTo('reports.methods');
+    }
+    
+    $scope.goToCases = function(){
+    	$state.transitionTo('reports.cases');
+    };
+    
     $scope.setCurrentSuiteRun = function(run){
     	console.log("setting current suite run");
     	$scope.currentSuiteRun = run;
@@ -154,9 +170,8 @@ angular.module('webLog')
     $scope.labels2 = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
     $scope.data2 = [300, 500, 100];
     
-    $scope.getCurrentState= function(){
-    	console.log($state.current.name);
-    	return $state.current.name;
+    $scope.getCurrentState= function(state){
+    	return $state.includes(state);
     }
     
 }]);
