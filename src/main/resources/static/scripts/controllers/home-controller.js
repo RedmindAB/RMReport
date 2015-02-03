@@ -7,100 +7,66 @@ angular.module('webLog')
         $state.transitionTo('reports.classes');
     };
     
+    $scope.goToProject = function(){
+    	$state.transitionTo('reports.classes');
+    }
+    
     $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];
     
-    $scope.projects = {
-    	projectOne: {
-			labels: ['AftonBladet 1', 'AftonBladet 2', 
-			         'AftonBladet 3', 'AftonBladet 4', 
-			         'TestBuild 5'],
-			series: ['Passed', 
-			         'Failed'],
-			data: [
-			       [65, 59, 80, 81, 56],
-			       [28, 48, 40, 19, 86]
-			       ],
-			       colours: [
-			                  {
-			                    fillColor: "rgba(0, 151, 117,0.7)",
-			                    strokeColor: "rgba(0, 151, 117,0)",
-			                    pointColor: "rgba(148,159,177,1)",
-			                    pointStrokeColor: "#fff",
-			                    pointHighlightFill: "#fff",
-			                    pointHighlightStroke: "rgba(148,159,177,0.8)"
-			                  },
-			                  {
-			                    fillColor: "rgba(200,16,46,0.7)",
-			                    strokeColor: "rgba(200,16,46,0)",
-			                    pointColor: "rgba(77,83,96,1)",
-			                    pointStrokeColor: "#fff",
-			                    pointHighlightFill: "#fff",
-			                    pointHighlightStroke: "rgba(77,83,96,1)"
-			                  }
-			                ]
-    				},
-    	projectTwo: {
-			labels: ['AftonBladetTV 1', 'AftonBladetTV 2', 
-			         'AftonBladetTV 3', 'AftonBladetTV 4', 
-			         'TestBuild 5'],
-			series: ['Passed', 
-			         'Failed'],
-			         
-			data: [
-			       [23, 67, 88, 25, 96],
-			       [38, 37, 78, 56, 46]
-			       ],
-			       colours: [
-			                  { // grey
-			                    fillColor: "rgba(0, 151, 117,0.7)",
-			                    strokeColor: "rgba(0, 151, 117,0)",
-			                    pointColor: "rgba(148,159,177,1)",
-			                    pointStrokeColor: "#fff",
-			                    pointHighlightFill: "#fff",
-			                    pointHighlightStroke: "rgba(148,159,177,0.8)"
-			                  },
-			                  { // dark grey
-			                    fillColor: "rgba(200,16,46,0.7)",
-			                    strokeColor: "rgba(200,16,46,0)",
-			                    pointColor: "rgba(77,83,96,1)",
-			                    pointStrokeColor: "#fff",
-			                    pointHighlightFill: "#fff",
-			                    pointHighlightStroke: "rgba(77,83,96,1)"
-			                  }
-			                ]
-			},
-			
-    	projectThree: {
-			labels: ['AftonBladetMobil 1', 'AftonBladetMobil2', 
-			         'AftonBladetMobil 3', 'AftonBladetMobil 4', 
-			         'AftonBladetMobil 5'],
-			series: ['Passed', 
-			         'Failed'],
-			data: [
-			       [63, 65, 35, 98, 24],
-			       [28, 48, 12, 98, 84]
-			       ],
-			       colours: [
-			                  { // grey
-			                    fillColor: "rgba(0, 151, 117,0.7)",
-			                    strokeColor: "rgba(0, 151, 117,0)",
-			                    pointColor: "rgba(148,159,177,1)",
-			                    pointStrokeColor: "#fff",
-			                    pointHighlightFill: "#fff",
-			                    pointHighlightStroke: "rgba(148,159,177,0.8)"
-			                  },
-			                  { // dark grey
-			                    fillColor: "rgba(200,16,46,0.7)",
-			                    strokeColor: "rgba(200,16,46,0)",
-			                    pointColor: "rgba(77,83,96,1)",
-			                    pointStrokeColor: "#fff",
-			                    pointHighlightFill: "#fff",
-			                    pointHighlightStroke: "rgba(77,83,96,1)"
-			                  }
-			                ]
-			}
-    				
-    };
-      
+    $scope.projects = ['1','2','3']
+    
+    $scope.homeData = [
+                   {x: 0, one: 4, two: 14},
+                   {x: 1, one: 8, two: 34},
+                   {x: 2, one: 15, two: 48},
+                   {x: 3, one: 16, two: 147},
+                   {x: 4, one: 23, two: 87},
+                   {x: 5, one: 45, two: 23},
+                   {x: 6, one: 25, two: 56},
+                   {x: 7, one: 56, two: 67},
+                   {x: 8, one: 12, two: 73},
+                   {x: 9, one: 67, two: 25},
+                   {x: 10, one: 12, two: 67},
+                   {x: 11, one: 8, two: 87},
+                   {x: 12, one: 3, two: 99}
+                 ];
+    
+    
+    
+    $scope.homeOptions = {
+    		  lineMode: "cardinal",
+    		  tension: 0.5,
+    		  axes: {x: {type: "", key: "x", ticks: $scope.homeData.length}, y: {type: "linear"}, y2: {type: "linear"}},
+    		  tooltipMode: "dots",
+    		  drawLegend: true,
+    		  drawDots: true,
+    		  stacks: [{axis: "y", series: ["failed", "passed"]}],
+    		  series: [
+    		    {
+    		      y: "one",
+    		      label: "Failed",
+    		      type: "column",
+    		      color: "#ff0000",
+    		      axis: "y",
+    		      visible: true,
+    		      id: "failed"
+    		    },
+    		    {
+    		      y: "two",
+    		      label: "Passed",
+    		      type: "column",
+    		      color: "#19cf16",
+    		      axis: "y",
+    		      visible: true,
+    		      id: "passed"
+    		    }
+    		  ],
+    		  tooltip: {mode: "scrubber", formatter: function(x, y, series) {return y;}},
+    		  columnsHGap: 5
+    		};
+    
+    
+    
+    
     
     }]);
