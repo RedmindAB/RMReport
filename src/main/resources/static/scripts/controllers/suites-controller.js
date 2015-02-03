@@ -1,62 +1,6 @@
 angular.module('webLog')
 	.controller('SuitesCtrl',[ '$scope', '$location','$state', function($scope, $location, $state){
-
-		$scope.suiteTests;
-		$scope.runRightNow;
 		
-//	    $scope.onClick = function (points, evt) {
-//	    	console.log(evt);
-//	    };
-//		
-//	    $scope.project = {
-//	    		labels: ["1", 
-//	    		         "2", 
-//						 "3", 
-//						 "4", 
-//						 "5", 
-//						 "6",
-//						 "7"],
-//				series: ['Mac OSX',
-//				         'Windows',
-//				         'Andriod',
-//				         'iPhone',
-//				         'Windows Phone',
-//				         'four',
-//				         'five',
-//				         ],
-//				data: [
-//				       	[100, 70, 50, 30, 20, 10, 3],
-//				        [65, 59, 80, 81, 56, 55, 40],
-//						[28, 48, 40, 19, 86, 27, 90],
-//				        [34, 27, 63, 83, 23, 96, 45],
-//						[23, 69, 38, 78, 15, 89, 56],
-//						[2, 2, 2, 2, 3, 2, 2],
-//						[3, 3, 3, 3, 4, 3, 3],
-//						]
-//	    };
-//		
-//		$scope.testClasses = [ "se.redmind.rmtest.selenium.example.CreateLogsTest",
-//		                       "se.redmind.rmtest.selenium.example.CreateLogsTestSecond"
-//		                      ];
-		
-		
-		var statHolder= {};
-		function readDataToCharts(suite){
-			getDriverNames(suite);
-			getTestStats(suite);
-			
-			$scope.allDriversLabels = statHolder.drivers;
-			$scope.allTests = statHolder.testStat;
-		};
-		  
-		function getDriverNames(suite) {
-			statHolder.drivers = suite.drivers;
-		};
-		
-//		function getTestStats(suite){
-//			statHolder.testStat = [suite.errors, suite.failures];
-//			statHolder.testStat[2] = (suite.tests - (suite.errors + suite.failures));
-//		}
 		
 	    $scope.goToTestCases = function(){
 	    	console.log("going to cases");
@@ -71,40 +15,34 @@ angular.module('webLog')
 			$location.path('/test-suite-runs');
 		}
 		
-//		$scope.$watch('suites', function(suites){
-//		    angular.forEach(suites, function(test, idx){
-//		      if (test.open) {
-//		    	  $scope.openSuite = test;
-//		    	  readDataToCharts($scope.openSuite);
-//		      }
-//		    })   
-//		}, true);
-		
 		$scope.data = [
-		               {x: 0, value: 4, otherValue: 1},
-		               {x: 1, value: 8, otherValue: 4},
-		               {x: 2, value: 15, otherValue: 6},
-		               {x: 3, value: 16, otherValue: 78},
-		               {x: 4, value: 23, otherValue: 45},
-		               {x: 5, value: 42, otherValue: 34}
+		               {x: 0, 120124: 4, 120314: 1, 120718: 21, 121224: 45, 130423: 8},
+		               {x: 1, 120124: 8, 120314: 4, 120718: 23, 121224: 13, 130423: 5},
+		               {x: 2, 120124: 15, 120314: 6, 120718: 13, 121224: 23, 130423: 7},
+		               {x: 3, 120124: 16, 120314: 78, 120718: 5, 121224: 23, 130423: 3},
+		               {x: 4, 120124: 23, 120314: 45, 120718: 56, 121224: 33, 130423: 12},
+		               {x: 5, 120124: 42, 120314: 34, 120718: 24, 121224: 20, 130423: 15}
 		             ];
 
 
 		$scope.options = {
 				  axes: {
-				    x: {key: 'x', labelFunction: function(value) {return value;}, type: 'linear', ticks: 2},
+				    x: {key: 'x', labelFunction: function(value) {return value;}, type: 'linear', ticks: 5},
 				    y: {type: 'linear', ticks: 5},
 				  },
 				  series: [
-				    {y: 'value', color: 'steelblue', thickness: '2px', type: 'line', drawDots: false, label: 'Pouet'},
-				    {y: 'otherValue', color: 'lightsteelblue', visible: true, drawDots: false,}
+				    {y: '120124', color: 'steelblue', thickness: '2px', drawDots: false, label: 'android'},
+				    {y: '120314', color: 'brown', thickness: '2px',visible: true, drawDots: false,label: 'OSX'},
+				    {y: '120718', color: 'lightsteelblue', thickness: '2px', visible: true, drawDots: false,label: 'windows'},
+				    {y: '121224', color: 'red', thickness: '2px', visible: true, drawDots: false,label: 'iPhone'},
+				    {y: '130423', color: 'green', thickness: '2px', visible: true, drawDots: false,label: 'Linux'}
 				  ],
-				  lineMode: 'positive',
+				  lineMode: 'cardinal',
 				  tension: 0.7,
-				  tooltip: {mode: 'none', formatter: function(x, y, series) {return 'pouet';}},
+				  tooltip: {mode: 'scrubber', interpolate: 'true', formatter: function(x, y, series) {return series.label+" - " + y;}},
 				  drawLegend: true,
 				  drawDots: true,
-				  interpolate: 'linear',
+				  interpolate: '',
 				  columnsHGap: 5
 				}
 		
