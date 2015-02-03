@@ -21,16 +21,6 @@ angular.module('webLog')
 		$scope.mockSuites.push("Suite Run " + int);
 	};
     
-    $http.get('/api/log/getloglist')
-    .success(function(data, status, headers, config){ 
-    	if(data){
-    		$scope.suites = data;
-    		getTestSuite();
-    	};
-    }).error(function(data, status, headers, config){
-    	console.log(data);
-    });
-    
     $http.get('/api/class/getclasses?suiteid=1')
     .success(function(data, status, headers, config){ 
     	if(data){
@@ -65,44 +55,22 @@ angular.module('webLog')
     	$state.transitionTo('reports.cases');
     };
     
-    $scope.setCurrentSuiteRun = function(run){
-    	console.log("setting current suite run");
-    	$scope.currentSuiteRun = run;
-    	for(var testCase in $scope.currentSuiteRun.testcases){
-    		if ($scope.currentSuiteRun.testcases[testCase].failure) {
-    			$scope.currentSuiteRun.testcases[testCase].failure.message.replace(/at /g, '\nat ');
-			} else if($scope.currentSuiteRun.testcases[testCase].error) {
-				$scope.currentSuiteRun.testcases[testCase].error.message.replace(/at /g, '\nat ');
-			}
-    	}
-    	console.log($scope.currentSuiteRun);
-    }
-    
-    $scope.setCurrentClass = function(testClass){
-    	console.log($scope.currentSuiterun);
-//    	var run = $scope.currentSuiterun;
-//    	for(var testCase in run){
-//    		console.log(run.testcases[testCase]);
-//    		if (run.testcases[testCase].className === testclass) {
-//				currentClass["testCase"+testCase] = run.testcases[testCase];
+//    $scope.setCurrentSuiteRun = function(run){
+//    	console.log("setting current suite run");
+//    	$scope.currentSuiteRun = run;
+//    	for(var testCase in $scope.currentSuiteRun.testcases){
+//    		if ($scope.currentSuiteRun.testcases[testCase].failure) {
+//    			$scope.currentSuiteRun.testcases[testCase].failure.message.replace(/at /g, '\nat ');
+//			} else if($scope.currentSuiteRun.testcases[testCase].error) {
+//				$scope.currentSuiteRun.testcases[testCase].error.message.replace(/at /g, '\nat ');
 //			}
 //    	}
-//    	console.log($scope.currentClass);
-    }
-
+//    	console.log($scope.currentSuiteRun);
+//    }
+    
     function getTestSuite(){
     	$scope.currentSuite = $scope.suites;
     }
-    
-    var getTestSuiteRuns = function(testName){
-        var suiteToReturn = {};
-        for(var suite in $scope.suites){
-        	var suiteCol = $scope.suites;
-            if(suiteCol[suite].name === testName){
-            	$scope.currentTestSuite = suiteCol[suite];
-            }
-        }
-    };
     
     $scope.getPanel = function(passed){
     	if(passed)
