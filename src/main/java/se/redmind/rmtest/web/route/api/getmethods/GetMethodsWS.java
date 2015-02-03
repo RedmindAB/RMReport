@@ -8,7 +8,6 @@ public class GetMethodsWS extends Route {
 
 	public GetMethodsWS(String path) {
 		super(path);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

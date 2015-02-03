@@ -18,9 +18,9 @@ public class ReportValidatorTest {
 		ReportValidator reportValidator = new ReportValidator(filename);
 		for (int i = 0; i < 10; i++) {
 			boolean exists = reportValidator.reportExists();
-//			if (exists) {
+			if (exists) {
 				reportValidator.saveReport();
-//			}
+			}
 		}
 		
 	}
