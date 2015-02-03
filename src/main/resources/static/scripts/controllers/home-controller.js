@@ -1,11 +1,39 @@
 angular.module('webLog')
-    .controller('HomeCtrl',['$scope', '$location', '$state', function($scope, $location, $state){
-    $scope.message = "Welcome to the home page!";
+    .controller('HomeCtrl',['$scope', '$location', '$state','$http', function($scope, $location, $state, $http){
     
-    $scope.onClick = function (points, evt) {
-        console.log(points, evt);
-        $state.transitionTo('reports.classes');
-    };
+    	$scope.suites = [];
+    	
+        $scope.homeData = [];
+    	
+    $http.get('/api/suite/data?suiteid=1')
+    .success(function(data, status, headers, config){ 
+    	if(data){
+    		$scope.suites = data;
+    		createChart($scope.suites);
+    	};
+    }).error(function(data, status, headers, config){
+    	console.log(data);
+    });
+    
+    function createChart(suite) {
+    	for (var i = 0; i < suite.length ; i++) {
+    		var dataObject = {}
+				dataObject["x"] = i;
+				dataObject['fail'] = getTotalFail(suite[i]);
+				dataObject['pass'] = getTotalPass(suite[i]);
+				$scope.homeData.push(dataObject);
+		}
+    	console.log($scope.homeData);
+	}
+    
+    function getTotalFail(suiteRun) {
+		return suiteRun.fail + suiteRun.error;
+	}
+    
+    
+    function getTotalPass(suiteRun) {
+    	return suiteRun.pass;
+	}
     
     $scope.goToProject = function(){
     	$state.transitionTo('reports.classes');
@@ -14,24 +42,6 @@ angular.module('webLog')
     $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];
     
     $scope.projects = ['1','2','3']
-    
-    $scope.homeData = [
-                   {x: 0, one: 4, two: 14},
-                   {x: 1, one: 8, two: 34},
-                   {x: 2, one: 15, two: 48},
-                   {x: 3, one: 16, two: 147},
-                   {x: 4, one: 23, two: 87},
-                   {x: 5, one: 45, two: 23},
-                   {x: 6, one: 25, two: 56},
-                   {x: 7, one: 56, two: 67},
-                   {x: 8, one: 12, two: 73},
-                   {x: 9, one: 67, two: 25},
-                   {x: 10, one: 12, two: 67},
-                   {x: 11, one: 8, two: 87},
-                   {x: 12, one: 3, two: 99}
-                 ];
-    
-    
     
     $scope.homeOptions = {
     		  lineMode: "cardinal",
@@ -43,7 +53,7 @@ angular.module('webLog')
     		  stacks: [{axis: "y", series: ["failed", "passed"]}],
     		  series: [
     		    {
-    		      y: "one",
+    		      y: "passed",
     		      label: "Failed",
     		      type: "column",
     		      color: "#ff0000",
@@ -52,7 +62,7 @@ angular.module('webLog')
     		      id: "failed"
     		    },
     		    {
-    		      y: "two",
+    		      y: "fail",
     		      label: "Passed",
     		      type: "column",
     		      color: "#19cf16",
