@@ -1,15 +1,33 @@
 angular.module('webLog')
-	.controller('SuitesCtrl',[ '$scope', '$location','$state', function($scope, $location, $state){
+	.controller('SuitesCtrl',[ '$scope', '$location','$state','$http', function($scope, $location, $state, $http){
+		
+		$scope.currentClass=[];
+		$scope.mockMethods = [];
+	    $scope.searchText = "";
 		
 		$scope.dataStuff = 100;
-		$scope.changeStuff = function(){
-			$scope.data[0].hej = 100;
-		}
+
+		$scope.resetFilterField = function(){
+	    	$scope.searchText="";
+	    };
 		
-		
-	    $scope.goToTestCases = function(){
-	    	console.log("going to cases");
+	    $scope.goToMethods = function(suiteClass){
+	    	
+	        $http.get('/api/method/getmethods?classid='+suiteClass.id)
+	        .success(function(data, status, headers, config){ 
+	        	if(data){
+	        		$scope.currentClass = data;
+	        	};
+	        }).error(function(data, status, headers, config){
+	        	console.log(data);
+	        });
+	    	
 	    	$state.transitionTo('reports.methods');
+	    };
+	    
+	    $scope.goToCases = function(method){
+	    	mockMethods(method.name);
+	    	$state.transitionTo('reports.cases');
 	    };
 		
 		$scope.goToSuiteClasses = function(){
@@ -18,6 +36,16 @@ angular.module('webLog')
 		
 		$scope.goToSuiteRuns = function(){
 			$location.path('/test-suite-runs');
+		}
+		
+		function mockMethods(name) {
+			var mock = $scope.mockMethods;
+			mock.push(name+"(OSX Firefox)");
+			mock.push(name+"(OSX Chrome)");
+			mock.push(name+"(OSX Safari)");
+			mock.push(name+"(Windows Firefox)");
+			mock.push(name+"(Windows Chrome)");
+			mock.push(name+"(Windows IExplorer)");
 		}
 		
 		$scope.data = [

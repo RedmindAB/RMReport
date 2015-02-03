@@ -25,9 +25,12 @@
             </ul>
 </div>
 
-  
+  {{getCurrentState()}}
 <!-- navigation links -->
-<div style="float:left" ng-click="changeStuff()"><p>Home&nbsp;</p></div><div ng-repeat="link in navLinks" style="float: left"> > {{link}}&nbsp;</div><br/>
+<div style="float:left">Home&nbsp;</p></div>
+<div style="float:left" ui-sref-active="getCurrentState()">> Classes&nbsp;</p></div>
+<div style="float:left" ui-sref-active="reports.methods">> Methods&nbsp;</p></div>
+<div style="float:left" ui-sref-active="reports.cases">> Cases&nbsp;</p></div><br/>
 
 
 <!-- search field -->

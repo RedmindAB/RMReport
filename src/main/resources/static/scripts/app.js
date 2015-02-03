@@ -17,13 +17,18 @@ angular.module('webLog', ['ui.router', 'chart.js','ui.bootstrap','n3-line-chart'
         .state('reports.classes',{
 	        url:'/classes',
 	        templateUrl: 'partials/classes.html',
-	        controller: 'SuitesCtrl'
+	        controller: ''
         })
         .state('reports.methods',{
 	        url:'/methods',
 	        templateUrl: 'partials/methods.html',
-	        controller: 'SuitesCtrl'
-        });
+	        controller: ''
+        })
+	    .state('reports.cases',{
+	        url:'/cases',
+	        templateUrl: 'partials/cases.html',
+	        controller: ''
+	    });
 
     
     
