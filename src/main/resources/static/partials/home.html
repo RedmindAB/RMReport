@@ -3,12 +3,13 @@
 		<table class='table' border='0' style='margin-top: 30px;'>
 		<tr>
 			<td style='border:0;flaot:right'>
-				<img class='image-paths' ng-src="{{imagePaths[$index]}}"></img>
+				<img class='image-paths' ng-src="{{imagePaths[$index]}}" ng-click="goToProject()"></img>
 			</td>
 		</tr>
 		<tr>
 		    <td style='border:0;'>
-		    	<canvas id="bar" width='600px' height='200px' class="chart chart-bar" colours="project.colours" data="project.data" labels="project.labels" series="project.series" click="onClick" legend="true"></canvas>
+		    <linechart data="homeData" options="homeOptions" mode="" width="" height="400"></linechart>
+		    	<!-- <canvas id="bar" width='600px' height='200px' class="chart chart-bar" colours="project.colours" data="project.data" labels="project.labels" series="project.series" click="onClick" legend="true"></canvas> -->
 		    </td>
 		</tr>
 	</table>

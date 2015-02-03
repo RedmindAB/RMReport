@@ -16,6 +16,11 @@ angular.module('webLog')
     $scope.currentSuite = {};
     $scope.currentSuiteRun;
     $scope.currentClass = {};
+    $scope.mockSuites = []
+    
+	for (var int = 0; int < 50; int++) {
+		$scope.mockSuites.push("Suite Run " + int);
+	};
     
     $http.get('/api/log/getloglist')
     .success(function(data, status, headers, config){ 

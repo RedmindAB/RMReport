@@ -5,13 +5,34 @@
 <linechart data="data" options="options" mode="" width="" height="400"></linechart>
 </div>
 
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+    Choose Suite Run
+    <span class="caret"></span>
+  </button>
+            <ul class="dropdown-menu scrollable-menu" role="menu">
+                <li ng-repeat="suite in mockSuites"><a href="#">{{suite}}</a></li>
+            </ul>
+</div>
+
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+    Amount Of Suites To Show
+    <span class="caret"></span>
+  </button>
+            <ul class="dropdown-menu scrollable-menu" role="menu">
+                <li ng-repeat="suite in mockSuites"><a href="#">{{suite}}</a></li>
+            </ul>
+</div>
+
+  
 <!-- navigation links -->
-<div style="float:left"><p>Home&nbsp;</p></div><div ng-repeat="link in navLinks" style="float: left"> < {{link}}&nbsp;</div><br/>
+<div style="float:left" ng-click="changeStuff()"><p>Home&nbsp;</p></div><div ng-repeat="link in navLinks" style="float: left"> > {{link}}&nbsp;</div><br/>
 
 
-<!-- search filed -->
+<!-- search field -->
 <form class="navbar-form" role="search">
-        <div class="form-group">
+        <div>
           <input type="text" class="form-control" ng-model='searchText' placeholder="Filter">
         </div>
       </form>
