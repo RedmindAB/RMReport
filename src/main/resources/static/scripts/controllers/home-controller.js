@@ -2,28 +2,25 @@ angular.module('webLog')
     .controller('HomeCtrl',['$scope', '$location', '$state','$http', function($scope, $location, $state, $http){
     
     	$scope.suites = [];
-    	
         $scope.homeData = [];
     	
     $http.get('/api/suite/data?suiteid=1')
     .success(function(data, status, headers, config){ 
     	if(data){
     		$scope.suites = data;
-    		createChart($scope.suites);
+    		$scope.createChart($scope.suites);
+    		console.log($scope.homeData);
     	};
     }).error(function(data, status, headers, config){
     	console.log(data);
     });
     
-    function createChart(suite) {
+    $scope.createChart = function(suite) {
     	for (var i = 0; i < suite.length ; i++) {
-    		var dataObject = {}
-				dataObject["x"] = i;
-				dataObject['fail'] = getTotalFail(suite[i]);
-				dataObject['pass'] = getTotalPass(suite[i]);
-				$scope.homeData.push(dataObject);
+				$scope.homeData.push({
+										'x': i, 'pass': getTotalPass(suite[i]), 'fail': getTotalFail(suite[i])
+									});
 		}
-    	console.log($scope.homeData);
 	}
     
     function getTotalFail(suiteRun) {
@@ -43,17 +40,19 @@ angular.module('webLog')
     
     $scope.projects = ['1','2','3']
     
+    console.log($scope.homeData);
+    
     $scope.homeOptions = {
     		  lineMode: "cardinal",
     		  tension: 0.5,
-    		  axes: {x: {type: "", key: "x", ticks: $scope.homeData.length}, y: {type: "linear"}, y2: {type: "linear"}},
+    		  axes: {x: {type: "", key: "x", ticks: $scope.homeData.length}, y: {type: "linear", min: 0}, y2: {type: "linear"}},
     		  tooltipMode: "dots",
     		  drawLegend: true,
     		  drawDots: true,
     		  stacks: [{axis: "y", series: ["failed", "passed"]}],
     		  series: [
     		    {
-    		      y: "passed",
+    		      y: "pass",
     		      label: "Failed",
     		      type: "column",
     		      color: "#ff0000",
@@ -74,9 +73,4 @@ angular.module('webLog')
     		  tooltip: {mode: "scrubber", formatter: function(x, y, series) {return y;}},
     		  columnsHGap: 5
     		};
-    
-    
-    
-    
-    
     }]);
