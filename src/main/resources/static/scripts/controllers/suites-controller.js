@@ -11,8 +11,12 @@ angular.module('webLog')
 	    	$scope.searchText="";
 	    };
 		
-	    $scope.goToMethods = function(suiteClass){
-	    	
+	    $scope.getCases = function(method){
+	    	console.log("ey");
+	    	mockMethods(method.name);
+	    }
+	    
+	    $scope.getMethods = function(suiteClass){
 	        $http.get('/api/method/getmethods?classid='+suiteClass.id)
 	        .success(function(data, status, headers, config){ 
 	        	if(data){
@@ -21,23 +25,8 @@ angular.module('webLog')
 	        }).error(function(data, status, headers, config){
 	        	console.log(data);
 	        });
-	    	
-	    	$state.transitionTo('reports.methods');
 	    };
 	    
-	    $scope.goToCases = function(method){
-	    	mockMethods(method.name);
-	    	$state.transitionTo('reports.cases');
-	    };
-		
-		$scope.goToSuiteClasses = function(){
-			$location.path('/suite-run-classes');
-		}
-		
-		$scope.goToSuiteRuns = function(){
-			$location.path('/test-suite-runs');
-		}
-		
 		function mockMethods(name) {
 			var mock = $scope.mockMethods;
 			mock.push(name+"(OSX Firefox)");

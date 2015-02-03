@@ -5,7 +5,7 @@
 		<input type="checkbox" value="None" id="checkBox" name="check" style="float:left" />
 	
 	    <!-- non collapsing header -->
-	        <div ng-style="{'color' : getCo(test.passed)}" ng-click="goToCases(method); resetFilterField()">
+	        <div ng-style="{'color' : getCo(test.passed)}" ng-click="getCases(method); goToCases(); resetFilterField()">
 	        		<div style='padding-left:10px'><h3>{{method.name}}</div>
 	        		<div style='float:right;display:inline'></div>
 	        </div>
