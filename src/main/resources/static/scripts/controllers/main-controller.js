@@ -1,12 +1,12 @@
 angular.module('webLog')
-    .controller('MainCtrl',['$scope', '$http','$location', '$timeout', function($scope, $http, $location, $timeout){
+    .controller('MainCtrl',['$scope', '$http','$location', '$timeout','$state', function($scope, $http, $location, $timeout, $state){
+    	
+    $scope.$state = $state;
     	
     $scope.currentPage = "Home";
-    $scope.searchText = "";
     
     $scope.classes = {};
     $scope.methods = {};
-    
     $scope.navLinks = ["home",
                        "classes",
                        "methods"];
@@ -15,7 +15,6 @@ angular.module('webLog')
     $scope.suites = {};
     $scope.currentSuite = {};
     $scope.currentSuiteRun;
-    $scope.currentClass = {};
     $scope.mockSuites = []
     
 	for (var int = 0; int < 50; int++) {
@@ -89,15 +88,6 @@ angular.module('webLog')
         }
     };
     
-	function getClassMethods(classname, suite) {
-		console.log(classname);
-		for (var testCase in suite.testcases) {
-			if (suite.testcases[testCase].className === classname) {
-				$scope.currentClass.push(suite.testcases[testCase]);
-			}
-		}
-	}
-
     $scope.getPanel = function(passed){
     	if(passed)
     		return 'panel panel-success bg-success success';
@@ -161,11 +151,12 @@ angular.module('webLog')
     	}
     };
     
-    $scope.resetFilterField = function(){
-    	$scope.searchText="";
-    };
-    
     $scope.labels2 = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
     $scope.data2 = [300, 500, 100];
+    
+    $scope.getCurrentState= function(){
+    	console.log($state.current.name);
+    	return $state.current.name;
+    }
     
 }]);

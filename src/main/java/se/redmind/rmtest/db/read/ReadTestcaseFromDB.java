@@ -5,7 +5,6 @@ import se.redmind.rmtest.db.create.DBBridge;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +17,7 @@ public class ReadTestcaseFromDB extends DBBridge {
     public static Connection conn;
     String GET_TESTCASE_ID = "select testcase_id from testcase where name= ";
     String GET_TESTCASE_FROM_CLASS_ID = "SELECT name, testcase_id FROM testcase WHERE class_id = ";
+    String GET_DRIVER_BY_TESTCASE_ID = "SELECT DISTINCT driver FROM REPORT WHERE testcase_id = ";
 
 
     public int getTestCaseID(String testCaseName){
@@ -32,10 +32,10 @@ public class ReadTestcaseFromDB extends DBBridge {
     
     public List<HashMap<String, String>> getTestCasesFromClassID(int id){
     	ResultSet rs = readFromDB(GET_TESTCASE_FROM_CLASS_ID+id);
-    	List<HashMap<String, String>> result = new ArrayList<HashMap<String,String>>();
+    	List<HashMap<String, String>> result = new ArrayList<>();
     	try {
 			while (rs.next()) {
-				HashMap<String,String> row = new HashMap<String,String>();
+				HashMap<String,String> row = new HashMap<>();
 				row.put("name", rs.getString("name"));
 				row.put("id", rs.getString("testcase_id"));
 				result.add(row);
@@ -44,6 +44,20 @@ public class ReadTestcaseFromDB extends DBBridge {
 			System.err.println(e.getMessage());
 		}
     	return result;
+    }
+    public List<HashMap<String, String>> getDriverFromTestcaseID(int id){
+        ResultSet rs = readFromDB(GET_DRIVER_BY_TESTCASE_ID +id);
+        List<HashMap<String, String>> result = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                HashMap<String,String> row = new HashMap<>();
+                row.put("driver", rs.getString("driver"));
+                result.add(row);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return result;
     }
 
 

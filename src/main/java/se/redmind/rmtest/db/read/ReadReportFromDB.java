@@ -62,6 +62,10 @@ public class ReadReportFromDB extends DBBridge{
         }
     return null;
     }
+    public void  getAllFromSuitID(){
+
+
+    }
     
     public List<HashMap<String, String>> getReportListData(int suiteid){
     	HashMap<String, String> map = new HashMap<>();

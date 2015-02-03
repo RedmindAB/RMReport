@@ -11,6 +11,7 @@ import se.redmind.rmtest.db.create.DBCon;
 import se.redmind.rmtest.db.read.ReadClassFromDB;
 import se.redmind.rmtest.db.read.ReadReportFromDB;
 import se.redmind.rmtest.db.read.ReadSuiteFromDB;
+import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -111,5 +112,13 @@ public class ReadFromDBTest {
     @Test
     public void getReportDataFromSuiteID(){
     	List<HashMap<String, String>> reportListData = new ReadReportFromDB().getReportListData(1);
+    }
+    
+    @Test
+    public void getDriverByTestcase(){
+        List<HashMap<String, String>> classname = new ReadTestcaseFromDB().getDriverFromTestcaseID(1);
+        for (HashMap hashMap : classname) {
+            System.out.println(hashMap);
+        }
     }
 }
