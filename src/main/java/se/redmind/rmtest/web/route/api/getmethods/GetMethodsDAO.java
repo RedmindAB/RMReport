@@ -16,8 +16,13 @@ public class GetMethodsDAO {
 	public String getMethods(int classid) {
 		JsonArray array = new JsonArray();
 		List<HashMap<String, String>> testCasesFromClassID = new ReadTestcaseFromDB().getTestCasesFromClassID(classid);
-		System.out.println(testCasesFromClassID);
-		return testCasesFromClassID.toString();
+		for (HashMap<String, String> hashMap : testCasesFromClassID) {
+			JsonObject method = new JsonObject();
+			method.add("name", new JsonPrimitive(hashMap.get("name")));
+			method.add("id", new JsonPrimitive(hashMap.get("id")));
+			array.add(method);
+		}
+		return new Gson().toJson(array);
 	}
 
 }
