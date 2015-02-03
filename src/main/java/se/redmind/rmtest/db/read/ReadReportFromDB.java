@@ -60,5 +60,9 @@ public class ReadReportFromDB extends DBBridge{
         }
     return null;
     }
+    public void  getAllFromSuitID(){
+
+
+    }
     
 }
