@@ -1,5 +1,11 @@
 package se.redmind.rmtest.web.route.api.getmethods;
 
+import java.util.HashMap;
+import java.util.List;
+
+import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
+import se.redmind.rmtest.db.read.ReadTestrunsFromDB;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -9,12 +15,9 @@ public class GetMethodsDAO {
 
 	public String getMethods(int classid) {
 		JsonArray array = new JsonArray();
-		for (int i = 0; i < 30; i++) {
-			JsonObject methodObject = new JsonObject();
-			methodObject.add("name", new JsonPrimitive("method"+i));
-			array.add(methodObject);
-		}
-		return new Gson().toJson(array);
+		List<HashMap<String, String>> testCasesFromClassID = new ReadTestcaseFromDB().getTestCasesFromClassID(classid);
+		System.out.println(testCasesFromClassID);
+		return testCasesFromClassID.toString();
 	}
 
 }

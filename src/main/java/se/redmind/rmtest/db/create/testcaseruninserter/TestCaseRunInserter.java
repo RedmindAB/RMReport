@@ -24,7 +24,7 @@ public class TestCaseRunInserter extends DBBridge {
 
 	public TestCaseRunInserter() {
 		testCaseInserter = new TestCaseInserter();
-		readTestcaseFromDB = new ReadTestcaseFromDB(connection);
+		readTestcaseFromDB = new ReadTestcaseFromDB();
 	}
 	
 	public void insertTestCases(Report report, int suiteID, HashMap<String, Integer> classIDs){
