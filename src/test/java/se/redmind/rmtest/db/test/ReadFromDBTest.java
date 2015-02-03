@@ -107,4 +107,9 @@ public class ReadFromDBTest {
 			System.out.println(hashMap);
 		}
     }
+    
+    @Test
+    public void getReportDataFromSuiteID(){
+    	List<HashMap<String, String>> reportListData = new ReadReportFromDB().getReportListData(1);
+    }
 }

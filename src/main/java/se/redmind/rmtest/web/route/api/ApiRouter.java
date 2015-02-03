@@ -5,6 +5,8 @@ import se.redmind.rmtest.web.route.api.getclasses.GetClassesWS;
 import se.redmind.rmtest.web.route.api.getlogs.GetLogListWS;
 import se.redmind.rmtest.web.route.api.getmethods.GetMethodsWS;
 import se.redmind.rmtest.web.route.api.getsuites.GetSuitesWS;
+import se.redmind.rmtest.web.route.api.graphdata.GetGraphDataWS;
+import se.redmind.rmtest.web.route.api.suite.data.GetSuiteDataWS;
 
 public class ApiRouter {
 
@@ -19,6 +21,8 @@ public class ApiRouter {
 		get(new GetSuitesWS("/api/suite/getsuites"));
 		get(new GetClassesWS("/api/class/getclasses"));
 		get(new GetMethodsWS("/api/method/getmethods"));
+		get(new GetSuiteDataWS("/api/suite/data"));
+		get(new GetGraphDataWS("/api/stat/graphdata"));
 	}
 	
 	

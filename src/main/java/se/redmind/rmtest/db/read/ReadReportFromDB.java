@@ -5,6 +5,7 @@ import se.redmind.rmtest.db.create.DBBridge;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class ReadReportFromDB extends DBBridge{
     String GET_RUNTIME_FROM_ALL_REPORT = "";
     String GET_DRIVER_FROM_REPORT = "select distinct driver from report where suite_id = ";
     String AND_TESTCASE_ID = " and testcase_id =";
+    String GET_REPORTS_BY_SUITEID = "SELECT timestamp, result, time FROM report WHERE suite_id = {suiteid} ORDER BY timestamp DESC;";
 
     public List getDriverFromTestcase(Integer suite_id, Integer testcase_id){
         List<String> ls = new ArrayList<>();
@@ -61,4 +63,55 @@ public class ReadReportFromDB extends DBBridge{
     return null;
     }
     
+    public List<HashMap<String, String>> getReportListData(int suiteid){
+    	HashMap<String, String> map = new HashMap<>();
+    	map.put("suiteid", ""+suiteid);
+    	String sql = stringParser.getString(GET_REPORTS_BY_SUITEID, map);
+    	ResultSet rs = readFromDB(sql);
+    	List<HashMap<String, String>> result = new ArrayList<HashMap<String,String>>();
+    	try {
+    		String currentTimestamp = null;
+    		float time = 0;
+    		int fail = 0;
+    		int pass = 0;
+    		int error = 0;
+			while (rs.next()) {
+				boolean isCurrentTimestampNull = currentTimestamp == null;
+				if (isCurrentTimestampNull || !currentTimestamp.equals(rs.getString("timestamp"))) {
+					if (!isCurrentTimestampNull) {
+						HashMap<String, String> hashMap = new HashMap<String,String>();
+						hashMap.put("timestamp", currentTimestamp);
+						hashMap.put("time", ""+time);
+						hashMap.put("pass", ""+pass);
+						hashMap.put("fail", ""+fail);
+						hashMap.put("error", ""+error);
+						result.add(hashMap);
+					}
+					currentTimestamp = rs.getString("timestamp");
+					fail = 0;
+					pass = 0;
+					error = 0;
+					time = 0f;
+				}
+				String res = rs.getString("result");
+				switch (res) {
+				case "passed":
+					pass+=1;
+					break;
+				case "error":
+					error+=1;
+					break;
+				case "failure":
+					fail+=1;
+				default:
+					break;
+				}
+				time+=rs.getFloat("time");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return result;
+    }
 }
