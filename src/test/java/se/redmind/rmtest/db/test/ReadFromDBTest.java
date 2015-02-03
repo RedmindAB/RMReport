@@ -108,6 +108,12 @@ public class ReadFromDBTest {
 			System.out.println(hashMap);
 		}
     }
+    
+    @Test
+    public void getReportDataFromSuiteID(){
+    	List<HashMap<String, String>> reportListData = new ReadReportFromDB().getReportListData(1);
+    }
+    
     @Test
     public void getDriverByTestcase(){
         List<HashMap<String, String>> classname = new ReadTestcaseFromDB().getDriverFromTestcaseID(1);
