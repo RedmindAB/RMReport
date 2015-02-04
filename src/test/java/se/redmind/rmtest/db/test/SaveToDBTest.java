@@ -4,8 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import se.redmind.rmtest.db.create.DBCon;
-import se.redmind.rmtest.db.update.ReportStatementBuilder;
-import se.redmind.rmtest.db.update.TestCaseStatementBuilder;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
 import se.redmind.rmtest.report.reportloader.ReportLoader;

@@ -1,4 +1,4 @@
-package se.redmind.rmtest.web;
+package se.redmind.rmtest.main;
 
 import se.redmind.rmtest.db.create.DBCon;
 import se.redmind.rmtest.filewatcher.FileWatcher;

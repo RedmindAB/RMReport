@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
-import se.redmind.rmtest.db.read.ReadTestrunsFromDB;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

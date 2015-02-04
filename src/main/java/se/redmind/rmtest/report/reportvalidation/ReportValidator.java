@@ -16,8 +16,6 @@ import se.redmind.rmtest.db.read.ReadClassFromDB;
 import se.redmind.rmtest.db.read.ReadReportFromDB;
 import se.redmind.rmtest.db.read.ReadSuiteFromDB;
 import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
-import se.redmind.rmtest.db.update.ReportStatementBuilder;
-import se.redmind.rmtest.db.update.TestCaseStatementBuilder;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
