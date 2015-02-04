@@ -8,7 +8,7 @@ import com.google.gson.JsonObject;
 
 import se.redmind.rmtest.db.create.DBBridge;
 
-public class ReadStatsFromReport extends DBBridge{
+public class ReadStatsFromReport extends ReadReportFromDB{
 
 	public static final String DRIVERS = "drivers";
 	public static final String TESTCASES = "testcases";

@@ -16,8 +16,15 @@ public class GetGraphDataWS extends Route {
 
 	@Override
 	public Object handle(Request request, Response response) {
-		JsonObject json = new Gson().fromJson((String) request.attribute("data"), JsonObject.class);
-		return new GetGraphDataDAO();
+		try {
+			String data = (String) request.body();
+			System.out.println(data);
+			JsonObject json = new Gson().fromJson(data, JsonObject.class);
+			return json.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "nope";
 	}
 
 }
