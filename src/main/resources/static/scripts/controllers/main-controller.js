@@ -7,40 +7,23 @@ angular.module('webLog')
     
     $scope.classes = {};
     $scope.methods = {};
-    $scope.navLinks = ["home",
-                       "classes",
-                       "methods"];
-    
     $scope.errorReport={};
-    $scope.suites = {};
     $scope.currentSuite = {};
     $scope.currentSuiteRun;
     $scope.mockSuites = []
+    
+    $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];
     
 	for (var int = 0; int < 50; int++) {
 		$scope.mockSuites.push("Suite Run " + int);
 	};
     
-    $http.get('/api/class/getclasses?suiteid=1')
-    .success(function(data, status, headers, config){ 
-    	if(data){
-    		$scope.classes = data;
-    	};
-    }).error(function(data, status, headers, config){
-    	console.log(data);
-    });
-    
-    $http.get('/api/method/getmethods?classid=1')
-    .success(function(data, status, headers, config){ 
-    	if(data){
-    		$scope.methods = data;
-    	};
-    }).error(function(data, status, headers, config){
-    	console.log(data);
-    });
-    
     $scope.goToHome= function(){
     	$state.transitionTo('home');
+    }
+    
+    $scope.goToProject = function(){
+    	$state.transitionTo('reports.classes');
     }
     
     $scope.goToClasses = function(){
@@ -68,8 +51,17 @@ angular.module('webLog')
 //    	console.log($scope.currentSuiteRun);
 //    }
     
-    function getTestSuite(){
-    	$scope.currentSuite = $scope.suites;
+    $scope.setCurrentSuite = function(suite){
+		$scope.currentSuite = suite;
+		console.log($scope.currentSuite.id);
+	    $http.get('/api/class/getclasses?suiteid='+$scope.currentSuite.id)
+	    .success(function(data, status, headers, config){ 
+	    	if(data){
+	    		$scope.classes = data;
+	    	};
+	    }).error(function(data, status, headers, config){
+	    	console.log(data);
+	    });
     }
     
     $scope.getPanel = function(passed){
