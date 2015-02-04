@@ -22,7 +22,7 @@ public class ApiRouter {
 		get(new GetClassesWS("/api/class/getclasses"));
 		get(new GetMethodsWS("/api/method/getmethods"));
 		get(new GetSuiteDataWS("/api/suite/data"));
-		post(new GetGraphDataWS("/api/stat/graphdata"));
+		post(new GetGraphDataWS("/api/stats/graphdata"));
 	}
 	
 	

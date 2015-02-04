@@ -72,7 +72,13 @@ public class ReadReportFromDB extends DBBridge{
     	map.put("suiteid", ""+suiteid);
     	String sql = stringParser.getString(GET_REPORTS_BY_SUITEID, map);
     	ResultSet rs = readFromDB(sql);
-    	List<HashMap<String, String>> result = new ArrayList<HashMap<String,String>>();
+    	List<HashMap<String, String>> result = extractResultSetToGraphData(rs);
+    	return result;
+    }
+    
+
+	protected List<HashMap<String, String>> extractResultSetToGraphData(ResultSet rs) {
+		List<HashMap<String, String>> result = new ArrayList<HashMap<String,String>>();
     	try {
     		String currentTimestamp = null;
     		float time = 0;
@@ -116,6 +122,6 @@ public class ReadReportFromDB extends DBBridge{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	return result;
-    }
+		return result;
+	}
 }
