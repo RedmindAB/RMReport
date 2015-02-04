@@ -17,7 +17,6 @@ public class GetSuitesDAO {
 		List<HashMap<String, Object>> allSuites = new ReadSuiteFromDB().getAllSuites();
 		for (HashMap<String, Object> hashMap : allSuites) {
 			JsonObject suiteObject = new JsonObject();
-			System.out.println(hashMap.toString());
 			suiteObject.add("name",
 					new JsonPrimitive((String) hashMap.get("name")));
 			JsonPrimitive id = new JsonPrimitive(
