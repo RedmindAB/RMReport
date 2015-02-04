@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 import java.nio.file.WatchService;
 
 import static java.nio.file.StandardWatchEventKinds.*;
-import se.redmind.rmtest.web.properties.PropertiesReader;
+import se.redmind.rmtest.main.properties.PropertiesReader;
 
 public class FileWatcher {
 
