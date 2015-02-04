@@ -1,5 +1,5 @@
 <div align='center' ng-controller="HomeCtrl">
-	<div ng-repeat="project in projects">
+	<div ng-repeat="suite in suites">
 		<table class='table' border='0' style='margin-top: 30px;'>
 		<tr>
 			<td style='border:0;flaot:right'>
@@ -8,7 +8,7 @@
 		</tr>
 		<tr>
 		    <td style='border:0;'>
-		    <linechart data="homeData" options="homeOptions" mode="" width="" height="400"></linechart>
+		    	<linechart data="homeData[$index]" options="homeOptions[$index]" mode="" width="" height="400"></linechart>
 		    </td>
 		</tr>
 	</table>
