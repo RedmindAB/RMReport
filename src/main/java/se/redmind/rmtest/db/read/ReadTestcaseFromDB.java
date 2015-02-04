@@ -1,6 +1,6 @@
 package se.redmind.rmtest.db.read;
 
-import se.redmind.rmtest.db.create.DBBridge;
+import se.redmind.rmtest.db.DBBridge;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

@@ -2,7 +2,7 @@ package se.redmind.rmtest.db.create.classinserter;
 
 import java.util.HashMap;
 
-import se.redmind.rmtest.db.create.DBBridge;
+import se.redmind.rmtest.db.DBBridge;
 import se.redmind.rmtest.util.StringKeyValueParser;
 
 public class ClassInserter extends DBBridge {

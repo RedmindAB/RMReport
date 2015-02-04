@@ -8,7 +8,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import se.redmind.rmtest.db.create.DBBridge;
+import se.redmind.rmtest.db.DBBridge;
 
 public class ReadStatsFromReport extends ReadReportFromDB{
 

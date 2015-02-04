@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 
-import se.redmind.rmtest.db.create.DBBridge;
+import se.redmind.rmtest.db.DBBridge;
 import se.redmind.rmtest.db.create.testcaseinserter.TestCaseInserter;
 import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
 import se.redmind.rmtest.report.parser.Report;

@@ -3,7 +3,7 @@ package se.redmind.rmtest.db.test;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import se.redmind.rmtest.db.create.DBCon;
+import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
 import se.redmind.rmtest.report.reportloader.ReportLoader;

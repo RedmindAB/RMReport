@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 import org.junit.rules.Timeout;
 
-import se.redmind.rmtest.db.create.DBCon;
+import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.read.ReadClassFromDB;
 import se.redmind.rmtest.db.read.ReadReportFromDB;
 import se.redmind.rmtest.db.read.ReadSuiteFromDB;
