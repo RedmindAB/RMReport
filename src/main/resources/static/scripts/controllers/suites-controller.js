@@ -1,7 +1,7 @@
 angular.module('webLog')
 	.controller('SuitesCtrl',[ '$scope', '$location','$state','$http','$document', function($scope, $location, $state, $http, $document){
 		
-		$scope.currentSuiteID = 1;
+		$scope.currentSuiteID;;
 		$scope.currentClass=[];
 		$scope.mockMethods = [];
 	    $scope.searchText = "";
@@ -10,8 +10,15 @@ angular.module('webLog')
 	    $scope.currentGraphData = [];
 	    $scope.data = {};
 		$scope.options = {};
-	    
+		var chartLoaded = false;
 		
+	    $scope.test = [1,2,3,4,5];
+	    
+		$scope.setCurrentSuiteID = function(id){
+			$scope.currentSuiteID = id;
+
+		}
+	    	
 	    $scope.getGraphDataObject = function(suiteID, classIDs, caseIDs, drivers){
 	    	var dataRequest = {};
 	    	
@@ -59,6 +66,7 @@ angular.module('webLog')
 	    	.success(function(data, status, headers, config){ 
 	    		$scope.currentGraphData = data;
 	    		$scope.createMainChart($scope.currentGraphData);
+	    		chartLoaded = true;
 	    	}).error(function(data, status, headers, config){
 	    		console.log(data);
 	    	});
@@ -102,12 +110,6 @@ angular.module('webLog')
 			mock.push(name+"(Windows Firefox)");
 			mock.push(name+"(Windows Chrome)");
 			mock.push(name+"(Windows IExplorer)");
-		}
-		
-		$scope.setCurrentSuiteID = function(id){
-			console.log("waiting for window");
-			$scope.currentSuiteID = id;
-
 		}
 		
 	    $scope.getMainOptions = function(spacing){
