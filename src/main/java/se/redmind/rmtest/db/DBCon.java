@@ -79,7 +79,8 @@ public class DBCon {
 
             stat.executeUpdate("create table if not exists report (suite_id integer, class_id integer, testcase_id integer, timestamp, result, message, name, driver, time float, " +
                     "foreign key (suite_id) references suite (suite_id), foreign key (class_id) references class (class_id), foreign key (testcase_id) references testcase (testcase_id))");
-
+            
+            stat.executeUpdate("create index reportindex on report (timestamp)");
 
         } catch (SQLException e) {
             e.printStackTrace();

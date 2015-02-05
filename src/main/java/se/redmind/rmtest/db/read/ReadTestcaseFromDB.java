@@ -61,6 +61,7 @@ public class ReadTestcaseFromDB extends DBBridge {
         }
         return result;
     }
+    
     public HashMap<String,Integer> getAllFromTestcaseConcat(){
     	ResultSet rs = readFromDB(GET_ALL_FROM_TESTCASE);
     	HashMap<String, Integer> hs = new HashMap<>();
