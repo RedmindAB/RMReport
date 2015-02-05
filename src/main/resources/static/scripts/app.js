@@ -1,4 +1,4 @@
-angular.module('webLog', ['ui.router','ui.bootstrap','n3-line-chart'])
+angular.module('webLog', ['ui.router','ui.bootstrap','n3-line-chart',"highcharts-ng"])
     .config(function($urlRouterProvider, $stateProvider){
     	
     $urlRouterProvider.otherwise("/home");
@@ -7,7 +7,7 @@ angular.module('webLog', ['ui.router','ui.bootstrap','n3-line-chart'])
         .state('home',{
             url: '/home',
             templateUrl: 'partials/home.html',
-            controller: 'HomeCtrl'
+            controller: ''
         })
         .state('reports',{
 	        url:'/reports',

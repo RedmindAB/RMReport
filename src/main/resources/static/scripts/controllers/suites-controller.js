@@ -5,7 +5,7 @@ angular.module('webLog')
 		$scope.currentClass=[];
 		$scope.mockMethods = [];
 	    $scope.searchText = "";
-		$scope.amountOfSuites= "";
+		$scope.amountOfRuns = "";
 	    $scope.graphData = {};
 	    $scope.currentGraphData = [];
 	    $scope.data = {};
@@ -23,9 +23,8 @@ angular.module('webLog')
 	    	var dataRequest = {};
 	    	
 	    		dataRequest.suiteid = suiteID;
-	    	
-	    		if (!(isNaN($scope.amountOfSuites)) && !($scope.amountOfSuites == "")) {
-					dataRequest.reslimit = $scope.amountOfSuites;
+	    		if (!(isNaN($scope.amountOfRuns)) && !($scope.amountOfRuns == "")) {
+					dataRequest.reslimit = parseInt($scope.amountOfRuns) +1;
 				} else {
 					dataRequest.reslimit = 50;
 				}
@@ -65,6 +64,7 @@ angular.module('webLog')
 	    	$http.post('/api/stats/graphdata', $scope.requestObject)
 	    	.success(function(data, status, headers, config){ 
 	    		$scope.currentGraphData = data;
+	    		console.log(data);
 	    		$scope.createMainChart($scope.currentGraphData);
 	    		chartLoaded = true;
 	    	}).error(function(data, status, headers, config){
@@ -80,7 +80,6 @@ angular.module('webLog')
 		    		row['1'] = calcPercentage(data[i].error, data[i].fail, data[i].pass);
 						dataObject.push(row);
 				}
-	    	console.log(dataObject);
 	    	$scope.data = dataObject;
 	    	$scope.options = $scope.getMainOptions(dataObject.length);
 	    };
@@ -113,10 +112,11 @@ angular.module('webLog')
 		}
 		
 	    $scope.getMainOptions = function(spacing){
+	    	console.log($scope.currentGraphData);
 	    	return {
 				  axes: {
-					    x: {key: 'x', labelFunction: function(value) {return value;}, type: 'linear', ticks: 5},
-					    y: {type: 'linear', ticks: 5, min: 0, max: 100},
+					    x: {key: 'x', ticks: $scope.currentGraphData.length, labelFunction: function(value) {return value;}, type: 'linear'},
+					    y: {type: 'linear', ticks: 10, min: 0, max: 100},
 					  },
 					  series: [
 					    {y: '1', type: 'area',color: 'brown', thickness: '2px',visible: true, drawDots: false,label: 'Combined Aggregation'}
