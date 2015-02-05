@@ -7,10 +7,16 @@ angular.module('webLog')
     $scope.currentSuiteRun;
     $scope.mockSuites = []
     $scope.currentClasses = {};
-    $scope.currentSuite = {};
+    $scope.currentClass= [];
+    $scope.currentSuiteID;
     $scope.chartHomeConfig = {};
     $scope.chartMainConfig = {};
     $scope.allSuites = [];
+    $scope.chosen={
+    		classes: [],
+    		methods: [],
+    		drivers: []
+    };
     $scope.amountOfRuns = "";
     
     $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];
@@ -46,6 +52,51 @@ angular.module('webLog')
 		$scope.mockSuites.push("Suite Run " + int);
 	};
     
+	$scope.getMethods = function(testClass){
+		$scope.currentClass=testClass;
+	    $http.get('/api/method/getmethods?classid=' + testClass.id)
+	    .success(function(data, status, headers, config){ 
+	    	if(data){
+	    		if ($scope.methods != data) {
+	    			$scope.methods = data;
+				}
+	    	};
+	    }).error(function(data, status, headers, config){
+	    	console.log(data);
+	    });
+	}
+	
+	$scope.clearChosen = function(){
+		for (var i = 0; i < $scope.methods.length; i++) {
+			if ($scope.methods[i].chosen) {
+				delete $scope.methods[i].chosen;
+			}
+		}
+		for (var i = 0; i < $scope.currentClasses.length; i++) {
+			if ($scope.currentClasses[i].chosen) {
+				delete $scope.currentClasses[i].chosen
+			}
+		}
+	}
+	
+	$scope.getChosen = function(){
+		var chosen = {
+				classes: [],
+				methods: []
+		};
+		for (var i = 0; i < $scope.methods.length; i++) {
+			if ($scope.methods[i].chosen) {
+				chosen.methods.push($scope.methods[i].id);
+			}
+		}
+		for (var i = 0; i < $scope.currentClasses.length; i++) {
+			if ($scope.currentClasses[i].chosen) {
+				chosen.classes.push($scope.currentClasses[i].id);
+			}
+		}
+		return chosen;
+	}
+	
     $scope.setCurrentSuite = function(suite){
 		$scope.currentSuite = suite;
 	    $http.get('/api/class/getclasses?suiteid='+$scope.currentSuite.id)
@@ -81,17 +132,16 @@ angular.module('webLog')
     		}
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){ 
-    		console.log(data);
     		$scope.createHomeChart(data, id);
     	}).error(function(data, status, headers, config){
     		console.log(data);
     	});
 	};
 	
-	   $scope.loadMainChart = function(suiteID, classIDs, caseIDs, drivers) {
-	    	var requestObject = $scope.getGraphDataObject(suiteID, classIDs, caseIDs, drivers)
+	   $scope.loadMainChart = function(suiteID, reslimit, drivers) {
+	    	var requestObject = $scope.getGraphDataObject(suiteID, reslimit, drivers)
 	    	$http.post('/api/stats/graphdata', requestObject)
-	    	.success(function(data, status, headers, config){ 
+	    	.success(function(data, status, headers, config){
 	    		$scope.createMainChart(data);
 	    	}).error(function(data, status, headers, config){
 	    		console.log(data);
@@ -102,7 +152,6 @@ angular.module('webLog')
     .success(function(data, status, headers, config){ 
     	if(data){
     		$scope.allSuites = data;
-    		console.log($scope.allSuites);
     		for (var i = 0; i < $scope.allSuites.length; i++) {
     			$scope.createHomeChartFromID($scope.allSuites[i].id);
 			}
@@ -143,7 +192,7 @@ angular.module('webLog')
     				  credits: {
     				    enabled: false
     				  },
-    				  loading: "Getting MASSIVE Data",
+    				  loading: false,
     				  size: {},
     				  useHighStocks: false
     				};
@@ -153,7 +202,6 @@ angular.module('webLog')
 			chartMainConfigObject.series[0].data.push(data[j].pass);
 		}
 		$scope.chartMainConfig = chartMainConfigObject;
-    	
     };
     
     $scope.createHomeChart = function(data, id) {
@@ -171,18 +219,18 @@ angular.module('webLog')
         			  }, 
         		  series: [{
         			  data: [],
-        		      id: "fail",
-        		      name: "Fail",
+        		      id: "pass",
+        		      name: "Pass",
         		      type: "column",
-        		      color: "red",
+        		      color: "green",
         		      dashStyle: "Solid",
         		      connectNulls: false
         		  },{
         			  data: [],
-      	   		      id: "pass",
-      	   		      name: "Pass",
+      	   		      id: "fail",
+      	   		      name: "Fail",
       	   		      type: "column",
-      	   		      color: "green",
+      	   		      color: "red",
       	   		      dashStyle: "Solid",
       	   		      connectNulls: false
         		  }],
@@ -204,8 +252,8 @@ angular.module('webLog')
         		};
     	
 		for (var j = 0; j < data.length; j++) {
-			chartHomeConfigObject.series[0].data.push(data[j].fail + data[j].error);
-			chartHomeConfigObject.series[1].data.push(data[j].pass);
+			chartHomeConfigObject.series[0].data.push(data[j].pass);
+			chartHomeConfigObject.series[1].data.push(data[j].fail + data[j].error);
 		}
 		$scope.chartHomeConfig[id] = chartHomeConfigObject;
     };
@@ -229,33 +277,30 @@ angular.module('webLog')
     	});
     }
     
-    $scope.getGraphDataObject = function(suiteID, classIDs, caseIDs, drivers){
+    $scope.getGraphDataObject = function(suiteID, reslimit, drivers){
+    	console.log("methods");
+    	console.log($scope.methods);
+    	console.log("classes");
+    	console.log($scope.currentClasses);
+    	var chosen = $scope.getChosen();
     	var dataRequest = {};
-    	
     		dataRequest.suiteid = suiteID;
-    		if (!(isNaN($scope.amountOfRuns)) && !($scope.amountOfRuns == "")) {
-				dataRequest.reslimit = parseInt($scope.amountOfRuns) +1;
+    		if (!(isNaN(reslimit)) && !(reslimit == "")) {
+				dataRequest.reslimit = parseInt(reslimit) +1;
 			} else {
 				dataRequest.reslimit = 50;
 			}
     		
-    		if (classIDs) {
-				dataRequest.classes= classIDs;
-			} else {
-				dataRequest.classes=[];
-			}
-    		
-    		if (caseIDs) {
-				dataRequest.testcases = caseIDs;
-			} else {
-				dataRequest.testcases = [];
-			}
+			dataRequest.classes=chosen.classes;
+			dataRequest.testcases = chosen.methods;
     		
     		if (drivers) {
 				dataRequest.drivers = drivers;
 			} else {
 				dataRequest.drivers = [];
 			}
+    		console.log("request");
+    		console.log(dataRequest);
     	return dataRequest;
     };
     

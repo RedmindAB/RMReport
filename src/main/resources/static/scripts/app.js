@@ -12,7 +12,7 @@ angular.module('webLog', ['ui.router','ui.bootstrap','n3-line-chart',"highcharts
         .state('reports',{
 	        url:'/reports',
 	        templateUrl: 'partials/reports.html',
-	        controller: 'SuitesCtrl'
+	        controller: ''
         })
         .state('reports.classes',{
 	        url:'/classes',
