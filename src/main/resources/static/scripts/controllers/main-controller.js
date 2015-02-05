@@ -166,7 +166,8 @@ angular.module('webLog')
     	var chartMainConfigObject = {
     			  options: {
     				    chart: {
-    				      type: "areaspline"
+    				      type: "areaspline",
+    				      backgroundColor: '#ecf0f1'
     				    },
     				    plotOptions: {
     				      series: {
@@ -178,11 +179,13 @@ angular.module('webLog')
     				    {
     				      data: [],
     				      name:'Pass',
+    				      color: '#2ecc71',
     				      id: "mainPass"
     				    },
     				    {
     				      data: [],
     				      name: 'Fail',
+    				      color: '#e74e3e',
     				      id: "mainFail"
     				    }
     				  ],
@@ -194,7 +197,7 @@ angular.module('webLog')
     				  },
     				  loading: false,
     				  size: {},
-    				  useHighStocks: false
+    				  useHighStocks: false,
     				};
     	
 		for (var j = 0; j < data.length; j++) {
@@ -209,7 +212,8 @@ angular.module('webLog')
         var chartHomeConfigObject = {
         		  options: {
         			    chart: {
-        			      type: "areaspline"
+        			      type: "areaspline",
+        			      backgroundColor: '#ecf0f1'
         			    },
         			    plotOptions: {
         			      series: {
