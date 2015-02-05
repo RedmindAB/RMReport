@@ -1,9 +1,9 @@
 package se.redmind.rmtest.web.route.api;
 
 import static spark.Spark.*;
-import se.redmind.rmtest.web.route.api.getclasses.GetClassesWS;
+import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesWS;
 import se.redmind.rmtest.web.route.api.getlogs.GetLogListWS;
-import se.redmind.rmtest.web.route.api.getmethods.GetMethodsWS;
+import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
 import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
 import se.redmind.rmtest.web.route.api.suite.data.GetSuiteDataWS;
 import se.redmind.rmtest.web.route.api.suite.getsuites.GetSuitesWS;

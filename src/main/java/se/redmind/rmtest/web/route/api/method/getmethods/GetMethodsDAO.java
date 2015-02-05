@@ -1,4 +1,4 @@
-package se.redmind.rmtest.web.route.api.getmethods;
+package se.redmind.rmtest.web.route.api.method.getmethods;
 
 import java.util.HashMap;
 import java.util.List;
