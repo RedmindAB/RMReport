@@ -5,7 +5,6 @@ angular.module('webLog')
 		$scope.currentClass=[];
 		$scope.mockMethods = [];
 	    $scope.searchText = "";
-		$scope.amountOfRuns = "";
 	    $scope.graphData = {};
 	    $scope.currentGraphData = [];
 	    $scope.data = {};
