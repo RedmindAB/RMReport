@@ -25,6 +25,8 @@ public class ReadReportFromDB extends DBBridge{
     String GET_DRIVER_FROM_REPORT = "select distinct driver from report where suite_id = ";
     String AND_TESTCASE_ID = " and testcase_id =";
     String GET_REPORTS_BY_SUITEID = "SELECT timestamp, result, time FROM report WHERE suite_id = {suiteid} ORDER BY timestamp DESC;";
+    String CREATE_REPORT_VIEW = "create view report_view as SELECT DISTINCT timestamp FROM report WHERE suite_id = 1 ORDER BY timestamp DESC LIMIT 50";
+    String GET_RESULT_BY_DRIVER = "select result,driver, count(result) from report where testcase_id = 1 group by result,driver";
 
     public List getDriverFromTestcase(Integer suite_id, Integer testcase_id){
         List<String> ls = new ArrayList<>();
@@ -118,4 +120,9 @@ public class ReadReportFromDB extends DBBridge{
 		}
     	return result;
     }
+    public void getResultByDriverFromSuitID(){
+    	ResultSet rs = readFromDB(GET_RESULT_BY_DRIVER);
+    	
+    }
+    
 }

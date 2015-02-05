@@ -18,7 +18,7 @@ public class ReadTestcaseFromDB extends DBBridge {
     String GET_TESTCASE_ID = "select testcase_id from testcase where name= ";
     String GET_TESTCASE_FROM_CLASS_ID = "SELECT name, testcase_id FROM testcase WHERE class_id = ";
     String GET_DRIVER_BY_TESTCASE_ID = "SELECT DISTINCT driver FROM REPORT WHERE testcase_id = ";
-
+    String GET_ALL_FROM_TESTCASE = "SELECT * FROM testcase";
 
     public int getTestCaseID(String testCaseName){
         ResultSet rs = readFromDB(GET_TESTCASE_ID+"'"+testCaseName+"'");
@@ -58,6 +58,32 @@ public class ReadTestcaseFromDB extends DBBridge {
             System.err.println(e.getMessage());
         }
         return result;
+    }
+    public HashMap<String,Integer> getAllFromTestcaseConcat(){
+    	ResultSet rs = readFromDB(GET_ALL_FROM_TESTCASE);
+    	HashMap<String, Integer> hs = new HashMap<>();
+    	try {
+			while(rs.next()){
+				String nameAndClassId = rs.getString(1)+rs.getInt(3);
+				try {
+					hs.put(nameAndClassId, rs.getInt(2));
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return hs;
+    	
+    	
+    	
+    	
+    	
     }
 
 
