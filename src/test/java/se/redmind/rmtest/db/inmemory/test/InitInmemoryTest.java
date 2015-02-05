@@ -12,5 +12,5 @@ public class InitInmemoryTest {
 	public void test() {
 		new InMemoryDBHandler().init();
 	}
-
+	
 }
