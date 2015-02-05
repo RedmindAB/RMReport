@@ -67,25 +67,13 @@ public class ReadTestcaseFromDB extends DBBridge {
     	try {
 			while(rs.next()){
 				String nameAndClassId = rs.getString(1)+rs.getInt(3);
-				try {
-					hs.put(nameAndClassId, rs.getInt(2));
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
+				hs.put(nameAndClassId, rs.getInt(2));
 			}
-	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return hs;
-    	
-    	
-    	
-    	
-    	
     }
 
 

@@ -27,7 +27,7 @@ public class TestCaseRunInserter extends DBBridge {
 		readTestcaseFromDB = new ReadTestcaseFromDB();
 	}
 	
-	public void insertTestCases(Report report, int suiteID, HashMap<String, Integer> classIDs){
+	public void insertTestCases(Report report, int suiteID, HashMap<String, Integer> classIDs, HashMap<String,Integer> testCases){
 		try {
 			Statement pStatement = connection.createStatement();
 			List<ReportTestCase> testCaseArray = report.getTestCaseArray();
@@ -37,7 +37,7 @@ public class TestCaseRunInserter extends DBBridge {
 				map.put("suite_id", ""+suiteID);
 				Integer classID = classIDs.get(testCase.getClassName());
 				map.put("class_id", ""+classID);
-				map.put("testcase_id", ""+getTestCaseID(testCase.getMethodName(), classID));
+				map.put("testcase_id", ""+testCases.get(testCase.getMethodName()+classID));
 				map.put("timestamp", report.getTimestamp());
 				map.put("result", testCase.getResult());
 				map.put("message", "\""+testCase.getMessage()+"\"");
@@ -47,7 +47,9 @@ public class TestCaseRunInserter extends DBBridge {
 				String sql = parser.getString(map);
 				pStatement.addBatch(sql);
 			}
-			pStatement.executeBatch();
+			long start = System.currentTimeMillis();
+			int[] executeBatch = pStatement.executeBatch();
+			System.out.println(System.currentTimeMillis() - start);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

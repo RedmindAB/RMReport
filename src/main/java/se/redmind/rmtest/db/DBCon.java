@@ -7,8 +7,10 @@ import java.sql.*;
  */
 public class DBCon {
 
+	public static enum instance {DISK, INMEMORY};
     private static DBCon dbInstance = null;
     private static Connection conn;
+    private static Connection imConnection;
     private static boolean testMode;
     
     
@@ -38,6 +40,14 @@ public class DBCon {
                 testMode = true;
         }
         return dbInstance;
+    }
+    
+    public Connection getInMemoryConnection(){
+    	if (imConnection == null) {
+			imConnection = connect("memory");
+			create(imConnection);
+		}
+    	return imConnection;
     }
 
     private Connection connect(String dbname) {
@@ -77,7 +87,7 @@ public class DBCon {
 
     }
     
-    public void dropDatabase(){
+    public void dropDatabase(Connection conn){
 		Statement stat = null;
 		try {
 			stat = conn.createStatement();
