@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import se.redmind.rmtest.db.DBCon;
@@ -17,6 +18,7 @@ import se.redmind.rmtest.db.read.ReadReportFromDB;
 import se.redmind.rmtest.db.read.ReadSuiteFromDB;
 import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
 import se.redmind.rmtest.report.parser.Report;
+import se.redmind.rmtest.report.parser.ReportTestCase;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
 
@@ -47,6 +49,7 @@ public class ReportValidator {
 		this.parser = new ReportXMLParser();
 		this.suiteInserter = new SuiteInserter();
 		this.testCaseRunInserter = new TestCaseRunInserter();
+		testCaseInserter = new TestCaseInserter();
 		loadReport();
 	}
 	
@@ -63,10 +66,11 @@ public class ReportValidator {
 	public void saveReport(){
 		report.convertToFullReport();
 		try {
-			connection.setAutoCommit(false);
 			HashMap<String, Integer> classIDs = getTestClassIDs(report.getPresentTestClasses());
 			int suiteID = getSuiteID(report.getSuiteName());
-			testCaseRunInserter.insertTestCases(report, suiteID, classIDs);
+			HashMap<String, Integer> testCases = getTestCases(report, classIDs);
+			connection.setAutoCommit(false);
+			testCaseRunInserter.insertTestCases(report, suiteID, classIDs, testCases);
 			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -131,5 +135,29 @@ public class ReportValidator {
 			return classInserter = new ClassInserter();
 		}
 		return classInserter;
+	}
+	
+	private HashMap<String,Integer> getTestCases(Report report, HashMap<String, Integer> classIDs){
+		ReadTestcaseFromDB readTestcaseFromDB = new ReadTestcaseFromDB();
+		//get testcases from db.
+		HashMap<String, Integer> allFromTestcaseConcat = readTestcaseFromDB.getAllFromTestcaseConcat();
+		HashSet<String> addedTestCases = new HashSet<String>();
+		//get testcases from report
+		List<ReportTestCase> testCaseArray = report.getTestCaseArray();
+		for (ReportTestCase testCase : testCaseArray) {
+			Integer classID = classIDs.get(testCase.getClassName());
+			String methodName = testCase.getMethodName();
+			String searchKey = methodName+classID;
+			if (addedTestCases.contains(searchKey)) {
+				continue;
+			}
+			boolean containsKey = allFromTestcaseConcat.containsKey(searchKey);
+			if (!containsKey) {
+				testCaseInserter.addTestCaseToBatch(methodName, classID);
+				addedTestCases.add(searchKey);
+			}
+			testCaseInserter.executeBatch();
+		}
+		return readTestcaseFromDB.getAllFromTestcaseConcat();
 	}
 }

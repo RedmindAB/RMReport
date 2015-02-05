@@ -11,6 +11,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 
 import se.redmind.rmtest.db.read.ReadStatsFromReport;
+import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
 
 public class ReadStatsFromReportTest {
 
@@ -48,6 +49,12 @@ public class ReadStatsFromReportTest {
 	public void getConditions(){
 		String s = readStatsFromReport.getConditions(params);
 		assertEquals("AND (driver = 'OSX chrome' OR driver = 'OSX firefox') AND (class_id = 2) AND (testcase_id = 3)", s);
+	}
+	
+	@Test
+	public void getTestCases(){
+		ReadTestcaseFromDB readTestcaseFromDB = new ReadTestcaseFromDB();
+		System.out.println(readTestcaseFromDB.getAllFromTestcaseConcat());
 	}
 
 }

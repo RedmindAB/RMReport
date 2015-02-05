@@ -7,8 +7,10 @@ import java.sql.*;
  */
 public class DBCon {
 
+	public static enum instance {DISK, INMEMORY};
     private static DBCon dbInstance = null;
     private static Connection conn;
+    private static Connection imConnection;
     private static boolean testMode;
     
     
@@ -38,6 +40,14 @@ public class DBCon {
                 testMode = true;
         }
         return dbInstance;
+    }
+    
+    public Connection getInMemoryConnection(){
+    	if (imConnection == null) {
+			imConnection = connect("memory");
+			create(imConnection);
+		}
+    	return imConnection;
     }
 
     private Connection connect(String dbname) {
@@ -69,7 +79,8 @@ public class DBCon {
 
             stat.executeUpdate("create table if not exists report (suite_id integer, class_id integer, testcase_id integer, timestamp, result, message, name, driver, time float, " +
                     "foreign key (suite_id) references suite (suite_id), foreign key (class_id) references class (class_id), foreign key (testcase_id) references testcase (testcase_id))");
-
+            
+            stat.executeUpdate("create index if not exists reportindex on report (timestamp)");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -77,7 +88,7 @@ public class DBCon {
 
     }
     
-    public void dropDatabase(){
+    public void dropDatabase(Connection conn){
 		Statement stat = null;
 		try {
 			stat = conn.createStatement();
