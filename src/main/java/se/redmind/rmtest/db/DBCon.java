@@ -44,7 +44,7 @@ public class DBCon {
     
     public Connection getInMemoryConnection(){
     	if (imConnection == null) {
-			imConnection = connect("memory");
+			imConnection = connect(":memory:");
 			create(imConnection);
 		}
     	return imConnection;

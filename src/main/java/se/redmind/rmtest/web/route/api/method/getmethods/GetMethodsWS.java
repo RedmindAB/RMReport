@@ -1,4 +1,4 @@
-package se.redmind.rmtest.web.route.api.getmethods;
+package se.redmind.rmtest.web.route.api.method.getmethods;
 
 import spark.Request;
 import spark.Response;

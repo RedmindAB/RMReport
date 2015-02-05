@@ -28,7 +28,7 @@ public class ReadStatsFromReport extends ReadReportFromDB{
 	
 	public List<HashMap<String, String>> getGraphData(JsonObject params){
 		String sql = getQueryFromJsonObject(params);
-		ResultSet rs = readFromDB(sql);
+		ResultSet rs = readFromDB(sql,params.get("reslimit").getAsInt());
 		return extractResultSetToGraphData(rs);
 	}
 	

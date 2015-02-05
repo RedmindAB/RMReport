@@ -67,4 +67,28 @@ public abstract class DBBridge {
 		}
 		return null;
 	}
+	
+	protected ResultSet readFromDB(String sql, int timestampRequestSize){
+		try {
+			Statement statement = getConnection(timestampRequestSize).createStatement();
+			return statement.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	protected ResultSet readFromInMemoryDB(String sql, int timestampRequestSize){
+		return readFromDB(sql, 1);
+	}
+	
+	private Connection getConnection(int timestampRequestSize){
+		if (timestampRequestSize > InMemoryDBHandler.timestamplimit) {
+			return DBCon.getDbInstance().getConnection();
+		}
+		else {
+			return DBCon.getDbInstance().getInMemoryConnection();
+		}
+	}
 }
