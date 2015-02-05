@@ -1,6 +1,6 @@
 package se.redmind.rmtest.main;
 
-import se.redmind.rmtest.db.create.DBCon;
+import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.filewatcher.FileWatcher;
 import se.redmind.rmtest.report.init.ReportInit;
 import se.redmind.rmtest.web.route.RMTRoute;

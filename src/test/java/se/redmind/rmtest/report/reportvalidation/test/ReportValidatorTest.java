@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import se.redmind.rmtest.db.create.DBCon;
+import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.report.reportvalidation.ReportValidator;
 
 public class ReportValidatorTest {

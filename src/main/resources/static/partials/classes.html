@@ -1,10 +1,8 @@
 <accordion close-others="true">
 	<!-- repeated content -->
-	<div ng-repeat="class in classes | filter:searchText track by $index " style='margin-top: 10px' ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
-	
+	<div ng-repeat="class in currentClasses | filter:searchText track by $index " style='margin-top: 10px' ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
 		<input type="checkbox" value="None" id="checkBox" name="check" style="float:left" />
 	
-	    <!-- non collapsing header -->
 	        <div ng-style="{'color' : getCo(test.passed)}" ng-click="getMethods(class); goToMethods(); resetFilterField()">
 	        		<div style='padding-left:10px'><h3>{{class.name}}</div>
 	        		<div style='float:right;display:inline'></div>

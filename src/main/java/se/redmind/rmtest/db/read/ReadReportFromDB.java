@@ -1,6 +1,6 @@
 package se.redmind.rmtest.db.read;
 
-import se.redmind.rmtest.db.create.DBBridge;
+
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+
+import se.redmind.rmtest.db.DBBridge;
 
 /**
  * Created by johan on 15-01-26.
@@ -74,7 +76,13 @@ public class ReadReportFromDB extends DBBridge{
     	map.put("suiteid", ""+suiteid);
     	String sql = stringParser.getString(GET_REPORTS_BY_SUITEID, map);
     	ResultSet rs = readFromDB(sql);
-    	List<HashMap<String, String>> result = new ArrayList<HashMap<String,String>>();
+    	List<HashMap<String, String>> result = extractResultSetToGraphData(rs);
+    	return result;
+    }
+    
+
+	protected List<HashMap<String, String>> extractResultSetToGraphData(ResultSet rs) {
+		List<HashMap<String, String>> result = new ArrayList<HashMap<String,String>>();
     	try {
     		String currentTimestamp = null;
     		float time = 0;
@@ -118,11 +126,11 @@ public class ReadReportFromDB extends DBBridge{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
     	return result;
     }
-    public void getResultByDriverFromSuitID(){
-    	ResultSet rs = readFromDB(GET_RESULT_BY_DRIVER);
-    	
-    }
     
-}
+
+	
+	}
+

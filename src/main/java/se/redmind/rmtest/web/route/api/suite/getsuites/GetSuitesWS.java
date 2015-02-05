@@ -1,4 +1,4 @@
-package se.redmind.rmtest.web.route.api.getsuites;
+package se.redmind.rmtest.web.route.api.suite.getsuites;
 
 import spark.Request;
 import spark.Response;

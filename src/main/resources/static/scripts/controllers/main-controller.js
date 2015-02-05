@@ -5,56 +5,32 @@ angular.module('webLog')
     	
     $scope.currentPage = "Home";
     
-    $scope.classes = {};
+
     $scope.methods = {};
-    $scope.navLinks = ["home",
-                       "classes",
-                       "methods"];
-    
     $scope.errorReport={};
-    $scope.suites = {};
-    $scope.currentSuite = {};
     $scope.currentSuiteRun;
     $scope.mockSuites = []
+    $scope.currentClasses = {};
+    $scope.currentSuite = {};
+    
+    $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];
     
 	for (var int = 0; int < 50; int++) {
 		$scope.mockSuites.push("Suite Run " + int);
 	};
     
-    $http.get('/api/class/getclasses?suiteid=1')
-    .success(function(data, status, headers, config){ 
-    	if(data){
-    		$scope.classes = data;
-    	};
-    }).error(function(data, status, headers, config){
-    	console.log(data);
-    });
-    
-    $http.get('/api/method/getmethods?classid=1')
-    .success(function(data, status, headers, config){ 
-    	if(data){
-    		$scope.methods = data;
-    	};
-    }).error(function(data, status, headers, config){
-    	console.log(data);
-    });
-    
-    $scope.goToHome= function(){
-    	$state.transitionTo('home');
-    }
-    
-    $scope.goToClasses = function(){
-    	$state.transitionTo('reports.classes');
-    }
-    
-    $scope.goToMethods = function(){
-    	$state.transitionTo('reports.methods');
-    }
-    
-    $scope.goToCases = function(){
-    	$state.transitionTo('reports.cases');
+    $scope.setCurrentSuite = function(suite){
+		$scope.currentSuite = suite;
+	    $http.get('/api/class/getclasses?suiteid='+$scope.currentSuite.id)
+	    .success(function(data, status, headers, config){ 
+	    	if(data){
+	    		$scope.currentClasses = data;
+	    	};
+	    }).error(function(data, status, headers, config){
+	    	console.log(data);
+	    });
     };
-    
+	
 //    $scope.setCurrentSuiteRun = function(run){
 //    	console.log("setting current suite run");
 //    	$scope.currentSuiteRun = run;
@@ -67,10 +43,6 @@ angular.module('webLog')
 //    	}
 //    	console.log($scope.currentSuiteRun);
 //    }
-    
-    function getTestSuite(){
-    	$scope.currentSuite = $scope.suites;
-    }
     
     $scope.getPanel = function(passed){
     	if(passed)
@@ -107,32 +79,24 @@ angular.module('webLog')
     		return 'img/logo3.jpg';    
     };
     
-    $scope.getPageHeader = function(){
-    	switch($location.url()) {
-        case '/home':
-            return "Home";
-            break;
-            
-        case '/project':
-            return "Project View";
-            break;
-            
-        case '/test-suite-runs':
-            return "Suite Runs";
-            break;
-            
-        case '/suite-run-classes':
-            return "Test Classes";
-            break;
-            
-        case '/test-case':
-            return "Test Cases";
-            break;
-            
-        default:
-            return "Reports";
-        	break;
-    	}
+    $scope.goToHome= function(){
+    	$state.transitionTo('home');
+    }
+    
+    $scope.goToProject = function(){
+    	$state.transitionTo('reports.classes');
+    }
+    
+    $scope.goToClasses = function(){
+    	$state.transitionTo('reports.classes');
+    }
+    
+    $scope.goToMethods = function(){
+    	$state.transitionTo('reports.methods');
+    }
+    
+    $scope.goToCases = function(){
+    	$state.transitionTo('reports.cases');
     };
     
     $scope.labels2 = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];

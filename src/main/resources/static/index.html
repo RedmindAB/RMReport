@@ -5,10 +5,7 @@
     <title>Redmind Tools</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="libs/chart/angular-chart.css">
     <link rel="stylesheet" href="css/style.css">
-    
-        <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
     
 </head>
 <body ng-controller = "MainCtrl">
@@ -26,16 +23,7 @@
             </button>        	
         </div>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style='float:right;'>
-
-            <ul class="nav navbar-nav">
-                <li style='position:relative' ></li>
-                <!-- test suite button -->
-                <li style='position:relative;margin-top:14px'>{{getPageHeader()}}<span class="sr-only">(current)</span></li>
-           		
-           
-            </ul>
-        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style='float:right;'></div>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
@@ -46,18 +34,14 @@
 </div>
 <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="libs/angular-1.3.10/angular.min.js"></script>
-<script src="libs/chart/Chart.min.js"></script>
-<script src="libs/chart/angular-chart.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="libs/bootstrap/ui-bootstrap-tpls-0.12.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
 <script src="libs/line-chart.min.js"></script>
 <script src="libs/d3.min.js"></script>
 <script src="scripts/app.js"></script>
-<script src="scripts/controllers/home-controller.js"></script>
 <script src="scripts/controllers/main-controller.js"></script>
 <script src="scripts/controllers/suites-controller.js"></script>
-<script src="scripts/controllers/testcase-controller.js"></script>
-<script src="scripts/controllers/project-controller.js"></script>
+<script src="scripts/controllers/home-controller.js"></script>
 </body>
 </html>

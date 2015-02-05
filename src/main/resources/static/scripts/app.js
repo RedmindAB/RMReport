@@ -1,4 +1,4 @@
-angular.module('webLog', ['ui.router', 'chart.js','ui.bootstrap','n3-line-chart'])
+angular.module('webLog', ['ui.router','ui.bootstrap','n3-line-chart'])
     .config(function($urlRouterProvider, $stateProvider){
     	
     $urlRouterProvider.otherwise("/home");

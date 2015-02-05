@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
-import se.redmind.rmtest.db.create.DBCon;
+import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.create.classinserter.ClassInserter;
 import se.redmind.rmtest.db.create.suiteinserter.SuiteInserter;
 import se.redmind.rmtest.db.create.testcaseinserter.TestCaseInserter;

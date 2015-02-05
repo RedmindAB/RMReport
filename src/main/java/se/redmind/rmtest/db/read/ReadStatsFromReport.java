@@ -1,12 +1,14 @@
 package se.redmind.rmtest.db.read;
 
+import java.sql.ResultSet;
 import java.util.HashMap;
+import java.util.List;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import se.redmind.rmtest.db.create.DBBridge;
+import se.redmind.rmtest.db.DBBridge;
 
 public class ReadStatsFromReport extends ReadReportFromDB{
 
@@ -23,6 +25,12 @@ public class ReadStatsFromReport extends ReadReportFromDB{
 	private String DRIVER = "driver = ";
 	private String CLASS = "class_id = ";
 	private String TESTCASE = "testcase_id = ";
+	
+	public List<HashMap<String, String>> getGraphData(JsonObject params){
+		String sql = getQueryFromJsonObject(params);
+		ResultSet rs = readFromDB(sql);
+		return extractResultSetToGraphData(rs);
+	}
 	
 	public String getQueryFromJsonObject(JsonObject params){
 		HashMap<String, String> map = new HashMap<String, String>();

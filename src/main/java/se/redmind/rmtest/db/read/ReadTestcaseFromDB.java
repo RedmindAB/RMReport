@@ -1,6 +1,6 @@
 package se.redmind.rmtest.db.read;
 
-import se.redmind.rmtest.db.create.DBBridge;
+
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import se.redmind.rmtest.db.DBBridge;
 
 /**
  * Created by johan on 15-01-29.

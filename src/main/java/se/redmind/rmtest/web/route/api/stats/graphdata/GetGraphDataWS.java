@@ -1,4 +1,4 @@
-package se.redmind.rmtest.web.route.api.graphdata;
+package se.redmind.rmtest.web.route.api.stats.graphdata;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -18,9 +18,8 @@ public class GetGraphDataWS extends Route {
 	public Object handle(Request request, Response response) {
 		try {
 			String data = (String) request.body();
-			System.out.println(data);
 			JsonObject json = new Gson().fromJson(data, JsonObject.class);
-			return json.toString();
+			return new GetGraphDataDAO().getGraphData(json);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
