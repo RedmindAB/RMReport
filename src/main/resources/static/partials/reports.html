@@ -7,7 +7,7 @@
 	<div id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="getCurrentState('reports.methods')  || getCurrentState('reports.cases')">> Methods&nbsp;</p></div>
 	<div id="navigation-cases" class="navTextStuff" ng-show="getCurrentState('reports.cases')">> Cases&nbsp;</p></div><br/><br/>
 	<!--<canvas id="line" width='600px' height='200px' class="chart chart-line" data="project.data" labels="project.labels" series="project.series" legend="true" series="series" options="options" click="onClick"></canvas>-->
-<linechart data="data" options="options" mode="" width="" height="400"></linechart>
+<highchart id="chart1" config="chartMainConfig"></highchart>
 </div>
 
 <div class="dropdown">
@@ -21,7 +21,7 @@
 </div><br/>
 
 <div>
-	<input type="text" id="suite-amount-input" class="form-control" style="width:200px" ng-model='amountOfSuites' placeholder="Number of Suite Runs">
+	<input type="text" id="suite-amount-input" class="form-control" style="width:200px" ng-model='amountOfRuns' placeholder="Number of Suite Runs">
 	<button class="btn btn-default" ng-click="getGraphData(currentSuite.id)">Submit</button>
 </div>
 <br/>

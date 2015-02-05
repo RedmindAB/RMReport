@@ -2,18 +2,45 @@ angular.module('webLog')
     .controller('MainCtrl',['$scope', '$http','$location', '$timeout','$state', function($scope, $http, $location, $timeout, $state){
     	
     $scope.$state = $state;
-    	
-    $scope.currentPage = "Home";
-    
-
     $scope.methods = {};
     $scope.errorReport={};
     $scope.currentSuiteRun;
     $scope.mockSuites = []
     $scope.currentClasses = {};
     $scope.currentSuite = {};
+    $scope.chartHomeConfig = {};
+    $scope.chartMainConfig = {};
+    $scope.allSuites = [];
+    $scope.amountOfRuns = "";
     
     $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];
+    
+    $scope.goToHome= function(){
+    	$state.transitionTo('home');
+    }
+    
+    $scope.goToProject = function(){
+    	$state.transitionTo('reports.classes');
+    }
+    
+    $scope.goToClasses = function(){
+    	$state.transitionTo('reports.classes');
+    }
+    
+    $scope.goToMethods = function(){
+    	$state.transitionTo('reports.methods');
+    }
+    
+    $scope.goToCases = function(){
+    	$state.transitionTo('reports.cases');
+    };
+    
+    $scope.labels2 = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
+    $scope.data2 = [300, 500, 100];
+    
+    $scope.getCurrentState= function(state){
+    	return $state.includes(state);
+    }
     
 	for (var int = 0; int < 50; int++) {
 		$scope.mockSuites.push("Suite Run " + int);
@@ -43,6 +70,196 @@ angular.module('webLog')
 //    	}
 //    	console.log($scope.currentSuiteRun);
 //    }
+    
+    $scope.createHomeChartFromID = function(id) {
+    	var requestObject = {
+    			suiteid:id,
+    			reslimit:50,		
+    			classes:[],
+    			testcases:[],
+    			drivers:[]
+    		}
+    	$http.post('/api/stats/graphdata', requestObject)
+    	.success(function(data, status, headers, config){ 
+    		console.log(data);
+    		$scope.createHomeChart(data, id);
+    	}).error(function(data, status, headers, config){
+    		console.log(data);
+    	});
+	};
+	
+	   $scope.loadMainChart = function(suiteID, classIDs, caseIDs, drivers) {
+	    	var requestObject = $scope.getGraphDataObject(suiteID, classIDs, caseIDs, drivers)
+	    	$http.post('/api/stats/graphdata', requestObject)
+	    	.success(function(data, status, headers, config){ 
+	    		$scope.createMainChart(data);
+	    	}).error(function(data, status, headers, config){
+	    		console.log(data);
+	    	});
+		};
+	
+    $http.get('/api/suite/getsuites')
+    .success(function(data, status, headers, config){ 
+    	if(data){
+    		$scope.allSuites = data;
+    		console.log($scope.allSuites);
+    		for (var i = 0; i < $scope.allSuites.length; i++) {
+    			$scope.createHomeChartFromID($scope.allSuites[i].id);
+			}
+    	};
+    }).error(function(data, status, headers, config){
+    	console.log(data);
+    });
+	
+	// CHART OBJECTS -----------------------------------------------------------------------------------------------------------
+	
+    $scope.createMainChart = function(data){
+    	var chartMainConfigObject = {
+    			  options: {
+    				    chart: {
+    				      type: "areaspline"
+    				    },
+    				    plotOptions: {
+    				      series: {
+    				    	  stacking: "percent"
+    				      }
+    				    }
+    				  },
+    				  series: [
+    				    {
+    				      data: [],
+    				      name:'Pass',
+    				      id: "mainPass"
+    				    },
+    				    {
+    				      data: [],
+    				      name: 'Fail',
+    				      id: "mainFail"
+    				    }
+    				  ],
+    				  title: {
+    				    text: "Main Graph"
+    				  },
+    				  credits: {
+    				    enabled: false
+    				  },
+    				  loading: "Getting MASSIVE Data",
+    				  size: {},
+    				  useHighStocks: false
+    				};
+    	
+		for (var j = 0; j < data.length; j++) {
+			chartMainConfigObject.series[1].data.push(data[j].fail + data[j].error);
+			chartMainConfigObject.series[0].data.push(data[j].pass);
+		}
+		$scope.chartMainConfig = chartMainConfigObject;
+    	
+    };
+    
+    $scope.createHomeChart = function(data, id) {
+    	
+        var chartHomeConfigObject = {
+        		  options: {
+        			    chart: {
+        			      type: "areaspline"
+        			    },
+        			    plotOptions: {
+        			      series: {
+        			        stacking: "normal"
+        			      }
+        			    }
+        			  }, 
+        		  series: [{
+        			  data: [],
+        		      id: "fail",
+        		      name: "Fail",
+        		      type: "column",
+        		      color: "red",
+        		      dashStyle: "Solid",
+        		      connectNulls: false
+        		  },{
+        			  data: [],
+      	   		      id: "pass",
+      	   		      name: "Pass",
+      	   		      type: "column",
+      	   		      color: "green",
+      	   		      dashStyle: "Solid",
+      	   		      connectNulls: false
+        		  }],
+        		  title: {
+        		     text: 'Pass / Fail - Last 50 Runs'
+        		  },
+        		  loading: false,
+        		  xAxis: {
+        		  title: {text: 'Tests run'}
+        		  },
+        		  useHighStocks: false,
+        		  size: {
+        		   height: 400
+        		  },
+        		  //function (optional)
+        		  func: function (chart) {
+        		   //setup some logic for the chart
+        		  }
+        		};
+    	
+		for (var j = 0; j < data.length; j++) {
+			chartHomeConfigObject.series[0].data.push(data[j].fail + data[j].error);
+			chartHomeConfigObject.series[1].data.push(data[j].pass);
+		}
+		$scope.chartHomeConfig[id] = chartHomeConfigObject;
+    };
+    
+    function getTotalFail(suiteRun) {
+		return suiteRun.fail + suiteRun.error;
+	}
+    
+    function getTotalPass(suiteRun) {
+    	return suiteRun.pass;
+	}
+    
+    $scope.getMainGraphData = function(suiteID, classIDs, caseIDs, drivers){
+    	$scope.requestObject =  $scope.getGraphDataObject(suiteID, classIDs, caseIDs, drivers);
+    	$http.post('/api/stats/graphdata', $scope.requestObject)
+    	.success(function(data, status, headers, config){ 
+    		$scope.currentGraphData = data;
+    		
+    	}).error(function(data, status, headers, config){
+    		console.log(data);
+    	});
+    }
+    
+    $scope.getGraphDataObject = function(suiteID, classIDs, caseIDs, drivers){
+    	var dataRequest = {};
+    	
+    		dataRequest.suiteid = suiteID;
+    		if (!(isNaN($scope.amountOfRuns)) && !($scope.amountOfRuns == "")) {
+				dataRequest.reslimit = parseInt($scope.amountOfRuns) +1;
+			} else {
+				dataRequest.reslimit = 50;
+			}
+    		
+    		if (classIDs) {
+				dataRequest.classes= classIDs;
+			} else {
+				dataRequest.classes=[];
+			}
+    		
+    		if (caseIDs) {
+				dataRequest.testcases = caseIDs;
+			} else {
+				dataRequest.testcases = [];
+			}
+    		
+    		if (drivers) {
+				dataRequest.drivers = drivers;
+			} else {
+				dataRequest.drivers = [];
+			}
+    	return dataRequest;
+    };
+    
+    //  CSS -----------------------------------------------------------------------------------------------------------------
     
     $scope.getPanel = function(passed){
     	if(passed)
@@ -78,32 +295,5 @@ angular.module('webLog')
     	else
     		return 'img/logo3.jpg';    
     };
-    
-    $scope.goToHome= function(){
-    	$state.transitionTo('home');
-    }
-    
-    $scope.goToProject = function(){
-    	$state.transitionTo('reports.classes');
-    }
-    
-    $scope.goToClasses = function(){
-    	$state.transitionTo('reports.classes');
-    }
-    
-    $scope.goToMethods = function(){
-    	$state.transitionTo('reports.methods');
-    }
-    
-    $scope.goToCases = function(){
-    	$state.transitionTo('reports.cases');
-    };
-    
-    $scope.labels2 = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
-    $scope.data2 = [300, 500, 100];
-    
-    $scope.getCurrentState= function(state){
-    	return $state.includes(state);
-    }
     
 }]);
