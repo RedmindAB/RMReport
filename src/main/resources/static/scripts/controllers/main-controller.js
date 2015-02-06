@@ -8,6 +8,8 @@ angular.module('webLog')
     $scope.mockSuites = []
     $scope.currentClasses = {};
     $scope.currentClass= [];
+    $scope.currentCases = [];
+    $scope.currentMethod = [];
     $scope.currentSuiteID;
     $scope.chartHomeConfig = {};
     $scope.chartMainConfig = {};
@@ -112,6 +114,18 @@ angular.module('webLog')
     
     // HTTP FOR CHART OBJECTS-----------------------------------------------------------------------------------------------------------
     
+	$scope.getCases = function(method){
+		$scope.currentMethod = method;
+	    $http.get('/api/driver/bytestcase?id='+$scope.currentMethod.id)
+	    .success(function(data, status, headers, config){ 
+	    	if(data){
+	    		$scope.currentCases = data;
+	    	};
+	    }).error(function(data, status, headers, config){
+	    	console.log(data);
+	    });
+	}
+	
 	$scope.setCurrentSuite = function(suite){
 		$scope.currentSuite = suite;
 	    $http.get('/api/class/getclasses?suiteid='+$scope.currentSuite.id)
@@ -184,19 +198,15 @@ angular.module('webLog')
     		if (!(isNaN(reslimit)) && !(reslimit == "")) {
 				dataRequest.reslimit = parseInt(reslimit) +1;
 			} else {
-				dataRequest.reslimit = 50;
+				dataRequest.reslimit = 51;
 			}
-    		
 			dataRequest.classes=chosen.classes;
 			dataRequest.testcases = chosen.methods;
-    		
     		if (drivers) {
 				dataRequest.drivers = drivers;
 			} else {
 				dataRequest.drivers = [];
 			}
-    		console.log("request");
-    		console.log(dataRequest);
     	return dataRequest;
     };
     
@@ -214,13 +224,23 @@ angular.module('webLog')
     				    chart: {
     				      type: "areaspline",
     				      backgroundColor: '#ecf0f1',
-
     				    },
 			            tooltip: {
 			            },
     				    plotOptions: {
     				      series: {
-    				    	  stacking: "percent"
+    				    	  stacking: "percent",
+    		                    cursor: 'pointer',
+    		                    point: {
+    		                        events: {
+    		                            click: function (e) {
+    		                            	console.log(this.category);
+    		                            }
+    		                        }
+    		                    },
+    		                    marker: {
+    		                        lineWidth: 1
+    		                    }
     				      }
     				    }
     				  },
@@ -336,30 +356,30 @@ angular.module('webLog')
     //  CSS -----------------------------------------------------------------------------------------------------------------
     
     $scope.getPanel = function(passed){
-    	if(passed)
-    		return 'panel panel-success bg-success success';
-    	else
+    	if(passed === "failure" || passed === "error")
     		return 'panel panel-danger bg-danger';
+    	else
+    		return 'panel panel-success bg-success success';
     };
     
     $scope.getBG = function(passed){
-    	if(passed)
-    		return 'bg-success';
-    	else
+    	if(passed === "failure" || passed === "error")
     		return 'bg-danger';
+    	else
+    		return 'bg-success';
     };
     
     $scope.getBgCo = function(passed){
-    	if(passed)
-    		return '#DFF0D8';
-    	else
+    	if(passed === "failure" || passed === "error")
     		return '#F2DEDE';
+    	else
+    		return '#DFF0D8';
     };
     $scope.getCo = function(passed){
-    	if(passed)
-    		return '#3C763D';
-    	else
+    	if(passed === "failure" || passed === "error")
     		return '#A94442';
+    	else
+    		return '#3C763D';
     };
     $scope.getLogo = function(passed){
     	if(passed == 1)
