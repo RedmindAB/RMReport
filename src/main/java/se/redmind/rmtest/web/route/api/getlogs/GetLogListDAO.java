@@ -15,4 +15,5 @@ public class GetLogListDAO {
 		JsonArray reportList = new ReportHandler().getReportList();
 		return new Gson().toJson(reportList);
 	}
+
 }
