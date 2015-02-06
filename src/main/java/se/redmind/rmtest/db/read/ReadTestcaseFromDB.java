@@ -25,7 +25,7 @@ public class ReadTestcaseFromDB extends DBBridge {
     String GET_TESTCASE_FROM_CLASS_ID = "SELECT name, testcase_id FROM testcase WHERE class_id = ";
     String GET_DRIVER_BY_TESTCASE_ID = "SELECT DISTINCT driver FROM REPORT WHERE testcase_id = ";
     String GET_ALL_FROM_TESTCASE = "SELECT * FROM testcase";
-    String GET_DRIVER_AND_MESSAGE_ = "select driver, result, message from report where testcase_id = ";
+    String GET_DRIVER_AND_MESSAGE_ = "select driver, result from report where testcase_id = ";
     String FROM_LAST_RUN = " and timestamp = (select max(timestamp) from report);";
     String GET_DRIVER_ = "select distinct driver from report where testcase_id =  ";
     String AND_TIMESTAMP_FROM_HISTORY_ = " and timestamp != (select max(timestamp) from report)";
