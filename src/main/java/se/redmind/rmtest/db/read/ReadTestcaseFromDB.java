@@ -90,18 +90,14 @@ public class ReadTestcaseFromDB extends DBBridge {
     	JsonArray array = new JsonArray();
     	try {
 			while(rs.next()){
-				while(rs2.next()){
-				
 				JsonObject jsonObject = new JsonObject();
-				
 				jsonObject.add("driver", new JsonPrimitive(rs.getString("driver")));
 				jsonObject.add("result", new JsonPrimitive(rs.getString("result")));
 				jsonObject.add("message", new JsonPrimitive(rs.getString("message")));
-				jsonObject.add("driverHistory", new JsonPrimitive(rs2.getString("driver")));
 				array.add(jsonObject);
 				
-				}
 			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
