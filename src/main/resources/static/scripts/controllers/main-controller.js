@@ -97,18 +97,6 @@ angular.module('webLog')
 		return chosen;
 	}
 	
-    $scope.setCurrentSuite = function(suite){
-		$scope.currentSuite = suite;
-	    $http.get('/api/class/getclasses?suiteid='+$scope.currentSuite.id)
-	    .success(function(data, status, headers, config){ 
-	    	if(data){
-	    		$scope.currentClasses = data;
-	    	};
-	    }).error(function(data, status, headers, config){
-	    	console.log(data);
-	    });
-    };
-	
 //    $scope.setCurrentSuiteRun = function(run){
 //    	console.log("setting current suite run");
 //    	$scope.currentSuiteRun = run;
@@ -122,10 +110,34 @@ angular.module('webLog')
 //    	console.log($scope.currentSuiteRun);
 //    }
     
+    // HTTP FOR CHART OBJECTS-----------------------------------------------------------------------------------------------------------
+    
+	$scope.setCurrentSuite = function(suite){
+		$scope.currentSuite = suite;
+	    $http.get('/api/class/getclasses?suiteid='+$scope.currentSuite.id)
+	    .success(function(data, status, headers, config){ 
+	    	if(data){
+	    		$scope.currentClasses = data;
+	    	};
+	    }).error(function(data, status, headers, config){
+	    	console.log(data);
+	    });
+	};
+	
+   $scope.loadMainChart = function(suiteID, reslimit, drivers) {
+    	var requestObject = $scope.getGraphDataObject(suiteID, reslimit, drivers)
+    	$http.post('/api/stats/graphdata', requestObject)
+    	.success(function(data, status, headers, config){
+    		$scope.createMainChart(data);
+    	}).error(function(data, status, headers, config){
+    		console.log(data);
+    	});
+   };
+    
     $scope.createHomeChartFromID = function(id) {
     	var requestObject = {
     			suiteid:id,
-    			reslimit:50,		
+    			reslimit:51,		
     			classes:[],
     			testcases:[],
     			drivers:[]
@@ -137,17 +149,18 @@ angular.module('webLog')
     		console.log(data);
     	});
 	};
-	
-	   $scope.loadMainChart = function(suiteID, reslimit, drivers) {
-	    	var requestObject = $scope.getGraphDataObject(suiteID, reslimit, drivers)
-	    	$http.post('/api/stats/graphdata', requestObject)
-	    	.success(function(data, status, headers, config){
-	    		$scope.createMainChart(data);
-	    	}).error(function(data, status, headers, config){
-	    		console.log(data);
-	    	});
-		};
-	
+		
+    $scope.getMainGraphData = function(suiteID, classIDs, caseIDs, drivers){
+    	$scope.requestObject =  $scope.getGraphDataObject(suiteID, classIDs, caseIDs, drivers);
+    	$http.post('/api/stats/graphdata', $scope.requestObject)
+    	.success(function(data, status, headers, config){ 
+    		$scope.currentGraphData = data;
+    		
+    	}).error(function(data, status, headers, config){
+    		console.log(data);
+    	});
+    }
+    
     $http.get('/api/suite/getsuites')
     .success(function(data, status, headers, config){ 
     	if(data){
@@ -159,21 +172,69 @@ angular.module('webLog')
     }).error(function(data, status, headers, config){
     	console.log(data);
     });
-	
+    
+    $scope.getGraphDataObject = function(suiteID, reslimit, drivers){
+    	console.log("methods");
+    	console.log($scope.methods);
+    	console.log("classes");
+    	console.log($scope.currentClasses);
+    	var chosen = $scope.getChosen();
+    	var dataRequest = {};
+    		dataRequest.suiteid = suiteID;
+    		if (!(isNaN(reslimit)) && !(reslimit == "")) {
+				dataRequest.reslimit = parseInt(reslimit) +1;
+			} else {
+				dataRequest.reslimit = 50;
+			}
+    		
+			dataRequest.classes=chosen.classes;
+			dataRequest.testcases = chosen.methods;
+    		
+    		if (drivers) {
+				dataRequest.drivers = drivers;
+			} else {
+				dataRequest.drivers = [];
+			}
+    		console.log("request");
+    		console.log(dataRequest);
+    	return dataRequest;
+    };
+    
 	// CHART OBJECTS -----------------------------------------------------------------------------------------------------------
 	
     $scope.createMainChart = function(data){
+    	
+    	var timestamp = [];
+    	for (var index = 0; index < data.length; index++) {
+			timestamp.push(data[index].timestamp);
+		}
+    	
     	var chartMainConfigObject = {
     			  options: {
     				    chart: {
     				      type: "areaspline",
-    				      backgroundColor: '#ecf0f1'
+    				      backgroundColor: '#ecf0f1',
+
     				    },
+			            tooltip: {
+			            },
     				    plotOptions: {
     				      series: {
     				    	  stacking: "percent"
     				      }
     				    }
+    				  },
+    				  xAxis:{
+    					  categories: timestamp,
+    					  minTickInterval: 5,
+    					  labels:{
+    						  rotation: 45
+    					  }
+    				  },
+						yAxis: {
+							title: {
+								text: 'Percentage'
+							},
     				  },
     				  series: [
     				    {
@@ -190,7 +251,7 @@ angular.module('webLog')
     				    }
     				  ],
     				  title: {
-    				    text: "Main Graph"
+    				    text: "Pass / Fail for the last " + data.length + " results" 
     				  },
     				  credits: {
     				    enabled: false
@@ -201,6 +262,8 @@ angular.module('webLog')
     				};
     	
 		for (var j = 0; j < data.length; j++) {
+			
+			
 			chartMainConfigObject.series[1].data.push(data[j].fail + data[j].error);
 			chartMainConfigObject.series[0].data.push(data[j].pass);
 		}
@@ -269,44 +332,6 @@ angular.module('webLog')
     function getTotalPass(suiteRun) {
     	return suiteRun.pass;
 	}
-    
-    $scope.getMainGraphData = function(suiteID, classIDs, caseIDs, drivers){
-    	$scope.requestObject =  $scope.getGraphDataObject(suiteID, classIDs, caseIDs, drivers);
-    	$http.post('/api/stats/graphdata', $scope.requestObject)
-    	.success(function(data, status, headers, config){ 
-    		$scope.currentGraphData = data;
-    		
-    	}).error(function(data, status, headers, config){
-    		console.log(data);
-    	});
-    }
-    
-    $scope.getGraphDataObject = function(suiteID, reslimit, drivers){
-    	console.log("methods");
-    	console.log($scope.methods);
-    	console.log("classes");
-    	console.log($scope.currentClasses);
-    	var chosen = $scope.getChosen();
-    	var dataRequest = {};
-    		dataRequest.suiteid = suiteID;
-    		if (!(isNaN(reslimit)) && !(reslimit == "")) {
-				dataRequest.reslimit = parseInt(reslimit) +1;
-			} else {
-				dataRequest.reslimit = 50;
-			}
-    		
-			dataRequest.classes=chosen.classes;
-			dataRequest.testcases = chosen.methods;
-    		
-    		if (drivers) {
-				dataRequest.drivers = drivers;
-			} else {
-				dataRequest.drivers = [];
-			}
-    		console.log("request");
-    		console.log(dataRequest);
-    	return dataRequest;
-    };
     
     //  CSS -----------------------------------------------------------------------------------------------------------------
     
