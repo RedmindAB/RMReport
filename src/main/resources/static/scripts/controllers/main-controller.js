@@ -256,6 +256,7 @@ angular.module('webLog')
         		};
     	
 		for (var j = 0; j < data.length; j++) {
+			console.log(data[j]);
 			chartHomeConfigObject.series[0].data.push(data[j].pass);
 			chartHomeConfigObject.series[1].data.push(data[j].fail + data[j].error);
 		}

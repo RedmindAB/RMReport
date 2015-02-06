@@ -11,7 +11,6 @@ public class GetGraphDataWS extends Route {
 
 	public GetGraphDataWS(String path) {
 		super(path);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
