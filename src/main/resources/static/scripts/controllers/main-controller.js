@@ -116,8 +116,15 @@ angular.module('webLog')
 		$scope.currentDriver = driver;
 	}
 	
-	$scope.getSuiteSkeleton = function(id){
-		
+	$scope.getSuiteSkeleton = function(suite){
+	    $http.get('/api/suite/latestbyid?suiteid==' + suite.id)
+	    .success(function(data, status, headers, config){ 
+	    	if(data){
+	    			$scope.suiteSkeleton = data;
+	    	};
+	    }).error(function(data, status, headers, config){
+	    	console.log(data);
+	    });
 	}
 	
 	$scope.getDrivers = function(method){
@@ -194,10 +201,6 @@ angular.module('webLog')
     }
     
     $scope.getGraphDataObject = function(suiteID, reslimit, drivers){
-    	console.log("methods");
-    	console.log($scope.methods);
-    	console.log("classes");
-    	console.log($scope.currentClasses);
     	var chosen = $scope.getChosen();
     	var dataRequest = {};
     		dataRequest.suiteid = suiteID;
@@ -345,7 +348,6 @@ angular.module('webLog')
         		};
     	
 		for (var j = 0; j < data.length; j++) {
-			console.log(data[j]);
 			chartHomeConfigObject.series[0].data.push(data[j].pass);
 			chartHomeConfigObject.series[1].data.push(data[j].fail + data[j].error);
 		}
