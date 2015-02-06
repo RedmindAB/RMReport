@@ -26,7 +26,6 @@ public class ApiRouter {
 		get(new GetSuiteDataWS("/api/suite/data"));
 		get(new GetClassesWS("/api/class/getclasses"));
 		get(new GetMethodsWS("/api/method/getmethods"));
-		get(new GetSuiteDataWS("/api/suite/data"));
 		get(new GetDriverByTestcaseWS("/api/driver/bytestcase"));
 		post(new GetGraphDataWS("/api/stats/graphdata"));
 	}
