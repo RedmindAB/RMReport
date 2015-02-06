@@ -93,7 +93,6 @@ public class ReadTestcaseFromDB extends DBBridge {
 				JsonObject jsonObject = new JsonObject();
 				jsonObject.add("driver", new JsonPrimitive(rs.getString("driver")));
 				jsonObject.add("result", new JsonPrimitive(rs.getString("result")));
-				jsonObject.add("message", new JsonPrimitive(rs.getString("message")));
 				array.add(jsonObject);
 				
 			}

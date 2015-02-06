@@ -3,9 +3,10 @@
 	<img ng-src="{{imagePaths[currentSuite.id -1]}}" style="cursor: pointer" class='image-paths' ng-click="goToHome()"></img> 
 	
 	<!-- navigation links -->
-	<div id="navigation-classes" ng-click="goToClasses()" class="navTextStuff" ng-show="getCurrentState('reports.classes') || getCurrentState('reports.methods') || getCurrentState('reports.cases')">&nbsp;> Classes&nbsp;</p></div>
-	<div id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="getCurrentState('reports.methods')  || getCurrentState('reports.cases')">> Methods&nbsp;</p></div>
-	<div id="navigation-cases" class="navTextStuff" ng-show="getCurrentState('reports.cases')">> Cases&nbsp;</p></div><br/><br/>
+	<div id="navigation-classes" ng-click="goToClasses()" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;> {{currentSuite.name}}&nbsp;</p></div>
+	<div id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">> {{currentClass.name}}&nbsp;</p></div>
+	<div id="navigation-drivers" ng-click="goToDrivers()" class="navTextStuff" ng-show="showClassLink('drivers')">> {{currentMethod.name}}&nbsp;</p></div>
+	<div id="navigation-cases" ng-click="goToCases()" class="navTextStuff" ng-show="showClassLink('cases')">> {{currentDriver.driver}}&nbsp;</p></div><br/><br/>
 	<!--<canvas id="line" width='600px' height='200px' class="chart chart-line" data="project.data" labels="project.labels" series="project.series" legend="true" series="series" options="options" click="onClick"></canvas>-->
 <highchart id="chart1" config="chartMainConfig"></highchart>
 </div>

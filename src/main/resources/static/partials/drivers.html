@@ -1,0 +1,12 @@
+<accordion close-others="true">
+	<!-- repeated content -->
+	<div ng-repeat="driver in currentDrivers | filter:searchText track by $index " style='cursor: pointer;margin-top: 10px' ng-class='getPanel(driver.result)' ng-style="{'background-color': getBgCo(driver.result)}">
+
+			<input type="checkbox" id="mycheckbox" ng-model="driver.chosen"><label for="mycheckbox"></label>	
+	        <div ng-style="{'color' : getCo(driver.result)}" ng-click="getCases(driver); goToCases(); resetFilterField()">
+	        		<div style='left:0px;top:0px;padding-left:10px'><h3>{{driver.driver}}</div>
+	        		<div style='float:left;display:inline'></div>
+	        </div>
+	</div>
+	<!-- repeated content  End-->
+</accordion>

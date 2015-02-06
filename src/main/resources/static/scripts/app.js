@@ -24,6 +24,11 @@ angular.module('webLog', ['ui.router','ui.bootstrap','n3-line-chart',"highcharts
 	        templateUrl: 'partials/methods.html',
 	        controller: ''
         })
+        .state('reports.drivers',{
+	        url:'/drivers',
+	        templateUrl: 'partials/drivers.html',
+	        controller: ''
+        })
 	    .state('reports.cases',{
 	        url:'/cases',
 	        templateUrl: 'partials/cases.html',
