@@ -1,11 +1,11 @@
 <accordion close-others="true">
 	<!-- repeated content -->
-	<div ng-repeat="method in methods | filter:searchText track by $index " style='margin-top: 10px' ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
+	<div ng-repeat="method in currentMethods | filter:searchText track by $index " style='cursor: pointer;margin-top: 10px' ng-class='getPanel(method.result)' ng-style="{'background-color': getBgCo(method.result)}">
 
 		<input type="checkbox" id="mycheckbox" ng-model="method.chosen"><label for="mycheckbox"></label>	
 	
 	    <!-- non collapsing header -->
-	        <div ng-style="{'color' : getCo(test.passed)}" ng-click="getCases(method); goToCases(); resetFilterField()">
+	        <div ng-style="{'color' : getCo(method.result)}" ng-click="getDrivers(method); goToDrivers(); resetFilterField()">
 	        		<div style='padding-left:10px'><h3>{{method.name}}</div>
 	        		<div style='float:right;display:inline'></div>
 	        </div>

@@ -1,15 +1,16 @@
 angular.module('webLog')
     .controller('MainCtrl',['$scope', '$http','$location', '$timeout','$state', function($scope, $http, $location, $timeout, $state){
     	
+    $scope.suiteSkeleton = [];	
     $scope.$state = $state;
     $scope.methods = {};
     $scope.errorReport={};
     $scope.currentSuiteRun;
-    $scope.mockSuites = []
     $scope.currentClasses = {};
     $scope.currentClass= [];
-    $scope.currentCases = [];
     $scope.currentMethod = [];
+    $scope.currentDriver = []
+    $scope.currentCases = [];
     $scope.currentSuiteID;
     $scope.chartHomeConfig = {};
     $scope.chartMainConfig = {};
@@ -19,6 +20,7 @@ angular.module('webLog')
     		methods: [],
     		drivers: []
     };
+    
     $scope.amountOfRuns = "";
     
     $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];
@@ -39,20 +41,16 @@ angular.module('webLog')
     	$state.transitionTo('reports.methods');
     }
     
+    $scope.goToDrivers = function(){
+    	$state.transitionTo('reports.drivers');
+    };
+    
     $scope.goToCases = function(){
     	$state.transitionTo('reports.cases');
     };
     
     $scope.labels2 = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
     $scope.data2 = [300, 500, 100];
-    
-    $scope.getCurrentState= function(state){
-    	return $state.includes(state);
-    }
-    
-	for (var int = 0; int < 50; int++) {
-		$scope.mockSuites.push("Suite Run " + int);
-	};
     
 	$scope.getMethods = function(testClass){
 		$scope.currentClass=testClass;
@@ -112,14 +110,22 @@ angular.module('webLog')
 //    	console.log($scope.currentSuiteRun);
 //    }
     
-    // HTTP FOR CHART OBJECTS-----------------------------------------------------------------------------------------------------------
+    // HTTP -----------------------------------------------------------------------------------------------------------
     
-	$scope.getCases = function(method){
+	$scope.getCases = function(driver){
+		$scope.currentDriver = driver;
+	}
+	
+	$scope.getSuiteSkeleton = function(id){
+		
+	}
+	
+	$scope.getDrivers = function(method){
 		$scope.currentMethod = method;
 	    $http.get('/api/driver/bytestcase?id='+$scope.currentMethod.id)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
-	    		$scope.currentCases = data;
+	    		$scope.currentDrivers = data;
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -164,17 +170,6 @@ angular.module('webLog')
     	});
 	};
 		
-    $scope.getMainGraphData = function(suiteID, classIDs, caseIDs, drivers){
-    	$scope.requestObject =  $scope.getGraphDataObject(suiteID, classIDs, caseIDs, drivers);
-    	$http.post('/api/stats/graphdata', $scope.requestObject)
-    	.success(function(data, status, headers, config){ 
-    		$scope.currentGraphData = data;
-    		
-    	}).error(function(data, status, headers, config){
-    		console.log(data);
-    	});
-    }
-    
     $http.get('/api/suite/getsuites')
     .success(function(data, status, headers, config){ 
     	if(data){
@@ -186,6 +181,17 @@ angular.module('webLog')
     }).error(function(data, status, headers, config){
     	console.log(data);
     });
+	
+    $scope.getMainGraphData = function(suiteID, classIDs, caseIDs, drivers){
+    	$scope.requestObject =  $scope.getGraphDataObject(suiteID, classIDs, caseIDs, drivers);
+    	$http.post('/api/stats/graphdata', $scope.requestObject)
+    	.success(function(data, status, headers, config){ 
+    		$scope.currentGraphData = data;
+    		
+    	}).error(function(data, status, headers, config){
+    		console.log(data);
+    	});
+    }
     
     $scope.getGraphDataObject = function(suiteID, reslimit, drivers){
     	console.log("methods");
@@ -354,6 +360,37 @@ angular.module('webLog')
 	}
     
     //  CSS -----------------------------------------------------------------------------------------------------------------
+    
+    $scope.getCurrentState= function(state){
+    	return $state.includes(state);
+    }
+    
+    $scope.showClassLink = function(page){
+    	switch (page) {
+		case "classes":
+			return $scope.getCurrentState('reports.classes') || 
+			$scope.getCurrentState('reports.methods') || 
+			$scope.getCurrentState('reports.drivers') || 
+			$scope.getCurrentState('reports.cases');
+			break;
+		case "methods":
+			return $scope.getCurrentState('reports.methods')  || 
+			$scope.getCurrentState('reports.drivers') || 
+			$scope.getCurrentState('reports.cases');
+			break;
+		case "drivers":
+			return $scope.getCurrentState('reports.drivers') || 
+			$scope.getCurrentState('reports.cases');
+			break;
+		case "cases":
+			return $scope.getCurrentState('reports.cases');
+			break;
+
+		default:
+			return false;
+			break;
+		}
+    }
     
     $scope.getPanel = function(passed){
     	if(passed === "failure" || passed === "error")
