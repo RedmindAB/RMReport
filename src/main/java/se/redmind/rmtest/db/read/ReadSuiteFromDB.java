@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 
 /**
  * Created by johan on 15-01-29.
@@ -16,6 +19,8 @@ public class ReadSuiteFromDB extends DBBridge{
 
     String GET_SUIT_ID = "select suite_id from suite where name= ";
     String GET_ALL_SUITS = "select * from suite";
+    String GET_SUITE_MAX = "SELECT report.class_id, class.name, report.testcase_id, testcase.name, result FROM report INNER JOIN class ON report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id WHERE timestamp = (SELECT MAX(timestamp) FROM report WHERE suite_id = {suite_id}) GROUP BY report.testcase_id;";
+    String GET_SUITE_BY_TIMESTAMP = "SELECT report.class_id, class.name, report.testcase_id, testcase.name, result FROM report INNER JOIN class ON report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id WHERE timestamp = {timestamp} AND suite_id = {suite_id} GROUP BY report.testcase_id;";
 
 
     public int getSuiteID(String suitName){
@@ -44,5 +49,20 @@ public class ReadSuiteFromDB extends DBBridge{
         }
         return null;
     }
-
+    
+    public JsonArray getLastestSuiteRunFromID(int suiteid){
+    	HashMap<String, String> map = new HashMap<String, String>();
+    	map.put("suite_id", ""+suiteid);
+    	ResultSet rs = readFromDB(stringParser.getString(GET_SUITE_MAX, map));
+    	return new SuiteJsonBuilder(rs).build().getSuite();
+    }
+    
+    public JsonArray getSuiteRunByTimestamp(int suiteid, String timestamp){
+    	HashMap<String, String> map = new HashMap<String, String>();
+    	map.put("suite_id", ""+suiteid);
+    	map.put("timestamp", timestamp);
+    	ResultSet rs = readFromDB(stringParser.getString(GET_SUITE_MAX, map));
+    	return new SuiteJsonBuilder(rs).build().getSuite();
+    }
+    
 }

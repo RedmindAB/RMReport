@@ -1,6 +1,8 @@
 package se.redmind.rmtest.db.read;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class ReadStatsFromReport extends ReadReportFromDB{
 									+ "WHERE timestamp >= (SELECT MIN(timestamp) FROM (SELECT DISTINCT timestamp FROM report WHERE suite_id = {suiteid} ORDER BY timestamp DESC LIMIT {reslimit}))"
 									+ " AND suite_id = {suiteid} "
 									+ "{conditions}"
-									+ "ORDER BY timestamp DESC;";
+									+ "ORDER BY timestamp;";
 	private String SUITE = "suite_id = ";
 	private String DRIVER = "driver = ";
 	private String CLASS = "class_id = ";

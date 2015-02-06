@@ -40,7 +40,7 @@ public class TestCaseRunInserter extends DBBridge {
 				map.put("testcase_id", ""+testCases.get(testCase.getMethodName()+classID));
 				map.put("timestamp", report.getTimestamp());
 				map.put("result", testCase.getResult());
-				map.put("message", "\""+testCase.getMessage()+"\"");
+				map.put("message", testCase.getMessage());
 				map.put("name", testCase.getMethodName());
 				map.put("driver", testCase.getDriverName());
 				map.put("time", ""+testCase.getTime());
