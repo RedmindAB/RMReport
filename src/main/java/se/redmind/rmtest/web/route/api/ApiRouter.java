@@ -2,6 +2,7 @@ package se.redmind.rmtest.web.route.api;
 
 import static spark.Spark.*;
 import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesWS;
+import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseWS;
 import se.redmind.rmtest.web.route.api.getlogs.GetLogListWS;
 import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
 import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
@@ -25,6 +26,8 @@ public class ApiRouter {
 		get(new GetSuiteDataWS("/api/suite/data"));
 		get(new GetClassesWS("/api/class/getclasses"));
 		get(new GetMethodsWS("/api/method/getmethods"));
+		get(new GetSuiteDataWS("/api/suite/data"));
+		get(new GetDriverByTestcaseWS("/api/driver/bytestcase"));
 		post(new GetGraphDataWS("/api/stats/graphdata"));
 	}
 	

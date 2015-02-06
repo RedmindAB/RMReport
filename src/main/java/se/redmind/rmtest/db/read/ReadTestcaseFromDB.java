@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+
 import se.redmind.rmtest.db.DBBridge;
 
 /**
@@ -21,7 +25,11 @@ public class ReadTestcaseFromDB extends DBBridge {
     String GET_TESTCASE_FROM_CLASS_ID = "SELECT name, testcase_id FROM testcase WHERE class_id = ";
     String GET_DRIVER_BY_TESTCASE_ID = "SELECT DISTINCT driver FROM REPORT WHERE testcase_id = ";
     String GET_ALL_FROM_TESTCASE = "SELECT * FROM testcase";
-
+    String GET_DRIVER_AND_MESSAGE_ = "select driver, result from report where testcase_id = ";
+    String FROM_LAST_RUN = " and timestamp = (select max(timestamp) from report);";
+    String GET_DRIVER_ = "select distinct driver from report where testcase_id =  ";
+    String AND_TIMESTAMP_FROM_HISTORY_ = " and timestamp != (select max(timestamp) from report)";
+    
     public int getTestCaseID(String testCaseName){
         ResultSet rs = readFromDB(GET_TESTCASE_ID+"'"+testCaseName+"'");
         try {
@@ -76,6 +84,26 @@ public class ReadTestcaseFromDB extends DBBridge {
 		}
 		return hs;
     }
-
+    public JsonArray getDriverAndMessageFromLastRun(int testcaseId){
+    	ResultSet rs = readFromDB(GET_DRIVER_AND_MESSAGE_+testcaseId+FROM_LAST_RUN);
+    	ResultSet rs2 = readFromDB(GET_DRIVER_+testcaseId+AND_TIMESTAMP_FROM_HISTORY_);
+    	JsonArray array = new JsonArray();
+    	try {
+			while(rs.next()){
+				JsonObject jsonObject = new JsonObject();
+				jsonObject.add("driver", new JsonPrimitive(rs.getString("driver")));
+				jsonObject.add("result", new JsonPrimitive(rs.getString("result")));
+				jsonObject.add("message", new JsonPrimitive(rs.getString("message")));
+				array.add(jsonObject);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return array;
+    	  	
+    }
 
 }
