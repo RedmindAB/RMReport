@@ -99,6 +99,14 @@ angular.module('webLog')
     
 	$scope.getCases = function(driver){
 		CurrentSuite.currentDriver = driver;
+		$http.get("/api/testcase/caserunsbydriver?id=" + CurrentSuite.currentMethod.id + "&driver='" + driver.driver + "'")
+	    .success(function(data, status, headers, config){ 
+	    	if(data){
+	    		CurrentSuite.currentDriverRuns = data;
+	    	};
+	    }).error(function(data, status, headers, config){
+	    	console.log(data);
+	    });
 	}
 	
 	$scope.getSuiteSkeleton = function(suite){

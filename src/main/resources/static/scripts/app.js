@@ -34,9 +34,6 @@ angular.module('webLog', ['ui.router','ui.bootstrap','n3-line-chart',"highcharts
 	        templateUrl: 'partials/cases.html',
 	        controller: ''
 	    });
-
-    
-    
     });
 
 
