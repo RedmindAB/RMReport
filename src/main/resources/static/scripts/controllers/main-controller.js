@@ -1,6 +1,7 @@
 angular.module('webLog')
-    .controller('MainCtrl',['$scope', '$rootScope', '$http','$location', '$timeout','$state', 'SearchField', function($scope, $rootScope,$http, $location, $timeout, $state, SearchField){
+    .controller('MainCtrl',['$scope', '$rootScope', '$http','$location', '$timeout','$state', 'SearchField', 'CurrentSuite', function($scope, $rootScope,$http, $location, $timeout, $state, SearchField, CurrentSuite){
     	
+    $scope.CurrentSuite = CurrentSuite;
     $scope.SearchField = SearchField;
     $scope.currentSuite = [];
     $scope.currentSuiteID;
@@ -58,8 +59,9 @@ angular.module('webLog')
     };
     
 	$scope.getMethods = function(testClass){
-		$scope.currentClass=testClass;
-		$scope.currentMethods = $scope.currentClass.testcases;
+		console.log(testClass);
+		CurrentSuite.currentClass=testClass;
+		CurrentSuite.currentMethods = CurrentSuite.currentClass.testcases;
 	}
 	
 	$scope.clearChosen = function(){
@@ -96,15 +98,15 @@ angular.module('webLog')
     // HTTP -----------------------------------------------------------------------------------------------------------
     
 	$scope.getCases = function(driver){
-		$scope.currentDriver = driver;
+		CurrentSuite.currentDriver = driver;
 	}
 	
 	$scope.getSuiteSkeleton = function(suite){
-		$scope.currentSuiteBasic = suite;
+		CurrentSuite.currentSuiteInfo = suite;
 	    $http.get('/api/suite/latestbyid?suiteid=' + suite.id)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
-	    			$scope.currentSuite = data;
+	    		CurrentSuite.currentSuite = data;
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -112,11 +114,12 @@ angular.module('webLog')
 	}
 	
 	$scope.getDrivers = function(method){
-		$scope.currentMethod = method;
-	    $http.get('/api/driver/bytestcase?id='+$scope.currentMethod.id)
+		CurrentSuite.currentMethod = method;
+	    $http.get('/api/driver/bytestcase?id='+CurrentSuite.currentMethod.id)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
-	    		$scope.currentDrivers = data;
+	    		CurrentSuite.currentDrivers = data;
+	    		console.log(CurrentSuite.currentDrivers);
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -124,11 +127,11 @@ angular.module('webLog')
 	}
 	
 	$scope.setCurrentSuite = function(suite){
-		$scope.currentSuite = suite;
-	    $http.get('/api/class/getclasses?suiteid='+$scope.currentSuiteID)
+		CurrentSuite.currentSuite = suite;
+	    $http.get('/api/class/getclasses?suiteid='+CurrentSuite.currentSuite.id)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
-	    		$scope.currentClasses = data;
+	    		CurrentSuite.currentClasses = data;
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -363,14 +366,6 @@ angular.module('webLog')
 		}
 		$scope.chartHomeConfig[id] = chartHomeConfigObject;
     };
-    
-    function getTotalFail(suiteRun) {
-		return suiteRun.fail + suiteRun.error;
-	}
-    
-    function getTotalPass(suiteRun) {
-    	return suiteRun.pass;
-	}
     
     //  CSS -----------------------------------------------------------------------------------------------------------------
     
