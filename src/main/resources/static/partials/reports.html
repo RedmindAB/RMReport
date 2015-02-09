@@ -18,30 +18,38 @@
 
 <!-- Suite run dropdown -->
 <div class="dropdown">
-	<button class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true">
-		Choose Suite Run
-		<span class="caret"></span>
-	</button>
-	<ul class="dropdown-menu scrollable-menu" role="menu">
-		<li ng-repeat="suite in mockSuites"><a href="#">{{suite}}</a></li>
-	</ul>
-</div><br/>
+</div>
 <!-- Suite run dropdown END -->
 
 <!-- load chart with data button -->
-<div>
-	<input type="text" id="suite-amount-input" class="form-control" style="width:200px" ng-model='amountOfRuns' placeholder="Number of Suite Runs">
-	<button class="btn btn-default" ng-click="loadMainChart(currentSuiteID, amountOfRuns)">Submit</button>
-	<button class="btn btn-default" ng-click="clearChosen()">Clear chosen</button>
+<div style='position:relative;' class=''>
+	<table border='0'>
+		<tr>
+			<td>
+				<button class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true">
+					Choose Suite Run
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu scrollable-menu" role="menu">
+					<li ng-repeat="suite in mockSuites"><a href="#">{{suite}}</a></li>
+				</ul>
+			</td>
+			<td>
+				<input type="text" id="suite-amount-input" class="form-control" style="width:200px" ng-model='amountOfRuns' placeholder="Number of Suite Runs">
+			</td>
+			<td>
+				<button class="btn btn-default" ng-click="loadMainChart(currentSuiteID, amountOfRuns)">Submit</button>
+			</td>
+			<td>
+				<button class="btn btn-default" ng-click="clearChosen()">Clear chosen</button>
+			</td>
+			<td>
+				<input type="text" class="form-control" id="filter-field" style="width:200px" ng-model='searchText' placeholder="Filter">
+			</td>
+		</tr>
+	</table>	
 </div>
-<br/>
 <!-- load chart with data button END -->
-
-<!-- search field -->
-        <div>
-          <input type="text" class="form-control" id="filter-field" style="width:200px" ng-model='searchText' placeholder="Filter">
-        </div>
-<!-- Search field END -->
 
 <!-- view for current classes/methods/drivers etc -->
 <div ui-view></div>

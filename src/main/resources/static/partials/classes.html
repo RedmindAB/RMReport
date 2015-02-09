@@ -6,7 +6,7 @@
 		ng-style="{'background-color': getBgCo(class.result)}">
 	
 	        <div ng-style="{'color' : getCo(class.result)}" ng-click="getMethods(class); goToMethods(); resetFilterField()">	        		
-	        		<label for="mycheckbox"></label><input type="checkbox" id="mycheckbox" ng-model="class.chosen">
+	        		<label for="mycheckbox"></label><input type="checkbox" id="mycheckbox" ng-model="class.chosen" ng-click="">
 	        		<h3 style='margin-top: -10px'>{{class.name}}</h3>
 	        </div>
 	</div>
