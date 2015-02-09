@@ -5,12 +5,12 @@
 		ng-class='getPanel(class.result)' 
 		ng-style="{'background-color': getBgCo(class.result)}">
 			    <table>
-	    	<tr>
+	    	<tr >
 	    		<td>
-					<input type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox"></label>
+					<input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox"></label>
 	    		</td>
 	    		<td width='100%' ng-click="getMethods(class); goToMethods(); resetFilterField()">
-	        		<div ng-style="{'color' : getCo(class.result)}">
+	        		<div ng-style="{'color' : getCo(class.result)}" style='height: 10px;margin-top:-31px'>
 	        			<h3 ng-click="getMethods(class); goToMethods(); resetFilterField()">{{class.name}}</h3>
 	        		</div>
 	        	</td>
