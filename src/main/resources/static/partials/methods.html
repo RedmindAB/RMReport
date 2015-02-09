@@ -3,7 +3,7 @@
 	<div ng-repeat="method in CurrentSuite.currentMethods | filter:searchText track by $index " style='cursor: pointer;margin-top: 10px' ng-class='getPanel(method.result)' ng-style="{'background-color': getBgCo(method.result)}">
 		<input type="checkbox" id="mycheckbox" ng-model="method.chosen"><label for="mycheckbox"></label>	
 	    <!-- non collapsing header -->
-	        <div style='padding: 20px 0px 20px 0px' ng-style="{'color' : getCo(method.result)}" ng-click="getDrivers(method); goToDrivers(); resetFilterField()">
+	        <div ng-style="{'color' : getCo(method.result)}" ng-click="getDrivers(method); goToDrivers(); resetFilterField()">
 	        		<h3 overflow:hidden;'>{{method.name}}</h3>
 	        </div>
 	</div>
