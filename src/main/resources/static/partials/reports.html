@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="css/style.css">		
 	<!-- navigation links -->
 	<h4>
-		<div style='margin-top:6px' id="navigation-classes" ng-click="goToClasses()" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;> {{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
-		<div style='margin-top:6px' id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">> {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
-		<div style='margin-top:6px' id="navigation-drivers" ng-click="goToDrivers()" class="navTextStuff" ng-show="showClassLink('drivers')">> {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
-		<div style='margin-top:6px' id="navigation-cases" ng-click="goToCases()" class="navTextStuff" ng-show="showClassLink('cases')">> {{CurrentSuite.currentDriver.driver}}&nbsp;</p></div><br/><br/>
+		<div style='margin-top:6px' id="navigation-classes" ng-click="goToClasses()" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;| {{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
+		<div style='margin-top:6px' id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">&#10140;  {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
+		<div style='margin-top:6px' id="navigation-drivers" ng-click="goToDrivers()" class="navTextStuff" ng-show="showClassLink('drivers')">&#10140;  {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
+		<div style='margin-top:6px' id="navigation-cases" ng-click="goToCases()" class="navTextStuff" ng-show="showClassLink('cases')">&#10140; {{CurrentSuite.currentDriver.driver}}&nbsp;</p></div><br/><br/>
 	</h4>
 	<!-- navigation links END -->
 	<!-- chart -->
