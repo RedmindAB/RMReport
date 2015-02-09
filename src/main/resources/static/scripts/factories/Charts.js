@@ -106,7 +106,6 @@ angular.module('webLog')
 				    }
 				  },
 				  xAxis:{
-					  categories: timestamp,
 					  minTickInterval: 5,
 					  labels:{
 						  rotation: 45
@@ -132,7 +131,7 @@ angular.module('webLog')
 				    }
 				  ],
 				  title: {
-				    text: "Pass / Fail for the last " + data.length + " results" 
+				    //text: "Pass / Fail for the last " + data.length + " results" 
 				  },
 				  credits: {
 				    enabled: false

@@ -1,5 +1,5 @@
 angular.module('webLog')
-    .controller('MainCtrl',['$scope', '$rootScope', '$http','$location', '$timeout','$state', 'SearchField', 'CurrentSuite', function($scope, $rootScope,$http, $location, $timeout, $state, SearchField, CurrentSuite){
+    .controller('MainCtrl',['$scope', '$rootScope', '$http','$location', '$timeout','$state', 'SearchField', 'CurrentSuite', 'Charts', function($scope, $rootScope,$http, $location, $timeout, $state, SearchField, CurrentSuite, Charts){
     	
     $scope.CurrentSuite = CurrentSuite;
     $scope.SearchField = SearchField;
