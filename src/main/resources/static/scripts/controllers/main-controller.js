@@ -1,17 +1,18 @@
 angular.module('webLog')
     .controller('MainCtrl',['$scope', '$http','$location', '$timeout','$state', function($scope, $http, $location, $timeout, $state){
     	
+    $scope.currentSuite = [];
+    $scope.currentSuiteID;
     $scope.suiteSkeleton = [];	
     $scope.$state = $state;
     $scope.methods = {};
     $scope.errorReport={};
     $scope.currentSuiteRun;
-    $scope.currentClasses = {};
+    $scope.currentClasses = [];
     $scope.currentClass= [];
     $scope.currentMethod = [];
     $scope.currentDriver = []
     $scope.currentCases = [];
-    $scope.currentSuiteID;
     $scope.chartHomeConfig = {};
     $scope.chartMainConfig = {};
     $scope.allSuites = [];
@@ -54,27 +55,18 @@ angular.module('webLog')
     
 	$scope.getMethods = function(testClass){
 		$scope.currentClass=testClass;
-	    $http.get('/api/method/getmethods?classid=' + testClass.id)
-	    .success(function(data, status, headers, config){ 
-	    	if(data){
-	    		if ($scope.methods != data) {
-	    			$scope.methods = data;
-				}
-	    	};
-	    }).error(function(data, status, headers, config){
-	    	console.log(data);
-	    });
+		$scope.currentMethods = $scope.currentClass.testcases;
 	}
 	
 	$scope.clearChosen = function(){
-		for (var i = 0; i < $scope.methods.length; i++) {
-			if ($scope.methods[i].chosen) {
-				delete $scope.methods[i].chosen;
+		for (var i = 0; i < $scope.currentClass.length; i++) {
+			if ($scope.currentCLass[i].chosen) {
+				delete $scope.currentClass[i].chosen;
 			}
 		}
-		for (var i = 0; i < $scope.currentClasses.length; i++) {
-			if ($scope.currentClasses[i].chosen) {
-				delete $scope.currentClasses[i].chosen
+		for (var i = 0; i < $scope.currentSuite.length; i++) {
+			if ($scope.currentSuite[i].chosen) {
+				delete $scope.currentSuite[i].chosen
 			}
 		}
 	}
@@ -84,14 +76,15 @@ angular.module('webLog')
 				classes: [],
 				methods: []
 		};
-		for (var i = 0; i < $scope.methods.length; i++) {
-			if ($scope.methods[i].chosen) {
-				chosen.methods.push($scope.methods[i].id);
+		for (var i = 0; i < $scope.currentClass.length; i++) {
+			if ($scope.currentClass[i].chosen) {
+				chosen.methods.push($scope.currentClass[i].id);
 			}
 		}
-		for (var i = 0; i < $scope.currentClasses.length; i++) {
-			if ($scope.currentClasses[i].chosen) {
-				chosen.classes.push($scope.currentClasses[i].id);
+		for (var i = 0; i < $scope.currentSuite.length; i++) {
+			if ($scope.currentSuite[i].chosen) {
+				console.log($scope.currentSuite[i]);
+				chosen.classes.push($scope.currentSuite[i].id);
 			}
 		}
 		return chosen;
@@ -117,10 +110,11 @@ angular.module('webLog')
 	}
 	
 	$scope.getSuiteSkeleton = function(suite){
-	    $http.get('/api/suite/latestbyid?suiteid==' + suite.id)
+		$scope.currentSuiteBasic = suite;
+	    $http.get('/api/suite/latestbyid?suiteid=' + suite.id)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
-	    			$scope.suiteSkeleton = data;
+	    			$scope.currentSuite = data;
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -141,7 +135,7 @@ angular.module('webLog')
 	
 	$scope.setCurrentSuite = function(suite){
 		$scope.currentSuite = suite;
-	    $http.get('/api/class/getclasses?suiteid='+$scope.currentSuite.id)
+	    $http.get('/api/class/getclasses?suiteid='+$scope.currentSuiteID)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		$scope.currentClasses = data;
@@ -153,6 +147,7 @@ angular.module('webLog')
 	
    $scope.loadMainChart = function(suiteID, reslimit, drivers) {
     	var requestObject = $scope.getGraphDataObject(suiteID, reslimit, drivers)
+    	console.log(requestObject);
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){
     		$scope.createMainChart(data);
@@ -194,7 +189,6 @@ angular.module('webLog')
     	$http.post('/api/stats/graphdata', $scope.requestObject)
     	.success(function(data, status, headers, config){ 
     		$scope.currentGraphData = data;
-    		
     	}).error(function(data, status, headers, config){
     		console.log(data);
     	});
@@ -222,7 +216,7 @@ angular.module('webLog')
 	// CHART OBJECTS -----------------------------------------------------------------------------------------------------------
 	
     $scope.createMainChart = function(data){
-    	
+    	console.log(data);
     	var timestamp = [];
     	for (var index = 0; index < data.length; index++) {
 			timestamp.push(data[index].timestamp);

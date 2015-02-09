@@ -1,16 +1,20 @@
 <div align='center'>
 	<div ng-repeat="suite in allSuites">
 		<table class='table' border='0' style='margin-top: 30px;'>
+		<!-- Project logo -->
 		<tr>
 			<td style='border:0;flaot:right'>
-				<img class='image-paths' style="cursor: pointer;" ng-src="{{imagePaths[$index]}}" ng-click="loadMainChart(suite.id, '50'); goToProject(); setSuiteSkeleton(suite);"></img>
+				<img class='image-paths' style="cursor: pointer;" ng-src="{{imagePaths[$index]}}" ng-click="loadMainChart(suite.id, '50'); goToProject(); getSuiteSkeleton(suite);"></img>
 			</td>
 		</tr>
+		<!-- project logo END -->
+		<!-- project chart -->
 		<tr>
 		    <td style='border:0;'>
 		    <highchart id="chart1" config="chartHomeConfig[suite.id]"></highchart>
 		    </td>
 		</tr>
+		<!-- project chart END -->
 	</table>
 	</div>
 </div>

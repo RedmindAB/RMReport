@@ -1,37 +1,47 @@
 <!-- Chart -->
 <div align='center' style='margin-top:20px'>
-	<img ng-src="{{imagePaths[currentSuite.id -1]}}" style="cursor: pointer" class='image-paths' ng-click="goToHome()"></img> 
-	
+ 	<!-- project logo -->
+	<img ng-src="{{imagePaths[currentSuiteBasic.id -1]}}" style="cursor: pointer" class='image-paths' ng-click="goToHome()"></img> 
+	<!-- project logo END-->
+		
 	<!-- navigation links -->
-	<div id="navigation-classes" ng-click="goToClasses()" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;> {{currentSuite.name}}&nbsp;</p></div>
+	<div id="navigation-classes" ng-click="goToClasses()" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;> {{currentSuiteBasic.name}}&nbsp;</p></div>
 	<div id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">> {{currentClass.name}}&nbsp;</p></div>
 	<div id="navigation-drivers" ng-click="goToDrivers()" class="navTextStuff" ng-show="showClassLink('drivers')">> {{currentMethod.name}}&nbsp;</p></div>
 	<div id="navigation-cases" ng-click="goToCases()" class="navTextStuff" ng-show="showClassLink('cases')">> {{currentDriver.driver}}&nbsp;</p></div><br/><br/>
-	<!--<canvas id="line" width='600px' height='200px' class="chart chart-line" data="project.data" labels="project.labels" series="project.series" legend="true" series="series" options="options" click="onClick"></canvas>-->
-<highchart id="chart1" config="chartMainConfig"></highchart>
+	<!-- navigation links END -->
+	
+	<!-- chart -->
+	<highchart id="chart1" config="chartMainConfig"></highchart>
+	<!-- chart END -->
 </div>
 
+<!-- Suite run dropdown -->
 <div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true">
-    Choose Suite Run
-    <span class="caret"></span>
-  </button>
-            <ul class="dropdown-menu scrollable-menu" role="menu">
-                <li ng-repeat="suite in mockSuites"><a href="#">{{suite}}</a></li>
-            </ul>
+	<button class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true">
+		Choose Suite Run
+		<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu scrollable-menu" role="menu">
+		<li ng-repeat="suite in mockSuites"><a href="#">{{suite}}</a></li>
+	</ul>
 </div><br/>
+<!-- Suite run dropdown END -->
 
+<!-- load chart with data button -->
 <div>
 	<input type="text" id="suite-amount-input" class="form-control" style="width:200px" ng-model='amountOfRuns' placeholder="Number of Suite Runs">
-	<button class="btn btn-default" ng-click="loadMainChart(currentSuite.id, amountOfRuns)">Submit</button>
+	<button class="btn btn-default" ng-click="loadMainChart(currentSuiteID, amountOfRuns)">Submit</button>
 	<button class="btn btn-default" ng-click="clearChosen()">Clear chosen</button>
 </div>
 <br/>
+<!-- load chart with data button END -->
 
 <!-- search field -->
         <div>
           <input type="text" class="form-control" id="filter-field" style="width:200px" ng-model='searchText' placeholder="Filter">
         </div>
+<!-- Search field END -->
 
-<!-- classes/methods -->
+<!-- view for current classes/methods/drivers etc -->
 <div ui-view></div>
