@@ -5,10 +5,12 @@
 	<!-- project logo END-->
     <link rel="stylesheet" href="css/style.css">		
 	<!-- navigation links -->
-	<div id="navigation-classes" ng-click="goToClasses()" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;> {{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
-	<div id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">> {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
-	<div id="navigation-drivers" ng-click="goToDrivers()" class="navTextStuff" ng-show="showClassLink('drivers')">> {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
-	<div id="navigation-cases" ng-click="goToCases()" class="navTextStuff" ng-show="showClassLink('cases')">> {{CurrentSuite.currentDriver.driver}}&nbsp;</p></div><br/><br/>
+	<h4>
+		<div style='margin-top:6px' id="navigation-classes" ng-click="goToClasses()" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;> {{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
+		<div style='margin-top:6px' id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">> {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
+		<div style='margin-top:6px' id="navigation-drivers" ng-click="goToDrivers()" class="navTextStuff" ng-show="showClassLink('drivers')">> {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
+		<div style='margin-top:6px' id="navigation-cases" ng-click="goToCases()" class="navTextStuff" ng-show="showClassLink('cases')">> {{CurrentSuite.currentDriver.driver}}&nbsp;</p></div><br/><br/>
+	</h4>
 	<!-- navigation links END -->
 	<!-- chart -->
 	<highchart id="chart1" config="chartMainConfig"></highchart>
