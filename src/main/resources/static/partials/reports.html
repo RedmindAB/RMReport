@@ -1,16 +1,17 @@
 <!-- Chart -->
 <div align='center' style='margin-top:20px'>
  	<!-- project logo -->
-	<img ng-src="{{imagePaths[currentSuiteBasic.id -1]}}" style="cursor: pointer" class='image-paths' ng-click="goToHome()"></img> 
+	<img ng-src="{{imagePaths[CurrentSuite.currentSuiteInfo.id -1]}}" style="cursor: pointer" class='image-paths' ng-click="goToHome()"></img> 
 	<!-- project logo END-->
     <link rel="stylesheet" href="css/style.css">		
 	<!-- navigation links -->
-	<div id="navigation-classes" ng-click="goToClasses()" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;> {{currentSuiteBasic.name}}&nbsp;</p></div>
-	<div id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">> {{currentClass.name}}&nbsp;</p></div>
-	<div id="navigation-drivers" ng-click="goToDrivers()" class="navTextStuff" ng-show="showClassLink('drivers')">> {{currentMethod.name}}&nbsp;</p></div>
-	<div id="navigation-cases" ng-click="goToCases()" class="navTextStuff" ng-show="showClassLink('cases')">> {{currentDriver.driver}}&nbsp;</p></div><br/><br/>
+	<h4>
+		<div style='margin-top:6px' id="navigation-classes" ng-click="goToClasses()" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;> {{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
+		<div style='margin-top:6px' id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">> {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
+		<div style='margin-top:6px' id="navigation-drivers" ng-click="goToDrivers()" class="navTextStuff" ng-show="showClassLink('drivers')">> {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
+		<div style='margin-top:6px' id="navigation-cases" ng-click="goToCases()" class="navTextStuff" ng-show="showClassLink('cases')">> {{CurrentSuite.currentDriver.driver}}&nbsp;</p></div><br/><br/>
+	</h4>
 	<!-- navigation links END -->
-	
 	<!-- chart -->
 	<highchart id="chart1" config="chartMainConfig"></highchart>
 	<!-- chart END -->
@@ -27,7 +28,7 @@
 		<tr>
 			<td>
 				<div ng-repeat="driver in mockDriverArray" class='reports'>
-					<label for="mycheckbox"></label><input type="checkbox" id="mycheckbox" ng-model="class.chosen">
+					<label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{driver}}</label><input type="checkbox" id="mycheckbox" ng-model="class.chosen">
 				</div>
 			</td>
 		</tr>
@@ -45,7 +46,7 @@
 				<input type="text" id="suite-amount-input" class="form-control" style="width:200px" ng-model='amountOfRuns' placeholder="Number of Suite Runs">
 			</td>
 			<td>
-				<button class="btn btn-default" ng-click="loadMainChart(currentSuiteID, amountOfRuns)">Submit</button>
+				<button class="btn btn-default" ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, amountOfRuns)">Submit</button>
 			</td>
 			<td>
 				<button class="btn btn-default" ng-click="clearChosen()">Clear chosen</button>
