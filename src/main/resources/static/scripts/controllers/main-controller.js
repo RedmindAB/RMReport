@@ -22,6 +22,8 @@ angular.module('webLog')
     		drivers: []
     };
     
+    $scope.mockDriverArray = ["Andriod", "Chrome", "OSX", "Windows"];
+    
     $scope.amountOfRuns = "";
     
     $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];
@@ -49,9 +51,6 @@ angular.module('webLog')
     $scope.goToCases = function(){
     	$state.transitionTo('reports.cases');
     };
-    
-    $scope.labels2 = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
-    $scope.data2 = [300, 500, 100];
     
 	$scope.getMethods = function(testClass){
 		$scope.currentClass=testClass;
@@ -83,26 +82,12 @@ angular.module('webLog')
 		}
 		for (var i = 0; i < $scope.currentSuite.length; i++) {
 			if ($scope.currentSuite[i].chosen) {
-				console.log($scope.currentSuite[i]);
 				chosen.classes.push($scope.currentSuite[i].id);
 			}
 		}
 		return chosen;
 	}
 	
-//    $scope.setCurrentSuiteRun = function(run){
-//    	console.log("setting current suite run");
-//    	$scope.currentSuiteRun = run;
-//    	for(var testCase in $scope.currentSuiteRun.testcases){
-//    		if ($scope.currentSuiteRun.testcases[testCase].failure) {
-//    			$scope.currentSuiteRun.testcases[testCase].failure.message.replace(/at /g, '\nat ');
-//			} else if($scope.currentSuiteRun.testcases[testCase].error) {
-//				$scope.currentSuiteRun.testcases[testCase].error.message.replace(/at /g, '\nat ');
-//			}
-//    	}
-//    	console.log($scope.currentSuiteRun);
-//    }
-    
     // HTTP -----------------------------------------------------------------------------------------------------------
     
 	$scope.getCases = function(driver){
@@ -147,7 +132,6 @@ angular.module('webLog')
 	
    $scope.loadMainChart = function(suiteID, reslimit, drivers) {
     	var requestObject = $scope.getGraphDataObject(suiteID, reslimit, drivers)
-    	console.log(requestObject);
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){
     		$scope.createMainChart(data);
@@ -216,7 +200,6 @@ angular.module('webLog')
 	// CHART OBJECTS -----------------------------------------------------------------------------------------------------------
 	
     $scope.createMainChart = function(data){
-    	console.log(data);
     	var timestamp = [];
     	for (var index = 0; index < data.length; index++) {
 			timestamp.push(data[index].timestamp);
@@ -227,6 +210,34 @@ angular.module('webLog')
     				    chart: {
     				      type: "areaspline",
     				      backgroundColor: '#ecf0f1',
+    			            events: {
+    			                selection: function (event) {
+    			                	console.log(event);
+    			                    var text,
+    			                        label;
+    			                    if (event.xAxis) {
+    			                        text = 'min: ' + Highcharts.numberFormat(event.xAxis[0].min, 2) + ', max: ' + Highcharts.numberFormat(event.xAxis[0].max, 2);
+    			                    } else {
+    			                        text = 'Selection reset';
+    			                    }
+    			                    label = this.renderer.label(text, 100, 120)
+    			                        .attr({
+    			                            fill: Highcharts.getOptions().colors[0],
+    			                            padding: 10,
+    			                            r: 5,
+    			                            zIndex: 8
+    			                        })
+    			                        .css({
+    			                            color: '#FFFFFF'
+    			                        })
+    			                        .add();
+
+    			                    setTimeout(function () {
+    			                        label.fadeOut();
+    			                    }, 1000);
+    			                }
+    			            },
+    			            zoomType: 'x'
     				    },
 			            tooltip: {
 			            },
