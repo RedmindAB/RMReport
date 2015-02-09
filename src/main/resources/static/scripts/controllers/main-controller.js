@@ -1,19 +1,12 @@
 angular.module('webLog')
-    .controller('MainCtrl',['$scope', '$rootScope', '$http','$location', '$timeout','$state', 'SearchField', function($scope, $rootScope,$http, $location, $timeout, $state, SearchField){
+    .controller('MainCtrl',['$scope', '$rootScope', '$http','$location', '$timeout','$state', 'SearchField', 'CurrentSuite', function($scope, $rootScope,$http, $location, $timeout, $state, SearchField, CurrentSuite){
     	
+    $scope.CurrentSuite = CurrentSuite;
     $scope.SearchField = SearchField;
-    $scope.currentSuite = [];
-    $scope.currentSuiteID;
     $scope.suiteSkeleton = [];	
     $scope.$state = $state;
     $scope.methods = {};
     $scope.errorReport={};
-    $scope.currentSuiteRun;
-    $scope.currentClasses = [];
-    $scope.currentClass= [];
-    $scope.currentMethod = [];
-    $scope.currentDriver = []
-    $scope.currentCases = [];
     $scope.chartHomeConfig = {};
     $scope.chartMainConfig = {};
     $scope.allSuites = [];
@@ -58,19 +51,20 @@ angular.module('webLog')
     };
     
 	$scope.getMethods = function(testClass){
-		$scope.currentClass=testClass;
-		$scope.currentMethods = $scope.currentClass.testcases;
+		console.log(testClass);
+		CurrentSuite.currentClass=testClass;
+		CurrentSuite.currentMethods = CurrentSuite.currentClass.testcases;
 	}
 	
 	$scope.clearChosen = function(){
-		for (var i = 0; i < $scope.currentClass.length; i++) {
-			if ($scope.currentCLass[i].chosen) {
-				delete $scope.currentClass[i].chosen;
+		for (var i = 0; i < CurrentSuite.currentClass.length; i++) {
+			if (CurrentSuite.currentCLass[i].chosen) {
+				delete CurrentSuite.currentClass[i].chosen;
 			}
 		}
-		for (var i = 0; i < $scope.currentSuite.length; i++) {
-			if ($scope.currentSuite[i].chosen) {
-				delete $scope.currentSuite[i].chosen
+		for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
+			if (CurrentSuite.currentSuite[i].chosen) {
+				delete CurrentSuite.currentSuite[i].chosen
 			}
 		}
 	}
@@ -80,14 +74,14 @@ angular.module('webLog')
 				classes: [],
 				methods: []
 		};
-		for (var i = 0; i < $scope.currentClass.length; i++) {
-			if ($scope.currentClass[i].chosen) {
-				chosen.methods.push($scope.currentClass[i].id);
+		for (var i = 0; i < CurrentSuite.currentClass.length; i++) {
+			if (CurrentSuite.currentClass[i].chosen) {
+				chosen.methods.push(CurrentSuite.currentClass[i].id);
 			}
 		}
-		for (var i = 0; i < $scope.currentSuite.length; i++) {
-			if ($scope.currentSuite[i].chosen) {
-				chosen.classes.push($scope.currentSuite[i].id);
+		for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
+			if (CurrentSuite.currentSuite[i].chosen) {
+				chosen.classes.push(CurrentSuite.currentSuite[i].id);
 			}
 		}
 		return chosen;
@@ -96,15 +90,15 @@ angular.module('webLog')
     // HTTP -----------------------------------------------------------------------------------------------------------
     
 	$scope.getCases = function(driver){
-		$scope.currentDriver = driver;
+		CurrentSuite.currentDriver = driver;
 	}
 	
 	$scope.getSuiteSkeleton = function(suite){
-		$scope.currentSuiteBasic = suite;
+		CurrentSuite.currentSuiteInfo = suite;
 	    $http.get('/api/suite/latestbyid?suiteid=' + suite.id)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
-	    			$scope.currentSuite = data;
+	    		CurrentSuite.currentSuite = data;
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -112,11 +106,12 @@ angular.module('webLog')
 	}
 	
 	$scope.getDrivers = function(method){
-		$scope.currentMethod = method;
-	    $http.get('/api/driver/bytestcase?id='+$scope.currentMethod.id)
+		CurrentSuite.currentMethod = method;
+	    $http.get('/api/driver/bytestcase?id='+CurrentSuite.currentMethod.id)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
-	    		$scope.currentDrivers = data;
+	    		CurrentSuite.currentDrivers = data;
+	    		console.log(CurrentSuite.currentDrivers);
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -124,11 +119,11 @@ angular.module('webLog')
 	}
 	
 	$scope.setCurrentSuite = function(suite){
-		$scope.currentSuite = suite;
-	    $http.get('/api/class/getclasses?suiteid='+$scope.currentSuiteID)
+		CurrentSuite.currentSuite = suite;
+	    $http.get('/api/class/getclasses?suiteid='+CurrentSuite.currentSuite.id)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
-	    		$scope.currentClasses = data;
+	    		CurrentSuite.currentClasses = data;
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -363,14 +358,6 @@ angular.module('webLog')
 		}
 		$scope.chartHomeConfig[id] = chartHomeConfigObject;
     };
-    
-    function getTotalFail(suiteRun) {
-		return suiteRun.fail + suiteRun.error;
-	}
-    
-    function getTotalPass(suiteRun) {
-    	return suiteRun.pass;
-	}
     
     //  CSS -----------------------------------------------------------------------------------------------------------------
     

@@ -5,7 +5,10 @@ angular.module('webLog')
 		    	currentSuiteInfo: [],
 		    	currentSuite: [],
 		    	currentClass: [],
+		    	currentClasses: [],
 		    	currentMethod: [],
-		    	currentDriver: []
+		    	currentMethods: [],
+		    	currentDriver: [],
+		    	currentDrivers: []
 		    	};
 	});

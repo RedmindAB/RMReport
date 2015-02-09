@@ -1,17 +1,14 @@
 <!-- Chart -->
 <div align='center' style='margin-top:20px'>
  	<!-- project logo -->
-	<img ng-src="{{imagePaths[currentSuiteBasic.id -1]}}" style="cursor: pointer" class='image-paths' ng-click="goToHome()"></img> 
-	<!-- project logo END-->		
+	<img ng-src="{{imagePaths[CurrentSuite.currentSuiteInfo.id -1]}}" style="cursor: pointer" class='image-paths' ng-click="goToHome()"></img> 
+	<!-- project logo END-->
+    <link rel="stylesheet" href="css/style.css">		
 	<!-- navigation links -->
-	<div class='alert success'>
-		<h4>
-			<div id="navigation-classes" ng-click="goToClasses()" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;> {{currentSuiteBasic.name}}&nbsp;</p></div>
-			<div id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">> {{currentClass.name}}&nbsp;</p></div>
-			<div id="navigation-drivers" ng-click="goToDrivers()" class="navTextStuff" ng-show="showClassLink('drivers')">> {{currentMethod.name}}&nbsp;</p></div>
-			<div id="navigation-cases" ng-click="goToCases()" class="navTextStuff" ng-show="showClassLink('cases')">> {{currentDriver.driver}}&nbsp;</p></div><br/><br/>
-		</h4>
-	</div>
+	<div id="navigation-classes" ng-click="goToClasses()" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;> {{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
+	<div id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">> {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
+	<div id="navigation-drivers" ng-click="goToDrivers()" class="navTextStuff" ng-show="showClassLink('drivers')">> {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
+	<div id="navigation-cases" ng-click="goToCases()" class="navTextStuff" ng-show="showClassLink('cases')">> {{CurrentSuite.currentDriver.driver}}&nbsp;</p></div><br/><br/>
 	<!-- navigation links END -->
 	<!-- chart -->
 	<highchart id="chart1" config="chartMainConfig"></highchart>
@@ -47,7 +44,7 @@
 				<input type="text" id="suite-amount-input" class="form-control" style="width:200px" ng-model='amountOfRuns' placeholder="Number of Suite Runs">
 			</td>
 			<td>
-				<button class="btn btn-default" ng-click="loadMainChart(currentSuiteID, amountOfRuns)">Submit</button>
+				<button class="btn btn-default" ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, amountOfRuns)">Submit</button>
 			</td>
 			<td>
 				<button class="btn btn-default" ng-click="clearChosen()">Clear chosen</button>
