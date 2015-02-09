@@ -33,7 +33,7 @@ public class ReadReportFromDB extends DBBridge{
     String GET_REPORTS_BY_SUITEID = "SELECT timestamp, result, time FROM report WHERE suite_id = {suiteid} ORDER BY timestamp DESC;";
     String CREATE_REPORT_VIEW = "create view report_view as SELECT DISTINCT timestamp FROM report WHERE suite_id = 1 ORDER BY timestamp DESC LIMIT 50";
     String GET_RESULT_BY_DRIVER = "select result,driver, count(result) from report where testcase_id = 1 group by result,driver";
-    String GET_SPECIFIC_METHOD_DRIVER_INFO = "select driver, timestamp, message, result from report where driver = ";
+    String GET_SPECIFIC_METHOD_DRIVER_INFO = "select driver, timestamp, message, result, time from report where driver = ";
     String LIMIT = " limit 20";
 
     public List getDriverFromTestcase(Integer suite_id, Integer testcase_id){
@@ -145,6 +145,7 @@ public class ReadReportFromDB extends DBBridge{
 				jsonObject.add("timestamp", new JsonPrimitive(rs.getString("timestamp")));
 				jsonObject.add("message", new JsonPrimitive(rs.getString("message")));
 				jsonObject.add("result", new JsonPrimitive(rs.getString("result")));
+				jsonObject.add("time", new JsonPrimitive(rs.getString("time")));
 				array.add(jsonObject);
 			}
 			
