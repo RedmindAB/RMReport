@@ -3,7 +3,7 @@
  	<!-- project logo -->
 	<img ng-src="{{imagePaths[currentSuiteBasic.id -1]}}" style="cursor: pointer" class='image-paths' ng-click="goToHome()"></img> 
 	<!-- project logo END-->
-		
+    <link rel="stylesheet" href="css/style.css">		
 	<!-- navigation links -->
 	<div id="navigation-classes" ng-click="goToClasses()" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;> {{currentSuiteBasic.name}}&nbsp;</p></div>
 	<div id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">> {{currentClass.name}}&nbsp;</p></div>
@@ -22,9 +22,16 @@
 <!-- Suite run dropdown END -->
 
 <!-- load chart with data button -->
-<div style='position:relative;' class=''>
-	<table border='0'>
+<div>
+	<table>
 		<tr>
+			<td>
+				<div ng-repeat="driver in mockDriverArray" style='position:relative;float:left;'>
+					<label for="mycheckbox"></label><input type="checkbox" id="mycheckbox" ng-model="class.chosen">
+				</div>
+			</td>
+		</tr>
+		<tr class='reports'>
 			<td>
 				<button class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true">
 					Choose Suite Run
