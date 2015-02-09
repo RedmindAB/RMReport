@@ -3,18 +3,10 @@ angular.module('webLog')
     	
     $scope.CurrentSuite = CurrentSuite;
     $scope.SearchField = SearchField;
-    $scope.currentSuite = [];
-    $scope.currentSuiteID;
     $scope.suiteSkeleton = [];	
     $scope.$state = $state;
     $scope.methods = {};
     $scope.errorReport={};
-    $scope.currentSuiteRun;
-    $scope.currentClasses = [];
-    $scope.currentClass= [];
-    $scope.currentMethod = [];
-    $scope.currentDriver = []
-    $scope.currentCases = [];
     $scope.chartHomeConfig = {};
     $scope.chartMainConfig = {};
     $scope.allSuites = [];
@@ -65,14 +57,14 @@ angular.module('webLog')
 	}
 	
 	$scope.clearChosen = function(){
-		for (var i = 0; i < $scope.currentClass.length; i++) {
-			if ($scope.currentCLass[i].chosen) {
-				delete $scope.currentClass[i].chosen;
+		for (var i = 0; i < CurrentSuite.currentClass.length; i++) {
+			if (CurrentSuite.currentCLass[i].chosen) {
+				delete CurrentSuite.currentClass[i].chosen;
 			}
 		}
-		for (var i = 0; i < $scope.currentSuite.length; i++) {
-			if ($scope.currentSuite[i].chosen) {
-				delete $scope.currentSuite[i].chosen
+		for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
+			if (CurrentSuite.currentSuite[i].chosen) {
+				delete CurrentSuite.currentSuite[i].chosen
 			}
 		}
 	}
@@ -82,14 +74,14 @@ angular.module('webLog')
 				classes: [],
 				methods: []
 		};
-		for (var i = 0; i < $scope.currentClass.length; i++) {
-			if ($scope.currentClass[i].chosen) {
-				chosen.methods.push($scope.currentClass[i].id);
+		for (var i = 0; i < CurrentSuite.currentClass.length; i++) {
+			if (CurrentSuite.currentClass[i].chosen) {
+				chosen.methods.push(CurrentSuite.currentClass[i].id);
 			}
 		}
-		for (var i = 0; i < $scope.currentSuite.length; i++) {
-			if ($scope.currentSuite[i].chosen) {
-				chosen.classes.push($scope.currentSuite[i].id);
+		for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
+			if (CurrentSuite.currentSuite[i].chosen) {
+				chosen.classes.push(CurrentSuite.currentSuite[i].id);
 			}
 		}
 		return chosen;
