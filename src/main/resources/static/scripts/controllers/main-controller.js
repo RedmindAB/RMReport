@@ -1,6 +1,7 @@
 angular.module('webLog')
-    .controller('MainCtrl',['$scope', '$http','$location', '$timeout','$state', function($scope, $http, $location, $timeout, $state){
+    .controller('MainCtrl',['$scope', '$rootScope', '$http','$location', '$timeout','$state', 'SearchField', function($scope, $rootScope,$http, $location, $timeout, $state, SearchField){
     	
+    $scope.SearchField = SearchField;
     $scope.currentSuite = [];
     $scope.currentSuiteID;
     $scope.suiteSkeleton = [];	
@@ -25,6 +26,10 @@ angular.module('webLog')
     $scope.mockDriverArray = ["Andriod", "Chrome", "OSX", "Windows"];
     
     $scope.amountOfRuns = "";
+    
+    $scope.resetFilterField = function(){
+    	SearchField.text = "";
+    }
     
     $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];
     
