@@ -28,7 +28,7 @@ public class ApiRouter {
 		get(new GetClassesWS("/api/class/getclasses"));
 		get(new GetMethodsWS("/api/method/getmethods"));
 		get(new GetDriverByTestcaseWS("/api/driver/bytestcase"));
-		get(new GetDriverAndTestcaseInfoWS("api/testcase/testcaseanddriver"));
+		get(new GetDriverAndTestcaseInfoWS("api/testcase/caserunsbydriver"));
 		post(new GetGraphDataWS("/api/stats/graphdata"));
 	}
 	
