@@ -2,10 +2,20 @@
 	<!-- repeated content -->
 	<div ng-repeat="driver in CurrentSuite.currentDrivers | filter:searchText track by $index " style='cursor: pointer;margin-top: 10px' ng-class='getPanel(driver.result)' ng-style="{'background-color': getBgCo(driver.result)}">
 
-			<input type="checkbox" id="mycheckbox" ng-model="driver.chosen"><label for="mycheckbox"></label>	
-	        <div ng-style="{'color' : getCo(driver.result)}" ng-click="getCases(driver); goToCases(); resetFilterField()">
-	        		<h3 style='margin-top: -10px;overflow:hidden;'>{{driver.driver}}</h3>
-	        </div>
+				
+	        
+	  	<table>
+	    	<tr>
+	    		<td>
+					<input type="checkbox" id="mycheckbox" ng-model="driver.chosen"><label for="mycheckbox"></label>	
+				</td>
+	    		<td width='100%' ng-click="getCases(driver); goToCases(); resetFilterField()">
+	        		<div ng-style="{'color' : getCo(driver.result)}">
+	        		<h3>{{driver.driver}}</h3>
+	       		 </div>
+	        	</td>
+	        </tr>
+		</table>
 	</div>
 	<!-- repeated content  End-->
 </accordion>
