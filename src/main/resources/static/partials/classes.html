@@ -1,6 +1,6 @@
 <accordion close-others="true">
 	<!-- repeated content -->
-	<div ng-repeat="class in CurrentSuite.currentSuite | filter: SearchField.text track by $index " 
+	<div ng-repeat="class in CurrentSuite.currentSuite | filter: Utilities.searchField track by $index " 
 		style='cursor: pointer;margin-top: 10px' 
 		ng-class='getPanel(class.result)' 
 		ng-style="{'background-color': getBgCo(class.result)}">

@@ -1,8 +1,8 @@
 angular.module('webLog')
-    .controller('MainCtrl',['$scope', '$rootScope', '$http','$location', '$timeout','$state', 'SearchField', 'CurrentSuite', 'Charts', function($scope, $rootScope,$http, $location, $timeout, $state, SearchField, CurrentSuite, Charts){
+    .controller('MainCtrl',['$scope', '$rootScope', '$http','$location', '$timeout','$state', 'CurrentSuite', 'Charts', 'Utilities', function($scope, $rootScope,$http, $location, $timeout, $state, CurrentSuite, Charts, Utilities){
     	
     $scope.CurrentSuite = CurrentSuite;
-    $scope.SearchField = SearchField;
+    $scope.Utilities = Utilities;
     $scope.suiteSkeleton = [];	
     $scope.$state = $state;
     $scope.methods = {};
@@ -10,7 +10,6 @@ angular.module('webLog')
     $scope.chartHomeConfig = {};
     $scope.chartMainConfig = {};
     $scope.allSuites = [];
-    $scope.amountOfRuns = "";
     $scope.chosen={
     		classes: [],
     		methods: [],
@@ -21,7 +20,7 @@ angular.module('webLog')
     
     
     $scope.resetFilterField = function(){
-    	SearchField.text = "";
+    	Utilities.searchField = "";
     }
     
     $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];
@@ -222,7 +221,7 @@ angular.module('webLog')
     	var chosen = $scope.getChosen();
     	var dataRequest = {};
     	
-    	var reslimit = $scope.amountOfRuns;
+    	var reslimit = Utilities.amountField;
     	
 		dataRequest.suiteid = suiteID;
 		

@@ -43,7 +43,7 @@
 				</ul>
 			</td>
 			<td>
-				<input type="text" id="suite-amount-input" class="form-control" style="width:200px" ng-model='amountOfRuns' placeholder="Number of Suite Runs">
+				<input type="text" id="suite-amount-input" class="form-control" style="width:200px" ng-model='Utilities.amountField' placeholder="Number of Suite Runs">
 			</td>
 			<td>
 				<button class="btn btn-default" ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)">Submit</button>
@@ -52,7 +52,7 @@
 				<button class="btn btn-default" ng-click="clearChosen()">Clear chosen</button>
 			</td>
 			<td>
-				<input type="text" class="form-control" id="filter-field" style="width:200px" ng-model='SearchField.text' placeholder="Filter">
+				<input type="text" class="form-control" id="filter-field" style="width:200px" ng-model='Utilities.searchField' placeholder="Filter">
 			</td>
 		</tr>
 	</table>	
