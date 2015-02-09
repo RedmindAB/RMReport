@@ -51,7 +51,6 @@ angular.module('webLog')
     };
     
 	$scope.getMethods = function(testClass){
-		console.log(testClass);
 		CurrentSuite.currentClass=testClass;
 		CurrentSuite.currentMethods = CurrentSuite.currentClass.testcases;
 	}
@@ -74,16 +73,25 @@ angular.module('webLog')
 				classes: [],
 				methods: []
 		};
-		for (var i = 0; i < CurrentSuite.currentClass.length; i++) {
-			if (CurrentSuite.currentClass[i].chosen) {
-				chosen.methods.push(CurrentSuite.currentClass[i].id);
+		
+		//add classes to send
+		if (CurrentSuite.currentSuite) {
+			for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
+				if (CurrentSuite.currentSuite[i].chosen) {
+					chosen.classes.push(CurrentSuite.currentSuite[i].id);
+				}
 			}
 		}
-		for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
-			if (CurrentSuite.currentSuite[i].chosen) {
-				chosen.classes.push(CurrentSuite.currentSuite[i].id);
+		
+		//add methods to send
+		if (CurrentSuite.currentClass.testcases) {
+			for (var i = 0; i < CurrentSuite.currentClass.testcases.length; i++) {
+				if (CurrentSuite.currentClass.testcases[i].chosen) {
+					chosen.methods.push(CurrentSuite.currentClass.testcases[i].id);
+				}
 			}
 		}
+		console.log(chosen);
 		return chosen;
 	}
 	
@@ -111,7 +119,6 @@ angular.module('webLog')
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		CurrentSuite.currentDrivers = data;
-	    		console.log(CurrentSuite.currentDrivers);
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -181,14 +188,18 @@ angular.module('webLog')
     $scope.getGraphDataObject = function(suiteID, reslimit, drivers){
     	var chosen = $scope.getChosen();
     	var dataRequest = {};
+    	
     		dataRequest.suiteid = suiteID;
-    		if (!(isNaN(reslimit)) && !(reslimit == "")) {
+    		
+    		if (!(isNaN(reslimit)) && !(reslimit === "")) {
 				dataRequest.reslimit = parseInt(reslimit) +1;
 			} else {
 				dataRequest.reslimit = 51;
 			}
+    		
 			dataRequest.classes=chosen.classes;
 			dataRequest.testcases = chosen.methods;
+			
     		if (drivers) {
 				dataRequest.drivers = drivers;
 			} else {
