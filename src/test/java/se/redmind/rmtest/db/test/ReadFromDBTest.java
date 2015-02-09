@@ -121,4 +121,9 @@ public class ReadFromDBTest {
             System.out.println(hashMap);
         }
     }
+    @Test
+    public void getLastestSuiteRunFromIDTest(){
+    	
+    	
+    }
 }

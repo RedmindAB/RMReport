@@ -66,6 +66,7 @@ public class SuiteJsonBuilder {
 		JsonObject testclass = classMap.get(class_id);
 		if (testclass == null) {
 			testclass = new JsonObject();
+			testclass.add(ID, new JsonPrimitive(class_id));
 			testclass.add(NAME, new JsonPrimitive(className));
 			testclass.add(TESTCASES, new JsonArray());
 			testclass.addProperty(RESULT, PASSED);
