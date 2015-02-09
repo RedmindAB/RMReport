@@ -56,9 +56,9 @@ angular.module('webLog')
 	}
 	
 	$scope.clearChosen = function(){
-		for (var i = 0; i < CurrentSuite.currentClass.length; i++) {
-			if (CurrentSuite.currentCLass[i].chosen) {
-				delete CurrentSuite.currentClass[i].chosen;
+		for (var i = 0; i < CurrentSuite.currentClass.testcases.length; i++) {
+			if (CurrentSuite.currentClass.testcases[i].chosen) {
+				delete CurrentSuite.currentClass.testcases[i].chosen;
 			}
 		}
 		for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
@@ -91,7 +91,6 @@ angular.module('webLog')
 				}
 			}
 		}
-		console.log(chosen);
 		return chosen;
 	}
 	
