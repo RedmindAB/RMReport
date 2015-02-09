@@ -2,15 +2,17 @@
 <div align='center' style='margin-top:20px'>
  	<!-- project logo -->
 	<img ng-src="{{imagePaths[currentSuiteBasic.id -1]}}" style="cursor: pointer" class='image-paths' ng-click="goToHome()"></img> 
-	<!-- project logo END-->
-    <link rel="stylesheet" href="css/style.css">		
+	<!-- project logo END-->		
 	<!-- navigation links -->
-	<div id="navigation-classes" ng-click="goToClasses()" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;> {{currentSuiteBasic.name}}&nbsp;</p></div>
-	<div id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">> {{currentClass.name}}&nbsp;</p></div>
-	<div id="navigation-drivers" ng-click="goToDrivers()" class="navTextStuff" ng-show="showClassLink('drivers')">> {{currentMethod.name}}&nbsp;</p></div>
-	<div id="navigation-cases" ng-click="goToCases()" class="navTextStuff" ng-show="showClassLink('cases')">> {{currentDriver.driver}}&nbsp;</p></div><br/><br/>
+	<div class='alert success'>
+		<h4>
+			<div id="navigation-classes" ng-click="goToClasses()" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;> {{currentSuiteBasic.name}}&nbsp;</p></div>
+			<div id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">> {{currentClass.name}}&nbsp;</p></div>
+			<div id="navigation-drivers" ng-click="goToDrivers()" class="navTextStuff" ng-show="showClassLink('drivers')">> {{currentMethod.name}}&nbsp;</p></div>
+			<div id="navigation-cases" ng-click="goToCases()" class="navTextStuff" ng-show="showClassLink('cases')">> {{currentDriver.driver}}&nbsp;</p></div><br/><br/>
+		</h4>
+	</div>
 	<!-- navigation links END -->
-	
 	<!-- chart -->
 	<highchart id="chart1" config="chartMainConfig"></highchart>
 	<!-- chart END -->
