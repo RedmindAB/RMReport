@@ -297,6 +297,7 @@ angular.module('webLog')
     		                    marker: {
     		                        lineWidth: 1
     		                    }
+    		                    
     				      }
     				    }
     				  },
@@ -310,19 +311,20 @@ angular.module('webLog')
 						yAxis: {
 							title: {
 								text: 'Percentage'
+								
 							},
     				  },
     				  series: [
     				    {
     				      data: [],
     				      name:'Pass',
-    				      color: '#2ecc71',
+    				      color: '#D4D9DD',
     				      id: "mainPass"
     				    },
     				    {
     				      data: [],
     				      name: 'Fail',
-    				      color: '#e74e3e',
+    				      color: '#FF0000',
     				      id: "mainFail"
     				    }
     				  ],
