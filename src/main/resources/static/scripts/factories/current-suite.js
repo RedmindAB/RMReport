@@ -10,6 +10,8 @@ angular.module('webLog')
 		    	currentMethods: [],
 		    	currentDriver: [],
 		    	currentDrivers: [],
-		    	currentDriverRuns: []
+		    	currentDriverRuns: [],
+				currentTimeStamp: '',
+				currentTimeStampArray: []
 		    	};
 	});

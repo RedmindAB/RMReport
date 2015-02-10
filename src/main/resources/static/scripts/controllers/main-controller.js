@@ -17,7 +17,7 @@ angular.module('webLog')
     		drivers: []
     };
     
-    $scope.mockDriverArray = ["Andriod", "Chrome", "OSX", "Windows"];
+    $scope.mockDriverArray = ["Andriod", "iOS", "OSX", "Windows"];
     
     
     $scope.resetFilterField = function(){
@@ -28,31 +28,67 @@ angular.module('webLog')
     
     $scope.goToHome= function(){
     	$state.transitionTo('home');
+    	$scope.clearChosen();
     }
     
     $scope.goToProject = function(){
     	$state.transitionTo('reports.classes');
+    	$scope.clearChosen();
     }
     
     $scope.goToClasses = function(){
     	$state.transitionTo('reports.classes');
+    	$scope.clearChosen();
     }
     
     $scope.goToMethods = function(){
     	$state.transitionTo('reports.methods');
+    	$scope.clearChosen();
     }
     
     $scope.goToDrivers = function(){
     	$state.transitionTo('reports.drivers');
+    	$scope.clearChosen();
     };
     
     $scope.goToCases = function(){
     	$state.transitionTo('reports.cases');
+    	$scope.clearChosen();
     };
     
 	$scope.getMethods = function(testClass){
+		$scope.clearOtherChosen(testClass);
 		CurrentSuite.currentClass=testClass;
 		CurrentSuite.currentMethods = CurrentSuite.currentClass.testcases;
+	}
+	
+	$scope.clearOtherChosen = function(item){
+		//remove classes checkbox
+		if (CurrentSuite.currentSuite) {
+			for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
+				if (CurrentSuite.currentSuite[i].chosen && CurrentSuite.currentSuite[i] != item) {
+					delete CurrentSuite.currentSuite[i].chosen;
+				}
+			}
+		}
+		
+		//remove method checkbox
+		if (CurrentSuite.currentClass.testcases) {
+			for (var i = 0; i < CurrentSuite.currentClass.testcases.length; i++) {
+				if (CurrentSuite.currentClass.testcases[i].chosen && CurrentSuite.currentClass.testcases[i] != item) {
+					delete CurrentSuite.currentClass.testcases[i].chosen;
+				}
+			}
+		}
+		
+		//remove driver checkbox
+		if (CurrentSuite.currentDrivers) {
+			for (var i = 0; i < CurrentSuite.currentDrivers.length; i++) {
+				if (CurrentSuite.currentDrivers[i].chosen && CurrentSuite.currentDrivers[i] != item) {
+					delete CurrentSuite.currentDrivers[i].chosen;
+				}
+			}
+		}
 	}
 	
 	$scope.clearChosen = function(){
@@ -175,11 +211,17 @@ angular.module('webLog')
     	var requestObject = $scope.getGraphDataObject(suiteID)
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){
+    		CurrentSuite.currentTimeStamp = data[0].timestamp;
+    		console.log(CurrentSuite.currentTimeStamp);
     		$scope.createMainChart(data);
     	}).error(function(data, status, headers, config){
     		console.log(data);
     	});
    };
+   
+   $scope.loadNewTimeStamp = function(timeStamp){
+	   console.log(timeStamp);
+   }
     
     $scope.createHomeChartFromID = function(id) {
     	var requestObject = {
@@ -242,9 +284,10 @@ angular.module('webLog')
 	// CHART OBJECTS -----------------------------------------------------------------------------------------------------------
 	
     $scope.createMainChart = function(data){
-    	var timestamp = [];
+    	
     	for (var index = 0; index < data.length; index++) {
-			timestamp.push(data[index].timestamp);
+			CurrentSuite.currentTimeStampArray.push(data[index].timestamp);
+			
 		}
     	Charts.mainChart.series[0].data = [];
     	Charts.mainChart.series[1].data = [];
@@ -253,7 +296,7 @@ angular.module('webLog')
 			Charts.mainChart.series[0].data.push(data[j].pass);
 			Charts.mainChart.series[1].data.push(data[j].fail + data[j].error);
 		}
-		Charts.mainChart.xAxis.categories = timestamp;
+		Charts.mainChart.xAxis.categories = CurrentSuite.currentTimeStampArray;
 		Charts.mainChart.title.text = "Pass / Fail for the last " + data.length + " results";
 		$scope.chartMainConfig = Charts.mainChart;
     };

@@ -35,11 +35,11 @@
 		<tr class='reports'>
 			<td style='padding: 5px;'>
 				<button style='width:150px' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true">
-					Choose Suite Run
+					{{CurrentSuite.currentTimeStamp}}
 					<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu scrollable-menu" role="menu">
-					<li ng-repeat="suite in mockSuites"><a href="#">{{utilities.}}</a></li>
+					<li ng-repeat="timeStamp in CurrentSuite.currentTimeStampArray"><a ng-click="loadNewTimeStamp(timeStamp)">{{timeStamp}}</a></li>
 				</ul>
 			</td>
 			<td style='padding: 5px;'>
