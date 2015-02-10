@@ -284,7 +284,7 @@ angular.module('webLog')
 	// CHART OBJECTS -----------------------------------------------------------------------------------------------------------
 	
     $scope.createMainChart = function(data){
-    	
+    	CurrentSuite.currentTimeStampArray = [];
     	for (var index = 0; index < data.length; index++) {
 			CurrentSuite.currentTimeStampArray.push(data[index].timestamp);
 			
