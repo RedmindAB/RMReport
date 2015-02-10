@@ -5,6 +5,7 @@ import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesWS;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseWS;
 import se.redmind.rmtest.web.route.api.getdrivertestcase.GetDriverAndTestcaseInfoWS;
 import se.redmind.rmtest.web.route.api.getlogs.GetLogListWS;
+import se.redmind.rmtest.web.route.api.getspecificsuite.GetSpecificSuiteWS;
 import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
 import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
 import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteWS;
@@ -23,6 +24,7 @@ public class ApiRouter {
 		get(new GetLogListWS("/api/log/getloglist"));
 		get(new GetSuitesWS("/api/suite/getsuites"));
 		get(new GetLatestSuiteWS("/api/suite/latestbyid"));
+		get(new GetSpecificSuiteWS("/api/suite/specificbyid"));
 		get(new GetLatestSuiteWS("/api/suite/bytimestamp"));
 		get(new GetSuiteDataWS("/api/suite/data"));
 		get(new GetClassesWS("/api/class/getclasses"));
