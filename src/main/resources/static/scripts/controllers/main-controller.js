@@ -312,6 +312,9 @@ angular.module('webLog')
 								text: 'Percentage'
 								
 							},
+							style: {
+								
+							}
     				  },
     				  series: [
     				    {
