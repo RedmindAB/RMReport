@@ -81,7 +81,7 @@ public class ReadSuiteFromDB extends DBBridge{
 				jsonObject.add("testcaseid", new JsonPrimitive(rs.getInt("testcase_id")));
 				jsonObject.add("testcasename", new JsonPrimitive(rs.getString("testcasename")));
 				jsonObject.add("result", new JsonPrimitive(rs.getString("result")));
-				jsonObject.add("time", new JsonPrimitive(rs.getLong("time")));
+				jsonObject.add("time", new JsonPrimitive(rs.getFloat("time")));
 				array.add(jsonObject);
 			}
 		} catch (SQLException e) {

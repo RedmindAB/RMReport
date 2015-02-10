@@ -145,7 +145,7 @@ public class ReadReportFromDB extends DBBridge{
 				jsonObject.add("timestamp", new JsonPrimitive(rs.getString("timestamp")));
 				jsonObject.add("message", new JsonPrimitive(rs.getString("message")));
 				jsonObject.add("result", new JsonPrimitive(rs.getString("result")));
-				jsonObject.add("time", new JsonPrimitive(rs.getLong("time")));
+				jsonObject.add("time", new JsonPrimitive(rs.getFloat("time")));
 				array.add(jsonObject);
 			}
 			
