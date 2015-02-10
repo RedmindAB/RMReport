@@ -32,10 +32,6 @@ angular.module('webLog')
 		   		      dashStyle: "Solid",
 		   		      connectNulls: false
 	  		  }],
-	  		  title: {
-	  		     text: 'Pass / Fail - Last 50 Runs'
-	  		  },
-	  		  loading: false,
 	  		  xAxis: {
 	  		  title: {text: 'Tests run'}
 	  		  },
