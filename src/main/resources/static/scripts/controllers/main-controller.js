@@ -1,6 +1,7 @@
 angular.module('webLog')
     .controller('MainCtrl',['$scope', '$rootScope', '$http','$location', '$timeout','$state', 'CurrentSuite', 'Charts', 'Utilities', function($scope, $rootScope,$http, $location, $timeout, $state, CurrentSuite, Charts, Utilities){
     	
+    $scope.Charts = Charts;
     $scope.CurrentSuite = CurrentSuite;
     $scope.Utilities = Utilities;
     $scope.suiteSkeleton = [];	
@@ -170,6 +171,7 @@ angular.module('webLog')
 	};
 	
    $scope.loadMainChart = function(suiteID) {
+	   console.log(suiteID);
     	var requestObject = $scope.getGraphDataObject(suiteID)
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){
@@ -234,7 +236,6 @@ angular.module('webLog')
 		dataRequest.classes=chosen.classes;
 		dataRequest.testcases = chosen.methods;
 		dataRequest.drivers= chosen.drivers;
-		console.log(dataRequest);
     	return dataRequest;
     };
     
@@ -245,159 +246,30 @@ angular.module('webLog')
     	for (var index = 0; index < data.length; index++) {
 			timestamp.push(data[index].timestamp);
 		}
-    	
-    	var chartMainConfigObject = {
-    			  options: {
-    				    chart: {
-    				      type: "areaspline",
-    				      backgroundColor: '#ecf0f1',
-    			            events: {
-    			                selection: function (event) {
-    			                	console.log(event);
-    			                    var text,
-    			                        label;
-    			                    if (event.xAxis) {
-    			                        text = 'min: ' + Highcharts.numberFormat(event.xAxis[0].min, 2) + ', max: ' + Highcharts.numberFormat(event.xAxis[0].max, 2);
-    			                    } else {
-    			                        text = 'Selection reset';
-    			                    }
-    			                    label = this.renderer.label(text, 100, 120)
-    			                        .attr({
-    			                            fill: Highcharts.getOptions().colors[0],
-    			                            padding: 10,
-    			                            r: 5,
-    			                            zIndex: 8
-    			                        })
-    			                        .css({
-    			                            color: '#FFFFFF'
-    			                        })
-    			                        .add();
-
-    			                    setTimeout(function () {
-    			                        label.fadeOut();
-    			                    }, 1000);
-    			                }
-    			            },
-    			            zoomType: 'x'
-    				    },
-			            tooltip: {
-			            },
-    				    plotOptions: {
-    				      series: {
-    				    	  stacking: "percent",
-    		                    cursor: 'pointer',
-    		                    point: {
-    		                        events: {
-    		                            click: function (e) {
-    		                            	console.log(this.category);
-    		                            }
-    		                        }
-    		                    },
-    		                    marker: {
-    		                        lineWidth: 1
-    		                    }
-    				      }
-    				    }
-    				  },
-    				  xAxis:{
-    					  categories: timestamp,
-    					  minTickInterval: 5,
-    					  labels:{
-    						  rotation: 45
-    					  }
-    				  },
-						yAxis: {
-							title: {
-								text: 'Percentage'
-							},
-    				  },
-    				  series: [
-    				    {
-    				      data: [],
-    				      name:'Pass',
-    				      color: '#2ecc71',
-    				      id: "mainPass"
-    				    },
-    				    {
-    				      data: [],
-    				      name: 'Fail',
-    				      color: '#e74e3e',
-    				      id: "mainFail"
-    				    }
-    				  ],
-    				  title: {
-    				    text: "Pass / Fail for the last " + data.length + " results" 
-    				  },
-    				  credits: {
-    				    enabled: false
-    				  },
-    				  loading: false,
-    				  size: {},
-    				  useHighStocks: false,
-    				};
+    	Charts.mainChart.series[0].data = [];
+    	Charts.mainChart.series[1].data = [];
     	
 		for (var j = 0; j < data.length; j++) {
-			
-			
-			chartMainConfigObject.series[1].data.push(data[j].fail + data[j].error);
-			chartMainConfigObject.series[0].data.push(data[j].pass);
+			Charts.mainChart.series[0].data.push(data[j].pass);
+			Charts.mainChart.series[1].data.push(data[j].fail + data[j].error);
 		}
-		$scope.chartMainConfig = chartMainConfigObject;
+		Charts.mainChart.xAxis.categories = timestamp;
+		Charts.mainChart.title.text = "Pass / Fail for the last " + data.length + " results";
+		$scope.chartMainConfig = Charts.mainChart;
     };
     
     $scope.createHomeChart = function(data, id) {
     	
-        var chartHomeConfigObject = {
-        		  options: {
-        			    chart: {
-        			      type: "areaspline",
-        			      backgroundColor: '#ecf0f1'
-        			    },
-        			    plotOptions: {
-        			      series: {
-        			        stacking: "normal"
-        			      }
-        			    }
-        			  }, 
-        		  series: [{
-        			  data: [],
-        		      id: "pass",
-        		      name: "Pass",
-        		      type: "column",
-        		      color: "green",
-        		      dashStyle: "Solid",
-        		      connectNulls: false
-        		  },{
-        			  data: [],
-      	   		      id: "fail",
-      	   		      name: "Fail",
-      	   		      type: "column",
-      	   		      color: "red",
-      	   		      dashStyle: "Solid",
-      	   		      connectNulls: false
-        		  }],
-        		  title: {
-        		     text: 'Pass / Fail - Last 50 Runs'
-        		  },
-        		  loading: false,
-        		  xAxis: {
-        		  title: {text: 'Tests run'}
-        		  },
-        		  useHighStocks: false,
-        		  size: {
-        		   height: 400
-        		  },
-        		  //function (optional)
-        		  func: function (chart) {
-        		   //setup some logic for the chart
-        		  }
-        		};
+        var chartHomeConfigObject = Charts.homeChart;
     	
+        Charts.homeChart.series[0].data = [];
+		Charts.homeChart.series[1].data = [];
+        
 		for (var j = 0; j < data.length; j++) {
-			chartHomeConfigObject.series[0].data.push(data[j].pass);
-			chartHomeConfigObject.series[1].data.push(data[j].fail + data[j].error);
+			Charts.homeChart.series[0].data.push(data[j].pass);
+			Charts.homeChart.series[1].data.push(data[j].fail + data[j].error);
 		}
-		$scope.chartHomeConfig[id] = chartHomeConfigObject;
+		$scope.chartHomeConfig[id] = Charts.homeChart;
     };
     
     //  CSS -----------------------------------------------------------------------------------------------------------------
