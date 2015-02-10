@@ -9,9 +9,9 @@ import com.google.gson.JsonArray;
 
 public class GetSpecificSuiteDAO {
 
-	public String getSpecificSuite(String timestamp, int suiteid){
+	public String getSpecificSuite(int suiteid,String timestamp ){
 		ReadSuiteFromDB readSuite = new ReadSuiteFromDB();
-		JsonArray jsonArray  = readSuite.getSpecificSuiteRunFromIdAndTimestamp(timestamp, suiteid);
+		JsonArray jsonArray  = readSuite.getSpecificSuiteRunFromIdAndTimestamp(suiteid, timestamp);
 		return new Gson().toJson(jsonArray);
 		
 	}

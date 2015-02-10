@@ -128,7 +128,7 @@ public class ReadFromDBTest {
     }
     @Test
     public void getSpecificSuiteRunFromIdAndTimestampTest(){
-    	JsonArray array = new ReadSuiteFromDB().getSpecificSuiteRunFromIdAndTimestamp("20150204-000000", 1);
+    	JsonArray array = new ReadSuiteFromDB().getSpecificSuiteRunFromIdAndTimestamp(1,"20150204-000000");
     	System.out.println(array.toString());
     }
 }

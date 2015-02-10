@@ -12,9 +12,9 @@ public class GetSpecificSuiteWS extends Route {
 
 	@Override
 	public Object handle(Request request, Response response) {
-		String timestamp = (String)request.queryParams("timestamp");
 		int	id = Integer.valueOf(request.queryParams("id"));
-		return new GetSpecificSuiteDAO().getSpecificSuite(timestamp, id);
+		String timestamp = (String)request.queryParams("timestamp");
+		return new GetSpecificSuiteDAO().getSpecificSuite(id, timestamp);
 	}
 
 }
