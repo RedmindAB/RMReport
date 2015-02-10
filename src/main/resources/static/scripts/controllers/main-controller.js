@@ -1,8 +1,8 @@
 angular.module('webLog')
-    .controller('MainCtrl',['$scope', '$rootScope', '$http','$location', '$timeout','$state', 'SearchField', 'CurrentSuite', function($scope, $rootScope,$http, $location, $timeout, $state, SearchField, CurrentSuite){
+    .controller('MainCtrl',['$scope', '$rootScope', '$http','$location', '$timeout','$state', 'CurrentSuite', 'Charts', 'Utilities', function($scope, $rootScope,$http, $location, $timeout, $state, CurrentSuite, Charts, Utilities){
     	
     $scope.CurrentSuite = CurrentSuite;
-    $scope.SearchField = SearchField;
+    $scope.Utilities = Utilities;
     $scope.suiteSkeleton = [];	
     $scope.$state = $state;
     $scope.methods = {};
@@ -18,10 +18,9 @@ angular.module('webLog')
     
     $scope.mockDriverArray = ["Andriod", "Chrome", "OSX", "Windows"];
     
-    $scope.amountOfRuns = "";
     
     $scope.resetFilterField = function(){
-    	SearchField.text = "";
+    	Utilities.searchField = "";
     }
     
     $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];
@@ -56,14 +55,30 @@ angular.module('webLog')
 	}
 	
 	$scope.clearChosen = function(){
-		for (var i = 0; i < CurrentSuite.currentClass.length; i++) {
-			if (CurrentSuite.currentCLass[i].chosen) {
-				delete CurrentSuite.currentClass[i].chosen;
+		//remove classes checkbox
+		if (CurrentSuite.currentSuite) {
+			for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
+				if (CurrentSuite.currentSuite[i].chosen) {
+					delete CurrentSuite.currentSuite[i].chosen
+				}
 			}
 		}
-		for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
-			if (CurrentSuite.currentSuite[i].chosen) {
-				delete CurrentSuite.currentSuite[i].chosen
+		
+		//remove method checkbox
+		if (CurrentSuite.currentClass.testcases) {
+			for (var i = 0; i < CurrentSuite.currentClass.testcases.length; i++) {
+				if (CurrentSuite.currentClass.testcases[i].chosen) {
+					delete CurrentSuite.currentClass.testcases[i].chosen;
+				}
+			}
+		}
+		
+		//remove driver checkbox
+		if (CurrentSuite.currentDrivers) {
+			for (var i = 0; i < CurrentSuite.currentDrivers.length; i++) {
+				if (CurrentSuite.currentDrivers[i].chosen) {
+					delete CurrentSuite.currentDrivers[i].chosen
+				}
 			}
 		}
 	}
@@ -71,7 +86,8 @@ angular.module('webLog')
 	$scope.getChosen = function(){
 		var chosen = {
 				classes: [],
-				methods: []
+				methods: [],
+				drivers: []
 		};
 		
 		//add classes to send
@@ -91,7 +107,15 @@ angular.module('webLog')
 				}
 			}
 		}
-		console.log(chosen);
+		
+		//add drivers to send
+		if (CurrentSuite.currentDrivers) {
+			for (var i = 0; i < CurrentSuite.currentDrivers.length; i++) {
+				if (CurrentSuite.currentDrivers[i].chosen) {
+					chosen.drivers.push(CurrentSuite.currentDrivers[i].driver);
+				}
+			}
+		}
 		return chosen;
 	}
 	
@@ -99,6 +123,14 @@ angular.module('webLog')
     
 	$scope.getCases = function(driver){
 		CurrentSuite.currentDriver = driver;
+		$http.get("/api/testcase/caserunsbydriver?id=" + CurrentSuite.currentMethod.id + "&driver='" + driver.driver + "'")
+	    .success(function(data, status, headers, config){ 
+	    	if(data){
+	    		CurrentSuite.currentDriverRuns = data;
+	    	};
+	    }).error(function(data, status, headers, config){
+	    	console.log(data);
+	    });
 	}
 	
 	$scope.getSuiteSkeleton = function(suite){
@@ -137,8 +169,8 @@ angular.module('webLog')
 	    });
 	};
 	
-   $scope.loadMainChart = function(suiteID, reslimit, drivers) {
-    	var requestObject = $scope.getGraphDataObject(suiteID, reslimit, drivers)
+   $scope.loadMainChart = function(suiteID) {
+    	var requestObject = $scope.getGraphDataObject(suiteID)
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){
     		$scope.createMainChart(data);
@@ -175,8 +207,8 @@ angular.module('webLog')
     	console.log(data);
     });
 	
-    $scope.getMainGraphData = function(suiteID, classIDs, caseIDs, drivers){
-    	$scope.requestObject =  $scope.getGraphDataObject(suiteID, classIDs, caseIDs, drivers);
+    $scope.getMainGraphData = function(suiteID){
+    	$scope.requestObject =  $scope.getGraphDataObject(suiteID);
     	$http.post('/api/stats/graphdata', $scope.requestObject)
     	.success(function(data, status, headers, config){ 
     		$scope.currentGraphData = data;
@@ -185,26 +217,24 @@ angular.module('webLog')
     	});
     }
     
-    $scope.getGraphDataObject = function(suiteID, reslimit, drivers){
+    $scope.getGraphDataObject = function(suiteID){
     	var chosen = $scope.getChosen();
     	var dataRequest = {};
     	
-    		dataRequest.suiteid = suiteID;
-    		
-    		if (!(isNaN(reslimit)) && !(reslimit === "")) {
-				dataRequest.reslimit = parseInt(reslimit) +1;
-			} else {
-				dataRequest.reslimit = 51;
-			}
-    		
-			dataRequest.classes=chosen.classes;
-			dataRequest.testcases = chosen.methods;
-			
-    		if (drivers) {
-				dataRequest.drivers = drivers;
-			} else {
-				dataRequest.drivers = [];
-			}
+    	var reslimit = Utilities.amountField;
+    	
+		dataRequest.suiteid = suiteID;
+		
+		if (!(isNaN(reslimit)) && !(reslimit === "")) {
+			dataRequest.reslimit = parseInt(reslimit) +1;
+		} else {
+			dataRequest.reslimit = 51;
+		}
+		
+		dataRequest.classes=chosen.classes;
+		dataRequest.testcases = chosen.methods;
+		dataRequest.drivers= chosen.drivers;
+		console.log(dataRequest);
     	return dataRequest;
     };
     

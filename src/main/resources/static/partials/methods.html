@@ -1,13 +1,19 @@
 <accordion close-others="true">
 	<!-- repeated content -->
-	<div ng-repeat="method in CurrentSuite.currentMethods | filter:searchText track by $index " style='cursor: pointer;margin-top: 10px' ng-class='getPanel(method.result)' ng-style="{'background-color': getBgCo(method.result)}">
-
-		<input type="checkbox" id="mycheckbox" ng-model="method.chosen"><label for="mycheckbox"></label>	
-	
+	<div ng-repeat="method in CurrentSuite.currentMethods | filter: Utilities.searchField track by $index " style='cursor: pointer;margin-top: 10px' ng-class='getPanel(method.result)' ng-style="{'background-color': getBgCo(method.result)}">
 	    <!-- non collapsing header -->
-	        <div ng-style="{'color' : getCo(method.result)}" ng-click="getDrivers(method); goToDrivers(); resetFilterField()">
-	        		<h3 style='margin-top: -10px;overflow:hidden;'>{{method.name}}</h3>
-	        </div>
+	    <table>
+	    	<tr>
+	    		<td>
+					<input style='height:30px' type="checkbox" id="mycheckbox" ng-model="method.chosen"><label for="mycheckbox"></label>	
+	    		</td>
+	    		<td width='100%' ng-click="getDrivers(method); goToDrivers(); resetFilterField()">
+	        		<div ng-style="{'color' : getCo(method.result)}" style='height: 10px;margin-top:-31px'>
+	        			<h3>{{method.name}}</h3>
+	        		</div>
+	        	</td>
+	        </tr>
+		</table>
 	</div>
 	<!-- repeated content  End-->
 </accordion>
