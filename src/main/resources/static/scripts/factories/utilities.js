@@ -4,5 +4,5 @@ angular.module('webLog')
 	    	searchField: '',
 	    	amountField: '',
 	    	timeStamps: ''
-	    	};
+	    };
 	});
