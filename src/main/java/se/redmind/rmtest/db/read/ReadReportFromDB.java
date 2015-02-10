@@ -141,11 +141,12 @@ public class ReadReportFromDB extends DBBridge{
     	try {
 			while(rs.next()){
 				JsonObject jsonObject = new JsonObject();
-				jsonObject.add("driver", new JsonPrimitive(rs.getString("driver")));
-				jsonObject.add("timestamp", new JsonPrimitive(rs.getString("timestamp")));
-				jsonObject.add("message", new JsonPrimitive(rs.getString("message")));
+				jsonObject.add("class_id", new JsonPrimitive(rs.getInt("class_id")));
+				jsonObject.add("classname", new JsonPrimitive(rs.getString("name")));
+				jsonObject.add("testcase_id", new JsonPrimitive(rs.getInt("testcase_id")));
+				jsonObject.add("testcasename", new JsonPrimitive(rs.getString("name")));
 				jsonObject.add("result", new JsonPrimitive(rs.getString("result")));
-				jsonObject.add("time", new JsonPrimitive(rs.getString("time")));
+				jsonObject.add("time", new JsonPrimitive(rs.getLong("time")));
 				array.add(jsonObject);
 			}
 			

@@ -7,6 +7,8 @@ import static org.junit.Assert.*;
 
 import org.junit.rules.Timeout;
 
+import com.google.gson.JsonArray;
+
 import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.read.ReadClassFromDB;
 import se.redmind.rmtest.db.read.ReadReportFromDB;
@@ -123,7 +125,10 @@ public class ReadFromDBTest {
     }
     @Test
     public void getLastestSuiteRunFromIDTest(){
-    	
-    	
+    }
+    @Test
+    public void getSpecificSuiteRunFromIdAndTimestampTest(){
+    	JsonArray array = new ReadSuiteFromDB().getSpecificSuiteRunFromIdAndTimestamp("20150204-000000", 1);
+    	System.out.println(array.toString());
     }
 }
