@@ -87,10 +87,9 @@ angular.module('webLog')
 				      series: {
 				    	  stacking: "percent",
 		                    cursor: 'pointer',
-		                    point: {
+		                    point: {	
 		                        events: {
 		                            click: function (e) {
-		                            	console.log(this.category);
 		                            }
 		                        }
 		                    },
@@ -115,13 +114,13 @@ angular.module('webLog')
 				    {
 				      data: [],
 				      name:'Pass',
-				      color: '#2ecc71',
+				      color: '#D4D9DD',
 				      id: "mainPass"
 				    },
 				    {
 				      data: [],
 				      name: 'Fail',
-				      color: '#e74e3e',
+				      color: '#FF0000',
 				      id: "mainFail"
 				    }
 				  ],

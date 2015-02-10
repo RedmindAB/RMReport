@@ -298,6 +298,9 @@ angular.module('webLog')
 		}
 		Charts.mainChart.xAxis.categories = CurrentSuite.currentTimeStampArray;
 		Charts.mainChart.title.text = "Pass / Fail for the last " + data.length + " results";
+		Charts.mainChart.options.plotOptions.series.point.events.click = function (e) {
+			$scope.loadNewTimeStamp(this.category);
+        };
 		$scope.chartMainConfig = Charts.mainChart;
     };
     
