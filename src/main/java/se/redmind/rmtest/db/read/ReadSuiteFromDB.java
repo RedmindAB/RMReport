@@ -23,9 +23,9 @@ public class ReadSuiteFromDB extends DBBridge{
     String GET_SUITE_MAX = "SELECT report.class_id, class.name, report.testcase_id, testcase.name, result FROM report INNER JOIN class ON report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id WHERE timestamp = (SELECT MAX(timestamp) FROM report WHERE suite_id = {suite_id}) GROUP BY report.testcase_id;";
     String GET_SUITE_BY_TIMESTAMP = "SELECT report.class_id, class.name, report.testcase_id, testcase.name, result FROM report INNER JOIN class ON report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id WHERE timestamp = {timestamp} AND suite_id = {suite_id} GROUP BY report.testcase_id;";
     
-    String GET_SUITE_SPECIFIC = "SELECT report.class_id, class.name, report.testcase_id, testcase.name, result, report.time FROM report INNER JOIN class ON report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id WHERE timestamp = (SELECT timestamp FROM report WHERE suite_id =  ";
-    String AND_TIMESTAMP_ =" and timestamp =  ";
-    String GROUP_BY_ = " ) GROUP BY report.testcase_id;";
+    String GET_SUITE_SPECIFIC = "select report.class_id, class.name, report.testcase_id, report.name, result, timestamp, time from report inner join class on report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id where timestamp = ";
+    String AND_SUITEID_ =" and suite_id = ";
+    String GROUP_BY_ = " GROUP BY report.testcase_id;";
 
     public int getSuiteID(String suitName){
         ResultSet rs = readFromDB(GET_SUIT_ID+"'"+suitName+"'");
@@ -71,17 +71,19 @@ public class ReadSuiteFromDB extends DBBridge{
     
     
     public JsonArray getSpecificSuiteRunFromIdAndTimestamp(String timestamp, int suiteid){
-    	ResultSet rs = readFromDB(GET_SUITE_SPECIFIC+suiteid+AND_TIMESTAMP_+timestamp+GROUP_BY_);
-    	JsonArray array = new JsonArray();
+    	ResultSet rs = readFromDB(GET_SUITE_SPECIFIC+timestamp+AND_SUITEID_+suiteid+GROUP_BY_);
+    	JsonArray array = new JsonArray();    	
     	try {
 			while(rs.next()){
 				JsonObject jsonObject = new JsonObject();
-				jsonObject.add("driver", new JsonPrimitive(rs.getString("driver")));
-				jsonObject.add("timestamp", new JsonPrimitive(rs.getString("timestamp")));
-				jsonObject.add("message", new JsonPrimitive(rs.getString("message")));
+				jsonObject.add("classid", new JsonPrimitive(rs.getString("class_id")));
+				jsonObject.add("classname", new JsonPrimitive(rs.getString("name")));
+				jsonObject.add("testcaseid", new JsonPrimitive(rs.getString("testcase_id")));
+				jsonObject.add("testcasename", new JsonPrimitive(rs.getString("name")));
 				jsonObject.add("result", new JsonPrimitive(rs.getString("result")));
 				jsonObject.add("time", new JsonPrimitive(rs.getString("time")));
 				array.add(jsonObject);
+				
 			}
 			
 		} catch (SQLException e) {
