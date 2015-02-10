@@ -171,6 +171,7 @@ angular.module('webLog')
 	};
 	
    $scope.loadMainChart = function(suiteID) {
+	   console.log(suiteID);
     	var requestObject = $scope.getGraphDataObject(suiteID)
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){
