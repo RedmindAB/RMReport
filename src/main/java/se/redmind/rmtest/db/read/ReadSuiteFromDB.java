@@ -23,8 +23,8 @@ public class ReadSuiteFromDB extends DBBridge{
     String GET_SUITE_MAX = "SELECT report.class_id, class.name, report.testcase_id, testcase.name, result FROM report INNER JOIN class ON report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id WHERE timestamp = (SELECT MAX(timestamp) FROM report WHERE suite_id = {suite_id}) GROUP BY report.testcase_id;";
     String GET_SUITE_BY_TIMESTAMP = "SELECT report.class_id, class.name, report.testcase_id, testcase.name, result FROM report INNER JOIN class ON report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id WHERE timestamp = {timestamp} AND suite_id = {suite_id} GROUP BY report.testcase_id;";
     
-    String GET_SUITE_SPECIFIC = "select report.class_id, class.name, report.testcase_id, report.name as testcasename, result, timestamp, time from report inner join class on report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id where timestamp = ";
-    String AND_SUITEID_ =" AND suite_id = ";
+    String GET_SUITE_SPECIFIC = "select report.class_id, class.name, report.testcase_id, report.name as testcasename, result, timestamp, time from report inner join class on report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id where timestamp = '";
+    String AND_SUITEID_ ="' AND suite_id = ";
     String GROUP_BY_ = " GROUP BY report.testcase_id;";
 
     public int getSuiteID(String suitName){
