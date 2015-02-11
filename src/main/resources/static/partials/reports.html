@@ -13,8 +13,9 @@
 	</h4>
 	<!-- navigation links END -->
 	<!-- chart -->
-	<highchart id="chart1" config="chartMainConfig"></highchart>
+	<highchart ng-if="!mainChartToggle" id="chart1" config="chartMainConfig"></highchart>
 	<!-- chart END -->
+	<button ng-click="toggleMainChart()">{{getToggleButtonText()}}</button>
 </div>
 
 <!-- Suite run dropdown -->

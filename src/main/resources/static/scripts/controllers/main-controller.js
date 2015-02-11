@@ -11,6 +11,7 @@ angular.module('webLog')
     $scope.chartHomeConfig = {};
     $scope.chartMainConfig = {};
     $scope.allSuites = [];
+    $scope.mainGraphToggle = false;
     $scope.chosen={
     		classes: [],
     		methods: [],
@@ -175,6 +176,7 @@ angular.module('webLog')
 	    $http.get('/api/suite/latestbyid?suiteid=' + suite.id)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
+	    		console.log(data);
 	    		CurrentSuite.currentSuite = data;
 	    	};
 	    }).error(function(data, status, headers, config){
@@ -283,6 +285,16 @@ angular.module('webLog')
     
 	// CHART OBJECTS -----------------------------------------------------------------------------------------------------------
 	
+    $scope.toggleMainChart = function(){
+    	if ($scope.chartMainConfig === Charts.mainChart) {
+    		$scope.chartMainConfig = Charts.mainTime;
+    		$scope.mainGraphToggle = true;
+		} else {
+			$scope.chartMainConfig = Charts.mainChart;
+			$scope.mainGraphToggle = false;
+		}
+    }
+    
     $scope.createMainChart = function(data){
     	CurrentSuite.currentTimeStampArray = [];
     	for (var index = 0; index < data.length; index++) {
@@ -319,6 +331,14 @@ angular.module('webLog')
     };
     
     //  CSS -----------------------------------------------------------------------------------------------------------------
+    
+    $scope.getToggleButtonText = function(){
+    	if ($scope.mainGraphToggle) {
+			return "Show Pass/Fail"
+		} else {
+			return "Show Run Time";
+		}
+    }
     
     $scope.getCurrentState= function(state){
     	return $state.includes(state);
