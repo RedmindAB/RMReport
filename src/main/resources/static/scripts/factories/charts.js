@@ -166,6 +166,9 @@ angular.module('webLog')
 							title : {
 								text : "Time to run"
 							},
+							credits:{
+								enabled: false
+							},
 							size : {}
 						}
 					}
