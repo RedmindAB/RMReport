@@ -34,9 +34,6 @@ angular.module('webLog')
 								connectNulls : false
 							} ],
 							xAxis : {
-								title : {
-									text : 'Tests run'
-								},
 								minTickInterval : 5,
 								labels : {
 									rotation : 45
