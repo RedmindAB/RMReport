@@ -1,9 +1,8 @@
-<div align='center'>
 	<div ng-repeat="suite in allSuites">
-		<table class='table' border='0' style='margin-top: 30px;'>
+		<table class='table' border='0'>
 		<!-- Project logo -->
 		<tr>
-			<td style='border:0;flaot:right'>
+			<td>
 				<img class='image-paths' style="cursor: pointer;" ng-src="{{imagePaths[$index]}}" ng-click="loadMainChart(suite.id, '50'); goToProject(); getSuiteSkeleton(suite);"></img>
 			</td>
 		</tr>
@@ -17,4 +16,3 @@
 		<!-- project chart END -->
 	</table>
 	</div>
-</div>

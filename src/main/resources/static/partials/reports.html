@@ -1,5 +1,5 @@
 <!-- Chart -->
-<div align='center' style='margin-top:20px'>
+<div align='center'>
  	<!-- project logo -->
 	<img ng-src="{{imagePaths[CurrentSuite.currentSuiteInfo.id -1]}}" style="cursor: pointer" class='image-paths' ng-click="goToHome()"></img> 
 	<!-- project logo END-->
@@ -15,7 +15,7 @@
 	<!-- chart -->
 	<highchart ng-if="!mainChartToggle" id="chart1" config="chartMainConfig"></highchart>
 	<!-- chart END -->
-	<button class="btn btn-default" ng-click="toggleMainChart()">{{getToggleButtonText()}}</button>
+	<button class="btn btn-default" ng-click="toggleMainChart()" align='center'>{{getToggleButtonText()}}</button>
 </div>
 
 <!-- Suite run dropdown -->
