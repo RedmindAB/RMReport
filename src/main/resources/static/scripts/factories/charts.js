@@ -38,7 +38,12 @@ angular.module('webLog')
 								labels : {
 									rotation : 45
 								}
-							},				
+							},	
+							yAxis : {
+								title : {
+									text : 'Number of tests'
+								},
+							},
 							useHighStocks : false,
 							size : {
 								height : 400
