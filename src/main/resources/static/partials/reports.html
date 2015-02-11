@@ -29,12 +29,12 @@
 		<tr>
 			<td>
 				<div ng-repeat="driver in mockDriverArray" class='reports'>
-					<label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{driver}}</label><input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen">
+					<label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{driver}}</label><input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen" id='tooltip1' data-toggle="tooltip" data-placement="top" data-original-title="Tooltip on left">
 				</div>
 			</td>
 		</tr>
 		<tr class='reports'>
-			<td style='padding: 5px;'>
+			<td style='padding: 5px;' id='tooltip1' data-toggle="tooltip" data-placement="top" data-original-title="Select test">
 				<button style='width:150px' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true">
 					{{CurrentSuite.currentTimeStamp}}
 					<span class="caret"></span>
@@ -43,18 +43,20 @@
 					<li ng-repeat="timeStamp in CurrentSuite.currentTimeStampArray"><a ng-click="loadNewTimeStamp(timeStamp)">{{timeStamp}}</a></li>
 				</ul>
 			</td>
-			<td style='padding: 5px;'>
+			<td style='padding: 5px;' id='tooltip2' data-toggle="tooltip" data-placement="top" data-original-title="Amount of tests to show">
 				<input type="text" id="suite-amount-input" class="form-control" style="width:60px" ng-model='Utilities.amountField' placeholder="Runs">
 			</td>
-			<td style='padding: 5px;'>
+			<td style='padding: 5px;' id='tooltip3' data-toggle="tooltip" data-placement="top" data-original-title="Reload graph data">
 				<button class="btn btn-default" ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)">Reload</button>
 			</td>
-			<td style='padding: 5px;'>
+			<td style='padding: 5px;'  id='tooltip4' data-toggle="tooltip" data-placement="top" data-original-title="Clear current selections">
 				<button style='width: 60px' class="btn btn-default" ng-click="clearChosen()">Clear</button>
 			</td>
 		</tr>
+		</table>
+		<table>
 		<tr>
-			<td style='padding: 5px;'>
+			<td style='padding: 5px;' id='tooltip5' data-toggle="tooltip" data-placement="right	" data-original-title="Write something to filter on">
 				<input type="text" class="form-control" id="filter-field" style="width:150px" ng-model='Utilities.searchField' placeholder="Filter">
 			</td>
 		</tr>
@@ -64,3 +66,12 @@
 
 <!-- view for current classes/methods/drivers etc -->
 <div ui-view></div>
+<script id="bsJs" type="text/javascript">
+	$(document).ready(function() {
+    	$('#tooltip1').tooltip();
+    	$('#tooltip2').tooltip();
+    	$('#tooltip3').tooltip();
+    	$('#tooltip4').tooltip();
+    	$('#tooltip5').tooltip();
+    });
+</script> 
