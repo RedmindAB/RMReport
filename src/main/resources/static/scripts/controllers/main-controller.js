@@ -317,6 +317,10 @@ angular.module('webLog')
     };
     
     $scope.createHomeChart = function(data, id) {
+    	var timeStamps = [];
+    	for (var index = 0; index < data.length; index++) {
+			timeStamps.push(data[index].timestamp);
+		}
     	
         var chartHomeConfigObject = Charts.homeChart;
     	
@@ -327,6 +331,7 @@ angular.module('webLog')
 			Charts.homeChart.series[0].data.push(data[j].pass);
 			Charts.homeChart.series[1].data.push(data[j].fail + data[j].error);
 		}
+		Charts.homeChart.xAxis.categories = timeStamps;
 		$scope.chartHomeConfig[id] = Charts.homeChart;
     };
     

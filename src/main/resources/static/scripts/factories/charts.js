@@ -36,8 +36,17 @@ angular.module('webLog')
 							xAxis : {
 								title : {
 									text : 'Tests run'
+								},
+								minTickInterval : 5,
+								labels : {
+									rotation : 45
 								}
 							},
+							yAxis : {
+								title : {
+									text : 'Number of tests'
+								}
+							},					
 							useHighStocks : false,
 							size : {
 								height : 400
