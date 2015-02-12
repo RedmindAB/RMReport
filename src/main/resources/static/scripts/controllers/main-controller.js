@@ -12,11 +12,6 @@ angular.module('webLog')
     $scope.chartMainConfig = {};
     $scope.allSuites = [];
     $scope.mainGraphToggle = false;
-    $scope.chosen={
-    		classes: [],
-    		methods: [],
-    		drivers: []
-    };
     
     $scope.mockDriverArray = ["Andriod", "iOS", "OSX", "Windows"];
     
@@ -26,36 +21,6 @@ angular.module('webLog')
     }
     
     $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];
-    
-    $scope.goToHome= function(){
-    	$state.transitionTo('home');
-    	$scope.clearChosen();
-    }
-    
-    $scope.goToProject = function(){
-    	$state.transitionTo('reports.classes');
-    	$scope.clearChosen();
-    }
-    
-    $scope.goToClasses = function(){
-    	$state.transitionTo('reports.classes');
-    	$scope.clearChosen();
-    }
-    
-    $scope.goToMethods = function(){
-    	$state.transitionTo('reports.methods');
-    	$scope.clearChosen();
-    }
-    
-    $scope.goToDrivers = function(){
-    	$state.transitionTo('reports.drivers');
-    	$scope.clearChosen();
-    };
-    
-    $scope.goToCases = function(){
-    	$state.transitionTo('reports.cases');
-    	$scope.clearChosen();
-    };
     
 	$scope.getMethods = function(testClass){
 		$scope.clearOtherChosen(testClass);
