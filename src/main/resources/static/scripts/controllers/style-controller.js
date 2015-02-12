@@ -5,6 +5,8 @@ angular.module('webLog')
 	    	return $state.includes(state);
 	    }
 	    
+	    
+	    
 	    $scope.showClassLink = function(page){
 	    	switch (page) {
 			case "classes":
