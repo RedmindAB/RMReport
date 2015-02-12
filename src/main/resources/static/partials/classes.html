@@ -9,9 +9,9 @@
 	    		<td>
 					<input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox"></label>
 	    		</td>
-	    		<td width='100%' ng-click="getMethods(class); goToMethods(); resetFilterField()">
+	    		<td width='100%' ng-click="getMethods(class); setState('reports.methods'); resetFilterField()">
 	        		<div ng-style="{'color' : getCo(class.result)}" style='height: 10px;margin-top:-31px'>
-	        			<h3 ng-click="getMethods(class); setState('reports.methods'); resetFilterField()">{{class.name}}</h3>
+	        			<h3>{{class.name}}</h3>
 	        		</div>
 	        	</td>
 	        </tr>
