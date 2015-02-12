@@ -87,6 +87,8 @@ public class DBCon {
                     "foreign key (os_id) references suite (os_id), foreign key (browser_id) references suite (browser_id), foreign key (device_id) references suite (device_id),foreign key (suite_id) references suite (suite_id), foreign key (class_id) references class (class_id), foreign key (testcase_id) references testcase (testcase_id))");
             
             stat.executeUpdate("create index if not exists reportindex on report (timestamp)");
+            
+            stat.executeUpdate("create index if not exists osindex on os (name)");
 
         } catch (SQLException e) {
             e.printStackTrace();
