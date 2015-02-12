@@ -1,14 +1,14 @@
 <!-- Chart -->
 <div align='center'>
  	<!-- project logo -->
-	<img ng-src="{{imagePaths[CurrentSuite.currentSuiteInfo.id -1]}}" style="cursor: pointer" class='image-paths' ng-click="goToHome()"></img> 
+	<img ng-src="{{imagePaths[CurrentSuite.currentSuiteInfo.id -1]}}" style="cursor: pointer" class='image-paths' ng-click="setState('home')"></img> 
 	<!-- project logo END-->
     <link rel="stylesheet" href="css/style.css">		
 	<!-- navigation links -->
 	<h4>
-		<div style='margin-top:6px' id="navigation-classes" ng-click="goToClasses()" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;| {{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
+		<div style='margin-top:6px' id="navigation-classes" ng-click="setState('reports.classes')" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;| {{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
 		<div style='margin-top:6px' id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">&#10140;  {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
-		<div style='margin-top:6px' id="navigation-drivers" ng-click="goToDrivers()" class="navTextStuff" ng-show="showClassLink('drivers')">&#10140;  {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
+		<div style='margin-top:6px' id="navigation-drivers" ng-click="setState('reports.drivers')" class="navTextStuff" ng-show="showClassLink('drivers')">&#10140;  {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
 		<div style='margin-top:6px' id="navigation-cases" ng-click="goToCases()" class="navTextStuff" ng-show="showClassLink('cases')">&#10140; {{CurrentSuite.currentDriver.driver}}&nbsp;</p></div><br/><br/>
 	</h4>
 	<!-- navigation links END -->
@@ -29,13 +29,13 @@
 		<tr>
 			<td>
 				<div ng-repeat="driver in mockDriverArray" class='reports'>
-					<label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{driver}}</label><input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen" id='tooltip1' data-toggle="tooltip" data-placement="top" data-original-title="Tooltip on left">
+					<label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{driver}}</label><input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
 				</div>
 			</td>
 		</tr>
 		<tr class='reports'>
-			<td style='padding: 5px;' id='tooltip1' data-toggle="tooltip" data-placement="top" data-original-title="Select test">
-				<button style='width:150px' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true">
+			<td style='padding: 5px;'>
+				<button style='width:150px' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
 					{{CurrentSuite.currentTimeStamp}}
 					<span class="caret"></span>
 				</button>
@@ -43,21 +43,21 @@
 					<li ng-repeat="timeStamp in CurrentSuite.currentTimeStampArray"><a ng-click="loadNewTimeStamp(timeStamp)">{{timeStamp}}</a></li>
 				</ul>
 			</td>
-			<td style='padding: 5px;' id='tooltip2' data-toggle="tooltip" data-placement="top" data-original-title="Amount of runs to show">
-				<input type="text" id="suite-amount-input" class="form-control" style="width:60px" ng-model='Utilities.amountField' placeholder="Runs">
+			<td style='padding: 5px;' id='tooltip2'>
+				<input type="text" id="suite-amount-input" class="form-control tool-tip" style="width:60px" ng-model='Utilities.amountField' placeholder="Runs" title="Amount of runs to show" data-toggle="tooltip" data-placement="top" tooltip>
 			</td>
-			<td style='padding: 5px;' id='tooltip3' data-toggle="tooltip" data-placement="top" data-original-title="Reload graph data">
-				<button class="btn btn-default" ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)">Reload</button>
+			<td style='padding: 5px;'>
+				<button class="btn btn-default" ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>Reload</button>
 			</td>
-			<td style='padding: 5px;'  id='tooltip4' data-toggle="tooltip" data-placement="top" data-original-title="Clear current selections">
-				<button style='width: 60px' class="btn btn-default" ng-click="clearChosen()">Clear</button>
+			<td style='padding: 5px;'>
+				<button style='width: 60px' class="btn btn-default" ng-click="clearChosen()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>Clear</button>
 			</td>
 		</tr>
 		</table>
 		<table>
 		<tr>
-			<td style='padding: 5px;' id='tooltip5' data-toggle="tooltip" data-placement="right	" data-original-title="Write something to filter on">
-				<input type="text" class="form-control" id="filter-field" style="width:150px" ng-model='Utilities.searchField' placeholder="Filter">
+			<td style='padding: 5px;'>
+				<input type="text" class="form-control" id="filter-field" style="width:150px" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>
 			</td>
 		</tr>
 	</table>	
@@ -66,12 +66,3 @@
 
 <!-- view for current classes/methods/drivers etc -->
 <div ui-view></div>
-<script id="bsJs" type="text/javascript">
-	$(document).ready(function() {
-    	$('#tooltip1').tooltip();
-    	$('#tooltip2').tooltip();
-    	$('#tooltip3').tooltip();
-    	$('#tooltip4').tooltip();
-    	$('#tooltip5').tooltip();
-    });
-</script> 

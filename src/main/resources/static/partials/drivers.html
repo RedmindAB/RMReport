@@ -9,7 +9,7 @@
 	    		<td>
 					<input style='height:30px' type="checkbox" id="mycheckbox" ng-model="driver.chosen"><label for="mycheckbox"></label>	
 				</td>
-	    		<td width='100%' ng-click="getCases(driver); goToCases(); resetFilterField()">
+	    		<td width='100%' ng-click="getCases(driver); setState('reports.cases'); resetFilterField()">
 	        		<div ng-style="{'color' : getCo(driver.result)}" style='height: 10px;margin-top:-31px'>
 	        		<h3>{{driver.driver}}</h3>
 	       		 </div>

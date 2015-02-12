@@ -22,6 +22,14 @@ angular.module('webLog')
     
     $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];
     
+    $scope.getToggleButtonText = function(){
+    	if ($scope.mainGraphToggle) {
+			return "Show Pass/Fail"
+		} else {
+			return "Show Run Time";
+		}
+    }
+    
 	$scope.getMethods = function(testClass){
 		$scope.clearOtherChosen(testClass);
 		CurrentSuite.currentClass=testClass;
@@ -347,81 +355,4 @@ angular.module('webLog')
 		chartHomeConfigObject.xAxis.categories = timeStamps;
 		$scope.chartHomeConfig[id] = chartHomeConfigObject;
     };
-    
-    //  CSS -----------------------------------------------------------------------------------------------------------------
-    
-    $scope.getToggleButtonText = function(){
-    	if ($scope.mainGraphToggle) {
-			return "Show Pass/Fail"
-		} else {
-			return "Show Run Time";
-		}
-    }
-    
-    $scope.getCurrentState= function(state){
-    	return $state.includes(state);
-    }
-    
-    $scope.showClassLink = function(page){
-    	switch (page) {
-		case "classes":
-			return $scope.getCurrentState('reports.classes') || 
-			$scope.getCurrentState('reports.methods') || 
-			$scope.getCurrentState('reports.drivers') || 
-			$scope.getCurrentState('reports.cases');
-			break;
-		case "methods":
-			return $scope.getCurrentState('reports.methods')  || 
-			$scope.getCurrentState('reports.drivers') || 
-			$scope.getCurrentState('reports.cases');
-			break;
-		case "drivers":
-			return $scope.getCurrentState('reports.drivers') || 
-			$scope.getCurrentState('reports.cases');
-			break;
-		case "cases":
-			return $scope.getCurrentState('reports.cases');
-			break;
-
-		default:
-			return false;
-			break;
-		}
-    }
-    
-    $scope.getPanel = function(passed){
-    	if(passed === "failure" || passed === "error")
-    		return 'panel panel-danger bg-danger';
-    	else
-    		return 'panel panel-success bg-success success';
-    };
-    
-    $scope.getBG = function(passed){
-    	if(passed === "failure" || passed === "error")
-    		return 'bg-danger';
-    	else
-    		return 'bg-success';
-    };
-    
-    $scope.getBgCo = function(passed){
-    	if(passed === "failure" || passed === "error")
-    		return '#F2DEDE';
-    	else
-    		return '#DFF0D8';
-    };
-    $scope.getCo = function(passed){
-    	if(passed === "failure" || passed === "error")
-    		return '#A94442';
-    	else
-    		return '#3C763D';
-    };
-    $scope.getLogo = function(passed){
-    	if(passed == 1)
-    		return "img/logo1.png";
-    	else if(passed == 2)
-    		return 'img/logo1.jpg';
-    	else
-    		return 'img/logo3.jpg';    
-    };
-    
 }]);
