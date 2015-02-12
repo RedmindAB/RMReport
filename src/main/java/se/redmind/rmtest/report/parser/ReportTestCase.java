@@ -24,6 +24,7 @@ public class ReportTestCase{
 	private String name, classname;
 	private boolean passed;
 	private JsonObject jsonObject;
+	private Driver driverParser;
 	
 	public ReportTestCase(Element element) {
 		this.jsonObject = new JsonObject();
@@ -35,7 +36,10 @@ public class ReportTestCase{
 		name = element.getAttribute(NAME);
 		this.jsonObject.add(NAME, new JsonPrimitive(name));
 		
-		this.jsonObject.add("driverName", new JsonPrimitive(checkDriverName(name)));
+		String driverName = checkDriverName(name);
+		this.driverParser = new Driver(driverName);
+		this.jsonObject.add("driverName", new JsonPrimitive(driverName));
+		
 		
 		classname = element.getAttribute("classname");
 		classname = getTestClassName(classname);
@@ -158,6 +162,10 @@ public class ReportTestCase{
 	
 	public JsonObject getAsJsonObject(){
 		return this.jsonObject;
+	}
+	
+	public Driver getDriver(){
+		return this.driverParser;
 	}
 	
 	//TODO: Add support for skipped?

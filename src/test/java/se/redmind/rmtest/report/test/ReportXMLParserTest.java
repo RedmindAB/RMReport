@@ -14,6 +14,7 @@ import org.w3c.dom.NodeList;
 
 import com.google.gson.JsonArray;
 
+import se.redmind.rmtest.report.parser.Driver;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
@@ -23,7 +24,7 @@ public class ReportXMLParserTest {
 
 	private static ReportLoader loader;
 	private static ReportXMLParser parser;
-	private static final String testFileName = "TEST-test.java.se.redmind.rmtest.selenium.example.CreateLogTests-20150202-140728.xml";
+	private static final String testFileName = "TEST-test.java.se.redmind.rmtest.selenium.example.AnotherGeneratedSuite-20150204-000001.xml";
 	private static File file;
 	
 	@BeforeClass
@@ -36,7 +37,7 @@ public class ReportXMLParserTest {
 	@Test
 	public void getTestCaseList() {
 		NodeList list = parser.getNodeList(file, "testcase");
-		assertEquals(12, list.getLength());
+		assertEquals(480, list.getLength());
 	}
 	
 	@Test
@@ -50,17 +51,15 @@ public class ReportXMLParserTest {
 		}
 	}
 	
-	//the file is not present, change the asserted values to ensure its working again.
-	@Ignore
 	@Test
 	public void createReportObject(){
 		Report report = parser.getReportFromFile(file);
-		assertEquals("test.java.se.redmind.rmtest.selenium.example.CreateLogTests(20150121-160906)", report.getName());
-		assertTrue(0.031 == report.getTime());
+		assertEquals("test.java.se.redmind.rmtest.selenium.example.AnotherGeneratedSuite(20150204-000001)", report.getName());
+		assertTrue(481.3582 == report.getTime());
 		assertEquals("10.9.5", report.getProperties().get("osversion").getAsJsonObject().get("value").getAsString());
 		assertEquals("os version", report.getProperties().get("osversion").getAsJsonObject().get("readName").getAsString());
 		JsonArray caseList = report.getTestCases();
-		assertEquals(12, caseList.size());
+		assertEquals(480, caseList.size());
 	}
 	
 	@Test
@@ -68,7 +67,7 @@ public class ReportXMLParserTest {
 		Report report = parser.getSimpleReportFromFile(file);
 		assertNull(report.getTestCases());
 		report.convertToFullReport();
-		assertEquals(12, report.getTestCases().size());
+		assertEquals(480, report.getTestCases().size());
 	}
 	
 	@Test
@@ -83,8 +82,27 @@ public class ReportXMLParserTest {
 		Report report = parser.getReportFromFile(file);
 		List<String> classes = report.getPresentTestClasses();
 		assertEquals(2, classes.size());
-		assertTrue(classes.contains("se.redmind.rmtest.selenium.example.CreateLogsTest"));
-		assertTrue(classes.contains("se.redmind.rmtest.selenium.example.CreateLogsTestSecond"));
+		assertTrue(classes.contains("se.redmind.rmtest.selenium.example.RandomClass"));
+		assertTrue(classes.contains("se.redmind.rmtest.selenium.example.RandomSuperClass"));
 	}
 
+	@Test
+	public void getTestCaseDriverValues(){
+		Report report = parser.getReportFromFile(file);
+		List<ReportTestCase> testCaseArray = report.getTestCaseArray();
+		
+		Driver driver = testCaseArray.get(0).getDriver();
+		String os = driver.getOs();
+		String osVer = driver.getOsVer();
+		String device = driver.getDevice();
+		String browser = driver.getBrowser();
+		String browserVer = driver.getBrowserVer();
+		
+		assertEquals("Android", os);
+		assertEquals("4.4.4", osVer);
+		assertEquals("HTC ONE", device);
+		assertEquals("firefox", browser);
+		assertEquals("31", browserVer);
+	}
+	
 }

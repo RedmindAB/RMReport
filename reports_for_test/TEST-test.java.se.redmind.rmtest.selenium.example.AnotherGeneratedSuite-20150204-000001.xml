@@ -1,0 +1,2558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test.java.se.redmind.rmtest.selenium.example.AnotherGeneratedSuite(20150204-000001)" time="481.3582" tests="480" errors="0" skipped="0" failures="336">  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib"/>
+    <property name="java.vm.version" value="25.25-b02"/>
+    <property name="gopherProxySet" value="false"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="SE"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/Users/gustavholfve/redmind/RMTest"/>
+    <property name="java.runtime.version" value="1.8.0_25-b17"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/endorsed"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="java.io.tmpdir" value="/var/folders/g6/ynxs0t3j7r15myt344kjfly00000gn/T/"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="classworlds.conf" value="/Users/gustavholfve/Documents/RMTest/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf4824253298632382667.tmp"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/gustavholfve/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.9.5"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="user.home" value="/Users/gustavholfve"/>
+    <property name="user.timezone" value="Europe/Stockholm"/>
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="gustavholfve"/>
+    <property name="java.class.path" value="/Users/gustavholfve/Downloads/eclipse 4/plugins/org.eclipse.m2e.maven.runtime_1.5.0.20140605-2032/jars/plexus-classworlds-2.5.1.jar"/>
+    <property name="org.slf4j.simpleLogger.defaultLogLevel" value="info"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B test"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="sv"/>
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_25"/>
+    <property name="java.ext.dirs" value="/Users/gustavholfve/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="/Users/gustavholfve/redmind/RMTest/EMBEDDED"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties><testcase name="random1[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.94079983">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.9106504">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.63599384"/>
+<testcase name="random1[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.3223858">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.3453461">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.5465121"/>
+<testcase name="random1[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.8953366">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.0644758">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.9082768">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.48460066"/>
+<testcase name="random1[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.90283644">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.5542511"/>
+<testcase name="random1[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.7790451">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.4790733">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.8623296">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.764615">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.266062"/>
+<testcase name="random1[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.5741857">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2266892">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.70559764">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.9436383">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.48035252">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.27290726">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.39511943">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.11490095">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.6214423"/>
+<testcase name="random2[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.52121925">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2012188">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2205888"/>
+<testcase name="random2[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.9495635">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.5110276">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.0514067">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.1449598">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.5630418">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.08895683"/>
+<testcase name="random2[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.47551942"/>
+<testcase name="random2[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.7938709"/>
+<testcase name="random2[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.66525257">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.069454">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.4816425"/>
+<testcase name="random2[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.806421">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.4664158">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.895926">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.8603809">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.8103721">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.25742245">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.7604804">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.6709552">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.24289608"/>
+<testcase name="random3[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.074207">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.5329193"/>
+<testcase name="random3[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.38330495"/>
+<testcase name="random3[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.4320191">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.1231385"/>
+<testcase name="random3[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.8047091">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.4335858">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.3704672"/>
+<testcase name="random3[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.45235717">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.37123096">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.7961473">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.41243994"/>
+<testcase name="random3[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.23092759"/>
+<testcase name="random3[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.55569243">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.5832846"/>
+<testcase name="random3[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.9851731">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.43714678">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.9206604">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.65475607"/>
+<testcase name="random3[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.3309747"/>
+<testcase name="random3[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.75928414">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.1182516"/>
+<testcase name="random3[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.7522678">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2817482">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.0764952">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.8975987">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.7698238">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.11684704">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.014595151"/>
+<testcase name="random4[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.6182837">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.42904556">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.6664293">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.760838"/>
+<testcase name="random4[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.011011362">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.8492703">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.9963104">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.5737964"/>
+<testcase name="random4[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.3818727"/>
+<testcase name="random4[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2854354"/>
+<testcase name="random4[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2466434">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.238891"/>
+<testcase name="random4[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.9741277">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.65246487"/>
+<testcase name="random4[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.4955785">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.09707308">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.7815118"/>
+<testcase name="random4[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.36307216">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.8803866"/>
+<testcase name="random5[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2136146">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.749652">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.4766015">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.6323569">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.7559159">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.007254839">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.1897274">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.1681083">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.713691"/>
+<testcase name="random5[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.5363069"/>
+<testcase name="random5[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.2955413"/>
+<testcase name="random5[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.9287827"/>
+<testcase name="random5[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.7218472">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.52060616"/>
+<testcase name="random5[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.3957516">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2699128">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.9358263"/>
+<testcase name="random5[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.5045227">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.3714318">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.3785913">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.6611279"/>
+<testcase name="random5[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.44896185">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.90094995">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.93089104">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.753191">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.7890844">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.6594185"/>
+<testcase name="random6[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.0013163">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.6807587">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.6784157">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.24220622">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.5973941"/>
+<testcase name="random6[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.5853097">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.7465497"/>
+<testcase name="random6[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.82575774">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.1163397">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.6710873">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.9027419"/>
+<testcase name="random6[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.11216545">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.0070623">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.8247144">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.9852493">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.19964814">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.9696026">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.490335">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.3863673">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.6792887">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.1354214"/>
+<testcase name="random7[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.5156724"/>
+<testcase name="random7[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.175683"/>
+<testcase name="random7[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.47908747">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.84579027">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.93635476">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.69914424">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.7595931">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.8818582">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.4803021">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.1491245">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.5110725"/>
+<testcase name="random7[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2988019">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.9509326">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.18073893">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.4103882">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.37778926">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.587389">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2922456"/>
+<testcase name="random7[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.9664512"/>
+<testcase name="random7[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.6333208"/>
+<testcase name="random7[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.0019465685"/>
+<testcase name="random7[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.39244604">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.0163225"/>
+<testcase name="random8[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.29983425">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.3592143"/>
+<testcase name="random8[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.7455741">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2297406">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.27029407">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.08869314">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.314243">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.4380511">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.070806384">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.61170936"/>
+<testcase name="random8[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.4135971">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.32422376">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.1291374"/>
+<testcase name="random8[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.31569636">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.54489446">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2938393"/>
+<testcase name="random8[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.3313333"/>
+<testcase name="random8[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.32324612">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2943219">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.192637">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.6594744">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.4803106">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.262924">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.9444121">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.5649195">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.42738032"/>
+<testcase name="random9[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.13610804"/>
+<testcase name="random9[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.1537602"/>
+<testcase name="random9[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.65522635"/>
+<testcase name="random9[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.619429"/>
+<testcase name="random9[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.20625901">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.25136387">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2592647"/>
+<testcase name="random9[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.7248547">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.9295824">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.8552239">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.48386133"/>
+<testcase name="random9[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.96061254"/>
+<testcase name="random9[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.42836797">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.6794397">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.4866489">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.6101794">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2424482">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.54284346">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.86361814">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2229482"/>
+<testcase name="random9[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.08869755">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.81300175">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.2861973"/>
+<testcase name="random10[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.80809915"/>
+<testcase name="random10[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.905005"/>
+<testcase name="random10[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.96679485">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.8215165">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.7129533"/>
+<testcase name="random10[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.0352243">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.8569925">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.73083794">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.81526077"/>
+<testcase name="random10[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.054186">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.7449441">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.9649644">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.1608349">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.4369344">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.19270742">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.061763883">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2423933">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.0439305">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.5036411">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.69977844">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.7424189">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="1.2240402">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000001)" time="0.5586897">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.4252385">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.20177495">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.2979393">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.7912762">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.9484433">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.895844"/>
+<testcase name="random1[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.0519189">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.3650087"/>
+<testcase name="random1[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.56937754">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.8687587">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.0610759">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.22128189">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5326995">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.2520769"/>
+<testcase name="random1[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.2075186">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.0831598"/>
+<testcase name="random1[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.7319155">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.025838256">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.7143251">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.7142165">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.34255219">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.79719687">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.57669044"/>
+<testcase name="random1[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.2994407"/>
+<testcase name="random2[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.3108147">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.4490211">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.4538138">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.7010224"/>
+<testcase name="random2[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.3970102"/>
+<testcase name="random2[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.2390858">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.3936591"/>
+<testcase name="random2[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.31905854"/>
+<testcase name="random2[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.33434498">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.3699405"/>
+<testcase name="random2[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.9052966"/>
+<testcase name="random2[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.2579271">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5875318">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.051485658">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.098614335">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.0322723">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.18197048">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.64274275">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.8787655"/>
+<testcase name="random2[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.1422575"/>
+<testcase name="random2[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.1230952">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.58626044">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.5127928">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random2[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.5059328">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.0368067"/>
+<testcase name="random3[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5380489"/>
+<testcase name="random3[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.2784562">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.9572825">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.83574235"/>
+<testcase name="random3[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.3478874"/>
+<testcase name="random3[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.36036038">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.8017057">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.4524548"/>
+<testcase name="random3[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.359306">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.6760614">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.766397">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.9794095">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.8754936"/>
+<testcase name="random3[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.89491">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5912936">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.91703">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5768368"/>
+<testcase name="random3[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5549642">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.9769574">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.6548549"/>
+<testcase name="random3[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.1777492">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.8883853">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.6389656">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.7971938">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.674903">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.7333064"/>
+<testcase name="random4[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.81408525">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.4934995">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.1659278">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.7402444"/>
+<testcase name="random4[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.7217109">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.54500425">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.4070935">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.97370017">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.2047478"/>
+<testcase name="random4[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.7329899">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.030450583"/>
+<testcase name="random4[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.96467423">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.057325363">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.5503963">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.6553502"/>
+<testcase name="random4[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.2873989">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.3924296"/>
+<testcase name="random4[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.3172978"/>
+<testcase name="random4[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.0062228">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.8136705"/>
+<testcase name="random4[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.810746">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5221033">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.5879446">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.9407387">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.1027075"/>
+<testcase name="random5[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.1541687">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.47207737">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.2937932">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.748945">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.77983475">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.31171608">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.6716616"/>
+<testcase name="random5[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.58004177"/>
+<testcase name="random5[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.16273105"/>
+<testcase name="random5[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.829637">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.3344126">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.6146955">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.34052062"/>
+<testcase name="random5[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.7138864">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.1241366">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.3160951"/>
+<testcase name="random5[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.24407876">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.10690844"/>
+<testcase name="random5[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.36525536"/>
+<testcase name="random5[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.28952253">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.18143618">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.6887609">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.0082858">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.7898927">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.8076407">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.7319199">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.061066866">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.3161496">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5630186">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.4446312">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.9940335">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.040135145"/>
+<testcase name="random6[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.9861487"/>
+<testcase name="random6[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.4217155"/>
+<testcase name="random6[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5111988">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.850757"/>
+<testcase name="random6[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.79418814"/>
+<testcase name="random6[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.0861893">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.8460871">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.3899782">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.17201567">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.6320181">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.57193625">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.61536026">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.32298875">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.16776729">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.808064">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.1445898">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.007938862">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.51287436"/>
+<testcase name="random7[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.65937746"/>
+<testcase name="random7[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.9206245"/>
+<testcase name="random7[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.5353553"/>
+<testcase name="random7[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.4127152">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.74357545"/>
+<testcase name="random7[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5817983">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.4645379">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.8155929">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.74067676">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.3294247"/>
+<testcase name="random7[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.14482617">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.2942287">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.0420829"/>
+<testcase name="random7[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.0561447">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.1378423">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.69628966">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.7814647">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.031466603"/>
+<testcase name="random8[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5560093">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.6729392">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.79733527">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.536649">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.3994399">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.8613514"/>
+<testcase name="random8[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.4072574">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.4992791"/>
+<testcase name="random8[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.08461511"/>
+<testcase name="random8[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.18658"/>
+<testcase name="random8[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.2662032">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.39860678">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.532099">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.0001314"/>
+<testcase name="random8[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.0366683"/>
+<testcase name="random8[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.4958912"/>
+<testcase name="random8[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.41687107"/>
+<testcase name="random8[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5870386"/>
+<testcase name="random8[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.11572">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.78972554">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.4836761">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.9501889">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.2442323">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random8[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.0045062"/>
+<testcase name="random9[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.19112718"/>
+<testcase name="random9[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.7201117">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.4661452">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.3909144">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.37212288">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5403847">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.6106592"/>
+<testcase name="random9[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.1504855">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.0844662"/>
+<testcase name="random9[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.34326982">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.23785818">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.8920399">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.3744043"/>
+<testcase name="random9[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5571454">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.8183246">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.6859546">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.28713286">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.4767498"/>
+<testcase name="random9[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.80990016">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.0029598">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.1321402">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.7792107"/>
+<testcase name="random9[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.2498124">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.10734284">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.7475913">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.48328316">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.49797225"/>
+<testcase name="random10[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.3201487">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.30678248">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5261726">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.84732366">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.97617126">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.0710253">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5717759"/>
+<testcase name="random10[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.859705"/>
+<testcase name="random10[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.869225">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.41714215"/>
+<testcase name="random10[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.6661222"/>
+<testcase name="random10[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.49075937">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5133998">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.45409405">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.9202504">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.3350103"/>
+<testcase name="random10[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.6436958">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.59207606">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.5277152">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="1.6522949"/>
+<testcase name="random10[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000001)" time="0.037645817">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+</testsuite>
