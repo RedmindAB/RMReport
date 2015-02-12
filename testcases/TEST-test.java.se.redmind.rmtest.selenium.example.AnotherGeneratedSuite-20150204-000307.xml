@@ -1,0 +1,1328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test.java.se.redmind.rmtest.selenium.example.AnotherGeneratedSuite(20150204-000307)" time="986.9966" tests="960" errors="0" skipped="0" failures="51">  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib"/>
+    <property name="java.vm.version" value="25.25-b02"/>
+    <property name="gopherProxySet" value="false"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="SE"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/Users/gustavholfve/redmind/RMTest"/>
+    <property name="java.runtime.version" value="1.8.0_25-b17"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/endorsed"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="java.io.tmpdir" value="/var/folders/g6/ynxs0t3j7r15myt344kjfly00000gn/T/"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="classworlds.conf" value="/Users/gustavholfve/Documents/RMTest/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf4824253298632382667.tmp"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/gustavholfve/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.9.5"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="user.home" value="/Users/gustavholfve"/>
+    <property name="user.timezone" value="Europe/Stockholm"/>
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="gustavholfve"/>
+    <property name="java.class.path" value="/Users/gustavholfve/Downloads/eclipse 4/plugins/org.eclipse.m2e.maven.runtime_1.5.0.20140605-2032/jars/plexus-classworlds-2.5.1.jar"/>
+    <property name="org.slf4j.simpleLogger.defaultLogLevel" value="info"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B test"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="sv"/>
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_25"/>
+    <property name="java.ext.dirs" value="/Users/gustavholfve/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="/Users/gustavholfve/redmind/RMTest/EMBEDDED"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties><testcase name="random1[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.11612117"/>
+<testcase name="random1[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8506423"/>
+<testcase name="random1[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2063484"/>
+<testcase name="random1[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.7473624"/>
+<testcase name="random1[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.1792177"/>
+<testcase name="random1[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9717193"/>
+<testcase name="random1[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.565439"/>
+<testcase name="random1[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.7930055"/>
+<testcase name="random1[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.07532358"/>
+<testcase name="random1[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1202182"/>
+<testcase name="random1[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.7875829"/>
+<testcase name="random1[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2403339"/>
+<testcase name="random1[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5824639"/>
+<testcase name="random1[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1508954"/>
+<testcase name="random1[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3598529"/>
+<testcase name="random1[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.27312636"/>
+<testcase name="random1[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.2959727"/>
+<testcase name="random1[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.44961786"/>
+<testcase name="random1[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.42522824">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.9053323"/>
+<testcase name="random1[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.39953566"/>
+<testcase name="random1[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.63574123"/>
+<testcase name="random1[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.49521518"/>
+<testcase name="random1[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.9911252"/>
+<testcase name="random2[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3326492"/>
+<testcase name="random2[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2174395"/>
+<testcase name="random2[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.7780333"/>
+<testcase name="random2[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.713939"/>
+<testcase name="random2[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.947577"/>
+<testcase name="random2[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.75449014"/>
+<testcase name="random2[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.87657535"/>
+<testcase name="random2[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.5279368"/>
+<testcase name="random2[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3992712"/>
+<testcase name="random2[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3740356"/>
+<testcase name="random2[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.16699755"/>
+<testcase name="random2[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.97262883"/>
+<testcase name="random2[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9746195"/>
+<testcase name="random2[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.58835554"/>
+<testcase name="random2[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0379281"/>
+<testcase name="random2[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0411172"/>
+<testcase name="random2[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3427674"/>
+<testcase name="random2[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.27970266"/>
+<testcase name="random2[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.351931"/>
+<testcase name="random2[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8547179"/>
+<testcase name="random2[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.29615796"/>
+<testcase name="random2[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4457678"/>
+<testcase name="random2[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.98499656"/>
+<testcase name="random2[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.28146994"/>
+<testcase name="random3[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.95232034"/>
+<testcase name="random3[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.84035695"/>
+<testcase name="random3[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.106475234"/>
+<testcase name="random3[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.83330977"/>
+<testcase name="random3[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5993288"/>
+<testcase name="random3[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9973792">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.98100793"/>
+<testcase name="random3[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.686455"/>
+<testcase name="random3[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8932458"/>
+<testcase name="random3[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.2922578"/>
+<testcase name="random3[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5056503"/>
+<testcase name="random3[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.99180627">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.95375323"/>
+<testcase name="random3[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6733961"/>
+<testcase name="random3[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.439526">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.77694166">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0545654"/>
+<testcase name="random3[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4873407"/>
+<testcase name="random3[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.33998728"/>
+<testcase name="random3[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.68854415"/>
+<testcase name="random3[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.0681082"/>
+<testcase name="random3[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4248044"/>
+<testcase name="random3[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5884001"/>
+<testcase name="random3[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.583869"/>
+<testcase name="random4[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.5993409"/>
+<testcase name="random4[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0307245">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5703111"/>
+<testcase name="random4[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5521202"/>
+<testcase name="random4[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.83148694"/>
+<testcase name="random4[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4500482"/>
+<testcase name="random4[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.068897"/>
+<testcase name="random4[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3313767"/>
+<testcase name="random4[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.506828"/>
+<testcase name="random4[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1219529"/>
+<testcase name="random4[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2372347"/>
+<testcase name="random4[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.28396726"/>
+<testcase name="random4[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1786127"/>
+<testcase name="random4[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9887248"/>
+<testcase name="random4[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1340735"/>
+<testcase name="random4[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.102966785"/>
+<testcase name="random4[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8955141"/>
+<testcase name="random4[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.45153403"/>
+<testcase name="random4[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.7394282"/>
+<testcase name="random4[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2447437"/>
+<testcase name="random4[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8179672"/>
+<testcase name="random4[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.7838602"/>
+<testcase name="random4[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.6104568"/>
+<testcase name="random4[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.7172617"/>
+<testcase name="random5[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9161036"/>
+<testcase name="random5[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.0043406487"/>
+<testcase name="random5[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.894724"/>
+<testcase name="random5[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3010992"/>
+<testcase name="random5[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.86189604"/>
+<testcase name="random5[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3143241">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.28709173"/>
+<testcase name="random5[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.53991807"/>
+<testcase name="random5[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.50351"/>
+<testcase name="random5[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.12143314"/>
+<testcase name="random5[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.6981226"/>
+<testcase name="random5[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.9093783"/>
+<testcase name="random5[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8977557"/>
+<testcase name="random5[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.39895117"/>
+<testcase name="random5[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8960186"/>
+<testcase name="random5[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.458261"/>
+<testcase name="random5[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.7769214"/>
+<testcase name="random5[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6718674"/>
+<testcase name="random5[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.1907593"/>
+<testcase name="random5[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9128261">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random5[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.539161"/>
+<testcase name="random5[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.2739272"/>
+<testcase name="random5[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.34824562"/>
+<testcase name="random5[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.74520075"/>
+<testcase name="random6[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3769978"/>
+<testcase name="random6[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.68605137"/>
+<testcase name="random6[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3538955"/>
+<testcase name="random6[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0288556"/>
+<testcase name="random6[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.9963994"/>
+<testcase name="random6[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.7450055"/>
+<testcase name="random6[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.38927543"/>
+<testcase name="random6[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.038993716"/>
+<testcase name="random6[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5292665"/>
+<testcase name="random6[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.30221117"/>
+<testcase name="random6[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4419978"/>
+<testcase name="random6[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.5029434"/>
+<testcase name="random6[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.70507205"/>
+<testcase name="random6[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5161141"/>
+<testcase name="random6[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.33825"/>
+<testcase name="random6[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1654105"/>
+<testcase name="random6[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.12277484"/>
+<testcase name="random6[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.37753057"/>
+<testcase name="random6[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6689646"/>
+<testcase name="random6[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9057115"/>
+<testcase name="random6[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5520247"/>
+<testcase name="random6[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.295918"/>
+<testcase name="random6[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.07477772">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.028874516"/>
+<testcase name="random7[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5930651"/>
+<testcase name="random7[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6155254"/>
+<testcase name="random7[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.66156745"/>
+<testcase name="random7[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.549762"/>
+<testcase name="random7[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.73763156"/>
+<testcase name="random7[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.78389657"/>
+<testcase name="random7[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.9375013"/>
+<testcase name="random7[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.29913187"/>
+<testcase name="random7[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8985327"/>
+<testcase name="random7[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5612162"/>
+<testcase name="random7[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5941634"/>
+<testcase name="random7[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.5028238"/>
+<testcase name="random7[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.81349397"/>
+<testcase name="random7[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.1375016"/>
+<testcase name="random7[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6984731"/>
+<testcase name="random7[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1200166"/>
+<testcase name="random7[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.37923145"/>
+<testcase name="random7[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.3156613"/>
+<testcase name="random7[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4187473"/>
+<testcase name="random7[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.6737764"/>
+<testcase name="random7[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.93461704"/>
+<testcase name="random7[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.021956086"/>
+<testcase name="random7[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2773983"/>
+<testcase name="random7[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5668727"/>
+<testcase name="random8[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.787186"/>
+<testcase name="random8[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.32141232"/>
+<testcase name="random8[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1044018"/>
+<testcase name="random8[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.94811165"/>
+<testcase name="random8[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8651253"/>
+<testcase name="random8[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8442571"/>
+<testcase name="random8[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.359808"/>
+<testcase name="random8[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0791966"/>
+<testcase name="random8[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.27727783"/>
+<testcase name="random8[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.070455"/>
+<testcase name="random8[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.30020988"/>
+<testcase name="random8[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8493961"/>
+<testcase name="random8[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.77658224"/>
+<testcase name="random8[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2729459"/>
+<testcase name="random8[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.5832261"/>
+<testcase name="random8[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5950606"/>
+<testcase name="random8[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6477631"/>
+<testcase name="random8[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.08619833"/>
+<testcase name="random8[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.3356911"/>
+<testcase name="random8[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.7032979"/>
+<testcase name="random8[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.3779738"/>
+<testcase name="random8[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.645206"/>
+<testcase name="random8[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.455392"/>
+<testcase name="random8[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6138825">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.6194874">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.031073928"/>
+<testcase name="random9[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9728262"/>
+<testcase name="random9[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.7807385"/>
+<testcase name="random9[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4164199"/>
+<testcase name="random9[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.36285424"/>
+<testcase name="random9[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.66860104"/>
+<testcase name="random9[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.9141017"/>
+<testcase name="random9[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.44286013"/>
+<testcase name="random9[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.29130805"/>
+<testcase name="random9[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.82372963"/>
+<testcase name="random9[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.39673376"/>
+<testcase name="random9[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.08767581">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random9[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.878785"/>
+<testcase name="random9[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9742258"/>
+<testcase name="random9[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1523244"/>
+<testcase name="random9[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.62164843"/>
+<testcase name="random9[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8904289"/>
+<testcase name="random9[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8480344"/>
+<testcase name="random9[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.4414853"/>
+<testcase name="random9[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.3954867"/>
+<testcase name="random9[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3754311"/>
+<testcase name="random9[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.28148"/>
+<testcase name="random9[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.07050276"/>
+<testcase name="random10[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0426568"/>
+<testcase name="random10[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0830721"/>
+<testcase name="random10[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.84405196"/>
+<testcase name="random10[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3202859"/>
+<testcase name="random10[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9988561"/>
+<testcase name="random10[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.7368041"/>
+<testcase name="random10[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.14448965">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.537707"/>
+<testcase name="random10[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3003516"/>
+<testcase name="random10[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4806464"/>
+<testcase name="random10[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3477684">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.7788007"/>
+<testcase name="random10[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.5862925"/>
+<testcase name="random10[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.9156765"/>
+<testcase name="random10[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.30173016"/>
+<testcase name="random10[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.15305519"/>
+<testcase name="random10[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5054953"/>
+<testcase name="random10[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.060422"/>
+<testcase name="random10[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8537403">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.5902866"/>
+<testcase name="random10[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.31609654"/>
+<testcase name="random10[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2974665"/>
+<testcase name="random10[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.4318962"/>
+<testcase name="random10[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6363645"/>
+<testcase name="random11[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3668509"/>
+<testcase name="random11[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.90960443"/>
+<testcase name="random11[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.77195203"/>
+<testcase name="random11[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.5813128"/>
+<testcase name="random11[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.36174953"/>
+<testcase name="random11[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1623918"/>
+<testcase name="random11[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.7902632"/>
+<testcase name="random11[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.7330812"/>
+<testcase name="random11[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.83502114"/>
+<testcase name="random11[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0559568"/>
+<testcase name="random11[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0346985"/>
+<testcase name="random11[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9725451"/>
+<testcase name="random11[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.101468205"/>
+<testcase name="random11[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.8474505"/>
+<testcase name="random11[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.88960505"/>
+<testcase name="random11[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.8600594"/>
+<testcase name="random11[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.09748435"/>
+<testcase name="random11[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2365311"/>
+<testcase name="random11[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.7675533"/>
+<testcase name="random11[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5111562"/>
+<testcase name="random11[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9909862"/>
+<testcase name="random11[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.70979416"/>
+<testcase name="random11[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8897303"/>
+<testcase name="random11[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.21874332"/>
+<testcase name="random12[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2138871"/>
+<testcase name="random12[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.9560735"/>
+<testcase name="random12[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.93848825"/>
+<testcase name="random12[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.37142348"/>
+<testcase name="random12[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6586258"/>
+<testcase name="random12[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.49305546">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random12[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8596989"/>
+<testcase name="random12[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6023222">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random12[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.18066049"/>
+<testcase name="random12[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6866646"/>
+<testcase name="random12[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3992026"/>
+<testcase name="random12[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.300079"/>
+<testcase name="random12[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2617223"/>
+<testcase name="random12[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.19819188"/>
+<testcase name="random12[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.5767813"/>
+<testcase name="random12[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6234157"/>
+<testcase name="random12[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.7140187"/>
+<testcase name="random12[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.56015754"/>
+<testcase name="random12[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2327284"/>
+<testcase name="random12[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9829724"/>
+<testcase name="random12[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.6434636">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random12[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0604087"/>
+<testcase name="random12[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0262244"/>
+<testcase name="random12[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5888544"/>
+<testcase name="random13[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5404047"/>
+<testcase name="random13[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4049765"/>
+<testcase name="random13[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8213722"/>
+<testcase name="random13[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1096102"/>
+<testcase name="random13[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.329207"/>
+<testcase name="random13[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.7337238"/>
+<testcase name="random13[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2658846"/>
+<testcase name="random13[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.7481184"/>
+<testcase name="random13[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4834437"/>
+<testcase name="random13[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4788382"/>
+<testcase name="random13[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5490559"/>
+<testcase name="random13[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.11213243"/>
+<testcase name="random13[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.9013356"/>
+<testcase name="random13[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2847358"/>
+<testcase name="random13[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.81979287"/>
+<testcase name="random13[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1419938"/>
+<testcase name="random13[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1364694"/>
+<testcase name="random13[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.748958"/>
+<testcase name="random13[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5521199"/>
+<testcase name="random13[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.055291653"/>
+<testcase name="random13[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.791719"/>
+<testcase name="random13[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0971601">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random13[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.26471126"/>
+<testcase name="random13[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.7780137"/>
+<testcase name="random14[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.4096824"/>
+<testcase name="random14[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0713052"/>
+<testcase name="random14[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.4326501"/>
+<testcase name="random14[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6539949"/>
+<testcase name="random14[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0308367"/>
+<testcase name="random14[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.28869283"/>
+<testcase name="random14[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1737462"/>
+<testcase name="random14[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.35924196"/>
+<testcase name="random14[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.7410064"/>
+<testcase name="random14[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1204673"/>
+<testcase name="random14[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.34839308"/>
+<testcase name="random14[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.894971"/>
+<testcase name="random14[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9926305"/>
+<testcase name="random14[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.7417667"/>
+<testcase name="random14[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.0810802"/>
+<testcase name="random14[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2929655"/>
+<testcase name="random14[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2597018"/>
+<testcase name="random14[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4216881"/>
+<testcase name="random14[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3933191"/>
+<testcase name="random14[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2391274"/>
+<testcase name="random14[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.674147"/>
+<testcase name="random14[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.3497615"/>
+<testcase name="random14[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.6318829"/>
+<testcase name="random14[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2058555"/>
+<testcase name="random15[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.691802"/>
+<testcase name="random15[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.33664048"/>
+<testcase name="random15[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6828977"/>
+<testcase name="random15[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.8811574"/>
+<testcase name="random15[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5490317"/>
+<testcase name="random15[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5802307"/>
+<testcase name="random15[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.5814669"/>
+<testcase name="random15[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.692161"/>
+<testcase name="random15[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2964317"/>
+<testcase name="random15[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.3544979"/>
+<testcase name="random15[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0581484"/>
+<testcase name="random15[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.042960763"/>
+<testcase name="random15[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.533939"/>
+<testcase name="random15[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.9567071"/>
+<testcase name="random15[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.80774784"/>
+<testcase name="random15[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5214978"/>
+<testcase name="random15[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6220737"/>
+<testcase name="random15[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.539865"/>
+<testcase name="random15[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.82252717"/>
+<testcase name="random15[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.7774405"/>
+<testcase name="random15[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1069192"/>
+<testcase name="random15[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5606501"/>
+<testcase name="random15[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.0010738373"/>
+<testcase name="random15[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0327941"/>
+<testcase name="random16[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3718426"/>
+<testcase name="random16[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4891322">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random16[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.42571282"/>
+<testcase name="random16[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.2592386"/>
+<testcase name="random16[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.116846085"/>
+<testcase name="random16[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1550978"/>
+<testcase name="random16[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1954846"/>
+<testcase name="random16[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9409554">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random16[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.16683078"/>
+<testcase name="random16[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.646815">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random16[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.50835574">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random16[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0389713"/>
+<testcase name="random16[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.3229463"/>
+<testcase name="random16[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0315843"/>
+<testcase name="random16[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.8054644"/>
+<testcase name="random16[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.2828126"/>
+<testcase name="random16[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.49658775"/>
+<testcase name="random16[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.33344126"/>
+<testcase name="random16[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.22185004"/>
+<testcase name="random16[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.23752964"/>
+<testcase name="random16[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2034948"/>
+<testcase name="random16[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1818876"/>
+<testcase name="random16[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.33225">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random16[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.7289146"/>
+<testcase name="random17[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.6457963"/>
+<testcase name="random17[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3365492"/>
+<testcase name="random17[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2371936">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random17[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.15700507"/>
+<testcase name="random17[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.07273638"/>
+<testcase name="random17[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.896168"/>
+<testcase name="random17[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4037578"/>
+<testcase name="random17[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.9877273"/>
+<testcase name="random17[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8862064"/>
+<testcase name="random17[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4163576"/>
+<testcase name="random17[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.356997"/>
+<testcase name="random17[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2848028"/>
+<testcase name="random17[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0450989"/>
+<testcase name="random17[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.38906133"/>
+<testcase name="random17[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3121908"/>
+<testcase name="random17[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5288032"/>
+<testcase name="random17[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.7228918"/>
+<testcase name="random17[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.5776721"/>
+<testcase name="random17[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1447043"/>
+<testcase name="random17[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.167508"/>
+<testcase name="random17[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8857579"/>
+<testcase name="random17[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.555288"/>
+<testcase name="random17[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.7133883"/>
+<testcase name="random17[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.3514831"/>
+<testcase name="random18[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4838896"/>
+<testcase name="random18[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4595886"/>
+<testcase name="random18[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4850891"/>
+<testcase name="random18[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1310637"/>
+<testcase name="random18[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2866163">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random18[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.45634198"/>
+<testcase name="random18[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6519833"/>
+<testcase name="random18[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0256922"/>
+<testcase name="random18[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0422853"/>
+<testcase name="random18[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6945572"/>
+<testcase name="random18[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.49008572"/>
+<testcase name="random18[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.32382548"/>
+<testcase name="random18[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6067628"/>
+<testcase name="random18[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.6398212"/>
+<testcase name="random18[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.5764253"/>
+<testcase name="random18[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.7313936"/>
+<testcase name="random18[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9598092"/>
+<testcase name="random18[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5883697"/>
+<testcase name="random18[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.6640216"/>
+<testcase name="random18[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0590549"/>
+<testcase name="random18[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.6164681"/>
+<testcase name="random18[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.892961"/>
+<testcase name="random18[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5079359"/>
+<testcase name="random18[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5232615"/>
+<testcase name="random19[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.84100056"/>
+<testcase name="random19[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9726317"/>
+<testcase name="random19[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.7423112"/>
+<testcase name="random19[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.9334128"/>
+<testcase name="random19[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.28378654"/>
+<testcase name="random19[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5319364"/>
+<testcase name="random19[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0274569"/>
+<testcase name="random19[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.54713726"/>
+<testcase name="random19[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1870089"/>
+<testcase name="random19[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5812825"/>
+<testcase name="random19[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1176733"/>
+<testcase name="random19[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6980176"/>
+<testcase name="random19[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.1428201"/>
+<testcase name="random19[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8284906"/>
+<testcase name="random19[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.24465322"/>
+<testcase name="random19[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4348283"/>
+<testcase name="random19[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.5380894"/>
+<testcase name="random19[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8027257"/>
+<testcase name="random19[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.26793635"/>
+<testcase name="random19[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3586285"/>
+<testcase name="random19[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.2827117"/>
+<testcase name="random19[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6754581"/>
+<testcase name="random19[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4130358"/>
+<testcase name="random19[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6038167"/>
+<testcase name="random20[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.19385791"/>
+<testcase name="random20[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.159133"/>
+<testcase name="random20[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.09949303"/>
+<testcase name="random20[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.4815172">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random20[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.4964278"/>
+<testcase name="random20[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.0927389"/>
+<testcase name="random20[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.355263"/>
+<testcase name="random20[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.68843615"/>
+<testcase name="random20[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.30036712"/>
+<testcase name="random20[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.36448216"/>
+<testcase name="random20[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.6204659"/>
+<testcase name="random20[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.18159115"/>
+<testcase name="random20[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.62839305"/>
+<testcase name="random20[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6752923"/>
+<testcase name="random20[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.36268747"/>
+<testcase name="random20[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.8290807"/>
+<testcase name="random20[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.5930667"/>
+<testcase name="random20[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.3128945"/>
+<testcase name="random20[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.85764873"/>
+<testcase name="random20[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.7693297"/>
+<testcase name="random20[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.6600419"/>
+<testcase name="random20[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.58470714"/>
+<testcase name="random20[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="1.7332063"/>
+<testcase name="random20[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomClass(20150204-000307)" time="0.046009183"/>
+<testcase name="random1[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.074468374"/>
+<testcase name="random1[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.5563191"/>
+<testcase name="random1[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.3780465"/>
+<testcase name="random1[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.68159676"/>
+<testcase name="random1[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9354886"/>
+<testcase name="random1[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.27648926"/>
+<testcase name="random1[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.5019022">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random1[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.9925215"/>
+<testcase name="random1[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0039022"/>
+<testcase name="random1[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.68369365"/>
+<testcase name="random1[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.668211"/>
+<testcase name="random1[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3740644"/>
+<testcase name="random1[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.4735204"/>
+<testcase name="random1[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6519521"/>
+<testcase name="random1[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.97176576"/>
+<testcase name="random1[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.48740792"/>
+<testcase name="random1[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.5694382"/>
+<testcase name="random1[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9868076"/>
+<testcase name="random1[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.66831183"/>
+<testcase name="random1[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.4277322"/>
+<testcase name="random1[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.21026683"/>
+<testcase name="random1[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.14665091"/>
+<testcase name="random1[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.38125443"/>
+<testcase name="random1[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.475437"/>
+<testcase name="random2[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.8896422"/>
+<testcase name="random2[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.34081066"/>
+<testcase name="random2[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.38521957"/>
+<testcase name="random2[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6600714"/>
+<testcase name="random2[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.4242917"/>
+<testcase name="random2[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9998293"/>
+<testcase name="random2[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7670656"/>
+<testcase name="random2[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.731027"/>
+<testcase name="random2[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7256992"/>
+<testcase name="random2[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.13873887"/>
+<testcase name="random2[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.430959"/>
+<testcase name="random2[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.5606894"/>
+<testcase name="random2[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0746785"/>
+<testcase name="random2[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9720402"/>
+<testcase name="random2[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.892645"/>
+<testcase name="random2[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.7498858"/>
+<testcase name="random2[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.5129323"/>
+<testcase name="random2[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2894796"/>
+<testcase name="random2[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.5990573"/>
+<testcase name="random2[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.26210368"/>
+<testcase name="random2[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9129319"/>
+<testcase name="random2[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.5646075"/>
+<testcase name="random2[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1129268"/>
+<testcase name="random2[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2821013"/>
+<testcase name="random3[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0472292"/>
+<testcase name="random3[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.5434955"/>
+<testcase name="random3[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.9180672"/>
+<testcase name="random3[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1761645"/>
+<testcase name="random3[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.5505687"/>
+<testcase name="random3[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.14887702"/>
+<testcase name="random3[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.8295281"/>
+<testcase name="random3[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.42541277"/>
+<testcase name="random3[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.052937865"/>
+<testcase name="random3[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.935369"/>
+<testcase name="random3[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0338236"/>
+<testcase name="random3[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7101903"/>
+<testcase name="random3[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.9589597"/>
+<testcase name="random3[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.04432106"/>
+<testcase name="random3[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.63796"/>
+<testcase name="random3[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9427254"/>
+<testcase name="random3[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3587945"/>
+<testcase name="random3[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6322315"/>
+<testcase name="random3[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.2719996">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random3[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.976877"/>
+<testcase name="random3[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.377985"/>
+<testcase name="random3[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.084557"/>
+<testcase name="random3[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.768418"/>
+<testcase name="random3[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9679303"/>
+<testcase name="random4[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9084466"/>
+<testcase name="random4[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.9771377"/>
+<testcase name="random4[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.23252165"/>
+<testcase name="random4[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.9120444"/>
+<testcase name="random4[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1100646">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random4[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.7103443"/>
+<testcase name="random4[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9217136"/>
+<testcase name="random4[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.7640927"/>
+<testcase name="random4[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.33213294"/>
+<testcase name="random4[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.016450405"/>
+<testcase name="random4[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.267408"/>
+<testcase name="random4[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.7142817"/>
+<testcase name="random4[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.17612839"/>
+<testcase name="random4[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.12862062"/>
+<testcase name="random4[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.10191"/>
+<testcase name="random4[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6980705"/>
+<testcase name="random4[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.30608356"/>
+<testcase name="random4[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.30029464"/>
+<testcase name="random4[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.6935934"/>
+<testcase name="random4[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0205557"/>
+<testcase name="random4[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3100867"/>
+<testcase name="random4[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.5766418"/>
+<testcase name="random4[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.547225"/>
+<testcase name="random4[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.09562755"/>
+<testcase name="random5[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.4262012"/>
+<testcase name="random5[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.24514723"/>
+<testcase name="random5[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0922995"/>
+<testcase name="random5[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.7318425"/>
+<testcase name="random5[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.2683643"/>
+<testcase name="random5[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.23028505"/>
+<testcase name="random5[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3607622"/>
+<testcase name="random5[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1410997"/>
+<testcase name="random5[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.822589"/>
+<testcase name="random5[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.8476212"/>
+<testcase name="random5[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.5465182"/>
+<testcase name="random5[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9028463"/>
+<testcase name="random5[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.9310608"/>
+<testcase name="random5[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7955816"/>
+<testcase name="random5[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9426345"/>
+<testcase name="random5[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.48568213"/>
+<testcase name="random5[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2414836"/>
+<testcase name="random5[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0385109"/>
+<testcase name="random5[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1681657"/>
+<testcase name="random5[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.60986865"/>
+<testcase name="random5[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.17129827"/>
+<testcase name="random5[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3225381"/>
+<testcase name="random5[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.82504106"/>
+<testcase name="random5[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7283951"/>
+<testcase name="random6[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.8211591"/>
+<testcase name="random6[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.466156"/>
+<testcase name="random6[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.7664733"/>
+<testcase name="random6[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.21088779"/>
+<testcase name="random6[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9693221">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random6[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2803109"/>
+<testcase name="random6[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0118613"/>
+<testcase name="random6[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.4337943"/>
+<testcase name="random6[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.28836346"/>
+<testcase name="random6[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9981915"/>
+<testcase name="random6[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0091752"/>
+<testcase name="random6[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.911914"/>
+<testcase name="random6[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7479125"/>
+<testcase name="random6[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.4327954"/>
+<testcase name="random6[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.4243282"/>
+<testcase name="random6[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.8504853"/>
+<testcase name="random6[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.8018483"/>
+<testcase name="random6[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.73074234"/>
+<testcase name="random6[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.928057"/>
+<testcase name="random6[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.053681374"/>
+<testcase name="random6[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.40567482"/>
+<testcase name="random6[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.5536933"/>
+<testcase name="random6[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.5543425"/>
+<testcase name="random6[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9945083"/>
+<testcase name="random7[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.16955757"/>
+<testcase name="random7[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.79412806"/>
+<testcase name="random7[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.12042725"/>
+<testcase name="random7[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.03273821"/>
+<testcase name="random7[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.024765968"/>
+<testcase name="random7[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.5201193"/>
+<testcase name="random7[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9269916"/>
+<testcase name="random7[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.26165128"/>
+<testcase name="random7[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6660348">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.744138"/>
+<testcase name="random7[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.49807405"/>
+<testcase name="random7[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2710009"/>
+<testcase name="random7[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7296232"/>
+<testcase name="random7[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.8238103"/>
+<testcase name="random7[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.4738344"/>
+<testcase name="random7[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.23275816"/>
+<testcase name="random7[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.17661273"/>
+<testcase name="random7[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.8279402"/>
+<testcase name="random7[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9352695"/>
+<testcase name="random7[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.1478306"/>
+<testcase name="random7[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.67325604"/>
+<testcase name="random7[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.03900063">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random7[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.4185166"/>
+<testcase name="random7[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.8360915"/>
+<testcase name="random8[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.8949485"/>
+<testcase name="random8[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9136877"/>
+<testcase name="random8[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.6673844"/>
+<testcase name="random8[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.30869794"/>
+<testcase name="random8[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6276644"/>
+<testcase name="random8[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2860235"/>
+<testcase name="random8[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7762759"/>
+<testcase name="random8[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.5308137"/>
+<testcase name="random8[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.30046463"/>
+<testcase name="random8[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.37288165"/>
+<testcase name="random8[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7916765"/>
+<testcase name="random8[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.2644968"/>
+<testcase name="random8[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1549443"/>
+<testcase name="random8[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2297032"/>
+<testcase name="random8[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0689024"/>
+<testcase name="random8[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.675649"/>
+<testcase name="random8[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.64226127"/>
+<testcase name="random8[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.704558"/>
+<testcase name="random8[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7218131"/>
+<testcase name="random8[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.6955694"/>
+<testcase name="random8[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.83564544"/>
+<testcase name="random8[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.65160024"/>
+<testcase name="random8[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.3567152"/>
+<testcase name="random8[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7467885"/>
+<testcase name="random9[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6560594"/>
+<testcase name="random9[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.19035602"/>
+<testcase name="random9[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.9476923"/>
+<testcase name="random9[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3745073"/>
+<testcase name="random9[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.5309423"/>
+<testcase name="random9[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1351703"/>
+<testcase name="random9[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.1891185"/>
+<testcase name="random9[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.5691007"/>
+<testcase name="random9[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.7407397"/>
+<testcase name="random9[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.36953437"/>
+<testcase name="random9[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.952124"/>
+<testcase name="random9[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.12178767"/>
+<testcase name="random9[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1551807"/>
+<testcase name="random9[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.902902"/>
+<testcase name="random9[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.5752985"/>
+<testcase name="random9[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2247108"/>
+<testcase name="random9[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3210379"/>
+<testcase name="random9[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.6229956"/>
+<testcase name="random9[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6359344"/>
+<testcase name="random9[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.70830965"/>
+<testcase name="random9[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.9353627"/>
+<testcase name="random9[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3444939"/>
+<testcase name="random9[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.57662535"/>
+<testcase name="random9[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.80300975"/>
+<testcase name="random10[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6229606"/>
+<testcase name="random10[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.65538144"/>
+<testcase name="random10[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.103055"/>
+<testcase name="random10[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1188933"/>
+<testcase name="random10[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6341335"/>
+<testcase name="random10[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2751343"/>
+<testcase name="random10[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.622321">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.656157"/>
+<testcase name="random10[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.5884824"/>
+<testcase name="random10[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1643028"/>
+<testcase name="random10[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.15716064"/>
+<testcase name="random10[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.09080148"/>
+<testcase name="random10[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7128303"/>
+<testcase name="random10[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.46294653"/>
+<testcase name="random10[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1499565"/>
+<testcase name="random10[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3241395"/>
+<testcase name="random10[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1560887"/>
+<testcase name="random10[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.48576522"/>
+<testcase name="random10[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.36141658"/>
+<testcase name="random10[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.3413502"/>
+<testcase name="random10[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.911159"/>
+<testcase name="random10[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.4646604"/>
+<testcase name="random10[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6723409">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random10[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7934473"/>
+<testcase name="random11[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6337252"/>
+<testcase name="random11[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.5048534"/>
+<testcase name="random11[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0128993"/>
+<testcase name="random11[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3986673"/>
+<testcase name="random11[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2200575"/>
+<testcase name="random11[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3085755"/>
+<testcase name="random11[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.8723639"/>
+<testcase name="random11[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2534313"/>
+<testcase name="random11[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.3907169"/>
+<testcase name="random11[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6207376"/>
+<testcase name="random11[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.88325226"/>
+<testcase name="random11[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.4496635"/>
+<testcase name="random11[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.724311"/>
+<testcase name="random11[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0638758"/>
+<testcase name="random11[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.8273556"/>
+<testcase name="random11[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.014403701"/>
+<testcase name="random11[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.5952206"/>
+<testcase name="random11[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0550627"/>
+<testcase name="random11[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.07714">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random11[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.119277716"/>
+<testcase name="random11[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2914811">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random11[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.8353597"/>
+<testcase name="random11[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.9645252"/>
+<testcase name="random11[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7515435"/>
+<testcase name="random12[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.22376955"/>
+<testcase name="random12[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2927843"/>
+<testcase name="random12[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.8600618"/>
+<testcase name="random12[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.5950595"/>
+<testcase name="random12[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.5837096"/>
+<testcase name="random12[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2226473"/>
+<testcase name="random12[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.84904075"/>
+<testcase name="random12[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7386714"/>
+<testcase name="random12[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0694788"/>
+<testcase name="random12[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.944514">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random12[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.8070886"/>
+<testcase name="random12[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.01115036"/>
+<testcase name="random12[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3689623"/>
+<testcase name="random12[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.7829286"/>
+<testcase name="random12[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.4063138"/>
+<testcase name="random12[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.23595405"/>
+<testcase name="random12[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.9754671"/>
+<testcase name="random12[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.8194345"/>
+<testcase name="random12[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1240863"/>
+<testcase name="random12[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.5057281"/>
+<testcase name="random12[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6082726"/>
+<testcase name="random12[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.5363127"/>
+<testcase name="random12[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.6800506"/>
+<testcase name="random12[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.695602"/>
+<testcase name="random13[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.020062804"/>
+<testcase name="random13[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.4978503"/>
+<testcase name="random13[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.4929843"/>
+<testcase name="random13[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.8659741"/>
+<testcase name="random13[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2955488"/>
+<testcase name="random13[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.052844"/>
+<testcase name="random13[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.72763157"/>
+<testcase name="random13[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.94962406"/>
+<testcase name="random13[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.8803543"/>
+<testcase name="random13[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1924331"/>
+<testcase name="random13[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2926575">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random13[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1746287"/>
+<testcase name="random13[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.5265083"/>
+<testcase name="random13[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1602442"/>
+<testcase name="random13[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.7543831"/>
+<testcase name="random13[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.04369867"/>
+<testcase name="random13[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.10064709"/>
+<testcase name="random13[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.18722725"/>
+<testcase name="random13[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.5469785"/>
+<testcase name="random13[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3721955"/>
+<testcase name="random13[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7732992"/>
+<testcase name="random13[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.811445"/>
+<testcase name="random13[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.088303566"/>
+<testcase name="random13[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.8812262"/>
+<testcase name="random14[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.4923909"/>
+<testcase name="random14[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.64347565"/>
+<testcase name="random14[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.45160723">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random14[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1488572"/>
+<testcase name="random14[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.84137285"/>
+<testcase name="random14[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1509738"/>
+<testcase name="random14[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0968052"/>
+<testcase name="random14[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3416251"/>
+<testcase name="random14[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.3921392"/>
+<testcase name="random14[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0613296"/>
+<testcase name="random14[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.831077"/>
+<testcase name="random14[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0801673"/>
+<testcase name="random14[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.4851707"/>
+<testcase name="random14[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.31925344"/>
+<testcase name="random14[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.64703584"/>
+<testcase name="random14[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0369331"/>
+<testcase name="random14[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.004103422"/>
+<testcase name="random14[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1865056"/>
+<testcase name="random14[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3777415"/>
+<testcase name="random14[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.4205766">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random14[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.15918696"/>
+<testcase name="random14[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.03388095"/>
+<testcase name="random14[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2113419">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random14[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3707762"/>
+<testcase name="random15[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.5538642"/>
+<testcase name="random15[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.6509497"/>
+<testcase name="random15[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.02414465"/>
+<testcase name="random15[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.4688607">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random15[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.8809687"/>
+<testcase name="random15[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.48694432"/>
+<testcase name="random15[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2194353"/>
+<testcase name="random15[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0637698"/>
+<testcase name="random15[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.479802"/>
+<testcase name="random15[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1365745">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random15[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.30037546"/>
+<testcase name="random15[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9195093"/>
+<testcase name="random15[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.6826184">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random15[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.5974437"/>
+<testcase name="random15[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.75882757"/>
+<testcase name="random15[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.80941105"/>
+<testcase name="random15[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.388811"/>
+<testcase name="random15[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3511287"/>
+<testcase name="random15[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.027971506"/>
+<testcase name="random15[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.1141386">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random15[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.6273587"/>
+<testcase name="random15[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1578767"/>
+<testcase name="random15[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2250922"/>
+<testcase name="random15[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2245286"/>
+<testcase name="random16[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.0028567314"/>
+<testcase name="random16[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.60526407"/>
+<testcase name="random16[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.20193183"/>
+<testcase name="random16[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.6069926"/>
+<testcase name="random16[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.8677242"/>
+<testcase name="random16[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.9140512"/>
+<testcase name="random16[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.023519516"/>
+<testcase name="random16[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.7583492"/>
+<testcase name="random16[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.8229414">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random16[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2798601"/>
+<testcase name="random16[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.4124031"/>
+<testcase name="random16[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.958592"/>
+<testcase name="random16[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.721941"/>
+<testcase name="random16[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1171887"/>
+<testcase name="random16[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9237251"/>
+<testcase name="random16[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7242458"/>
+<testcase name="random16[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7370389">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random16[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.97267103"/>
+<testcase name="random16[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6576016"/>
+<testcase name="random16[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1715963"/>
+<testcase name="random16[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2450576"/>
+<testcase name="random16[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.58737934"/>
+<testcase name="random16[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1687748"/>
+<testcase name="random16[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1182284"/>
+<testcase name="random17[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2985618"/>
+<testcase name="random17[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6133558"/>
+<testcase name="random17[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.8995317"/>
+<testcase name="random17[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6829394"/>
+<testcase name="random17[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.27138865"/>
+<testcase name="random17[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.8274534"/>
+<testcase name="random17[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.9403889"/>
+<testcase name="random17[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3882412"/>
+<testcase name="random17[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.90192354"/>
+<testcase name="random17[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3359548"/>
+<testcase name="random17[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.21406698">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random17[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3263028">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random17[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.40483582"/>
+<testcase name="random17[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2263286"/>
+<testcase name="random17[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2817883"/>
+<testcase name="random17[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.81832623"/>
+<testcase name="random17[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.5817572"/>
+<testcase name="random17[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.397875"/>
+<testcase name="random17[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.8869511"/>
+<testcase name="random17[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1789877"/>
+<testcase name="random17[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9336462">
+	<failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+		at org.junit.Assert.fail(Assert.java:86)
+		at org.junit.Assert.assertTrue(Assert.java:41)
+		at org.junit.Assert.assertTrue(Assert.java:52)
+		at se.redmind.rmtest.selenium.example.CreateRandomRes3.random14(CreateRandomRes3.java:128)
+	</failure></testcase>
+<testcase name="random17[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.89089894"/>
+<testcase name="random17[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0797441"/>
+<testcase name="random17[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6917202"/>
+<testcase name="random18[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6623547"/>
+<testcase name="random18[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.9344468"/>
+<testcase name="random18[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3072872"/>
+<testcase name="random18[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.70724964"/>
+<testcase name="random18[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1461716"/>
+<testcase name="random18[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.14552486"/>
+<testcase name="random18[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.20739436"/>
+<testcase name="random18[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.89694226"/>
+<testcase name="random18[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9838878"/>
+<testcase name="random18[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.83811474"/>
+<testcase name="random18[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.010073066"/>
+<testcase name="random18[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1241566"/>
+<testcase name="random18[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0241925"/>
+<testcase name="random18[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2381896"/>
+<testcase name="random18[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.42938972"/>
+<testcase name="random18[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.14093864"/>
+<testcase name="random18[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9319737"/>
+<testcase name="random18[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.55132365"/>
+<testcase name="random18[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7193469"/>
+<testcase name="random18[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3740351"/>
+<testcase name="random18[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.790366"/>
+<testcase name="random18[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.292382"/>
+<testcase name="random18[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.17093062"/>
+<testcase name="random18[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.433345"/>
+<testcase name="random19[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9971483"/>
+<testcase name="random19[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.062164426"/>
+<testcase name="random19[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.74350715"/>
+<testcase name="random19[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6575648"/>
+<testcase name="random19[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2863649"/>
+<testcase name="random19[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0437702"/>
+<testcase name="random19[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.7522584"/>
+<testcase name="random19[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.00592947"/>
+<testcase name="random19[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0908087"/>
+<testcase name="random19[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.8918409"/>
+<testcase name="random19[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.5743661"/>
+<testcase name="random19[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9115856"/>
+<testcase name="random19[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.658265"/>
+<testcase name="random19[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.4007275"/>
+<testcase name="random19[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.19016397"/>
+<testcase name="random19[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3312793"/>
+<testcase name="random19[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3441888"/>
+<testcase name="random19[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.36302078"/>
+<testcase name="random19[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.041502357"/>
+<testcase name="random19[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1576787"/>
+<testcase name="random19[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3257475"/>
+<testcase name="random19[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3677732"/>
+<testcase name="random19[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.1680739"/>
+<testcase name="random19[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.4047923"/>
+<testcase name="random20[Android_4.4.4_HTC ONE_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6169283"/>
+<testcase name="random20[Android_4.4.4_HTC ONE_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9381317"/>
+<testcase name="random20[Android_4.4.4_HTC ONE_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.87347376"/>
+<testcase name="random20[Android_4.4.4_HTC ONE_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.13358545"/>
+<testcase name="random20[Android_5.1_Nexus 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.7116773"/>
+<testcase name="random20[Android_5.1_Nexus 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3709909"/>
+<testcase name="random20[Android_5.1_Nexus 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.2762797"/>
+<testcase name="random20[Android_5.1_Nexus 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.9540377"/>
+<testcase name="random20[IOS_8.2_iPhone 6_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.44179988"/>
+<testcase name="random20[IOS_8.2_iPhone 6_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.9166676"/>
+<testcase name="random20[IOS_8.2_iPhone 6_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.0174519"/>
+<testcase name="random20[IOS_8.2_iPhone 6_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.121524334"/>
+<testcase name="random20[OSX_10.9.5_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.70861936"/>
+<testcase name="random20[OSX_10.9.5_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.52448726"/>
+<testcase name="random20[OSX_10.9.5_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.12387061"/>
+<testcase name="random20[OSX_10.9.5_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.73954606"/>
+<testcase name="random20[Windows_8.1_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6321563"/>
+<testcase name="random20[Windows_8.1_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.2805654"/>
+<testcase name="random20[Windows_8.1_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.5688436"/>
+<testcase name="random20[Windows_8.1_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.3874707"/>
+<testcase name="random20[Ubuntu_14.04_UNKNOWN_firefox_31]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.358856"/>
+<testcase name="random20[Ubuntu_14.04_UNKNOWN_chrome_42]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.87695336"/>
+<testcase name="random20[Ubuntu_14.04_UNKNOWN_explorer_10]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="0.42393243"/>
+<testcase name="random20[Ubuntu_14.04_UNKNOWN_opera_15]" classname="se.redmind.rmtest.selenium.example.RandomSuperClass(20150204-000307)" time="1.6110936"/>
+</testsuite>

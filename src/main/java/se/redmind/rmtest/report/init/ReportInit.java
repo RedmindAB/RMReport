@@ -17,8 +17,8 @@ public class ReportInit {
 	}
 	
 	public int initReports(){
-		List<File> reportFiles = reportHandler.getReportFiles();
 		System.out.println("Checking reports!");
+		List<File> reportFiles = reportHandler.getReportFiles();
 		int addedReports = 0;
 		for (File file : reportFiles) {
 			ReportValidator reportValidator = new ReportValidator(file.getName());
