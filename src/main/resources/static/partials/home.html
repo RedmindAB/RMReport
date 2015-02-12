@@ -1,5 +1,5 @@
 	<div ng-repeat="suite in allSuites">
-		<table class='table' border='0'>
+		<table style='width:100%;margin-top:10px'>
 		<!-- Project logo -->
 		<tr>
 			<td>
@@ -9,8 +9,8 @@
 		<!-- project logo END -->
 		<!-- project chart -->
 		<tr>
-		    <td style='border:0;'>
-		    <highchart id="chart1" config="chartHomeConfig[suite.id]"></highchart>
+		    <td>
+		    	<highchart id="chart1" style='margin-top:20px' config="chartHomeConfig[suite.id]"></highchart>
 		    </td>
 		</tr>
 		<!-- project chart END -->
