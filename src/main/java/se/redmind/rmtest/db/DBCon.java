@@ -103,6 +103,9 @@ public class DBCon {
 			stat.execute("DELETE FROM class");
 			stat.execute("DELETE FROM suite");
 			stat.execute("DELETE FROM testcase");
+			stat.execute("DELETE FROM os");
+			stat.execute("DELETE FROM device");
+			stat.execute("DELETE FROM browser");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

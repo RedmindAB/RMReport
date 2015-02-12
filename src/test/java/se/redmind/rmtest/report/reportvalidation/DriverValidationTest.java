@@ -3,6 +3,7 @@ package se.redmind.rmtest.report.reportvalidation;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.util.HashMap;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -16,7 +17,7 @@ import se.redmind.rmtest.report.reportloader.ReportLoader;
 public class DriverValidationTest {
 
 	static DBCon dbc;
-	static String reportPath = System.getProperty("user.dir")+"/reports_for_tests";
+	static String reportPath = System.getProperty("user.dir")+"/reports_for_test";
 	static File file = new ReportLoader(reportPath, false).getXMLReports().get(0);
 	static ReportXMLParser parser = new ReportXMLParser();
 	static DriverValidation driverValidation;
@@ -31,7 +32,8 @@ public class DriverValidationTest {
 	
 	@Test
 	public void test() {
-		
+		HashMap<String, Integer> osMap = driverValidation.getOSMap();
+		System.out.println(osMap);
 	}
 
 }

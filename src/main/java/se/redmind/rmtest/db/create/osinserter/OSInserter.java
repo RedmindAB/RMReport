@@ -43,6 +43,7 @@ public class OSInserter extends DBBridge {
 			statement.setString(1, osname);
 			statement.setString(2, ver);
 			statement.addBatch();
+			batchNotEmpty = true;
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
