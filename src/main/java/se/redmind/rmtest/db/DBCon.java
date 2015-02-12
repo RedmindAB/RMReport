@@ -70,7 +70,6 @@ public class DBCon {
         try {
             stat = conn.createStatement();
 
-
             stat.executeUpdate("create table if not exists suite (name, suite_id integer primary key autoincrement)");
 
             stat.executeUpdate("create table if not exists class (name, class_id integer primary key autoincrement)");
