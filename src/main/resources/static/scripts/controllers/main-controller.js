@@ -322,17 +322,65 @@ angular.module('webLog')
 			timeStamps.push(data[index].timestamp);
 		}
     	
-        var chartHomeConfigObject = Charts.homeChart;
+        var chartHomeConfigObject = {
+				options : {
+					chart : {
+						type : "areaspline",
+						backgroundColor : '#ecf0f1'
+					},
+					plotOptions : {
+						series : {
+							stacking : "normal"
+						}
+					}
+				},
+				series : [ {
+					data : [],
+					id : "pass",
+					name : "Pass",
+					type : "column",
+					color : "green",
+					dashStyle : "Solid",
+					connectNulls : false
+				}, {
+					data : [],
+					id : "fail",
+					name : "Fail",
+					type : "column",
+					color : '#FF0000',
+					dashStyle : "Solid",
+					connectNulls : false
+				} ],
+				xAxis : {
+					minTickInterval : 5,
+					labels : {
+						rotation : 45
+					}
+				},	
+				yAxis : {
+					title : {
+						text : 'Number of tests'
+					},
+				},
+				useHighStocks : false,
+				size : {
+					height : 400
+				},
+				// function (optional)
+				func : function(chart) {
+					// setup some logic for the chart
+				}
+			}
     	
-        Charts.homeChart.series[0].data = [];
-		Charts.homeChart.series[1].data = [];
+        chartHomeConfigObject.series[0].data = [];
+        chartHomeConfigObject.series[1].data = [];
         
 		for (var j = 0; j < data.length; j++) {
-			Charts.homeChart.series[0].data.push(data[j].pass);
-			Charts.homeChart.series[1].data.push(data[j].fail + data[j].error);
+			chartHomeConfigObject.series[0].data.push(data[j].pass);
+			chartHomeConfigObject.series[1].data.push(data[j].fail + data[j].error);
 		}
-		Charts.homeChart.xAxis.categories = timeStamps;
-		$scope.chartHomeConfig[id] = Charts.homeChart;
+		chartHomeConfigObject.xAxis.categories = timeStamps;
+		$scope.chartHomeConfig[id] = chartHomeConfigObject;
     };
     
     //  CSS -----------------------------------------------------------------------------------------------------------------
