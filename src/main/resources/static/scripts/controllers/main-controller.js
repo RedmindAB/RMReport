@@ -15,6 +15,33 @@ angular.module('webLog')
     
     $scope.mockDriverArray = ["Andriod", "iOS", "OSX", "Windows"];
     
+    $scope.mockOsObject = [];
+    $scope.mockOsObject.push({
+    	id: 1,
+    	os: "Andriod",
+    	devices: ["Samsung", "HTC"],
+    	versions: ["4.4", "4.5.4"],
+    	browsers: ["Chrome", "Fire fox"]
+    });
+    
+    $scope.mockOsObject.push({
+    	id: 2,
+    	os: "OSX",
+    	devices: ["Mac"],
+    	versions: ["5", "6"],
+    	browsers: ["Chrome", "Fire fox", "Safari"]
+    });
+    
+    $scope.mockOsObject.push({
+    	id: 3,
+    	os: "iPhone",
+    	devices: ["iPhone 6", "iPhone 5"],
+    	versions: ["", "4.5.4"],
+    	browsers: ["Chrome", "Fire fox"]
+    });
+    
+    console.log($scope.mockOsObject);
+    
     
     $scope.resetFilterField = function(){
     	Utilities.searchField = "";
@@ -201,10 +228,12 @@ angular.module('webLog')
     $scope.createHomeChartFromID = function(id) {
     	var requestObject = {
     			suiteid:id,
-    			reslimit:51,		
+    			reslimit:51,
+    			os: [],
+    			devices: [],
+    			browsers: [],
     			classes:[],
-    			testcases:[],
-    			drivers:[]
+    			testcases:[]
     		}
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){ 
@@ -249,10 +278,11 @@ angular.module('webLog')
 		} else {
 			dataRequest.reslimit = 51;
 		}
-		
+		dataRequest.browsers = [];
+		dataRequest.devices= [];
+		dataRequest.os = [];
 		dataRequest.classes=chosen.classes;
 		dataRequest.testcases = chosen.methods;
-		dataRequest.drivers= chosen.drivers;
     	return dataRequest;
     };
     
