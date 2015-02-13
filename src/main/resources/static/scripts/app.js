@@ -16,22 +16,22 @@ angular.module('webLog', ['ui.router','ui.bootstrap',"highcharts-ng"])
         })
         .state('reports.classes',{
 	        url:'/classes',
-	        templateUrl: 'partials/classes.html',
+	        templateUrl: 'partials/sub-partials/classes.html',
 	        controller: ''
         })
         .state('reports.methods',{
 	        url:'/methods',
-	        templateUrl: 'partials/methods.html',
+	        templateUrl: 'partials/sub-partials/methods.html',
 	        controller: ''
         })
         .state('reports.drivers',{
 	        url:'/drivers',
-	        templateUrl: 'partials/drivers.html',
+	        templateUrl: 'partials/sub-partials/drivers.html',
 	        controller: ''
         })
 	    .state('reports.cases',{
 	        url:'/cases',
-	        templateUrl: 'partials/cases.html',
+	        templateUrl: 'partials/sub-partials/cases.html',
 	        controller: ''
 	    });
     });
