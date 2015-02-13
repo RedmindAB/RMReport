@@ -9,8 +9,10 @@ import java.util.List;
 import se.redmind.rmtest.db.DBBridge;
 import se.redmind.rmtest.db.create.testcaseinserter.TestCaseInserter;
 import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
+import se.redmind.rmtest.report.parser.Driver;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
+import se.redmind.rmtest.report.reportvalidation.DriverValidation;
 import se.redmind.rmtest.util.StringKeyValueParser;
 
 public class TestCaseRunInserter extends DBBridge {
@@ -19,21 +21,22 @@ public class TestCaseRunInserter extends DBBridge {
 	private ReadTestcaseFromDB readTestcaseFromDB;
 	
 	
-	private final static String INSERT_TESTCASERUN = "INSERT INTO report (suite_id, class_id, testcase_id, timestamp, result, message, name, driver, time) "
-																	+ "VALUES ({suite_id},{class_id},{testcase_id},'{timestamp}','{result}','{message}','{name}','{driver}',{time})";
+	private final static String INSERT_TESTCASERUN = "INSERT INTO report (suite_id, class_id, testcase_id, timestamp, result, message, name, os_id, browser_id, device_id, time) "
+																	+ "VALUES ({suite_id},{class_id},{testcase_id},'{timestamp}','{result}','{message}','{name}',{os_id},{browser_id},{device_id},{time})";
 
 	public TestCaseRunInserter() {
 		testCaseInserter = new TestCaseInserter();
 		readTestcaseFromDB = new ReadTestcaseFromDB();
 	}
 	
-	public void insertTestCases(Report report, int suiteID, HashMap<String, Integer> classIDs, HashMap<String,Integer> testCases){
+	public void insertTestCases(Report report, int suiteID, HashMap<String, Integer> classIDs, HashMap<String,Integer> testCases, DriverValidation driverValidation){
 		try {
 			Statement pStatement = connection.createStatement();
 			List<ReportTestCase> testCaseArray = report.getTestCaseArray();
 			StringKeyValueParser parser = new StringKeyValueParser(INSERT_TESTCASERUN);
 			for (ReportTestCase testCase : testCaseArray) {
 				HashMap<String, String> map = new HashMap<String,String>();
+				Driver driver = testCase.getDriver();
 				map.put("suite_id", ""+suiteID);
 				Integer classID = classIDs.get(testCase.getClassName());
 				map.put("class_id", ""+classID);
@@ -42,7 +45,18 @@ public class TestCaseRunInserter extends DBBridge {
 				map.put("result", testCase.getResult());
 				map.put("message", testCase.getMessage());
 				map.put("name", testCase.getMethodName());
-				map.put("driver", testCase.getDriverName());
+				
+				String osName = driver.getOs();
+				String osVer = driver.getOsVer();
+				map.put("os_id", ""+driverValidation.getOsID(osName, osVer));
+				
+				String deviceName = driver.getDevice();
+				map.put("device_id", ""+driverValidation.getDeviceID(deviceName));
+				
+				String browserName = driver.getBrowser();
+				String browserVer = driver.getBrowserVer();
+				map.put("browser_id", ""+driverValidation.getBrowserID(browserName, browserVer));
+				
 				map.put("time", ""+testCase.getTime());
 				String sql = parser.getString(map);
 				pStatement.addBatch(sql);
