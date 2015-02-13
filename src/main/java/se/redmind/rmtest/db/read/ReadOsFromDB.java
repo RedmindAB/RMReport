@@ -9,15 +9,14 @@ public class ReadOsFromDB extends DBBridge {
 	
 	String GET_ALL_FROM_OS = "select * from os";
 	
-	public HashMap<String, String> getOsVersionAndId(){
-		HashMap<String, String> hm = new HashMap<String, String>();
+
+	public HashMap<String, Integer> getOsVersionAndId(){
+		HashMap<String, Integer> hm = new HashMap<String, Integer>();
 		ResultSet rs = readFromDB(GET_ALL_FROM_OS);
 		
 		try {
 			while(rs.next()){
-				hm.put("os_id", rs.getString("os_id"));
-				hm.put("OSversion", rs.getString("name")+rs.getString("version"));
-				
+				hm.put(rs.getString("name")+rs.getString("version"), rs.getInt("os_id"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
