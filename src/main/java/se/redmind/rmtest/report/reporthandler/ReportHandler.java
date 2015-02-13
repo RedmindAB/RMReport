@@ -19,6 +19,11 @@ public class ReportHandler {
 		this.parser = new ReportXMLParser();
 	}
 	
+	public ReportHandler(String path){
+		this.loader = new ReportLoader(path, false);
+		this.parser = new ReportXMLParser();
+	}
+	
 	public List<File> getReportFiles(){
 		return loader.getXMLReports();
 	}

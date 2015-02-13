@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -29,7 +28,7 @@ public class ReadClassFromDB extends DBBridge{
     }
 
     public HashMap<String, String> getClassNameOnTestcaseId(){
-        HashMap<String, String> hm = new HashMap();
+        HashMap<String, String> hm = new HashMap<String, String>();
         ResultSet rs = readFromDB(GET_SUITE_CLASS_CASE_ID);
         try {
             while(rs.next()) {

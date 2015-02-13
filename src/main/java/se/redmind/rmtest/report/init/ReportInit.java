@@ -16,9 +16,13 @@ public class ReportInit {
 		reportHandler = new ReportHandler();
 	}
 	
+	public ReportInit(String reportPath){
+		reportHandler = new ReportHandler(reportPath);
+	}
+	
 	public int initReports(){
-		List<File> reportFiles = reportHandler.getReportFiles();
 		System.out.println("Checking reports!");
+		List<File> reportFiles = reportHandler.getReportFiles();
 		int addedReports = 0;
 		for (File file : reportFiles) {
 			ReportValidator reportValidator = new ReportValidator(file.getName());
