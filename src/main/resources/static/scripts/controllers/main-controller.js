@@ -14,7 +14,30 @@ angular.module('webLog')
     $scope.mainGraphToggle = false;
     
     $scope.mockDriverArray = ["Andriod", "iOS", "OSX", "Windows"];
+    $scope.mockOsObject = [];
+    $scope.mockOsObject.push({
+    	id: 1,
+    	os: "Andriod",
+    	devices: ["Samsung", "HTC"],
+    	versions: ["4.4", "4.5.4"],
+    	browsers: ["Chrome", "Fire fox"]
+    });
     
+    $scope.mockOsObject.push({
+    	id: 2,
+    	os: "OSX",
+    	devices: ["Mac"],
+    	versions: ["5", "6"],
+    	browsers: ["Chrome", "Fire fox", "Safari"]
+    });
+    
+    $scope.mockOsObject.push({
+    	id: 3,
+    	os: "iOS",
+    	devices: ["iPhone 6", "iPhone 5"],
+    	versions: ["", "4.5.4"],
+    	browsers: ["Chrome", "Fire fox"]
+    });
     
     $scope.resetFilterField = function(){
     	Utilities.searchField = "";
