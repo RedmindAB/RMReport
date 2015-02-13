@@ -131,4 +131,9 @@ public class ReadFromDBTest {
     	JsonArray array = new ReadSuiteFromDB().getSpecificSuiteRunFromIdAndTimestamp(1,"20150204-000000");
     	System.out.println(array.toString());
     }
+    @Test
+    public void getDriverAndMessageFromLastRunTest(){
+    	JsonArray array = new ReadTestcaseFromDB().getDriverAndMessageFromLastRun(1, "20150204-000100");
+    	System.out.println(array.toString());
+    }
 }
