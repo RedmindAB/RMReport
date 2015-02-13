@@ -14,6 +14,8 @@ import se.redmind.rmtest.db.read.ReadClassFromDB;
 import se.redmind.rmtest.db.read.ReadReportFromDB;
 import se.redmind.rmtest.db.read.ReadSuiteFromDB;
 import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
+import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseDAO;
+import se.redmind.rmtest.web.route.api.getdrivertestcase.GetDriverAndTestcaseDAO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -133,7 +135,7 @@ public class ReadFromDBTest {
     }
     @Test
     public void getDriverAndMessageFromLastRunTest(){
-    	JsonArray array = new ReadTestcaseFromDB().getDriverAndMessageFromLastRun(1, "20150204-000100");
+    	String array = new GetDriverByTestcaseDAO().getDriverByTestcaseId(1, "20150204-000100");
     	System.out.println(array.toString());
     }
 }

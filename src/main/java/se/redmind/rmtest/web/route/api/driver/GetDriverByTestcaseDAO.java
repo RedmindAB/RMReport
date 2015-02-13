@@ -10,7 +10,6 @@ public class GetDriverByTestcaseDAO {
 	public String getDriverByTestcaseId(int testCaseId, String timestamp){
 		ReadTestcaseFromDB readTestCase = new ReadTestcaseFromDB();
 		JsonArray jsonArray  = readTestCase.getDriverAndMessageFromLastRun(testCaseId, timestamp);
-		System.out.println(jsonArray.toString());
 		return new Gson().toJson(jsonArray);
 		
 	}
