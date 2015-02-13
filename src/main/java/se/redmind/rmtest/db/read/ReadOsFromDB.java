@@ -3,8 +3,6 @@ package se.redmind.rmtest.db.read;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.List;
-
 import se.redmind.rmtest.db.DBBridge;
 
 public class ReadOsFromDB extends DBBridge {
@@ -12,7 +10,7 @@ public class ReadOsFromDB extends DBBridge {
 	String GET_ALL_FROM_OS = "select * from os";
 	
 	public HashMap<String, String> getOsVersionAndId(){
-		HashMap<String, String> hm = new HashMap();
+		HashMap<String, String> hm = new HashMap<String, String>();
 		ResultSet rs = readFromDB(GET_ALL_FROM_OS);
 		
 		try {
