@@ -28,7 +28,7 @@ public class Driver {
 		}
 	}
 
-	public String getDriver() {
+	public String getDriverFullName() {
 		return driver;
 	}
 

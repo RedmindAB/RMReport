@@ -24,11 +24,10 @@ public class DriverValidation {
 		List<ReportTestCase> testCaseArray = report.getTestCaseArray();
 		HashSet<String> osNames = new HashSet<String>();
 		for (ReportTestCase reportTestCase : testCaseArray) {
-			String os = reportTestCase.getDriver().getOs();
-			String osVer = reportTestCase.getDriver().getOsVer();
-			String osConcat = os+osVer;
-			if (!osNames.contains(osConcat)) {
-				osNames.add(osConcat);
+			String driverString = reportTestCase.getDriver().getDriverFullName();
+			if (!osNames.contains(driverString)) {
+				osNames.add(driverString);
+				System.out.println(driverString);
 				driverArray.add(reportTestCase.getDriver());
 			}
 		}
@@ -46,7 +45,7 @@ public class DriverValidation {
 			String osNameAndVer = driver.getOs()+driver.getOsVer();
 			//if the driver dose not exists in the db and is not added yet, add it to the batch
 			if (!osIds.containsKey(osNameAndVer) && !addedOS.contains(osNameAndVer)) {
-				System.out.println(osNameAndVer);
+//				System.out.println(osNameAndVer);
 				osInserter.addOsToBatch(driver.getOs(), driver.getOsVer());
 				addedOS.add(osNameAndVer);
 				addedNew = true;
@@ -54,10 +53,14 @@ public class DriverValidation {
 		}
 		if (addedNew) {
 			int res = osInserter.executeBatch();
-			System.out.println(res);
+//			System.out.println(res);
 			return osFromDB.getOsVersionAndId();
 		}
 		return osIds;
+	}
+	
+	public HashMap<String, Integer> getDevice(){
+		return null;
 	}
 	
 }
