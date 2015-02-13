@@ -16,7 +16,8 @@ public class GetDriverByTestcaseWS extends Route {
 	@Override
 	public Object handle(Request request, Response response) {
 		int testcaseId = Integer.valueOf(request.queryParams("id"));
-		return new GetDriverByTestcaseDAO().getDriverByTestcaseId(testcaseId);
+		String timeStamp = request.queryParams("timestamp");
+		return new GetDriverByTestcaseDAO().getDriverByTestcaseId(testcaseId, timeStamp);
 	}
 
 }

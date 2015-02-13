@@ -14,7 +14,9 @@ import se.redmind.rmtest.db.DBBridge;
 
 public class ReadStatsFromReport extends ReadReportFromDB{
 
-	public static final String DRIVERS = "drivers";
+	public static final String OS = "os";
+	public static final String DEVICES = "devices";
+	public static final String BROWSERS = "browsers";
 	public static final String TESTCASES = "testcases";
 	public static final String CLASSES = "classes";
 	public static String RESLIMIT = "reslimit", SUITEID = "suiteid", CLASSID = "class_id",CONDITIONS = "conditions";
@@ -23,10 +25,12 @@ public class ReadStatsFromReport extends ReadReportFromDB{
 									+ " AND suite_id = {suiteid} "
 									+ "{conditions}"
 									+ "ORDER BY timestamp;";
-	private String SUITE = "suite_id = ";
-	private String DRIVER = "driver = ";
-	private String CLASS = "class_id = ";
-	private String TESTCASE = "testcase_id = ";
+	private String SUITE = "suite_id IN ";
+	private String OS_ID = "os_id IN ";
+	private String DEVICE_ID = "device_id IN ";
+	private String BROWSER_ID = "browser_id IN ";
+	private String CLASS = "class_id IN ";
+	private String TESTCASE = "testcase_id IN ";
 	
 	public List<HashMap<String, String>> getGraphData(JsonObject params){
 		String sql = getQueryFromJsonObject(params);
@@ -44,10 +48,20 @@ public class ReadStatsFromReport extends ReadReportFromDB{
 	
 	public String getConditions(JsonObject params){
 		StringBuilder sb = new StringBuilder();
-		JsonArray driverArray = params.get(DRIVERS).getAsJsonArray();
-		if (driverArray.size() > 0) {
+		JsonArray osArray = params.get(OS).getAsJsonArray();
+		if (osArray.size() > 0) {
 		sb.append("AND ");
-			generateCondition(sb, driverArray, DRIVER, true);
+			generateCondition(sb, osArray, OS_ID);
+		}
+		JsonArray deviceArray = params.get(DEVICES).getAsJsonArray();
+		if (deviceArray.size() > 0) {
+		sb.append(" AND ");
+			generateCondition(sb, deviceArray, DEVICE_ID);
+		}
+		JsonArray browserArray = params.get(BROWSERS).getAsJsonArray();
+		if (browserArray.size() > 0) {
+		sb.append(" AND ");
+			generateCondition(sb, browserArray, BROWSER_ID);
 		}
 		JsonArray classArray = params.get(CLASSES).getAsJsonArray();
 		if (classArray.size() > 0) {
@@ -63,24 +77,18 @@ public class ReadStatsFromReport extends ReadReportFromDB{
 	}
 
 	private void generateCondition(StringBuilder sb, JsonArray conditionArray, String template) {
-		generateCondition(sb, conditionArray, template, false);
-	}
-	
-	private void generateCondition(StringBuilder sb, JsonArray conditionArray, String template, boolean isString) {
-		sb.append("(");
 		int index = 0;
+		sb.append(template);
+		sb.append("(");
 		for (JsonElement condition : conditionArray) {
 			String conditionToAdd = null;
-			if (isString) {
-				conditionToAdd = "'"+condition.getAsString()+"'";
-			}else conditionToAdd = condition.getAsString();
-			sb.append(template+conditionToAdd);
+			conditionToAdd = condition.getAsString();
+			sb.append(conditionToAdd);
 			index++;
 			if (index != conditionArray.size()) {
-				sb.append(" OR ");
+				sb.append(",");
 			}
 		}
 		sb.append(")");
 	}
-	
 }
