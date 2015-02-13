@@ -1,9 +1,6 @@
 <accordion close-others="true">
 	<!-- repeated content -->
-	<div ng-repeat="driver in CurrentSuite.currentDrivers | filter: Utilities.searchField track by $index " style='cursor: pointer;margin-top: 10px' ng-class='getPanel(driver.result)' ng-style="{'background-color': getBgCo(driver.result)}">
-
-				
-	        
+	<div ng-repeat="driver in CurrentSuite.currentDrivers | filter: Utilities.searchField track by $index " style='cursor: pointer;margin-top: 10px' ng-class='getPanel(driver.result)' ng-style="{'background-color': getBgCo(driver.result)}"> 
 	  	<table>
 	    	<tr>
 	    		<td>
