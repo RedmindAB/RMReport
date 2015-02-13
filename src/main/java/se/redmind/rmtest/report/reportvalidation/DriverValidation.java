@@ -36,8 +36,8 @@ public class DriverValidation {
 	public HashMap<String, Integer> getOSMap(){
 		ReadOsFromDB osFromDB = new ReadOsFromDB();
 		//Get componenets to compare
-		HashMap<String, Integer> osIds = osFromDB.getOsVersionAndId();
 		OSInserter osInserter = new OSInserter();
+		HashMap<String, Integer> osIds = osFromDB.getOsVersionAndId();
 		HashSet<String> addedOS = new HashSet<String>();
 		boolean addedNew = false;
 		//see if the os with version exists in db, if not add it to the batch.
@@ -60,7 +60,29 @@ public class DriverValidation {
 	}
 	
 	public HashMap<String, Integer> getDevice(){
-		return null;
+		ReadOsFromDB osFromDB = new ReadOsFromDB();
+		//Get componenets to compare
+		OSInserter osInserter = new OSInserter();
+		HashMap<String, Integer> osIds = osFromDB.getOsVersionAndId();
+		HashSet<String> addedOS = new HashSet<String>();
+		boolean addedNew = false;
+		//see if the os with version exists in db, if not add it to the batch.
+		for (Driver driver : driverArray) {
+			String osNameAndVer = driver.getDevice();
+			//if the driver dose not exists in the db and is not added yet, add it to the batch
+			if (!osIds.containsKey(osNameAndVer) && !addedOS.contains(osNameAndVer)) {
+//				System.out.println(osNameAndVer);
+				osInserter.addOsToBatch(driver.getOs(), driver.getOsVer());
+				addedOS.add(osNameAndVer);
+				addedNew = true;
+			}
+		}
+		if (addedNew) {
+			int res = osInserter.executeBatch();
+//			System.out.println(res);
+			return osFromDB.getOsVersionAndId();
+		}
+		return osIds;
 	}
 	
 }
