@@ -28,6 +28,9 @@ public class InMemoryDBHandler {
 			initStatement.execute("INSERT INTO class SELECT * FROM rmtest.class;");
 			initStatement.execute("INSERT INTO suite SELECT * FROM rmtest.suite;");
 			initStatement.execute("INSERT INTO testcase SELECT * FROM rmtest.testcase;");
+			initStatement.execute("INSERT INTO os SELECT * FROM rmtest.os;");
+			initStatement.execute("INSERT INTO browser SELECT * FROM rmtest.browser;");
+			initStatement.execute("INSERT INTO device SELECT * FROM rmtest.device;");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

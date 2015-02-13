@@ -17,8 +17,6 @@ public class GetDriverByTestcaseWS extends Route {
 	public Object handle(Request request, Response response) {
 		int testcaseId = Integer.valueOf(request.queryParams("id"));
 		String timeStamp = request.queryParams("timestamp");
-		System.out.println(timeStamp);
-		System.out.println(testcaseId);
 		return new GetDriverByTestcaseDAO().getDriverByTestcaseId(testcaseId, timeStamp);
 	}
 
