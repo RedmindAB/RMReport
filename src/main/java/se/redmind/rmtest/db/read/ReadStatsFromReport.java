@@ -16,7 +16,7 @@ public class ReadStatsFromReport extends ReadReportFromDB{
 
 	public static final String OS = "os";
 	public static final String DEVICES = "devices";
-	public static final String BROWSERS = "browser";
+	public static final String BROWSERS = "browsers";
 	public static final String TESTCASES = "testcases";
 	public static final String CLASSES = "classes";
 	public static String RESLIMIT = "reslimit", SUITEID = "suiteid", CLASSID = "class_id",CONDITIONS = "conditions";
