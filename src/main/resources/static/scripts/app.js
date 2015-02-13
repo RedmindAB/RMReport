@@ -7,12 +7,12 @@ angular.module('webLog', ['ui.router','ui.bootstrap',"highcharts-ng"])
         .state('home',{
             url: '/home',
             templateUrl: 'partials/home.html',
-            controller: ''
+            controller: 'NavCtrl'
         })
         .state('reports',{
 	        url:'/reports',
 	        templateUrl: 'partials/reports.html',
-	        controller: ''
+	        controller: 'NavCtrl'
         })
         .state('reports.classes',{
 	        url:'/classes',

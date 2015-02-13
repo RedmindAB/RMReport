@@ -61,6 +61,7 @@ angular.module('webLog')
 								chart : {
 									type : "areaspline",
 									backgroundColor : '#ecf0f1',
+									height:350,
 									events : {
 										selection : function(event) {
 											console.log(event);
@@ -156,7 +157,8 @@ angular.module('webLog')
 							options : {
 								chart : {
 									backgroundColor : '#ecf0f1',
-									type : "line"
+									type : "line",
+									height:280,
 								},
 								plotOptions : {
 									series : {
