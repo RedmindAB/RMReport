@@ -5,7 +5,9 @@ angular.module('webLog')
 	    	return $state.includes(state);
 	    }
 	    
-	    
+	    $scope.stopPropagation = function($event){
+	    	$event.stopPropagation();
+	    }
 	    
 	    $scope.showClassLink = function(page){
 	    	switch (page) {

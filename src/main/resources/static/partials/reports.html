@@ -50,11 +50,10 @@
 		    <accordion close-others="false">
 			    <accordion-group ng-repeat="mock in mockOsObject">
 		        	<accordion-heading>
-						<input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> {{mock.os}}
+						<input style='height:30px' type="checkbox" id="mycheckbox" stop-click><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> 
+						{{mock.os}}
 		        	</accordion-heading>
-
-		        		<!-- <input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{mock.versions}}</label>-->
-							<accordion>
+					<accordion>
 							    <accordion-group>
 						        	<accordion-heading>
 										Devices
@@ -62,7 +61,7 @@
 						    		<table>
 							    		<tr ng-repeat='device in mock.devices' style='height:30px;'>
 								    		<td>
-								    			{{device}} <input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
+								    			{{device}} <input style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
 								    		</td>
 							    		</tr>
 						    		</table>
@@ -71,12 +70,12 @@
 						    	<accordion>
 							    <accordion-group>
 						        	<accordion-heading>
-										Versions
+										<div ng-click=''>Versions</div>
 						        	</accordion-heading>
 						        	<table>
 							        	<tr ng-repeat='version in mock.versions'>
 								        	<td>
-								        		{{version}} <input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
+								        		{{version}} <input style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
 								        	</td>
 							        	</tr>
 						        	</table>
