@@ -1,5 +1,5 @@
 <!-- Chart -->
-<div align='center'>
+<div>
  	<!-- project logo -->
 	<img ng-src="{{imagePaths[CurrentSuite.currentSuiteInfo.id -1]}}" style="cursor: pointer" class='image-paths' ng-click="setState('home')"></img> 
 	<!-- project logo END-->
@@ -10,9 +10,8 @@
 		<tr>
 		<td>
 			<div style='table-layout:fixed;word-wrap:break-word;width:100%;' id="navigation-classes" ng-click="setState('reports.classes')" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;| {{CurrentSuite.currentSuiteInfo.name}}<wbr />&nbsp;</p></div>
-			<div style='table-layout:fixed;word-wrap:break-word;width:100%;' id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">&#10140;  {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
-			<div style='table-layout:fixed;word-wrap:break-word;width:100%;' id="navigation-drivers" ng-click="setState('reports.drivers')" class="navTextStuff" ng-show="showClassLink('drivers')">&#10140;  {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
-			<div style='table-layout:fixed;word-wrap:break-word;width:100%;' id="navigation-cases" ng-click="goToCases()" class="navTextStuff" ng-show="showClassLink('cases')">&#10140; {{CurrentSuite.currentDriver.driver}}&nbsp;</p></div><br/><br/>
+			<div style='table-layout:fixed;word-wrap:break-word;width:100%;' id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">&#10140; {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
+			<div style='table-layout:fixed;word-wrap:break-word;width:100%;' id="navigation-drivers" ng-click="setState('reports.drivers')" class="navTextStuff" ng-show="showClassLink('drivers')">&#10140; {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
 		</td>
 		</tr>
 		</table>
@@ -35,20 +34,20 @@
 <!-- Chart variant dropdown END -->
 </div>
 <br>
-<accordion close-others="true">
+<accordion close-others="false">
 	<!-- repeated content -->
-	<div style='width:60px' id='hej'>
+	<div style='width:5%;' id='hej'>
 	    <accordion-group>
 	    
 	    <!-- non collapsing header -->
 	        <accordion-heading>
-	            <a style='color:black' onClick="if(document.getElementById('hej').style.width=='60px'){document.getElementById('hej').style.width = '800px';}else{document.getElementById('hej').style.width = '60px';}">OS</a>
+	            <a style='color:black' onClick="if(document.getElementById('hej').style.width=='5%'){document.getElementById('hej').style.width = '40%';}else{document.getElementById('hej').style.width = '5%';}">OS</a>
 	        </accordion-heading>
 	    <!-- non collapsing header End-->
 	    
 	    <!-- Content in collapsing Div -->
 		<div>		    
-		    <accordion>
+		    <accordion close-others="false">
 			    <accordion-group ng-repeat="mock in mockOsObject">
 		        	<accordion-heading>
 						{{mock.os}}
