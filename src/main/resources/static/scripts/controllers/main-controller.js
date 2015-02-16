@@ -206,7 +206,7 @@ angular.module('webLog')
 	
 	$scope.getDrivers = function(method){
 		CurrentSuite.currentMethod = method;
-	    $http.get('/api/driver/bytestcase?id='+CurrentSuite.currentMethod.id)
+	    $http.get('/api/driver/bytestcase?id='+CurrentSuite.currentMethod.id+'&timestamp='+CurrentSuite.currentTimeStamp)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		CurrentSuite.currentDrivers = data;

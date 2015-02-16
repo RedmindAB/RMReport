@@ -6,6 +6,12 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuit
 		$state.transitionTo(newState);
 		$scope.clearChosen();
 	}
+
+	$scope.move =  function(e){
+	    var width = angular.element(e.srcElement)[0].offsetWidth;
+
+	    console.log(e.offsetX ,"/", width);
+	}
     
 	$scope.clearChosen = function(){
 		//remove classes checkbox
