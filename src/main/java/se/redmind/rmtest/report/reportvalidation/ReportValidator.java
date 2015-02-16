@@ -146,7 +146,7 @@ public class ReportValidator {
 		//get testcases from report
 		List<ReportTestCase> testCaseArray = report.getTestCaseArray();
 		for (ReportTestCase testCase : testCaseArray) {
-			Integer classID = classIDs.get(testCase.getClassName());
+
 			String methodName = testCase.getMethodName();
 			String searchKey = methodName+classID;
 			if (addedTestCases.contains(searchKey)) {
