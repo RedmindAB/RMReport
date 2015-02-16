@@ -54,7 +54,7 @@ public class ReadSuiteFromDB extends DBBridge{
         return null;
     }
     
-    public JsonArray getLastestSuiteRunFromID(int suiteid){
+    public JsonArray getLastestSuiteRunFromID(int suiteid, String timestamp){
     	HashMap<String, String> map = new HashMap<String, String>();
     	map.put("suite_id", ""+suiteid);
     	ResultSet rs = readFromDB(stringParser.getString(GET_SUITE_MAX, map));
