@@ -7,7 +7,7 @@ import se.redmind.rmtest.util.StringKeyValueParser;
 
 public class SuiteInserter extends DBBridge {
 
-	private final static String INSERT_SUITE = "INSERT INTO suite (name) VALUES ('{suitename}')";
+	private final static String INSERT_SUITE = "INSERT INTO suite (suitename) VALUES ('{suitename}')";
 	
 	public SuiteInserter() {
 	}
