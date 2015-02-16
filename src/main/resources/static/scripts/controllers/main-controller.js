@@ -12,6 +12,8 @@ angular.module('webLog')
     $scope.chartMainConfig = {};
     $scope.allSuites = [];
     $scope.mainGraphToggle = false;
+    $scope.chartVariants = ["Pass/Fail", "Total Pass", "Total Fail", "Run Time"];
+    $scope.currentChartVariant = "Pass/Fail";
     
     $scope.mockDriverArray = ["Andriod", "iOS", "OSX", "Windows"];
     $scope.mockOsObject = [];
@@ -147,6 +149,8 @@ angular.module('webLog')
 		return chosen;
 	}
 	
+	
+	
     // HTTP -----------------------------------------------------------------------------------------------------------
     
 	$scope.getCases = function(driver){
@@ -176,7 +180,7 @@ angular.module('webLog')
 	
 	$scope.getDrivers = function(method){
 		CurrentSuite.currentMethod = method;
-	    $http.get('/api/driver/bytestcase?id='+CurrentSuite.currentMethod.id)
+	    $http.get('/api/driver/bytestcase?id='+CurrentSuite.currentMethod.id+'&timestamp='+CurrentSuite.currentTimeStamp)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		CurrentSuite.currentDrivers = data;
