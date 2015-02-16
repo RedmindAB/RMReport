@@ -117,27 +117,7 @@ public class ReadReportFromDB extends DBBridge{
 
     	return result;
     }
-	public JsonArray getDriverAndTestcaseInfo(String driver, int testcaseId){
-    	ResultSet rs = readFromDB(GET_SPECIFIC_METHOD_DRIVER_INFO+driver+AND_TESTCASE_ID+testcaseId+LIMIT);
-    	JsonArray array = new JsonArray();
-    	try {
-			while(rs.next()){
-				JsonObject jsonObject = new JsonObject();
-				jsonObject.add("driver", new JsonPrimitive(rs.getString("driver")));
-				jsonObject.add("timestamp", new JsonPrimitive(rs.getString("timestamp")));
-				jsonObject.add("message", new JsonPrimitive(rs.getString("message")));
-				jsonObject.add("result", new JsonPrimitive(rs.getString("result")));
-				jsonObject.add("time", new JsonPrimitive(rs.getFloat("time")));
-				array.add(jsonObject);
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return array;
-    	  	
-    }    
+	
 
 	
 	}
