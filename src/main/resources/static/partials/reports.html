@@ -46,11 +46,27 @@
 
 		        		<!-- <input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{mock.versions}}</label>-->
 							<accordion>
-							    <accordion-group ng-repeat="mock in mockOsObject">
+							    <accordion-group ng-repeat="device in mock.devices">
 						        	<accordion-heading style='width:100px'>
-										{{mock.devices[$index]}}
-						        	</accordion-heading><input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{mock.versions[$index]}}</label>
+										Devices
+						        	</accordion-heading>
+						        			    <accordion>
+			    <accordion-group ng-repeat="mock in mockOsObject">
+		        	<accordion-heading style='width:100px'>
+						{{mock.os}}
+		        	</accordion-heading>
+
+		        		<!-- <input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{mock.versions}}</label>-->
+							<accordion>
+							    <accordion-group>
+						        	<accordion-heading style='width:100px'>
+										Devices
+						        	</accordion-heading>
+						        	</accordion-group>
+						    </accordion>
 							    </accordion-group>
+						    </accordion>	
+						        	</accordion-group>
 						    </accordion>
 			    </accordion-group>
 		    </accordion>	            
