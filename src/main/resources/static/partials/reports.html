@@ -47,7 +47,7 @@
 	    <!-- non collapsing header End-->
 	    
 	    <!-- Content in collapsing Div -->
-		<div	>		    
+		<div>		    
 		    <accordion>
 			    <accordion-group ng-repeat="mock in mockOsObject">
 		        	<accordion-heading style='width:100px'>
@@ -56,28 +56,25 @@
 
 		        		<!-- <input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{mock.versions}}</label>-->
 							<accordion>
-							    <accordion-group ng-repeat="device in mock.devices">
-						        	<accordion-heading style='width:100px'>
-										Devices
-						        	</accordion-heading>
-						        			    <accordion>
-			    <accordion-group ng-repeat="mock in mockOsObject">
-		        	<accordion-heading style='width:100px'>
-						{{mock.os}}
-		        	</accordion-heading>
-
-		        		<!-- <input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{mock.versions}}</label>-->
-							<accordion>
 							    <accordion-group>
-						        	<accordion-heading style='width:100px'>
+						        	<accordion-heading style='width:100px;padding:0px'>
 										Devices
 						        	</accordion-heading>
-						        	</accordion-group>
-						    </accordion>
+						    		<div ng-repeat='device in mock.devices'>
+						    		{{device}} <input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label><br><br>				
+						    		</div>
 							    </accordion-group>
 						    </accordion>	
-						        	</accordion-group>
-						    </accordion>
+						    	<accordion>
+							    <accordion-group>
+						        	<accordion-heading style='width:100px'>
+										Versions
+						        	</accordion-heading>
+						    		<div ng-repeat='version in mock.versions'>
+						    		{{version}} <input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label><br><br>				
+						    		</div>
+							    </accordion-group>
+						    </accordion>		
 			    </accordion-group>
 		    </accordion>	            
 	    </div>
