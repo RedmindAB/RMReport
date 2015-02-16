@@ -12,6 +12,8 @@ angular.module('webLog')
     $scope.chartMainConfig = {};
     $scope.allSuites = [];
     $scope.mainGraphToggle = false;
+    $scope.chartVariants = ["Pass/Fail", "Total Pass", "Total Fail", "Run Time"];
+    $scope.currentChartVariant = "Pass/Fail";
     
     $scope.mockDriverArray = ["Andriod", "iOS", "OSX", "Windows"];
     $scope.mockOsObject = [];
@@ -146,6 +148,8 @@ angular.module('webLog')
 		}
 		return chosen;
 	}
+	
+	
 	
     // HTTP -----------------------------------------------------------------------------------------------------------
     
