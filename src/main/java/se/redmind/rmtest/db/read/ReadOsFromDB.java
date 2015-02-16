@@ -16,7 +16,7 @@ public class ReadOsFromDB extends DBBridge {
 		
 		try {
 			while(rs.next()){
-				hm.put(rs.getString("name")+rs.getString("version"), rs.getInt("os_id"));
+				hm.put(rs.getString("osname")+rs.getString("osversion"), rs.getInt("os_id"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

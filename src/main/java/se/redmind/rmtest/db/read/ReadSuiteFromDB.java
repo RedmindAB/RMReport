@@ -18,12 +18,12 @@ import com.google.gson.JsonPrimitive;
  */
 public class ReadSuiteFromDB extends DBBridge{
 
-    String GET_SUIT_ID = "select suite_id from suite where name= ";
+    String GET_SUIT_ID = "select suite_id from suite where suitename= ";
     String GET_ALL_SUITS = "select * from suite";
-    String GET_SUITE_MAX = "SELECT report.class_id, class.name, report.testcase_id, testcase.name, result FROM report INNER JOIN class ON report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id WHERE timestamp = (SELECT MAX(timestamp) FROM report WHERE suite_id = {suite_id}) GROUP BY report.testcase_id;";
-    String GET_SUITE_BY_TIMESTAMP = "SELECT report.class_id, class.name, report.testcase_id, testcase.name, result FROM report INNER JOIN class ON report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id WHERE timestamp = {timestamp} AND suite_id = {suite_id} GROUP BY report.testcase_id;";
+    String GET_SUITE_MAX = "SELECT report.class_id, class.classname, report.testcase_id, testcase.testcasename, result FROM report INNER JOIN class ON report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id WHERE timestamp = (SELECT MAX(timestamp) FROM report WHERE suite_id = {suite_id}) GROUP BY report.testcase_id;";
+    String GET_SUITE_BY_TIMESTAMP = "SELECT report.class_id, class.classname, report.testcase_id, testcase.testcasename, result FROM report INNER JOIN class ON report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id WHERE timestamp = {timestamp} AND suite_id = {suite_id} GROUP BY report.testcase_id;";
     
-    String GET_SUITE_SPECIFIC = "select report.class_id, class.name, report.testcase_id, report.name as testcasename, result, timestamp, time from report inner join class on report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id where timestamp = '";
+    String GET_SUITE_SPECIFIC = "select report.class_id, class.classname, report.testcase_id, testcase.testcasename, result, timestamp, time from report inner join class on report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id where timestamp = '";
     String AND_SUITEID_ ="' AND suite_id = ";
     String GROUP_BY_ = " GROUP BY report.testcase_id;";
 
@@ -43,7 +43,7 @@ public class ReadSuiteFromDB extends DBBridge{
         try {
             while(rs.next()) {
             	HashMap<String, Object> hm = new HashMap<String, Object>();
-                hm.put("name", rs.getString("name"));
+                hm.put("name", rs.getString("suitename"));
                 hm.put("id", rs.getString("suite_id"));
                 result.add(hm);
             }
@@ -54,7 +54,7 @@ public class ReadSuiteFromDB extends DBBridge{
         return null;
     }
     
-    public JsonArray getLastestSuiteRunFromID(int suiteid){
+    public JsonArray getLastestSuiteRunFromID(int suiteid, String timestamp){
     	HashMap<String, String> map = new HashMap<String, String>();
     	map.put("suite_id", ""+suiteid);
     	ResultSet rs = readFromDB(stringParser.getString(GET_SUITE_MAX, map));
@@ -77,7 +77,7 @@ public class ReadSuiteFromDB extends DBBridge{
 			while(rs.next()){
 				JsonObject jsonObject = new JsonObject();
 				jsonObject.add("classid", new JsonPrimitive(rs.getInt("class_id")));
-				jsonObject.add("classname", new JsonPrimitive(rs.getString("name")));
+				jsonObject.add("classname", new JsonPrimitive(rs.getString("classname")));
 				jsonObject.add("testcaseid", new JsonPrimitive(rs.getInt("testcase_id")));
 				jsonObject.add("testcasename", new JsonPrimitive(rs.getString("testcasename")));
 				jsonObject.add("result", new JsonPrimitive(rs.getString("result")));

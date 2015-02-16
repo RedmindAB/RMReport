@@ -10,7 +10,7 @@ import se.redmind.rmtest.util.StringKeyValueParser;
 
 public class OSInserter extends DBBridge {
 
-	private final static String INSERT_OS = "INSERT INTO os (name, version) VALUES (?,?)";
+	private final static String INSERT_OS = "INSERT INTO os (osname, osversion) VALUES (?,?)";
 	private PreparedStatement statement;
 	boolean batchNotEmpty;
 	

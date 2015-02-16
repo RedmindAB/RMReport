@@ -9,7 +9,7 @@ import se.redmind.rmtest.util.StringKeyValueParser;
 
 public class TestCaseInserter extends DBBridge {
 
-	private final static String INSERT_SUITE = "INSERT INTO testcase (name,class_id) VALUES ('{testcasename}',{classid})";
+	private final static String INSERT_SUITE = "INSERT INTO testcase (testcasename,class_id) VALUES ('{testcasename}',{classid})";
 	private Statement statement;
 	boolean batchNotEmpty;
 	

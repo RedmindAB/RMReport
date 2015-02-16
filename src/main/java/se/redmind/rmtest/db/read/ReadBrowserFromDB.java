@@ -17,7 +17,7 @@ String GET_ALL_FROM_BROWSER = "select * from browser";
 		
 		try {
 			while(rs.next()){
-				hm.put(rs.getString("name")+rs.getString("version"), rs.getInt("browser_id"));
+				hm.put(rs.getString("browsername")+rs.getString("browserversion"), rs.getInt("browser_id"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
