@@ -31,7 +31,7 @@ public class ReadTestcaseFromDB extends DBBridge {
     String AND_TIMESTAMP_FROM_HISTORY_ = " and timestamp != (select max(timestamp) from report)";
     
     //getDriverAndMessageFromLastRun:
-    String SELECT_ALL_FROM_REPORT_OS_DEVICE_BROWSER = "select testcase.testcasename, device.devicename, os.osname, os.version as osversion, browser.browsername, browser.version as browserversion, time, report.result, report.message from report inner join os on testcase_id = report.os_id inner join device on testcase_id = report.device_id inner join browser on testcase_id = report.browser_id where testcase_id = ";
+    String SELECT_ALL_FROM_REPORT_OS_DEVICE_BROWSER = "select testcase.testcasename, device.devicename, os.osname, os.osversion, browser.browsername, browser.browserversion, time, report.result, report.message from report inner join os on testcase_id = report.os_id inner join device on testcase_id = report.device_id inner join browser on testcase_id = report.browser_id where testcase_id = ";
     String AND_TIMESTAMP = " and timestamp = ";
     String LIMIT = " limit 20";
     
