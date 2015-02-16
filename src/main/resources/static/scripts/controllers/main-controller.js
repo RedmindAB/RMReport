@@ -15,6 +15,29 @@ angular.module('webLog')
     $scope.chartVariants = ["Pass/Fail", "Total Pass", "Total Fail", "Run Time"];
     $scope.currentChartVariant = "Pass/Fail";
     
+    $scope.changeChartVariant = function(input){
+    	$scope.currentChartVariant = input;
+    	
+    	switch (input) {
+		case "Pass/Fail":
+			passFailChart();
+			break;
+		case "Run Time":
+			runTimeChart();
+			break;
+		case "Total Pass":
+			totalPassChart();
+			break;
+		case "Total Fail":
+			totalFailChart();
+			break;
+		default:
+			$scope.currentChartVarint = "Pass/Fail"
+			passFailChart();
+			break;
+		}
+    }
+    
     $scope.mockDriverArray = ["Andriod", "iOS", "OSX", "Windows"];
     $scope.mockOsObject = [];
     $scope.mockOsObject.push({
@@ -354,29 +377,6 @@ angular.module('webLog')
     	chart.title.text = "Pass/Fail ratio for the last " + Charts.data.size + " runs";
 	}
     
-    $scope.changeChartVariant = function(input){
-    	$scope.currentChartVariant = input;
-    	
-    	switch (input) {
-		case "Pass/Fail":
-			passFailChart();
-			break;
-		case "Run Time":
-			runTimeChart();
-			break;
-		case "Total Pass":
-			totalPassChart();
-			break;
-		case "Total Fail":
-			totalFailChart();
-			break;
-		default:
-			$scope.currentChartVarint = "Pass/Fail"
-			passFailChart();
-			break;
-		}
-    }
-    
     $scope.createMainChart = function(data){
     	CurrentSuite.currentTimeStampArray = [];
     	for (var index = 0; index < data.length; index++) {
@@ -398,7 +398,7 @@ angular.module('webLog')
     	Charts.mainChart.options.plotOptions.series.point.events.click = function (e) {
     		$scope.loadNewTimeStamp(this.category);
     	};
-    	$scope.changeChartVariant($scope.currentChartVariant);
+    	$scope.changeChartVariant();
 		$scope.chartMainConfig = Charts.mainChart;
     };
     
