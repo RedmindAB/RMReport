@@ -43,7 +43,7 @@ public class ReadSuiteFromDB extends DBBridge{
         try {
             while(rs.next()) {
             	HashMap<String, Object> hm = new HashMap<String, Object>();
-                hm.put("name", rs.getString("name"));
+                hm.put("name", rs.getString("suitename"));
                 hm.put("id", rs.getString("suite_id"));
                 result.add(hm);
             }
@@ -77,7 +77,7 @@ public class ReadSuiteFromDB extends DBBridge{
 			while(rs.next()){
 				JsonObject jsonObject = new JsonObject();
 				jsonObject.add("classid", new JsonPrimitive(rs.getInt("class_id")));
-				jsonObject.add("classname", new JsonPrimitive(rs.getString("name")));
+				jsonObject.add("classname", new JsonPrimitive(rs.getString("classname")));
 				jsonObject.add("testcaseid", new JsonPrimitive(rs.getInt("testcase_id")));
 				jsonObject.add("testcasename", new JsonPrimitive(rs.getString("testcasename")));
 				jsonObject.add("result", new JsonPrimitive(rs.getString("result")));

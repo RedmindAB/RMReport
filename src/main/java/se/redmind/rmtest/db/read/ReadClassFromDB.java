@@ -46,7 +46,7 @@ public class ReadClassFromDB extends DBBridge{
         try {
             while(rs.next()) {
             	HashMap<String, Object> hm = new HashMap<String, Object>();
-                hm.put("name", rs.getString("name"));
+                hm.put("name", rs.getString("classname"));
                 hm.put("id", rs.getString("class_id"));
                 result.add(hm);
             }
