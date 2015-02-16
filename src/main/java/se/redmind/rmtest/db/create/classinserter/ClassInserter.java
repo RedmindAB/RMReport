@@ -7,7 +7,7 @@ import se.redmind.rmtest.util.StringKeyValueParser;
 
 public class ClassInserter extends DBBridge {
 
-	private final static String INSERT_SUITE = "INSERT INTO class (name) VALUES ('{classname}')";
+	private final static String INSERT_SUITE = "INSERT INTO class (classname) VALUES ('{classname}')";
 	
 	public ClassInserter() {
 	}

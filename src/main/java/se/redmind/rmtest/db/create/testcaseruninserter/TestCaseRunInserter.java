@@ -21,8 +21,8 @@ public class TestCaseRunInserter extends DBBridge {
 	private ReadTestcaseFromDB readTestcaseFromDB;
 	
 	
-	private final static String INSERT_TESTCASERUN = "INSERT INTO report (suite_id, class_id, testcase_id, timestamp, result, message, name, os_id, browser_id, device_id, time) "
-																	+ "VALUES ({suite_id},{class_id},{testcase_id},'{timestamp}','{result}','{message}','{name}',{os_id},{browser_id},{device_id},{time})";
+	private final static String INSERT_TESTCASERUN = "INSERT INTO report (suite_id, class_id, testcase_id, timestamp, result, message, os_id, browser_id, device_id, time) "
+																	+ "VALUES ({suite_id},{class_id},{testcase_id},'{timestamp}','{result}','{message}',{os_id},{browser_id},{device_id},{time})";
 
 	public TestCaseRunInserter() {
 		testCaseInserter = new TestCaseInserter();
@@ -44,7 +44,6 @@ public class TestCaseRunInserter extends DBBridge {
 				map.put("timestamp", report.getTimestamp());
 				map.put("result", testCase.getResult());
 				map.put("message", testCase.getMessage());
-				map.put("name", testCase.getMethodName());
 				
 				String osName = driver.getOs();
 				String osVer = driver.getOsVer();
