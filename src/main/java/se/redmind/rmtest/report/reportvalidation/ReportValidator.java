@@ -67,6 +67,7 @@ public class ReportValidator {
 		report.convertToFullReport();
 		try {
 			HashMap<String, Integer> classIDs = getTestClassIDs(report.getPresentTestClasses());
+			System.out.println(classIDs);
 			int suiteID = getSuiteID(report.getSuiteName());
 			HashMap<String, Integer> testCases = getTestCases(report, classIDs);
 			DriverValidation driverValidation = new DriverValidation(report);
@@ -104,6 +105,7 @@ public class ReportValidator {
 	public HashMap<String, Integer> getTestClassIDs(List<String> testClassNames){
 		HashMap<String, Integer> testClassIDs = new HashMap<String,Integer>();
 		for (String testClassName : testClassNames) {
+			System.out.println(testClassName);
 			int id = readClassFromDB.getClassID(testClassName);
 			if (!(id > 0)) {
 				int id_new = insertTestClass(testClassName);
@@ -145,7 +147,9 @@ public class ReportValidator {
 		HashSet<String> addedTestCases = new HashSet<String>();
 		//get testcases from report
 		List<ReportTestCase> testCaseArray = report.getTestCaseArray();
+		System.out.println(classIDs);
 		for (ReportTestCase testCase : testCaseArray) {
+			System.out.println(testCase.getClassName());
 			Integer classID = classIDs.get(testCase.getClassName());
 			String methodName = testCase.getMethodName();
 			String searchKey = methodName+classID;
