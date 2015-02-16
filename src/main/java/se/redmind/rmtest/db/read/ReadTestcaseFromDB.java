@@ -91,7 +91,7 @@ public class ReadTestcaseFromDB extends DBBridge {
 		return hs;
     }
     public JsonArray getDriverAndMessageFromLastRun(int testcaseId, String timestamp){
-    	ResultSet rs = readFromDB(SELECT_ALL_FROM_REPORT_OS_DEVICE_BROWSER+testcaseId+AND_TIMESTAMP+"'"+timestamp+"'"+LIMIT);
+    	ResultSet rs = readFromDB(SELECT_ALL_FROM_REPORT_OS_DEVICE_BROWSER+testcaseId+AND_TIMESTAMP+"'"+timestamp+"'");
     	JsonArray array = new JsonArray();
     	try {
 			while(rs.next()){
