@@ -56,8 +56,6 @@ angular.module('webLog')
     	browsers: ["Chrome", "Fire fox", "Safari"]
     });
     
-    console.log($scope.mockOsObject);
-    
     $scope.resetFilterField = function(){
     	Utilities.searchField = "";
     }
@@ -176,24 +174,23 @@ angular.module('webLog')
 	
     // HTTP -----------------------------------------------------------------------------------------------------------
     
-	$scope.getCases = function(driver){
-		CurrentSuite.currentDriver = driver;
-		$http.get("/api/testcase/caserunsbydriver?id=" + CurrentSuite.currentMethod.id + "&driver='" + driver.driver + "'")
-	    .success(function(data, status, headers, config){ 
-	    	if(data){
-	    		CurrentSuite.currentDriverRuns = data;
-	    	};
-	    }).error(function(data, status, headers, config){
-	    	console.log(data);
-	    });
-	}
+//	$scope.getCases = function(driver){
+//		CurrentSuite.currentDriver = driver;
+//		$http.get("/api/testcase/caserunsbydriver?id=" + CurrentSuite.currentMethod.id + "&driver='" + driver.driver + "'")
+//	    .success(function(data, status, headers, config){ 
+//	    	if(data){
+//	    		CurrentSuite.currentDriverRuns = data;
+//	    	};
+//	    }).error(function(data, status, headers, config){
+//	    	console.log(data);
+//	    });
+//	}
 	
 	$scope.getSuiteSkeleton = function(suite){
 		CurrentSuite.currentSuiteInfo = suite;
 	    $http.get('/api/suite/latestbyid?suiteid=' + suite.id)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
-	    		console.log(data);
 	    		CurrentSuite.currentSuite = data;
 	    	};
 	    }).error(function(data, status, headers, config){
@@ -201,12 +198,13 @@ angular.module('webLog')
 	    });
 	}
 	
-	$scope.getDrivers = function(method){
+	$scope.getCases = function(method){
 		CurrentSuite.currentMethod = method;
 	    $http.get('/api/driver/bytestcase?id='+CurrentSuite.currentMethod.id+'&timestamp='+CurrentSuite.currentTimeStamp)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
-	    		CurrentSuite.currentDrivers = data;
+	    		console.log(data);
+	    		CurrentSuite.currentCases = data;
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -226,12 +224,10 @@ angular.module('webLog')
 	};
 	
    $scope.loadMainChart = function(suiteID) {
-	   console.log(suiteID);
     	var requestObject = $scope.getGraphDataObject(suiteID)
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){
     		CurrentSuite.currentTimeStamp = data[0].timestamp;
-    		console.log(CurrentSuite.currentTimeStamp);
     		$scope.createMainChart(data);
     	}).error(function(data, status, headers, config){
     		console.log(data);

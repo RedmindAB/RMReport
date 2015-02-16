@@ -9,7 +9,7 @@ angular.module('webLog')
 		    	currentMethod: [],
 		    	currentMethods: [],
 		    	currentDriver: [],
-		    	currentDrivers: [],
+		    	currentCases: [],
 		    	currentDriverRuns: [],
 				currentTimeStamp: '',
 				currentTimeStampArray: []
