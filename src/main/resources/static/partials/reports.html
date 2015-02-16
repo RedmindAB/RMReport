@@ -23,7 +23,7 @@
 	<!-- chart END -->
 	
 	<!-- Chart variant dropdown START -->
-<div class="btn-group">
+<div class="btn-group" style='margin-top:10px'>
 	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 		Choose display type <span class="caret"></span>
 	</button>
@@ -36,12 +36,12 @@
 <br>
 <accordion close-others="false">
 	<!-- repeated content -->
-	<div style='width:5%;' id='hej'>
+	<div style='width:60px;' id='hej'>
 	    <accordion-group>
 	    
 	    <!-- non collapsing header -->
 	        <accordion-heading>
-	            <a style='color:black' onClick="if(document.getElementById('hej').style.width=='5%'){document.getElementById('hej').style.width = '40%';}else{document.getElementById('hej').style.width = '5%';}">OS</a>
+	            <a style='color:black' onClick="if(document.getElementById('hej').style.width=='60px'){document.getElementById('hej').style.width = '100%';}else{document.getElementById('hej').style.width = '60px';}">OS</a>
 	        </accordion-heading>
 	    <!-- non collapsing header End-->
 	    
@@ -94,10 +94,13 @@
 
 <!-- load chart with data button -->
 <div>
-	<table>
+			<button class="btn btn-default" ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>Reload</button>
+			<button style='width: 60px' class="btn btn-default" ng-click="clearChosen()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>Clear</button>
+			<input type="text" id="suite-amount-input" class="form-control tool-tip" style="width:150px;margin-top:5px" ng-model='Utilities.amountField' placeholder="Runs" title="Amount of runs to show" data-toggle="tooltip" data-placement="right" tooltip>
+				<table style='margin-left:-5px'>
 		<tr class='reports'>
 			<td style='padding: 5px;'>
-				<button style='width:150px' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
+				<button style='width:150px' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="right" tooltip>
 					{{CurrentSuite.currentTimeStamp}}
 					<span class="caret"></span>
 				</button>
@@ -105,24 +108,13 @@
 					<li ng-repeat="timeStamp in CurrentSuite.currentTimeStampArray"><a ng-click="loadNewTimeStamp(timeStamp)">{{timeStamp}}</a></li>
 				</ul>
 			</td>
-			<td style='padding: 5px;' id='tooltip2'>
-				<input type="text" id="suite-amount-input" class="form-control tool-tip" style="width:60px" ng-model='Utilities.amountField' placeholder="Runs" title="Amount of runs to show" data-toggle="tooltip" data-placement="top" tooltip>
-			</td>
-			<td style='padding: 5px;'>
-				<button class="btn btn-default" ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>Reload</button>
-			</td>
-			<td style='padding: 5px;'>
-				<button style='width: 60px' class="btn btn-default" ng-click="clearChosen()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>Clear</button>
-			</td>
-		</tr>
-		</table>
-		<table>
-		<tr>
-			<td style='padding: 5px;'>
-				<input type="text" class="form-control" id="filter-field" style="width:150px" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>
-			</td>
-		</tr>
-	</table>	
+			</tr>
+			</table>
+			<br>
+			<div class='row' style='border-bottom:1px solid'>
+			</div>
+			<br>
+			<input type="text" class="form-control" id="filter-field" style="width:150px;margin-top:5px" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>
 </div>
 
 <!-- load chart with data button END -->
