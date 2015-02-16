@@ -11,9 +11,8 @@ angular.module('webLog')
     $scope.chartHomeConfig = {};
     $scope.chartMainConfig = {};
     $scope.allSuites = [];
-    $scope.mainGraphToggle = false;
-    $scope.chartVariants = ["Pass/Fail", "Total Pass", "Total Fail", "Run Time"];
     $scope.currentChartVariant = "Pass/Fail";
+    $scope.chartVariants = ["Pass/Fail", "Total Pass", "Total Fail", "Run Time"];
     
     $scope.mockDriverArray = ["Andriod", "iOS", "OSX", "Windows"];
     $scope.mockOsObject = [];
@@ -40,14 +39,6 @@ angular.module('webLog')
     }
     
     $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];
-    
-    $scope.getToggleButtonText = function(){
-    	if ($scope.mainGraphToggle) {
-			return "Show Pass/Fail"
-		} else {
-			return "Show Run Time";
-		}
-    }
     
 	$scope.getMethods = function(testClass){
 		$scope.clearOtherChosen(testClass);
@@ -282,101 +273,6 @@ angular.module('webLog')
     
 	// CHART OBJECTS -----------------------------------------------------------------------------------------------------------
 	
-    function runTimeChart() {
-    	
-    	var chart = Charts.mainChart;
-    	
-    	chart.options.chart.type = "line";
-    	chart.series = [{
-			data : [1,2,3,1,2,1,2,1,1],
-			name : 'Run Time',
-			color : '#FF0000',
-			id : "runTime"
-		}];
-    	chart.yAxis.title.text = 'Time to run';
-    	chart.options.plotOptions.series.stacking = '';
-    	chart.title.text = "Time to run in milli seconds for the last " + Charts.data.size + " runs";
-	}
-    
-    function totalPassChart() {
-    	var chart = Charts.mainChart;
-    	
-    	chart.options.chart.type = "";
-    	chart.series = [{
-				data : Charts.data.totalPass,
-				id : "totalPass",
-				name : "Total Pass",
-				type : "column",
-				color : "green",
-				dashStyle : "Solid",
-				connectNulls : false
-			}];
-    	chart.yAxis.title.text = 'Passed test';
-    	chart.options.plotOptions.series.stacking = '';
-    	chart.title.text = "Amount of passed tests for the last " + Charts.data.size + " runs";
-	}
-    
-    function totalFailChart() {
-    	var chart = Charts.mainChart;
-    	
-    	chart.options.chart.type = "";
-    	chart.series = [{
-				data : Charts.data.totalFail,
-				id : "totalFail",
-				name : "Total Fail",
-				type : "column",
-				color : "#FF0000",
-				dashStyle : "Solid",
-				connectNulls : false
-			}];
-    	chart.yAxis.title.text = 'Failed test';
-    	chart.options.plotOptions.series.stacking = '';
-    	chart.title.text = "Amount of failed tests for the last " + Charts.data.size + " runs";
-	}
-    
-    function passFailChart() {
-    	var chart = Charts.mainChart;
-    	
-    	chart.options.chart.type = "areaspline";
-    	chart.series = [ {
-			data : Charts.data.totalPass,
-			name : 'Pass',
-			color : '#D4D9DD',
-			id : "mainPass"
-		}, {
-			data : Charts.data.totalFail,
-			name : 'Fail',
-			color : '#FF0000',
-			id : "mainFail"
-		} ];
-    	chart.yAxis.title.text = 'Percentage';
-    	chart.options.plotOptions.series.stacking = 'percent';
-    	chart.title.text = "Pass/Fail ratio for the last " + Charts.data.size + " runs";
-	}
-    
-    $scope.changeChartVariant = function(input){
-    	$scope.currentChartVariant = input;
-    	
-    	switch (input) {
-		case "Pass/Fail":
-			passFailChart();
-			break;
-		case "Run Time":
-			runTimeChart();
-			break;
-		case "Total Pass":
-			totalPassChart();
-			break;
-		case "Total Fail":
-			totalFailChart();
-			break;
-		default:
-			$scope.currentChartVarint = "Pass/Fail"
-			passFailChart();
-			break;
-		}
-    }
-    
     $scope.createMainChart = function(data){
     	CurrentSuite.currentTimeStampArray = [];
     	for (var index = 0; index < data.length; index++) {
@@ -477,5 +373,100 @@ angular.module('webLog')
 		}
 		chartHomeConfigObject.xAxis.categories = timeStamps;
 		$scope.chartHomeConfig[id] = chartHomeConfigObject;
+    };
+    
+    function runTimeChart() {
+    	
+    	var chart = Charts.mainChart;
+    	
+    	chart.options.chart.type = "line";
+    	chart.series = [{
+			data : [1,2,3,1,2,1,2,1,1],
+			name : 'Run Time',
+			color : '#FF0000',
+			id : "runTime"
+		}];
+    	chart.yAxis.title.text = 'Time to run';
+    	chart.options.plotOptions.series.stacking = '';
+    	chart.title.text = "Time to run in milli seconds for the last " + Charts.data.size + " runs";
+	}
+    
+    function totalPassChart() {
+    	var chart = Charts.mainChart;
+    	
+    	chart.options.chart.type = "";
+    	chart.series = [{
+				data : Charts.data.totalPass,
+				id : "totalPass",
+				name : "Total Pass",
+				type : "column",
+				color : "green",
+				dashStyle : "Solid",
+				connectNulls : false
+			}];
+    	chart.yAxis.title.text = 'Passed test';
+    	chart.options.plotOptions.series.stacking = '';
+    	chart.title.text = "Amount of passed tests for the last " + Charts.data.size + " runs";
+	}
+    
+    function totalFailChart() {
+    	var chart = Charts.mainChart;
+    	
+    	chart.options.chart.type = "";
+    	chart.series = [{
+				data : Charts.data.totalFail,
+				id : "totalFail",
+				name : "Total Fail",
+				type : "column",
+				color : "#FF0000",
+				dashStyle : "Solid",
+				connectNulls : false
+			}];
+    	chart.yAxis.title.text = 'Failed test';
+    	chart.options.plotOptions.series.stacking = '';
+    	chart.title.text = "Amount of failed tests for the last " + Charts.data.size + " runs";
+	}
+    
+    function passFailChart() {
+    	var chart = Charts.mainChart;
+    	
+    	chart.options.chart.type = "areaspline";
+    	chart.series = [ {
+			data : Charts.data.totalPass,
+			name : 'Pass',
+			color : '#D4D9DD',
+			id : "mainPass"
+		}, {
+			data : Charts.data.totalFail,
+			name : 'Fail',
+			color : '#FF0000',
+			id : "mainFail"
+		} ];
+    	chart.yAxis.title.text = 'Percentage';
+    	chart.options.plotOptions.series.stacking = 'percent';
+    	chart.title.text = "Pass/Fail ratio for the last " + Charts.data.size + " runs";
+	}
+    
+    $scope.changeChartVariant = function(input){
+    	$scope.currentChartVariant = input;
+    	
+    	switch (input) {
+		case "Pass/Fail":
+			passFailChart();
+			break;
+		case "Run Time":
+			runTimeChart();
+			break;
+		case "Total Pass":
+			totalPassChart();
+			break;
+		case "Total Fail":
+			totalFailChart();
+			break;
+		default:
+			$scope.currentChartVarint = "Pass/Fail"
+			passFailChart();
+			break;
+		}
     };
 }]);

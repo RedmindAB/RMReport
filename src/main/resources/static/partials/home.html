@@ -2,7 +2,7 @@
 	<table style='width:100%;margin-top:10px'>
 		<!-- Project logo -->
 		<tr>
-			<td>
+			<td ng-controller="ChartCtrl">
 				<img class='image-paths' style="cursor: pointer;" ng-src="{{imagePaths[$index]}}" ng-click="loadMainChart(suite.id, '50'); setState('reports.classes'); getSuiteSkeleton(suite);"></img>
 			</td>
 		</tr>
