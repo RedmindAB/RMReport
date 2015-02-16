@@ -10,7 +10,7 @@ import se.redmind.rmtest.util.StringKeyValueParser;
 
 public class BrowserInserter extends DBBridge {
 
-	private final static String INSERT_OS = "INSERT INTO browser (name, version) VALUES (?,?)";
+	private final static String INSERT_OS = "INSERT INTO browser (browsername, version) VALUES (?,?)";
 	private PreparedStatement statement;
 	boolean batchNotEmpty;
 	

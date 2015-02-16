@@ -10,7 +10,7 @@ import se.redmind.rmtest.util.StringKeyValueParser;
 
 public class DeviceInserter extends DBBridge {
 
-	private final static String INSERT_DEVICE = "INSERT INTO device (name) VALUES (?)";
+	private final static String INSERT_DEVICE = "INSERT INTO device (devicename) VALUES (?)";
 	private PreparedStatement statement;
 	boolean batchNotEmpty;
 	

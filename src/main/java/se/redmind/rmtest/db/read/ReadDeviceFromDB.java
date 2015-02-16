@@ -17,7 +17,7 @@ public class ReadDeviceFromDB extends DBBridge {
 		
 		try {
 			while(rs.next()){
-				hm.put(rs.getString("name"), rs.getInt("device_id"));
+				hm.put(rs.getString("devicename"), rs.getInt("device_id"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
