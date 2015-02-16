@@ -4,6 +4,7 @@ package se.redmind.rmtest.db.read;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -31,7 +32,11 @@ public class ReadReportFromDB extends DBBridge{
     String GET_RESULT_BY_DRIVER = "select result,driver, count(result) from report where testcase_id = 1 group by result,driver";
     String GET_SPECIFIC_METHOD_DRIVER_INFO = "select driver, timestamp, message, result, time from report where driver = ";
     String LIMIT = " limit 20";
-
+    
+    String GET_DATE_OF_LAST_RUN_OS_AND_DEVICE = "select timestamp, os.osname, device.devicename from report inner join os on report.os_id = os.os_id inner join device on report.device_id = device.device_id group by device.devicename, os.osname;";
+    String GET_MAX_TIMESTAMP = "select max(timestamp) from report;";
+    
+    
     public List getDriverFromTestcase(Integer suite_id, Integer testcase_id){
         List<String> ls = new ArrayList<>();
         ResultSet rs = readFromDB(GET_DRIVER_FROM_REPORT+suite_id+AND_TESTCASE_ID+testcase_id);
@@ -117,7 +122,13 @@ public class ReadReportFromDB extends DBBridge{
 
     	return result;
     }
-	
+	public void latestRunPerOsOrDevice(){
+		ResultSet rs1 = readFromDB(GET_MAX_TIMESTAMP);
+		ResultSet rs2 = readFromDB(GET_DATE_OF_LAST_RUN_OS_AND_DEVICE);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+		
+		
+	}
 
 	
 	}
