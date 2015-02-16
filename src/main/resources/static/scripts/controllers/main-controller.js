@@ -198,12 +198,23 @@ angular.module('webLog')
 	    });
 	}
 	
+	$scope.getSuiteSkeletonByTimeStamp = function(timestamp){
+	    $http.get('/api/suite/latestbyid?suiteid=' + CurrentSuite.currentSuiteInfo.id + "&timestamp="+timestamp)
+	    .success(function(data, status, headers, config){ 
+	    	if(data){
+	    		CurrentSuite.currentSuite = data;
+	    		console.log(data);
+	    	};
+	    }).error(function(data, status, headers, config){
+	    	console.log(data);
+	    });
+	}
+	
 	$scope.getCases = function(method){
 		CurrentSuite.currentMethod = method;
 	    $http.get('/api/driver/bytestcase?id='+CurrentSuite.currentMethod.id+'&timestamp='+CurrentSuite.currentTimeStamp)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
-	    		console.log(data);
 	    		CurrentSuite.currentCases = data;
 	    	};
 	    }).error(function(data, status, headers, config){
@@ -214,6 +225,18 @@ angular.module('webLog')
 	$scope.setCurrentSuite = function(suite){
 		CurrentSuite.currentSuite = suite;
 	    $http.get('/api/class/getclasses?suiteid='+CurrentSuite.currentSuite.id)
+	    .success(function(data, status, headers, config){ 
+	    	if(data){
+	    		CurrentSuite.currentClasses = data;
+	    	};
+	    }).error(function(data, status, headers, config){
+	    	console.log(data);
+	    });
+	};
+	
+	$scope.setCurrentSuiteByTimestamp = function(suite, timestamp){
+		CurrentSuite.currentSuite = suite;
+	    $http.get('/api/class/getclasses?suiteid='+CurrentSuite.currentSuite.id+"&timestamp"+timestamp)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		CurrentSuite.currentClasses = data;
@@ -234,8 +257,8 @@ angular.module('webLog')
     	});
    };
    
-   $scope.loadNewTimeStamp = function(timeStamp){
-	   console.log(timeStamp);
+   $scope.loadNewTimeStamp = function(timestamp){
+	   $scope.getSuiteSkeletonByTimeStamp(timestamp);
    }
     
     $scope.createHomeChartFromID = function(id) {
@@ -307,14 +330,14 @@ angular.module('webLog')
     	
     	chart.options.chart.type = "line";
     	chart.series = [{
-			data : [1,2,3,1,2,1,2,1,1],
+			data : Charts.data.runTime,
 			name : 'Run Time',
 			color : '#FF0000',
 			id : "runTime"
 		}];
     	chart.yAxis.title.text = 'Time to run';
     	chart.options.plotOptions.series.stacking = '';
-    	chart.title.text = "Time to run in milli seconds for the last " + Charts.data.size + " runs";
+    	chart.title.text = "Time to run in seconds for the last " + Charts.data.size + " runs";
 	}
     
     function totalPassChart() {
@@ -388,6 +411,7 @@ angular.module('webLog')
     	for (var i = 0; i < Charts.data.size; i++) {
 			Charts.data.totalPass.push(data[i].pass);
 			Charts.data.totalFail.push(data[i].fail + data[i].error);
+			Charts.data.runTime.push(data[i].time);
 		}
     	
     	Charts.mainChart.xAxis.categories = CurrentSuite.currentTimeStampArray;

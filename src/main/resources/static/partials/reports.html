@@ -10,8 +10,8 @@
 		<tr>
 		<td>
 			<div style='table-layout:fixed;word-wrap:break-word;width:100%;' id="navigation-classes" ng-click="setState('reports.classes')" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;| {{CurrentSuite.currentSuiteInfo.name}}<wbr />&nbsp;</p></div>
-			<div style='table-layout:fixed;word-wrap:break-word;width:100%;' id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">&#10140; {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
-			<div style='table-layout:fixed;word-wrap:break-word;width:100%;' id="navigation-drivers" ng-click="setState('reports.drivers')" class="navTextStuff" ng-show="showClassLink('drivers')">&#10140; {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
+			<div style='table-layout:fixed;word-wrap:break-word;width:100%;' id="navigation-methods" ng-click="setState('reports.methods')" class="navTextStuff" ng-show="showClassLink('methods')">&#10140; {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
+			<div style='table-layout:fixed;word-wrap:break-word;width:100%;' id="navigation-drivers" ng-click="setState('reports.cases')" class="navTextStuff" ng-show="showClassLink('cases')">&#10140; {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
 		</td>
 		</tr>
 		</table>

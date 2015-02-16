@@ -1,6 +1,6 @@
 <accordion close-others="true">
 	<!-- repeated content -->
-	<div ng-repeat="case in CurrentSuite.currentCases | filter: Utilities.searchField | orderBy:['passed', 'name'] track by $index " style='margin-top: 10px'>
+	<div ng-repeat="case in CurrentSuite.currentCases | filter: Utilities.searchField | orderBy:'result' track by $index " style='margin-top: 10px'>
 	    <accordion-group ng-class='getPanel(case.result)' ng-style="{'background-color': getBgCo(case.result)}">
 	    
 	    <!-- non collapsing header -->
