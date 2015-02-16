@@ -15,7 +15,6 @@ import se.redmind.rmtest.db.read.ReadReportFromDB;
 import se.redmind.rmtest.db.read.ReadSuiteFromDB;
 import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseDAO;
-import se.redmind.rmtest.web.route.api.getdrivertestcase.GetDriverAndTestcaseDAO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
