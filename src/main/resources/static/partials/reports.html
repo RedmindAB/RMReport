@@ -35,9 +35,9 @@
 <!-- Chart variant dropdown END -->
 </div>
 <br>
-<accordion close-others="true">
+<accordion close-others="false">
 	<!-- repeated content -->
-	<div style='width:5%' id='hej'>
+	<div style='width:5%;' id='hej'>
 	    <accordion-group>
 	    
 	    <!-- non collapsing header -->
@@ -48,7 +48,7 @@
 	    
 	    <!-- Content in collapsing Div -->
 		<div>		    
-		    <accordion>
+		    <accordion close-others="false">
 			    <accordion-group ng-repeat="mock in mockOsObject">
 		        	<accordion-heading>
 						{{mock.os}}
