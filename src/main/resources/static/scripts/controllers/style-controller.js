@@ -68,4 +68,13 @@ angular.module('webLog')
 	    	else
 	    		return 'img/logo3.jpg';    
 	    };
+	    
+	    $scope.formatDecimals = function(numberWithWayToManyDecimals){
+	    	var numberWithDecentAmountOfDecimals = numberWithWayToManyDecimals.toFixed(2);
+	    	return numberWithDecentAmountOfDecimals;
+	    }
+	    
+	    $scope.checkPassed = function(passed){
+	    	return passed === "passed";
+	    }
 }])
