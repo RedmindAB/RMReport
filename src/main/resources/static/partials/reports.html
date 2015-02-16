@@ -50,7 +50,7 @@
 		    <accordion close-others="false">
 			    <accordion-group ng-repeat="mock in mockOsObject">
 		        	<accordion-heading>
-						{{mock.os}}
+						<input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> {{mock.os}}
 		        	</accordion-heading>
 
 		        		<!-- <input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{mock.versions}}</label>-->
