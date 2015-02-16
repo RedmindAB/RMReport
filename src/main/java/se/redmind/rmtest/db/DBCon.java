@@ -76,9 +76,9 @@ public class DBCon {
             
             stat.executeUpdate("create table if not exists device (devicename, device_id integer primary key autoincrement)");
             
-            stat.executeUpdate("create table if not exists browser (browsername, version, browser_id integer primary key autoincrement)");
+            stat.executeUpdate("create table if not exists browser (browsername, browserversion, browser_id integer primary key autoincrement)");
             
-            stat.executeUpdate("create table if not exists os (osname, version, os_id integer primary key autoincrement)");
+            stat.executeUpdate("create table if not exists os (osname, osversion, os_id integer primary key autoincrement)");
 
             stat.executeUpdate("create table if not exists testcase (testcasename, testcase_id integer primary key autoincrement, class_id integer, foreign key (class_id) references class (class_id))");
 
