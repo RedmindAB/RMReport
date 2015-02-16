@@ -27,7 +27,7 @@
 
 <accordion close-others="true">
 	<!-- repeated content -->
-	<div style='width:300px'>
+	<div style='width:300px' id='hej' ng-click='move(hej)'>
 	    <accordion-group>
 	    
 	    <!-- non collapsing header -->
@@ -43,7 +43,15 @@
 		        	<accordion-heading style='width:100px'>
 						{{mock.os}}
 		        	</accordion-heading>
-		        		<pre ng-repeat="mock in mockOsObject"><input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{mock.versions}}</label></pre>
+
+		        		<!-- <input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{mock.versions}}</label>-->
+							<accordion>
+							    <accordion-group ng-repeat="mock in mockOsObject">
+						        	<accordion-heading style='width:100px'>
+										{{mock.devices[$index]}}
+						        	</accordion-heading><input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{mock.versions[$index]}}</label>
+							    </accordion-group>
+						    </accordion>
 			    </accordion-group>
 		    </accordion>	            
 	    </div>
@@ -86,6 +94,7 @@
 		</tr>
 	</table>	
 </div>
+
 <!-- load chart with data button END -->
 
 <!-- view for current classes/methods/drivers etc -->
