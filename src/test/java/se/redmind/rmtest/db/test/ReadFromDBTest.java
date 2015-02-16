@@ -69,13 +69,8 @@ public class ReadFromDBTest {
         boolean b = new ReadReportFromDB().reportExists("20150121-160906");
         assertTrue(b);
     }
-    @Test
-    public void getAllReportNamesTest(){
-        HashSet<String> allReportNames = new ReadReportFromDB().getAllReportNames();
-        for (String string : allReportNames) {
-			System.out.println("reportname: "+string);
-		}
-    }
+ 
+    
     @Test
     public void getAllSuitesTest() {
         new ReadSuiteFromDB().getAllSuites();
