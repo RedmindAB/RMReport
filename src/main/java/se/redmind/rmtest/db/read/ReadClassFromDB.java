@@ -13,9 +13,9 @@ import java.util.List;
  */
 public class ReadClassFromDB extends DBBridge{
 
-    String GET_SUITE_CLASS_CASE_ID = "select class.name from class inner join testcase on testcase.testcase_id = class.class_id";
-    String GET_CLASS_ID = "select class_id from class where name =";
-    String GET_CLASS_FROM_SUITE_ID = "SELECT DISTINCT class.name, class.class_id FROM report INNER JOIN class ON class.class_id = report.class_id WHERE suite_id = ";
+    String GET_SUITE_CLASS_CASE_ID = "select class.classname from class inner join testcase on testcase.testcase_id = class.class_id";
+    String GET_CLASS_ID = "select class_id from class where classname =";
+    String GET_CLASS_FROM_SUITE_ID = "SELECT DISTINCT class.classname, class.class_id FROM report INNER JOIN class ON class.class_id = report.class_id WHERE suite_id = ";
 
     public int getClassID(String className){
         ResultSet rs = readFromDB(GET_CLASS_ID+"'"+className+"'");
