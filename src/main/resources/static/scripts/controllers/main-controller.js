@@ -15,32 +15,6 @@ angular.module('webLog')
     $scope.chartVariants = ["Pass/Fail", "Total Pass", "Total Fail", "Run Time"];
     $scope.currentChartVariant = "Pass/Fail";
     
-    $scope.changeChartVariant = function(input){
-    	$scope.currentChartVariant = input;
-    	
-    	switch (input) {
-		case "Pass/Fail":
-			console.log("changing to pass fail");
-			passFailChart();
-			break;
-		case "Run Time":
-			console.log("changing to run Time");
-			runTimeChart();
-			break;
-		case "Total Pass":
-			console.log("changing to total pass");
-			totalPassChart();
-			break;
-		case "Total Fail":
-			console.log("changing to total fail");
-			totalFailChart();
-			break;
-
-		default:
-			break;
-		}
-    }
-    
     $scope.mockDriverArray = ["Andriod", "iOS", "OSX", "Windows"];
     $scope.mockOsObject = [];
     $scope.mockOsObject.push({
@@ -380,6 +354,29 @@ angular.module('webLog')
     	chart.title.text = "Pass/Fail ratio for the last " + Charts.data.size + " runs";
 	}
     
+    $scope.changeChartVariant = function(input){
+    	$scope.currentChartVariant = input;
+    	
+    	switch (input) {
+		case "Pass/Fail":
+			passFailChart();
+			break;
+		case "Run Time":
+			runTimeChart();
+			break;
+		case "Total Pass":
+			totalPassChart();
+			break;
+		case "Total Fail":
+			totalFailChart();
+			break;
+		default:
+			$scope.currentChartVarint = "Pass/Fail"
+			passFailChart();
+			break;
+		}
+    }
+    
     $scope.createMainChart = function(data){
     	CurrentSuite.currentTimeStampArray = [];
     	for (var index = 0; index < data.length; index++) {
@@ -397,14 +394,11 @@ angular.module('webLog')
 			Charts.data.totalFail.push(data[i].fail + data[i].error);
 		}
     	
-    	Charts.mainChart.series[0].data = Charts.data.totalPass;
-    	Charts.mainChart.series[1].data = Charts.data.totalFail;
-    	
-		Charts.mainChart.xAxis.categories = CurrentSuite.currentTimeStampArray;
-		Charts.mainChart.title.text = "Pass / Fail for the last " + data.length + " results";
-		Charts.mainChart.options.plotOptions.series.point.events.click = function (e) {
-			$scope.loadNewTimeStamp(this.category);
-        };
+    	Charts.mainChart.xAxis.categories = CurrentSuite.currentTimeStampArray;
+    	Charts.mainChart.options.plotOptions.series.point.events.click = function (e) {
+    		$scope.loadNewTimeStamp(this.category);
+    	};
+    	$scope.changeChartVariant($scope.currentChartVariant);
 		$scope.chartMainConfig = Charts.mainChart;
     };
     
