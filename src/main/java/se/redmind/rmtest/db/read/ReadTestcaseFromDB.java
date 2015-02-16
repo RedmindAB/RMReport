@@ -31,7 +31,7 @@ public class ReadTestcaseFromDB extends DBBridge {
     String AND_TIMESTAMP_FROM_HISTORY_ = " and timestamp != (select max(timestamp) from report)";
     
     //getDriverAndMessageFromLastRun:
-    String SELECT_ALL_FROM_REPORT_OS_DEVICE_BROWSER = "select report.name as testcasename, device.name as devicename, os.name as osname, os.version as osversion, browser.name as browsername, browser.version as browserversion, time, report.result, report.message from report inner join os on testcase_id = os.os_id inner join device on testcase_id = device.device_id inner join browser on testcase_id = browser.browser_id where testcase_id = ";
+    String SELECT_ALL_FROM_REPORT_OS_DEVICE_BROWSER = "select report.name as testcasename, device.name as devicename, os.name as osname, os.version as osversion, browser.name as browsername, browser.version as browserversion, time, report.result, report.message from report inner join os on testcase_id = report.os_id inner join device on testcase_id = report.device_id inner join browser on testcase_id = report.browser_id where testcase_id = ";
     String AND_TIMESTAMP = " and timestamp = ";
     String LIMIT = " limit 20";
     
@@ -91,7 +91,7 @@ public class ReadTestcaseFromDB extends DBBridge {
 		return hs;
     }
     public JsonArray getDriverAndMessageFromLastRun(int testcaseId, String timestamp){
-    	ResultSet rs = readFromDB(SELECT_ALL_FROM_REPORT_OS_DEVICE_BROWSER+testcaseId+AND_TIMESTAMP+"'"+timestamp+"'"+LIMIT);
+    	ResultSet rs = readFromDB(SELECT_ALL_FROM_REPORT_OS_DEVICE_BROWSER+testcaseId+AND_TIMESTAMP+"'"+timestamp+"'");
     	JsonArray array = new JsonArray();
     	try {
 			while(rs.next()){

@@ -5,29 +5,92 @@
 	<!-- project logo END-->
     <link rel="stylesheet" href="css/style.css">		
 	<!-- navigation links -->
-	<h4>
-		<div style='margin-top:6px' id="navigation-classes" ng-click="setState('reports.classes')" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;| {{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
-		<div style='margin-top:6px' id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">&#10140;  {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
-		<div style='margin-top:6px' id="navigation-drivers" ng-click="setState('reports.drivers')" class="navTextStuff" ng-show="showClassLink('drivers')">&#10140;  {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
-		<div style='margin-top:6px' id="navigation-cases" ng-click="goToCases()" class="navTextStuff" ng-show="showClassLink('cases')">&#10140; {{CurrentSuite.currentDriver.driver}}&nbsp;</p></div><br/><br/>
+	<h4 style='width:100%;>
+		<table style='table-layout:fixed;word-wrap:break-word;width:100%;'>
+		<tr>
+		<td>
+			<div style='table-layout:fixed;word-wrap:break-word;width:100%;' id="navigation-classes" ng-click="setState('reports.classes')" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;| {{CurrentSuite.currentSuiteInfo.name}}<wbr />&nbsp;</p></div>
+			<div style='table-layout:fixed;word-wrap:break-word;width:100%;' id="navigation-methods" ng-click="goToMethods()" class="navTextStuff" ng-show="showClassLink('methods')">&#10140;  {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
+			<div style='table-layout:fixed;word-wrap:break-word;width:100%;' id="navigation-drivers" ng-click="setState('reports.drivers')" class="navTextStuff" ng-show="showClassLink('drivers')">&#10140;  {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
+			<div style='table-layout:fixed;word-wrap:break-word;width:100%;' id="navigation-cases" ng-click="goToCases()" class="navTextStuff" ng-show="showClassLink('cases')">&#10140; {{CurrentSuite.currentDriver.driver}}&nbsp;</p></div><br/><br/>
+		</td>
+		</tr>
+		</table>
 	</h4>
 	<!-- navigation links END -->
 	<!-- chart -->
-	<highchart ng-if="!mainChartToggle" id="chart1" config="chartMainConfig"></highchart>
+	<br><br>
+	<highchart style='position:responsive;float:left;width:100%' ng-if="!mainChartToggle" id="chart1" config="chartMainConfig"></highchart>
 	<!-- chart END -->
-	<button class="btn btn-default" ng-click="toggleMainChart()" align='center'>{{getToggleButtonText()}}</button>
+	
+	<!-- Chart variant dropdown START -->
+<div class="btn-group">
+	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+		Choose display type <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+		<li ng-repeat="variant in chartVariants"><a style='cursor:pointer' ng-click="changeChartVariant(variant)">{{variant}}</a></li>
+  </ul>
 </div>
+<!-- Chart variant dropdown END -->
+</div>
+
+<accordion close-others="true">
+	<!-- repeated content -->
+	<div style='width:300px' id='hej' ng-click='move(hej)'>
+	    <accordion-group>
+	    
+	    <!-- non collapsing header -->
+	        <accordion-heading>
+	            OS
+	        </accordion-heading>
+	    <!-- non collapsing header End-->
+	    
+	    <!-- Content in collapsing Div -->
+		<div	>		    
+		    <accordion>
+			    <accordion-group ng-repeat="mock in mockOsObject">
+		        	<accordion-heading style='width:100px'>
+						{{mock.os}}
+		        	</accordion-heading>
+
+		        		<!-- <input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{mock.versions}}</label>-->
+							<accordion>
+							    <accordion-group ng-repeat="device in mock.devices">
+						        	<accordion-heading style='width:100px'>
+										Devices
+						        	</accordion-heading>
+						        			    <accordion>
+			    <accordion-group ng-repeat="mock in mockOsObject">
+		        	<accordion-heading style='width:100px'>
+						{{mock.os}}
+		        	</accordion-heading>
+
+		        		<!-- <input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen"><label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{mock.versions}}</label>-->
+							<accordion>
+							    <accordion-group>
+						        	<accordion-heading style='width:100px'>
+										Devices
+						        	</accordion-heading>
+						        	</accordion-group>
+						    </accordion>
+							    </accordion-group>
+						    </accordion>	
+						        	</accordion-group>
+						    </accordion>
+			    </accordion-group>
+		    </accordion>	            
+	    </div>
+	    <!-- Content in collapsing Div End -->
+	    
+	    </accordion-group>
+	</div>
+	<!-- repeated content  End-->
+</accordion>
 
 <!-- load chart with data button -->
 <div>
 	<table>
-		<tr>
-			<td>
-				<div ng-repeat="driver in mockDriverArray" class='reports'>
-					<label for="mycheckbox" style='margin-top:15px;font-weight:normal;'>{{driver}}</label><input style='height:30px' type="checkbox" id="mycheckbox" ng-model="class.chosen">
-				</div>
-			</td>
-		</tr>
 		<tr class='reports'>
 			<td style='padding: 5px;'>
 				<button style='width:150px' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
@@ -57,6 +120,7 @@
 		</tr>
 	</table>	
 </div>
+
 <!-- load chart with data button END -->
 
 <!-- view for current classes/methods/drivers etc -->
