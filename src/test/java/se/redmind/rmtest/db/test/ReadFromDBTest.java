@@ -34,7 +34,7 @@ public class ReadFromDBTest {
     Connection conn = DBCon.getDbInstance().getConnection();
     
     @Rule
-    public Timeout timeout = new Timeout(200);
+    public Timeout timeout = new Timeout(500);
 
     @Test
     public void readFromTestcases(){

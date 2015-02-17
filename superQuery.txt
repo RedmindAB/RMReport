@@ -9,3 +9,8 @@ body:
 	"classes":[2],
 	"testcases":[3]
 }
+
+
+query:
+
+SELECT timestamp, time, result, report.class_id FROM report WHERE timestamp >= (SELECT MIN(timestamp) FROM (SELECT DISTINCT timestamp FROM report WHERE suite_id = {suiteid} ORDER BY timestamp DESC LIMIT {reslimit}))  AND suite_id = {suiteid} {conditions} ORDER BY timestamp;
