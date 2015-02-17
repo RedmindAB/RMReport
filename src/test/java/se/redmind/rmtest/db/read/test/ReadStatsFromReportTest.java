@@ -2,6 +2,9 @@ package se.redmind.rmtest.db.read.test;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -63,11 +66,10 @@ public class ReadStatsFromReportTest {
 		assertEquals("AND os_id IN (1,2) AND device_id IN (1,2) AND browser_id IN (1,2) AND class_id IN (2) AND testcase_id IN (3)", s);
 	}
 	
-	@Ignore
+	
 	@Test
-	public void getTestCases(){
-		ReadTestcaseFromDB readTestcaseFromDB = new ReadTestcaseFromDB();
-		System.out.println(readTestcaseFromDB.getAllFromTestcaseConcat());
+	public void getStats(){
+		List<HashMap<String, String>> reportListData = readStatsFromReport.getReportListData(1);
+		System.out.println(reportListData);
 	}
-
 }
