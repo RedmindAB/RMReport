@@ -27,7 +27,7 @@ public class DBCon {
             dbInstance = new DBCon();
                 dbInstance.connect("RMTest.db");
                 dbInstance.create(conn);
-                testMode = true;
+                testMode = false;
         }
         return dbInstance;
     }
@@ -110,6 +110,5 @@ public class DBCon {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
     }
 }

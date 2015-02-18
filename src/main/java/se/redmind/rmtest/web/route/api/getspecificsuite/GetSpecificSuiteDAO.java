@@ -11,7 +11,8 @@ public class GetSpecificSuiteDAO {
 
 	public String getSpecificSuite(int suiteid,String timestamp ){
 		ReadSuiteFromDB readSuite = new ReadSuiteFromDB();
-		JsonArray jsonArray  = readSuite.getSpecificSuiteRunFromIdAndTimestamp(suiteid, timestamp);
+		JsonArray jsonArray  = readSuite.getSuiteRunByTimestamp(suiteid, timestamp);
+		System.out.println(jsonArray);
 		return new Gson().toJson(jsonArray);
 		
 	}
