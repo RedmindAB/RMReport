@@ -125,10 +125,9 @@ angular.module('webLog')
 	function clearChosenOs() {
 		if (CurrentSuite.currentSpecObject.platforms) {
 			for (var i = 0; i < CurrentSuite.currentSpecObject.platforms.length; i++) {
-				var versions = platforms[i].versions;
-				for (var j = 0; j < versions.length; j++) {
-					if (versions[j].chosen) {
-						chosen.os.push(versions[j].osid);
+				for (var j = 0; j < CurrentSuite.currentSpecObject.platforms[i].versions.length; j++) {
+					if (CurrentSuite.currentSpecObject.platforms[i].versions[j].chosen) {
+						chosen.os.push(CurrentSuite.currentSpecObject.platforms[i].versions[j].osid);
 					}
 				}
 			}
@@ -244,9 +243,17 @@ angular.module('webLog')
 		return chosen;
 	}
 	
-	function getTestCasesByClassId(id) {
+	function getMethodsByClassId(id) {
 		for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
 			if (CurrentSuite.currentSuite[i].id === id) {
+				return CurrentSuite.currentSuite[i].testcases;
+			}
+		}
+	}
+	
+	function getCasesByClassId(id) {
+		for (var i = 0; i < CurrentSuite.currentMethods.length; i++) {
+			if (CurrentSuite.currentMethods[i].id === id) {
 				return CurrentSuite.currentSuite[i].testcases;
 			}
 		}
@@ -286,7 +293,10 @@ angular.module('webLog')
 	    	if(data){
 	    		CurrentSuite.currentSuite = data;
 	    		if (CurrentSuite.currentClass != undefined) {
-	    			CurrentSuite.currentMethods = getTestCasesByClassId(CurrentSuite.currentClass.id);
+	    			CurrentSuite.currentMethods = getMethodsByClassId(CurrentSuite.currentClass.id);
+	    			if ($state.current.name === "reports.cases") {
+	    				$scope.getCases(CurrentSuite.currentMethod);
+					}
 				}
 	    		$scope.getSpecsInfo(CurrentSuite.currentSuiteInfo.id);
 	    	};
@@ -344,6 +354,7 @@ angular.module('webLog')
    
    $scope.loadNewTimeStamp = function(timestamp){
 	   $scope.getSuiteSkeletonByTimeStamp(timestamp);
+	   CurrentSuite.currentTimeStamp = timestamp;
    }
     
     $scope.createHomeChartFromID = function(id) {
@@ -497,8 +508,8 @@ angular.module('webLog')
     	CurrentSuite.currentTimeStampArray = [];
     	for (var index = 0; index < data[0].data.length; index++) {
 			CurrentSuite.currentTimeStampArray.push(data[0].data[index].timestamp);
-			
 		}
+    	CurrentSuite.currentTimeStamp = data[0].data[data[0].data.length-1].timestamp;
     	
     	Charts.data.runTime = [];
     	Charts.data.totalPass = [];
