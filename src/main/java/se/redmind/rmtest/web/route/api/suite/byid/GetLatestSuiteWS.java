@@ -14,8 +14,7 @@ public class GetLatestSuiteWS extends Route {
 	public Object handle(Request request, Response response) {
 		try {
 			int suite_id = Integer.valueOf(request.queryParams("suiteid"));
-			String timestamp = request.queryParams("timestamp");
-			return new GetLatestSuiteDAO().getLatestSuite(suite_id, timestamp);
+			return new GetLatestSuiteDAO().getLatestSuite(suite_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -7,8 +7,8 @@ import se.redmind.rmtest.db.read.ReadSuiteFromDB;
 
 public class GetLatestSuiteDAO {
 
-	public String getLatestSuite(int suite_id, String timestamp){
-		JsonArray array = new ReadSuiteFromDB().getLastestSuiteRunFromID(suite_id, timestamp);
+	public String getLatestSuite(int suite_id){
+		JsonArray array = new ReadSuiteFromDB().getLastestSuiteRunFromID(suite_id);
 		return new Gson().toJson(array);
 	}
 	

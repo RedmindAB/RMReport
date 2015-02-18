@@ -4,9 +4,9 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class GeSuiteByTimestampWS extends Route {
+public class GetSuiteByTimestampWS extends Route {
 
-	public GeSuiteByTimestampWS(String path) {
+	public GetSuiteByTimestampWS(String path) {
 		super(path);
 	}
 

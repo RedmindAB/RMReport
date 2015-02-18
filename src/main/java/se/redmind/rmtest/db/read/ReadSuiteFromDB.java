@@ -21,7 +21,7 @@ public class ReadSuiteFromDB extends DBBridge{
     String GET_SUIT_ID = "select suite_id from suite where suitename= ";
     String GET_ALL_SUITS = "select * from suite";
     String GET_SUITE_MAX = "SELECT report.class_id, class.classname, report.testcase_id, testcase.testcasename, result, time FROM report INNER JOIN class ON report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id WHERE timestamp = (SELECT MAX(timestamp) FROM report WHERE suite_id = {suite_id}) GROUP BY report.testcase_id;";
-    String GET_SUITE_BY_TIMESTAMP = "SELECT report.class_id, class.classname, report.testcase_id, testcase.testcasename, result, time FROM report INNER JOIN class ON report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id WHERE timestamp = {timestamp} AND suite_id = {suite_id} GROUP BY report.testcase_id;";
+    String GET_SUITE_BY_TIMESTAMP = "SELECT report.class_id, class.classname, report.testcase_id, testcase.testcasename, result, time FROM report INNER JOIN class ON report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id WHERE timestamp = '{timestamp}' AND suite_id = {suite_id} GROUP BY report.testcase_id;";
     
     String GET_SUITE_SPECIFIC = "select report.class_id, class.classname, report.testcase_id, testcase.testcasename, result, timestamp, time from report inner join class on report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id where timestamp = '";
     String AND_SUITEID_ ="' AND suite_id = ";
@@ -54,7 +54,7 @@ public class ReadSuiteFromDB extends DBBridge{
         return null;
     }
     
-    public JsonArray getLastestSuiteRunFromID(int suiteid, String timestamp){
+    public JsonArray getLastestSuiteRunFromID(int suiteid){
     	HashMap<String, String> map = new HashMap<String, String>();
     	map.put("suite_id", ""+suiteid);
     	ResultSet rs = readFromDB(stringParser.getString(GET_SUITE_MAX, map));
@@ -65,7 +65,9 @@ public class ReadSuiteFromDB extends DBBridge{
     	HashMap<String, String> map = new HashMap<String, String>();
     	map.put("suite_id", ""+suiteid);
     	map.put("timestamp", timestamp);
-    	ResultSet rs = readFromDB(stringParser.getString(GET_SUITE_MAX, map));
+    	String sql = stringParser.getString(GET_SUITE_BY_TIMESTAMP, map);
+    	System.out.println(sql);
+    	ResultSet rs = readFromDB(sql);
     	return new SuiteJsonBuilder(rs).build().getSuite();
     }
     

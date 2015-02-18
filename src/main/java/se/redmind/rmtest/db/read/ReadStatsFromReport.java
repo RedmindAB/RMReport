@@ -40,7 +40,6 @@ public class ReadStatsFromReport extends ReadReportFromDB{
 	
 	public JsonArray getGraphDataAsJson(JsonObject params){
 		String sql = getQueryFromJsonObject(params);
-		System.out.println(sql);
 		ResultSet rs = readFromDB(sql, params.get("reslimit").getAsInt());
 		return extractGraphData(rs);
 	}
