@@ -218,7 +218,6 @@ angular.module('webLog')
 	    	if(data){
 	    		CurrentSuite.currentSuite = data;
 	    		$scope.getSpecsInfo(suite.id);
-	    		console.log(data);
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
