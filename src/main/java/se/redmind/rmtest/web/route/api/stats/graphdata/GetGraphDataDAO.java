@@ -12,9 +12,9 @@ import com.google.gson.JsonObject;
 
 public class GetGraphDataDAO {
 
-	public String getGraphData(JsonObject data){
+	public String getGraphData(JsonObject params){
 		ReadStatsFromReport reportStats = new ReadStatsFromReport();
-		List<HashMap<String, String>> graphData = reportStats.getGraphData(data);
+		List<HashMap<String, String>> graphData = reportStats.getGraphData(params);
 		JsonArray extractGraphData = new GraphDataExtractor().extractGraphData(graphData);
 		return new Gson().toJson(extractGraphData);
 	}
