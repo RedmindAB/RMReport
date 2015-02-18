@@ -186,12 +186,26 @@ angular.module('webLog')
 //	    });
 //	}
 	
+	$scope.getSpecsInfo = function(suiteID){
+		var reslimit = getResLimit();
+	    $http.get('/api/stats/options?suiteid='+suiteID+'&limit='+reslimit)
+	    .success(function(data, status, headers, config){ 
+	    	if(data){
+	    		CurrentSuite.currentSpecObject = data;
+	    		console.log(CurrentSuite.currentSpecObject);
+	    	};
+	    }).error(function(data, status, headers, config){
+	    	console.log(data);
+	    });
+	}
+	
 	$scope.getSuiteSkeleton = function(suite){
 		CurrentSuite.currentSuiteInfo = suite;
 	    $http.get('/api/suite/latestbyid?suiteid=' + suite.id)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		CurrentSuite.currentSuite = data;
+	    		$scope.getSpecsInfo(suite.id);
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -203,6 +217,7 @@ angular.module('webLog')
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		CurrentSuite.currentSuite = data;
+	    		$scope.getSpecsInfo(suite.id);
 	    		console.log(data);
 	    	};
 	    }).error(function(data, status, headers, config){
@@ -305,15 +320,11 @@ angular.module('webLog')
     	var chosen = $scope.getChosen();
     	var dataRequest = {};
     	
-    	var reslimit = Utilities.amountField;
     	
 		dataRequest.suiteid = suiteID;
 		
-		if (!(isNaN(reslimit)) && !(reslimit === "")) {
-			dataRequest.reslimit = parseInt(reslimit) +1;
-		} else {
-			dataRequest.reslimit = 51;
-		}
+		dataRequest.reslimit = getResLimit();
+		
 		dataRequest.browsers = [];
 		dataRequest.devices= [];
 		dataRequest.os = [];
@@ -322,6 +333,16 @@ angular.module('webLog')
     	return dataRequest;
     };
     
+    
+    function getResLimit() {
+		var reslimit = Utilities.amountField;
+		if (!(isNaN(reslimit)) && !(reslimit === "")) {
+			reslimit = parseInt(reslimit) +1;
+		} else {
+			reslimit = 51;
+		}
+		return reslimit;
+	}
 	// CHART OBJECTS -----------------------------------------------------------------------------------------------------------
 	
     function runTimeChart() {

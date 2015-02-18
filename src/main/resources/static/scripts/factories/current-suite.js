@@ -12,6 +12,7 @@ angular.module('webLog')
 		    	currentCases: [],
 		    	currentDriverRuns: [],
 				currentTimeStamp: '',
-				currentTimeStampArray: []
+				currentTimeStampArray: [],
+				currentSpecObject: []
 		    	};
 	});
