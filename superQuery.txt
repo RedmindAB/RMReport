@@ -1,26 +1,31 @@
 path: /api/stats/graphdata
 body:
-{	
-	"name":'Nexus One',
-	"suiteid":1,
-	"reslimit":50,
-	"os":[1,2],
-	"devices":[1,2],
-	"browsers":[1,2],
-	"classes":[2],
-	"testcases":[3]
-},
-{	
-	"name":'iPhone 6',
-	"suiteid":1,
-	"reslimit":50,
-	"os":[1,2],
-	"devices":[1,2],
-	"browsers":[1,2],
-	"classes":[2],
-	"testcases":[3]
-}
+[
+	{	
+		"name":'Nexus One',
+		"suiteid":1,
+		"reslimit":50,
+		"os":[1,2],
+		"devices":[1,2],
+		"browsers":[1,2],
+		"classes":[2],
+		"testcases":[3]
+	},
+	{	
+		"name":'iPhone 6',
+		"suiteid":1,
+		"reslimit":50,
+		"os":[1,2],
+		"devices":[1,2],
+		"browsers":[1,2],
+		"classes":[2],
+		"testcases":[3]
+	}	
+]
 
+data[0].data[50].timestamp
+data[1].data[50].timestamp
+data[0].name
 
 query:
 SELECT timestamp, time, result, report.class_id FROM report WHERE timestamp >= (SELECT MIN(timestamp) FROM (SELECT DISTINCT timestamp FROM report WHERE suite_id = {suiteid} ORDER BY timestamp DESC LIMIT {reslimit}))  AND suite_id = {suiteid} {conditions} ORDER BY timestamp;
