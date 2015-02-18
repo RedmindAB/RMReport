@@ -44,14 +44,17 @@
 	            <a style='color:black' onClick="if(document.getElementById('hej').style.width=='60px'){document.getElementById('hej').style.width = '100%';}else{document.getElementById('hej').style.width = '60px';}">OS</a>
 	        </accordion-heading>
 	    <!-- non collapsing header End-->
-	    
+	    <div ng-repeat="browser in CurrentSuite.currentSpecObject.browsers">
+	    	<input type="checkbox">
+	    	{{browser.browsername}} - v.{{browser.browserver}}
+	    </div>
 	    <!-- Content in collapsing Div -->
 		<div>		    
 		    <accordion close-others="false">
-			    <accordion-group ng-repeat="mock in mockOsObject">
+			    <accordion-group ng-repeat="platform in CurrentSuite.currentSpecObject.platforms">
 		        	<accordion-heading>
 						<input style='height:30px' type="checkbox" id="mycheckbox" stop-click><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> 
-						{{mock.os}}
+						{{platform.osname}}
 		        	</accordion-heading>
 					<accordion>
 							    <accordion-group>
@@ -59,9 +62,9 @@
 										Devices
 						        	</accordion-heading>
 						    		<table>
-							    		<tr ng-repeat='device in mock.devices' style='height:30px;'>
+							    		<tr ng-repeat='device in platform.devices' style='height:30px;'>
 								    		<td>
-								    			{{device}} <input style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
+								    			{{device.devicename}} <input style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
 								    		</td>
 							    		</tr>
 						    		</table>
@@ -73,9 +76,9 @@
 										<div ng-click=''>Versions</div>
 						        	</accordion-heading>
 						        	<table>
-							        	<tr ng-repeat='version in mock.versions'>
+							        	<tr ng-repeat='version in platform.devices'>
 								        	<td>
-								        		{{version}} <input style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
+								        		{{version.osver}} <input style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
 								        	</td>
 							        	</tr>
 						        	</table>
