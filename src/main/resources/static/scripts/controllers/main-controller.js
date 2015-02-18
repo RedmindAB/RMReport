@@ -106,7 +106,6 @@ angular.module('webLog')
 	}
 	
 	$scope.clearAllChosen = function(){
-		console.log("clearing chosen");
 		//remove classes checkbox
 		clearChosenClasses();
 		
@@ -245,6 +244,15 @@ angular.module('webLog')
 		return chosen;
 	}
 	
+	function getTestCasesByClassId(id) {
+		for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
+			if (CurrentSuite.currentSuite[i].id === id) {
+				return CurrentSuite.currentSuite[i].testcases;
+			}
+		}
+	}
+	
+	
     // HTTP -----------------------------------------------------------------------------------------------------------
     
 	$scope.getSpecsInfo = function(suiteID){
@@ -253,7 +261,6 @@ angular.module('webLog')
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		CurrentSuite.currentSpecObject = data;
-	    		console.log(CurrentSuite.currentSpecObject);
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -265,8 +272,8 @@ angular.module('webLog')
 	    $http.get('/api/suite/latestbyid?suiteid=' + suite.id)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
-	    		CurrentSuite.currentSuite = data;
 	    		$scope.getSpecsInfo(suite.id);
+	    		CurrentSuite.currentSuite = data;
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -274,10 +281,13 @@ angular.module('webLog')
 	}
 	
 	$scope.getSuiteSkeletonByTimeStamp = function(timestamp){
-	    $http.get('/api/suite/specificbyid?suiteid=' + CurrentSuite.currentSuiteInfo.id + "&timestamp="+timestamp)
+	    $http.get("/api/suite/bytimestamp?suiteid="+ CurrentSuite.currentSuiteInfo.id + "&timestamp="+timestamp)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		CurrentSuite.currentSuite = data;
+	    		if (CurrentSuite.currentClass != undefined) {
+	    			CurrentSuite.currentMethods = getTestCasesByClassId(CurrentSuite.currentClass.id);
+				}
 	    		$scope.getSpecsInfo(CurrentSuite.currentSuiteInfo.id);
 	    	};
 	    }).error(function(data, status, headers, config){
@@ -322,11 +332,7 @@ angular.module('webLog')
 	};
 	
    $scope.loadMainChart = function(suiteID) {
-	   console.log("Specs with chosen");
-	   console.log(CurrentSuite.currentSpecObject);
     	var requestObject = $scope.getGraphDataObject(suiteID)
-    	console.log("requestObject");
-    	console.log(requestObject);
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){
     		CurrentSuite.currentTimeStamp = data[0].timestamp;
@@ -341,15 +347,17 @@ angular.module('webLog')
    }
     
     $scope.createHomeChartFromID = function(id) {
-    	var requestObject = {
+    	var requestObject= [];
+    	requestObject.push({
+    			name:"hej",
     			suiteid:id,
-    			reslimit:51,
+    			reslimit:50,
     			os: [],
     			devices: [],
     			browsers: [],
     			classes:[],
     			testcases:[]
-    		}
+    });
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){ 
     		$scope.createHomeChart(data, id);
@@ -372,7 +380,9 @@ angular.module('webLog')
 	
     $scope.getMainGraphData = function(suiteID){
     	$scope.requestObject =  $scope.getGraphDataObject(suiteID);
-    	$http.post('/api/stats/graphdata', $scope.requestObject)
+    	var requestArray = [];
+    	requestArray.push($scope.getGraphDataObject(suiteID));
+    	$http.post('/api/stats/graphdata', requestArray)
     	.success(function(data, status, headers, config){ 
     		$scope.currentGraphData = data;
     	}).error(function(data, status, headers, config){
@@ -393,7 +403,10 @@ angular.module('webLog')
 		dataRequest.browsers = chosen.browsers;
 		dataRequest.classes = chosen.classes;
 		dataRequest.testcases = chosen.testcases;
-    	return dataRequest;
+		
+		var quickfix = [];
+		quickfix.push(dataRequest);
+    	return quickfix;
     };
     
     
@@ -482,20 +495,20 @@ angular.module('webLog')
     
     $scope.createMainChart = function(data){
     	CurrentSuite.currentTimeStampArray = [];
-    	for (var index = 0; index < data.length; index++) {
-			CurrentSuite.currentTimeStampArray.push(data[index].timestamp);
+    	for (var index = 0; index < data[0].data.length; index++) {
+			CurrentSuite.currentTimeStampArray.push(data[0].data[index].timestamp);
 			
 		}
     	
     	Charts.data.runTime = [];
     	Charts.data.totalPass = [];
     	Charts.data.totalFail = [];
-    	Charts.data.size = data.length;
+    	Charts.data.size = data[0].data.length;
     	
     	for (var i = 0; i < Charts.data.size; i++) {
-			Charts.data.totalPass.push(data[i].pass);
-			Charts.data.totalFail.push(data[i].fail + data[i].error);
-			Charts.data.runTime.push(data[i].time);
+			Charts.data.totalPass.push(data[0].data[i].pass);
+			Charts.data.totalFail.push(data[0].data[i].fail + data[0].data[i].error);
+			Charts.data.runTime.push(data[0].data[i].time);
 		}
     	
     	Charts.mainChart.xAxis.categories = CurrentSuite.currentTimeStampArray;
@@ -518,8 +531,8 @@ angular.module('webLog')
     
     $scope.createHomeChart = function(data, id) {
     	var timeStamps = [];
-    	for (var index = 0; index < data.length; index++) {
-			timeStamps.push(data[index].timestamp);
+    	for (var index = 0; index < data[0].data.length; index++) {
+			timeStamps.push(data[0].data[index].timestamp);
 		}
     	
         var chartHomeConfigObject = {
@@ -575,9 +588,9 @@ angular.module('webLog')
         chartHomeConfigObject.series[0].data = [];
         chartHomeConfigObject.series[1].data = [];
         
-		for (var j = 0; j < data.length; j++) {
-			chartHomeConfigObject.series[0].data.push(data[j].pass);
-			chartHomeConfigObject.series[1].data.push(data[j].fail + data[j].error);
+		for (var j = 0; j < data[0].data.length; j++) {
+			chartHomeConfigObject.series[0].data.push(data[0].data[j].pass);
+			chartHomeConfigObject.series[1].data.push(data[0].data[j].fail + data[0].data[j].error);
 		}
 		chartHomeConfigObject.xAxis.categories = timeStamps;
 		$scope.chartHomeConfig[id] = chartHomeConfigObject;
