@@ -39,19 +39,23 @@
 	<div style='width:60px;' id='hej'>
 	    <accordion-group>
 	    
-	    <!-- non collapsing header -->
 	        <accordion-heading>
-	            <a style='color:black' onClick="if(document.getElementById('hej').style.width=='60px'){document.getElementById('hej').style.width = '100%';}else{document.getElementById('hej').style.width = '60px';}">OS</a>
+	            <a style='color:black' onClick="if(document.getElementById('hej').style.width=='60px'){document.getElementById('hej').style.width = '100%';}else{document.getElementById('hej').style.width = '60px';}">
+	            	OS
+				</a>
 	        </accordion-heading>
-	    <!-- non collapsing header End-->
-	    <div ng-repeat="browser in CurrentSuite.currentSpecObject.browsers">
-	    	<input type="checkbox">
+	    
+	    <!-- BROWSERS START -->
+	    <div ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
+	    	<input type="checkbox" ng-model="browser.chosen">
 	    	{{browser.browsername}} - v.{{browser.browserver}}
 	    </div>
+	    <!-- BROWSERS END -->
+	    
 	    <!-- Content in collapsing Div -->
 		<div>		    
 		    <accordion close-others="false">
-			    <accordion-group ng-repeat="platform in CurrentSuite.currentSpecObject.platforms">
+			    <accordion-group ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
 		        	<accordion-heading>
 						<input style='height:30px' type="checkbox" id="mycheckbox" stop-click><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> 
 						{{platform.osname}}
@@ -62,9 +66,9 @@
 										Devices
 						        	</accordion-heading>
 						    		<table>
-							    		<tr ng-repeat='device in platform.devices' style='height:30px;'>
+							    		<tr ng-repeat="device in platform.devices track by $index" style='height:30px;'>
 								    		<td>
-								    			{{device.devicename}} <input style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
+								    			{{device.devicename}} <input ng-model="device.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
 								    		</td>
 							    		</tr>
 						    		</table>
@@ -76,9 +80,9 @@
 										<div ng-click=''>Versions</div>
 						        	</accordion-heading>
 						        	<table>
-							        	<tr ng-repeat='version in platform.devices'>
+							        	<tr ng-repeat="version in platform.versions track by $index">
 								        	<td>
-								        		{{version.osver}} <input style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
+								        		{{version.osver}} <input ng-model="version.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
 								        	</td>
 							        	</tr>
 						        	</table>
@@ -96,8 +100,12 @@
 
 <!-- load chart with data button -->
 <div>
-			<button class="btn btn-default" ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>Reload</button>
-			<button style='width: 60px' class="btn btn-default" ng-click="clearChosen()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>Clear</button>
+			<button class="btn btn-default" ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>
+				Reload
+			</button>
+			<button style='width: 60px' class="btn btn-default" ng-click="clearAllChosen()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>
+				Clear
+			</button>
 			<input type="text" id="suite-amount-input" class="form-control tool-tip" style="width:150px;margin-top:5px" ng-model='Utilities.amountField' placeholder="Runs" title="Amount of runs to show" data-toggle="tooltip" data-placement="right" tooltip>
 				<table style='margin-left:-5px'>
 		<tr class='reports'>
@@ -107,7 +115,10 @@
 					<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu scrollable-menu" role="menu">
-					<li ng-repeat="timeStamp in CurrentSuite.currentTimeStampArray"><a ng-click="loadNewTimeStamp(timeStamp)">{{timeStamp}}</a></li>
+					<li ng-repeat="timeStamp in CurrentSuite.currentTimeStampArray"><a ng-click="loadNewTimeStamp(timeStamp)">
+						{{timeStamp}}
+						</a>
+					</li>
 				</ul>
 			</td>
 			</tr>

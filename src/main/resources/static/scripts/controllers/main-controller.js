@@ -105,17 +105,60 @@ angular.module('webLog')
 		}
 	}
 	
-	$scope.clearChosen = function(){
+	$scope.clearAllChosen = function(){
+		console.log("clearing chosen");
 		//remove classes checkbox
-		if (CurrentSuite.currentSuite) {
-			for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
-				if (CurrentSuite.currentSuite[i].chosen) {
-					delete CurrentSuite.currentSuite[i].chosen
+		clearChosenClasses();
+		
+		//remove method checkbox
+		clearChosenMethods();
+		
+		//remove browser checkbox
+		clearChosenBrowsers();
+		
+		//remove device checkbox
+		clearChosenDevices();
+		
+		//remove os checkbox
+		clearChosenOs();
+	}
+	
+	function clearChosenOs() {
+		if (CurrentSuite.currentSpecObject.platforms) {
+			for (var i = 0; i < CurrentSuite.currentSpecObject.platforms.length; i++) {
+				var versions = platforms[i].versions;
+				for (var j = 0; j < versions.length; j++) {
+					if (versions[j].chosen) {
+						chosen.os.push(versions[j].osid);
+					}
 				}
 			}
 		}
-		
-		//remove method checkbox
+	}
+	
+	function clearChosenDevices() {
+		if (CurrentSuite.currentSpecObject.platforms) {
+			for (var i = 0; i < CurrentSuite.currentSpecObject.platforms.length; i++) {
+				for (var j = 0; j < CurrentSuite.currentSpecObject.platforms[i].devices.length; j++) {
+					if (CurrentSuite.currentSpecObject.platforms[i].devices[j].chosen) {
+						delete CurrentSuite.currentSpecObject.platforms[i].devices[j].chosen;
+					}
+				}
+			}
+		}
+	}
+	
+	function clearChosenBrowsers() {
+		if (CurrentSuite.currentSpecObject.browsers) {
+			for (var i = 0; i < CurrentSuite.currentSpecObject.browsers.length; i++) {
+				if (CurrentSuite.currentSpecObject.browsers[i].chosen) {
+					delete CurrentSuite.currentSpecObject.browsers[i].chosen;
+				}
+			}
+		}
+	}
+	
+	function clearChosenMethods(chosenMethod) {
 		if (CurrentSuite.currentClass.testcases) {
 			for (var i = 0; i < CurrentSuite.currentClass.testcases.length; i++) {
 				if (CurrentSuite.currentClass.testcases[i].chosen) {
@@ -123,12 +166,13 @@ angular.module('webLog')
 				}
 			}
 		}
-		
-		//remove driver checkbox
-		if (CurrentSuite.currentDrivers) {
-			for (var i = 0; i < CurrentSuite.currentDrivers.length; i++) {
-				if (CurrentSuite.currentDrivers[i].chosen) {
-					delete CurrentSuite.currentDrivers[i].chosen
+	}
+	
+	function clearChosenClasses(chosenClass) {
+		if (CurrentSuite.currentSuite) {
+			for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
+				if (CurrentSuite.currentSuite[i].chosen) {
+					delete CurrentSuite.currentSuite[i].chosen
 				}
 			}
 		}
@@ -136,56 +180,73 @@ angular.module('webLog')
 	
 	$scope.getChosen = function(){
 		var chosen = {
+				os: [],
+				devices: [],
+				browsers: [],
 				classes: [],
-				methods: [],
-				drivers: []
+				testcases: [],
 		};
+		
+		//add os to send
+		if (CurrentSuite.currentSpecObject.platforms) {
+			var platforms = CurrentSuite.currentSpecObject.platforms;
+			for (var i = 0; i < platforms.length; i++) {
+				var versions = platforms[i].versions;
+				for (var j = 0; j < versions.length; j++) {
+					if (versions[j].chosen) {
+						chosen.os.push(versions[j].osid);
+					}
+				}
+			}
+		}
+		
+		//add devices to send
+		if (CurrentSuite.currentSpecObject.platforms) {
+			var platforms = CurrentSuite.currentSpecObject.platforms;
+			for (var i = 0; i < platforms.length; i++) {
+				var devices= platforms[i].devices;
+				for (var j = 0; j < devices.length; j++) {
+					if (devices[j].chosen) {
+						chosen.devices.push(devices[j].deviceid);
+					}
+				}
+			}
+		}
+		
+		//add browsers to send
+		if (CurrentSuite.currentSpecObject.browsers) {
+			var browsers = CurrentSuite.currentSpecObject.browsers;
+			for (var i = 0; i < browsers.length; i++) {
+				if (browsers[i].chosen) {
+					chosen.browsers.push(browsers[i].browserid);
+				}
+			}
+		}
 		
 		//add classes to send
 		if (CurrentSuite.currentSuite) {
-			for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
-				if (CurrentSuite.currentSuite[i].chosen) {
-					chosen.classes.push(CurrentSuite.currentSuite[i].id);
+			var classes = CurrentSuite.currentSuite;
+			for (var i = 0; i < classes.length; i++) {
+				if (classes[i].chosen) {
+					chosen.classes.push(classes[i].id);
 				}
 			}
 		}
 		
 		//add methods to send
 		if (CurrentSuite.currentClass.testcases) {
-			for (var i = 0; i < CurrentSuite.currentClass.testcases.length; i++) {
-				if (CurrentSuite.currentClass.testcases[i].chosen) {
-					chosen.methods.push(CurrentSuite.currentClass.testcases[i].id);
-				}
-			}
-		}
-		
-		//add drivers to send
-		if (CurrentSuite.currentDrivers) {
-			for (var i = 0; i < CurrentSuite.currentDrivers.length; i++) {
-				if (CurrentSuite.currentDrivers[i].chosen) {
-					chosen.drivers.push(CurrentSuite.currentDrivers[i].driver);
+			var testcases = CurrentSuite.currentClass.testcases
+			for (var i = 0; i < testcases.length; i++) {
+				if (testcases[i].chosen) {
+					chosen.testcases.push(testcases[i].id);
 				}
 			}
 		}
 		return chosen;
 	}
 	
-	
-	
     // HTTP -----------------------------------------------------------------------------------------------------------
     
-//	$scope.getCases = function(driver){
-//		CurrentSuite.currentDriver = driver;
-//		$http.get("/api/testcase/caserunsbydriver?id=" + CurrentSuite.currentMethod.id + "&driver='" + driver.driver + "'")
-//	    .success(function(data, status, headers, config){ 
-//	    	if(data){
-//	    		CurrentSuite.currentDriverRuns = data;
-//	    	};
-//	    }).error(function(data, status, headers, config){
-//	    	console.log(data);
-//	    });
-//	}
-	
 	$scope.getSpecsInfo = function(suiteID){
 		var reslimit = getResLimit();
 	    $http.get('/api/stats/options?suiteid='+suiteID+'&limit='+reslimit)
@@ -213,11 +274,11 @@ angular.module('webLog')
 	}
 	
 	$scope.getSuiteSkeletonByTimeStamp = function(timestamp){
-	    $http.get('/api/suite/latestbyid?suiteid=' + CurrentSuite.currentSuiteInfo.id + "&timestamp="+timestamp)
+	    $http.get('/api/suite/specificbyid?suiteid=' + CurrentSuite.currentSuiteInfo.id + "&timestamp="+timestamp)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		CurrentSuite.currentSuite = data;
-	    		$scope.getSpecsInfo(suite.id);
+	    		$scope.getSpecsInfo(CurrentSuite.currentSuiteInfo.id);
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -261,7 +322,11 @@ angular.module('webLog')
 	};
 	
    $scope.loadMainChart = function(suiteID) {
+	   console.log("Specs with chosen");
+	   console.log(CurrentSuite.currentSpecObject);
     	var requestObject = $scope.getGraphDataObject(suiteID)
+    	console.log("requestObject");
+    	console.log(requestObject);
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){
     		CurrentSuite.currentTimeStamp = data[0].timestamp;
@@ -319,16 +384,15 @@ angular.module('webLog')
     	var chosen = $scope.getChosen();
     	var dataRequest = {};
     	
-    	
+    	dataRequest.name = '';
 		dataRequest.suiteid = suiteID;
-		
 		dataRequest.reslimit = getResLimit();
 		
-		dataRequest.browsers = [];
-		dataRequest.devices= [];
-		dataRequest.os = [];
-		dataRequest.classes=chosen.classes;
-		dataRequest.testcases = chosen.methods;
+		dataRequest.os = chosen.os;
+		dataRequest.devices = chosen.devices;
+		dataRequest.browsers = chosen.browsers;
+		dataRequest.classes = chosen.classes;
+		dataRequest.testcases = chosen.testcases;
     	return dataRequest;
     };
     
