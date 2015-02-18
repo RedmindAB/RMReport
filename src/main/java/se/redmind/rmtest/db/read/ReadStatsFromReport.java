@@ -20,11 +20,11 @@ public class ReadStatsFromReport extends ReadReportFromDB{
 	public static final String TESTCASES = "testcases";
 	public static final String CLASSES = "classes";
 	public static String RESLIMIT = "reslimit", SUITEID = "suiteid", CLASSID = "class_id",CONDITIONS = "conditions";
-	private String megaQuery = "SELECT timestamp, time, result, report.class_id FROM report "
+	private String megaQuery = "SELECT timestamp, SUM(time) AS time, SUM(result = 'passed') AS passed, SUM(result = 'failure') AS failure,  SUM(result = 'error') AS error FROM report "
 									+ "WHERE timestamp >= (SELECT MIN(timestamp) FROM (SELECT DISTINCT timestamp FROM report WHERE suite_id = {suiteid} ORDER BY timestamp DESC LIMIT {reslimit}))"
 									+ " AND suite_id = {suiteid} "
 									+ "{conditions}"
-									+ "ORDER BY timestamp;";
+									+ "GROUP BY timestamp ORDER BY timestamp;";
 	private String SUITE = "suite_id IN ";
 	private String OS_ID = "os_id IN ";
 	private String DEVICE_ID = "device_id IN ";

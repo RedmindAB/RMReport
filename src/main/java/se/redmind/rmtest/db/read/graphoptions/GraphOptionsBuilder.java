@@ -69,7 +69,6 @@ public class GraphOptionsBuilder {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(mainObject);
 		return mainObject;
 	}
 	

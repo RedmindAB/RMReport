@@ -12,12 +12,7 @@ body:
 
 
 query:
-
 SELECT timestamp, time, result, report.class_id FROM report WHERE timestamp >= (SELECT MIN(timestamp) FROM (SELECT DISTINCT timestamp FROM report WHERE suite_id = {suiteid} ORDER BY timestamp DESC LIMIT {reslimit}))  AND suite_id = {suiteid} {conditions} ORDER BY timestamp;
 
-
-
-
 new query?
-
 SELECT timestamp, SUM(time) AS time, SUM(result = 'passed') AS passed, SUM(result = 'failure') AS failure,  SUM(result = 'error') AS error, report.class_id FROM report WHERE timestamp >= (SELECT MIN(timestamp) FROM (SELECT DISTINCT timestamp FROM report WHERE suite_id = 1 ORDER BY timestamp DESC LIMIT 50)) AND suite_id = 1 GROUP BY timestamp ORDER BY timestamp;
