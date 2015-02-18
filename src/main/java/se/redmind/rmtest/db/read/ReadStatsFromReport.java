@@ -24,7 +24,7 @@ public class ReadStatsFromReport extends ReadReportFromDB{
 									+ "WHERE timestamp >= (SELECT MIN(timestamp) FROM (SELECT DISTINCT timestamp FROM report WHERE suite_id = {suiteid} ORDER BY timestamp DESC LIMIT {reslimit}))"
 									+ " AND suite_id = {suiteid} "
 									+ "{conditions}"
-									+ "GROUP BY timestamp ORDER BY timestamp;";
+									+ " GROUP BY timestamp ORDER BY timestamp;";
 	private String SUITE = "suite_id IN ";
 	private String OS_ID = "os_id IN ";
 	private String DEVICE_ID = "device_id IN ";
@@ -36,6 +36,13 @@ public class ReadStatsFromReport extends ReadReportFromDB{
 		String sql = getQueryFromJsonObject(params);
 		ResultSet rs = readFromDB(sql,params.get("reslimit").getAsInt());
 		return extractResultSetToGraphData(rs);
+	}
+	
+	public JsonArray getGraphDataAsJson(JsonObject params){
+		String sql = getQueryFromJsonObject(params);
+		System.out.println(sql);
+		ResultSet rs = readFromDB(sql, params.get("reslimit").getAsInt());
+		return extractGraphData(rs);
 	}
 	
 	public String getQueryFromJsonObject(JsonObject params){

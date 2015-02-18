@@ -74,6 +74,24 @@ public class ReadReportFromDB extends DBBridge{
     }
     
 
+    protected JsonArray extractGraphData(ResultSet rs) {
+    	JsonArray graphArray = new JsonArray();
+    	try {
+			while (rs.next()) {
+				JsonObject timestamp = new JsonObject();
+				timestamp.add("timestamp", new JsonPrimitive(rs.getString("timestamp")));
+				timestamp.add("time", new JsonPrimitive(rs.getDouble("time")));
+				timestamp.add("pass", new JsonPrimitive(rs.getInt("passed")));
+				timestamp.add("fail", new JsonPrimitive(rs.getInt("failure")));
+				timestamp.add("error", new JsonPrimitive(rs.getInt("error")));
+				graphArray.add(timestamp);
+			}
+		} catch (SQLException e) {
+			return null;
+		}
+    	return graphArray;
+    }
+    
 	protected List<HashMap<String, String>> extractResultSetToGraphData(ResultSet rs) {
 		List<HashMap<String, String>> result = new ArrayList<HashMap<String,String>>();
     	try {
