@@ -66,7 +66,6 @@ public class ReadSuiteFromDB extends DBBridge{
     	map.put("suite_id", ""+suiteid);
     	map.put("timestamp", timestamp);
     	String sql = stringParser.getString(GET_SUITE_BY_TIMESTAMP, map);
-    	System.out.println(sql);
     	ResultSet rs = readFromDB(sql);
     	return new SuiteJsonBuilder(rs).build().getSuite();
     }
