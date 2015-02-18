@@ -136,7 +136,6 @@ public class GraphOptionsBuilder {
 			
 			String osVer = (String) map.get(OSVER);
 			if (!osVers.contains(osVer)) {
-				System.out.println(os);
 				JsonArray versions = os.get(OSVERS).getAsJsonArray();
 				JsonObject ver = new JsonObject();
 				ver.add(OSVER, new JsonPrimitive(osVer));
