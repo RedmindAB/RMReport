@@ -17,6 +17,7 @@ import com.google.gson.JsonPrimitive;
 import se.redmind.rmtest.db.InMemoryDBHandler;
 import se.redmind.rmtest.db.read.ReadStatsFromReport;
 import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
+import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataDAO;
 
 public class ReadStatsFromReportTest {
 
@@ -71,12 +72,25 @@ public class ReadStatsFromReportTest {
 	
 	@Test()
 	public void getStats(){
-		JsonArray reportListData = readStatsFromReport.getGraphDataAsJson(getParams());
+		JsonArray reportListData = readStatsFromReport.getGraphDataAsJson(getParams("name 1"));
 		System.out.println(reportListData);
 	}
 	
-	private JsonObject getParams(){
+	@Test(timeout = 300)
+	public void getStatsFromParamsArray(){
+		GetGraphDataDAO getGraphDataDAO = new GetGraphDataDAO();
+		JsonArray paramsArray = new JsonArray();
+		paramsArray.add(getParams("name 1"));
+		paramsArray.add(getParams("name 2"));
+		paramsArray.add(getParams("name 3"));
+		paramsArray.add(getParams("name 4"));
+		String graphData = getGraphDataDAO.getGraphData(paramsArray);
+		System.out.println(graphData);
+	}
+	
+	private JsonObject getParams(String name){
 		JsonObject params = new JsonObject();
+		params.add("name", new JsonPrimitive(name));
 		params.add(ReadStatsFromReport.SUITEID, new JsonPrimitive(1));
 		params.add(ReadStatsFromReport.RESLIMIT, new JsonPrimitive(50));
 		

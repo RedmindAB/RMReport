@@ -1,6 +1,7 @@
 package se.redmind.rmtest.web.route.api.stats.graphdata;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import spark.Request;
@@ -17,7 +18,7 @@ public class GetGraphDataWS extends Route {
 	public Object handle(Request request, Response response) {
 		try {
 			String data = (String) request.body();
-			JsonObject json = new Gson().fromJson(data, JsonObject.class);
+			JsonArray json = new Gson().fromJson(data, JsonArray.class);
 			return new GetGraphDataDAO().getGraphData(json);
 		} catch (Exception e) {
 			e.printStackTrace();
