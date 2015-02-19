@@ -1,5 +1,6 @@
 package se.redmind.rmtest.db.test;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -64,12 +65,6 @@ public class ReadFromDBTest {
     public void getSuitIdTest(){
     new ReadSuiteFromDB().getSuiteID("name");
     }
-    @Test
-    public void reportExistsTest(){
-        boolean b = new ReadReportFromDB().reportExists("20150121-160906");
-        assertTrue(b);
-    }
- 
     
     @Test
     public void getAllSuitesTest() {
@@ -92,6 +87,8 @@ public class ReadFromDBTest {
     		System.out.println(hashMap.get("id"));
 		}
     }
+    
+    @Ignore //driver dose not exist anymore.
     @Test
     public void getDriverFromTestcaseTest() {
         List<String> drivers = new ReadReportFromDB().getDriverFromTestcase(1, 1);
@@ -113,6 +110,7 @@ public class ReadFromDBTest {
     	List<HashMap<String, String>> reportListData = new ReadReportFromDB().getReportListData(1);
     }
     
+    @Ignore //driver dose not exist anymore
     @Test
     public void getDriverByTestcase(){
         List<HashMap<String, String>> classname = new ReadTestcaseFromDB().getDriverFromTestcaseID(1);
