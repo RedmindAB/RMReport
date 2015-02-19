@@ -14,6 +14,7 @@ public class ReportTestCase{
 	CLASSNAME = "className",
 	ERROR = "error",
 	FAILURE = "failure",
+	SKIPPED = "skipped",
 	TYPE = "type",
 	MESSAGE = "message",
 	PASSED = "passed",
@@ -48,6 +49,7 @@ public class ReportTestCase{
 		Element errorElement = (Element) element.getElementsByTagName(ERROR).item(0);
 		
 		Element failureElement = (Element) element.getElementsByTagName(FAILURE).item(0);
+		Element skippedElement = (Element) element.getElementsByTagName(SKIPPED).item(0);
 		if (errorElement != null) {
 			String message = errorElement.getTextContent();
 			String type = errorElement.getAttribute(TYPE);
@@ -65,6 +67,9 @@ public class ReportTestCase{
 			failureObject.add(MESSAGE, new JsonPrimitive(message));
 			failureObject.add(TYPE, new JsonPrimitive(type));
 			this.jsonObject.add(FAILURE, failureObject);
+		}
+		else if (skippedElement != null){
+			this.jsonObject.add(SKIPPED, new JsonPrimitive(SKIPPED));
 		}
 		else passed = true;
 		
@@ -101,13 +106,17 @@ public class ReportTestCase{
 		return "No method name found";
 	}
 	
-	//TODO: Not returning skipped, skipped is not supported yet.
 	public String getResult(){
 		if (isPassed()) 				return PASSED;
-		else if(getFailure() != null) 	return FAILURE;
+		else if (getFailure() != null) 	return FAILURE;
+		else if (getSkipped() != null)	return SKIPPED;
 		else							return ERROR;
 	}
 	
+	private Object getSkipped() {
+		return this.jsonObject.get(SKIPPED);
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -168,7 +177,6 @@ public class ReportTestCase{
 		return this.driverParser;
 	}
 	
-	//TODO: Add support for skipped?
 	public String getMessage() {
 		String result = getResult();
 		switch (result) {

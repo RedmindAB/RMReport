@@ -22,6 +22,7 @@ public class GetGraphDataDAO {
 			JsonObject paramsAsObject = params.getAsJsonObject();
 			String name = paramsAsObject.get("name").getAsString();
 			JsonArray graphData = reportStats.getGraphDataAsJson(paramsAsObject);
+			System.out.println(graphData.size());
 			JsonObject result = new JsonObject();
 			result.add("name", new JsonPrimitive(name));
 			result.add("data", graphData);
