@@ -135,7 +135,7 @@ public class ReadFromDBTest {
     }
     @Test
     public void latestRunPerOsOrDeviceTest(){
-    	String date = new ReadReportFromDB().latestRunPerOsOrDevice();
-    	System.out.println(date);
+    	JsonArray array = new ReadReportFromDB().latestRunPerDevice();
+    	System.out.println(array);
     }
 }
