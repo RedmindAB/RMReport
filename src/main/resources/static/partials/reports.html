@@ -34,6 +34,18 @@
             </ul>
         </div>
     </div>
+        <div class="btn-group">
+            <button style='width:150px' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
+                {{breakPointChoice}}
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu scrollable-menu">
+                <li ng-repeat="breakPoint in breakPoints"><a ng-click="setBreakPoint(breakPoint)">
+                        {{breakPoint}}
+                    </a>
+                </li>
+            </ul>
+        </div>
     <div>
         <button style='width: 60px;margin:3px' class="btn btn-default" ng-click="clearAllChosen()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>
             Clear
@@ -44,6 +56,7 @@
                 Reload
             </button>
         </form>	
+         
         <div class="btn-group">
             <button style='width:150px' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
                 {{CurrentSuite.currentTimeStamp}}
@@ -86,7 +99,7 @@
                         <accordion close-others="false">
                             <accordion-group ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
                                 <accordion-heading>
-                                    <input style='height:30px' type="checkbox" id="mycheckbox" stop-click><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> 
+                                    <input ng-model='platform.chosen' style='height:30px' type="checkbox" id="mycheckbox" stop-click><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> 
                                     {{platform.osname}}
                                 </accordion-heading>
                                 <table border='0'>
@@ -137,4 +150,5 @@
 <!-- load chart with data button END -->
 
 <!-- view for current classes/methods/drivers etc -->
+<input ng-model='CurrentSuite.newLine' style='height:30px' type="checkbox" id="mycheckbox" stop-click><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'>Add graph line</label>
 <div ui-view></div>
