@@ -60,7 +60,7 @@ public class ReadStatsFromReportTest {
 	@Test
 	public void test() {
 		String queryFromJsonObject = readStatsFromReport.getQueryFromJsonObject(params);
-		assertEquals("SELECT timestamp, SUM(time) AS time, SUM(result = 'passed') AS passed, SUM(result = 'failure') AS failure,  SUM(result = 'error') AS error FROM report WHERE timestamp >= (SELECT MIN(timestamp) FROM (SELECT DISTINCT timestamp FROM report WHERE suite_id = 1 ORDER BY timestamp DESC LIMIT 50)) AND suite_id = 1 AND os_id IN (1,2) AND device_id IN (1,2) AND browser_id IN (1,2) AND class_id IN (2) AND testcase_id IN (3) GROUP BY timestamp ORDER BY timestamp;", queryFromJsonObject);
+		assertEquals("SELECT timestamp, SUM(time) AS time, SUM(result = 'passed') AS passed, SUM(result = 'failure') AS failure,  SUM(result = 'error') AS error,  SUM(result = 'skipped') AS skipped FROM report WHERE timestamp >= (SELECT MIN(timestamp) FROM (SELECT DISTINCT timestamp FROM report WHERE suite_id = 1 ORDER BY timestamp DESC LIMIT 50)) AND suite_id = 1 AND os_id IN (1,2) AND device_id IN (1,2) AND browser_id IN (1,2) AND class_id IN (2) AND testcase_id IN (3) GROUP BY timestamp ORDER BY timestamp;", queryFromJsonObject);
 	}
 	
 	@Test

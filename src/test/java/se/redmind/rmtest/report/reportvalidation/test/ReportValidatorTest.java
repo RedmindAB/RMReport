@@ -11,7 +11,7 @@ import se.redmind.rmtest.report.reportvalidation.ReportValidator;
 public class ReportValidatorTest {
  	private static String filename = "TEST-test.java.se.redmind.rmtest.selenium.example.CreateLogTests-20150202-140728.xml";
 
-	
+	@Ignore
 	@Test
 	public void insertReport() {
 //		DBCon.getDbTestInstance().dropDatabase();
