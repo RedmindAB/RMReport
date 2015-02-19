@@ -14,10 +14,6 @@ public class DBCon {
     private static boolean testMode;
     
     
-    private DBCon(){
-        conn = null;
-    }
-
     public Connection getConnection() {
         return conn;
     }
@@ -25,7 +21,7 @@ public class DBCon {
     public static DBCon getDbInstance()  {
         if(dbInstance == null){
             dbInstance = new DBCon();
-                dbInstance.connect("RMTest.db");
+                conn = dbInstance.connect("RMTest.db");
                 dbInstance.create(conn);
                 testMode = false;
         }
@@ -35,7 +31,7 @@ public class DBCon {
     public static DBCon getDbTestInstance()  {
         if(dbInstance == null){
             dbInstance = new DBCon();
-                dbInstance.connect("testRMTest.db");
+                conn = dbInstance.connect("testRMTest.db");
                 dbInstance.create(conn);
                 testMode = true;
         }
@@ -52,7 +48,7 @@ public class DBCon {
 
     private Connection connect(String dbname) {
         try {
-            conn = DriverManager.getConnection("jdbc:sqlite:"+dbname);
+            return DriverManager.getConnection("jdbc:sqlite:"+dbname);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -61,7 +57,7 @@ public class DBCon {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return conn;
+        return null;
     }
 
 
