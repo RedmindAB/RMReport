@@ -9,6 +9,10 @@ angular.module('webLog')
 	    	$event.stopPropagation();
 	    }
 	    
+	    $scope.setActive = function(){
+	    	$event.stopPropagation();
+	    }
+	    
 	    $scope.showClassLink = function(page){
 	    	switch (page) {
 			case "classes":
