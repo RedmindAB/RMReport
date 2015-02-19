@@ -67,11 +67,9 @@
 	    <!-- BROWSERS START -->
 	   	<table>
 	   	<tr>
-	   	<td style='padding-right: 10px;' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
-			<h4>
+	   	<td style='padding-right: 10px;font-size:20px' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
 		   		<input type="checkbox" ng-model="browser.chosen">
 		    	{{browser.browsername}} - v.{{browser.browserver}}
-	    	</h4>
 	   	</td>
 	   	</tr>
 	   	</table>
