@@ -4,12 +4,7 @@ angular.module('webLog')
 					return {
 						// CHART DATA
 						// ------------------------------------------------------------------------------
-						data:{
-							runTime: [],
-							totalPass: [],
-							totalFail: [],
-							size: 0
-						},
+						data:[],
 						// HOME PAGE CHART
 						// ------------------------------------------------------------------------------
 						homeChart : {
@@ -67,7 +62,6 @@ angular.module('webLog')
 						mainChart : {
 							options : {
 								chart : {
-									type : "areaspline",
 									backgroundColor : '#ecf0f1',
 									height:420,
 									events : {
@@ -111,7 +105,6 @@ angular.module('webLog')
 								tooltip : {},
 								plotOptions : {
 									series : {
-										stacking : "percent",
 										cursor : 'pointer',
 										point : {
 											events : {
@@ -138,18 +131,14 @@ angular.module('webLog')
 								title : {
 									text : 'Percentage'
 								},
+								min: 0
 							},
-							series : [ {
+							series : [{
 								data : [],
-								name : 'Pass',
-								color : '#D4D9DD',
-								id : "mainPass"
-							}, {
-								data : [],
-								name : 'Fail',
+								name : 'total Pass',
 								color : '#FF0000',
-								id : "mainFail"
-							} ],
+								id : "mainPass"
+							}],
 							credits : {
 								enabled : false
 							},

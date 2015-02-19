@@ -11,9 +11,16 @@ angular.module('webLog')
     $scope.chartHomeConfig = {};
     $scope.chartMainConfig = {};
     $scope.allSuites = [];
-    $scope.mainGraphToggle = false;
     $scope.chartVariants = ["Pass/Fail", "Total Pass", "Total Fail", "Run Time"];
     $scope.currentChartVariant = "Pass/Fail";
+    
+    $scope.newGraphLine = false;
+    $scope.breakPoints = ["None", "Browser", "Version", "Device", "Platform"];
+    $scope.breakPointChoice = "None";
+    $scope.setBreakPoint = function(choice){
+    	$scope.breakPointChoice = choice;
+    }
+    	
     
     $scope.changeChartVariant = function(input){
     	$scope.currentChartVariant = input;
@@ -61,14 +68,6 @@ angular.module('webLog')
     }
     
     $scope.imagePaths = ['img/aftonbladet.png', 'img/aftonbladet_plus.png', 'img/aftonbladet_webb-tv.png'];
-    
-    $scope.getToggleButtonText = function(){
-    	if ($scope.mainGraphToggle) {
-			return "Show Pass/Fail"
-		} else {
-			return "Show Run Time";
-		}
-    }
     
 	$scope.getMethods = function(testClass){
 		$scope.clearOtherChosen(testClass);
@@ -183,7 +182,18 @@ angular.module('webLog')
 				browsers: [],
 				classes: [],
 				testcases: [],
+				platforms:[]
 		};
+		
+		//add platform to send
+		if (CurrentSuite.currentSpecObject.platforms) {
+			var platforms = CurrentSuite.currentSpecObject.platforms;
+			for (var i = 0; i < platforms.length; i++) {
+				if (platforms[i].chosen) {
+					chosen.platforms.push(platforms[i].osname);
+				}
+			}
+		}
 		
 		//add os to send
 		if (CurrentSuite.currentSpecObject.platforms) {
@@ -353,11 +363,11 @@ angular.module('webLog')
 	    });
 	};
 	
-   $scope.loadMainChart = function(suiteID) {
-    	var requestObject = $scope.getGraphDataObject(suiteID)
+   $scope.loadMainChart = function(suiteID, name) {
+    	var requestObject = $scope.getGraphDataObject(suiteID, name);
+    	CurrentSuite.lastRunSize = getResLimit();
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){
-    		CurrentSuite.currentTimeStamp = data[0].timestamp;
     		$scope.createMainChart(data);
     	}).error(function(data, status, headers, config){
     		console.log(data);
@@ -401,11 +411,166 @@ angular.module('webLog')
     	});
     }
     
-    $scope.getGraphDataObject = function(suiteID){
+    $scope.getGraphDataObject = function(suiteID, name){
+    	switch ($scope.breakPointChoice) {
+		case "None":
+			return getAllDataAsOne(suiteID, name);
+			break;
+
+		case "Platform":
+			return splitDataOnPlatform(suiteID, name);
+			break;
+
+		case "Device":
+			return splitDataOnDevice(suiteID, name);
+			break;
+
+		case "Browser":
+			return splitDataOnBrowser(suiteID, name);
+			break;
+			
+		case "Version":
+			return splitDataOnVersion(suiteID, name);
+			break;
+
+		default:
+			break;
+		}
+
+    };
+    
+    function splitDataOnDevice(suiteID, name) {
+    	var graphArray = [];
+    	var chosen = $scope.getChosen();
+    	
+    	if (chosen.devices.length === 0) {
+    		chosen.devices = getAllDevices();
+		}
+    	for (var i = 0; i < chosen.devices.length; i++) {
+    		var dataRequest = {};
+    		if (name) {
+    			dataRequest.name = name;
+    		} else {
+    			dataRequest.name = getDeviceByID(chosen.devices[i]);
+    		}
+    		dataRequest.suiteid = suiteID;
+    		dataRequest.reslimit = getResLimit();
+    		
+    		dataRequest.os = chosen.os;
+    		dataRequest.devices = [chosen.devices[i]];
+    		dataRequest.browsers = chosen.browsers;
+    		dataRequest.classes = chosen.classes;
+    		dataRequest.testcases = chosen.testcases;
+			
+    		graphArray.push(dataRequest);
+		}
+    	return graphArray;
+    };
+    
+    function splitDataOnVersion(suiteID, name) {
+    	var graphArray = [];
+    	var chosen = $scope.getChosen();
+    	
+    	if (chosen.os.length === 0) {
+			chosen.os = getAllVersions();
+		}
+    	
+    	for (var i = 0; i < chosen.os.length; i++) {
+    		var dataRequest = {};
+    		if (name) {
+    			dataRequest.name = name;
+    		} else {
+    			dataRequest.name = getVersionNameByID(chosen.os[i]);
+    		}
+    		dataRequest.suiteid = suiteID;
+    		dataRequest.reslimit = getResLimit();
+    		
+    		dataRequest.os = [chosen.os[i]];
+    		dataRequest.devices = chosen.devices;
+    		dataRequest.browsers = chosen.browsers;
+    		dataRequest.classes = chosen.classes;
+    		dataRequest.testcases = chosen.testcases;
+			
+    		graphArray.push(dataRequest);
+		}
+    	return graphArray;
+    };
+    
+    function splitDataOnBrowser(suiteID, name) {
+    	var graphArray = [];
+    	var chosen = $scope.getChosen();
+    	if (chosen.browsers.length === 0) {
+			chosen.browsers = getAllBrowsers();
+		}
+    	console.log(chosen.browsers);
+    	for (var i = 0; i < chosen.browsers.length; i++) {
+    		var dataRequest = {};
+
+    		dataRequest.suiteid = suiteID;
+    		dataRequest.reslimit = getResLimit();
+    		
+    		dataRequest.os = chosen.os;
+    		dataRequest.browsers = [chosen.browsers[i]];
+    		dataRequest.devices = chosen.devices;
+    		dataRequest.classes = chosen.classes;
+    		dataRequest.testcases = chosen.testcases;
+    		
+    		console.log(dataRequest.browsers);
+    		
+    		if (name) {
+    			dataRequest.name = name;
+    		} else {
+    			dataRequest.name = getBrowserByID(dataRequest.browsers[0]).browsername+" "+getBrowserByID(dataRequest.browsers[0]).browserver;
+    		}
+    		
+    		graphArray.push(dataRequest);
+		}
+    	return graphArray;
+	};
+    
+    function splitDataOnPlatform(suiteID, name) {
+    	var graphArray = [];
+    	var chosen = $scope.getChosen();
+    	
+    	if (chosen.platforms.length === 0) {
+			chosen.platforms = getAllPlatforms();
+		}
+    	
+    	for (var i = 0; i < chosen.platforms.length; i++) {
+    		var dataRequest = {};
+
+    		dataRequest.suiteid = suiteID;
+    		dataRequest.reslimit = getResLimit();
+    		
+    		dataRequest.os = getVersionsByPlatform(chosen.platforms[i]);
+    		console.log(getVersionsByPlatform(chosen.platforms[i]));
+    		dataRequest.browsers = chosen.browsers;
+    		dataRequest.devices = chosen.devices;
+    		dataRequest.classes = chosen.classes;
+    		dataRequest.testcases = chosen.testcases;
+    		
+    		if (name) {
+    			dataRequest.name = name;
+    		} else {
+    			dataRequest.name = chosen.platforms[i];
+    		}
+    		
+    		graphArray.push(dataRequest);
+		}
+    	return graphArray;
+	};
+	
+    function getAllDataAsOne(suiteID, name) {
+    	var graphArray = [];
     	var chosen = $scope.getChosen();
     	var dataRequest = {};
     	
-    	dataRequest.name = '';
+    	if (name) {
+    		dataRequest.name = name;
+		} else {
+			dataRequest.name = '';
+		}
+    	
 		dataRequest.suiteid = suiteID;
 		dataRequest.reslimit = getResLimit();
 		
@@ -415,129 +580,164 @@ angular.module('webLog')
 		dataRequest.classes = chosen.classes;
 		dataRequest.testcases = chosen.testcases;
 		
-		var quickfix = [];
-		quickfix.push(dataRequest);
-    	return quickfix;
+		graphArray.push(dataRequest);
+		
+    	return graphArray;
+	};
+    
+    function getBrowserByID(id){
+    	for (var i = 0; i < CurrentSuite.currentSpecObject.browsers.length; i++) {
+			if (CurrentSuite.currentSpecObject.browsers[i].browserid === id) {
+				return CurrentSuite.currentSpecObject.browsers[i];
+			}
+		}
     };
     
+    function getAllBrowsers(){
+    	console.log(CurrentSuite.currentSpecObject);
+    	var specs = CurrentSuite.currentSpecObject;
+    	var browserIDs = [];
+    	for (var i = 0; i < specs.browsers.length; i++) {
+    		browserIDs.push(specs.browsers[i].browserid);
+		}
+    	return browserIDs;
+    }
+    
+    function getVersionNameByID(id){
+    	for (var i = 0; i < CurrentSuite.currentSpecObject.platforms.length; i++) {
+    		var platform = CurrentSuite.currentSpecObject.platforms[i];
+			for (var j = 0; j < platform.versions.length; j++) {
+				if (platform.versions[j].osid === id) {
+					return platform.osname + " " + platform.versions[j].osver;
+				}
+			}
+		}
+    };
+    
+    function getAllVersions(){
+    	var specs = CurrentSuite.currentSpecObject;
+    	console.log(specs);
+    	var versions = [];
+    	for (var i = 0; i < specs.platforms.length; i++) {
+			var platform = specs.platforms[i];
+			for (var j = 0; j < platform.versions.length; j++) {
+				versions.push(platform.versions[j].osid);
+			}
+		}
+    	return versions;
+    }
+    
+    function getVersionsByPlatform(platformName){
+    	var specs = CurrentSuite.currentSpecObject;
+    	var platformVersions = [];
+    	for (var i = 0; i < specs.platforms.length; i++) {
+			if (specs.platforms[i].osname === platformName) {
+				for (var j = 0; j < specs.platforms[i].versions.length; j++) {
+					platformVersions.push(specs.platforms[i].versions[j].osid);
+				}
+			}
+		}
+    	return platformVersions;
+    }
+    
+    function getAllPlatforms(){
+    	var specs = CurrentSuite.currentSpecObject;
+    	var platforms = [];
+    	for (var i = 0; i < specs.platforms.length; i++) {
+			platforms.push(specs.platforms[i].osname);
+		}
+    	return platforms;
+    }
+    
+    function getDeviceByID(id){
+    	for (var i = 0; i < CurrentSuite.currentSpecObject.platforms.length; i++) {
+    		var platform = CurrentSuite.currentSpecObject.platforms[i];
+			for (var j = 0; j < platform.devices.length; j++) {
+				if (platform.devices[j].deviceid === id) {
+					return platform.devices[j].devicename;
+				}
+			}
+		}
+    };
+    
+    function getAllDevices(){
+    	var specs = CurrentSuite.currentSpecObject;
+    	var deviceIDs = [];
+    	for (var i = 0; i < specs.platforms.length; i++) {
+    		for (var j = 0; j < specs.platforms[i].devices.length; j++) {
+				deviceIDs.push(specs.platforms[i].devices[j].deviceid);
+			}
+		}
+    	return deviceIDs;
+    }
     
     function getResLimit() {
 		var reslimit = Utilities.amountField;
 		if (!(isNaN(reslimit)) && !(reslimit === "")) {
-			reslimit = parseInt(reslimit) +1;
+			reslimit = parseInt(reslimit);
 		} else {
-			reslimit = 51;
+			reslimit = 50;
 		}
 		return reslimit;
-	}
+	};
 	// CHART OBJECTS -----------------------------------------------------------------------------------------------------------
 	
-    function runTimeChart() {
-    	
-    	var chart = Charts.mainChart;
-    	
-    	chart.options.chart.type = "line";
-    	chart.series = [{
-			data : Charts.data.runTime,
-			name : 'Run Time',
-			color : '#FF0000',
-			id : "runTime"
-		}];
-    	chart.yAxis.title.text = 'Time to run';
-    	chart.options.plotOptions.series.stacking = '';
-    	chart.title.text = "Time to run in seconds for the last " + Charts.data.size + " runs";
-	}
-    
-    function totalPassChart() {
-    	var chart = Charts.mainChart;
-    	
-    	chart.options.chart.type = "";
-    	chart.series = [{
-				data : Charts.data.totalPass,
-				id : "totalPass",
-				name : "Total Pass",
-				type : "column",
-				color : "green",
-				dashStyle : "Solid",
-				connectNulls : false
-			}];
-    	chart.yAxis.title.text = 'Passed test';
-    	chart.options.plotOptions.series.stacking = '';
-    	chart.title.text = "Amount of passed tests for the last " + Charts.data.size + " runs";
-	}
-    
-    function totalFailChart() {
-    	var chart = Charts.mainChart;
-    	
-    	chart.options.chart.type = "";
-    	chart.series = [{
-				data : Charts.data.totalFail,
-				id : "totalFail",
-				name : "Total Fail",
-				type : "column",
-				color : "#FF0000",
-				dashStyle : "Solid",
-				connectNulls : false
-			}];
-    	chart.yAxis.title.text = 'Failed test';
-    	chart.options.plotOptions.series.stacking = '';
-    	chart.title.text = "Amount of failed tests for the last " + Charts.data.size + " runs";
-	}
-    
-    function passFailChart() {
-    	var chart = Charts.mainChart;
-    	
-    	chart.options.chart.type = "areaspline";
-    	chart.series = [ {
-			data : Charts.data.totalPass,
-			name : 'Pass',
-			color : '#D4D9DD',
-			id : "mainPass"
-		}, {
-			data : Charts.data.totalFail,
-			name : 'Fail',
-			color : '#FF0000',
-			id : "mainFail"
-		} ];
-    	chart.yAxis.title.text = 'Percentage';
-    	chart.options.plotOptions.series.stacking = 'percent';
-    	chart.title.text = "Pass/Fail ratio for the last " + Charts.data.size + " runs";
-	}
-    
     $scope.createMainChart = function(data){
     	CurrentSuite.currentTimeStampArray = [];
     	for (var index = 0; index < data[0].data.length; index++) {
 			CurrentSuite.currentTimeStampArray.push(data[0].data[index].timestamp);
 		}
-    	CurrentSuite.currentTimeStamp = data[0].data[data[0].data.length-1].timestamp;
     	
-    	Charts.data.runTime = [];
-    	Charts.data.totalPass = [];
-    	Charts.data.totalFail = [];
-    	Charts.data.size = data[0].data.length;
-    	
-    	for (var i = 0; i < Charts.data.size; i++) {
-			Charts.data.totalPass.push(data[0].data[i].pass);
-			Charts.data.totalFail.push(data[0].data[i].fail + data[0].data[i].error);
-			Charts.data.runTime.push(data[0].data[i].time);
+    	if (CurrentSuite.currentTimeStamp === '') {
+    		CurrentSuite.currentTimeStamp = data[0].data[data[0].data.length-1].timestamp;
+		}
+    	var graphDataArray = [];
+    	for (var i = 0; i < data.length; i++) {
+    		var graphDataObj = {
+    				runTime: [],
+    				totalPass: [],
+    				totalFail: [],
+    				passPercentage: []
+    		};
+    		var graphName = data[i].name;
+    		
+			for (var j = 0; j < data[i].data.length; j++) {
+				graphDataObj.runTime.push(data[i].data[j].time);
+				graphDataObj.totalPass.push(data[i].data[j].pass);
+				graphDataObj.totalFail.push(data[i].data[j].fail + data[i].data[j].error);
+				graphDataObj.passPercentage.push(Math.round(getPassPercentage(data[i].data[j].pass, data[i].data[j].fail, data[i].data[j].error)));
+			}
+			graphDataObj.name = graphName;
+			graphDataArray.push(graphDataObj);
+		}
+    	if (CurrentSuite.newLine) {
+    		for (var i = 0; i < graphDataArray.length; i++) {
+				Charts.data.push(graphDataArray[i]);
+			}
+		} else {
+			Charts.data = graphDataArray;
 		}
     	
     	Charts.mainChart.xAxis.categories = CurrentSuite.currentTimeStampArray;
     	Charts.mainChart.options.plotOptions.series.point.events.click = function (e) {
     		$scope.loadNewTimeStamp(this.category);
     	};
-    	$scope.changeChartVariant();
 		$scope.chartMainConfig = Charts.mainChart;
+			
+			for (var i = 0; i < Charts.data.length; i++) {
+		    	Charts.mainChart.series.push({
+					data : Charts.data[i].passPercentage,
+					name : Charts.data[i].name,
+				});
+			}
+			$scope.changeChartVariant();
     };
     
-    $scope.toggleMainChart = function(){
-    	if ($scope.chartMainConfig === Charts.mainChart) {
-    		$scope.chartMainConfig = Charts.mainTime;
-    		$scope.mainGraphToggle = true;
-		} else {
-			$scope.chartMainConfig = Charts.mainChart;
-			$scope.mainGraphToggle = false;
-		}
+    function getPassPercentage(pass, fail, error){
+    	var totalFail = fail + error;
+    	var total = pass + totalFail;
+    	var percentage = (pass/total)*100;
+    	return percentage;
     }
     
     $scope.createHomeChart = function(data, id) {
@@ -606,4 +806,79 @@ angular.module('webLog')
 		chartHomeConfigObject.xAxis.categories = timeStamps;
 		$scope.chartHomeConfig[id] = chartHomeConfigObject;
     };
+    
+    function runTimeChart() {
+    	
+    	var chart = Charts.mainChart;
+    	
+    	chart.options.chart.type = "line";
+    	chart.series = [];
+    	chart.yAxis.max = undefined;
+    	for (var i = 0; i < Charts.data.length; i++) {
+    		chart.series.push({
+    					data : Charts.data[i].runTime,
+    					name : Charts.data[i].name
+    		});
+		}
+    	
+    	chart.yAxis.title.text = 'Time to run';
+    	chart.options.plotOptions.series.stacking = '';
+    	chart.title.text = "Time to run in seconds for the last " + CurrentSuite.lastRunSize + " runs";
+	}
+    
+    function totalPassChart() {
+    	var chart = Charts.mainChart;
+    	
+    	chart.options.chart.type = "";
+    	chart.series = [];
+    	chart.yAxis.max = undefined;
+    	for (var i = 0; i < Charts.data.length; i++) {
+    		chart.series.push({
+				data : Charts.data[i].totalPass,
+				name : Charts.data[i].name,
+				type : "column",
+				dashStyle : "Solid",
+				connectNulls : false
+    		});
+		}
+    	chart.yAxis.title.text = 'Passed test';
+    	chart.options.plotOptions.series.stacking = '';
+    	chart.title.text = "Amount of passed tests for the last " + CurrentSuite.lastRunSize+ " runs";
+	}
+    
+    function totalFailChart() {
+    	var chart = Charts.mainChart;
+    	
+    	chart.options.chart.type = "";
+    	chart.series = [];
+    	chart.yAxis.max = undefined;
+    	for (var i = 0; i < Charts.data.length; i++) {
+    		chart.series.push({
+				data : Charts.data[i].totalFail,
+				name : Charts.data[i].name,
+				type : "column",
+				dashStyle : "Solid",
+				connectNulls : false
+    		});
+		}
+    	chart.yAxis.title.text = 'Failed test';
+    	chart.options.plotOptions.series.stacking = '';
+    	chart.title.text = "Amount of failed tests for the last " + CurrentSuite.lastRunSize + " runs";
+	}
+    
+    function passFailChart() {
+    	var chart = Charts.mainChart;
+    	
+    	chart.series = [];
+    	chart.yAxis.max = 100;
+    	for (var i = 0; i < Charts.data.length; i++) {
+    		chart.series.push({
+    			data : Charts.data[i].passPercentage,
+    			name : Charts.data[i].name,
+    			type: "line"
+    		});
+		}
+    	chart.yAxis.title.text = 'Percentage';
+    	chart.title.text = "Pass/Fail ratio for the last " + CurrentSuite.lastRunSize + " runs";
+	}
 }]);
