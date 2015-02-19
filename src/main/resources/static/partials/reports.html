@@ -72,12 +72,12 @@
 
         <accordion close-others="false">
             <!-- repeated content -->
-            <div style='width:60px;' id='hej'>
+            <div style='width:135px;' id='hej'>
                 <accordion-group>
 
                     <accordion-heading>
-                        <a style='color:black;font-weight: normal;' onClick="if (document.getElementById('hej').style.width == '60px'){document.getElementById('hej').style.width = '100%'; } else{document.getElementById('hej').style.width = '60px'; }">
-                            OS
+                        <a style='color:black;font-weight: normal;' onClick="if (document.getElementById('hej').style.width == '135px'){document.getElementById('hej').style.width = '100%'; } else{document.getElementById('hej').style.width = '135px'; }">
+                            Specifications
                         </a>
                     </accordion-heading>
 
@@ -108,7 +108,8 @@
                                             <h4>Devices:&nbsp;</h4>
                                         </td>
                                         <td ng-repeat="device in platform.devices track by $index" >
-                                            <input ng-model="device.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> {{device.devicename}}&nbsp;
+                                            <input ng-model="device.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
+                                            {{device.devicename}}&nbsp;&nbsp;&nbsp;
                                         </td>
                                     </tr>
                                     <tr>
@@ -116,7 +117,8 @@
                                             <h4>Versions:&nbsp;</h4>
                                         </td>
                                         <td ng-repeat="version in platform.versions track by $index">
-                                            <input ng-model="version.chosen" style='height:40px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> {{version.osver}}&nbsp;
+                                            <input ng-model="version.chosen" style='height:40px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
+                                            {{version.osver}}&nbsp;&nbsp;&nbsp;
                                         </td>
                                     </tr>
                                     <tr>
