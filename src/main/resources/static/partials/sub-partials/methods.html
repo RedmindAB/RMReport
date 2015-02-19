@@ -1,19 +1,21 @@
 <accordion close-others="true">
-	<!-- repeated content -->
-	<div ng-repeat="method in CurrentSuite.currentMethods | filter: Utilities.searchField | orderBy:['result', 'name'] track by $index " style='cursor: pointer;margin-top: 10px' ng-class='getPanel(method.result)' ng-style="{'background-color': getBgCo(method.result)}">
-	    <!-- non collapsing header -->
-	    <table>
-	    	<tr>
-	    		<td>
-					<input style='height:30px;margin-top:25px' type="checkbox" id="mycheckbox" ng-model="method.chosen"><label for="mycheckbox"></label>	
-	    		</td>
-	    		<td width='100%' ng-click="getCases(method); setState('reports.cases'); resetFilterField()">
-	        		<div ng-style="{'color' : getCo(method.result)}" style='height: 10px;margin-top:-31px'>
-	        			<h3>&nbsp;{{method.name}} - {{formatDecimals(method.time)}}</h3>
-	        		</div>
-	        	</td>
-	        </tr>
-		</table>
-	</div>
-	<!-- repeated content  End-->
+    <!-- repeated content -->
+    <div ng-repeat="method in CurrentSuite.currentMethods| filter: Utilities.searchField | orderBy:['result', 'name'] track by $index " style='cursor: pointer;margin-top: 10px' ng-class='getPanel(method.result)' ng-style="{'background-color': getBgCo(method.result)}">
+        <!-- non collapsing header -->
+        <table>
+            <tr>
+                <td>
+                    <input style='height:30px;margin-top:25px' type="checkbox" id="mycheckbox" ng-model="method.chosen"><label for="mycheckbox"></label>	
+                </td>
+                <td width='100%' ng-click="getCases(method);
+                                setState('reports.cases');
+                                resetFilterField()">
+                    <div ng-style="{'color' : getCo(method.result)}" style='height: 10px;margin-top:-31px'>
+                        <h3>&nbsp;{{method.name}} - {{formatDecimals(method.time)}}</h3>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- repeated content  End-->
 </accordion>

@@ -1,45 +1,45 @@
 <accordion close-others="true">
-	<!-- repeated content -->
-	<div ng-repeat="case in CurrentSuite.currentCases | filter: Utilities.searchField | orderBy:'result' track by $index " style='margin-top: 10px'>
-	    <accordion-group ng-class='getPanel(case.result)' ng-style="{'background-color': getBgCo(case.result)}">
-	    
-	    <!-- non collapsing header -->
-	        <accordion-heading>
-	            {{case.osname}} - {{case.devicename}} -	{{case.osversion}} - 	{{case.browsername}}
-	        </accordion-heading>
-	        <input style='height:30px' type="checkbox" id="mycheckbox" ng-model="case.chosen"><label for="mycheckbox"></label>
-	    <!-- non collapsing header End-->
-	    
-	    <!-- Content in collapsing Div -->
-		<div ng-class='getBG(case.result)'>
-			<table class="table">
-			    <thead>
-			        <tr style='border-style: hidden'>
-			            <th>Browser version</th>
-			            <th>Time to run</th>
-			        </tr>
-			    </thead>
-			    <tbody>
-			        <tr>
-			            <td>{{case.browserversion}}</td>
-			            <td>{{case.timetorun}}</td>
-			        </tr>
-			    </tbody>
-		    </table>
-		    
-		    <accordion ng-if="case.message.length > 2" close others="true">
-			    <accordion-group ng-class='getPanel(case.result)' ng-style="{'background-color': getBgCo(case.result)}">
-					<accordion-heading>
-						Display Error Message
-		        	</accordion-heading>
-		            
-			            <pre>{{case.message}}</pre>
-			    </accordion-group>
-		    </accordion>	            
-	    </div>
-	    <!-- Content in collapsing Div End -->
-	    
-	    </accordion-group>
-	</div>
-	<!-- repeated content  End-->
+    <!-- repeated content -->
+    <div ng-repeat="case in CurrentSuite.currentCases| filter: Utilities.searchField | orderBy:'result' track by $index " style='margin-top: 10px'>
+        <accordion-group ng-class='getPanel(case.result)' ng-style="{'background-color': getBgCo(case.result)}">
+
+            <!-- non collapsing header -->
+            <accordion-heading>
+                {{case.osname}} - {{case.devicename}} -	{{case.osversion}} - 	{{case.browsername}}
+            </accordion-heading>
+            <input style='height:30px' type="checkbox" id="mycheckbox" ng-model="case.chosen"><label for="mycheckbox"></label>
+            <!-- non collapsing header End-->
+
+            <!-- Content in collapsing Div -->
+            <div ng-class='getBG(case.result)'>
+                <table class="table">
+                    <thead>
+                        <tr style='border-style: hidden'>
+                            <th>Browser version</th>
+                            <th>Time to run</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{case.browserversion}}</td>
+                            <td>{{case.timetorun}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <accordion ng-if="case.message.length > 2" close others="true">
+                    <accordion-group ng-class='getPanel(case.result)' ng-style="{'background-color': getBgCo(case.result)}">
+                        <accordion-heading>
+                            Display Error Message
+                        </accordion-heading>
+
+                        <pre>{{case.message}}</pre>
+                    </accordion-group>
+                </accordion>	            
+            </div>
+            <!-- Content in collapsing Div End -->
+
+        </accordion-group>
+    </div>
+    <!-- repeated content  End-->
 </accordion>

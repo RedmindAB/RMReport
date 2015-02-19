@@ -1,18 +1,20 @@
 <accordion close-others="true">
-	<!-- repeated content -->
-	<div ng-repeat="driver in CurrentSuite.currentDrivers | filter: Utilities.searchField track by $index " style='cursor: pointer;margin-top: 10px' ng-class='getPanel(driver.result)' ng-style="{'background-color': getBgCo(driver.result)}"> 
-	  	<table>
-	    	<tr>
-	    		<td>
-					<input style='height:30px' type="checkbox" id="mycheckbox" ng-model="driver.chosen"><label for="mycheckbox"></label>	
-				</td>
-	    		<td width='100%' ng-click="getCases(driver); setState('reports.cases'); resetFilterField()">
-	        		<div ng-style="{'color' : getCo(driver.result)}" style='height: 10px;margin-top:-31px'>
-	        		<h3>{{driver.testcasename}}</h3>
-	       		 </div>
-	        	</td>
-	        </tr>
-		</table>
-	</div>
-	<!-- repeated content  End-->
+    <!-- repeated content -->
+    <div ng-repeat="driver in CurrentSuite.currentDrivers| filter: Utilities.searchField track by $index " style='cursor: pointer;margin-top: 10px' ng-class='getPanel(driver.result)' ng-style="{'background-color': getBgCo(driver.result)}"> 
+        <table>
+            <tr>
+                <td>
+                    <input style='height:30px' type="checkbox" id="mycheckbox" ng-model="driver.chosen"><label for="mycheckbox"></label>	
+                </td>
+                <td width='100%' ng-click="getCases(driver);
+                                setState('reports.cases');
+                                resetFilterField()">
+                    <div ng-style="{'color' : getCo(driver.result)}" style='height: 10px;margin-top:-31px'>
+                        <h3>{{driver.testcasename}}</h3>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- repeated content  End-->
 </accordion>
