@@ -40,9 +40,9 @@
 			<button style='width: 60px;margin:3px' class="btn btn-default" ng-click="clearAllChosen()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>
 				Clear
 			</button>
-			<input type="text" id="suite-amount-input" class="tool-tip" style="width:150px;height:33px;margin:3px" ng-model='Utilities.amountField' placeholder="Runs" title="Amount of runs to show" data-toggle="tooltip" data-placement="right" tooltip>
+			<input type="text" id="suite-amount-input" class="tool-tip" style="width:150px;height:33px;margin:3px" ng-model='Utilities.amountField' placeholder="Runs" title="Amount of runs to show" data-toggle="tooltip" data-placement="top" tooltip>
 				<div class="btn-group">
-				<button style='width:150px' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="right" tooltip>
+				<button style='width:150px' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
 					{{CurrentSuite.currentTimeStamp}}
 					<span class="caret"></span>
 				</button>
@@ -85,18 +85,29 @@
 						<input style='height:30px' type="checkbox" id="mycheckbox" stop-click><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> 
 						{{platform.osname}}
 		        	</accordion-heading>
-						    		<table>
+						    		<table border='0'>
 							    		<tr style='height:30px;'>
 
-								    		<td ng-repeat="device in platform.devices track by $index" >
-								    			{{device.devicename}} <input ng-model="device.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
+								    		<td style='margin-right:20px' ng-repeat="device in platform.devices track by $index" >
+								    			{{device.devicename}}<input ng-model="device.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
 								    		</td>
-											<td>
-											<div class="vertical-line" style="height: 35px" />
-											</td>
+								    		<td style='width:30px'>
+								    		&nbsp;
+								    		</td>
 								        	<td ng-repeat="version in platform.versions track by $index">
-								        		{{version.osver}} <input ng-model="version.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
+								        		{{version.osver}}<input ng-model="version.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
 								        	</td>
+							    		</tr>
+							    		<tr>
+							    		<td colspan='2' style='border-bottom: 1px solid'>
+							    		Devices
+							    		</td>
+							    		<td style='width:15px'>
+							    		&nbsp;
+							    		</td>
+							    		<td colspan='2' style='border-bottom: 1px solid'>
+							    		Versions
+							    		</td>
 							    		</tr>
 						    		</table>
 			    </accordion-group>
