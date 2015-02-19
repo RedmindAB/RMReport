@@ -59,16 +59,24 @@
 	    <accordion-group>
 	    
 	        <accordion-heading>
-	            <a style='color:black' onClick="if(document.getElementById('hej').style.width=='60px'){document.getElementById('hej').style.width = '100%';}else{document.getElementById('hej').style.width = '60px';}">
+	            <a style='color:black;font-weight: normal;' onClick="if(document.getElementById('hej').style.width=='60px'){document.getElementById('hej').style.width = '100%';}else{document.getElementById('hej').style.width = '60px';}">
 	            	OS
 				</a>
 	        </accordion-heading>
 	    
 	    <!-- BROWSERS START -->
-	    <div ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
-	    	<input type="checkbox" ng-model="browser.chosen">
-	    	{{browser.browsername}} - v.{{browser.browserver}}
-	    </div>
+	   	<table>
+	   	<tr>
+	   	<td style='padding-right: 10px;' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
+			<h4>
+		   		<input type="checkbox" ng-model="browser.chosen">
+		    	{{browser.browsername}} - v.{{browser.browserver}}
+	    	</h4>
+	   	</td>
+	   	</tr>
+	   	</table>
+
+	    
 	    <!-- BROWSERS END -->
 	    
 	    <!-- Content in collapsing Div -->
