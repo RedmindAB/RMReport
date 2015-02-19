@@ -127,7 +127,7 @@ angular.module('webLog')
 			for (var i = 0; i < CurrentSuite.currentSpecObject.platforms.length; i++) {
 				for (var j = 0; j < CurrentSuite.currentSpecObject.platforms[i].versions.length; j++) {
 					if (CurrentSuite.currentSpecObject.platforms[i].versions[j].chosen) {
-						chosen.os.push(CurrentSuite.currentSpecObject.platforms[i].versions[j].osid);
+						delete CurrentSuite.currentSpecObject.platforms[i].versions[j].chosen;
 					}
 				}
 			}
@@ -251,7 +251,7 @@ angular.module('webLog')
 		}
 	}
 	
-	function getCasesByClassId(id) {
+	function getCasesByMethodId(id) {
 		for (var i = 0; i < CurrentSuite.currentMethods.length; i++) {
 			if (CurrentSuite.currentMethods[i].id === id) {
 				return CurrentSuite.currentSuite[i].testcases;
@@ -261,7 +261,19 @@ angular.module('webLog')
 	
 	
     // HTTP -----------------------------------------------------------------------------------------------------------
-    
+	
+    $http.get('/api/suite/getsuites')
+    .success(function(data, status, headers, config){ 
+    	if(data){
+    		$scope.allSuites = data;
+    		for (var i = 0; i < $scope.allSuites.length; i++) {
+    			$scope.createHomeChartFromID($scope.allSuites[i].id);
+			}
+    	};
+    }).error(function(data, status, headers, config){
+    	console.log(data);
+    });
+	
 	$scope.getSpecsInfo = function(suiteID){
 		var reslimit = getResLimit();
 	    $http.get('/api/stats/options?suiteid='+suiteID+'&limit='+reslimit)
@@ -377,18 +389,6 @@ angular.module('webLog')
     	});
 	};
 		
-    $http.get('/api/suite/getsuites')
-    .success(function(data, status, headers, config){ 
-    	if(data){
-    		$scope.allSuites = data;
-    		for (var i = 0; i < $scope.allSuites.length; i++) {
-    			$scope.createHomeChartFromID($scope.allSuites[i].id);
-			}
-    	};
-    }).error(function(data, status, headers, config){
-    	console.log(data);
-    });
-	
     $scope.getMainGraphData = function(suiteID){
     	$scope.requestObject =  $scope.getGraphDataObject(suiteID);
     	var requestArray = [];
