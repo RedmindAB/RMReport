@@ -23,6 +23,7 @@ public class ReportInit {
 	public int initReports(){
 		System.out.println("Checking reports!");
 		List<File> reportFiles = reportHandler.getReportFiles();
+		System.out.println("Found "+reportFiles.size()+" reports");
 		int addedReports = 0;
 		for (File file : reportFiles) {
 			ReportValidator reportValidator = new ReportValidator(file.getName());
