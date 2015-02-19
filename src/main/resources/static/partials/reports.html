@@ -5,7 +5,7 @@
 	<!-- project logo END-->
     <link rel="stylesheet" href="css/style.css">		
 	<!-- navigation links -->
-	<h4 style='width:100%;>
+	<h4 style='width:100%;'>
 		<table style='table-layout:fixed;word-wrap:break-word;width:100%;'>
 		<tr>
 		<td>
@@ -23,33 +23,60 @@
 	<!-- chart END -->
 	
 	<!-- Chart variant dropdown START -->
-<div class="btn-group" style='margin-top:10px'>
-	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-		Choose display type <span class="caret"></span>
-	</button>
-	<ul class="dropdown-menu" role="menu">
-		<li ng-repeat="variant in chartVariants"><a style='cursor:pointer' ng-click="changeChartVariant(variant)">{{variant}}</a></li>
-  </ul>
+<div class="btn-group" style='display:inline;'>
+	<div class="btn-group">
+		<button type="button" class="btn btn-default" style='margin-top:6px' data-toggle="dropdown" aria-expanded="false">
+			Choose display type <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li ng-repeat="variant in chartVariants"><a style='cursor:pointer' ng-click="changeChartVariant(variant)">{{variant}}</a></li>
+		</ul>
+	</div>
 </div>
-<!-- Chart variant dropdown END -->
-</div>
-<br>
+<div>
+	<button class="btn btn-default" style='margin:7px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>
+				Reload
+			</button>
+			<button style='width: 60px;margin:3px' class="btn btn-default" ng-click="clearAllChosen()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>
+				Clear
+			</button>
+			<input type="text" id="suite-amount-input" class="tool-tip" style="width:150px;height:33px;margin:3px" ng-model='Utilities.amountField' placeholder="Runs" title="Amount of runs to show" data-toggle="tooltip" data-placement="right" tooltip>
+				<div class="btn-group">
+				<button style='width:150px' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="right" tooltip>
+					{{CurrentSuite.currentTimeStamp}}
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu scrollable-menu">
+					<li ng-repeat="timeStamp in CurrentSuite.currentTimeStampArray"><a ng-click="loadNewTimeStamp(timeStamp)">
+						{{timeStamp}}
+						</a>
+					</li>
+				</ul>
+			</div>
 <accordion close-others="false">
 	<!-- repeated content -->
 	<div style='width:60px;' id='hej'>
 	    <accordion-group>
 	    
 	        <accordion-heading>
-	            <a style='color:black' onClick="if(document.getElementById('hej').style.width=='60px'){document.getElementById('hej').style.width = '100%';}else{document.getElementById('hej').style.width = '60px';}">
+	            <a style='color:black;font-weight: normal;' onClick="if(document.getElementById('hej').style.width=='60px'){document.getElementById('hej').style.width = '100%';}else{document.getElementById('hej').style.width = '60px';}">
 	            	OS
 				</a>
 	        </accordion-heading>
 	    
 	    <!-- BROWSERS START -->
-	    <div ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
-	    	<input type="checkbox" ng-model="browser.chosen">
-	    	{{browser.browsername}} - v.{{browser.browserver}}
-	    </div>
+	   	<table>
+	   	<tr>
+	   	<td style='padding-right: 10px;' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
+			<h4>
+		   		<input type="checkbox" ng-model="browser.chosen">
+		    	{{browser.browsername}} - v.{{browser.browserver}}
+	    	</h4>
+	   	</td>
+	   	</tr>
+	   	</table>
+
+	    
 	    <!-- BROWSERS END -->
 	    
 	    <!-- Content in collapsing Div -->
@@ -60,34 +87,20 @@
 						<input style='height:30px' type="checkbox" id="mycheckbox" stop-click><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> 
 						{{platform.osname}}
 		        	</accordion-heading>
-					<accordion>
-							    <accordion-group>
-						        	<accordion-heading>
-										Devices
-						        	</accordion-heading>
 						    		<table>
-							    		<tr ng-repeat="device in platform.devices track by $index" style='height:30px;'>
-								    		<td>
+							    		<tr style='height:30px;'>
+
+								    		<td ng-repeat="device in platform.devices track by $index" >
 								    			{{device.devicename}} <input ng-model="device.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
 								    		</td>
-							    		</tr>
-						    		</table>
-							    </accordion-group>
-						    </accordion>	
-						    	<accordion>
-							    <accordion-group>
-						        	<accordion-heading>
-										<div ng-click=''>Versions</div>
-						        	</accordion-heading>
-						        	<table>
-							        	<tr ng-repeat="version in platform.versions track by $index">
-								        	<td>
+											<td>
+											<div class="vertical-line" style="height: 35px" />
+											</td>
+								        	<td ng-repeat="version in platform.versions track by $index">
 								        		{{version.osver}} <input ng-model="version.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
 								        	</td>
-							        	</tr>
-						        	</table>
-							    </accordion-group>
-						    </accordion>		
+							    		</tr>
+						    		</table>
 			    </accordion-group>
 		    </accordion>	            
 	    </div>
@@ -97,39 +110,22 @@
 	</div>
 	<!-- repeated content  End-->
 </accordion>
-
-<!-- load chart with data button -->
-<div>
-			<button class="btn btn-default" ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>
-				Reload
-			</button>
-			<button style='width: 60px' class="btn btn-default" ng-click="clearAllChosen()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>
-				Clear
-			</button>
-			<input type="text" id="suite-amount-input" class="form-control tool-tip" style="width:150px;margin-top:5px" ng-model='Utilities.amountField' placeholder="Runs" title="Amount of runs to show" data-toggle="tooltip" data-placement="right" tooltip>
-				<table style='margin-left:-5px'>
-		<tr class='reports'>
-			<td style='padding: 5px;'>
-				<button style='width:150px' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="right" tooltip>
-					{{CurrentSuite.currentTimeStamp}}
-					<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu scrollable-menu" role="menu">
-					<li ng-repeat="timeStamp in CurrentSuite.currentTimeStampArray"><a ng-click="loadNewTimeStamp(timeStamp)">
-						{{timeStamp}}
-						</a>
-					</li>
-				</ul>
-			</td>
-			</tr>
-			</table>
-			<br>
 			<div class='row' style='border-bottom:1px solid'>
 			</div>
-			<br>
-			<input type="text" class="form-control" id="filter-field" style="width:150px;margin-top:5px" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>
-</div>
 
+			<input type="text" class="form-control" id="filter-field" style="width:150px;margin-top:5px" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>
+	
+</div>
+<!-- Chart variant dropdown END -->
+
+<div>
+			</div>
+
+
+
+<!-- load chart with data button -->
+
+</div>
 <!-- load chart with data button END -->
 
 <!-- view for current classes/methods/drivers etc -->
