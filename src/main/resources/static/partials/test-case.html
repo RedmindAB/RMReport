@@ -1,83 +1,83 @@
 <div style='margin-top:10px' ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
-<h3>Test: {{currentSuiteRun.suiteName}} - {{currentSuiteRun.timestamp}}</h3>
-				<table class="table suite">
-				    <thead>
-				        <tr>
-				            <th>Tests run</th>
-				            <th>Errors</th>
-				            <th>Skipped</th>
-				            <th>Failures</th>
-				            <th>Time to run</th>
-				        </tr>
-				    </thead>
-				    <tbody>
-				        <tr style='border-style: hidden'>
-				            <td>{{currentSuiteRun.tests}}</td>
-				            <td>{{currentSuiteRun.errors}}</td>
-				            <td>{{currentSuiteRun.skipped}}</td>
-				            <td>{{currentSuiteRun.failures}}</td>
-				            <td>{{currentSuiteRun.time}}</td>
-				        </tr>
-				    </tbody>
-			    </table>
-			    </div>
-			    <form class="navbar-form" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" ng-model='searchText' placeholder="Filter">
-        </div>
-      </form>
+    <h3>Test: {{currentSuiteRun.suiteName}} - {{currentSuiteRun.timestamp}}</h3>
+    <table class="table suite">
+        <thead>
+            <tr>
+                <th>Tests run</th>
+                <th>Errors</th>
+                <th>Skipped</th>
+                <th>Failures</th>
+                <th>Time to run</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style='border-style: hidden'>
+                <td>{{currentSuiteRun.tests}}</td>
+                <td>{{currentSuiteRun.errors}}</td>
+                <td>{{currentSuiteRun.skipped}}</td>
+                <td>{{currentSuiteRun.failures}}</td>
+                <td>{{currentSuiteRun.time}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<form class="navbar-form" role="search">
+    <div class="form-group">
+        <input type="text" class="form-control" ng-model='searchText' placeholder="Filter">
+    </div>
+</form>
 <accordion close-others="true">
-	<!-- repeated content -->
-	<div ng-repeat="test in currentSuiteRun.testcases | filter:searchText | orderBy:['passed', 'name']" style='margin-top: 10px'>
-	    <accordion-group ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
-	    
-	    <!-- non collapsing header -->
-	        <accordion-heading>
-	            Test Case Name:	{{test.name}}
-	        </accordion-heading>
-	    <!-- non collapsing header End-->
-	    
-	    <!-- Content in collapsing Div -->
-		<div ng-class='getBG(test.passed)'>
-			<table class="table">
-			    <thead>
-			        <tr style='border-style: hidden'>
-			            <th>Driver used</th>
-			            <th>Class name</th>
-			            <th>Time to run</th>
-			            <th>Passed</th>
-			            <th>Error type</th>
-			        </tr>
-			    </thead>
-			    <tbody>
-			        <tr>
-			            <td>{{test.driverName}}</td>
-			            <td>{{test.className}}</td>
-			            <td>{{test.time}}</td>
-			            <td>{{test.passed}}</td>
-			            <td ng-if="test.failure.type">{{currentClass.failure.type}}</td>
-			            <td ng-if="test.error.type">{{currentClass.error.type}}</td>
-			        </tr>
-			    </tbody>
-		    </table>
-		    
-		    <accordion ng-if="test.failure.message || test.error.message" close others="true">
-			    <accordion-group ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
-					<accordion-heading>
-						Display Error Message
-		        	</accordion-heading>
-		            
-					<div ng-if="test.failure.message">
-			            <pre>{{test.failure.message}}</pre>
-		            </div>
-		            <div ng-if="test.error.message">
-			            <pre>{{test.failure.message}}>{{test.error.message}}</pre>
-		            </div>
-			    </accordion-group>
-		    </accordion>          
-	    </div>
-	    <!-- Content in collapsing Div End -->
-	    </accordion-group>
-	</div>
-	<!-- repeated content  End-->
+    <!-- repeated content -->
+    <div ng-repeat="test in currentSuiteRun.testcases| filter:searchText | orderBy:['passed', 'name']" style='margin-top: 10px'>
+        <accordion-group ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
+
+            <!-- non collapsing header -->
+            <accordion-heading>
+                Test Case Name:	{{test.name}}
+            </accordion-heading>
+            <!-- non collapsing header End-->
+
+            <!-- Content in collapsing Div -->
+            <div ng-class='getBG(test.passed)'>
+                <table class="table">
+                    <thead>
+                        <tr style='border-style: hidden'>
+                            <th>Driver used</th>
+                            <th>Class name</th>
+                            <th>Time to run</th>
+                            <th>Passed</th>
+                            <th>Error type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{test.driverName}}</td>
+                            <td>{{test.className}}</td>
+                            <td>{{test.time}}</td>
+                            <td>{{test.passed}}</td>
+                            <td ng-if="test.failure.type">{{currentClass.failure.type}}</td>
+                            <td ng-if="test.error.type">{{currentClass.error.type}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <accordion ng-if="test.failure.message || test.error.message" close others="true">
+                    <accordion-group ng-class='getPanel(test.passed)' ng-style="{'background-color': getBgCo(test.passed)}">
+                        <accordion-heading>
+                            Display Error Message
+                        </accordion-heading>
+
+                        <div ng-if="test.failure.message">
+                            <pre>{{test.failure.message}}</pre>
+                        </div>
+                        <div ng-if="test.error.message">
+                            <pre>{{test.failure.message}}>{{test.error.message}}</pre>
+                        </div>
+                    </accordion-group>
+                </accordion>          
+            </div>
+            <!-- Content in collapsing Div End -->
+        </accordion-group>
+    </div>
+    <!-- repeated content  End-->
 </accordion>
