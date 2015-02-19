@@ -119,6 +119,9 @@ angular.module('webLog')
 		
 		//remove os checkbox
 		clearChosenOs();
+		
+		//remove platform checkboc
+		clearChosenPlatforms();
 	}
 	
 	function clearChosenOs() {
@@ -128,6 +131,16 @@ angular.module('webLog')
 					if (CurrentSuite.currentSpecObject.platforms[i].versions[j].chosen) {
 						delete CurrentSuite.currentSpecObject.platforms[i].versions[j].chosen;
 					}
+				}
+			}
+		}
+	}
+	
+	function clearChosenPlatforms(){
+		if (CurrentSuite.currentSpecObject.platforms) {
+			for (var i = 0; i < CurrentSuite.currentSpecObject.platforms.length; i++) {
+				if (CurrentSuite.currentSpecObject.platforms[i].chosen) {
+					delete CurrentSuite.currentSpecObject.platforms[i].chosen;
 				}
 			}
 		}
@@ -303,6 +316,7 @@ angular.module('webLog')
 	    	if(data){
 	    		$scope.getSpecsInfo(suite.id);
 	    		CurrentSuite.currentSuite = data;
+	    		console.log(data);
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
