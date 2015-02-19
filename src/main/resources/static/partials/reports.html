@@ -79,34 +79,20 @@
 						<input style='height:30px' type="checkbox" id="mycheckbox" stop-click><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> 
 						{{platform.osname}}
 		        	</accordion-heading>
-					<accordion>
-							    <accordion-group is-open='true'>
-						        	<accordion-heading>
-										Devices
-						        	</accordion-heading>
 						    		<table>
 							    		<tr style='height:30px;'>
-								    		<td ng-repeat="device in platform.devices track by $index">
+
+								    		<td ng-repeat="device in platform.devices track by $index" >
 								    			{{device.devicename}} <input ng-model="device.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
 								    		</td>
-							    		</tr>
-						    		</table>
-							    </accordion-group>
-						    </accordion>	
-						    	<accordion>
-							    <accordion-group is-open='true'>
-						        	<accordion-heading>
-										<div ng-click=''>Versions</div>
-						        	</accordion-heading>
-						        	<table>
-							        	<tr>
+											<td>
+											<div class="vertical-line" style="height: 35px" />
+											</td>
 								        	<td ng-repeat="version in platform.versions track by $index">
 								        		{{version.osver}} <input ng-model="version.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
 								        	</td>
-							        	</tr>
-						        	</table>
-							    </accordion-group>
-						    </accordion>		
+							    		</tr>
+						    		</table>
 			    </accordion-group>
 		    </accordion>	            
 	    </div>
