@@ -22,6 +22,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -131,5 +132,10 @@ public class ReadFromDBTest {
     public void getDriverAndMessageFromLastRunTest(){
     	String array = new GetDriverByTestcaseDAO().getDriverByTestcaseId(1, "20150204-000100");
     	System.out.println(array.toString());
+    }
+    @Test
+    public void latestRunPerOsOrDeviceTest(){
+    	String date = new ReadReportFromDB().latestRunPerOsOrDevice();
+    	System.out.println(date);
     }
 }

@@ -2,13 +2,19 @@ package se.redmind.rmtest.db.read;
 
 
 
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -34,7 +40,6 @@ public class ReadReportFromDB extends DBBridge{
     String LIMIT = " limit 20";
     
     String GET_DATE_OF_LAST_RUN_OS_AND_DEVICE = "select timestamp, os.osname, device.devicename from report inner join os on report.os_id = os.os_id inner join device on report.device_id = device.device_id group by device.devicename, os.osname;";
-    String GET_MAX_TIMESTAMP = "select max(timestamp) from report;";
     
     
     public List getDriverFromTestcase(Integer suite_id, Integer testcase_id){
@@ -140,12 +145,11 @@ public class ReadReportFromDB extends DBBridge{
 
     	return result;
     }
-	public void latestRunPerOsOrDevice(){
-		ResultSet rs1 = readFromDB(GET_MAX_TIMESTAMP);
-		ResultSet rs2 = readFromDB(GET_DATE_OF_LAST_RUN_OS_AND_DEVICE);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+	public String latestRunPerOsOrDevice(){
+		return AND_TESTCASE_ID;
 		
 		
+
 	}
 
 	
