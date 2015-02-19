@@ -80,13 +80,13 @@
 						{{platform.osname}}
 		        	</accordion-heading>
 					<accordion>
-							    <accordion-group>
+							    <accordion-group is-open='true'>
 						        	<accordion-heading>
 										Devices
 						        	</accordion-heading>
 						    		<table>
-							    		<tr ng-repeat="device in platform.devices track by $index" style='height:30px;'>
-								    		<td>
+							    		<tr style='height:30px;'>
+								    		<td ng-repeat="device in platform.devices track by $index">
 								    			{{device.devicename}} <input ng-model="device.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
 								    		</td>
 							    		</tr>
@@ -94,13 +94,13 @@
 							    </accordion-group>
 						    </accordion>	
 						    	<accordion>
-							    <accordion-group>
+							    <accordion-group is-open='true'>
 						        	<accordion-heading>
 										<div ng-click=''>Versions</div>
 						        	</accordion-heading>
 						        	<table>
-							        	<tr ng-repeat="version in platform.versions track by $index">
-								        	<td>
+							        	<tr>
+								        	<td ng-repeat="version in platform.versions track by $index">
 								        		{{version.osver}} <input ng-model="version.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
 								        	</td>
 							        	</tr>
