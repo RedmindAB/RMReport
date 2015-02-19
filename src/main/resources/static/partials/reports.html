@@ -86,24 +86,24 @@
 		    <accordion close-others="false">
 			    <accordion-group ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
 		        	<accordion-heading>
-						<input style='height:30px' type="checkbox" id="mycheckbox" stop-click><label for="mycheckbox" style='margin-top:20px;margin-left:-20px;font-weight:normal;'></label> 
+						<input style='height:30px' type="checkbox" id="mycheckbox" stop-click><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> 
 						{{platform.osname}}
 		        	</accordion-heading>
 						    		<table border='0'>
 							    		<tr style='height:30px;'>
 							    			<td>
-							    				<h4>Devices:</h4>
+							    				<h4>Devices:&nbsp;</h4>
 							    			</td>
 								    		<td ng-repeat="device in platform.devices track by $index" >
-								    			<input ng-model="device.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;margin-left:-20px;font-weight:normal;'></label>{{device.devicename}}
+								    			<input ng-model="device.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> {{device.devicename}}&nbsp;
 								    		</td>
 								    		</tr>
 								    		<tr>
 								    		<td>
-								    			<h4>Versions:</h4>
+								    			<h4>Versions:&nbsp;</h4>
 								    		</td>
 								        	<td ng-repeat="version in platform.versions track by $index">
-								        		<input ng-model="version.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;margin-left:-20px;font-weight:normal;'></label>{{version.osver}}
+								        		<input ng-model="version.chosen" style='height:40px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> {{version.osver}}&nbsp;
 								        	</td>
 							    		</tr>
 							    		<tr>
