@@ -382,6 +382,7 @@ angular.module('webLog')
 	};
 	
    $scope.loadMainChart = function(suiteID, newLine) {
+	   Charts.mainChart.loading = true;
     	var requestObject = $scope.getGraphDataObject(suiteID);
     	CurrentSuite.lastRunSize = getResLimit();
     	$http.post('/api/stats/graphdata', requestObject)
@@ -798,6 +799,7 @@ angular.module('webLog')
 				});
 			}
 			$scope.changeChartVariant();
+			Charts.mainChart.loading = false;
     };
     
     function getPassPercentage(pass, fail, error){
@@ -901,7 +903,7 @@ angular.module('webLog')
     	
     	chart.yAxis.title.text = 'Time to run';
     	chart.options.plotOptions.series.stacking = '';
-    	chart.title.text = "Time to run in seconds for the last " + CurrentSuite.lastRunSize + " runs";
+    	chart.title.text = "Time to run in seconds";
 	}
     
     function totalPassChart() {
@@ -921,7 +923,7 @@ angular.module('webLog')
 		}
     	chart.yAxis.title.text = 'Passed test';
     	chart.options.plotOptions.series.stacking = '';
-    	chart.title.text = "Amount of passed tests for the last " + CurrentSuite.lastRunSize+ " runs";
+    	chart.title.text = "Passed tests";
 	}
     
     function totalFailChart() {
@@ -941,7 +943,7 @@ angular.module('webLog')
 		}
     	chart.yAxis.title.text = 'Failed test';
     	chart.options.plotOptions.series.stacking = '';
-    	chart.title.text = "Amount of failed tests for the last " + CurrentSuite.lastRunSize + " runs";
+    	chart.title.text = "Failed tests";
 	}
     
     function passFailChart() {
@@ -957,6 +959,6 @@ angular.module('webLog')
     		});
 		}
     	chart.yAxis.title.text = 'Percentage';
-    	chart.title.text = "Pass/Fail ratio for the last " + CurrentSuite.lastRunSize + " runs";
+    	chart.title.text = "Percentage of passed tests";
 	}
 }]);
