@@ -495,8 +495,15 @@ angular.module('webLog')
     function splitDataOnVersion(suiteID, name) {
     	var graphArray = [];
     	var chosen = $scope.getChosen();
+    	console.log(chosen);
     	if (chosen.os.length === 0) {
-			chosen.os = getAllVersions();
+    		if (chosen.devices.length === 0) {
+    			console.log("getting all");
+    			chosen.os = getAllVersions();
+			} else {
+				console.log("getting specific");
+				chosen.os = getVersionsByDevice(chosen);
+			}
 		}
     	
     	for (var i = 0; i < chosen.os.length; i++) {
@@ -631,6 +638,34 @@ angular.module('webLog')
 				}
 			}
 		}
+    };
+    
+    function getVersionsByDevice(chosen){
+    	var specs = CurrentSuite.currentSpecObject;
+    	console.log(specs);
+    	var versions = [];
+    	for (var i = 0; i < specs.platforms.length; i++) {
+    		for (var j = 0; j < specs.platforms[i].devices.length; j++) {
+	    		for (var k = 0; k < chosen.devices.length; k++) {
+	    			if (chosen.devices[k] === specs.platforms[i].devices[j].deviceid) {
+	    				versions.push(specs.platforms[i].devices[j].osver);
+					}
+				}
+    		}
+		}
+    	console.log(versions);
+    	var versionsToReturn = [];
+    	for (var i = 0; i < versions.length; i++) {
+    		for (var k = 0; k < specs.platforms.length; k++) {
+				for (var j = 0; j < specs.platforms[k].versions.length; j++) {
+					if (specs.platforms[k].versions[j].osver === versions[i]) {
+						versionsToReturn.push(specs.platforms[k].versions[j].osid);
+					}
+				}
+    		}
+		}
+    	console.log(versionsToReturn);
+    	return versionsToReturn;
     };
     
     function getAllVersions(){
