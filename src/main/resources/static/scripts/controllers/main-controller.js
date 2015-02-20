@@ -465,7 +465,11 @@ angular.module('webLog')
     	var addedUnknown = false;
     	
     	if (chosen.devices.length === 0) {
-    		chosen.devices = getAllDevices();
+    		if (chosen.os.length === 0) {
+    			chosen.devices = getAllDevices();
+			} else {
+				chosen.devices = getAllDevicesByPlatform(chosen);
+			}
 		}
     	for (var i = 0; i < chosen.devices.length; i++) {
     		var dataRequest = {};
@@ -483,7 +487,6 @@ angular.module('webLog')
     		dataRequest.classes = chosen.classes;
     		dataRequest.testcases = chosen.testcases;
 			
-    		
     		graphArray.push(dataRequest);
 		}
     	return graphArray;
@@ -686,6 +689,21 @@ angular.module('webLog')
     		for (var j = 0; j < specs.platforms[i].devices.length; j++) {
     			if (deviceIDs.indexOf(specs.platforms[i].devices[j].deviceid) == -1) {
     				deviceIDs.push(specs.platforms[i].devices[j].deviceid);
+				}
+			}
+		}
+    	return deviceIDs;
+    }
+    
+    function getAllDevicesByPlatform(chosen){
+    	var specs = CurrentSuite.currentSpecObject;
+    	var deviceIDs = [];
+    	for (var i = 0; i < specs.platforms.length; i++) {
+    		for (var k = 0; k < chosen.platforms.length; k++) {
+				if (chosen.platforms[k] === specs.platforms[i].osname) {
+					for (var j = 0; j < specs.platforms[i].devices.length; j++) {
+						deviceIDs.push(specs.platforms[i].devices[j].deviceid);
+					}
 				}
 			}
 		}
