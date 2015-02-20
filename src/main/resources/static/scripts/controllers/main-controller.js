@@ -198,17 +198,7 @@ angular.module('webLog')
 				platforms:[]
 		};
 		
-		//add platform to send
-		if (CurrentSuite.currentSpecObject.platforms) {
-			var platforms = CurrentSuite.currentSpecObject.platforms;
-			for (var i = 0; i < platforms.length; i++) {
-				if (platforms[i].chosen) {
-					chosen.platforms.push(platforms[i].osname);
-				}
-			}
-		}
-		
-		//add os to send
+		//add version to send
 		if (CurrentSuite.currentSpecObject.platforms) {
 			var platforms = CurrentSuite.currentSpecObject.platforms;
 			for (var i = 0; i < platforms.length; i++) {
@@ -230,6 +220,21 @@ angular.module('webLog')
 					if (devices[j].chosen) {
 						chosen.devices.push(devices[j].deviceid);
 					}
+				}
+			}
+		}
+		
+		//add platform to send
+		if (CurrentSuite.currentSpecObject.platforms) {
+			var platforms = CurrentSuite.currentSpecObject.platforms;
+			for (var i = 0; i < platforms.length; i++) {
+				if (platforms[i].chosen) {
+					for (var j = 0; j < platforms[i].versions.length; j++) {
+						if (chosen.os.indexOf(platforms[i].versions[j].osid) == -1) {
+							chosen.os.push(platforms[i].versions[j].osid);
+						}
+					}
+					chosen.platforms.push(platforms[i].osname);
 				}
 			}
 		}
@@ -311,6 +316,7 @@ angular.module('webLog')
 	
 	$scope.getSuiteSkeleton = function(suite){
 		CurrentSuite.currentSuiteInfo = suite;
+		console.log(suite.id);
 	    $http.get('/api/suite/latestbyid?suiteid=' + suite.id)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
@@ -477,6 +483,7 @@ angular.module('webLog')
     		dataRequest.classes = chosen.classes;
     		dataRequest.testcases = chosen.testcases;
 			
+    		
     		graphArray.push(dataRequest);
 		}
     	return graphArray;
@@ -485,7 +492,6 @@ angular.module('webLog')
     function splitDataOnVersion(suiteID, name) {
     	var graphArray = [];
     	var chosen = $scope.getChosen();
-    	
     	if (chosen.os.length === 0) {
 			chosen.os = getAllVersions();
 		}
