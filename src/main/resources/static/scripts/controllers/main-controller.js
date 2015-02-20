@@ -316,7 +316,6 @@ angular.module('webLog')
 	
 	$scope.getSuiteSkeleton = function(suite){
 		CurrentSuite.currentSuiteInfo = suite;
-		console.log(suite.id);
 	    $http.get('/api/suite/latestbyid?suiteid=' + suite.id)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
@@ -495,13 +494,10 @@ angular.module('webLog')
     function splitDataOnVersion(suiteID, name) {
     	var graphArray = [];
     	var chosen = $scope.getChosen();
-    	console.log(chosen);
     	if (chosen.os.length === 0) {
     		if (chosen.devices.length === 0) {
-    			console.log("getting all");
     			chosen.os = getAllVersions();
 			} else {
-				console.log("getting specific");
 				chosen.os = getVersionsByDevice(chosen);
 			}
 		}
@@ -642,7 +638,6 @@ angular.module('webLog')
     
     function getVersionsByDevice(chosen){
     	var specs = CurrentSuite.currentSpecObject;
-    	console.log(specs);
     	var versions = [];
     	for (var i = 0; i < specs.platforms.length; i++) {
     		for (var j = 0; j < specs.platforms[i].devices.length; j++) {
@@ -653,7 +648,6 @@ angular.module('webLog')
 				}
     		}
 		}
-    	console.log(versions);
     	var versionsToReturn = [];
     	for (var i = 0; i < versions.length; i++) {
     		for (var k = 0; k < specs.platforms.length; k++) {
@@ -664,7 +658,6 @@ angular.module('webLog')
 				}
     		}
 		}
-    	console.log(versionsToReturn);
     	return versionsToReturn;
     };
     

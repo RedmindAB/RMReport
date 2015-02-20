@@ -64,42 +64,6 @@ angular.module('webLog')
 								chart : {
 									backgroundColor : '#ecf0f1',
 									height : 420,
-									events : {
-										selection : function(event) {
-											console.log(event);
-											var text, label;
-											if (event.xAxis) {
-												text = 'min: '
-														+ Highcharts
-																.numberFormat(
-																		event.xAxis[0].min,
-																		2)
-														+ ', max: '
-														+ Highcharts
-																.numberFormat(
-																		event.xAxis[0].max,
-																		2);
-											} else {
-												text = 'Selection reset';
-											}
-											label = this.renderer
-													.label(text, 100, 120)
-													.attr(
-															{
-																fill : Highcharts
-																		.getOptions().colors[0],
-																padding : 10,
-																r : 5,
-																zIndex : 8
-															}).css({
-														color : '#FFFFFF'
-													}).add();
-
-											setTimeout(function() {
-												label.fadeOut();
-											}, 1000);
-										}
-									},
 									zoomType : 'x'
 								},
 								tooltip : {},
