@@ -30,11 +30,15 @@ public class TestCaseRunInserter extends DBBridge {
 	}
 	
 	public void insertTestCases(Report report, int suiteID, HashMap<String, Integer> classIDs, HashMap<String,Integer> testCases, DriverValidation driverValidation){
+		String sql = "";
 		try {
 			Statement pStatement = connection.createStatement();
 			List<ReportTestCase> testCaseArray = report.getTestCaseArray();
 			StringKeyValueParser parser = new StringKeyValueParser(INSERT_TESTCASERUN);
 			for (ReportTestCase testCase : testCaseArray) {
+				if (testCase.isBroken()) {
+					continue;
+				}
 				HashMap<String, String> map = new HashMap<String,String>();
 				Driver driver = testCase.getDriver();
 				map.put("suite_id", ""+suiteID);
@@ -57,14 +61,19 @@ public class TestCaseRunInserter extends DBBridge {
 				map.put("browser_id", ""+driverValidation.getBrowserID(browserName, browserVer));
 				
 				map.put("time", ""+testCase.getTime());
-				String sql = parser.getString(map);
+				sql = parser.getString(map);
 				pStatement.addBatch(sql);
 			}
 			long start = System.currentTimeMillis();
 			int[] executeBatch = pStatement.executeBatch();
-			System.out.println(System.currentTimeMillis() - start);
+//			System.out.println(System.currentTimeMillis() - start);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		}
 		

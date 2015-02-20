@@ -37,7 +37,9 @@ public class DriverValidation {
 			String driverString = reportTestCase.getDriver().getDriverFullName();
 			if (!osNames.contains(driverString)) {
 				osNames.add(driverString);
-				driverArray.add(reportTestCase.getDriver());
+				if (!reportTestCase.getDriver().isBroken()) {
+					driverArray.add(reportTestCase.getDriver());
+				}
 			}
 		}
 	}
@@ -54,7 +56,6 @@ public class DriverValidation {
 			String osNameAndVer = driver.getOs()+driver.getOsVer();
 			//if the driver dose not exists in the db and is not added yet, add it to the batch
 			if (!osIds.containsKey(osNameAndVer) && !addedOS.contains(osNameAndVer)) {
-//				System.out.println(osNameAndVer);
 				osInserter.addOsToBatch(driver.getOs(), driver.getOsVer());
 				addedOS.add(osNameAndVer);
 				addedNew = true;

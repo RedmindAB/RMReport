@@ -4,6 +4,7 @@ public class Driver {
 
 	private final String driver;
 	private String os, osVer, device, browser, browserVer;
+	private boolean broken;
 	public Driver(String driver) {
 		this.driver = driver;
 		handleDriver();
@@ -22,8 +23,13 @@ public class Driver {
 	
 	private String getValue(String[] sliced, int index){
 		try {
-			return sliced[index];
+			String value = sliced[index];
+			if (value.length() == 0) {
+				broken = true;
+			}
+			return value;
 		} catch (Exception e) {
+			broken = true;
 			return null;
 		}
 	}
@@ -52,4 +58,7 @@ public class Driver {
 		return browserVer;
 	}
 	
+	public boolean isBroken(){
+		return broken;
+	}
 }

@@ -1,6 +1,8 @@
-angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuite', function($scope, $state, CurrentSuite){
+angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuite', 'Charts', function($scope, $state, CurrentSuite, Charts){
 	
 	$scope.CurrentSuite = CurrentSuite;
+	$scope.Charts = Charts;
+	
 	
 	$scope.getPosition = function(){
 		switch ($state.$current.name) {

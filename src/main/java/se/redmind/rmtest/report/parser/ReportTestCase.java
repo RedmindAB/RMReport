@@ -20,6 +20,7 @@ public class ReportTestCase{
 	PASSED = "passed",
 	TIME = "time";
 	
+	private boolean broken;
 								
 	
 	private String name, classname;
@@ -35,6 +36,10 @@ public class ReportTestCase{
 	
 	private void generateTestCaseFromElement(Element element){
 		name = element.getAttribute(NAME);
+		broken = checkIfBroken();
+		if (broken) {
+			return;
+		}
 		this.jsonObject.add(NAME, new JsonPrimitive(name));
 		
 		String driverName = checkDriverName(name);
@@ -53,7 +58,7 @@ public class ReportTestCase{
 		if (errorElement != null) {
 			String message = errorElement.getTextContent();
 			String type = errorElement.getAttribute(TYPE);
-			
+			message = removeAllIlligalChars(message);
 			JsonObject error = new JsonObject();
 			error.add(MESSAGE, new JsonPrimitive(message));
 			error.add(TYPE, new JsonPrimitive(type));
@@ -62,7 +67,7 @@ public class ReportTestCase{
 		else if(failureElement != null){
 			String message = failureElement.getTextContent();
 			String type = failureElement.getAttribute(TYPE);
-			
+			message = removeAllIlligalChars(message);
 			JsonObject failureObject = new JsonObject();
 			failureObject.add(MESSAGE, new JsonPrimitive(message));
 			failureObject.add(TYPE, new JsonPrimitive(type));
@@ -79,6 +84,10 @@ public class ReportTestCase{
 		double time = Double.parseDouble(timeValue);
 		
 		this.jsonObject.add(TIME, new JsonPrimitive(time));
+	}
+
+	private boolean checkIfBroken() {
+		return getMethodName() == null;
 	}
 	
 	private String getTestClassName(String testCaseName) {
@@ -103,7 +112,7 @@ public class ReportTestCase{
 		if (end > 0) {
 			return name.substring(0, end);
 		}
-		return "No method name found";
+		return null;
 	}
 	
 	public String getResult(){
@@ -191,4 +200,11 @@ public class ReportTestCase{
 		}
 	}
 	
+	public String removeAllIlligalChars(String message){
+		return message.replaceAll("[^\\s\\w\\.]*", " ");
+	}
+	
+	public boolean isBroken(){
+		return this.broken;
+	}
 }
