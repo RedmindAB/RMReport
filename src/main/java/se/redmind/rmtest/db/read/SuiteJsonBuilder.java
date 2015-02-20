@@ -14,6 +14,8 @@ import com.google.gson.JsonPrimitive;
 public class SuiteJsonBuilder {
 
 	
+	private static final String SKIPPED = "skipped";
+	private static final String FAILURE = "failure";
 	private static final String PASSED = "passed";
 	private static final String RESULT = "result";
 	private static final String TIME = "time";
@@ -33,15 +35,17 @@ public class SuiteJsonBuilder {
 	public SuiteJsonBuilder build(){
 		try {
 			while (rs.next()) {
-				int classid = rs.getInt(1);
-				String className = rs.getString(2);
-				int testcaseId = rs.getInt(3);
-				String testcaseName = rs.getString(4);
-				String result = rs.getString(5);
-				float time = rs.getFloat(6);
+				int classid = rs.getInt("class_id");
+				String className = rs.getString("classname");
+				int testcaseId = rs.getInt("testcase_id");
+				String testcaseName = rs.getString("testcasename");
+				int result = rs.getInt("totalresult");
+				int fails = rs.getInt("fail");
+				int skipped = rs.getInt(SKIPPED);
+				float time = rs.getFloat("time");
 				JsonObject testClass = getTestClass(classid, className);
 				addTimeToTestClass(time, testClass);
-				addTestCase(testcaseId, testcaseName, result, testClass, time);
+				addTestCase(testcaseId, testcaseName, result, fails, skipped, testClass, time);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -53,16 +57,19 @@ public class SuiteJsonBuilder {
 		return this;
 	}
 	
-	public void addTestCase(int testcase_id, String testcaseName, String result, JsonObject testClass, double time){
+	public void addTestCase(int testcase_id, String testcaseName, int result, int fails, int skipped, JsonObject testClass, double time){
 		JsonArray testCases = testClass.get(TESTCASES).getAsJsonArray();
 		JsonObject testCase = new JsonObject();
 		testCase.add(ID, new JsonPrimitive(testcase_id));
 		testCase.add(NAME, new JsonPrimitive(testcaseName));
-		testCase.add(RESULT, new JsonPrimitive(result));
+		testCase.add(RESULT, extractResult(result, skipped, fails));
 		testCase.add(TIME, new JsonPrimitive(time));
 		testCases.add(testCase);
-		if (!result.equals(PASSED)) {
-			testClass.addProperty(RESULT, "failure");
+		if (fails > 0) {
+			testClass.addProperty(RESULT, FAILURE);
+		}
+		else if (skipped == result){
+			testClass.addProperty(RESULT, SKIPPED);;
 		}
 	}
 
@@ -86,6 +93,18 @@ public class SuiteJsonBuilder {
 	}
 	public JsonArray getSuite(){
 		return suiteArray;
+	}
+	
+	public JsonPrimitive extractResult(int result, int skipped, int fails){
+		JsonPrimitive value = null;
+		if (result == skipped) {
+			value = new JsonPrimitive(SKIPPED);
+		}
+		else if (fails > 0){
+			value = new JsonPrimitive(FAILURE);
+		}
+		else value = new JsonPrimitive(PASSED);
+		return value;
 	}
 	
 }
