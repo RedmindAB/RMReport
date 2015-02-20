@@ -7,8 +7,14 @@
             <accordion-heading id='case_name'>
                 {{case.osname}} - {{case.devicename}} -	{{case.osversion}} - 	{{case.browsername}} - {{case.result}}
             </accordion-heading>
-            <input style='height:30px' type="checkbox" id="checkbox_1" class='mycheckbox' ng-model="case.chosen"><label for="mycheckbox"></label>
-            <!-- non collapsing header End-->
+            <table>
+            <tr>
+            <td ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)">
+            	<input style='height:30px' type="checkbox" id="checkbox_1" class='mycheckbox' ng-model="case.chosen"><label for="mycheckbox"></label>
+            </td>
+            </tr>
+            </table>
+             <!-- non collapsing header End-->
 
             <!-- Content in collapsing Div -->
             <div ng-class='getBG(case.result)'>

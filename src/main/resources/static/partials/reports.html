@@ -41,21 +41,18 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu scrollable-menu">
-                <li ng-repeat="breakPoint in breakPoints"><a ng-click="setBreakPoint(breakPoint)">
+                <li ng-repeat="breakPoint in breakPoints"><a ng-click="setBreakPoint(breakPoint);loadMainChart(CurrentSuite.currentSuiteInfo.id)">
                         {{breakPoint}}
                     </a>
                 </li>
             </ul>
         </div>
 
-        <button style='width: 60px;margin:3px' id='button_clear' class="btn btn-default" ng-click="clearAllChosen()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>
+        <button style='width: 60px;margin:3px' id='button_clear' class="btn btn-default" ng-click="clearAllChosen();loadMainChart(CurrentSuite.currentSuiteInfo.id)" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>
             Clear
         </button>
         <form style='display:inline'>
-            <input type="text" id="suite-amount-input" class="form-control tool-tip" style="width:150px;height:33px;display:inline" ng-model='Utilities.amountField' placeholder="Runs" title="Amount of runs to show" data-toggle="tooltip" data-placement="top" tooltip>	
-            <button class="btn btn-default" id='button_reload' style='margin:7px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>
-                Reload
-            </button>
+            <input type="text" id="suite-amount-input" class="form-control tool-tip" ng-change="loadMainChart(CurrentSuite.currentSuiteInfo.id)" style="width:150px;height:33px;display:inline" ng-model='Utilities.amountField' placeholder="Runs" title="Amount of runs to show" data-toggle="tooltip" data-placement="top" tooltip>	
         </form>	
          
         <div class="btn-group">
