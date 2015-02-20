@@ -6,7 +6,7 @@
          ng-style="{'background-color': getBgCo(class.result)}">
         <table>
             <tr >
-                <td ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)">
+                <td>
                     <input style='height:30px' type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="class.chosen"><label for="mycheckbox"></label>
                 </td>
                 <td width='100%' ng-click="getMethods(class); setState('reports.methods'); resetFilterField()">
