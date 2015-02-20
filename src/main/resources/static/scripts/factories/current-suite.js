@@ -13,6 +13,8 @@ angular.module('webLog')
 		    	currentDriverRuns: [],
 				currentTimeStamp: '',
 				currentTimeStampArray: [],
-				currentSpecObject: []
+				currentSpecObject: [],
+				newLine: false,
+				lastRunSize: 50
 		    	};
 	});

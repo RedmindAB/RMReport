@@ -20,7 +20,7 @@ public class ReadStatsFromReport extends ReadReportFromDB{
 	public static final String TESTCASES = "testcases";
 	public static final String CLASSES = "classes";
 	public static String RESLIMIT = "reslimit", SUITEID = "suiteid", CLASSID = "class_id",CONDITIONS = "conditions";
-	private String megaQuery = "SELECT timestamp, SUM(time) AS time, SUM(result = 'passed') AS passed, SUM(result = 'failure') AS failure,  SUM(result = 'error') AS error FROM report "
+	private String megaQuery = "SELECT timestamp, SUM(time) AS time, SUM(result = 'passed') AS passed, SUM(result = 'failure') AS failure,  SUM(result = 'error') AS error,  SUM(result = 'skipped') AS skipped FROM report "
 									+ "WHERE timestamp >= (SELECT MIN(timestamp) FROM (SELECT DISTINCT timestamp FROM report WHERE suite_id = {suiteid} ORDER BY timestamp DESC LIMIT {reslimit}))"
 									+ " AND suite_id = {suiteid} "
 									+ "{conditions}"
@@ -40,7 +40,9 @@ public class ReadStatsFromReport extends ReadReportFromDB{
 	
 	public JsonArray getGraphDataAsJson(JsonObject params){
 		String sql = getQueryFromJsonObject(params);
-		ResultSet rs = readFromDB(sql, params.get("reslimit").getAsInt());
+		int reslimit = params.get("reslimit").getAsInt();
+		System.out.println(reslimit);
+		ResultSet rs = readFromDB(sql, reslimit);
 		return extractGraphData(rs);
 	}
 	

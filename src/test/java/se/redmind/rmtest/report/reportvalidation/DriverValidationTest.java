@@ -34,7 +34,7 @@ public class DriverValidationTest {
 	public void testOS() {
 		HashMap<String, Integer> osMap = driverValidation.getOSMap();
 		int mapSize = osMap.size();
-		assertEquals(6, mapSize);
+		assertEquals(10, mapSize);
 		assertTrue(osMap.containsKey("Windows8.1"));
 		assertTrue(osMap.containsKey("Android5.1"));
 		assertTrue(osMap.containsKey("Android4.4.4"));
@@ -42,13 +42,13 @@ public class DriverValidationTest {
 		assertTrue(osMap.containsKey("IOS8.2"));
 		assertTrue(osMap.containsKey("Ubuntu14.04"));
 		HashMap<String, Integer> osMap2 = driverValidation.getOSMap();
-		assertEquals(6, osMap2.size());
+		assertEquals(10, osMap2.size());
 	}
 	
 	@Test
 	public void testDevice() {
 		HashMap<String, Integer> deviceMap = driverValidation.getDeviceMap();
-		assertEquals(4, deviceMap.size());
+		assertEquals(7, deviceMap.size());
 		assertTrue(deviceMap.containsKey("UNKNOWN"));
 		assertTrue(deviceMap.containsKey("HTC ONE"));
 		assertTrue(deviceMap.containsKey("iPhone 6"));

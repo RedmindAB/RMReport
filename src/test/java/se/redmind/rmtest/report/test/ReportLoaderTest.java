@@ -14,7 +14,7 @@ import se.redmind.rmtest.report.reportloader.ReportLoader;
 public class ReportLoaderTest {
 	
 	public static String path = System.getProperty("user.dir")+"/reports_for_test";
-	public static String specificReportFileName = "TEST-test.java.se.redmind.rmtest.selenium.example.AnotherGeneratedSuite-20150204-000001.xml";
+	public static String specificReportFileName = "TEST-test.java.se.redmind.rmtest.selenium.example.AnotherGeneratedSuite-20150309-080322.xml";
 	private static ReportLoader loader;
 	
 	@BeforeClass
@@ -52,7 +52,7 @@ public class ReportLoaderTest {
 	public void getXMLFiles(){
 		ReportLoader loader = getReportLoader();
 		ArrayList<File> xmlFiles = loader.getXMLReports();
-		assertEquals(1, xmlFiles.size());
+		assertEquals(3, xmlFiles.size());
 	}
 	
 	@Test

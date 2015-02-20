@@ -1,5 +1,6 @@
 package se.redmind.rmtest.db.test;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -8,6 +9,7 @@ import static org.junit.Assert.*;
 import org.junit.rules.Timeout;
 
 import com.google.gson.JsonArray;
+import com.google.gson.internal.bind.JsonTreeWriter;
 
 import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.read.ReadClassFromDB;
@@ -15,6 +17,8 @@ import se.redmind.rmtest.db.read.ReadReportFromDB;
 import se.redmind.rmtest.db.read.ReadSuiteFromDB;
 import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseDAO;
+import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteDAO;
+import se.redmind.rmtest.web.route.api.suite.bytimestamp.GetSuiteByTimestampDAO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -64,12 +68,6 @@ public class ReadFromDBTest {
     public void getSuitIdTest(){
     new ReadSuiteFromDB().getSuiteID("name");
     }
-    @Test
-    public void reportExistsTest(){
-        boolean b = new ReadReportFromDB().reportExists("20150121-160906");
-        assertTrue(b);
-    }
- 
     
     @Test
     public void getAllSuitesTest() {
@@ -92,6 +90,8 @@ public class ReadFromDBTest {
     		System.out.println(hashMap.get("id"));
 		}
     }
+    
+    @Ignore //driver dose not exist anymore.
     @Test
     public void getDriverFromTestcaseTest() {
         List<String> drivers = new ReadReportFromDB().getDriverFromTestcase(1, 1);
@@ -113,6 +113,7 @@ public class ReadFromDBTest {
     	List<HashMap<String, String>> reportListData = new ReadReportFromDB().getReportListData(1);
     }
     
+    @Ignore //driver dose not exist anymore
     @Test
     public void getDriverByTestcase(){
         List<HashMap<String, String>> classname = new ReadTestcaseFromDB().getDriverFromTestcaseID(1);
@@ -137,5 +138,16 @@ public class ReadFromDBTest {
     @Test
     public void deviceRunAmonthAgoTest(){
     	JsonArray array = new ReadReportFromDB().deviceRunAmonthAgo();
+    }
+    @Test
+    public void getLastestTimestamp(){
+    	String array = new GetLatestSuiteDAO().getLatestSuite(1);
+    	System.out.println(array);
+    }
+    
+    @Test
+    public void getLastestByTimestamp(){
+    	String array = new GetSuiteByTimestampDAO().getSuiteByTimestamp(2, "20150101-080000");
+    	System.out.println(array);
     }
 }

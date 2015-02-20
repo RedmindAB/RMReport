@@ -65,18 +65,11 @@ public class ReportValidator {
 	
 	public void saveReport(){
 		report.convertToFullReport();
-		try {
-			HashMap<String, Integer> classIDs = getTestClassIDs(report.getPresentTestClasses());
-			int suiteID = getSuiteID(report.getSuiteName());
-			HashMap<String, Integer> testCases = getTestCases(report, classIDs);
-			DriverValidation driverValidation = new DriverValidation(report);
-			connection.setAutoCommit(false);
-			testCaseRunInserter.insertTestCases(report, suiteID, classIDs, testCases, driverValidation);
-			connection.setAutoCommit(true);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		HashMap<String, Integer> classIDs = getTestClassIDs(report.getPresentTestClasses());
+		int suiteID = getSuiteID(report.getSuiteName());
+		HashMap<String, Integer> testCases = getTestCases(report, classIDs);
+		DriverValidation driverValidation = new DriverValidation(report);
+		testCaseRunInserter.insertTestCases(report, suiteID, classIDs, testCases, driverValidation);
 	}
 
 	public int getSuiteID(String suiteName){

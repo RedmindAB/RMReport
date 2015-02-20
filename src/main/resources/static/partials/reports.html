@@ -9,9 +9,12 @@
         <table>
             <tr>
                 <td>
-                    <div id="navigation-classes" ng-click="setState('reports.classes')" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;| {{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
-                    <div id="navigation-methods" ng-click="setState('reports.methods')" class="navTextStuff" ng-show="showClassLink('methods')">&#10140; {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
-                    <div id="navigation-drivers" ng-click="setState('reports.cases')" class="navTextStuff" ng-show="showClassLink('cases')">&#10140; {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
+                    <div id="navigation-classes" ng-click="setState('reports.classes')" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;| 
+                   		{{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
+                    <div id="navigation-methods" ng-click="setState('reports.methods')" class="navTextStuff" ng-show="showClassLink('methods')">&#10140; 
+                    	{{CurrentSuite.currentClass.name}}&nbsp;</p></div>
+                    <div id="navigation-drivers" ng-click="setState('reports.cases')" class="navTextStuff" ng-show="showClassLink('cases')">&#10140; 
+                    	{{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
                 </td>
             </tr>
         </table>
@@ -26,7 +29,7 @@
 
     <div class="btn-group" style='display:inline;'>
         <div class="btn-group">
-            <button type="button" class="btn btn-default" style='margin-top:6px' data-toggle="dropdown" aria-expanded="false">
+            <button type="button" id='button_display' class="btn btn-default" style='margin-top:6px' data-toggle="dropdown" aria-expanded="false">
                 Choose display type <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
@@ -35,44 +38,62 @@
         </div>
     </div>
     <div>
-        <button style='width: 60px;margin:3px' class="btn btn-default" ng-click="clearAllChosen()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>
-            Clear
-        </button>
-        <form style='display:inline'>
-            <input type="text" id="suite-amount-input" class="tool-tip" style="width:150px;height:33px;margin:3px" ng-model='Utilities.amountField' placeholder="Runs" title="Amount of runs to show" data-toggle="tooltip" data-placement="top" tooltip>	
-            <button class="btn btn-default" style='margin:7px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>
-                Reload
-            </button>
-        </form>	
-        <div class="btn-group">
-            <button style='width:150px' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
-                {{CurrentSuite.currentTimeStamp}}
+        <div class="btn-group" style='margin:3px'>
+            <button style='width:150px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
+                {{breakPointChoice}}
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu scrollable-menu">
-                <li ng-repeat="timeStamp in CurrentSuite.currentTimeStampArray"><a ng-click="loadNewTimeStamp(timeStamp)">
-                        {{timeStamp}}
+                <li ng-repeat="breakPoint in breakPoints"><a ng-click="setBreakPoint(breakPoint)">
+                        {{breakPoint}}
                     </a>
                 </li>
             </ul>
         </div>
 
+        <button style='width: 60px;margin:3px' id='button_clear' class="btn btn-default" ng-click="clearAllChosen()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>
+            Clear
+        </button>
+        <form style='display:inline'>
+            <input type="text" id="suite-amount-input" class="form-control tool-tip" style="width:150px;height:33px;display:inline" ng-model='Utilities.amountField' placeholder="Runs" title="Amount of runs to show" data-toggle="tooltip" data-placement="top" tooltip>	
+            <button class="btn btn-default" id='button_reload' style='margin:7px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>
+                Reload
+            </button>
+        </form>	
+         
+        <div class="btn-group">
+            <button style='width:150px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
+                {{CurrentSuite.currentTimeStamp}}
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu scrollable-menu">
+                <li ng-repeat="timeStamp in CurrentSuite.currentTimeStampArray"><a ng-click="loadNewTimeStamp(timeStamp)" id='timestamp'>
+                        {{timeStamp}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+		<button ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" class="btn btn-default" id='graph_line' style='margin:7px'>
+			Add graph line
+		</button>
+
         <accordion close-others="false">
             <!-- repeated content -->
-            <div style='width:60px;' id='hej'>
+            <div style='width:135px;' id='hej'>
                 <accordion-group>
 
-                    <accordion-heading>
-                        <a style='color:black;font-weight: normal;' onClick="if (document.getElementById('hej').style.width == '60px'){document.getElementById('hej').style.width = '100%'; } else{document.getElementById('hej').style.width = '60px'; }">
-                            OS
+                    <accordion-heading id='reports_spec'>
+                        <a style='color:black;font-weight: normal;' onClick="if (document.getElementById('hej').style.width == '135px'){document.getElementById('hej').style.width = '100%'; } else{document.getElementById('hej').style.width = '135px'; }">
+                            Specifications
                         </a>
                     </accordion-heading>
-
+					
                     <!-- BROWSERS START -->
                     <table>
                         <tr>
                             <td style='padding-right: 10px;font-size:20px' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
-                                <input type="checkbox" ng-model="browser.chosen">
+                                <input type="checkbox" id='input_browser' ng-model="browser.chosen">
                                 {{browser.browsername}} - v.{{browser.browserver}}
                             </td>
                         </tr>
@@ -85,8 +106,8 @@
                     <div>		    
                         <accordion close-others="false">
                             <accordion-group ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
-                                <accordion-heading>
-                                    <input style='height:30px' type="checkbox" id="mycheckbox" stop-click><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> 
+                                <accordion-heading id='reports_name'>
+                                    <input ng-model='platform.chosen' id='input_osname' style='height:30px' type="checkbox" class="mycheckbox" stop-click><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> 
                                     {{platform.osname}}
                                 </accordion-heading>
                                 <table border='0'>
@@ -95,7 +116,8 @@
                                             <h4>Devices:&nbsp;</h4>
                                         </td>
                                         <td ng-repeat="device in platform.devices track by $index" >
-                                            <input ng-model="device.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> {{device.devicename}}&nbsp;
+                                            <input ng-model="device.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
+                                            {{device.devicename}}&nbsp;&nbsp;&nbsp;
                                         </td>
                                     </tr>
                                     <tr>
@@ -103,7 +125,8 @@
                                             <h4>Versions:&nbsp;</h4>
                                         </td>
                                         <td ng-repeat="version in platform.versions track by $index">
-                                            <input ng-model="version.chosen" style='height:40px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> {{version.osver}}&nbsp;
+                                            <input ng-model="version.chosen" style='height:40px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
+                                            {{version.osver}}&nbsp;&nbsp;&nbsp;
                                         </td>
                                     </tr>
                                     <tr>
@@ -121,8 +144,10 @@
         <div class='row' style='border-bottom:1px solid'>
         </div>
 
-        <input type="text" class="form-control" id="filter-field" style="width:150px;margin-top:5px" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>
-
+    	<div class="btn-group" style='margin-top:10px;'>
+            <input type="text" id="filter-field" class="form-control tool-tip" style="width:150px;height:33px;display:inline" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>	
+			<h4 style='display:inline;'>{{getPosition()}}</h4>
+    	</div>
     </div>
     <!-- Chart variant dropdown END -->
 

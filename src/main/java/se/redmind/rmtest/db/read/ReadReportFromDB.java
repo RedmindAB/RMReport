@@ -91,6 +91,7 @@ public class ReadReportFromDB extends DBBridge{
 				timestamp.add("pass", new JsonPrimitive(rs.getInt("passed")));
 				timestamp.add("fail", new JsonPrimitive(rs.getInt("failure")));
 				timestamp.add("error", new JsonPrimitive(rs.getInt("error")));
+				timestamp.add("skipped", new JsonPrimitive(rs.getInt("skipped")));
 				graphArray.add(timestamp);
 			}
 		} catch (SQLException e) {

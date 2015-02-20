@@ -24,7 +24,7 @@ public class ReportXMLParserTest {
 
 	private static ReportLoader loader;
 	private static ReportXMLParser parser;
-	private static final String testFileName = "TEST-test.java.se.redmind.rmtest.selenium.example.AnotherGeneratedSuite-20150204-000001.xml";
+	private static final String testFileName = "TEST-test.java.se.redmind.rmtest.selenium.example.AnotherGeneratedSuite-20150309-080322.xml";
 	private static File file;
 	
 	@BeforeClass
@@ -37,7 +37,7 @@ public class ReportXMLParserTest {
 	@Test
 	public void getTestCaseList() {
 		NodeList list = parser.getNodeList(file, "testcase");
-		assertEquals(480, list.getLength());
+		assertEquals(1472, list.getLength());
 	}
 	
 	@Test
@@ -54,12 +54,9 @@ public class ReportXMLParserTest {
 	@Test
 	public void createReportObject(){
 		Report report = parser.getReportFromFile(file);
-		assertEquals("test.java.se.redmind.rmtest.selenium.example.AnotherGeneratedSuite(20150204-000001)", report.getName());
-		assertTrue(481.3582 == report.getTime());
-		assertEquals("10.9.5", report.getProperties().get("osversion").getAsJsonObject().get("value").getAsString());
-		assertEquals("os version", report.getProperties().get("osversion").getAsJsonObject().get("readName").getAsString());
+		assertEquals("test.java.se.redmind.rmtest.selenium.example.AnotherGeneratedSuite(20150309-080322)", report.getName());
 		JsonArray caseList = report.getTestCases();
-		assertEquals(480, caseList.size());
+		assertEquals(1472, caseList.size());
 	}
 	
 	@Test
@@ -67,7 +64,7 @@ public class ReportXMLParserTest {
 		Report report = parser.getSimpleReportFromFile(file);
 		assertNull(report.getTestCases());
 		report.convertToFullReport();
-		assertEquals(480, report.getTestCases().size());
+		assertEquals(1472, report.getTestCases().size());
 	}
 	
 	@Test
@@ -81,9 +78,9 @@ public class ReportXMLParserTest {
 	public void containsTestClasses(){
 		Report report = parser.getReportFromFile(file);
 		List<String> classes = report.getPresentTestClasses();
-		assertEquals(2, classes.size());
-		assertTrue(classes.contains("se.redmind.rmtest.selenium.example.RandomClass"));
-		assertTrue(classes.contains("se.redmind.rmtest.selenium.example.RandomSuperClass"));
+		assertEquals(10, classes.size());
+		assertTrue(classes.contains("se.redmind.rmtest.selenium.example.RandomClass1"));
+		assertTrue(classes.contains("se.redmind.rmtest.selenium.example.RandomClass2"));
 	}
 
 	@Test
@@ -99,10 +96,22 @@ public class ReportXMLParserTest {
 		String browserVer = driver.getBrowserVer();
 		
 		assertEquals("Android", os);
-		assertEquals("4.4.4", osVer);
-		assertEquals("HTC ONE", device);
+		assertEquals("5.1", osVer);
+		assertEquals("Nexus 6", device);
 		assertEquals("firefox", browser);
 		assertEquals("31", browserVer);
 	}
 	
+	@Test
+	public void checkForSkippedTests(){
+		Report report = parser.getReportFromFile(file);
+		List<ReportTestCase> testCaseArray = report.getTestCaseArray();
+		int skipped = 0;
+		for (ReportTestCase reportTestCase : testCaseArray) {
+			if (reportTestCase.getResult().equals("skipped")) {
+				skipped++;
+			}
+		}
+		assertEquals(32, skipped);
+	}
 }
