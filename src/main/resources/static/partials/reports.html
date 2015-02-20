@@ -68,7 +68,7 @@
                 {{CurrentSuite.currentTimeStamp}}
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu scrollable-menu">
+            <ul class="dropdown-menu scrollable-menu" style='cursor:pointer'>
                 <li ng-repeat="timeStamp in CurrentSuite.currentTimeStampArray"><a ng-click="loadNewTimeStamp(timeStamp)" id='timestamp'>
                         {{timeStamp}}
                     </a>
