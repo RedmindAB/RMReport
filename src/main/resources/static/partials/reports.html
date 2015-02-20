@@ -43,40 +43,38 @@
                 {{breakPointChoice}}
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu scrollable-menu">
-                <li ng-repeat="breakPoint in breakPoints"><a ng-click="setBreakPoint(breakPoint)">
+            <ul class="dropdown-menu scrollable-menu" style='cursor:pointer'>
+                <li ng-repeat="breakPoint in breakPoints"><a ng-click="setBreakPoint(breakPoint);loadMainChart(CurrentSuite.currentSuiteInfo.id)">
                         {{breakPoint}}
                     </a>
                 </li>
             </ul>
         </div>
-
-        <button style='width: 60px;margin:3px' id='button_clear' class="btn btn-default" ng-click="clearAllChosen()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>
+        
+        <form style='display:inline'>
+            <input type="text" id="suite-amount-input" class="form-control tool-tip" ng-change="loadMainChart(CurrentSuite.currentSuiteInfo.id)" style="width:150px;height:33px;display:inline" ng-model='Utilities.amountField' placeholder="Runs" title="Amount of runs to show" data-toggle="tooltip" data-placement="top" tooltip>	
+        </form>	
+        
+		<button ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" class="btn btn-default" id='graph_line' style='margin:7px'>
+			Add graph line
+		</button>
+		
+		<button style='width: 60px;margin:3px' id='button_clear' class="btn btn-default" ng-click="clearAllChosen();loadMainChart(CurrentSuite.currentSuiteInfo.id)" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>
             Clear
         </button>
-        <form style='display:inline'>
-            <input type="text" id="suite-amount-input" class="form-control tool-tip" style="width:150px;height:33px;display:inline" ng-model='Utilities.amountField' placeholder="Runs" title="Amount of runs to show" data-toggle="tooltip" data-placement="top" tooltip>	
-            <button class="btn btn-default" id='button_reload' style='margin:7px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>
-                Reload
-            </button>
-        </form>	
          
         <div class="btn-group">
             <button style='width:150px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
                 {{CurrentSuite.currentTimeStamp}}
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu scrollable-menu">
+            <ul class="dropdown-menu scrollable-menu" style='cursor:pointer'>
                 <li ng-repeat="timeStamp in CurrentSuite.currentTimeStampArray"><a ng-click="loadNewTimeStamp(timeStamp)" id='timestamp'>
                         {{timeStamp}}
                     </a>
                 </li>
             </ul>
         </div>
-        
-		<button ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" class="btn btn-default" id='graph_line' style='margin:7px'>
-			Add graph line
-		</button>
 
         <accordion close-others="false">
             <!-- repeated content -->
