@@ -198,17 +198,7 @@ angular.module('webLog')
 				platforms:[]
 		};
 		
-		//add platform to send
-		if (CurrentSuite.currentSpecObject.platforms) {
-			var platforms = CurrentSuite.currentSpecObject.platforms;
-			for (var i = 0; i < platforms.length; i++) {
-				if (platforms[i].chosen) {
-					chosen.platforms.push(platforms[i].osname);
-				}
-			}
-		}
-		
-		//add os to send
+		//add version to send
 		if (CurrentSuite.currentSpecObject.platforms) {
 			var platforms = CurrentSuite.currentSpecObject.platforms;
 			for (var i = 0; i < platforms.length; i++) {
@@ -230,6 +220,21 @@ angular.module('webLog')
 					if (devices[j].chosen) {
 						chosen.devices.push(devices[j].deviceid);
 					}
+				}
+			}
+		}
+		
+		//add platform to send
+		if (CurrentSuite.currentSpecObject.platforms) {
+			var platforms = CurrentSuite.currentSpecObject.platforms;
+			for (var i = 0; i < platforms.length; i++) {
+				if (platforms[i].chosen) {
+					for (var j = 0; j < platforms[i].versions.length; j++) {
+						if (chosen.os.indexOf(platforms[i].versions[j].osid) == -1) {
+							chosen.os.push(platforms[i].versions[j].osid);
+						}
+					}
+					chosen.platforms.push(platforms[i].osname);
 				}
 			}
 		}
@@ -311,12 +316,12 @@ angular.module('webLog')
 	
 	$scope.getSuiteSkeleton = function(suite){
 		CurrentSuite.currentSuiteInfo = suite;
+		console.log(suite.id);
 	    $http.get('/api/suite/latestbyid?suiteid=' + suite.id)
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		$scope.getSpecsInfo(suite.id);
 	    		CurrentSuite.currentSuite = data;
-	    		console.log(data);
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -377,12 +382,12 @@ angular.module('webLog')
 	    });
 	};
 	
-   $scope.loadMainChart = function(suiteID) {
+   $scope.loadMainChart = function(suiteID, newLine) {
     	var requestObject = $scope.getGraphDataObject(suiteID);
     	CurrentSuite.lastRunSize = getResLimit();
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){
-    		$scope.createMainChart(data);
+    		$scope.createMainChart(data, newLine);
     	}).error(function(data, status, headers, config){
     		console.log(data);
     	});
@@ -460,7 +465,11 @@ angular.module('webLog')
     	var addedUnknown = false;
     	
     	if (chosen.devices.length === 0) {
-    		chosen.devices = getAllDevices();
+    		if (chosen.os.length === 0) {
+    			chosen.devices = getAllDevices();
+			} else {
+				chosen.devices = getAllDevicesByPlatform(chosen);
+			}
 		}
     	for (var i = 0; i < chosen.devices.length; i++) {
     		var dataRequest = {};
@@ -478,9 +487,6 @@ angular.module('webLog')
     		dataRequest.classes = chosen.classes;
     		dataRequest.testcases = chosen.testcases;
 			
-    		console.log("Device name: " + dataRequest.name);
-    		console.log(chosen.devices[i]);
-    		
     		graphArray.push(dataRequest);
 		}
     	return graphArray;
@@ -489,9 +495,15 @@ angular.module('webLog')
     function splitDataOnVersion(suiteID, name) {
     	var graphArray = [];
     	var chosen = $scope.getChosen();
-    	
+    	console.log(chosen);
     	if (chosen.os.length === 0) {
-			chosen.os = getAllVersions();
+    		if (chosen.devices.length === 0) {
+    			console.log("getting all");
+    			chosen.os = getAllVersions();
+			} else {
+				console.log("getting specific");
+				chosen.os = getVersionsByDevice(chosen);
+			}
 		}
     	
     	for (var i = 0; i < chosen.os.length; i++) {
@@ -521,7 +533,6 @@ angular.module('webLog')
     	if (chosen.browsers.length === 0) {
 			chosen.browsers = getAllBrowsers();
 		}
-    	console.log(chosen.browsers);
     	for (var i = 0; i < chosen.browsers.length; i++) {
     		var dataRequest = {};
 
@@ -533,8 +544,6 @@ angular.module('webLog')
     		dataRequest.devices = chosen.devices;
     		dataRequest.classes = chosen.classes;
     		dataRequest.testcases = chosen.testcases;
-    		
-    		console.log(dataRequest.browsers);
     		
     		if (name) {
     			dataRequest.name = name;
@@ -562,7 +571,6 @@ angular.module('webLog')
     		dataRequest.reslimit = getResLimit();
     		
     		dataRequest.os = getVersionsByPlatform(chosen.platforms[i]);
-    		console.log(getVersionsByPlatform(chosen.platforms[i]));
     		dataRequest.browsers = chosen.browsers;
     		dataRequest.devices = chosen.devices;
     		dataRequest.classes = chosen.classes;
@@ -613,7 +621,6 @@ angular.module('webLog')
     };
     
     function getAllBrowsers(){
-    	console.log(CurrentSuite.currentSpecObject);
     	var specs = CurrentSuite.currentSpecObject;
     	var browserIDs = [];
     	for (var i = 0; i < specs.browsers.length; i++) {
@@ -633,9 +640,36 @@ angular.module('webLog')
 		}
     };
     
-    function getAllVersions(){
+    function getVersionsByDevice(chosen){
     	var specs = CurrentSuite.currentSpecObject;
     	console.log(specs);
+    	var versions = [];
+    	for (var i = 0; i < specs.platforms.length; i++) {
+    		for (var j = 0; j < specs.platforms[i].devices.length; j++) {
+	    		for (var k = 0; k < chosen.devices.length; k++) {
+	    			if (chosen.devices[k] === specs.platforms[i].devices[j].deviceid) {
+	    				versions.push(specs.platforms[i].devices[j].osver);
+					}
+				}
+    		}
+		}
+    	console.log(versions);
+    	var versionsToReturn = [];
+    	for (var i = 0; i < versions.length; i++) {
+    		for (var k = 0; k < specs.platforms.length; k++) {
+				for (var j = 0; j < specs.platforms[k].versions.length; j++) {
+					if (specs.platforms[k].versions[j].osver === versions[i]) {
+						versionsToReturn.push(specs.platforms[k].versions[j].osid);
+					}
+				}
+    		}
+		}
+    	console.log(versionsToReturn);
+    	return versionsToReturn;
+    };
+    
+    function getAllVersions(){
+    	var specs = CurrentSuite.currentSpecObject;
     	var versions = [];
     	for (var i = 0; i < specs.platforms.length; i++) {
 			var platform = specs.platforms[i];
@@ -696,6 +730,21 @@ angular.module('webLog')
     	return deviceIDs;
     }
     
+    function getAllDevicesByPlatform(chosen){
+    	var specs = CurrentSuite.currentSpecObject;
+    	var deviceIDs = [];
+    	for (var i = 0; i < specs.platforms.length; i++) {
+    		for (var k = 0; k < chosen.platforms.length; k++) {
+				if (chosen.platforms[k] === specs.platforms[i].osname) {
+					for (var j = 0; j < specs.platforms[i].devices.length; j++) {
+						deviceIDs.push(specs.platforms[i].devices[j].deviceid);
+					}
+				}
+			}
+		}
+    	return deviceIDs;
+    }
+    
     function getResLimit() {
 		var reslimit = Utilities.amountField;
 		if (!(isNaN(reslimit)) && !(reslimit === "")) {
@@ -707,7 +756,7 @@ angular.module('webLog')
 	};
 	// CHART OBJECTS -----------------------------------------------------------------------------------------------------------
 	
-    $scope.createMainChart = function(data){
+    $scope.createMainChart = function(data, newLine){
     	CurrentSuite.currentTimeStampArray = [];
     	for (var index = 0; index < data[0].data.length; index++) {
 			CurrentSuite.currentTimeStampArray.push(data[0].data[index].timestamp);
@@ -735,7 +784,7 @@ angular.module('webLog')
 			graphDataObj.name = graphName;
 			graphDataArray.push(graphDataObj);
 		}
-    	if (CurrentSuite.newLine) {
+    	if (newLine) {
     		for (var i = 0; i < graphDataArray.length; i++) {
 				Charts.data.push(graphDataArray[i]);
 			}
