@@ -377,8 +377,8 @@ angular.module('webLog')
 	    });
 	};
 	
-   $scope.loadMainChart = function(suiteID, name) {
-    	var requestObject = $scope.getGraphDataObject(suiteID, name);
+   $scope.loadMainChart = function(suiteID) {
+    	var requestObject = $scope.getGraphDataObject(suiteID);
     	CurrentSuite.lastRunSize = getResLimit();
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){
@@ -539,7 +539,7 @@ angular.module('webLog')
     		if (name) {
     			dataRequest.name = name;
     		} else {
-    			dataRequest.name = getBrowserByID(dataRequest.browsers[0]).browsername+" "+getBrowserByID(dataRequest.browsers[0]).browserver;
+    			dataRequest.name = getBrowserByID(dataRequest.browsers[0]).browsername+" v."+getBrowserByID(dataRequest.browsers[0]).browserver;
     		}
     		
     		graphArray.push(dataRequest);
@@ -587,7 +587,7 @@ angular.module('webLog')
     	if (name) {
     		dataRequest.name = name;
 		} else {
-			dataRequest.name = '';
+			dataRequest.name = "";
 		}
     	
 		dataRequest.suiteid = suiteID;
@@ -779,7 +779,18 @@ angular.module('webLog')
 					},
 					plotOptions : {
 						series : {
-							stacking : "normal"
+							cursor : 'pointer',
+							stacking : "normal",
+							point: {
+								events: {
+									click: function(e){
+										CurrentSuite.currentSuiteInfo.id = id;
+										$scope.loadNewTimeStamp(this.category);
+										$scope.loadMainChart(id);
+										$state.transitionTo('reports.classes');
+								}
+							}
+							}
 						}
 					}
 				},
