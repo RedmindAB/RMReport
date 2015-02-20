@@ -133,9 +133,9 @@ public class ReadFromDBTest {
     	String array = new GetDriverByTestcaseDAO().getDriverByTestcaseId(1, "20150204-000100");
     	System.out.println(array.toString());
     }
+    
     @Test
-    public void latestRunPerOsOrDeviceTest(){
-    	JsonArray array = new ReadReportFromDB().latestRunPerDevice();
-    	System.out.println(array);
+    public void deviceRunAmonthAgoTest(){
+    	JsonArray array = new ReadReportFromDB().deviceRunAmonthAgo();
     }
 }

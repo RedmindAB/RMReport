@@ -40,8 +40,8 @@ public class ReadReportFromDB extends DBBridge{
     String GET_SPECIFIC_METHOD_DRIVER_INFO = "select driver, timestamp, message, result, time from report where driver = ";
     String LIMIT = " limit 20";
     
-    String TIMESTAMP_AFTER_DATE = "select timestamp, device.devicename from report inner join device on report.device_id = device.device_id where timestamp > ";
-    String TIMESTAMP_BEFORE_DATE = "select timestamp, device.devicename from report inner join device on report.device_id = device.device_id where timestamp < ";
+    String TIMESTAMP_AFTER_DATE = "select timestamp, devicename from report inner join device on report.device_id = device.device_id where timestamp > ";
+    String TIMESTAMP_BEFORE_DATE = "select timestamp, devicename from report inner join device on report.device_id = device.device_id where timestamp < ";
     
     
     public List getDriverFromTestcase(Integer suite_id, Integer testcase_id){
@@ -147,36 +147,37 @@ public class ReadReportFromDB extends DBBridge{
 
     	return result;
     }
-	public JsonArray latestRunPerDevice(){
+	
+	public JsonArray deviceRunAmonthAgo(){
 		String dateAmonthAgo = new CalendarCounter().getDateOneMonthAgoAsString();
-		ResultSet rs = readFromDB(TIMESTAMP_AFTER_DATE+"'"+dateAmonthAgo+"-000000"+"'");
-		ResultSet rs2 = readFromDB(TIMESTAMP_BEFORE_DATE+"'"+dateAmonthAgo+"-000000"+"'");
+		ResultSet rs = readFromDB(TIMESTAMP_AFTER_DATE+"'"+dateAmonthAgo+"-000000"+"'"+" group by devicename");
+		ResultSet rs2 = readFromDB(TIMESTAMP_BEFORE_DATE+"'"+dateAmonthAgo+"-000000"+"'"+" group by devicename");
+		System.out.println(TIMESTAMP_BEFORE_DATE+"'"+dateAmonthAgo+"-000000"+"'"+" group by devicename");
 		JsonArray array = new JsonArray();
 		JsonArray array2 = new JsonArray();
-		JsonObject object = new JsonObject();
-		JsonObject object2 = new JsonObject();
-			try {
-				while(rs.next()){
+		JsonArray array3 = new JsonArray();
+		try {
+			while(rs.next()){
+				JsonObject object = new JsonObject();
 				object.add("device", new JsonPrimitive(rs.getString(2)));
 				array.add(object);
 				}
-				while(rs2.next()){
-					object2.add("device", new JsonPrimitive(rs2.getString(2)));
-					array2.add(object2);
-					
-				}
+			while(rs2.next()){
+				JsonObject object2 = new JsonObject();
+				object2.add("device", new JsonPrimitive(rs2.getString(2)));
+				array2.add(object2);
+				System.out.println(array2);
+				
 				if(array.contains(object2)){
 					return array2;
 				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-		
-		return array;
-		
-		
-
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return array3;
 	}
 
 	
