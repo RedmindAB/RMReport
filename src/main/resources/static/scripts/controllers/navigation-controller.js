@@ -3,7 +3,19 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuit
 	$scope.CurrentSuite = CurrentSuite;
 	
 	$scope.getPosition = function(){
-		return "position";
+		switch ($state.$current.name) {
+		case 'reports.classes':
+			return CurrentSuite.currentSuiteInfo.name;
+			reak;
+		case 'reports.methods':
+			return CurrentSuite.currentClass.name;
+			break;
+		case 'reports.cases':
+			return CurrentSuite.currentMethod.name;
+			break;
+		default:
+			break;
+		}
 	}
 	
 	$scope.setState = function(newState){
