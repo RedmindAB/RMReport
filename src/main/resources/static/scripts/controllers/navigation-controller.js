@@ -2,6 +2,10 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuit
 	
 	$scope.CurrentSuite = CurrentSuite;
 	
+	$scope.getPosition = function(){
+		return "position";
+	}
+	
 	$scope.setState = function(newState){
 		$state.transitionTo(newState);
 		$scope.clearChosen();
