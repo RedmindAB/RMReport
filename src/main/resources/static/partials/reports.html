@@ -30,7 +30,7 @@
     <div class="btn-group" style='display:inline;'>
         <div class="btn-group">
             <button type="button" id='button_display' class="btn btn-default" style='margin-top:6px' data-toggle="dropdown" aria-expanded="false">
-                Choose display type <span class="caret"></span>
+                Choose View <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
                 <li ng-repeat="variant in chartVariants"><a style='cursor:pointer' ng-click="changeChartVariant(variant)">{{variant}}</a></li>
@@ -91,7 +91,7 @@
                     <table>
                         <tr>
                             <td style='padding-right: 10px;font-size:20px' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
-                                <input type="checkbox" id='input_browser' ng-model="browser.chosen">
+                                <input type="checkbox" id='input_browser' ng-model="browser.chosen" ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)" >
                                 {{browser.browsername}} - v.{{browser.browserver}}
                             </td>
                         </tr>
@@ -105,16 +105,16 @@
                         <accordion close-others="false">
                             <accordion-group ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
                                 <accordion-heading id='reports_name'>
-                                    <input ng-model='platform.chosen' id='input_osname' style='height:30px' type="checkbox" class="mycheckbox" stop-click><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> 
-                                    {{platform.osname}}
+                                		<input ng-model='platform.chosen' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)" id='input_osname' style='height:30px' type="checkbox" class="mycheckbox" stop-click><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>    
+                                		{{platform.osname}}
                                 </accordion-heading>
                                 <table border='0'>
                                     <tr style='height:30px;'>
                                         <td>
                                             <h4>Devices:&nbsp;</h4>
                                         </td>
-                                        <td ng-repeat="device in platform.devices track by $index" >
-                                            <input ng-model="device.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
+                                        <td ng-repeat="device in platform.devices track by $index">
+                                            <input ng-model="device.chosen" style='height:30px' type="checkbox" id="mycheckbox" ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
                                             {{device.devicename}}&nbsp;&nbsp;&nbsp;
                                         </td>
                                     </tr>
@@ -123,7 +123,7 @@
                                             <h4>Versions:&nbsp;</h4>
                                         </td>
                                         <td ng-repeat="version in platform.versions track by $index">
-                                            <input ng-model="version.chosen" style='height:40px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
+                                            <input ng-model="version.chosen" style='height:40px' type="checkbox" id="mycheckbox" ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
                                             {{version.osver}}&nbsp;&nbsp;&nbsp;
                                         </td>
                                     </tr>
