@@ -23,18 +23,13 @@
     <!-- chart END -->
 
     <!-- Chart variant dropdown START -->
-
-    <div class="btn-group" style='display:inline;'>
-        <div class="btn-group">
-            <button type="button" id='button_display' class="btn btn-default" style='margin-top:6px' data-toggle="dropdown" aria-expanded="false">
+    <div>
+                <button type="button" id='button_display' class="btn btn-default" style='margin:3px' data-toggle="dropdown" aria-expanded="false">
                 Choose display type <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" role="menu">
+            <ul class="dropdown-menu" role="menu" style='margin:3px'>
                 <li ng-repeat="variant in chartVariants"><a style='cursor:pointer' ng-click="changeChartVariant(variant)">{{variant}}</a></li>
             </ul>
-        </div>
-    </div>
-    <div>
             <button style='width:150px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
                 {{breakPointChoice}}
                 <span class="caret"></span>
@@ -50,7 +45,7 @@
         </button>
         <form style='display:inline'>
             <input type="text" id="suite-amount-input" class="form-control" class="tool-tip" style="width:150px;height:33px;display:inline" ng-model='Utilities.amountField' placeholder="Runs" title="Amount of runs to show" data-toggle="tooltip" data-placement="top" tooltip>	
-            <button class="btn btn-default" id='button_reload' style='margin:7px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>
+            <button class="btn btn-default" id='button_reload' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>
                 Reload
             </button>
         </form>	
