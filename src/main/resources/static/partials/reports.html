@@ -140,10 +140,11 @@
         </accordion>
         <div class='row' style='border-bottom:1px solid'>
         </div>
-        <input type="text" class="form-control" id="filter-field" style="width:150px;margin-top:5px" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>
-		<div align='center'>       
-		{{getPosition()}}
-		</div>
+
+    	<div class="btn-group" style='margin-top:10px;'>
+            <input type="text" id="filter-field" class="form-control tool-tip" style="width:150px;height:33px;display:inline" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>	
+			<h4 style='display:inline;'>{{getPosition()}}</h4>
+    	</div>
     </div>
     <!-- Chart variant dropdown END -->
 
