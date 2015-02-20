@@ -18,6 +18,7 @@ import se.redmind.rmtest.db.read.ReadSuiteFromDB;
 import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseDAO;
 import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteDAO;
+import se.redmind.rmtest.web.route.api.suite.bytimestamp.GetSuiteByTimestampDAO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -141,6 +142,12 @@ public class ReadFromDBTest {
     @Test
     public void getLastestTimestamp(){
     	String array = new GetLatestSuiteDAO().getLatestSuite(1);
+    	System.out.println(array);
+    }
+    
+    @Test
+    public void getLastestByTimestamp(){
+    	String array = new GetSuiteByTimestampDAO().getSuiteByTimestamp(2, "20150101-080000");
     	System.out.println(array);
     }
 }
