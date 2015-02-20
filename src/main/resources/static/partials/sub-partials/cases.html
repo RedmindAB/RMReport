@@ -4,10 +4,10 @@
         <accordion-group ng-class='getPanel(case.result)' ng-style="{'background-color': getBgCo(case.result)}">
 
             <!-- non collapsing header -->
-            <accordion-heading>
+            <accordion-heading id='case_name'>
                 {{case.osname}} - {{case.devicename}} -	{{case.osversion}} - 	{{case.browsername}}
             </accordion-heading>
-            <input style='height:30px' type="checkbox" id="mycheckbox" ng-model="case.chosen"><label for="mycheckbox"></label>
+            <input style='height:30px' type="checkbox" id="checkbox_1" class='mycheckbox' ng-model="case.chosen"><label for="mycheckbox"></label>
             <!-- non collapsing header End-->
 
             <!-- Content in collapsing Div -->
@@ -29,7 +29,7 @@
 
                 <accordion ng-if="case.message.length > 2" close others="true">
                     <accordion-group ng-class='getPanel(case.result)' ng-style="{'background-color': getBgCo(case.result)}">
-                        <accordion-heading>
+                        <accordion-heading id='case_message'>
                             Display Error Message
                         </accordion-heading>
 
