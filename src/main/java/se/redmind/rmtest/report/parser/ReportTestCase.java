@@ -201,7 +201,7 @@ public class ReportTestCase{
 	}
 	
 	public String removeAllIlligalChars(String message){
-		return message.replaceAll("[^\\s\\w\\.]*", " ");
+		return message.replaceAll("[^\\s\\w\\.\\:]*", "");
 	}
 	
 	public boolean isBroken(){
