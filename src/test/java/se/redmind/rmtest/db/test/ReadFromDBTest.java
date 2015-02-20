@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
 import org.junit.rules.Timeout;
 
 import com.google.gson.JsonArray;
+import com.google.gson.internal.bind.JsonTreeWriter;
 
 import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.read.ReadClassFromDB;
@@ -16,6 +17,7 @@ import se.redmind.rmtest.db.read.ReadReportFromDB;
 import se.redmind.rmtest.db.read.ReadSuiteFromDB;
 import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseDAO;
+import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteDAO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -134,6 +136,11 @@ public class ReadFromDBTest {
     @Test
     public void latestRunPerOsOrDeviceTest(){
     	JsonArray array = new ReadReportFromDB().latestRunPerDevice();
+    	System.out.println(array);
+    }
+    @Test
+    public void getLastestTimestamp(){
+    	String array = new GetLatestSuiteDAO().getLatestSuite(1);
     	System.out.println(array);
     }
 }
