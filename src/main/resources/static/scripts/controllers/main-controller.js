@@ -457,6 +457,8 @@ angular.module('webLog')
     	var graphArray = [];
     	var chosen = $scope.getChosen();
     	
+    	var addedUnknown = false;
+    	
     	if (chosen.devices.length === 0) {
     		chosen.devices = getAllDevices();
 		}
@@ -476,6 +478,9 @@ angular.module('webLog')
     		dataRequest.classes = chosen.classes;
     		dataRequest.testcases = chosen.testcases;
 			
+    		console.log("Device name: " + dataRequest.name);
+    		console.log(chosen.devices[i]);
+    		
     		graphArray.push(dataRequest);
 		}
     	return graphArray;
@@ -668,7 +673,11 @@ angular.module('webLog')
     		var platform = CurrentSuite.currentSpecObject.platforms[i];
 			for (var j = 0; j < platform.devices.length; j++) {
 				if (platform.devices[j].deviceid === id) {
-					return platform.devices[j].devicename;
+					if (platform.devices[j].devicename === "UNKNOWN") {
+						return "Others";
+					} else {
+						return platform.devices[j].devicename;
+					}
 				}
 			}
 		}
@@ -679,7 +688,9 @@ angular.module('webLog')
     	var deviceIDs = [];
     	for (var i = 0; i < specs.platforms.length; i++) {
     		for (var j = 0; j < specs.platforms[i].devices.length; j++) {
-				deviceIDs.push(specs.platforms[i].devices[j].deviceid);
+    			if (deviceIDs.indexOf(specs.platforms[i].devices[j].deviceid) == -1) {
+    				deviceIDs.push(specs.platforms[i].devices[j].deviceid);
+				}
 			}
 		}
     	return deviceIDs;
