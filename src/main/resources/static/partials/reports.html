@@ -53,7 +53,7 @@
         </button>
         <form style='display:inline'>
             <input type="text" id="suite-amount-input" class="form-control tool-tip" style="width:150px;height:33px;display:inline" ng-model='Utilities.amountField' placeholder="Runs" title="Amount of runs to show" data-toggle="tooltip" data-placement="top" tooltip>	
-            <button class="btn btn-default" id='button_reload' style='margin:7px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>
+            <button class="btn btn-default" id='button_reload' style='margin:7px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, false)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>
                 Reload
             </button>
         </form>	
@@ -71,7 +71,7 @@
             </ul>
         </div>
         
-		<button ng-model='CurrentSuite.newLine' class="btn btn-default" id='graph_line' style='margin:7px' stop-click>
+		<button ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" ng-model='CurrentSuite.newLine' class="btn btn-default" id='graph_line' style='margin:7px'>
 			Add graph line
 		</button>
 
