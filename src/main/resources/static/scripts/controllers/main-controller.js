@@ -316,7 +316,6 @@ angular.module('webLog')
 	    	if(data){
 	    		$scope.getSpecsInfo(suite.id);
 	    		CurrentSuite.currentSuite = data;
-	    		console.log(data);
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -377,12 +376,12 @@ angular.module('webLog')
 	    });
 	};
 	
-   $scope.loadMainChart = function(suiteID) {
+   $scope.loadMainChart = function(suiteID, newLine) {
     	var requestObject = $scope.getGraphDataObject(suiteID);
     	CurrentSuite.lastRunSize = getResLimit();
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){
-    		$scope.createMainChart(data);
+    		$scope.createMainChart(data, newLine);
     	}).error(function(data, status, headers, config){
     		console.log(data);
     	});
@@ -478,9 +477,6 @@ angular.module('webLog')
     		dataRequest.classes = chosen.classes;
     		dataRequest.testcases = chosen.testcases;
 			
-    		console.log("Device name: " + dataRequest.name);
-    		console.log(chosen.devices[i]);
-    		
     		graphArray.push(dataRequest);
 		}
     	return graphArray;
@@ -521,7 +517,6 @@ angular.module('webLog')
     	if (chosen.browsers.length === 0) {
 			chosen.browsers = getAllBrowsers();
 		}
-    	console.log(chosen.browsers);
     	for (var i = 0; i < chosen.browsers.length; i++) {
     		var dataRequest = {};
 
@@ -533,8 +528,6 @@ angular.module('webLog')
     		dataRequest.devices = chosen.devices;
     		dataRequest.classes = chosen.classes;
     		dataRequest.testcases = chosen.testcases;
-    		
-    		console.log(dataRequest.browsers);
     		
     		if (name) {
     			dataRequest.name = name;
@@ -562,7 +555,6 @@ angular.module('webLog')
     		dataRequest.reslimit = getResLimit();
     		
     		dataRequest.os = getVersionsByPlatform(chosen.platforms[i]);
-    		console.log(getVersionsByPlatform(chosen.platforms[i]));
     		dataRequest.browsers = chosen.browsers;
     		dataRequest.devices = chosen.devices;
     		dataRequest.classes = chosen.classes;
@@ -613,7 +605,6 @@ angular.module('webLog')
     };
     
     function getAllBrowsers(){
-    	console.log(CurrentSuite.currentSpecObject);
     	var specs = CurrentSuite.currentSpecObject;
     	var browserIDs = [];
     	for (var i = 0; i < specs.browsers.length; i++) {
@@ -635,7 +626,6 @@ angular.module('webLog')
     
     function getAllVersions(){
     	var specs = CurrentSuite.currentSpecObject;
-    	console.log(specs);
     	var versions = [];
     	for (var i = 0; i < specs.platforms.length; i++) {
 			var platform = specs.platforms[i];
@@ -707,7 +697,7 @@ angular.module('webLog')
 	};
 	// CHART OBJECTS -----------------------------------------------------------------------------------------------------------
 	
-    $scope.createMainChart = function(data){
+    $scope.createMainChart = function(data, newLine){
     	CurrentSuite.currentTimeStampArray = [];
     	for (var index = 0; index < data[0].data.length; index++) {
 			CurrentSuite.currentTimeStampArray.push(data[0].data[index].timestamp);
@@ -735,7 +725,7 @@ angular.module('webLog')
 			graphDataObj.name = graphName;
 			graphDataArray.push(graphDataObj);
 		}
-    	if (CurrentSuite.newLine) {
+    	if (newLine) {
     		for (var i = 0; i < graphDataArray.length; i++) {
 				Charts.data.push(graphDataArray[i]);
 			}

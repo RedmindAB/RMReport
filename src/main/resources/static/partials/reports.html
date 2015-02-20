@@ -71,7 +71,7 @@
             </ul>
         </div>
         
-		<button ng-model='CurrentSuite.newLine' class="btn btn-default" id='graph_line' style='margin:7px' stop-click>
+		<button ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" class="btn btn-default" id='graph_line' style='margin:7px'>
 			Add graph line
 		</button>
 
