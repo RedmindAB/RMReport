@@ -1,15 +1,7 @@
-angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuite', 'Charts','$rootScope', function($scope, $state, CurrentSuite, Charts, $rootScope){
+angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuite', 'Charts', function($scope, $state, CurrentSuite, Charts){
 	
-	$rootScope.CurrentSuite = CurrentSuite;
-	$rootScope.Charts = Charts;
-	$rootScope.$watchCollection(Charts, function(){
-		console.log(Charts);
-		localStorage.setItem('charts', JSON.stringify(Charts));
-	});
-	$rootScope.$watch('CurrentSuite', function(newVal,oldVal){
-		console.log(CurrentSuite.currentClass);
-		localStorage.setItem('currentSuite', JSON.stringify(CurrentSuite));
-	}, true);
+	$scope.CurrentSuite = CurrentSuite;
+	$scope.Charts = Charts;
 	
 	$scope.getPosition = function(){
 		switch ($state.$current.name) {
@@ -26,6 +18,8 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuit
 			break;
 		}
 	}
+	
+	
 	
 	$scope.setState = function(newState){
 		$state.transitionTo(newState);
@@ -63,5 +57,14 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuit
 				}
 			}
 		}
-	}    
+	}   
+	var resetWebApp = function(){
+		console.log(CurrentSuite.currentSuiteInfo);
+		if (CurrentSuite.currentSuiteInfo.length === 0) {
+			if ($state.$current.name !== 'home') {
+				$scope.setState('home');
+			}
+		}
+	}
+	resetWebApp();
 }]);

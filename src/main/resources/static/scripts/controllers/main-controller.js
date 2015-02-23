@@ -385,7 +385,7 @@ angular.module('webLog')
 	};
 	
    $scope.loadMainChart = function(suiteID, newLine) {
-	   	Charts.mainChart.loading = 'Fetching data...';
+	   	Charts.mainChart.loading = 'Generating extrodinary relevant statistics...';
     	var requestObject = $scope.getGraphDataObject(suiteID);
     	CurrentSuite.lastRunSize = getResLimit();
     	$http.post('/api/stats/graphdata', requestObject)
@@ -400,8 +400,6 @@ angular.module('webLog')
 	   for (var i = 0; i < Charts.mainChart.series.length; i++) {
 		   for (var j = 0; j < Charts.mainChart.series[i].data.length; j++) {
 			   if (Charts.mainChart.xAxis.categories[j] === timestamp){
-				   console.log("timestamp");
-				   console.log(Charts.mainChart.xAxis.categories[j]);
 				   Charts.mainChart.xAxis.plotLines[0].value = j;
 				   return;
 			   }
@@ -910,6 +908,7 @@ angular.module('webLog')
     	Charts.mainChart.options.plotOptions.series.point.events.click = function (e) {
     		$scope.loadNewTimeStamp(this.category);
     	};
+    	Charts.mainChart.subtitle.text = "Showing " + CurrentSuite.currentTimeStampArray.length + " results";
 		$scope.chartMainConfig = Charts.mainChart;
 			
 			for (var i = 0; i < Charts.data.length; i++) {
@@ -1079,7 +1078,7 @@ angular.module('webLog')
     		chart.series.push({
     			data : Charts.data[i].passPercentage,
     			name : Charts.data[i].name,
-    			type: "line"
+    			type: "spline"
     		});
 		}
     	chart.yAxis.title.text = 'Pass percentage';

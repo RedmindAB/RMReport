@@ -99,7 +99,7 @@ angular.module('webLog')
 									rotation : 45
 								},
 								  plotLines: [{
-								    color: 'red', // Color value
+								    color: '#2c3e50', // Color value
 								    width: 2 // Width of the line    
 								  }]
 							},
@@ -121,6 +121,9 @@ angular.module('webLog')
 							loading : false,
 							size : {},
 							useHighStocks : false,
+							subtitle: {
+								text: "lots of tests"
+							}
 						},
 
 					// HOME PAGE CHART
