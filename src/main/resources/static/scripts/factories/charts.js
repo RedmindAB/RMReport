@@ -66,7 +66,13 @@ angular.module('webLog')
 									height : 420,
 									zoomType : 'x'
 								},
-								tooltip : {},
+								tooltip : {
+									crosshairs: true,
+						            shared: true,
+						            useHTML: true,
+						            headerFormat: '<small>{point.key}</small><table>',
+						            footerFormat: '</table>',
+								},
 								plotOptions : {
 									series : {
 										cursor : 'pointer',
