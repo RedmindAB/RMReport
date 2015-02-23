@@ -563,8 +563,11 @@ angular.module('webLog')
     	var graphArray = [];
     	var chosen = $scope.getChosen();
     	
+    	console.log("chosen");
+    	console.log(chosen);
+    	
     	if (chosen.platforms.length === 0) {
-			chosen.platforms = getAllPlatforms();
+    			chosen.platforms = getAllPlatforms();
 		}
     	
     	for (var i = 0; i < chosen.platforms.length; i++) {
@@ -573,9 +576,10 @@ angular.module('webLog')
     		dataRequest.suiteid = suiteID;
     		dataRequest.reslimit = getResLimit();
     		
-    		dataRequest.os = getVersionsByPlatform(chosen.platforms[i]);
+    		dataRequest.os = sortVersionsByPlatform(chosen.platforms[i], chosen.os);
+    		dataRequest.devices = sortDevicesByPlatform(chosen.platforms[i],chosen.devices);
+    		
     		dataRequest.browsers = chosen.browsers;
-    		dataRequest.devices = chosen.devices;
     		dataRequest.classes = chosen.classes;
     		dataRequest.testcases = chosen.testcases;
     		
@@ -680,16 +684,85 @@ angular.module('webLog')
     	return versions;
     }
     
-    function getVersionsByPlatform(platformName){
+    function sortVersionsByPlatform(platformName, chosenOS){
     	var specs = CurrentSuite.currentSpecObject;
-    	var platformVersions = [];
-    	for (var i = 0; i < specs.platforms.length; i++) {
-			if (specs.platforms[i].osname === platformName) {
-				for (var j = 0; j < specs.platforms[i].versions.length; j++) {
-					platformVersions.push(specs.platforms[i].versions[j].osid);
+    	var versions = [];
+    	if (chosenOS.length === 0) {
+			versions = getVersionsByPlatform(platformName, chosenOS);
+			return versions;
+		} else {
+			var allVersions = [];
+			var chosenVersions=[];
+			for (var i = 0; i < specs.platforms.length; i++) {
+				if (specs.platforms[i].osname === platformName) {
+					for (var j = 0; j < specs.platforms[i].versions.length; j++) {
+						allVersions.push(specs.platforms[i].versions[j].osid);
+						if (specs.platforms[i].versions[j].chosen) {
+							chosenVersions.push(specs.platforms[i].versions[j].osid);
+						}
+					}
 				}
 			}
 		}
+    	if (chosenVersions.length === 0) {
+			return allVersions;
+		} else {
+			return chosenVersions;
+		}
+    }
+    
+    function sortDevicesByPlatform(platformName, chosenDevices){
+    	var specs = CurrentSuite.currentSpecObject;
+    	console.log(specs);
+    	console.log(platformName);
+    	var devices = [];
+    	if (chosenDevices.length === 0) {
+			devices = getDevicesByPlatform(platformName, chosenDevices);
+			return devices;
+		} else {
+			var allDevices = [];
+			var chosenDevices=[];
+			for (var i = 0; i < specs.platforms.length; i++) {
+				if (specs.platforms[i].osname === platformName) {
+					for (var j = 0; j < specs.platforms[i].devices.length; j++) {
+						allDevices.push(specs.platforms[i].devices[j].deviceid);
+						if (specs.platforms[i].devices[j].chosen) {
+							chosenDevices.push(specs.platforms[i].devices[j].deviceid);
+						}
+					}
+				}
+			}
+		}
+    	if (chosenDevices.length === 0) {
+			return allDevices;
+		} else {
+			return chosenDevices;
+		}
+    }
+    
+    function getDevicesByPlatform(platformName, chosenDevices){
+    	var specs = CurrentSuite.currentSpecObject;
+    	var platformDevices = [];
+    		for (var i = 0; i < specs.platforms.length; i++) {
+    			if (specs.platforms[i].osname === platformName) {
+    				for (var j = 0; j < specs.platforms[i].devices.length; j++) {
+    					platformDevices.push(specs.platforms[i].devices[j].deviceid);
+    				}
+    			}
+    		}
+    	return platformDevices;
+    }
+    
+    function getVersionsByPlatform(platformName, chosenOS){
+    	var specs = CurrentSuite.currentSpecObject;
+    	var platformVersions = [];
+    		for (var i = 0; i < specs.platforms.length; i++) {
+    			if (specs.platforms[i].osname === platformName) {
+    				for (var j = 0; j < specs.platforms[i].versions.length; j++) {
+    					platformVersions.push(specs.platforms[i].versions[j].osid);
+    				}
+    			}
+    		}
     	return platformVersions;
     }
     
@@ -700,6 +773,14 @@ angular.module('webLog')
 			platforms.push(specs.platforms[i].osname);
 		}
     	return platforms;
+    }
+    
+    function getPlatformsByOs(chosen){
+    	var specs = CurrentSuite.currentSpecObject.platforms;
+    	
+    	for (var i = 0; i < specs.length; i++) {
+			
+		}
     }
     
     function getDeviceByID(id){
