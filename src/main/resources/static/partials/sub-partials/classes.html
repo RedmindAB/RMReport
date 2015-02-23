@@ -1,17 +1,17 @@
 <accordion close-others="true" >
     <!-- repeated content -->
-    <div style='cursor:pointer;height:40px;margin-top:10px' id='class_name' ng-repeat="class in CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:['result', 'name'] track by $index " 
+    <div style='cursor:pointer;margin-top:10px;height:30px' id='class_name' ng-repeat="class in CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:['result', 'name'] track by $index " 
          style='cursor: pointer;'
          ng-class='getPanel(class.result)' 
          ng-style="{'background-color': getBgCo(class.result)}">
-        <table>
+        <table border='0'>
             <tr >
                 <td>
-                    <input style='height:30px' type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="class.chosen"><label for="mycheckbox"></label>
+                    <input type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="class.chosen"><label for="mycheckbox"></label>
                 </td>
                 <td width='100%' ng-click="getMethods(class); setState('reports.methods'); resetFilterField()">
-                    <div ng-style="{'color' : getCo(class.result)}" style='height: 10px;margin-top:-30px'>
-                        <h3 >&nbsp;{{class.name}} - {{formatDecimals(class.time)}}</h3>
+                    <div ng-style="{'color' : getCo(class.result)}">
+                        <h3 style='margin-top:2px;float:right;display:inline'>&nbsp;{{class.name}} - {{formatDecimals(class.time)}}</h3>
                     </div>
                 </td>
             </tr>
