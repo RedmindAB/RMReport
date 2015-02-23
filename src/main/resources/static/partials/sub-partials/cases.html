@@ -1,13 +1,13 @@
 <accordion close-others="true">
     <!-- repeated content -->
-    <div ng-repeat="case in CurrentSuite.currentCases| filter: Utilities.searchField | orderBy:'result' track by $index " style='margin-top: 10px'>
+    <div ng-repeat="case in CurrentSuite.currentCases| filter: Utilities.searchField | orderBy:'result' track by $index">
+        <input style='margin-top:33px;' type="checkbox" id="checkbox_1" class='mycheckbox' ng-model="case.chosen"><label for="mycheckbox"></label>
         <accordion-group ng-class='getPanel(case.result)' ng-style="{'background-color': getBgCo(case.result)}">
 
             <!-- non collapsing header -->
             <accordion-heading id='case_name'>
                 {{case.osname}} - {{case.devicename}} -	{{case.osversion}} - 	{{case.browsername}} - {{case.result}}
             </accordion-heading>
-            <input style='height:30px' type="checkbox" id="checkbox_1" class='mycheckbox' ng-model="case.chosen"><label for="mycheckbox"></label>
             <!-- non collapsing header End-->
 
             <!-- Content in collapsing Div -->
