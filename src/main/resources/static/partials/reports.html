@@ -23,19 +23,20 @@
     <!-- chart END -->
 
     <!-- Chart variant dropdown START -->
-
-        <button style='width: 60px;margin:3px' id='button_clear' class="btn btn-default" ng-click="clearAllChosen()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>
-            Clear
-        </button>
-        <form style='display:inline'>
-            <button class="btn btn-default" id='button_reload' style='margin:7px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, false)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>
-                Reload
-            </button>
-        </form>	
         
 		<button ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" ng-model='CurrentSuite.newLine' class="btn btn-default" id='graph_line' style='margin:7px'>
 			Add graph line
 		</button>
+		
+		<button style='width: 60px;margin:3px' id='button_clear' class="btn btn-default" ng-click="clearAllChosen()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>
+            Clear
+        </button>
+		
+		<form style='display:inline'>
+            <button class="btn btn-default" id='button_reload' style='margin:7px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, false)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>
+                Reload
+            </button>
+        </form>	
 		
 		        <div class="btn-group">
             <button style='width:50px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
@@ -54,7 +55,7 @@
 	<div class="btn-group" style='display:inline;'>
         <div class="btn-group">
             <button type="button" style='margin:3px' id='button_display' class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
-                Choose display type <span class="caret"></span>
+                Choose graph view <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
                 <li ng-repeat="variant in chartVariants"><a style='cursor:pointer' ng-click="changeChartVariant(variant)">{{variant}}</a></li>
