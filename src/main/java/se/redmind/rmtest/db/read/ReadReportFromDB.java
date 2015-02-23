@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
@@ -148,39 +149,55 @@ public class ReadReportFromDB extends DBBridge{
 
     	return result;
     }
-	
-	public JsonArray deviceRunAmonthAgo(){
+	public JsonArray deviceRunThisMonth(){
 		String dateAmonthAgo = new CalendarCounter().getDateOneMonthAgoAsString();
 		ResultSet rs = readFromDB(TIMESTAMP_AFTER_DATE+"'"+dateAmonthAgo+"-000000"+"'"+" group by devicename");
-		ResultSet rs2 = readFromDB(TIMESTAMP_BEFORE_DATE+"'"+dateAmonthAgo+"-000000"+"'"+" group by devicename");
-		System.out.println(TIMESTAMP_BEFORE_DATE+"'"+dateAmonthAgo+"-000000"+"'"+" group by devicename");
 		JsonArray array = new JsonArray();
-		JsonArray array2 = new JsonArray();
-		JsonArray array3 = new JsonArray();
 		try {
 			while(rs.next()){
 				JsonObject object = new JsonObject();
 				object.add("device", new JsonPrimitive(rs.getString(2)));
 				array.add(object);
 				}
-			while(rs2.next()){
-				JsonObject object2 = new JsonObject();
-				object2.add("device", new JsonPrimitive(rs2.getString(2)));
-				array2.add(object2);
-				System.out.println(array2);
-				
-				if(array.contains(object2)){
-					return array2;
-				}
-			}
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return array3;
+		return array;
 	}
-
 	
+	public JsonArray deviceRunAmonthAgo(){
+		String dateAmonthAgo = new CalendarCounter().getDateOneMonthAgoAsString();
+		ResultSet rs2 = readFromDB(TIMESTAMP_BEFORE_DATE+"'"+dateAmonthAgo+"-000000"+"'"+" group by devicename");
+		JsonArray array2 = new JsonArray();
+		try {
+			while(rs2.next()){
+				JsonObject object2 = new JsonObject();
+				object2.add("device", new JsonPrimitive(rs2.getString(2)));
+				array2.add(object2);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return array2;
 	}
+	
+	public JsonArray compareDeviceAndDate(){
+		JsonArray array = null;
+		JsonArray array1 = deviceRunThisMonth();
+		JsonArray array2 = deviceRunAmonthAgo();
+		for(int j = 0; j < array2.size();j++){
+		for(int i = 0 ;i < array1.size(); i++){
+			if(array1.get(i).equals(array2.get(j))){
+				array2.remove(array1.get(i));
+			}
+			}
+			
+		}
+		return array2;
+		
+	}
+	
+}
 
