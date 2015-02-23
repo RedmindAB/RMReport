@@ -1,15 +1,15 @@
-angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuite', 'Charts', function($scope, $state, CurrentSuite, Charts){
+angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuite', 'Charts','$rootScope', function($scope, $state, CurrentSuite, Charts, $rootScope){
 	
-	$scope.CurrentSuite = CurrentSuite;
-	$scope.Charts = Charts;
-	$scope.$watchCollection(Charts, function(){
+	$rootScope.CurrentSuite = CurrentSuite;
+	$rootScope.Charts = Charts;
+	$rootScope.$watchCollection(Charts, function(){
 		console.log(Charts);
 		localStorage.setItem('charts', JSON.stringify(Charts));
 	});
-	$scope.$watchCollection(CurrentSuite, function(){
-		console.log(CurrentSuite.currentSuiteInfo);
+	$rootScope.$watch('CurrentSuite', function(newVal,oldVal){
+		console.log(CurrentSuite.currentClass);
 		localStorage.setItem('currentSuite', JSON.stringify(CurrentSuite));
-	});
+	}, true);
 	
 	$scope.getPosition = function(){
 		switch ($state.$current.name) {
