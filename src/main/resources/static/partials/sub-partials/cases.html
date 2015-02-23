@@ -6,7 +6,7 @@
 
             <!-- non collapsing header -->
             <accordion-heading id='case_name'>
-                {{case.osname}} - {{case.devicename}} -	{{case.osversion}} - 	{{case.browsername}} - {{case.result}}
+                <div style='margin-top:2px;display:inline;'>{{case.osname}} - {{case.devicename}} -	{{case.osversion}} - {{case.browsername}} - {{case.result}}</div><div style='margin-top:2px;float:right;display:inline'>{{case.timetorun}}</div>
             </accordion-heading>
             <!-- non collapsing header End-->
 
@@ -16,13 +16,11 @@
                     <thead>
                         <tr style='border-style: hidden'>
                             <th>Browser version</th>
-                            <th>Time to run</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>{{case.browserversion}}</td>
-                            <td>{{case.timetorun}}</td>
                         </tr>
                     </tbody>
                 </table>
