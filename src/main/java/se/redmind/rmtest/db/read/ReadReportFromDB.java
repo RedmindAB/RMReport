@@ -193,10 +193,11 @@ public class ReadReportFromDB extends DBBridge{
 				array2.remove(array1.get(i));
 			}
 			}
-			
+		}
+		if(array2.equals(null)){
+			return array;
 		}
 		return array2;
-		
 	}
 	
 }

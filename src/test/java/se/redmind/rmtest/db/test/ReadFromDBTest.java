@@ -50,7 +50,7 @@ public class ReadFromDBTest {
             ResultSet rs = stat.executeQuery("select * from testcase;");
             while(rs.next()){
             	
-                System.out.println("testcase name = " + rs.getString("name"));
+                System.out.println("testcase name = " + rs.getString("testcasename"));
                 System.out.println("testcase id = " + rs.getString("testcase_id"));
 
                 rs.close();
@@ -148,11 +148,7 @@ public class ReadFromDBTest {
     }
     @Test
     public void deviceRunAmonthAgoTest(){
-    	JsonArray array1 = new ReadReportFromDB().deviceRunThisMonth();
-    	JsonArray array2 = new ReadReportFromDB().deviceRunAmonthAgo();
-    	JsonArray array3 = new ReadReportFromDB().compareDeviceAndDate();
-    	System.out.println("1: "+array1);
-    	System.out.println("2: "+array2);
-    	System.out.println("3: "+array3);
+    	JsonArray array = new ReadReportFromDB().compareDeviceAndDate();
+    	System.out.println("Devices not run for a month: "+array);
     }
 }

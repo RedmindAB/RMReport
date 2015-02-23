@@ -1,6 +1,7 @@
 package se.redmind.rmtest.web.route.api;
 
 import static spark.Spark.*;
+import se.redmind.rmtest.web.api.device.getdevices.GetDevicesAMonthAgoWS;
 import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesWS;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseWS;
 import se.redmind.rmtest.web.route.api.getlogs.GetLogListWS;
@@ -34,6 +35,7 @@ public class ApiRouter {
 		get(new GetDriverByTestcaseWS("/api/driver/bytestcase"));
 		post(new GetGraphDataWS("/api/stats/graphdata"));
 		get(new GetGraphOptionsWS("/api/stats/options"));
+		get(new GetDevicesAMonthAgoWS("/api/device/notrunforamonth"));
 	}
 	
 	
