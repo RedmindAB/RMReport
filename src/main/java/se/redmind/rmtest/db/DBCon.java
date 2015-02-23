@@ -107,4 +107,13 @@ public class DBCon {
 			e.printStackTrace();
 		}
     }
+    
+    public void dropIMDB(){
+    	try {
+			imConnection.close();
+			imConnection = null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
 }

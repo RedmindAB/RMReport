@@ -85,12 +85,12 @@ public abstract class DBBridge {
 	
 	private Connection getConnection(int timestampRequestSize){
 		Connection connection;
-		if (timestampRequestSize > InMemoryDBHandler.timestamplimit) {
-//			System.out.println("Using normal connection");
+		if (timestampRequestSize > InMemoryDBHandler.timestamplimit || InMemoryDBHandler.updatingIMDB) {
+			System.out.println("Using normal connection");
 			connection = DBCon.getDbInstance().getConnection();
 		}
 		else {
-//			System.out.println("Using imdb connection");
+			System.out.println("Using imdb connection");
 			connection = DBCon.getDbInstance().getInMemoryConnection();
 		}
 		return connection;
