@@ -470,6 +470,8 @@ angular.module('webLog')
     	if (chosen.devices.length === 0) {
     		if (chosen.os.length === 0) {
     			chosen.devices = getAllDevices();
+			} else if (chosen.platforms.length === 0) {
+				chosen.devices = getAllDevicesByVersion(chosen);
 			} else {
 				chosen.devices = getAllDevicesByPlatform(chosen);
 			}
@@ -740,6 +742,30 @@ angular.module('webLog')
 			}
 		}
     	return deviceIDs;
+    }
+    
+    function getAllDevicesByVersion(chosen){
+    	var specs = CurrentSuite.currentSpecObject;
+    	var versions = [];
+    	for (var i = 0; i < specs.platforms.length; i++) {
+			for (var j = 0; j < specs.platforms[i].versions.length; j++) {
+				if (specs.platforms[i].versions[j].chosen) {
+					versions.push(specs.platforms[i].versions[j].osver);
+				}
+			}
+		}
+    	
+    	var devices = [];
+    	for (var i = 0; i < specs.platforms.length; i++) {
+			for (var j = 0; j < specs.platforms[i].devices.length; j++) {
+				for (var k = 0; k < versions.length; k++) {
+					if (versions[k] === specs.platforms[i].devices[j].osver) {
+						devices.push(specs.platforms[i].devices[j].deviceid);
+					}
+				}
+			}
+		}
+    	return devices;
     }
     
     function getResLimit() {
