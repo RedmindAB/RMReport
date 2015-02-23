@@ -385,6 +385,7 @@ angular.module('webLog')
 	};
 	
    $scope.loadMainChart = function(suiteID, newLine) {
+	   Charts.mainChart.loading = 'Fetching data...';
     	var requestObject = $scope.getGraphDataObject(suiteID);
     	CurrentSuite.lastRunSize = getResLimit();
     	$http.post('/api/stats/graphdata', requestObject)
@@ -801,6 +802,7 @@ angular.module('webLog')
 				});
 			}
 			$scope.changeChartVariant();
+			Charts.mainChart.loading = false;
     };
     
     function getPassPercentage(pass, fail, error){
@@ -904,7 +906,10 @@ angular.module('webLog')
     	
     	chart.yAxis.title.text = 'Time to run';
     	chart.options.plotOptions.series.stacking = '';
-    	chart.title.text = "Time to run in seconds for the last " + CurrentSuite.lastRunSize + " runs";
+    	chart.title.text = "Time to run in seconds";
+    	Charts.mainChart.options.tooltip.pointFormat = '<tr><td style="color: {series.color}">{series.name}: </td>' +
+                    '<td style="text-align: right"><b>{point.y} seconds</b></td></tr>';
+    	Charts.mainChart.options.tooltip.valueDecimals = 2;
 	}
     
     function totalPassChart() {
@@ -924,7 +929,10 @@ angular.module('webLog')
 		}
     	chart.yAxis.title.text = 'Passed test';
     	chart.options.plotOptions.series.stacking = '';
-    	chart.title.text = "Amount of passed tests for the last " + CurrentSuite.lastRunSize+ " runs";
+    	chart.title.text = "Passed tests";
+    	Charts.mainChart.options.tooltip.pointFormat = '<tr><td style="color: {series.color}">{series.name}: </td>' +
+        '<td style="text-align: right"><b>{point.y} passed tests</b></td></tr>';
+    	delete Charts.mainChart.options.tooltip.valueDecimals;
 	}
     
     function totalFailChart() {
@@ -944,7 +952,10 @@ angular.module('webLog')
 		}
     	chart.yAxis.title.text = 'Failed test';
     	chart.options.plotOptions.series.stacking = '';
-    	chart.title.text = "Amount of failed tests for the last " + CurrentSuite.lastRunSize + " runs";
+    	chart.title.text = "Failed tests";
+    	Charts.mainChart.options.tooltip.pointFormat = '<tr><td style="color: {series.color}">{series.name}: </td>' +
+        '<td style="text-align: right"><b>{point.y} failed tests</b></td></tr>';
+    	delete Charts.mainChart.options.tooltip.valueDecimals;
 	}
     
     function passFailChart() {
@@ -960,6 +971,9 @@ angular.module('webLog')
     		});
 		}
     	chart.yAxis.title.text = 'Percentage';
-    	chart.title.text = "Pass/Fail ratio for the last " + CurrentSuite.lastRunSize + " runs";
+    	chart.title.text = "Percentage of passed tests";
+    	Charts.mainChart.options.tooltip.pointFormat = '<tr><td style="color: {series.color}">{series.name}: </td>' +
+        '<td style="text-align: right"><b>{point.y} percentage passed</b></td></tr>';
+    	delete Charts.mainChart.options.tooltip.valueDecimals;
 	}
 }]);
