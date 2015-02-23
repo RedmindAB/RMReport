@@ -397,9 +397,22 @@ angular.module('webLog')
     	});
    };
    
+   function highlightPoint(timestamp){
+	   var chart = $('#chart1').highcharts();
+	   
+	   for (var i = 0; i < chart.series.length; i++) {
+		   for (var j = 0; j < chart.series[i].data.length; j++) {
+			   if (chart.series[i].data[j].category === timestamp){
+				   chart.series[i].data[j].select(true,false);
+			   }
+		   }
+	   }
+   }
+   
    $scope.loadNewTimeStamp = function(timestamp){
 	   $scope.getSuiteSkeletonByTimeStamp(timestamp);
 	   CurrentSuite.currentTimeStamp = timestamp;
+	   highlightPoint(timestamp);
    }
     
     $scope.createHomeChartFromID = function(id) {

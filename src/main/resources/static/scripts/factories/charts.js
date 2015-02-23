@@ -85,7 +85,7 @@ angular.module('webLog')
 											}
 										},
 										marker : {
-											lineWidth : 1
+											lineWidth : 1,
 										}
 									}
 								}
