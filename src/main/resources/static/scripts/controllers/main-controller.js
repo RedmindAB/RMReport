@@ -385,8 +385,9 @@ angular.module('webLog')
 	};
 	
    $scope.loadMainChart = function(suiteID, newLine) {
-	   Charts.mainChart.loading = 'Fetching data...';
+	   	Charts.mainChart.loading = 'Fetching data...';
     	var requestObject = $scope.getGraphDataObject(suiteID);
+    	console.log(requestObject);
     	CurrentSuite.lastRunSize = getResLimit();
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){
@@ -747,6 +748,7 @@ angular.module('webLog')
     function getAllDevicesByVersion(chosen){
     	var specs = CurrentSuite.currentSpecObject;
     	var versions = [];
+    	console.log(specs);
     	for (var i = 0; i < specs.platforms.length; i++) {
 			for (var j = 0; j < specs.platforms[i].versions.length; j++) {
 				if (specs.platforms[i].versions[j].chosen) {
@@ -930,11 +932,9 @@ angular.module('webLog')
     		});
 		}
     	
-    	chart.yAxis.title.text = 'Time to run';
+    	chart.yAxis.title.text = 'Seconds';
     	chart.options.plotOptions.series.stacking = '';
     	chart.title.text = "Time to run in seconds";
-    	Charts.mainChart.options.tooltip.pointFormat = '<tr><td style="color: {series.color}">{series.name}: </td>' +
-                    '<td style="text-align: right"><b>{point.y} seconds</b></td></tr>';
     	Charts.mainChart.options.tooltip.valueDecimals = 2;
 	}
     
@@ -953,11 +953,9 @@ angular.module('webLog')
 				connectNulls : false
     		});
 		}
-    	chart.yAxis.title.text = 'Passed test';
+    	chart.yAxis.title.text = 'Passed tests';
     	chart.options.plotOptions.series.stacking = '';
     	chart.title.text = "Passed tests";
-    	Charts.mainChart.options.tooltip.pointFormat = '<tr><td style="color: {series.color}">{series.name}: </td>' +
-        '<td style="text-align: right"><b>{point.y} passed tests</b></td></tr>';
     	delete Charts.mainChart.options.tooltip.valueDecimals;
 	}
     
@@ -976,11 +974,9 @@ angular.module('webLog')
 				connectNulls : false
     		});
 		}
-    	chart.yAxis.title.text = 'Failed test';
+    	chart.yAxis.title.text = 'Failed tests';
     	chart.options.plotOptions.series.stacking = '';
     	chart.title.text = "Failed tests";
-    	Charts.mainChart.options.tooltip.pointFormat = '<tr><td style="color: {series.color}">{series.name}: </td>' +
-        '<td style="text-align: right"><b>{point.y} failed tests</b></td></tr>';
     	delete Charts.mainChart.options.tooltip.valueDecimals;
 	}
     
@@ -996,10 +992,8 @@ angular.module('webLog')
     			type: "line"
     		});
 		}
-    	chart.yAxis.title.text = 'Percentage';
+    	chart.yAxis.title.text = 'Pass percentage';
     	chart.title.text = "Percentage of passed tests";
-    	Charts.mainChart.options.tooltip.pointFormat = '<tr><td style="color: {series.color}">{series.name}: </td>' +
-        '<td style="text-align: right"><b>{point.y} percentage passed</b></td></tr>';
     	delete Charts.mainChart.options.tooltip.valueDecimals;
 	}
 }]);
