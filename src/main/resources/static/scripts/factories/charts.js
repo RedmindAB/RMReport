@@ -97,7 +97,11 @@ angular.module('webLog')
 								minTickInterval : 5,
 								labels : {
 									rotation : 45
-								}
+								},
+								  plotLines: [{
+								    color: 'red', // Color value
+								    width: 2 // Width of the line    
+								  }]
 							},
 							yAxis : {
 								title : {

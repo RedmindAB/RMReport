@@ -387,7 +387,6 @@ angular.module('webLog')
    $scope.loadMainChart = function(suiteID, newLine) {
 	   	Charts.mainChart.loading = 'Fetching data...';
     	var requestObject = $scope.getGraphDataObject(suiteID);
-    	console.log(requestObject);
     	CurrentSuite.lastRunSize = getResLimit();
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){
@@ -398,15 +397,17 @@ angular.module('webLog')
    };
    
    function highlightPoint(timestamp){
-	   var chart = $('#chart1').highcharts();
-	   
-	   for (var i = 0; i < chart.series.length; i++) {
-		   for (var j = 0; j < chart.series[i].data.length; j++) {
-			   if (chart.series[i].data[j].category === timestamp){
-				   chart.series[i].data[j].select(true,false);
+	   for (var i = 0; i < Charts.mainChart.series.length; i++) {
+		   for (var j = 0; j < Charts.mainChart.series[i].data.length; j++) {
+			   if (Charts.mainChart.xAxis.categories[j] === timestamp){
+				   console.log("timestamp");
+				   console.log(Charts.mainChart.xAxis.categories[j]);
+				   Charts.mainChart.xAxis.plotLines[0].value = j;
+				   return;
 			   }
 		   }
 	   }
+	   delete Charts.mainChart.xAxis.plotLines[0].value;
    }
    
    $scope.loadNewTimeStamp = function(timestamp){
@@ -576,9 +577,6 @@ angular.module('webLog')
     	var graphArray = [];
     	var chosen = $scope.getChosen();
     	
-    	console.log("chosen");
-    	console.log(chosen);
-    	
     	if (chosen.platforms.length === 0) {
     			chosen.platforms = getAllPlatforms();
 		}
@@ -726,8 +724,6 @@ angular.module('webLog')
     
     function sortDevicesByPlatform(platformName, chosenDevices){
     	var specs = CurrentSuite.currentSpecObject;
-    	console.log(specs);
-    	console.log(platformName);
     	var devices = [];
     	if (chosenDevices.length === 0) {
 			devices = getDevicesByPlatform(platformName, chosenDevices);
@@ -842,7 +838,6 @@ angular.module('webLog')
     function getAllDevicesByVersion(chosen){
     	var specs = CurrentSuite.currentSpecObject;
     	var versions = [];
-    	console.log(specs);
     	for (var i = 0; i < specs.platforms.length; i++) {
 			for (var j = 0; j < specs.platforms[i].versions.length; j++) {
 				if (specs.platforms[i].versions[j].chosen) {
@@ -925,6 +920,7 @@ angular.module('webLog')
 			}
 			$scope.changeChartVariant();
 			Charts.mainChart.loading = false;
+			highlightPoint(CurrentSuite.currentTimeStamp);
     };
     
     function getPassPercentage(pass, fail, error){
