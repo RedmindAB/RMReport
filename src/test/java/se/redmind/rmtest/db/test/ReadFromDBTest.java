@@ -38,8 +38,8 @@ import java.util.Set;
 public class ReadFromDBTest {
     Connection conn = DBCon.getDbInstance().getConnection();
     
-    @Rule
-    public Timeout timeout = new Timeout(500);
+    //@Rule
+    //public Timeout timeout = new Timeout(500);
 
     @Test
     public void readFromTestcases(){
@@ -136,10 +136,6 @@ public class ReadFromDBTest {
     }
     
     @Test
-    public void deviceRunAmonthAgoTest(){
-    	JsonArray array = new ReadReportFromDB().deviceRunAmonthAgo();
-    }
-    @Test
     public void getLastestTimestamp(){
     	String array = new GetLatestSuiteDAO().getLatestSuite(1);
     	System.out.println(array);
@@ -149,5 +145,14 @@ public class ReadFromDBTest {
     public void getLastestByTimestamp(){
     	String array = new GetSuiteByTimestampDAO().getSuiteByTimestamp(2, "20150101-080000");
     	System.out.println(array);
+    }
+    @Test
+    public void deviceRunAmonthAgoTest(){
+    	JsonArray array1 = new ReadReportFromDB().deviceRunThisMonth();
+    	JsonArray array2 = new ReadReportFromDB().deviceRunAmonthAgo();
+    	JsonArray array3 = new ReadReportFromDB().compareDeviceAndDate();
+    	System.out.println("1: "+array1);
+    	System.out.println("2: "+array2);
+    	System.out.println("3: "+array3);
     }
 }
