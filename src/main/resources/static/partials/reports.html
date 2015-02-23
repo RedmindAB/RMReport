@@ -75,7 +75,7 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li ng-repeat="breakPoint in breakPoints"><a style='cursor:pointer'>
+                <li ng-repeat="breakPoint in breakPoints" ng-click='setBreakPoint(breakPoint)'><a style='cursor:pointer'>
                 {{breakPoint}}
                 	</a>
                 </li>
