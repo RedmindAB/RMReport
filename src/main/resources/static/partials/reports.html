@@ -29,7 +29,7 @@
         </button>
         
         		        <div class="btn-group">
-            <button style='width:50px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
+            <button style='width:80px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
                 {{Utilities.amountField}}
                 <span class="caret"></span>
             </button>
@@ -41,11 +41,11 @@
             </ul>
         </div>
         
-		<button ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" ng-model='CurrentSuite.newLine' class="btn btn-default" id='graph_line' style='margin:7px'>
+		<button ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" ng-model='CurrentSuite.newLine' class="btn btn-default" id='graph_line' style='margin:7px' title="Add a new line to the graph above" data-toggle="tooltip" data-placement="top" tooltip>
 			Add graph line
 		</button>
 		
-		<form style='display:inline'>
+		<form style='display:inline;'>
             <button class="btn btn-default" id='button_reload' style='margin:7px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, false)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>
                 Reload
             </button>
@@ -54,34 +54,42 @@
 		<br>
 	<div class="btn-group" style='display:inline;'>
         <div class="btn-group">
-            <button type="button" style='margin:3px' id='button_display' class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
-                Choose graph view <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li ng-repeat="variant in chartVariants"><a style='cursor:pointer' ng-click="changeChartVariant(variant)">{{variant}}</a></li>
-            </ul>
-        </div>
-    </div>
-    <div>
-        <div class="btn-group">
-            <button style='width:150px;margin:3px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
-                {{breakPointChoice}}
+           	<h5 style='margin:3px;border-top:1px solid;padding:4px'>Choose graph view</h5>
+           	<button style='width:150px;margin:3px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
+                {{Utilities.graphView}}
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu scrollable-menu">
-                <li ng-repeat="breakPoint in breakPoints"><a ng-click="setBreakPoint(breakPoint)">
-                        {{breakPoint}}
-                    </a>
+            <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="variant in chartVariants"><a style='cursor:pointer' ng-click="changeChartVariant(variant)">
+                {{variant}}
+                	</a>
                 </li>
             </ul>
         </div>
+    </div>
+
+        <div class="btn-group">
+			<h5 style='margin:3px;border-top:1px solid;padding:4px'>Choose break point</h5>
+			<button style='width:150px;margin:3px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
+                {{breakPointChoice}}
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="breakPoint in breakPoints"><a style='cursor:pointer' ng-click="changeChartVariant(variant)">
+                {{breakPoint}}
+                	</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
         <accordion close-others="false">
             <!-- repeated content -->
-            <div style='width:135px;' id='hej'>
-                <accordion-group>
+            <div style='width:135px;margin:3px' id='expandable'>
+                <accordion-group >
 
                     <accordion-heading id='reports_spec'>
-                        <a style='color:black;font-weight: normal;' onClick="if (document.getElementById('hej').style.width == '135px'){document.getElementById('hej').style.width = '100%'; } else{document.getElementById('hej').style.width = '135px'; }">
+                        <a style='color:black;font-weight: normal;' onClick="if (document.getElementById('expandable').style.width == '135px'){document.getElementById('expandable').style.width = '100%'; } else{document.getElementById('expandable').style.width = '135px'; }">
                             Specifications
                         </a>
                     </accordion-heading>
@@ -102,9 +110,10 @@
                     <!-- Content in collapsing Div -->
                     <div>		    
                         <accordion close-others="false">
-                            <accordion-group ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
-                                <accordion-heading id='reports_name'>
-                                    <input ng-model='platform.chosen' id='input_osname' style='height:30px' type="checkbox" class="mycheckbox" stop-click><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> 
+                        	<div ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
+                            <input style='margin-top:32px' ng-model='platform.chosen' id='input_osname' type="checkbox" class="mycheckbox" stop-click><label for="mycheckbox" style='font-weight:normal;'></label>
+                            <accordion-group>
+                                <accordion-heading id='reports_name'> 
                                     {{platform.osname}}
                                 </accordion-heading>
                                 <table border='0'>
@@ -130,6 +139,7 @@
                                     </tr>
                                 </table>
                             </accordion-group>
+						</div>
                         </accordion>	            
                     </div>
                     <!-- Content in collapsing Div End -->
@@ -154,7 +164,7 @@
             </ul>
         </div>
             	<div class="btn-group" style='margin-top:10px;'>
-            <input type="text" id="filter-field" class="form-control tool-tip" style="width:150px;height:33px;display:inline" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>	
+            <input type="text" id="filter-field" class="form-control tool-tip" style="width:150px;display:inline" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>	
 			<h4 style='display:inline;'>{{getPosition()}}</h4>
     	</div>
     </div>
