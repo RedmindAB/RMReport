@@ -24,9 +24,36 @@
 
     <!-- Chart variant dropdown START -->
 
-    <div class="btn-group" style='display:inline;'>
+        <button style='width: 60px;margin:3px' id='button_clear' class="btn btn-default" ng-click="clearAllChosen()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>
+            Clear
+        </button>
+        <form style='display:inline'>
+            <button class="btn btn-default" id='button_reload' style='margin:7px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, false)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>
+                Reload
+            </button>
+        </form>	
+        
+		<button ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" ng-model='CurrentSuite.newLine' class="btn btn-default" id='graph_line' style='margin:7px'>
+			Add graph line
+		</button>
+		
+		        <div class="btn-group">
+            <button style='width:50px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
+                {{Utilities.amountField}}
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu scrollable-menu">
+                <li ng-repeat="run in runValues"><a ng-click="setAmountField(run)" id='timestamp'>
+                        {{run}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+		
+		<br>
+	<div class="btn-group" style='display:inline;'>
         <div class="btn-group">
-            <button type="button" id='button_display' class="btn btn-default" style='margin-top:6px' data-toggle="dropdown" aria-expanded="false">
+            <button type="button" style='margin:3px' id='button_display' class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
                 Choose display type <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
@@ -35,8 +62,8 @@
         </div>
     </div>
     <div>
-        <div class="btn-group" style='margin:3px'>
-            <button style='width:150px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
+        <div class="btn-group">
+            <button style='width:150px;margin:3px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
                 {{breakPointChoice}}
                 <span class="caret"></span>
             </button>
@@ -47,34 +74,6 @@
                 </li>
             </ul>
         </div>
-
-        <button style='width: 60px;margin:3px' id='button_clear' class="btn btn-default" ng-click="clearAllChosen()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>
-            Clear
-        </button>
-        <form style='display:inline'>
-            <input type="text" id="suite-amount-input" class="form-control tool-tip" style="width:150px;height:33px;display:inline" ng-model='Utilities.amountField' placeholder="Runs" title="Amount of runs to show" data-toggle="tooltip" data-placement="top" tooltip>	
-            <button class="btn btn-default" id='button_reload' style='margin:7px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, false)" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>
-                Reload
-            </button>
-        </form>	
-         
-        <div class="btn-group">
-            <button style='width:150px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
-                {{CurrentSuite.currentTimeStamp}}
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu scrollable-menu">
-                <li ng-repeat="timeStamp in CurrentSuite.currentTimeStampArray"><a ng-click="loadNewTimeStamp(timeStamp)" id='timestamp'>
-                        {{timeStamp}}
-                    </a>
-                </li>
-            </ul>
-        </div>
-        
-		<button ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" ng-model='CurrentSuite.newLine' class="btn btn-default" id='graph_line' style='margin:7px'>
-			Add graph line
-		</button>
-
         <accordion close-others="false">
             <!-- repeated content -->
             <div style='width:135px;' id='hej'>
@@ -141,7 +140,19 @@
         <div class='row' style='border-bottom:1px solid'>
         </div>
 
-    	<div class="btn-group" style='margin-top:10px;'>
+    			<div class="btn-group" style='margin-top:10px;'>
+            <button style='width:150px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
+                {{CurrentSuite.currentTimeStamp}}
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu scrollable-menu">
+                <li ng-repeat="timeStamp in CurrentSuite.currentTimeStampArray"><a ng-click="loadNewTimeStamp(timeStamp)" id='timestamp'>
+                        {{timeStamp}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+            	<div class="btn-group" style='margin-top:10px;'>
             <input type="text" id="filter-field" class="form-control tool-tip" style="width:150px;height:33px;display:inline" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>	
 			<h4 style='display:inline;'>{{getPosition()}}</h4>
     	</div>
