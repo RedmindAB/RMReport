@@ -5,13 +5,14 @@
     <!-- project logo END-->
     <link rel="stylesheet" href="css/style.css">		
     <!-- navigation links -->
+    <br>
     <h4>
         <table>
             <tr>
                 <td>
-                    <div id="navigation-classes" ng-click="setState('reports.classes')" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;| {{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
-                    <div id="navigation-methods" ng-click="setState('reports.methods')" class="navTextStuff" ng-show="showClassLink('methods')">&#10140; {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
-                    <div id="navigation-drivers" ng-click="setState('reports.cases')" class="navTextStuff" ng-show="showClassLink('cases')">&#10140; {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
+                    <div style='word-wrap:break-all' id="navigation-classes" ng-click="setState('reports.classes')" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;| {{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
+                    <div style='word-break:break-all' id="navigation-methods" ng-click="setState('reports.methods')" class="navTextStuff" ng-show="showClassLink('methods')">&#10140; {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
+                    <div style='word-break:break-all' id="navigation-drivers" ng-click="setState('reports.cases')" class="navTextStuff" ng-show="showClassLink('cases')">&#10140; {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
                 </td>
             </tr>
         </table>
