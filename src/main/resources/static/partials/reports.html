@@ -41,7 +41,7 @@
             </ul>
         </div>
         
-		<button ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" ng-model='CurrentSuite.newLine' class="btn btn-default" id='graph_line' style='margin:7px' title="Add a new line to the graph" data-toggle="tooltip" data-placement="top" tooltip>
+		<button ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" ng-model='CurrentSuite.newLine' class="btn btn-default" id='graph_line' style='margin:7px' title="Add a new line to the graph above" data-toggle="tooltip" data-placement="top" tooltip>
 			Add graph line
 		</button>
 		
@@ -110,9 +110,10 @@
                     <!-- Content in collapsing Div -->
                     <div>		    
                         <accordion close-others="false">
-                            <accordion-group ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
-                                <accordion-heading id='reports_name'>
-                                    <input ng-model='platform.chosen' id='input_osname' style='height:30px' type="checkbox" class="mycheckbox" stop-click><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label> 
+                        	<div ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
+                            <input style='margin-top:32px' ng-model='platform.chosen' id='input_osname' type="checkbox" class="mycheckbox" stop-click><label for="mycheckbox" style='font-weight:normal;'></label>
+                            <accordion-group>
+                                <accordion-heading id='reports_name'> 
                                     {{platform.osname}}
                                 </accordion-heading>
                                 <table border='0'>
@@ -138,6 +139,7 @@
                                     </tr>
                                 </table>
                             </accordion-group>
+						</div>
                         </accordion>	            
                     </div>
                     <!-- Content in collapsing Div End -->
