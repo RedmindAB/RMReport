@@ -1,17 +1,18 @@
 <!-- Chart -->
 <div>
     <!-- project logo -->
-    <img ng-src="{{imagePaths[CurrentSuite.currentSuiteInfo.id - 1]}}" style="cursor: pointer" class='image-paths' ng-click="setState('home')"></img> 
+    <img ng-src="{{imagePaths[CurrentSuite.currentSuiteInfo.id - 1]}}" style="cursor: pointer;margin-top:10px" class='image-paths' ng-click="setState('home')"></img> 
     <!-- project logo END-->
     <link rel="stylesheet" href="css/style.css">		
     <!-- navigation links -->
+    <br><br>
     <h4>
         <table>
             <tr>
                 <td>
-                    <div id="navigation-classes" ng-click="setState('reports.classes')" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;| {{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
-                    <div id="navigation-methods" ng-click="setState('reports.methods')" class="navTextStuff" ng-show="showClassLink('methods')">&#10140; {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
-                    <div id="navigation-drivers" ng-click="setState('reports.cases')" class="navTextStuff" ng-show="showClassLink('cases')">&#10140; {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
+                    <div style='word-wrap:break-all' id="navigation-classes" ng-click="setState('reports.classes')" class="navTextStuff" ng-show="showClassLink('classes')">&nbsp;| {{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
+                    <div style='word-break:break-all' id="navigation-methods" ng-click="setState('reports.methods')" class="navTextStuff" ng-show="showClassLink('methods')">&#10140; {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
+                    <div style='word-break:break-all' id="navigation-drivers" ng-click="setState('reports.cases')" class="navTextStuff" ng-show="showClassLink('cases')">&#10140; {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
                 </td>
             </tr>
         </table>
@@ -163,11 +164,10 @@
                 </li>
             </ul>
         </div>
-            	<div class="btn-group" style='margin-top:10px;'>
+            	<div class="btn-group" style='margin-top:10px;word-break:break-all'>
             <input type="text" id="filter-field" class="form-control tool-tip" style="width:150px;display:inline" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>	
 			<h4 style='display:inline;'>{{getPosition()}}</h4>
     	</div>
-    </div>
     <!-- Chart variant dropdown END -->
 
     <div>
@@ -176,8 +176,6 @@
 
 
     <!-- load chart with data button -->
-
-</div>
 <!-- load chart with data button END -->
 
 <!-- view for current classes/methods/drivers etc -->
