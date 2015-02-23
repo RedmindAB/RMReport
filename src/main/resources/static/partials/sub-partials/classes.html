@@ -1,6 +1,6 @@
 <accordion close-others="true" >
     <!-- repeated content -->
-    <div style='cursor:pointer;margin-top:10px;height:30px' id='class_name' ng-repeat="class in CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:['result', 'name'] track by $index " 
+    <div style='cursor:pointer;margin-top:10px;height:100%;word-break:break-all' id='class_name' ng-repeat="class in CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:['result', 'name'] track by $index " 
          style='cursor: pointer;'
          ng-class='getPanel(class.result)' 
          ng-style="{'background-color': getBgCo(class.result)}">
@@ -11,7 +11,7 @@
                 </td>
                 <td width='100%' ng-click="getMethods(class); setState('reports.methods'); resetFilterField()">
                     <div ng-style="{'color' : getCo(class.result)}">
-                        <h3 style='margin-top:2px;float:left;display:inline'>&nbsp;{{class.name}}</h3> <h3 style='margin-top:2px;float:right;display:inline'>&nbsp;{{formatDecimals(class.time)}}</h3>
+                        <h3 style='margin-top:2px;float:left;display:inline;'>&nbsp;{{class.name}}</h3> <h3 style='margin-top:2px;float:right;display:inline'>&nbsp;{{formatDecimals(class.time)}}</h3>
                     </div>
                 </td>
             </tr>
