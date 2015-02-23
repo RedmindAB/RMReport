@@ -13,14 +13,17 @@ angular.module('webLog')
     $scope.allSuites = [];
     $scope.chartVariants = ["Pass/Fail", "Total Pass", "Total Fail", "Run Time"];
     $scope.currentChartVariant = "Pass/Fail";
-    
+    $scope.runValues = ["10", "20", "50", "100", "500"];
     $scope.newGraphLine = false;
     $scope.breakPoints = ["None", "Browser", "Version", "Device", "Platform"];
     $scope.breakPointChoice = "None";
     $scope.setBreakPoint = function(choice){
     	$scope.breakPointChoice = choice;
     }
-    	
+    
+    $scope.setAmountField = function(value){
+    	Utilities.amountField = value;
+    }
     
     $scope.changeChartVariant = function(input){
     	$scope.currentChartVariant = input;
