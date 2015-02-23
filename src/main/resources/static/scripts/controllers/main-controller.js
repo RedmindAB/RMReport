@@ -382,7 +382,7 @@ angular.module('webLog')
 	};
 	
    $scope.loadMainChart = function(suiteID, newLine) {
-	   Charts.mainChart.loading = true;
+	   Charts.mainChart.loading = 'Fetching data...';
     	var requestObject = $scope.getGraphDataObject(suiteID);
     	CurrentSuite.lastRunSize = getResLimit();
     	$http.post('/api/stats/graphdata', requestObject)
