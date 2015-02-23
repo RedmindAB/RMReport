@@ -38,8 +38,8 @@ import java.util.Set;
 public class ReadFromDBTest {
     Connection conn = DBCon.getDbInstance().getConnection();
     
-    @Rule
-    public Timeout timeout = new Timeout(500);
+    //@Rule
+    //public Timeout timeout = new Timeout(500);
 
     @Test
     public void readFromTestcases(){
@@ -50,7 +50,7 @@ public class ReadFromDBTest {
             ResultSet rs = stat.executeQuery("select * from testcase;");
             while(rs.next()){
             	
-                System.out.println("testcase name = " + rs.getString("name"));
+                System.out.println("testcase name = " + rs.getString("testcasename"));
                 System.out.println("testcase id = " + rs.getString("testcase_id"));
 
                 rs.close();
@@ -136,10 +136,6 @@ public class ReadFromDBTest {
     }
     
     @Test
-    public void deviceRunAmonthAgoTest(){
-    	JsonArray array = new ReadReportFromDB().deviceRunAmonthAgo();
-    }
-    @Test
     public void getLastestTimestamp(){
     	String array = new GetLatestSuiteDAO().getLatestSuite(1);
     	System.out.println(array);
@@ -149,5 +145,10 @@ public class ReadFromDBTest {
     public void getLastestByTimestamp(){
     	String array = new GetSuiteByTimestampDAO().getSuiteByTimestamp(2, "20150101-080000");
     	System.out.println(array);
+    }
+    @Test
+    public void deviceRunAmonthAgoTest(){
+    	JsonArray array = new ReadReportFromDB().compareDeviceAndDate();
+    	System.out.println("Devices not run for a month: "+array);
     }
 }

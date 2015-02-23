@@ -66,7 +66,15 @@ angular.module('webLog')
 									height : 420,
 									zoomType : 'x'
 								},
-								tooltip : {},
+								tooltip : {
+									crosshairs: true,
+						            shared: true,
+						            useHTML: true,
+						            headerFormat: '<small>{point.key}</small><table>',
+						            pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
+						            '<td style="text-align: right"><b>{point.y}</b></td></tr>',
+						            footerFormat: '</table>',
+								},
 								plotOptions : {
 									series : {
 										cursor : 'pointer',
@@ -77,7 +85,7 @@ angular.module('webLog')
 											}
 										},
 										marker : {
-											lineWidth : 1
+											lineWidth : 1,
 										}
 									}
 								}
@@ -89,7 +97,11 @@ angular.module('webLog')
 								minTickInterval : 5,
 								labels : {
 									rotation : 45
-								}
+								},
+								  plotLines: [{
+								    color: 'red', // Color value
+								    width: 2 // Width of the line    
+								  }]
 							},
 							yAxis : {
 								title : {

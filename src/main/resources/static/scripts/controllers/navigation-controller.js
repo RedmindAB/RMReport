@@ -34,8 +34,6 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuit
 
 	$scope.move =  function(e){
 	    var width = angular.element(e.srcElement)[0].offsetWidth;
-
-	    console.log(e.offsetX ,"/", width);
 	}
     
 	$scope.clearChosen = function(){

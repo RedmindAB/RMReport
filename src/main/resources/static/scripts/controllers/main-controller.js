@@ -13,14 +13,17 @@ angular.module('webLog')
     $scope.allSuites = [];
     $scope.chartVariants = ["Pass/Fail", "Total Pass", "Total Fail", "Run Time"];
     $scope.currentChartVariant = "Pass/Fail";
-    
+    $scope.runValues = ["10", "20", "50", "100", "500"];
     $scope.newGraphLine = false;
     $scope.breakPoints = ["None", "Browser", "Version", "Device", "Platform"];
     $scope.breakPointChoice = "None";
     $scope.setBreakPoint = function(choice){
     	$scope.breakPointChoice = choice;
     }
-    	
+    
+    $scope.setAmountField = function(value){
+    	Utilities.amountField = value;
+    }
     
     $scope.changeChartVariant = function(input){
     	$scope.currentChartVariant = input;
@@ -382,6 +385,7 @@ angular.module('webLog')
 	};
 	
    $scope.loadMainChart = function(suiteID, newLine) {
+	   	Charts.mainChart.loading = 'Fetching data...';
     	var requestObject = $scope.getGraphDataObject(suiteID);
     	CurrentSuite.lastRunSize = getResLimit();
     	$http.post('/api/stats/graphdata', requestObject)
@@ -392,9 +396,24 @@ angular.module('webLog')
     	});
    };
    
+   function highlightPoint(timestamp){
+	   for (var i = 0; i < Charts.mainChart.series.length; i++) {
+		   for (var j = 0; j < Charts.mainChart.series[i].data.length; j++) {
+			   if (Charts.mainChart.xAxis.categories[j] === timestamp){
+				   console.log("timestamp");
+				   console.log(Charts.mainChart.xAxis.categories[j]);
+				   Charts.mainChart.xAxis.plotLines[0].value = j;
+				   return;
+			   }
+		   }
+	   }
+	   delete Charts.mainChart.xAxis.plotLines[0].value;
+   }
+   
    $scope.loadNewTimeStamp = function(timestamp){
 	   $scope.getSuiteSkeletonByTimeStamp(timestamp);
 	   CurrentSuite.currentTimeStamp = timestamp;
+	   highlightPoint(timestamp);
    }
     
     $scope.createHomeChartFromID = function(id) {
@@ -466,6 +485,8 @@ angular.module('webLog')
     	if (chosen.devices.length === 0) {
     		if (chosen.os.length === 0) {
     			chosen.devices = getAllDevices();
+			} else if (chosen.platforms.length === 0) {
+				chosen.devices = getAllDevicesByVersion(chosen);
 			} else {
 				chosen.devices = getAllDevicesByPlatform(chosen);
 			}
@@ -557,7 +578,7 @@ angular.module('webLog')
     	var chosen = $scope.getChosen();
     	
     	if (chosen.platforms.length === 0) {
-			chosen.platforms = getAllPlatforms();
+    			chosen.platforms = getAllPlatforms();
 		}
     	
     	for (var i = 0; i < chosen.platforms.length; i++) {
@@ -566,9 +587,10 @@ angular.module('webLog')
     		dataRequest.suiteid = suiteID;
     		dataRequest.reslimit = getResLimit();
     		
-    		dataRequest.os = getVersionsByPlatform(chosen.platforms[i]);
+    		dataRequest.os = sortVersionsByPlatform(chosen.platforms[i], chosen.os);
+    		dataRequest.devices = sortDevicesByPlatform(chosen.platforms[i],chosen.devices);
+    		
     		dataRequest.browsers = chosen.browsers;
-    		dataRequest.devices = chosen.devices;
     		dataRequest.classes = chosen.classes;
     		dataRequest.testcases = chosen.testcases;
     		
@@ -673,16 +695,83 @@ angular.module('webLog')
     	return versions;
     }
     
-    function getVersionsByPlatform(platformName){
+    function sortVersionsByPlatform(platformName, chosenOS){
     	var specs = CurrentSuite.currentSpecObject;
-    	var platformVersions = [];
-    	for (var i = 0; i < specs.platforms.length; i++) {
-			if (specs.platforms[i].osname === platformName) {
-				for (var j = 0; j < specs.platforms[i].versions.length; j++) {
-					platformVersions.push(specs.platforms[i].versions[j].osid);
+    	var versions = [];
+    	if (chosenOS.length === 0) {
+			versions = getVersionsByPlatform(platformName, chosenOS);
+			return versions;
+		} else {
+			var allVersions = [];
+			var chosenVersions=[];
+			for (var i = 0; i < specs.platforms.length; i++) {
+				if (specs.platforms[i].osname === platformName) {
+					for (var j = 0; j < specs.platforms[i].versions.length; j++) {
+						allVersions.push(specs.platforms[i].versions[j].osid);
+						if (specs.platforms[i].versions[j].chosen) {
+							chosenVersions.push(specs.platforms[i].versions[j].osid);
+						}
+					}
 				}
 			}
 		}
+    	if (chosenVersions.length === 0) {
+			return allVersions;
+		} else {
+			return chosenVersions;
+		}
+    }
+    
+    function sortDevicesByPlatform(platformName, chosenDevices){
+    	var specs = CurrentSuite.currentSpecObject;
+    	var devices = [];
+    	if (chosenDevices.length === 0) {
+			devices = getDevicesByPlatform(platformName, chosenDevices);
+			return devices;
+		} else {
+			var allDevices = [];
+			var chosenDevices=[];
+			for (var i = 0; i < specs.platforms.length; i++) {
+				if (specs.platforms[i].osname === platformName) {
+					for (var j = 0; j < specs.platforms[i].devices.length; j++) {
+						allDevices.push(specs.platforms[i].devices[j].deviceid);
+						if (specs.platforms[i].devices[j].chosen) {
+							chosenDevices.push(specs.platforms[i].devices[j].deviceid);
+						}
+					}
+				}
+			}
+		}
+    	if (chosenDevices.length === 0) {
+			return allDevices;
+		} else {
+			return chosenDevices;
+		}
+    }
+    
+    function getDevicesByPlatform(platformName, chosenDevices){
+    	var specs = CurrentSuite.currentSpecObject;
+    	var platformDevices = [];
+    		for (var i = 0; i < specs.platforms.length; i++) {
+    			if (specs.platforms[i].osname === platformName) {
+    				for (var j = 0; j < specs.platforms[i].devices.length; j++) {
+    					platformDevices.push(specs.platforms[i].devices[j].deviceid);
+    				}
+    			}
+    		}
+    	return platformDevices;
+    }
+    
+    function getVersionsByPlatform(platformName, chosenOS){
+    	var specs = CurrentSuite.currentSpecObject;
+    	var platformVersions = [];
+    		for (var i = 0; i < specs.platforms.length; i++) {
+    			if (specs.platforms[i].osname === platformName) {
+    				for (var j = 0; j < specs.platforms[i].versions.length; j++) {
+    					platformVersions.push(specs.platforms[i].versions[j].osid);
+    				}
+    			}
+    		}
     	return platformVersions;
     }
     
@@ -693,6 +782,14 @@ angular.module('webLog')
 			platforms.push(specs.platforms[i].osname);
 		}
     	return platforms;
+    }
+    
+    function getPlatformsByOs(chosen){
+    	var specs = CurrentSuite.currentSpecObject.platforms;
+    	
+    	for (var i = 0; i < specs.length; i++) {
+			
+		}
     }
     
     function getDeviceByID(id){
@@ -736,6 +833,30 @@ angular.module('webLog')
 			}
 		}
     	return deviceIDs;
+    }
+    
+    function getAllDevicesByVersion(chosen){
+    	var specs = CurrentSuite.currentSpecObject;
+    	var versions = [];
+    	for (var i = 0; i < specs.platforms.length; i++) {
+			for (var j = 0; j < specs.platforms[i].versions.length; j++) {
+				if (specs.platforms[i].versions[j].chosen) {
+					versions.push(specs.platforms[i].versions[j].osver);
+				}
+			}
+		}
+    	
+    	var devices = [];
+    	for (var i = 0; i < specs.platforms.length; i++) {
+			for (var j = 0; j < specs.platforms[i].devices.length; j++) {
+				for (var k = 0; k < versions.length; k++) {
+					if (versions[k] === specs.platforms[i].devices[j].osver) {
+						devices.push(specs.platforms[i].devices[j].deviceid);
+					}
+				}
+			}
+		}
+    	return devices;
     }
     
     function getResLimit() {
@@ -798,6 +919,8 @@ angular.module('webLog')
 				});
 			}
 			$scope.changeChartVariant();
+			Charts.mainChart.loading = false;
+			highlightPoint(CurrentSuite.currentTimeStamp);
     };
     
     function getPassPercentage(pass, fail, error){
@@ -899,9 +1022,10 @@ angular.module('webLog')
     		});
 		}
     	
-    	chart.yAxis.title.text = 'Time to run';
+    	chart.yAxis.title.text = 'Seconds';
     	chart.options.plotOptions.series.stacking = '';
-    	chart.title.text = "Time to run in seconds for the last " + CurrentSuite.lastRunSize + " runs";
+    	chart.title.text = "Time to run in seconds";
+    	Charts.mainChart.options.tooltip.valueDecimals = 2;
 	}
     
     function totalPassChart() {
@@ -919,9 +1043,10 @@ angular.module('webLog')
 				connectNulls : false
     		});
 		}
-    	chart.yAxis.title.text = 'Passed test';
+    	chart.yAxis.title.text = 'Passed tests';
     	chart.options.plotOptions.series.stacking = '';
-    	chart.title.text = "Amount of passed tests for the last " + CurrentSuite.lastRunSize+ " runs";
+    	chart.title.text = "Passed tests";
+    	delete Charts.mainChart.options.tooltip.valueDecimals;
 	}
     
     function totalFailChart() {
@@ -939,9 +1064,10 @@ angular.module('webLog')
 				connectNulls : false
     		});
 		}
-    	chart.yAxis.title.text = 'Failed test';
+    	chart.yAxis.title.text = 'Failed tests';
     	chart.options.plotOptions.series.stacking = '';
-    	chart.title.text = "Amount of failed tests for the last " + CurrentSuite.lastRunSize + " runs";
+    	chart.title.text = "Failed tests";
+    	delete Charts.mainChart.options.tooltip.valueDecimals;
 	}
     
     function passFailChart() {
@@ -956,7 +1082,8 @@ angular.module('webLog')
     			type: "line"
     		});
 		}
-    	chart.yAxis.title.text = 'Percentage';
-    	chart.title.text = "Pass/Fail ratio for the last " + CurrentSuite.lastRunSize + " runs";
+    	chart.yAxis.title.text = 'Pass percentage';
+    	chart.title.text = "Percentage of passed tests";
+    	delete Charts.mainChart.options.tooltip.valueDecimals;
 	}
 }]);
