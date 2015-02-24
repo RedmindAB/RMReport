@@ -97,7 +97,7 @@
                     <table>
                         <tr>
                             <td style='padding-right: 10px;font-size:20px' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
-                                <input type="checkbox" id='input_browser' ng-model="browser.chosen">
+                                <input type="checkbox" style='margin-top:10px' id='input_browser' ng-model="browser.chosen">
                                 {{browser.browsername}} - v.{{browser.browserver}}
                             </td>
                         </tr>
@@ -110,28 +110,26 @@
                     <div>		    
                         <accordion close-others="false">
                         	<div ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
-                            <input style='margin-top:32px' ng-model='platform.chosen' id='input_osname' type="checkbox" class="mycheckbox" stop-click><label for="mycheckbox" style='font-weight:normal;'></label>
+                            <input style='margin-top:14px;margin-left:2px' ng-model='platform.chosen' id='input_osname' type="checkbox" class="mycheckbox" stop-click><label for="mycheckbox" style='font-weight:normal;'></label>
                             <accordion-group>
                                 <accordion-heading id='reports_name'> 
                                     {{platform.osname}}
                                 </accordion-heading>
-                                <table border='0'>
-                                    <tr style='height:30px;'>
-                                        <td>
+                                <table>
+                                    <tr>
+                                        <td height='20px'>
                                             <h4>Devices:&nbsp;</h4>
                                         </td>
-                                        <td ng-repeat="device in platform.devices track by $index" >
-                                            <input ng-model="device.chosen" style='height:30px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
-                                            {{device.devicename}}&nbsp;&nbsp;&nbsp;
+                                        <td style='padding:10px' ng-repeat="device in platform.devices track by $index" >
+                                            <input ng-model="device.chosen" type="checkbox" id="mycheckbox">&nbsp;{{device.devicename}} <label for="mycheckbox"></label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <h4>Versions:&nbsp;</h4>
                                         </td>
-                                        <td ng-repeat="version in platform.versions track by $index">
-                                            <input ng-model="version.chosen" style='height:40px' type="checkbox" id="mycheckbox"><label for="mycheckbox" style='margin-top:20px;font-weight:normal;'></label>
-                                            {{version.osver}}&nbsp;&nbsp;&nbsp;
+                                        <td style='padding:10px' ng-repeat="version in platform.versions track by $index">
+                                            <input ng-model="version.chosen" type="checkbox" id="mycheckbox">&nbsp;{{version.osver}} <label for="mycheckbox"></label> 
                                         </td>
                                     </tr>
                                     <tr>
