@@ -958,8 +958,7 @@ angular.module('webLog')
 				graphDataObj.totalFail.push(data[i].data[j].fail + data[i].data[j].error);
 				graphDataObj.passPercentage.push(Math.round(getPassPercentage(data[i].data[j].pass, data[i].data[j].fail, data[i].data[j].error)));
 			}
-			if(graphName == "")
-				graphName = "All Drivers";
+
 			graphDataObj.name = graphName;
 			graphDataArray.push(graphDataObj);
 		}
