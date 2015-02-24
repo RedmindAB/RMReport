@@ -91,6 +91,7 @@ angular.module('webLog')
 											}
 										},
 										marker : {
+											enabled: false,
 											lineWidth : 1,
 										}
 									}

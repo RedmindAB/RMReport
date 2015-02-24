@@ -1090,7 +1090,7 @@ angular.module('webLog')
     			data : Charts.data[i].passPercentage,
     			name : Charts.data[i].name,
     			color: getSerieColor(i),
-    			type: "spline"
+    			type: "line"
     		});
 		}
     	chart.yAxis.title.text = 'Pass percentage';
