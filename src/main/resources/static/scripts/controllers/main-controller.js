@@ -14,7 +14,7 @@ angular.module('webLog')
     $scope.chartVariants = ["Pass/Fail", "Total Pass", "Total Fail", "Run Time"];
     $scope.currentChartVariant = "Pass/Fail";
     $scope.runValues = ["10", "20", "50", "100", "500"];
-    var colors = ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'];
+    var colors = ['#2ecc71', '#e74c3c', '#3498db', '#8e44ad', '#2c3e50', '#f1c40f', '#7f8c8d', '#e67e22', '#c0392b'];
     $scope.breakPoints = ["None", "Browser", "Version", "Device", "Platform"];
     $scope.breakPointChoice = "None";
     $scope.descTimestamps = [];
