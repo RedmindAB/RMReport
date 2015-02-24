@@ -59,7 +59,6 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuit
 		}
 	}   
 	var resetWebApp = function(){
-		console.log(CurrentSuite.currentSuiteInfo);
 		if (CurrentSuite.currentSuiteInfo.length === 0) {
 			if ($state.$current.name !== 'home') {
 				$scope.setState('home');
