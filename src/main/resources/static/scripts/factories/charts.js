@@ -66,6 +66,12 @@ angular.module('webLog')
 									height : 420,
 									zoomType : 'x'
 								},
+//						        legend: {
+//						            layout: 'vertical',
+//						            align: 'right',
+//						            verticalAlign: 'middle',
+//						            borderWidth: 0
+//						        },
 								tooltip : {
 									crosshairs: true,
 						            shared: true,
