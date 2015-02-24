@@ -5,7 +5,7 @@
 		<table width='100%'>
             <tr>
             	<td width='10px;'>
-            		<input style='float:left;' type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="method.chosen"><label style='vertical-align:bottom' for="mycheckbox"></label>					                    
+            		<input style='margin-bottom:4px' style='float:left;' type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="method.chosen"><label style='vertical-align:bottom' for="mycheckbox"></label>					                    
             	</td>
                 <td ng-click="getCases(method); setState('reports.cases'); resetFilterField()" ng-style="{'color' : getCo(method.result)}">
 					<h3 style='display:inline;margin:2px 0px 0px 0px'>&nbsp;{{method.name}}</h3> <h3 style='margin:2px 0px 0px 0px;float:right;display:inline'>&nbsp;{{formatDecimals(method.time)}}</h3>
