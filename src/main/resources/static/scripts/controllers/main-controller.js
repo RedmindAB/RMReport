@@ -14,9 +14,9 @@ angular.module('webLog')
     $scope.chartVariants = ["Pass/Fail", "Total Pass", "Total Fail", "Run Time"];
     $scope.currentChartVariant = "Pass/Fail";
     $scope.runValues = ["10", "20", "50", "100", "500"];
-    $scope.newGraphLine = false;
     $scope.breakPoints = ["None", "Browser", "Version", "Device", "Platform"];
     $scope.breakPointChoice = "None";
+    $scope.descTimestamps = [];
     $scope.setBreakPoint = function(choice){
     	$scope.breakPointChoice = choice;
     }
@@ -48,25 +48,8 @@ angular.module('webLog')
 		}
     }
     
-    $scope.mockDriverArray = ["Andriod", "iOS", "OSX", "Windows"];
-    $scope.mockOsObject = [];
-    $scope.mockOsObject.push({
-    	id: 1,
-    	os: "Andriod",
-    	devices: ["Samsung", "HTC"],
-    	versions: ["4.4", "4.5.4"],
-    	browsers: ["Chrome", "Fire fox"]
-    });
-    
-    $scope.mockOsObject.push({
-    	id: 2,
-    	os: "OSX",
-    	devices: ["Mac"],
-    	versions: ["5", "6"],
-    	browsers: ["Chrome", "Fire fox", "Safari"]
-    });
-    
     $scope.resetFilterField = function(){
+    	console.log($scope.getDescTimestamps());
     	Utilities.searchField = "";
     }
     
@@ -866,6 +849,16 @@ angular.module('webLog')
 		}
 		return reslimit;
 	};
+	
+	function reverseArray(array){
+		var length = array.length;
+		var reverseArray = [];
+		for (var i = length-1; i !== 0; i--) {
+			reverseArray.push(array[i]);
+		}
+		return reverseArray;
+	}
+	
 	// CHART OBJECTS -----------------------------------------------------------------------------------------------------------
 	
     $scope.createMainChart = function(data, newLine){
@@ -877,6 +870,7 @@ angular.module('webLog')
     	if (CurrentSuite.currentTimeStamp === '') {
     		CurrentSuite.currentTimeStamp = data[0].data[data[0].data.length-1].timestamp;
 		}
+    	$scope.descTimestamps = reverseArray(CurrentSuite.currentTimeStampArray);
     	var graphDataArray = [];
     	for (var i = 0; i < data.length; i++) {
     		var graphDataObj = {
