@@ -22,10 +22,6 @@ angular.module('webLog')
     	$scope.breakPointChoice = choice;
     }
     
-    $scope.addCaseToGraph = function(){
-    	
-    }
-    
     $scope.setAmountField = function(value){
     	Utilities.amountField = value;
     }
@@ -277,7 +273,63 @@ angular.module('webLog')
 		}
 	}
 	
+    $scope.addCaseToGraph = function(osName, osVersion, deviceName, browserName, browserVer){
+    	var dataRequest = {};
+		dataRequest.suiteid = [CurrentSuite.currentSuiteInfo.id];
+		dataRequest.reslimit = getResLimit();
+		dataRequest.os = [getOsIdByVersion(osName,osVersion)];
+		dataRequest.devices = [getDeviceIdByName(deviceName)];
+		dataRequest.browsers = [getBrowserIdByname(browserName, browserVer)];
+		dataRequest.classes = [CurrentSuite.currentClass.id];
+		dataRequest.testcases = [CurrentSuite.currentMethod.id];
+		dataRequest.name = osName+"-"+osVersion+"-"+deviceName+"-"+browserName+"-"+browserVer;
+		
+		console.log(dataRequest);
+		var requestObj = [dataRequest];
+		console.log(JSON.stringify(requestObj));
+    	$http.post('/api/stats/graphdata', requestObj)
+    	.success(function(data, status, headers, config){
+    		$scope.createMainChart(data, true);
+    	}).error(function(data, status, headers, config){
+    		console.log(data);
+    	});
+    }
 	
+	function getDeviceIdByName(deviceName){
+		var specs = CurrentSuite.currentSpecObject;
+		console.log("specs");
+		console.log(specs);
+		for (var i = 0; i < specs.platforms.length; i++) {
+			for (var j = 0; j < specs.platforms[i].devices.length; j++) {
+				if (specs.platforms[i].devices[j].devicename === deviceName) {
+					return specs.platforms[i].devices[j].deviceid;
+				}
+			}
+		}
+	}
+	
+	function getOsIdByVersion(osName,osVersion){
+		var specs = CurrentSuite.currentSpecObject;
+		for (var i = 0; i < specs.platforms.length; i++) {
+			if (specs.platforms[i].osname === osName) {
+				for (var j = 0; j < specs.platforms[i].versions.length; j++) {
+					if (specs.platforms[i].versions[j].osver === osVersion) {
+						return specs.platforms[i].versions[j].osid;
+					}
+				}
+			}
+		}
+	}
+	
+	function getBrowserIdByname(browserName, browserVer){
+		var specs = CurrentSuite.currentSpecObject;
+		for (var i = 0; i < specs.browsers.length; i++) {
+			if (specs.browsers[i].browsername === browserName && specs.browsers[i].browserver === browserVer) {
+				return specs.browsers[i].browserid;
+				
+			}
+		}
+	}
     // HTTP -----------------------------------------------------------------------------------------------------------
 	
     $http.get('/api/suite/getsuites')
@@ -342,6 +394,10 @@ angular.module('webLog')
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		CurrentSuite.currentCases = data;
+	    		console.log("class");
+	    		console.log(CurrentSuite.currentClass);
+	    		console.log("method");
+	    		console.log(CurrentSuite.currentMethod);
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -373,12 +429,14 @@ angular.module('webLog')
 	};
 	
    $scope.loadMainChart = function(suiteID, newLine) {
+	   
 	   	Charts.mainChart.loading = 'Generating extrodinary relevant statistics...';
     	var requestObject = $scope.getGraphDataObject(suiteID);
     	CurrentSuite.lastRunSize = getResLimit();
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){
     		$scope.createMainChart(data, newLine);
+    		console.log(CurrentSuite.currentSpecObject);
     	}).error(function(data, status, headers, config){
     		console.log(data);
     	});
