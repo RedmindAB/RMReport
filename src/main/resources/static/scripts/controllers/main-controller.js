@@ -49,7 +49,6 @@ angular.module('webLog')
     }
     
     $scope.resetFilterField = function(){
-    	console.log($scope.getDescTimestamps());
     	Utilities.searchField = "";
     }
     
@@ -281,7 +280,7 @@ angular.module('webLog')
     	if(data){
     		$scope.allSuites = data;
     		for (var i = 0; i < $scope.allSuites.length; i++) {
-    			$scope.createHomeChartFromID($scope.allSuites[i].id);
+    			$scope.createHomeChartFromID($scope.allSuites[i]);
 			}
     	};
     }).error(function(data, status, headers, config){
@@ -301,6 +300,7 @@ angular.module('webLog')
 	}
 	
 	$scope.getSuiteSkeleton = function(suite){
+		console.log(suite);
 		CurrentSuite.currentSuiteInfo = suite;
 	    $http.get('/api/suite/latestbyid?suiteid=' + suite.id)
 	    .success(function(data, status, headers, config){ 
@@ -397,11 +397,11 @@ angular.module('webLog')
 	   highlightPoint(timestamp);
    }
     
-    $scope.createHomeChartFromID = function(id) {
+    $scope.createHomeChartFromID = function(suite) {
     	var requestObject= [];
     	requestObject.push({
-    			name:"hej",
-    			suiteid:id,
+    			name:"homeChart",
+    			suiteid: suite.id,
     			reslimit:50,
     			os: [],
     			devices: [],
@@ -411,7 +411,7 @@ angular.module('webLog')
     });
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){ 
-    		$scope.createHomeChart(data, id);
+    		$scope.createHomeChart(data, suite);
     	}).error(function(data, status, headers, config){
     		console.log(data);
     	});
@@ -853,7 +853,7 @@ angular.module('webLog')
 	function reverseArray(array){
 		var length = array.length;
 		var reverseArray = [];
-		for (var i = length-1; i !== 0; i--) {
+		for (var i = length-1; i >= 0; i--) {
 			reverseArray.push(array[i]);
 		}
 		return reverseArray;
@@ -923,7 +923,7 @@ angular.module('webLog')
     	return percentage;
     }
     
-    $scope.createHomeChart = function(data, id) {
+    $scope.createHomeChart = function(data, suite) {
     	var timeStamps = [];
     	for (var index = 0; index < data[0].data.length; index++) {
 			timeStamps.push(data[0].data[index].timestamp);
@@ -942,10 +942,12 @@ angular.module('webLog')
 							point: {
 								events: {
 									click: function(e){
-										CurrentSuite.currentSuiteInfo.id = id;
+										CurrentSuite.currentSuiteInfo = suite;
 										$scope.loadNewTimeStamp(this.category);
-										$scope.loadMainChart(id);
+										$scope.getSuiteSkeletonByTimeStamp(this.category);
+										$scope.loadMainChart(suite.id);
 										$state.transitionTo('reports.classes');
+										console.log(CurrentSuite);
 								}
 							}
 							}
@@ -998,7 +1000,7 @@ angular.module('webLog')
 			chartHomeConfigObject.series[1].data.push(data[0].data[j].fail + data[0].data[j].error);
 		}
 		chartHomeConfigObject.xAxis.categories = timeStamps;
-		$scope.chartHomeConfig[id] = chartHomeConfigObject;
+		$scope.chartHomeConfig[suite.id] = chartHomeConfigObject;
     };
     
     function runTimeChart() {
