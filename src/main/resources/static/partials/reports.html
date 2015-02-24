@@ -120,7 +120,7 @@
                                         <td height='20px'>
                                             <h4>Devices:&nbsp;</h4>
                                         </td>
-                                        <td style='padding:10px' ng-repeat="device in platform.devices track by $index" >
+                                        <td style='padding:18px 10px 10px 10px' ng-repeat="device in platform.devices track by $index" >
                                             <input ng-model="device.chosen" type="checkbox" id="mycheckbox">&nbsp;{{device.devicename}} <label for="mycheckbox"></label>
                                         </td>
                                     </tr>
@@ -128,7 +128,7 @@
                                         <td>
                                             <h4>Versions:&nbsp;</h4>
                                         </td>
-                                        <td style='padding:10px' ng-repeat="version in platform.versions track by $index">
+                                        <td style='padding:18px 10px 10px 10px' ng-repeat="version in platform.versions track by $index">
                                             <input ng-model="version.chosen" type="checkbox" id="mycheckbox">&nbsp;{{version.osver}} <label for="mycheckbox"></label> 
                                         </td>
                                     </tr>
