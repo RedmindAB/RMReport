@@ -963,6 +963,9 @@ angular.module('webLog')
 						}
 					}
 				},
+				title:{
+					text: suite.name
+					},
 				series : [ {
 					data : [],
 					id : "pass",
