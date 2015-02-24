@@ -2,14 +2,6 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuit
 	
 	$scope.CurrentSuite = CurrentSuite;
 	$scope.Charts = Charts;
-	$scope.$watchCollection(Charts, function(){
-		console.log(Charts);
-		localStorage.setItem('charts', JSON.stringify(Charts));
-	});
-	$scope.$watchCollection(CurrentSuite, function(){
-		console.log(CurrentSuite.currentSuiteInfo);
-		localStorage.setItem('currentSuite', JSON.stringify(CurrentSuite));
-	});
 	
 	$scope.getPosition = function(){
 		switch ($state.$current.name) {
@@ -26,6 +18,8 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuit
 			break;
 		}
 	}
+	
+	
 	
 	$scope.setState = function(newState){
 		$state.transitionTo(newState);
@@ -63,5 +57,14 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuit
 				}
 			}
 		}
-	}    
+	}   
+	var resetWebApp = function(){
+		console.log(CurrentSuite.currentSuiteInfo);
+		if (CurrentSuite.currentSuiteInfo.length === 0) {
+			if ($state.$current.name !== 'home') {
+				$scope.setState('home');
+			}
+		}
+	}
+	resetWebApp();
 }]);
