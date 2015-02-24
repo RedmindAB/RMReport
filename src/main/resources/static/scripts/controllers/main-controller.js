@@ -949,6 +949,7 @@ angular.module('webLog')
     				totalFail: [],
     				passPercentage: []
     		};
+
     		var graphName = data[i].name;
     		
 			for (var j = 0; j < data[i].data.length; j++) {
@@ -957,6 +958,7 @@ angular.module('webLog')
 				graphDataObj.totalFail.push(data[i].data[j].fail + data[i].data[j].error);
 				graphDataObj.passPercentage.push(Math.round(getPassPercentage(data[i].data[j].pass, data[i].data[j].fail, data[i].data[j].error)));
 			}
+
 			graphDataObj.name = graphName;
 			graphDataArray.push(graphDataObj);
 		}
