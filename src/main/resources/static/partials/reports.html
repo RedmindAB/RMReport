@@ -53,8 +53,8 @@
         </form>	
 		
 		<br><br>
-	<div class="btn-group" style='display:inline;'>
-        <div class="btn-group ">
+	<div class="btn-group" style='display:inline;float:left'>
+        <div class="btn-toolbar">
            	<h5 style='margin-bottom:0px'>Choose graph view</h5>
            	<button style='width:150px;margin:1px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
                 {{Utilities.graphView}}
@@ -68,8 +68,8 @@
             </ul>
         </div>
     </div>
-
-        <div class="btn-group">
+	<div>
+        <div class="btn-toolbar" >
 			<h5 style='margin-bottom:0px'>Choose break point</h5>
 			<button style='width:150px;margin:1px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
                 {{breakPointChoice}}
@@ -152,7 +152,7 @@
         <div class='row' style='border-bottom:1px solid'>
         </div>
 
-    			<div class="btn-group" style='margin-top:10px;'>
+		<div class="btn-group" style='margin-top:10px;'>
             <button style='width:150px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
                 {{CurrentSuite.currentTimeStamp}}
                 <span class="caret"></span>

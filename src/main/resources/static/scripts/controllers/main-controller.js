@@ -22,6 +22,10 @@ angular.module('webLog')
     	$scope.breakPointChoice = choice;
     }
     
+    $scope.addCaseToGraph = function(){
+    	
+    }
+    
     $scope.setAmountField = function(value){
     	Utilities.amountField = value;
     }
