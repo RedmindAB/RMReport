@@ -1148,7 +1148,6 @@ angular.module('webLog')
     	var chart = Charts.mainChart;
     	
     	chart.series = [];
-    	chart.yAxis.max = 100;
     	for (var i = 0; i < Charts.data.length; i++) {
     		chart.series.push({
     			data : Charts.data[i].passPercentage,

@@ -114,7 +114,6 @@ angular.module('webLog')
 								title : {
 									text : 'Percentage'
 								},
-								min : 0
 							},
 							series : [ {
 								data : [],
