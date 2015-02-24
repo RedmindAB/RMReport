@@ -2,15 +2,13 @@
     <!-- repeated content -->
     <div style='height:100%;margin-top:10px;cursor: pointer;' id='method_name' ng-repeat="method in CurrentSuite.currentMethods| filter: Utilities.searchField | orderBy:['result', 'name'] track by $index " style='cursor: pointer;margin-top: 10px' ng-class='getPanel(method.result)' ng-style="{'background-color': getBgCo(method.result)}">
         <!-- non collapsing header -->
-        <table>
+        <table width='100%'>
             <tr>
-                <td>
-                    <input type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="method.chosen"><label for="mycheckbox"></label>	
-                </td>
-                <td width='100%' ng-click="getCases(method);
+                <td ng-click="getCases(method);
                                 setState('reports.cases');
                                 resetFilterField()">
                     <div ng-style="{'color' : getCo(method.result)}">
+						<input type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="method.chosen"><label for="mycheckbox"></label>	               
 						<h3 style='margin-top:2px;display:inline;'>&nbsp;{{method.name}}</h3> <h3 style='margin:2px 0px 0px 0px;float:right;display:inline'>&nbsp;{{formatDecimals(method.time)}}</h3>
                     </div>
                 </td>
