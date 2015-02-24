@@ -275,16 +275,19 @@ angular.module('webLog')
 	
     $scope.addCaseToGraph = function(osName, osVersion, deviceName, browserName, browserVer){
     	var dataRequest = {};
-		dataRequest.suiteid = CurrentSuite.currentSuiteInfo.id;
+		dataRequest.suiteid = [CurrentSuite.currentSuiteInfo.id];
 		dataRequest.reslimit = getResLimit();
-		dataRequest.os = getOsIdByVersion(osName,osVersion);
-		dataRequest.devices = getDeviceIdByName(deviceName);
-		dataRequest.browsers = getBrowserIdByname(browserName, browserVer)
-		dataRequest.classes = CurrentSuite.currentClass.id;
-		dataRequest.testcases = CurrentSuite.currentMethod.id;
+		dataRequest.os = [getOsIdByVersion(osName,osVersion)];
+		dataRequest.devices = [getDeviceIdByName(deviceName)];
+		dataRequest.browsers = [getBrowserIdByname(browserName, browserVer)];
+		dataRequest.classes = [CurrentSuite.currentClass.id];
+		dataRequest.testcases = [CurrentSuite.currentMethod.id];
 		dataRequest.name = osName+"-"+osVersion+"-"+deviceName+"-"+browserName+"-"+browserVer;
 		
-    	$http.post('/api/stats/graphdata', dataRequest)
+		console.log(dataRequest);
+		var requestObj = [dataRequest];
+		console.log(JSON.stringify(requestObj));
+    	$http.post('/api/stats/graphdata', requestObj)
     	.success(function(data, status, headers, config){
     		$scope.createMainChart(data, true);
     	}).error(function(data, status, headers, config){
@@ -294,10 +297,12 @@ angular.module('webLog')
 	
 	function getDeviceIdByName(deviceName){
 		var specs = CurrentSuite.currentSpecObject;
+		console.log("specs");
+		console.log(specs);
 		for (var i = 0; i < specs.platforms.length; i++) {
-			for (var j = 0; j < specs.platforms[j].devices.length; j++) {
-				if (specs.platforms[j].devices[i].devicename === deviceName) {
-					return specs.platforms[j].devices[i].deviceid;
+			for (var j = 0; j < specs.platforms[i].devices.length; j++) {
+				if (specs.platforms[i].devices[j].devicename === deviceName) {
+					return specs.platforms[i].devices[j].deviceid;
 				}
 			}
 		}
@@ -308,8 +313,8 @@ angular.module('webLog')
 		for (var i = 0; i < specs.platforms.length; i++) {
 			if (specs.platforms[i].osname === osName) {
 				for (var j = 0; j < specs.platforms[i].versions.length; j++) {
-					if (specs.platforms[j].versions[i].osver === osVersion) {
-						return specs.platforms[j].versions[i].osid;
+					if (specs.platforms[i].versions[j].osver === osVersion) {
+						return specs.platforms[i].versions[j].osid;
 					}
 				}
 			}
