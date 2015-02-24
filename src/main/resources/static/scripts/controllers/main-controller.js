@@ -14,6 +14,7 @@ angular.module('webLog')
     $scope.chartVariants = ["Pass/Fail", "Total Pass", "Total Fail", "Run Time"];
     $scope.currentChartVariant = "Pass/Fail";
     $scope.runValues = ["10", "20", "50", "100", "500"];
+    var colors = ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'];
     $scope.breakPoints = ["None", "Browser", "Version", "Device", "Platform"];
     $scope.breakPointChoice = "None";
     $scope.descTimestamps = [];
@@ -859,6 +860,13 @@ angular.module('webLog')
 		return reverseArray;
 	}
 	
+	function getSerieColor(i){
+		if (i > colors.length -1) {
+			i = i - (colors.length - 1);
+		}
+		return colors[i];
+	}
+	
 	// CHART OBJECTS -----------------------------------------------------------------------------------------------------------
 	
     $scope.createMainChart = function(data, newLine){
@@ -911,6 +919,7 @@ angular.module('webLog')
 					name : Charts.data[i].name,
 				});
 			}
+			
 			$scope.changeChartVariant();
 			Charts.mainChart.loading = false;
 			highlightPoint(CurrentSuite.currentTimeStamp);
@@ -1013,7 +1022,8 @@ angular.module('webLog')
     	for (var i = 0; i < Charts.data.length; i++) {
     		chart.series.push({
     					data : Charts.data[i].runTime,
-    					name : Charts.data[i].name
+    					name : Charts.data[i].name,
+    					color: getSerieColor(i),
     		});
 		}
     	
@@ -1033,6 +1043,7 @@ angular.module('webLog')
     		chart.series.push({
 				data : Charts.data[i].totalPass,
 				name : Charts.data[i].name,
+				color: getSerieColor(i),
 				type : "column",
 				dashStyle : "Solid",
 				connectNulls : false
@@ -1054,6 +1065,7 @@ angular.module('webLog')
     		chart.series.push({
 				data : Charts.data[i].totalFail,
 				name : Charts.data[i].name,
+				color: getSerieColor(i),
 				type : "column",
 				dashStyle : "Solid",
 				connectNulls : false
@@ -1074,6 +1086,7 @@ angular.module('webLog')
     		chart.series.push({
     			data : Charts.data[i].passPercentage,
     			name : Charts.data[i].name,
+    			color: getSerieColor(i),
     			type: "spline"
     		});
 		}
