@@ -12,7 +12,6 @@ angular.module('webLog')
     $scope.chartMainConfig = {};
     $scope.allSuites = [];
     $scope.chartVariants = ["Pass/Fail", "Total Pass", "Total Fail", "Run Time"];
-    $scope.currentChartVariant = "Pass/Fail";
     $scope.runValues = ["10", "20", "50", "100", "500"];
     var colors = ['#2ecc71', '#e74c3c', '#3498db', '#8e44ad', '#2c3e50', '#f1c40f', '#7f8c8d', '#e67e22', '#c0392b', '#1abc9c', '#9b59b6', '#34495e', '#16a085', '#f39c12', '#27ae60', '#d35400'];
     $scope.breakPoints = ["None", "Browser", "Version", "Device", "Platform"];
@@ -27,7 +26,7 @@ angular.module('webLog')
     }
     
     $scope.changeChartVariant = function(input){
-    	$scope.currentChartVariant = input;
+    	Utilities.graphView = input;
     	
     	switch (input) {
 		case "Pass/Fail":
@@ -43,7 +42,7 @@ angular.module('webLog')
 			totalFailChart();
 			break;
 		default:
-			$scope.currentChartVarint = "Pass/Fail"
+			Utilities.graphView = "Pass/Fail"
 			passFailChart();
 			break;
 		}
@@ -949,7 +948,6 @@ angular.module('webLog')
     				totalFail: [],
     				passPercentage: []
     		};
-
     		var graphName = data[i].name;
     		
 			for (var j = 0; j < data[i].data.length; j++) {
@@ -958,7 +956,6 @@ angular.module('webLog')
 				graphDataObj.totalFail.push(data[i].data[j].fail + data[i].data[j].error);
 				graphDataObj.passPercentage.push(Math.round(getPassPercentage(data[i].data[j].pass, data[i].data[j].fail, data[i].data[j].error)));
 			}
-
 			graphDataObj.name = graphName;
 			graphDataArray.push(graphDataObj);
 		}
