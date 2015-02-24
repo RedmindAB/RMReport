@@ -7,13 +7,11 @@
         <!-- non collapsing header -->
         <table width='100%'>
             <tr>
-                <td ng-click="getMethods(class);
-                                setState('reports.methods');
-                                resetFilterField()">
-                    <div ng-style="{'color' : getCo(class.result)}">
-						                    <input type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="class.chosen"><label for="mycheckbox"></label>
-						                    <h3 style='display:inline;margin-top:2px'>&nbsp;{{class.name}}</h3> <h3 style='margin:2px 0px 0px 0px;float:right;display:inline'>&nbsp;{{formatDecimals(class.time)}}</h3>
-                    </div>
+            	<td width='10px'>
+            		<input style='float:left' type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="class.chosen"><label for="mycheckbox"></label>					                    
+            	</td>
+                <td ng-click="getMethods(class); setState('reports.methods'); resetFilterField()" ng-style="{'color' : getCo(class.result)}">
+					<h3 style='display:inline;margin:2px 0px 0px 0px'>&nbsp;{{class.name}}</h3> <h3 style='margin:2px 0px 0px 0px;float:right;display:inline'>&nbsp;{{formatDecimals(class.time)}}</h3>
                 </td>
             </tr>
         </table>
