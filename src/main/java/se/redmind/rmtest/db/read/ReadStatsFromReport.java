@@ -21,7 +21,7 @@ public class ReadStatsFromReport extends ReadReportFromDB{
 	public static final String CLASSES = "classes";
 	public static String RESLIMIT = "reslimit", SUITEID = "suiteid", CLASSID = "class_id",CONDITIONS = "conditions";
 	private String megaQuery = "SELECT timestamp, SUM(time) AS time, SUM(result = 'passed') AS passed, SUM(result = 'failure') AS failure,  SUM(result = 'error') AS error,  SUM(result = 'skipped') AS skipped FROM report "
-									+ "WHERE timestamp >= (SELECT MIN(timestamp) FROM (SELECT DISTINCT timestamp FROM report WHERE suite_id = {suiteid} ORDER BY timestamp DESC LIMIT {reslimit}))"
+									+ "WHERE timestamp >= {minTimestamp}"
 									+ " AND suite_id = {suiteid} "
 									+ "{conditions}"
 									+ " GROUP BY timestamp ORDER BY timestamp;";
@@ -31,22 +31,33 @@ public class ReadStatsFromReport extends ReadReportFromDB{
 	private String BROWSER_ID = "browser_id IN ";
 	private String CLASS = "class_id IN ";
 	private String TESTCASE = "testcase_id IN ";
+	private String GET_TIMESTAMPS = "SELECT DISTINCT timestamp FROM report WHERE suite_id = {suite_id} ORDER BY timestamp LIMIT {reslimit};";
 	
-	public List<HashMap<String, String>> getGraphData(JsonObject params){
-		String sql = getQueryFromJsonObject(params);
+	public ResultSet getTimestamps(int reslimit, int suite_id){
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("suite_id", ""+suite_id);
+		map.put("reslimit", ""+reslimit);
+		String sql = stringParser.getString(GET_TIMESTAMPS, map);
+		return readFromDB(sql);
+	}
+	
+	public List<HashMap<String, String>> getGraphData(JsonObject params, long minTimestamp){
+		String sql = getQueryFromJsonObject(params, minTimestamp);
 		ResultSet rs = readFromDB(sql,params.get("reslimit").getAsInt());
 		return extractResultSetToGraphData(rs);
 	}
 	
-	public JsonArray getGraphDataAsJson(JsonObject params){
-		String sql = getQueryFromJsonObject(params);
+	public HashMap<Long, JsonObject> getGraphDataAsHashMap(JsonObject params, long minTimestamp){
+		String sql = getQueryFromJsonObject(params, minTimestamp);
+//		System.out.println(sql);
 		int reslimit = params.get("reslimit").getAsInt();
 		ResultSet rs = readFromDB(sql, reslimit);
 		return extractGraphData(rs);
 	}
 	
-	public String getQueryFromJsonObject(JsonObject params){
+	public String getQueryFromJsonObject(JsonObject params, long minTimestamp){
 		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("minTimestamp", ""+minTimestamp);
 		map.put(SUITEID, params.get(SUITEID).getAsString());
 		map.put(RESLIMIT, params.get(RESLIMIT).getAsString());
 		map.put(CONDITIONS, getConditions(params));

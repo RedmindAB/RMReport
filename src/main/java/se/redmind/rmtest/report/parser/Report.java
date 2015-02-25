@@ -152,10 +152,12 @@ public class Report{
 		return name.substring(start+1, end);
 	}
 	
-	public String extractTimestamp(String name){
+	public long extractTimestamp(String name){
 		int start = name.lastIndexOf("(");
 		int end = name.lastIndexOf(")");
-		return name.substring(start+1, end);
+		String timestampString = name.substring(start+1, end);
+		long timestamp = Long.valueOf(timestampString.replaceAll("-", ""));
+		return timestamp;
 	}
 	
 	public boolean isTestPassed(int errors, int failures){
