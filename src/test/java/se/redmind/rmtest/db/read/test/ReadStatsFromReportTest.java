@@ -59,7 +59,7 @@ public class ReadStatsFromReportTest {
 	
 	@Test
 	public void test() {
-		String queryFromJsonObject = readStatsFromReport.getQueryFromJsonObject(params);
+		String queryFromJsonObject = readStatsFromReport.getQueryFromJsonObject(params, 123L);
 		assertEquals("SELECT timestamp, SUM(time) AS time, SUM(result = 'passed') AS passed, SUM(result = 'failure') AS failure,  SUM(result = 'error') AS error,  SUM(result = 'skipped') AS skipped FROM report WHERE timestamp >= (SELECT MIN(timestamp) FROM (SELECT DISTINCT timestamp FROM report WHERE suite_id = 1 ORDER BY timestamp DESC LIMIT 50)) AND suite_id = 1 AND os_id IN (1,2) AND device_id IN (1,2) AND browser_id IN (1,2) AND class_id IN (2) AND testcase_id IN (3) GROUP BY timestamp ORDER BY timestamp;", queryFromJsonObject);
 	}
 	
@@ -70,13 +70,7 @@ public class ReadStatsFromReportTest {
 	}
 	
 	
-	@Test()
-	public void getStats(){
-		JsonArray reportListData = readStatsFromReport.getGraphDataAsJson(getParams("name 1"));
-		System.out.println(reportListData);
-	}
-	
-	@Test(timeout = 300)
+	@Test
 	public void getStatsFromParamsArray(){
 		GetGraphDataDAO getGraphDataDAO = new GetGraphDataDAO();
 		JsonArray paramsArray = new JsonArray();
@@ -95,18 +89,23 @@ public class ReadStatsFromReportTest {
 		params.add(ReadStatsFromReport.RESLIMIT, new JsonPrimitive(50));
 		
 		JsonArray osArray = new JsonArray();
+		osArray.add(new JsonPrimitive(3));
 		params.add(ReadStatsFromReport.OS, osArray);
 		
 		JsonArray deviceArray = new JsonArray();
+//		deviceArray.add(new JsonPrimitive(3));
 		params.add(ReadStatsFromReport.DEVICES, deviceArray);
 		
 		JsonArray browserArray = new JsonArray();
+//		browserArray.add(new JsonPrimitive(2));
 		params.add(ReadStatsFromReport.BROWSERS, browserArray);
 		
 		JsonArray classArray = new JsonArray();
+//		classArray.add(new JsonPrimitive(1));
 		params.add(ReadStatsFromReport.CLASSES, classArray);
 		
 		JsonArray testcaseArray = new JsonArray();
+		testcaseArray.add(new JsonPrimitive(1));
 		params.add(ReadStatsFromReport.TESTCASES, testcaseArray);
 		return params;
 	}
