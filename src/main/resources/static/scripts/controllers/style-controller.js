@@ -43,6 +43,8 @@ angular.module('webLog')
 	    $scope.getPanel = function(passed){
 	    	if(passed === "failure" || passed === "error")
 	    		return 'panel panel-danger bg-danger';
+	    	else if(passed === "skipped")
+	    		return 'panel panel-warning bg-success warning';
 	    	else
 	    		return 'panel panel-success bg-success success';
 	    };
@@ -50,6 +52,8 @@ angular.module('webLog')
 	    $scope.getBG = function(passed){
 	    	if(passed === "failure" || passed === "error")
 	    		return 'bg-danger';
+	    	else if(passed === "skipped")
+	    		return 'bg-warning';
 	    	else
 	    		return 'bg-success';
 	    };
@@ -57,12 +61,16 @@ angular.module('webLog')
 	    $scope.getBgCo = function(passed){
 	    	if(passed === "failure" || passed === "error")
 	    		return '#F2DEDE';
+	    	else if(passed === "skipped")
+	    		return '#FEF7E4';
 	    	else
 	    		return '#DFF0D8';
 	    };
 	    $scope.getCo = function(passed){
 	    	if(passed === "failure" || passed === "error")
 	    		return '#A94442';
+	    	else if(passed === "skipped")
+	    		return '#FEF7E4';
 	    	else
 	    		return '#3C763D';
 	    };
