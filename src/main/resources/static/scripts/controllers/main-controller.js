@@ -25,6 +25,10 @@ angular.module('webLog')
     	Utilities.amountField = value;
     }
     
+    $scope.newContent = function(){
+    	document.getElementById('button_reload').className = 'btn btn-primary';
+    }
+    
     $scope.changeChartVariant = function(input){
     	Utilities.graphView = input;
     	
