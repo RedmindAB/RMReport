@@ -3,7 +3,6 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuit
 	$scope.CurrentSuite = CurrentSuite;
 	$scope.Charts = Charts;
 	
-	
 	$scope.getPosition = function(){
 		switch ($state.$current.name) {
 		case 'reports.classes':
@@ -19,6 +18,8 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuit
 			break;
 		}
 	}
+	
+	
 	
 	$scope.setState = function(newState){
 		$state.transitionTo(newState);
@@ -56,5 +57,13 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuit
 				}
 			}
 		}
-	}    
+	}   
+	var resetWebApp = function(){
+		if (CurrentSuite.currentSuiteInfo.length === 0) {
+			if ($state.$current.name !== 'home') {
+				$scope.setState('home');
+			}
+		}
+	}
+	resetWebApp();
 }]);

@@ -1,13 +1,14 @@
 <accordion close-others="true">
     <!-- repeated content -->
-    <div ng-repeat="case in CurrentSuite.currentCases| filter: Utilities.searchField | orderBy:'result' track by $index " style='margin-top: 10px'>
-        <accordion-group ng-class='getPanel(case.result)' ng-style="{'background-color': getBgCo(case.result)}">
-
+    <div ng-repeat="case in CurrentSuite.currentCases| filter: Utilities.searchField | orderBy:'result' track by $index">
+        		<!-- <h4 style='margin-left: 15px;cursor:pointer;margin-bottom:0px;font-size:14px' ng-click="addCaseToGraph(case.osname, case.osversion, case.devicename, case.browsername, case.browserversion)">
+		            Add to graph
+		        </h4> -->
+        <accordion-group style='margin-top:10px' ng-class='getPanel(case.result)' ng-style="{'background-color': getBgCo(case.result)}">
             <!-- non collapsing header -->
             <accordion-heading id='case_name'>
-                {{case.osname}} - {{case.devicename}} -	{{case.osversion}} - 	{{case.browsername}} - {{case.result}}
+                <div style='display:inline;'>{{case.osname}} - {{case.devicename}} -	{{case.osversion}} - {{case.browsername}} - {{case.result}}</div><div style='margin-top:2px;float:right;display:inline'>{{case.timetorun}}</div>
             </accordion-heading>
-            <input style='height:30px' type="checkbox" id="checkbox_1" class='mycheckbox' ng-model="case.chosen"><label for="mycheckbox"></label>
             <!-- non collapsing header End-->
 
             <!-- Content in collapsing Div -->
@@ -16,13 +17,11 @@
                     <thead>
                         <tr style='border-style: hidden'>
                             <th>Browser version</th>
-                            <th>Time to run</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>{{case.browserversion}}</td>
-                            <td>{{case.timetorun}}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -4,6 +4,7 @@ import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 
+import se.redmind.rmtest.db.InMemoryDBHandler;
 import se.redmind.rmtest.report.reportvalidation.ReportValidator;
 import static java.nio.file.StandardWatchEventKinds.*;
 
@@ -42,12 +43,13 @@ public class FileWatcherQueueReader implements Runnable {
 					}
 				}
 				key.reset();
+				new InMemoryDBHandler().updateInMemoryDB();
 				key = watchService.take();
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Stopping thread");
+		System.out.println("Stopping file watcher thread");
 	}
 
 }

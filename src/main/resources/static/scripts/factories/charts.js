@@ -66,11 +66,19 @@ angular.module('webLog')
 									height : 420,
 									zoomType : 'x'
 								},
+//						        legend: {
+//						            layout: 'vertical',
+//						            align: 'right',
+//						            verticalAlign: 'middle',
+//						            borderWidth: 0
+//						        },
 								tooltip : {
 									crosshairs: true,
 						            shared: true,
 						            useHTML: true,
 						            headerFormat: '<small>{point.key}</small><table>',
+						            pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
+						            '<td style="text-align: right"><b>{point.y}</b></td></tr>',
 						            footerFormat: '</table>',
 								},
 								plotOptions : {
@@ -83,7 +91,8 @@ angular.module('webLog')
 											}
 										},
 										marker : {
-											lineWidth : 1
+											enabled: false,
+											lineWidth : 1,
 										}
 									}
 								}
@@ -95,13 +104,16 @@ angular.module('webLog')
 								minTickInterval : 5,
 								labels : {
 									rotation : 45
-								}
+								},
+								  plotLines: [{
+								    color: '#2c3e50', // Color value
+								    width: 2 // Width of the line    
+								  }]
 							},
 							yAxis : {
 								title : {
 									text : 'Percentage'
 								},
-								min : 0
 							},
 							series : [ {
 								data : [],
@@ -115,6 +127,9 @@ angular.module('webLog')
 							loading : false,
 							size : {},
 							useHighStocks : false,
+							subtitle: {
+								text: "lots of tests"
+							}
 						},
 
 					// HOME PAGE CHART
