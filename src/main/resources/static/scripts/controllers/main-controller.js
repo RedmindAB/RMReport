@@ -52,7 +52,7 @@ angular.module('webLog')
     	Utilities.searchField = "";
     }
     
-    $scope.imagePaths = ['img/aftonbladet.png', 'img/comaround.gif', 'img/aftonbladet.png'];
+    $scope.imagePaths = ['img/aftonbladet.png', 'img/comaround2.gif', 'img/aftonbladet.png'];
     
 	$scope.getMethods = function(testClass){
 		$scope.clearOtherChosen(testClass);
