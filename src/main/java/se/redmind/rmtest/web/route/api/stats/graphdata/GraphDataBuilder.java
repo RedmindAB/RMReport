@@ -3,6 +3,7 @@ package se.redmind.rmtest.web.route.api.stats.graphdata;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class GraphDataBuilder {
 					minTimestamp = currentTimestamp;
 				}
 			}
+			Collections.reverse(timestampArray);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
