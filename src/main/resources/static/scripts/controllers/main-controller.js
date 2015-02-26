@@ -429,14 +429,10 @@ angular.module('webLog')
 		   CurrentSuite.activeQueries = [];
 	   } else {
 		   for (var i = 0; i < CurrentSuite.activeQueries.length; i++) {
-			   console.log(CurrentSuite.activeQueries[i][0].reslimit);
 				   for (var j = 0; j < CurrentSuite.activeQueries[i].length; j++) {
 					   if (CurrentSuite.activeQueries[i][j].reslimit > getResLimit() || CurrentSuite.activeQueries[i][j].reslimit < getResLimit()) {
-						   console.log(CurrentSuite.activeQueries[i][j]);
 						   CurrentSuite.activeQueries[i][j].reslimit = getResLimit();
 					   }
-					   console.log("active");
-					   console.log(CurrentSuite.activeQueries[i][j]);
 					   activeQueries.push(CurrentSuite.activeQueries[i][j]);
 				   }
 		   }
@@ -447,9 +443,6 @@ angular.module('webLog')
 	   	for (var i = 0; i < activeQueries.length; i++) {
 			requestObject.push(activeQueries[i]);
 		}
-	   console.log("req");
-	   console.log(requestObject);
-	   console.log("--------------------------------------------------------------------");
 	   CurrentSuite.lastRunSize = getResLimit();
 	   $http.post('/api/stats/graphdata', requestObject)
 	   .success(function(data, status, headers, config){
@@ -955,6 +948,18 @@ angular.module('webLog')
 	
 	// CHART OBJECTS -----------------------------------------------------------------------------------------------------------
 	
+	function isSkipped(dataObj){
+		var passed = dataObj.pass> 0;
+		var failed = dataObj.fail > 0;
+		var error = dataObj.error > 0;
+		var skipped = dataObj.skipped;
+		if (!passed && !failed && !error && skipped > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
     $scope.createMainChart = function(data, newLine){
     	CurrentSuite.currentTimeStampArray = [];
     	for (var index = 0; index < data[0].data.length; index++) {
@@ -967,6 +972,7 @@ angular.module('webLog')
     	$scope.descTimestamps = reverseArray(CurrentSuite.currentTimeStampArray);
     	var graphDataArray = [];
     	for (var i = 0; i < data.length; i++) {
+    		console.log(data[i]);
     		var graphDataObj = {
     				runTime: [],
     				totalPass: [],
@@ -976,7 +982,8 @@ angular.module('webLog')
     		var graphName = data[i].name;
     		
 			for (var j = 0; j < data[i].data.length; j++) {
-				if (data[i].data[j].skipped === true) {
+		    	console.log("-------------------------");
+				if (isSkipped(data[i].data[j])) {
 					graphDataObj.runTime.push(null);
 					graphDataObj.totalPass.push(null);
 					graphDataObj.totalFail.push(null);
@@ -1185,6 +1192,8 @@ angular.module('webLog')
     			type: "line"
     		});
 		}
+    	console.log("series");
+    	console.log(chart.series);
     	chart.yAxis.title.text = 'Pass percentage';
     	chart.title.text = "Percentage of passed tests";
     	delete Charts.mainChart.options.tooltip.valueDecimals;
