@@ -53,11 +53,11 @@ public class GraphDataBuilder {
 		if ((data = graphData.get(timestamp)) == null) {
 			data = new JsonObject();
 			data.add("timestamp", new JsonPrimitive(timestamp));
-			data.add("time", new JsonPrimitive("null"));
-			data.add("pass", new JsonPrimitive("null"));
-			data.add("fail", new JsonPrimitive("null"));
-			data.add("error", new JsonPrimitive("null"));
-			data.add("skipped", new JsonPrimitive(true));
+			data.add("time", new JsonPrimitive(0));
+			data.add("pass", new JsonPrimitive(0));
+			data.add("fail", new JsonPrimitive(0));
+			data.add("error", new JsonPrimitive(0));
+			data.add("skipped", new JsonPrimitive(1));
 		}
 		return data;
 	}
