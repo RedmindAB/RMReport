@@ -15,9 +15,9 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 
 import se.redmind.rmtest.db.InMemoryDBHandler;
-import se.redmind.rmtest.db.read.ReadStatsFromReport;
 import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
 import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataDAO;
+import se.redmind.rmtest.web.route.api.stats.graphdata.ReadStatsFromReport;
 
 public class ReadStatsFromReportTest {
 

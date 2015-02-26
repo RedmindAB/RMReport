@@ -108,10 +108,6 @@ public class ReadFromDBTest {
 		}
     }
     
-    @Test
-    public void getReportDataFromSuiteID(){
-    	List<HashMap<String, String>> reportListData = new ReadReportFromDB().getReportListData(1);
-    }
     
     @Ignore //driver dose not exist anymore
     @Test
