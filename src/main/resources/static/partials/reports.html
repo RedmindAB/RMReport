@@ -55,7 +55,7 @@
 		<br>
 	<div style='display:inline'>
         <div class="btn-group ">
-           	<h5 style='margin-bottom:5px'>Choose graph view</h5>
+           	<h5 style='margin-bottom:0px'>Choose graph view</h5>
            	<button style='width:150px;margin:1px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
                 {{Utilities.graphView}}
                 <span class="caret"></span>
@@ -68,7 +68,7 @@
             </ul>
         </div>
         <div class='btn-group'>
-			<h5 style='margin-bottom:5px'>Choose break point</h5>
+			<h5 style='margin-bottom:0px'>Choose break point</h5>
 			<button style='width:150px;margin:1px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
                 {{breakPointChoice}}
                 <span class="caret"></span>
@@ -84,20 +84,21 @@
 
         <accordion close-others="false">
             <!-- repeated content -->
-            <div style='width:150px;margin:3px' id='expandable'>
+            <div width='100%' style='margin:7px 3px 3px 3px;' id='expandable'>
                 <accordion-group >
 
                     <accordion-heading id='reports_spec'>
-                        <a style='color:black;font-weight: normal' onClick="if (document.getElementById('expandable').style.width == '150px'){document.getElementById('expandable').style.width = '100%'; } else{document.getElementById('expandable').style.width = '150px'; }">
+                        <a style='color:black;font-weight: normal'>
                             Specifications
                         </a>
+                        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
                     </accordion-heading>
 					
                     <!-- BROWSERS START -->
                     <table>
                         <tr>
                             <td style='padding-right: 10px;font-size:20px' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
-                                <input type="checkbox" style='margin-top:10px' id='input_browser' ng-click="newContent()" ng-model="browser.chosen">
+                                <input type="checkbox" id='input_browser' ng-click="newContent()" ng-model="browser.chosen">
                                 {{browser.browsername}} - v.{{browser.browserver}}
                             </td>
                         </tr>
@@ -148,6 +149,7 @@
         <div class='row' style='border:10px solid #D4D9DD'>
         </div>
 		<div class="btn-group" style='margin-top:10px;'>
+            <h5 style='margin-bottom:0px'>Choose timestamp</h5>
             <button style='width:150px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
                 {{CurrentSuite.currentTimeStamp}}
                 <span class="caret"></span>
@@ -159,7 +161,7 @@
                 </li>
             </ul>
         </div>
-		<div class="btn-group" style='margin-top:10px;word-break:break-all'>
+		<div class="btn-group" style='margin-top:35px;word-break:break-all'>
             <input type="text" id="filter-field" class="form-control tool-tip" style="width:150px;display:inline" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>	
 			<h4 style='display:inline;vertical-align:bottom;'>{{getPosition()}}</h4>
     	</div>
