@@ -949,10 +949,7 @@ angular.module('webLog')
 	// CHART OBJECTS -----------------------------------------------------------------------------------------------------------
 	
 	function isSkipped(dataObj){
-		if (dataObj.skipped === true) {
-			return true;
-		}
-		var passed = dataObj.passed > 0;
+		var passed = dataObj.pass> 0;
 		var failed = dataObj.fail > 0;
 		var error = dataObj.error > 0;
 		var skipped = dataObj.skipped;
