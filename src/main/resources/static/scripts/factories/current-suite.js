@@ -14,6 +14,7 @@ angular.module('webLog')
 				currentTimeStampArray: [],
 				currentSpecObject: [],
 				newLine: false,
-				lastRunSize: 50
+				lastRunSize: 50,
+				activeQueries: []
 		    	};
 	});
