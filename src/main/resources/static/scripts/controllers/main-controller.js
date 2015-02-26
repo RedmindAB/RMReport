@@ -287,9 +287,7 @@ angular.module('webLog')
 		dataRequest.testcases = [CurrentSuite.currentMethod.id];
 		dataRequest.name = osName+"-"+osVersion+"-"+deviceName+"-"+browserName+"-"+browserVer;
 		
-		console.log(dataRequest);
 		var requestObj = [dataRequest];
-		console.log(JSON.stringify(requestObj));
     	$http.post('/api/stats/graphdata', requestObj)
     	.success(function(data, status, headers, config){
     		$scope.createMainChart(data, true);
@@ -300,8 +298,6 @@ angular.module('webLog')
 	
 	function getDeviceIdByName(deviceName){
 		var specs = CurrentSuite.currentSpecObject;
-		console.log("specs");
-		console.log(specs);
 		for (var i = 0; i < specs.platforms.length; i++) {
 			for (var j = 0; j < specs.platforms[i].devices.length; j++) {
 				if (specs.platforms[i].devices[j].devicename === deviceName) {
@@ -360,7 +356,6 @@ angular.module('webLog')
 	}
 	
 	$scope.getSuiteSkeleton = function(suite){
-		console.log(suite);
 		CurrentSuite.currentSuiteInfo = suite;
 	    $http.get('/api/suite/latestbyid?suiteid=' + suite.id)
 	    .success(function(data, status, headers, config){ 
@@ -397,10 +392,6 @@ angular.module('webLog')
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		CurrentSuite.currentCases = data;
-	    		console.log("class");
-	    		console.log(CurrentSuite.currentClass);
-	    		console.log("method");
-	    		console.log(CurrentSuite.currentMethod);
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -433,15 +424,39 @@ angular.module('webLog')
 	
    $scope.loadMainChart = function(suiteID, newLine) {
 	   	Charts.mainChart.loading = 'Generating impressivly relevant statistics...';
-    	var requestObject = $scope.getGraphDataObject(suiteID);
-    	CurrentSuite.lastRunSize = getResLimit();
-    	$http.post('/api/stats/graphdata', requestObject)
-    	.success(function(data, status, headers, config){
-    		$scope.createMainChart(data, newLine);
-    		console.log(CurrentSuite.currentSpecObject);
-    	}).error(function(data, status, headers, config){
-    		console.log(data);
-    	});
+	   	var activeQueries = [];
+ 	   if (!newLine) {
+		   CurrentSuite.activeQueries = [];
+	   } else {
+		   for (var i = 0; i < CurrentSuite.activeQueries.length; i++) {
+			   console.log(CurrentSuite.activeQueries[i][0].reslimit);
+				   for (var j = 0; j < CurrentSuite.activeQueries[i].length; j++) {
+					   if (CurrentSuite.activeQueries[i][j].reslimit > getResLimit() || CurrentSuite.activeQueries[i][j].reslimit < getResLimit()) {
+						   console.log(CurrentSuite.activeQueries[i][j]);
+						   CurrentSuite.activeQueries[i][j].reslimit = getResLimit();
+					   }
+					   console.log("active");
+					   console.log(CurrentSuite.activeQueries[i][j]);
+					   activeQueries.push(CurrentSuite.activeQueries[i][j]);
+				   }
+		   }
+		   CurrentSuite.activeQueries = [];
+	   }
+ 	   
+	   var requestObject = $scope.getGraphDataObject(suiteID);
+	   	for (var i = 0; i < activeQueries.length; i++) {
+			requestObject.push(activeQueries[i]);
+		}
+	   console.log("req");
+	   console.log(requestObject);
+	   console.log("--------------------------------------------------------------------");
+	   CurrentSuite.lastRunSize = getResLimit();
+	   $http.post('/api/stats/graphdata', requestObject)
+	   .success(function(data, status, headers, config){
+		   $scope.createMainChart(data, newLine);
+	   }).error(function(data, status, headers, config){
+		   console.log(data);
+	   });
    };
    
    function highlightPoint(timestamp){
@@ -495,7 +510,6 @@ angular.module('webLog')
     }
     
     $scope.getGraphDataObject = function(suiteID, name){
-    	CurrentSuite.activeQueries = [];
     	var graphDataObject = [];
     	switch ($scope.breakPointChoice) {
 		case "None":
@@ -524,6 +538,8 @@ angular.module('webLog')
 			break;
 		}
     	CurrentSuite.activeQueries.push(graphDataObject);
+    	console.log("active in getGraphObj");
+    	console.log(CurrentSuite.activeQueries);
     	return graphDataObject;
     	
     };
@@ -976,6 +992,7 @@ angular.module('webLog')
 			graphDataArray.push(graphDataObj);
 		}
     	if (newLine) {
+    		Charts.data = [];
     		for (var i = 0; i < graphDataArray.length; i++) {
 				Charts.data.push(graphDataArray[i]);
 			}
@@ -1033,7 +1050,6 @@ angular.module('webLog')
 										$scope.getSuiteSkeletonByTimeStamp(this.category);
 										$scope.loadMainChart(suite.id);
 										$state.transitionTo('reports.classes');
-										console.log(CurrentSuite);
 								}
 							}
 							}
