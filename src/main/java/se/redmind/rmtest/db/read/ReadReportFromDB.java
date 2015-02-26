@@ -152,7 +152,7 @@ public class ReadReportFromDB extends DBBridge{
     }
 	public JsonArray deviceRunThisMonth(){
 		String dateAmonthAgo = new CalendarCounter().getDateOneMonthAgoAsString();
-		ResultSet rs = readFromDB(TIMESTAMP_AFTER_DATE+"'"+dateAmonthAgo+"-000000"+"'"+" group by devicename");
+		ResultSet rs = readFromDB(TIMESTAMP_AFTER_DATE+"'"+dateAmonthAgo+"000000"+"'"+" group by devicename");
 		JsonArray array = new JsonArray();
 		try {
 			while(rs.next()){
@@ -169,7 +169,7 @@ public class ReadReportFromDB extends DBBridge{
 	
 	public JsonArray deviceRunAmonthAgo(){
 		String dateAmonthAgo = new CalendarCounter().getDateOneMonthAgoAsString();
-		ResultSet rs2 = readFromDB(TIMESTAMP_BEFORE_DATE+"'"+dateAmonthAgo+"-000000"+"'"+" group by devicename");
+		ResultSet rs2 = readFromDB(TIMESTAMP_BEFORE_DATE+"'"+dateAmonthAgo+"000000"+"'"+" group by devicename");
 		JsonArray array2 = new JsonArray();
 		try {
 			while(rs2.next()){
