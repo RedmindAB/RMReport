@@ -432,8 +432,7 @@ angular.module('webLog')
 	};
 	
    $scope.loadMainChart = function(suiteID, newLine) {
-	   
-	   	Charts.mainChart.loading = 'Generating extrodinary relevant statistics...';
+	   	Charts.mainChart.loading = 'Generating impressivly relevant statistics...';
     	var requestObject = $scope.getGraphDataObject(suiteID);
     	CurrentSuite.lastRunSize = getResLimit();
     	$http.post('/api/stats/graphdata', requestObject)
@@ -496,31 +495,37 @@ angular.module('webLog')
     }
     
     $scope.getGraphDataObject = function(suiteID, name){
+    	CurrentSuite.activeQueries = [];
+    	var graphDataObject = [];
     	switch ($scope.breakPointChoice) {
 		case "None":
-			return getAllDataAsOne(suiteID, name);
+			graphDataObject = getAllDataAsOne(suiteID, name);
 			break;
 
 		case "Platform":
-			return splitDataOnPlatform(suiteID, name);
+			graphDataObject = splitDataOnPlatform(suiteID, name);
 			break;
 
 		case "Device":
-			return splitDataOnDevice(suiteID, name);
+			graphDataObject = splitDataOnDevice(suiteID, name);
 			break;
 
 		case "Browser":
-			return splitDataOnBrowser(suiteID, name);
+			graphDataObject = splitDataOnBrowser(suiteID, name);
 			break;
 			
 		case "Version":
-			return splitDataOnVersion(suiteID, name);
+			graphDataObject = splitDataOnVersion(suiteID, name);
 			break;
 
 		default:
+			graphDataObject = getAllDataAsOne(suiteID, name);
+			console.log("Something went wrong");
 			break;
 		}
-
+    	CurrentSuite.activeQueries.push(graphDataObject);
+    	return graphDataObject;
+    	
     };
     
     function splitDataOnDevice(suiteID, name) {
@@ -955,10 +960,17 @@ angular.module('webLog')
     		var graphName = data[i].name;
     		
 			for (var j = 0; j < data[i].data.length; j++) {
-				graphDataObj.runTime.push(data[i].data[j].time);
-				graphDataObj.totalPass.push(data[i].data[j].pass);
-				graphDataObj.totalFail.push(data[i].data[j].fail + data[i].data[j].error);
-				graphDataObj.passPercentage.push(Math.round(getPassPercentage(data[i].data[j].pass, data[i].data[j].fail, data[i].data[j].error)));
+				if (data[i].data[j].skipped === true) {
+					graphDataObj.runTime.push(null);
+					graphDataObj.totalPass.push(null);
+					graphDataObj.totalFail.push(null);
+					graphDataObj.passPercentage.push(null);
+				} else {
+					graphDataObj.runTime.push(data[i].data[j].time);
+					graphDataObj.totalPass.push(data[i].data[j].pass);
+					graphDataObj.totalFail.push(data[i].data[j].fail + data[i].data[j].error);
+					graphDataObj.passPercentage.push(Math.round(getPassPercentage(data[i].data[j].pass, data[i].data[j].fail, data[i].data[j].error)));
+				}
 			}
 			graphDataObj.name = graphName;
 			graphDataArray.push(graphDataObj);
