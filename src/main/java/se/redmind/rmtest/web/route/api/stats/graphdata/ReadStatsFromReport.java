@@ -1,19 +1,23 @@
-package se.redmind.rmtest.db.read;
+package se.redmind.rmtest.web.route.api.stats.graphdata;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 
 import se.redmind.rmtest.db.DBBridge;
+import se.redmind.rmtest.db.read.ReadReportFromDB;
 
-public class ReadStatsFromReport extends ReadReportFromDB{
+public class ReadStatsFromReport extends DBBridge{
 
+	String GET_REPORTS_BY_SUITEID = "SELECT timestamp, result, time FROM report WHERE suite_id = {suiteid} ORDER BY timestamp DESC;";
 	public static final String OS = "os";
 	public static final String DEVICES = "devices";
 	public static final String BROWSERS = "browsers";
@@ -109,4 +113,84 @@ public class ReadStatsFromReport extends ReadReportFromDB{
 		}
 		sb.append(")");
 	}
+	
+	@Deprecated
+	protected List<HashMap<String, String>> extractResultSetToGraphData(ResultSet rs) {
+		List<HashMap<String, String>> result = new ArrayList<HashMap<String,String>>();
+    	try {
+    		String currentTimestamp = null;
+    		float time = 0;
+    		int fail = 0;
+    		int pass = 0;
+    		int error = 0;
+			while (rs.next()) {
+				boolean isCurrentTimestampNull = currentTimestamp == null;
+				if (isCurrentTimestampNull || !currentTimestamp.equals(rs.getString("timestamp"))) {
+					if (!isCurrentTimestampNull) {
+						HashMap<String, String> hashMap = new HashMap<String,String>();
+						hashMap.put("timestamp", currentTimestamp);
+						hashMap.put("time", ""+time);
+						hashMap.put("pass", ""+pass);
+						hashMap.put("fail", ""+fail);
+						hashMap.put("error", ""+error);
+						result.add(hashMap);
+					}
+					currentTimestamp = rs.getString("timestamp");
+					fail = 0;
+					pass = 0;
+					error = 0;
+					time = 0f;
+				}
+				String res = rs.getString("result");
+				switch (res) {
+				case "passed":
+					pass+=1;
+					break;
+				case "error":
+					error+=1;
+					break;
+				case "failure":
+					fail+=1;
+				default:
+					break;
+				}
+				time+=rs.getFloat("time");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+    	return result;
+    }
+	
+	@Deprecated
+	public List<HashMap<String, String>> getReportListData(int suiteid){
+	    	HashMap<String, String> map = new HashMap<>();
+	    	map.put("suiteid", ""+suiteid);
+	    	String sql = stringParser.getString(GET_REPORTS_BY_SUITEID, map);
+	    	ResultSet rs = readFromDB(sql);
+	    	List<HashMap<String, String>> result = extractResultSetToGraphData(rs);
+	    	return result;
+	    }
+	 
+	 protected HashMap<Long, JsonObject> extractGraphData(ResultSet rs) {
+	    	HashMap<Long, JsonObject> graphMap = new HashMap<Long, JsonObject>();
+	    	try {
+				while (rs.next()) {
+					JsonObject timestamp = new JsonObject();
+					long timestampValue = rs.getLong("timestamp");
+					timestamp.add("timestamp", new JsonPrimitive(timestampValue));
+					timestamp.add("time", new JsonPrimitive(rs.getDouble("time")));
+					timestamp.add("pass", new JsonPrimitive(rs.getInt("passed")));
+					timestamp.add("fail", new JsonPrimitive(rs.getInt("failure")));
+					timestamp.add("error", new JsonPrimitive(rs.getInt("error")));
+					timestamp.add("skipped", new JsonPrimitive(rs.getInt("skipped")));
+					graphMap.put(timestampValue, timestamp);
+				}
+			} catch (SQLException e) {
+				return null;
+			}
+	    	return graphMap;
+	    }
 }

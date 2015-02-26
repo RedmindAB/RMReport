@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.List;
 
-import se.redmind.rmtest.db.read.ReadStatsFromReport;
 import se.redmind.rmtest.util.GraphDataExtractor;
 
 import com.google.gson.Gson;
@@ -16,14 +15,17 @@ import com.google.gson.JsonPrimitive;
 
 public class GetGraphDataDAO {
 
+	private int reslimit;
+	private int suite_id;
+
 	public String getGraphData(JsonArray paramsArray){
+		initLocalVariables(paramsArray);
+		
 		ReadStatsFromReport reportStats = new ReadStatsFromReport();
 		GraphDataBuilder graphBuilder = new GraphDataBuilder();
 		JsonArray resultArray = new JsonArray();
-		JsonObject firstParams = getFirstJson(paramsArray);
-		int reslimit = firstParams.get("reslimit").getAsInt();
-		int suite_id = firstParams.get("suiteid").getAsInt();
 		ResultSet timestamps = reportStats.getTimestamps(reslimit, suite_id);
+		
 		graphBuilder.generateTimestampList(timestamps);
 		for (JsonElement params : paramsArray) {
 			JsonObject paramsAsObject = params.getAsJsonObject();
@@ -33,9 +35,16 @@ public class GetGraphDataDAO {
 			JsonObject result = new JsonObject();
 			result.add("name", new JsonPrimitive(name));
 			result.add("data", dataArray);
+//			System.out.println(name+ " "+ result);
 			resultArray.add(result);
 		}
 		return new Gson().toJson(resultArray);
+	}
+
+	private void initLocalVariables(JsonArray paramsArray) {
+		JsonObject firstParams = getFirstJson(paramsArray);
+		reslimit = firstParams.get("reslimit").getAsInt();
+		suite_id = firstParams.get("suiteid").getAsInt();
 	}
 	
 	public JsonObject getFirstJson(JsonArray paramsArray){
