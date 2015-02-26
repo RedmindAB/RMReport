@@ -16,6 +16,7 @@ import se.redmind.rmtest.db.read.ReadClassFromDB;
 import se.redmind.rmtest.db.read.ReadReportFromDB;
 import se.redmind.rmtest.db.read.ReadSuiteFromDB;
 import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
+import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesDAO;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseDAO;
 import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteDAO;
 import se.redmind.rmtest.web.route.api.suite.bytimestamp.GetSuiteByTimestampDAO;
@@ -101,7 +102,7 @@ public class ReadFromDBTest {
     }
     @Test
     public void getAllClassNamesTest(){
-         List<HashMap<String, Object>> classname = new ReadClassFromDB().getAllClassNames(1);
+         List<HashMap<String, Object>> classname = new GetClassesDAO().getAllClassNames(1);
          System.out.println(classname.toString());
         for (HashMap hashMap : classname) {
 			System.out.println(hashMap);
