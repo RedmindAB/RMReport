@@ -31,7 +31,7 @@ public class ReadTestcaseFromDB extends DBBridge {
     String AND_TIMESTAMP_FROM_HISTORY_ = " and timestamp != (select max(timestamp) from report)";
     
     //getDriverAndMessageFromLastRun:
-    String SELECT_ALL_FROM_REPORT_OS_DEVICE_BROWSER = "select testcase.testcasename, device.devicename, os.osname, os.osversion, browser.browsername, browser.browserversion, time, report.result, report.message from report inner join os on os.os_id = report.os_id inner join device on device.device_id = report.device_id inner join browser on browser.browser_id = report.browser_id inner join testcase on testcase.testcase_id = report.testcase_id where report.testcase_id = ";
+    String SELECT_ALL_FROM_REPORT_OS_DEVICE_BROWSER = "select timestamp, testcase.testcasename, device.devicename, os.osname, os.osversion, browser.browsername, browser.browserversion, time, report.result, report.message from report inner join os on os.os_id = report.os_id inner join device on device.device_id = report.device_id inner join browser on browser.browser_id = report.browser_id inner join testcase on testcase.testcase_id = report.testcase_id where report.testcase_id = ";
     String AND_TIMESTAMP = " and timestamp = ";
     String LIMIT = " limit 20";
     
@@ -98,6 +98,7 @@ public class ReadTestcaseFromDB extends DBBridge {
     	try {
 			while(rs.next()){
 				JsonObject jsonObject = new JsonObject();
+				jsonObject.add("timestamp", new JsonPrimitive(rs.getString("timestamp")));
 				jsonObject.add("testcasename", new JsonPrimitive(rs.getString("testcasename")));
 				jsonObject.add("devicename", new JsonPrimitive(rs.getString("devicename")));
 				jsonObject.add("osname", new JsonPrimitive(rs.getString("osname")));
