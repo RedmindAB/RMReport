@@ -98,7 +98,7 @@
                     <table>
                         <tr>
                             <td style='padding-right: 10px;font-size:20px' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
-                                <input type="checkbox" id='input_browser' ng-click="newContent()" ng-model="browser.chosen">
+                                <input style='margin-top:9px' type="checkbox" id='input_browser' ng-click="newContent()" ng-model="browser.chosen">
                                 {{browser.browsername}} - v.{{browser.browserver}}
                             </td>
                         </tr>
