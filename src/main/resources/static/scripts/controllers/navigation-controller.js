@@ -19,7 +19,21 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuit
 		}
 	}
 	
-	
+	$scope.subNavLinks = function(){
+		switch ($state.$current.name) {
+		case 'reports.classes':
+			$scope.setState('home');
+			break;
+		case 'reports.methods':
+			$scope.setState('reports.classes');
+			break;
+		case 'reports.cases':
+			$scope.setState('reports.methods');
+			break;
+		default:
+			break;
+		}
+	}
 	
 	$scope.setState = function(newState){
 		$state.transitionTo(newState);

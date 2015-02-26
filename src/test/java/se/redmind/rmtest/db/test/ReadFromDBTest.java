@@ -122,12 +122,12 @@ public class ReadFromDBTest {
     }
     @Test
     public void getSpecificSuiteRunFromIdAndTimestampTest(){
-    	JsonArray array = new ReadSuiteFromDB().getSpecificSuiteRunFromIdAndTimestamp(1,"20150204-000000");
+    	JsonArray array = new ReadSuiteFromDB().getSpecificSuiteRunFromIdAndTimestamp(1,"20150204000000");
     	System.out.println(array.toString());
     }
     @Test
     public void getDriverAndMessageFromLastRunTest(){
-    	String array = new GetDriverByTestcaseDAO().getDriverByTestcaseId(1, "20150204-000100");
+    	String array = new GetDriverByTestcaseDAO().getDriverByTestcaseId(1, "20150204000100");
     	System.out.println(array.toString());
     }
     
@@ -139,7 +139,7 @@ public class ReadFromDBTest {
     
     @Test
     public void getLastestByTimestamp(){
-    	String array = new GetSuiteByTimestampDAO().getSuiteByTimestamp(2, "20150101-080000");
+    	String array = new GetSuiteByTimestampDAO().getSuiteByTimestamp(2, "20150101080000");
     	System.out.println(array);
     }
     @Test
