@@ -228,7 +228,8 @@ angular.module('webLog')
 				testcases: [],
 				platforms:[]
 		};
-		
+		console.log("suck");
+		console.log(CurrentSuite.currentSpecObject.platforms);
 		//add version to send
 		if (CurrentSuite.currentSpecObject.platforms) {
 			var platforms = CurrentSuite.currentSpecObject.platforms;
@@ -260,8 +261,17 @@ angular.module('webLog')
 			var platforms = CurrentSuite.currentSpecObject.platforms;
 			for (var i = 0; i < platforms.length; i++) {
 				if (platforms[i].chosen) {
-					for (var j = 0; j < platforms[i].versions.length; j++) {
-						if (chosen.os.indexOf(platforms[i].versions[j].osid) == -1) {
+					var osids = [];
+					if (containsChosen(platforms[i].versions)) {
+						for (var j = 0; j < platforms[i].versions.length; j++) {
+							if (chosen.os.indexOf(platforms[i].versions[j].osid) == -1) {
+								if (platforms[i].versions[j].chosen) {
+									chosen.os.push(platforms[i].versions[j].osid);
+								}
+							}
+						}
+					} else {
+						for (var j = 0; j < platforms[i].versions.length; j++) {
 							chosen.os.push(platforms[i].versions[j].osid);
 						}
 					}
@@ -486,6 +496,8 @@ angular.module('webLog')
 			requestObject.push(activeQueries[i]);
 		}
 	   CurrentSuite.lastRunSize = getResLimit();
+	   console.log("request");
+	   console.log(requestObject);
 	   $http.post('/api/stats/graphdata', requestObject)
 	   .success(function(data, status, headers, config){
 		   $scope.createMainChart(data, newLine);
@@ -741,7 +753,7 @@ angular.module('webLog')
     		dataRequest.reslimit = getResLimit();
     		
     		dataRequest.os = [chosen.os[i]];
-    		dataRequest.devices = chosen.devices;
+    		dataRequest.devices = sortDevicesByOsId(chosen.devices, chosen.os[i]);
     		dataRequest.browsers = chosen.browsers;
     		dataRequest.classes = chosen.classes;
     		dataRequest.testcases = chosen.testcases;
@@ -750,6 +762,43 @@ angular.module('webLog')
 		}
     	return graphArray;
     };
+    
+    function sortDevicesByOsId(devices, osid){
+    	console.log(devices);
+    	var sortedDevices = [];
+    	var platformName = '';
+    	var platforms = CurrentSuite.currentSpecObject.platforms
+
+    	for (var i = 0; i < platforms.length; i++) {
+    		if (platforms[i].chosen) {
+    			if (containsOsId(osid, platforms[i].versions)) {
+					for (var j = 0; j < platforms[i].devices.length; j++) {
+						for (var k = 0; k < devices.length; k++) {
+							if (devices[k] === platforms[i].devices[j].deviceid) {
+								sortedDevices.push(platforms[i].devices[j].deviceid);
+							}
+						}
+					}
+					console.log(sortedDevices.length);
+					if (sortedDevices.length === 0) {
+						for (var j = 0; j < platforms[i].devices.length; j++) {
+							sortedDevices.push(platforms[i].devices[j].deviceid);
+						}
+					}
+    			}
+    		}
+		}
+    	return sortedDevices;
+    }
+    
+    function containsOsId(osid, array){
+    	for (var i = 0; i < array.length; i++) {
+			if (array[i].osid === osid) {
+				return true;
+			}
+		}
+    	return false;
+    }
     
     function splitDataOnBrowser(suiteID, name) {
     	var graphArray = [];
@@ -772,6 +821,7 @@ angular.module('webLog')
     		if (name) {
     			dataRequest.name = name;
     		} else {
+    			console.log(getDataFromSpecs('browsers', 'none', 'browsername'));
     			dataRequest.name = getBrowserByID(dataRequest.browsers[0]).browsername+" v."+getBrowserByID(dataRequest.browsers[0]).browserver;
     		}
     		
@@ -815,10 +865,12 @@ angular.module('webLog')
     	var chosen = $scope.getChosen();
     	var dataRequest = {};
     	
+    	console.log(chosen);
+    	
     	if (name) {
     		dataRequest.name = name;
 		} else {
-			dataRequest.name = "";
+			dataRequest.name = 'Aggregation';
 		}
     	
 		dataRequest.suiteid = suiteID;
@@ -932,6 +984,7 @@ angular.module('webLog')
     	var devices = [];
     	if (chosenDevices.length === 0) {
 			devices = getDevicesByPlatform(platformName, chosenDevices);
+			console.log(devices);
 			return devices;
 		} else {
 			var allDevices = [];
@@ -1092,6 +1145,13 @@ angular.module('webLog')
 	}
 	
     $scope.createMainChart = function(data, newLine){
+    	if (data.length === 0) {
+    		alert("There is no data for that combination");
+    		Charts.mainChart.loading = false;
+    		return;
+		}
+    	console.log("response");
+    	console.log(data);
     	CurrentSuite.currentTimeStampArray = [];
     	for (var index = 0; index < data[0].data.length; index++) {
 			CurrentSuite.currentTimeStampArray.push(data[0].data[index].timestamp);
