@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import se.redmind.rmtest.db.DBBridge;
-import se.redmind.rmtest.db.read.ReadClassFromDB;
+import se.redmind.rmtest.db.lookup.classname.ClassDbLookup;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;

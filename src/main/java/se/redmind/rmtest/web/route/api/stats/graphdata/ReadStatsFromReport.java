@@ -13,7 +13,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 import se.redmind.rmtest.db.DBBridge;
-import se.redmind.rmtest.db.lookup.ReportDbLookup;
+import se.redmind.rmtest.db.lookup.report.ReportDbLookup;
 
 public class ReadStatsFromReport extends DBBridge{
 

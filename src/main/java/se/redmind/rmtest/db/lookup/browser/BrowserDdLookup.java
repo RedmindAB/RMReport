@@ -1,4 +1,4 @@
-package se.redmind.rmtest.db.read;
+package se.redmind.rmtest.db.lookup.browser;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import se.redmind.rmtest.db.DBBridge;
 
-public class ReadBrowserFromDB extends DBBridge{
+public class BrowserDdLookup extends DBBridge{
 
 String GET_ALL_FROM_BROWSER = "select * from browser";
 	

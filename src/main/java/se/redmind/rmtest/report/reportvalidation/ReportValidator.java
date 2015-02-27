@@ -11,10 +11,10 @@ import se.redmind.rmtest.db.create.classinserter.ClassInserter;
 import se.redmind.rmtest.db.create.suiteinserter.SuiteInserter;
 import se.redmind.rmtest.db.create.testcaseinserter.TestCaseInserter;
 import se.redmind.rmtest.db.create.testcaseruninserter.TestCaseRunInserter;
-import se.redmind.rmtest.db.lookup.TestcaseDbLookup;
-import se.redmind.rmtest.db.read.ReadClassFromDB;
-import se.redmind.rmtest.db.lookup.ReportDbLookup;
-import se.redmind.rmtest.db.lookup.SuiteDbLookup;
+import se.redmind.rmtest.db.lookup.classname.ClassDbLookup;
+import se.redmind.rmtest.db.lookup.report.ReportDbLookup;
+import se.redmind.rmtest.db.lookup.suite.SuiteDbLookup;
+import se.redmind.rmtest.db.lookup.testcase.TestcaseDbLookup;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
@@ -33,14 +33,14 @@ public class ReportValidator {
 	private SuiteInserter suiteInserter;
 	private TestCaseInserter testCaseInserter;
 	private TestCaseRunInserter testCaseRunInserter;
-	private ReadClassFromDB readClassFromDB;
+	private ClassDbLookup readClassFromDB;
 	private SuiteDbLookup readSuiteFromDB;
 	private TestcaseDbLookup readTestcaseFromDB;
 	
 	public ReportValidator(String filename) {
 		this.filename = filename;
 		this.readFromDB = new ReportDbLookup();
-		this.readClassFromDB = new ReadClassFromDB();
+		this.readClassFromDB = new ClassDbLookup();
 		this.readSuiteFromDB = new SuiteDbLookup();
 		this.connection = DBCon.getDbInstance().getConnection();
 		this.loader = new ReportLoader();

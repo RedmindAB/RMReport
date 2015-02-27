@@ -4,10 +4,11 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.google.gson.JsonArray;
+
 import se.redmind.rmtest.db.DBCon;
-import se.redmind.rmtest.db.read.ReadClassFromDB;
-import se.redmind.rmtest.db.lookup.ReportDbLookup;
-import se.redmind.rmtest.db.lookup.SuiteDbLookup;
+import se.redmind.rmtest.db.lookup.classname.ClassDbLookup;
+import se.redmind.rmtest.db.lookup.report.ReportDbLookup;
+import se.redmind.rmtest.db.lookup.suite.SuiteDbLookup;
 import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesDAO;
 import se.redmind.rmtest.web.route.api.device.getdevices.GetDevicesAMonthAgoDAO;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseDAO;
@@ -53,7 +54,7 @@ public class ReadFromDBTest {
     }
 
     @Test
-    public void getClassIDTest(){new ReadClassFromDB().getClassID("name");}
+    public void getClassIDTest(){new ClassDbLookup().getClassID("name");}
 
     @Test
     public void getSuitIdTest(){
@@ -63,14 +64,6 @@ public class ReadFromDBTest {
     @Test
     public void getAllSuitesTest() {
         new GetSuitesDAO().getAllSuites();
-    }
-    @Test
-    public void getClassNameOnTestcaseIdTest(){ 
-    	HashMap<String, String> classNameOnTestcaseId = new ReadClassFromDB().getClassNameOnTestcaseId();
-    	Set<String> keySet = classNameOnTestcaseId.keySet();
-    	for (String string : keySet) {
-			System.out.println("Key: "+string);
-		}
     }
     
     @Test
@@ -98,7 +91,6 @@ public class ReadFromDBTest {
 			System.out.println(hashMap);
 		}
     }
-    
     
     @Test
     public void getLastestSuiteRunFromIDTest(){

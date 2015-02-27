@@ -8,7 +8,7 @@ import java.util.List;
 
 import se.redmind.rmtest.db.DBBridge;
 import se.redmind.rmtest.db.create.testcaseinserter.TestCaseInserter;
-import se.redmind.rmtest.db.lookup.TestcaseDbLookup;
+import se.redmind.rmtest.db.lookup.testcase.TestcaseDbLookup;
 import se.redmind.rmtest.report.parser.Driver;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
