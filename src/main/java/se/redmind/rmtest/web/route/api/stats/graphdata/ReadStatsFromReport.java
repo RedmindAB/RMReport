@@ -53,8 +53,8 @@ public class ReadStatsFromReport extends DBBridge{
 	
 	public HashMap<Long, JsonObject> getGraphDataAsHashMap(JsonObject params, long minTimestamp){
 		String sql = getQueryFromJsonObject(params, minTimestamp);
-		System.out.println(sql);
-		System.out.println("----");
+//		System.out.println(sql);
+//		System.out.println("----");
 		int reslimit = params.get("reslimit").getAsInt();
 		ResultSet rs = readFromDB(sql, reslimit);
 		return extractGraphData(rs);
