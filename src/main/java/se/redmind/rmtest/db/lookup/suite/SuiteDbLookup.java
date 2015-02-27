@@ -1,4 +1,4 @@
-package se.redmind.rmtest.db.lookup;
+package se.redmind.rmtest.db.lookup.suite;
 
 import se.redmind.rmtest.db.DBBridge;
 

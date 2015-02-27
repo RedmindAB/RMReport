@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import se.redmind.rmtest.db.DBBridge;
-import se.redmind.rmtest.db.lookup.ReportDbLookup;
+import se.redmind.rmtest.db.lookup.report.ReportDbLookup;
 import se.redmind.rmtest.util.CalendarCounter;
 
 import com.google.gson.Gson;

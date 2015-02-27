@@ -6,9 +6,9 @@ import org.junit.Test;
 import com.google.gson.JsonArray;
 
 import se.redmind.rmtest.db.DBCon;
-import se.redmind.rmtest.db.lookup.ClassDbLookup;
-import se.redmind.rmtest.db.lookup.ReportDbLookup;
-import se.redmind.rmtest.db.lookup.SuiteDbLookup;
+import se.redmind.rmtest.db.lookup.classname.ClassDbLookup;
+import se.redmind.rmtest.db.lookup.report.ReportDbLookup;
+import se.redmind.rmtest.db.lookup.suite.SuiteDbLookup;
 import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesDAO;
 import se.redmind.rmtest.web.route.api.device.getdevices.GetDevicesAMonthAgoDAO;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseDAO;
