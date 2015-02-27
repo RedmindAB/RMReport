@@ -97,10 +97,11 @@
                 <accordion-group >
 
                     <accordion-heading id='reports_spec'>
-                        Specifications <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-					<button style='width: 60px;' id='button_clear' class="btn btn-default" ng-click="$event.preventDefault();$event.stopPropagation();clearAllChosen();newContent()">
-							Clear
-						</button>
+                        <div ng-click='toggleButton()'>Specifications<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+	                        <button style='width: 60px;' ng-show='showButton' id='button_clear' class="btn btn-default" ng-click="$event.preventDefault();$event.stopPropagation();clearAllChosen();newContent()">
+								Clear
+							</button>
+						</div>
 					</accordion-heading>
 					
                     <!-- BROWSERS START -->
