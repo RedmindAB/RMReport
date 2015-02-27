@@ -1,4 +1,4 @@
-package se.redmind.rmtest.db.read.graphoptions;
+package se.redmind.rmtest.web.route.api.stats.grahoptions;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

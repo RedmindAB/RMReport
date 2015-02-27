@@ -7,8 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
 import se.redmind.rmtest.db.DBBridge;
-import se.redmind.rmtest.db.read.ReadSuiteFromDB;
-import se.redmind.rmtest.db.read.SuiteJsonBuilder;
+import se.redmind.rmtest.web.api.suite.SuiteJsonBuilder;
 
 public class GetLatestSuiteDAO extends DBBridge{
 

@@ -5,8 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import se.redmind.rmtest.db.DBBridge;
-import se.redmind.rmtest.db.read.graphoptions.GraphOptionsBuilder;
-import se.redmind.rmtest.db.read.graphoptions.ReadGraphOptions;
+
 import se.redmind.rmtest.util.GraphDataExtractor;
 import se.redmind.rmtest.web.route.api.stats.graphdata.ReadStatsFromReport;
 
