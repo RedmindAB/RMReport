@@ -21,6 +21,21 @@ angular.module('webLog')
     	$scope.breakPointChoice = choice;
     }
     
+    $scope.trashcanEmpty = function() {
+    	console.log(Charts.mainChart.series[0]); 
+    	if (Charts.mainChart.series.length < 2) { // your question said "more than one element"
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
+	};
+    
+	$scope.remove = function(item) { 
+		var index = Charts.mainChart.series.indexOf(item)
+		Charts.mainChart.series.splice(index, 1);   
+	}
+    	
     $scope.setAmountField = function(value){
     	Utilities.amountField = value;
     }
