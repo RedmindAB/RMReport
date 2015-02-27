@@ -589,11 +589,11 @@ angular.module('webLog')
     	var graphArray = [];
     	var chosen = $scope.getChosen();
     	if (chosen.os.length === 0) {
-    		if (chosen.devices.length === 0) {
+//    		if (chosen.devices.length === 0) {
     			chosen.os = getAllVersions();
-			} else {
-				chosen.os = getVersionsByDevice(chosen);
-			}
+//			} else {
+//				chosen.os = getVersionsByDevice(chosen);
+//			}
 		}
     	
     	for (var i = 0; i < chosen.os.length; i++) {
