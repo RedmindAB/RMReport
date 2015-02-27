@@ -89,7 +89,7 @@ public class GraphOptionsBuilder {
 			deviceToAdd.add(DEVICEID, new JsonPrimitive(deviceID));
 			String osver = (String) map.get(OSVER);
 			deviceToAdd.add(OSVER, new JsonPrimitive(osver));
-			deviceToAdd.add(OSID, new JsonPrimitive((String) map.get(OSID)));
+			deviceToAdd.add(OSID, new JsonPrimitive((Integer) map.get(OSID)));
 			platform.get(DEVICES).getAsJsonArray().add(deviceToAdd);
 			deviceIDs.add(deviceID);
 		}
