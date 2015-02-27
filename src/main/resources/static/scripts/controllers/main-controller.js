@@ -142,6 +142,18 @@ angular.module('webLog')
 		clearChosenPlatforms();
 	}
 	
+	$scope.clearPlatformChosen = function(platform){
+			for (var i = 0; i < CurrentSuite.currentSpecObject.platforms.length; i++) {
+				for (var j = 0; j < CurrentSuite.currentSpecObject.platforms[i].versions.length; j++) {
+						delete CurrentSuite.currentSpecObject.platforms[i].versions[j].chosen;
+				}
+				for (var j = 0; j < CurrentSuite.currentSpecObject.platforms[i].devices.length; j++) {
+					delete CurrentSuite.currentSpecObject.platforms[i].devices[j].chosen;
+				}
+			}
+		console.log(CurrentSuite.currentSpecObject.platforms.devices);
+	}
+	
 	function clearChosenOs() {
 		if (CurrentSuite.currentSpecObject.platforms) {
 			for (var i = 0; i < CurrentSuite.currentSpecObject.platforms.length; i++) {
