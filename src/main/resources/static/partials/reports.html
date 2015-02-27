@@ -42,15 +42,28 @@
             </ul>
         </div>
         
-		<button style='margin:26px 1px 1px 1px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" ng-model='CurrentSuite.newLine' class="btn btn-default" id='graph_line' style='margin:2px' title="Add a new line to the graph above" data-toggle="tooltip" data-placement="top" tooltip>
+		<button style='margin:26px 1px 1px 1px' ng-disabled='Charts.mainChart.loading' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" ng-model='CurrentSuite.newLine' class="btn btn-default" id='graph_line' style='margin:2px'>
 			Add graph line
 		</button>
 		
 		<form style='display:inline;'>
-            <button class="btn btn-default" id='button_reload' style='margin:26px 1px 1px 1px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, false)" onClick="document.getElementById('button_reload').className = 'btn btn-default'" title="Load new content" data-toggle="tooltip" data-placement="top" tooltip>
+            <button class="btn btn-default" ng-disabled='Charts.mainChart.loading' id='button_reload' style='margin:26px 1px 1px 1px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, false);checkQuestions()" onClick="document.getElementById('button_reload').className = 'btn btn-default'">
                 Reload
             </button>
         </form>	
+        
+		<div class='btn-group' align='center'>
+			<h5 style='margin-bottom:0px'>Trash Can</h5>
+			<button ng-disabled="trashcanEmpty()" style='width:150px;margin:1px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li ng-repeat='serie in Charts.mainChart.series' ng-click='remove(serie)'><a style='cursor:pointer'>
+                	<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>&nbsp;{{serie.name}}
+                	</a>
+                </li>
+            </ul>
+        </div>
 		
 		<br>
 	<div style='display:inline'>
@@ -81,7 +94,7 @@
             </ul>
         </div>
     </div>
-
+	
         <accordion close-others="false">
             <!-- repeated content -->
             <div width='100%' style='margin:7px 3px 3px 3px;' id='expandable'>

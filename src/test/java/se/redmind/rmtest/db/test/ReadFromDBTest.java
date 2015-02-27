@@ -16,9 +16,11 @@ import se.redmind.rmtest.db.read.ReadClassFromDB;
 import se.redmind.rmtest.db.read.ReadReportFromDB;
 import se.redmind.rmtest.db.read.ReadSuiteFromDB;
 import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
+import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesDAO;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseDAO;
 import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteDAO;
 import se.redmind.rmtest.web.route.api.suite.bytimestamp.GetSuiteByTimestampDAO;
+import se.redmind.rmtest.web.route.api.suite.getsuites.GetSuitesDAO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -71,7 +73,7 @@ public class ReadFromDBTest {
     
     @Test
     public void getAllSuitesTest() {
-        new ReadSuiteFromDB().getAllSuites();
+        new GetSuitesDAO().getAllSuites();
     }
     @Test
     public void getClassNameOnTestcaseIdTest(){ 
@@ -84,7 +86,7 @@ public class ReadFromDBTest {
     
     @Test
     public void getSuiteList(){
-    	List<HashMap<String, Object>> allSuites = new ReadSuiteFromDB().getAllSuites();
+    	List<HashMap<String, Object>> allSuites = new GetSuitesDAO().getAllSuites();
     	for (HashMap<String, Object> hashMap : allSuites) {
     		System.out.println(hashMap.get("name"));
     		System.out.println(hashMap.get("id"));
@@ -101,7 +103,7 @@ public class ReadFromDBTest {
     }
     @Test
     public void getAllClassNamesTest(){
-         List<HashMap<String, Object>> classname = new ReadClassFromDB().getAllClassNames(1);
+         List<HashMap<String, Object>> classname = new GetClassesDAO().getAllClassNames(1);
          System.out.println(classname.toString());
         for (HashMap hashMap : classname) {
 			System.out.println(hashMap);

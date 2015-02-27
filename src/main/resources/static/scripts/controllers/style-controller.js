@@ -1,6 +1,6 @@
 angular.module('webLog')
 	.controller('StyleCtrl', ['$scope', '$state', function($scope, $state){
-		   
+		
 	    $scope.getCurrentState= function(state){
 	    	return $state.includes(state);
 	    }

@@ -22,7 +22,7 @@ public class ReadTestcaseFromDB extends DBBridge {
 
     public static Connection conn;
     String GET_TESTCASE_ID = "select testcase_id from testcase where testcasename= ";
-    String GET_TESTCASE_FROM_CLASS_ID = "SELECT testcasename, testcase_id FROM testcase WHERE class_id = ";
+   
     String GET_DRIVER_BY_TESTCASE_ID = "SELECT DISTINCT driver FROM REPORT WHERE testcase_id = ";
     String GET_ALL_FROM_TESTCASE = "SELECT * FROM testcase";
     String GET_DRIVER_AND_MESSAGE_ = "select driver, result from report where testcase_id = ";
@@ -31,8 +31,10 @@ public class ReadTestcaseFromDB extends DBBridge {
     String AND_TIMESTAMP_FROM_HISTORY_ = " and timestamp != (select max(timestamp) from report)";
     
     //getDriverAndMessageFromLastRun:
+
     String SELECT_ALL_FROM_REPORT_OS_DEVICE_BROWSER = "select timestamp, testcase.testcasename, device.devicename, os.osname, os.osversion, browser.browsername, browser.browserversion, time, report.result, report.message from report inner join os on os.os_id = report.os_id inner join device on device.device_id = report.device_id inner join browser on browser.browser_id = report.browser_id inner join testcase on testcase.testcase_id = report.testcase_id where report.testcase_id = ";
     String AND_TIMESTAMP = " and timestamp = ";
+
     String LIMIT = " limit 20";
     
     
@@ -46,21 +48,7 @@ public class ReadTestcaseFromDB extends DBBridge {
         return -1;
     }
     
-    public List<HashMap<String, String>> getTestCasesFromClassID(int id){
-    	ResultSet rs = readFromDB(GET_TESTCASE_FROM_CLASS_ID+id);
-    	List<HashMap<String, String>> result = new ArrayList<>();
-    	try {
-			while (rs.next()) {
-				HashMap<String,String> row = new HashMap<>();
-				row.put("name", rs.getString("testcasename"));
-				row.put("id", rs.getString("testcase_id"));
-				result.add(row);
-			}
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
-		}
-    	return result;
-    }
+    
     public List<HashMap<String, String>> getDriverFromTestcaseID(int id){
         ResultSet rs = readFromDB(GET_DRIVER_BY_TESTCASE_ID +id);
         List<HashMap<String, String>> result = new ArrayList<>();
@@ -90,6 +78,7 @@ public class ReadTestcaseFromDB extends DBBridge {
 		}
 		return hs;
     }
+
     public JsonArray getDriverAndMessageFromLastRun(int testcaseId, String timestamp){
     	String sql = SELECT_ALL_FROM_REPORT_OS_DEVICE_BROWSER+testcaseId+AND_TIMESTAMP+"'"+timestamp+"'";
 //    	System.out.println(sql);
