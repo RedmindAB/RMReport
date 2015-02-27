@@ -142,7 +142,7 @@ angular.module('webLog')
 		clearChosenPlatforms();
 	}
 	
-	$scope.clearPlatformChosen = function(platform){
+	$scope.clearPlatformChosen = function(){
 			for (var i = 0; i < CurrentSuite.currentSpecObject.platforms.length; i++) {
 				for (var j = 0; j < CurrentSuite.currentSpecObject.platforms[i].versions.length; j++) {
 						delete CurrentSuite.currentSpecObject.platforms[i].versions[j].chosen;
