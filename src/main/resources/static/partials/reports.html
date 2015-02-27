@@ -41,12 +41,6 @@
 		<button style='margin:26px 1px 1px 1px' ng-disabled='Charts.mainChart.loading' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" ng-model='CurrentSuite.newLine' class="btn btn-default" id='graph_line' style='margin:2px'>
 			Add graph line
 		</button>
-		
-		<form style='display:inline;'>
-            <button class="btn btn-default" ng-disabled='Charts.mainChart.loading' id='button_reload' style='margin:26px 1px 1px 1px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, false);checkQuestions()" onClick="document.getElementById('button_reload').className = 'btn btn-default'">
-                Reload
-            </button>
-        </form>	
         
 		<div class='btn-group' align='center'>
 			<h5 style='margin-bottom:0px'>Remove graph line</h5>
@@ -60,6 +54,12 @@
                 </li>
             </ul>
         </div>
+        
+		<form style='display:inline;float:right'>
+            <button class="btn btn-default" ng-disabled='Charts.mainChart.loading' id='button_reload' style='margin:26px 1px 1px 1px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, false);checkQuestions()" onClick="document.getElementById('button_reload').className = 'btn btn-default'">
+                Reload
+            </button>
+        </form>	
 		
 		<br>
 	<div style='display:inline'>
