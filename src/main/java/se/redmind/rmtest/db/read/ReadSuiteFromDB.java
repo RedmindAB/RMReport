@@ -19,7 +19,6 @@ import com.google.gson.JsonPrimitive;
 public class ReadSuiteFromDB extends DBBridge{
 
     String GET_SUIT_ID = "select suite_id from suite where suitename= ";
-    
     String GET_SUITE_SPECIFIC = "select report.class_id, class.classname, report.testcase_id, testcase.testcasename, result, timestamp, time from report inner join class on report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id where timestamp = '";
     String AND_SUITEID_ ="' AND suite_id = ";
     String GROUP_BY_ = " GROUP BY report.testcase_id;";
