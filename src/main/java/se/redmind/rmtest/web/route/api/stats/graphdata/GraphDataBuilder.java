@@ -38,6 +38,9 @@ public class GraphDataBuilder {
 	
 	public JsonArray getDataArray(HashMap<Long, JsonObject> graphData) {
 		JsonArray graphDataToReturn = new JsonArray();
+		if (graphData.size()<1) {
+			return null;
+		}
 		for (Long timestamp : timestampArray) {
 			graphDataToReturn.add(getJsonFromTimestamp(timestamp, graphData));
 		}

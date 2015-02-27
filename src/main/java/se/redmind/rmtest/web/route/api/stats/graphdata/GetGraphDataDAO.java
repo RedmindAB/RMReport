@@ -32,10 +32,12 @@ public class GetGraphDataDAO {
 			String name = paramsAsObject.get("name").getAsString();
 			HashMap<Long, JsonObject> graphData = reportStats.getGraphDataAsHashMap(paramsAsObject, graphBuilder.getMinTimestamp());
 			JsonArray dataArray = graphBuilder.getDataArray(graphData);
-			JsonObject result = new JsonObject();
-			result.add("name", new JsonPrimitive(name));
-			result.add("data", dataArray);
-			resultArray.add(result);
+			if (dataArray != null) {
+				JsonObject result = new JsonObject();
+				result.add("name", new JsonPrimitive(name));
+				result.add("data", dataArray);
+				resultArray.add(result);
+			}
 		}
 		System.out.println(resultArray);
 		return new Gson().toJson(resultArray);
