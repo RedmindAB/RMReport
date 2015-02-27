@@ -22,9 +22,6 @@ public class TestcaseDbLookup extends DBBridge {
 
     public static Connection conn;
     String GET_TESTCASE_ID = "select testcase_id from testcase where testcasename= ";
-   
-    String GET_DRIVER_BY_TESTCASE_ID = "SELECT DISTINCT driver FROM REPORT WHERE testcase_id = ";
-    
     String GET_ALL_FROM_TESTCASE = "SELECT * FROM testcase";
 
     public int getTestCaseID(String testCaseName){

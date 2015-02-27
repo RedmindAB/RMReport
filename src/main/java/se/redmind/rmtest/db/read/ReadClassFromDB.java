@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class ReadClassFromDB extends DBBridge{
 
-    String GET_SUITE_CLASS_CASE_ID = "select class.classname from class inner join testcase on testcase.testcase_id = class.class_id";
     String GET_CLASS_ID = "select class_id from class where classname =";
    
 
@@ -27,19 +26,6 @@ public class ReadClassFromDB extends DBBridge{
             return -1;
     }
 
-    public HashMap<String, String> getClassNameOnTestcaseId(){
-        HashMap<String, String> hm = new HashMap<String, String>();
-        ResultSet rs = readFromDB(GET_SUITE_CLASS_CASE_ID);
-        try {
-            while(rs.next()) {
-                hm.put("Name", "name");
-            }
-            return hm;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
     
 
 

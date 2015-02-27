@@ -64,14 +64,6 @@ public class ReadFromDBTest {
     public void getAllSuitesTest() {
         new GetSuitesDAO().getAllSuites();
     }
-    @Test
-    public void getClassNameOnTestcaseIdTest(){ 
-    	HashMap<String, String> classNameOnTestcaseId = new ReadClassFromDB().getClassNameOnTestcaseId();
-    	Set<String> keySet = classNameOnTestcaseId.keySet();
-    	for (String string : keySet) {
-			System.out.println("Key: "+string);
-		}
-    }
     
     @Test
     public void getSuiteList(){
@@ -98,7 +90,6 @@ public class ReadFromDBTest {
 			System.out.println(hashMap);
 		}
     }
-    
     
     @Test
     public void getLastestSuiteRunFromIDTest(){
