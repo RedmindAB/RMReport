@@ -20,9 +20,6 @@ public class ReadSuiteFromDB extends DBBridge{
 
     String GET_SUIT_ID = "select suite_id from suite where suitename= ";
     String GET_ALL_SUITS = "select * from suite";
-    
-    String GET_SUITE_BY_TIMESTAMP = "SELECT report.class_id, class.classname, report.testcase_id, testcase.testcasename, COUNT(result) AS totalresult, SUM(result = 'error' OR result = 'failure') AS fail, SUM(result = 'skipped') AS skipped, SUM(time) AS time FROM report INNER JOIN class ON report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id WHERE timestamp = '{timestamp}' AND suite_id = {suite_id} GROUP BY report.testcase_id;";
-    
     String GET_SUITE_SPECIFIC = "select report.class_id, class.classname, report.testcase_id, testcase.testcasename, result, timestamp, time from report inner join class on report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id where timestamp = '";
     String AND_SUITEID_ ="' AND suite_id = ";
     String GROUP_BY_ = " GROUP BY report.testcase_id;";
@@ -36,7 +33,7 @@ public class ReadSuiteFromDB extends DBBridge{
         }
         return -1;
     }
-
+    
     public List<HashMap<String,Object>> getAllSuites(){
         ResultSet rs = readFromDB(GET_ALL_SUITS);
         List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
@@ -53,18 +50,6 @@ public class ReadSuiteFromDB extends DBBridge{
         }
         return null;
     }
-    
-   
-    
-    public JsonArray getSuiteRunByTimestamp(int suiteid, String timestamp){
-    	HashMap<String, String> map = new HashMap<String, String>();
-    	map.put("suite_id", ""+suiteid);
-    	map.put("timestamp", timestamp);
-    	String sql = stringParser.getString(GET_SUITE_BY_TIMESTAMP, map);
-    	ResultSet rs = readFromDB(sql);
-    	return new SuiteJsonBuilder(rs).build().getSuite();
-    }
-    
     
     public JsonArray getSpecificSuiteRunFromIdAndTimestamp(int suiteid, String timestamp){
     	ResultSet rs = readFromDB(GET_SUITE_SPECIFIC+timestamp+AND_SUITEID_+suiteid+GROUP_BY_);
