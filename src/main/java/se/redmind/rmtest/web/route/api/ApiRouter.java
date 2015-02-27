@@ -1,8 +1,8 @@
 package se.redmind.rmtest.web.route.api;
 
 import static spark.Spark.*;
-import se.redmind.rmtest.web.api.device.getdevices.GetDevicesAMonthAgoWS;
 import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesWS;
+import se.redmind.rmtest.web.route.api.device.getdevices.GetDevicesAMonthAgoWS;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseWS;
 import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
 import se.redmind.rmtest.web.route.api.stats.grahoptions.GetGraphOptionsWS;

@@ -17,6 +17,7 @@ import se.redmind.rmtest.db.read.ReadReportFromDB;
 import se.redmind.rmtest.db.read.ReadSuiteFromDB;
 import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
 import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesDAO;
+import se.redmind.rmtest.web.route.api.device.getdevices.GetDevicesAMonthAgoDAO;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseDAO;
 import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteDAO;
 import se.redmind.rmtest.web.route.api.suite.bytimestamp.GetSuiteByTimestampDAO;
@@ -122,11 +123,7 @@ public class ReadFromDBTest {
     @Test
     public void getLastestSuiteRunFromIDTest(){
     }
-    @Test
-    public void getSpecificSuiteRunFromIdAndTimestampTest(){
-    	JsonArray array = new ReadSuiteFromDB().getSpecificSuiteRunFromIdAndTimestamp(1,"20150204000000");
-    	System.out.println(array.toString());
-    }
+    
     @Test
     public void getDriverAndMessageFromLastRunTest(){
     	String array = new GetDriverByTestcaseDAO().getDriverByTestcaseId(1, "20150204000100");
@@ -146,7 +143,7 @@ public class ReadFromDBTest {
     }
     @Test
     public void deviceRunAmonthAgoTest(){
-    	JsonArray array = new ReadReportFromDB().compareDeviceAndDate();
+    	JsonArray array = new GetDevicesAMonthAgoDAO().compareDeviceAndDate();
     	System.out.println("Devices not run for a month: "+array);
     }
 }

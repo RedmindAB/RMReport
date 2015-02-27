@@ -34,25 +34,5 @@ public class ReadSuiteFromDB extends DBBridge{
     }
     
     
-    public JsonArray getSpecificSuiteRunFromIdAndTimestamp(int suiteid, String timestamp){
-    	ResultSet rs = readFromDB(GET_SUITE_SPECIFIC+timestamp+AND_SUITEID_+suiteid+GROUP_BY_);
-    	JsonArray array = new JsonArray(); 
-    	try {
-			while(rs.next()){
-				JsonObject jsonObject = new JsonObject();
-				jsonObject.add("classid", new JsonPrimitive(rs.getInt("class_id")));
-				jsonObject.add("classname", new JsonPrimitive(rs.getString("classname")));
-				jsonObject.add("testcaseid", new JsonPrimitive(rs.getInt("testcase_id")));
-				jsonObject.add("testcasename", new JsonPrimitive(rs.getString("testcasename")));
-				jsonObject.add("result", new JsonPrimitive(rs.getString("result")));
-				jsonObject.add("time", new JsonPrimitive(rs.getFloat("time")));
-				array.add(jsonObject);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block	
-			e.printStackTrace();
-		}
-		return array;
-    }
     
 }
