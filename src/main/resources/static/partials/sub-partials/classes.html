@@ -1,7 +1,6 @@
 <accordion close-others="true">
     <!-- repeated content -->
-    <div style='height:100%;margin-top:10px;cursor: pointer;word-break:break-all' id='method_name' ng-repeat="class in CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:['result', 'name'] track by $index " 
-         style='cursor: pointer;'
+    <div style='height:100%;margin-top:10px;cursor: pointer;word-break:break-all' id='method_name' ng-repeat="class in CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:['result', 'name'] track by $index "
          ng-class='getPanel(class.result)' 
          ng-style="{'background-color': getBgCo(class.result)}">
         <!-- non collapsing header -->
