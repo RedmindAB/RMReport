@@ -21,6 +21,11 @@ angular.module('webLog')
     	$scope.breakPointChoice = choice;
     }
     
+    $scope.showButton = false;
+    $scope.toggleButton = function() {
+        $scope.showButton = !$scope.showButton;
+    };
+    
     $scope.togglePlatformChosen = function(platform) {
     	if(platform.chosen){
     		delete platform.chosen;
