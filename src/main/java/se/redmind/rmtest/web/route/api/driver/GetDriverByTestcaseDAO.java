@@ -9,12 +9,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 import se.redmind.rmtest.db.DBBridge;
-import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
 
 public class GetDriverByTestcaseDAO extends DBBridge {
 
 	public String getDriverByTestcaseId(int testCaseId, String timestamp){
-		ReadTestcaseFromDB readTestCase = new ReadTestcaseFromDB();
 		JsonArray jsonArray  = getDriverAndMessageFromLastRun(testCaseId, timestamp);
 		return new Gson().toJson(jsonArray);
 		
