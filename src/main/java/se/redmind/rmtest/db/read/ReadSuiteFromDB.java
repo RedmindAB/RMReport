@@ -19,7 +19,7 @@ import com.google.gson.JsonPrimitive;
 public class ReadSuiteFromDB extends DBBridge{
 
     String GET_SUIT_ID = "select suite_id from suite where suitename= ";
-    String GET_ALL_SUITS = "select * from suite";
+    
     String GET_SUITE_SPECIFIC = "select report.class_id, class.classname, report.testcase_id, testcase.testcasename, result, timestamp, time from report inner join class on report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id where timestamp = '";
     String AND_SUITEID_ ="' AND suite_id = ";
     String GROUP_BY_ = " GROUP BY report.testcase_id;";
@@ -34,22 +34,6 @@ public class ReadSuiteFromDB extends DBBridge{
         return -1;
     }
     
-    public List<HashMap<String,Object>> getAllSuites(){
-        ResultSet rs = readFromDB(GET_ALL_SUITS);
-        List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
-        try {
-            while(rs.next()) {
-            	HashMap<String, Object> hm = new HashMap<String, Object>();
-                hm.put("name", rs.getString("suitename"));
-                hm.put("id", rs.getString("suite_id"));
-                result.add(hm);
-            }
-            return result;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
     
     public JsonArray getSpecificSuiteRunFromIdAndTimestamp(int suiteid, String timestamp){
     	ResultSet rs = readFromDB(GET_SUITE_SPECIFIC+timestamp+AND_SUITEID_+suiteid+GROUP_BY_);
