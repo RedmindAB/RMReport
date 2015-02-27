@@ -6,7 +6,7 @@ import org.junit.Test;
 import com.google.gson.JsonArray;
 import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.read.ReadClassFromDB;
-import se.redmind.rmtest.db.read.ReadReportFromDB;
+import se.redmind.rmtest.db.read.ReportDbLookup;
 import se.redmind.rmtest.db.lookup.SuiteDbLookup;
 import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesDAO;
 import se.redmind.rmtest.web.route.api.device.getdevices.GetDevicesAMonthAgoDAO;
@@ -85,7 +85,7 @@ public class ReadFromDBTest {
     @Ignore //driver dose not exist anymore.
     @Test
     public void getDriverFromTestcaseTest() {
-        List<String> drivers = new ReadReportFromDB().getDriverFromTestcase(1, 1);
+        List<String> drivers = new ReportDbLookup().getDriverFromTestcase(1, 1);
         for (int i = 0; i < drivers.size(); i++) {
             System.out.println(drivers.get(i));
         }

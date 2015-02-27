@@ -1,4 +1,4 @@
-package se.redmind.rmtest.db.read;
+package se.redmind.rmtest.db.lookup;
 
 
 
@@ -27,7 +27,7 @@ import se.redmind.rmtest.util.CalendarCounter;
 /**
  * Created by johan on 15-01-26.
  */
-public class ReadReportFromDB extends DBBridge{
+public class ReportDbLookup extends DBBridge{
 
     String GET_MAX_ID_FROM_REPORT = "select * from report order by id desc limit 1";
     String REPORT_EXISTS = "select timestamp from report where timestamp =";

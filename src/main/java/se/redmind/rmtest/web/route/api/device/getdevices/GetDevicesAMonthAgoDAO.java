@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import se.redmind.rmtest.db.DBBridge;
-import se.redmind.rmtest.db.read.ReadReportFromDB;
+import se.redmind.rmtest.db.lookup.ReportDbLookup;
 import se.redmind.rmtest.util.CalendarCounter;
 
 import com.google.gson.Gson;
@@ -15,7 +15,7 @@ import com.google.gson.JsonPrimitive;
 public class GetDevicesAMonthAgoDAO extends DBBridge{
 	
 	public String getDeviceAmonthAgo(){
-		ReadReportFromDB readReport = new ReadReportFromDB();
+		ReportDbLookup readReport = new ReportDbLookup();
 		JsonArray array = compareDeviceAndDate();
 		return new Gson().toJson(array);
 	}
