@@ -22,7 +22,6 @@ angular.module('webLog')
     }
     
     $scope.trashcanEmpty = function() {
-    	console.log(Charts.mainChart.series[0]); 
     	if (Charts.mainChart.series.length < 2) { // your question said "more than one element"
     		return true;
     	}
@@ -546,8 +545,6 @@ angular.module('webLog')
 			break;
 		}
     	CurrentSuite.activeQueries.push(graphDataObject);
-    	console.log("active in getGraphObj");
-    	console.log(CurrentSuite.activeQueries);
     	return graphDataObject;
     	
     };
@@ -555,17 +552,17 @@ angular.module('webLog')
     function splitDataOnDevice(suiteID, name) {
     	var graphArray = [];
     	var chosen = $scope.getChosen();
-    	
+    	console.log(CurrentSuite.currentSpecObject);
     	var addedUnknown = false;
     	
     	if (chosen.devices.length === 0) {
-    		if (chosen.os.length === 0) {
+//    		if (chosen.os.length === 0) {
     			chosen.devices = getAllDevices();
-			} else if (chosen.platforms.length === 0) {
-				chosen.devices = getAllDevicesByVersion(chosen);
-			} else {
-				chosen.devices = getAllDevicesByPlatform(chosen);
-			}
+//			} else if (chosen.platforms.length === 0) {
+//				chosen.devices = getAllDevicesByVersion(chosen);
+//			} else {
+//				chosen.devices = getAllDevicesByPlatform(chosen);
+//			}
 		}
     	for (var i = 0; i < chosen.devices.length; i++) {
     		var dataRequest = {};
@@ -987,6 +984,7 @@ angular.module('webLog')
     	$scope.descTimestamps = reverseArray(CurrentSuite.currentTimeStampArray);
     	var graphDataArray = [];
     	for (var i = 0; i < data.length; i++) {
+    		console.log(data[i].name);
     		console.log(data[i]);
     		var graphDataObj = {
     				runTime: [],
@@ -997,7 +995,6 @@ angular.module('webLog')
     		var graphName = data[i].name;
     		
 			for (var j = 0; j < data[i].data.length; j++) {
-		    	console.log("-------------------------");
 				if (isSkipped(data[i].data[j])) {
 					graphDataObj.runTime.push(null);
 					graphDataObj.totalPass.push(null);
@@ -1207,8 +1204,6 @@ angular.module('webLog')
     			type: "line"
     		});
 		}
-    	console.log("series");
-    	console.log(chart.series);
     	chart.yAxis.title.text = 'Pass percentage';
     	chart.title.text = "Percentage of passed tests";
     	delete Charts.mainChart.options.tooltip.valueDecimals;
