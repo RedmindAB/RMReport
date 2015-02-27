@@ -6,7 +6,7 @@ import org.junit.Test;
 import com.google.gson.JsonArray;
 import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.read.ReadClassFromDB;
-import se.redmind.rmtest.db.read.ReportDbLookup;
+import se.redmind.rmtest.db.lookup.ReportDbLookup;
 import se.redmind.rmtest.db.lookup.SuiteDbLookup;
 import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesDAO;
 import se.redmind.rmtest.web.route.api.device.getdevices.GetDevicesAMonthAgoDAO;
