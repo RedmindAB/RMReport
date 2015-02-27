@@ -21,6 +21,16 @@ angular.module('webLog')
     	$scope.breakPointChoice = choice;
     }
     
+    $scope.togglePlatformChosen = function(platform) {
+    	if(platform.chosen){
+    		delete platform.chosen;
+    	}
+    	else{
+    		platform.chosen = true;
+    	}
+    		
+    }
+    
     $scope.trashcanEmpty = function() {
     	if (Charts.mainChart.series.length < 2) { // your question said "more than one element"
     		return true;

@@ -24,10 +24,6 @@
 
     <!-- Chart variant dropdown START -->
         
-		<button style='width: 60px;margin:26px 1px 1px 1px' id='button_clear' class="btn btn-default" ng-click="clearAllChosen();newContent()" title="Clear current selections" data-toggle="tooltip" data-placement="top" tooltip>
-            Clear
-        </button>
-        
 		<div class="btn-group" style='margin:1px' align='center'>
         <h5 style='margin-bottom:0px'>Number of suite runs</h5>
             <button style='width:150px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
@@ -94,18 +90,18 @@
             </ul>
         </div>
     </div>
-	
+	<div style='display:inline'>>
         <accordion close-others="false">
             <!-- repeated content -->
             <div width='100%' style='margin:7px 3px 3px 3px;' id='expandable'>
                 <accordion-group >
 
                     <accordion-heading id='reports_spec'>
-                        <a style='color:black;font-weight: normal'>
-                            Specifications
-                        </a>
-                        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                    </accordion-heading>
+                        Specifications <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+					<button style='width: 60px;' id='button_clear' class="btn btn-default" ng-click="$event.preventDefault();$event.stopPropagation();clearAllChosen();newContent()">
+							Clear
+						</button>
+					</accordion-heading>
 					
                     <!-- BROWSERS START -->
                     <table>
@@ -124,10 +120,10 @@
                     <div>		    
                         <accordion close-others="false">
                         	<div ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
-                            <input style='margin-top:14px;margin-left:5px' ng-model='platform.chosen' ng-click="newContent()" id='input_osname' type="checkbox" class="mycheckbox" stop-click><label for="mycheckbox" style='font-weight:normal;'></label>
+                            <input ng-disabled='true' style='margin-top:14px;margin-left:5px' ng-model='platform.chosen' ng-click="newContent()" id='input_osname' type="checkbox" class="mycheckbox" stop-click><label for="mycheckbox" style='font-weight:normal;'></label>
                             <accordion-group>
                                 <accordion-heading id='reports_name'> 
-                                    &nbsp;	{{platform.osname}}
+                                    <div ng-click='togglePlatformChosen(platform)'>&nbsp; {{platform.osname}}</div>
                                 </accordion-heading>
                                 <table style='margin: -20px 0px -20px 0px'>
                                     <tr>
@@ -159,6 +155,7 @@
             </div>
             <!-- repeated content  End-->
         </accordion>
+</div>
         <div class='row' style='border:10px solid #D4D9DD'>
         </div>
 		<div class="btn-group" style='margin-top:10px;'>
