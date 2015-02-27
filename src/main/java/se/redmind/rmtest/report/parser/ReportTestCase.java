@@ -21,15 +21,16 @@ public class ReportTestCase{
 	TIME = "time";
 	
 	private boolean broken;
-								
+							
+	private enum ResultType {PASSED, ERROR, FAILURE, SKIPPED};
+	private ResultType resultType;
 	
-	private String name, classname;
+	private String name, classname, message, driverName;
+	private double time;
 	private boolean passed;
-	private JsonObject jsonObject;
 	private Driver driverParser;
 	
 	public ReportTestCase(Element element) {
-		this.jsonObject = new JsonObject();
 		passed = false;
 		generateTestCaseFromElement(element);
 	}
@@ -40,16 +41,14 @@ public class ReportTestCase{
 		if (broken) {
 			return;
 		}
-		this.jsonObject.add(NAME, new JsonPrimitive(name));
 		
 		String driverName = checkDriverName(name);
+		this.driverName = driverName;
 		this.driverParser = new Driver(driverName);
-		this.jsonObject.add("driverName", new JsonPrimitive(driverName));
 		
 		
-		classname = element.getAttribute("classname");
-		classname = getTestClassName(classname);
-		this.jsonObject.add(CLASSNAME, new JsonPrimitive(classname));
+		String elementClassname = element.getAttribute("classname");
+		classname = getTestClassName(elementClassname);
 		
 		Element errorElement = (Element) element.getElementsByTagName(ERROR).item(0);
 		
@@ -59,31 +58,28 @@ public class ReportTestCase{
 			String message = errorElement.getTextContent();
 			String type = errorElement.getAttribute(TYPE);
 			message = removeAllIlligalChars(message);
-			JsonObject error = new JsonObject();
-			error.add(MESSAGE, new JsonPrimitive(message));
-			error.add(TYPE, new JsonPrimitive(type));
-			this.jsonObject.add(ERROR, error);
+			this.message = message;
+			this.resultType = ResultType.ERROR;
 		}
 		else if(failureElement != null){
 			String message = failureElement.getTextContent();
 			String type = failureElement.getAttribute(TYPE);
 			message = removeAllIlligalChars(message);
-			JsonObject failureObject = new JsonObject();
-			failureObject.add(MESSAGE, new JsonPrimitive(message));
-			failureObject.add(TYPE, new JsonPrimitive(type));
-			this.jsonObject.add(FAILURE, failureObject);
+			this.message = message;
+			this.resultType = ResultType.FAILURE;
 		}
 		else if (skippedElement != null){
-			this.jsonObject.add(SKIPPED, new JsonPrimitive(SKIPPED));
+			this.resultType = ResultType.SKIPPED;
 		}
-		else passed = true;
+		else {
+			passed = true;
+			this.resultType = ResultType.PASSED;
+		}
 		
-		this.jsonObject.add(PASSED, new JsonPrimitive(this.passed));
 		
 		String timeValue = element.getAttribute(TIME);
 		double time = Double.parseDouble(timeValue);
-		
-		this.jsonObject.add(TIME, new JsonPrimitive(time));
+		this.time = time;
 	}
 
 	private boolean checkIfBroken() {
@@ -116,70 +112,47 @@ public class ReportTestCase{
 	}
 	
 	public String getResult(){
-		if (isPassed()) 				return PASSED;
-		else if (getFailure() != null) 	return FAILURE;
-		else if (getSkipped() != null)	return SKIPPED;
-		else							return ERROR;
+		String res;
+		switch (resultType) {
+		case PASSED:
+			res = PASSED;
+			break;
+		case ERROR:
+			res = ERROR;
+			break;
+		case FAILURE:
+			res = FAILURE;
+			break;
+		case SKIPPED:
+			res = SKIPPED;
+			break;
+		default:
+			res = "";
+			break;
+		}
+		return res;
 	}
 	
-	private Object getSkipped() {
-		return this.jsonObject.get(SKIPPED);
+	public String getDriverName(){
+		return this.driverName;
 	}
 
 	public String getName() {
 		return name;
 	}
 	
-	public String getDriverName(){
-		return this.jsonObject.get(DRIVER_NAME).getAsString();
-	}
-	
-	public JsonElement getDriverNameAsJson(){
-		return this.jsonObject.get(DRIVER_NAME);
-	}
 
 	public String getClassName() {
 		return classname;
 	}
 
-	public JsonObject getError() {
-		return this.jsonObject.get(ERROR).getAsJsonObject();
-	}
-	
-	public String getErrorMessage(){
-		Object error = this.jsonObject.get(ERROR);
-		if (error != null) {
-			return this.jsonObject.get(ERROR).getAsJsonObject().get(MESSAGE).getAsString();
-		}
-		return "";
-	}
-
-	public JsonObject getFailure() {
-		Object fail = this.jsonObject.get(FAILURE);
-		if (fail != null) {
-			return (JsonObject) fail;
-		}
-		return null;
-	}
-	
-	public String getFailureMessage(){
-		Object error = this.jsonObject.get(FAILURE);
-		if (error != null) {
-			return this.jsonObject.get(FAILURE).getAsJsonObject().get(MESSAGE).getAsString();
-		}
-		return "";
-	}
 
 	public double getTime() {
-		return this.jsonObject.get(TIME).getAsDouble();
+		return this.time;
 	}
 
 	public boolean isPassed() {
-		return this.jsonObject.get(PASSED).getAsBoolean();
-	}
-	
-	public JsonObject getAsJsonObject(){
-		return this.jsonObject;
+		return this.passed;
 	}
 	
 	public Driver getDriver(){
@@ -187,17 +160,7 @@ public class ReportTestCase{
 	}
 	
 	public String getMessage() {
-		String result = getResult();
-		switch (result) {
-		case PASSED:
-			return "";
-		case ERROR:
-			return getErrorMessage();
-		case FAILURE:
-			return getFailureMessage();
-		default:
-			return "";
-		}
+		return this.message;
 	}
 	
 	public String removeAllIlligalChars(String message){

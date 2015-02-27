@@ -55,16 +55,17 @@ public class ReportXMLParserTest {
 	public void createReportObject(){
 		Report report = parser.getReportFromFile(file);
 		assertEquals("test.java.se.redmind.rmtest.selenium.example.AnotherGeneratedSuite(20150309-080322)", report.getName());
-		JsonArray caseList = report.getTestCases();
+		List<ReportTestCase> caseList = report.getTestCaseArray();
 		assertEquals(1472, caseList.size());
 	}
 	
 	@Test
 	public void convertSimpleReportToFullReport(){
 		Report report = parser.getSimpleReportFromFile(file);
-		assertNull(report.getTestCases());
+		assertTrue(report.isSimpleReport());
 		report.convertToFullReport();
-		assertEquals(1472, report.getTestCases().size());
+		assertFalse(report.isSimpleReport());
+		assertEquals(1472, report.getTestCaseArray().size());
 	}
 	
 	@Test

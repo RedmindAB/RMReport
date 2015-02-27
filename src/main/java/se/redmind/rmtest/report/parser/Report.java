@@ -14,13 +14,12 @@ import com.google.gson.JsonPrimitive;
 
 public class Report{
 	
-	public static final String 
+	private String 
 	TESTCASES = "testcases",
 	SIMPLE_REPORT = "simpleReport",
 	NAME = "name",
-	SUITE_NAME = "suiteName",
-	TIMESTAMP = "timestamp",
 	TESTS = "tests",
+	SUITE_NAME = "suiteName",
 	ERRORS = "errors",
 	SKIPPED = "skipped",
 	FAILURES = "failures",
@@ -33,15 +32,21 @@ public class Report{
 	DRIVERS = "drivers",
 	VALUE = "value";
 
-	private JsonObject jsonObject;
+	private int tests, errors, skipped, failures;
+	private double time;
+	private long timestamp;
+	private String name, suite_name;
+//	private JsonObject jsonObject;
 	private Element file;
 	private boolean simpleReport;
 	private List<ReportTestCase> testCaseArray;
 	private List<String> presentTestClasses;
 
+	private boolean passed;
+
+	private HashSet<String> driverSet;
+
 	public Report(Element element) {
-		this.jsonObject = new JsonObject();
-		this.jsonObject.add(SIMPLE_REPORT, new JsonPrimitive(false));
 		this.simpleReport = false;
 		this.file = element;
 		this.testCaseArray = new ArrayList<ReportTestCase>();
@@ -50,8 +55,6 @@ public class Report{
 	}
 	
 	public Report(Element element, boolean simpleReport) {
-		this.jsonObject = new JsonObject();
-		this.jsonObject.add(SIMPLE_REPORT, new JsonPrimitive(simpleReport));
 		this.simpleReport = simpleReport;
 		this.file = element;
 		this.testCaseArray = new ArrayList<ReportTestCase>();
@@ -61,38 +64,35 @@ public class Report{
 
 	private void generateReportFromElement(Element element) {
 		String name = element.getAttribute(NAME);
-		this.jsonObject.add(NAME, new JsonPrimitive(name));
-		
-		this.jsonObject.add(SUITE_NAME, new JsonPrimitive(extractSuiteName(name)));
-		this.jsonObject.add(TIMESTAMP, new JsonPrimitive(extractTimestamp(name)));
+		this.name = name;
+		this.suite_name = extractSuiteName(name);
+		this.timestamp = extractTimestamp(name);
 		
 		String testString = element.getAttribute(TESTS);
 		int tests = Integer.valueOf(testString);
-		this.jsonObject.add(TESTS, new JsonPrimitive(tests));
+		this.tests = tests;
 
 		String errorString = element.getAttribute(ERRORS);
 		int errors = Integer.valueOf(errorString);
-		this.jsonObject.add(ERRORS, new JsonPrimitive(errors));
+		this.errors = errors;
 
 		String skippString = element.getAttribute(SKIPPED);
 		int skipped = Integer.valueOf(skippString);
-		this.jsonObject.add(SKIPPED, new JsonPrimitive(skipped));
-
+		this.skipped = skipped;
+		
 		String failString = element.getAttribute(FAILURES);
 		int failures = Integer.valueOf(failString);
-		this.jsonObject.add(FAILURES, new JsonPrimitive(failures));
-
+		this.failures = failures;
+		
 		String timeString = element.getAttribute(TIME);
 		double time = Double.valueOf(timeString);
-		this.jsonObject.add(TIME, new JsonPrimitive(time));
+		this.time = time;
 		
-		this.jsonObject.add(PASSED, new JsonPrimitive(isTestPassed(errors, failures)));
-		
+		passed = isTestPassed(errors, failures);
 
 		if (!simpleReport) {
 			NodeList testCaseNodes = element.getElementsByTagName(TESTCASE);
-			JsonArray testCases = new JsonArray();
-			HashSet<String> driverSet = new HashSet<String>();
+			driverSet = new HashSet<String>();
 			for (int i = 0; i < testCaseNodes.getLength(); i++) {
 				Element testCase = (Element) testCaseNodes.item(i);
 				ReportTestCase test = new ReportTestCase(testCase);
@@ -108,29 +108,11 @@ public class Report{
 				if (!getPresentTestClasses().contains(testClass)) {
 					getPresentTestClasses().add(testClass);
 				}
-				testCases.add(test.getAsJsonObject());
 			}
 			JsonArray drivers = new JsonArray();
 			for (String driver : driverSet) {
 				drivers.add(new JsonPrimitive(driver));
 			}
-			this.jsonObject.add(DRIVERS, drivers);
-			this.jsonObject.add(TESTCASES, testCases);
-			
-			NodeList propertyNodes = element.getElementsByTagName(PROPERTY);
-			JsonObject properties = new JsonObject();
-			for (int i = 0; i < propertyNodes.getLength(); i++) {
-				Element property = (Element) propertyNodes.item(i);
-				JsonObject propertyObject = new JsonObject();
-				String propKey = removePunctuations(property.getAttribute(NAME), "");
-				
-				String propName = removePunctuations(property.getAttribute(NAME), " ");
-				String propertyVal = property.getAttribute(VALUE);
-				propertyObject.add(READ_NAME, new JsonPrimitive(propName));
-				propertyObject.add(VALUE, new JsonPrimitive(propertyVal));
-				properties.add(propKey, propertyObject);
-			}
-			this.jsonObject.add(PROPERTIES, properties);
 		}
 	}
 	
@@ -163,61 +145,52 @@ public class Report{
 	public boolean isTestPassed(int errors, int failures){
 		return errors == 0 && failures == 0;
 	}
+	
+	public boolean isSimpleReport(){
+		return simpleReport;
+	}
 
 	public double getTime() {
-		return this.jsonObject.get(TIME).getAsDouble();
+		return this.time;
 	}
 
 	public String getName() {
-		return this.jsonObject.get(NAME).getAsString();
+		return this.name;
 	}
 	
 	public String getSuiteName() {
-		return this.jsonObject.get(SUITE_NAME).getAsString();
+		return this.suite_name;
 	}
 	
-	public String getTimestamp() {
-		return this.jsonObject.get(TIMESTAMP).getAsString();
+	public long getTimestamp() {
+		return this.timestamp;
 	}
 
 	public int getTests() {
-		return this.jsonObject.get(TESTS).getAsInt();
+		return this.tests;
 	}
 
 	public int getErrors() {
-		return this.jsonObject.get(ERRORS).getAsInt();
+		return this.errors;
 	}
 
 	public int getSkipped() {
-		return this.jsonObject.get(SKIPPED).getAsInt();
+		return this.skipped;
 	}
 
 	public int getFailures() {
-		return this.jsonObject.get(FAILURES).getAsInt();
+		return this.failures;
 	}
 
-	public JsonObject getProperties() {
-		if (this.jsonObject.get(PROPERTIES) == null) return null;
-		return this.jsonObject.get(PROPERTIES).getAsJsonObject();
-	}
-
-	public JsonArray getTestCases() {
-		if (this.jsonObject.get(TESTCASES) == null) return null;
-		return this.jsonObject.get(TESTCASES).getAsJsonArray();
-	}
 	
-	public JsonArray getDrivers(){
-		return this.jsonObject.get(DRIVERS).getAsJsonArray();
+	public HashSet<String> getDrivers(){
+		return this.driverSet;
 	}
 	
 	public List<ReportTestCase> getTestCaseArray(){
 		return testCaseArray;
 	}
 	
-	public JsonObject getAsJsonObject(){
-		return this.jsonObject;
-	}
-
 	public List<String> getPresentTestClasses() {
 		return presentTestClasses;
 	}

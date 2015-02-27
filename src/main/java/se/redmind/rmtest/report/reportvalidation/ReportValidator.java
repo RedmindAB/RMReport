@@ -57,7 +57,7 @@ public class ReportValidator {
 	}
 	
 	public boolean reportExists(){
-		String timestamp = report.getTimestamp();
+		long timestamp = report.getTimestamp();
 		return readFromDB.reportExists(timestamp);
 	}
 	

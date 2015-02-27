@@ -8,6 +8,7 @@ import java.util.List;
 import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.report.reporthandler.ReportHandler;
 import se.redmind.rmtest.report.reportvalidation.ReportValidator;
+import se.redmind.rmtest.util.TimeEstimator;
 
 public class ReportInit {
 
@@ -31,12 +32,18 @@ public class ReportInit {
 		Connection connection = DBCon.getDbInstance().getConnection();
 		try {
 			connection.setAutoCommit(false);
+			TimeEstimator estimator = new TimeEstimator(reportFiles.size(), 20);
+			estimator.start();
 			for (File file : reportFiles) {
 					ReportValidator reportValidator = new ReportValidator(file.getName());
 					boolean existsInDB = reportValidator.reportExists();
 					if (!existsInDB) {
 						reportValidator.saveReport();
 						addedReports++;
+					}
+					estimator.addTick();
+					if (estimator.isMeassure()) {
+						System.out.println("Estimated time left: "+estimator.getEstimatedTimeLeftDouble()+" sec");
 					}
 			}
 			connection.setAutoCommit(true);

@@ -57,7 +57,7 @@ public class ReportDbLookup extends DBBridge{
         return null;
     }
 
-    public boolean reportExists(String reportTimeStamp){
+    public boolean reportExists(long reportTimeStamp){
         ResultSet rs = readFromDB(REPORT_EXISTS + "'" + reportTimeStamp + "'" + "limit 1");
         try {
             return rs.next();
