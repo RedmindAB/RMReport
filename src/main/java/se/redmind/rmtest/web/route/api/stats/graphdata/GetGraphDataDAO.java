@@ -39,7 +39,7 @@ public class GetGraphDataDAO {
 				resultArray.add(result);
 			}
 		}
-		System.out.println(resultArray);
+//		System.out.println(resultArray);
 		return new Gson().toJson(resultArray);
 	}
 
