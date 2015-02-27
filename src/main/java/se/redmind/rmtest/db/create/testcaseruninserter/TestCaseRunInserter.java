@@ -8,7 +8,7 @@ import java.util.List;
 
 import se.redmind.rmtest.db.DBBridge;
 import se.redmind.rmtest.db.create.testcaseinserter.TestCaseInserter;
-import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
+import se.redmind.rmtest.db.lookup.TestcaseDbLookup;
 import se.redmind.rmtest.report.parser.Driver;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
@@ -18,7 +18,7 @@ import se.redmind.rmtest.util.StringKeyValueParser;
 public class TestCaseRunInserter extends DBBridge {
 	
 	private TestCaseInserter testCaseInserter;
-	private ReadTestcaseFromDB readTestcaseFromDB;
+	private TestcaseDbLookup readTestcaseFromDB;
 	
 	
 	private final static String INSERT_TESTCASERUN = "INSERT INTO report (suite_id, class_id, testcase_id, timestamp, result, message, os_id, browser_id, device_id, time) "
@@ -26,7 +26,7 @@ public class TestCaseRunInserter extends DBBridge {
 
 	public TestCaseRunInserter() {
 		testCaseInserter = new TestCaseInserter();
-		readTestcaseFromDB = new ReadTestcaseFromDB();
+		readTestcaseFromDB = new TestcaseDbLookup();
 	}
 	
 	public void insertTestCases(Report report, int suiteID, HashMap<String, Integer> classIDs, HashMap<String,Integer> testCases, DriverValidation driverValidation){

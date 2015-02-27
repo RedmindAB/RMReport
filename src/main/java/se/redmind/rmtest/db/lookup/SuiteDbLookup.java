@@ -1,4 +1,4 @@
-package se.redmind.rmtest.db.read;
+package se.redmind.rmtest.db.lookup;
 
 import se.redmind.rmtest.db.DBBridge;
 
@@ -16,7 +16,7 @@ import com.google.gson.JsonPrimitive;
 /**
  * Created by johan on 15-01-29.
  */
-public class ReadSuiteFromDB extends DBBridge{
+public class SuiteDbLookup extends DBBridge{
 
     String GET_SUIT_ID = "select suite_id from suite where suitename= ";
     String GET_SUITE_SPECIFIC = "select report.class_id, class.classname, report.testcase_id, testcase.testcasename, result, timestamp, time from report inner join class on report.class_id = class.class_id INNER JOIN testcase ON report.testcase_id = testcase.testcase_id where timestamp = '";

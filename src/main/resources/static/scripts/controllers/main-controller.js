@@ -37,7 +37,6 @@ angular.module('webLog')
     }
     
     $scope.trashcanEmpty = function() {
-    	console.log(Charts.mainChart.series[0]); 
     	if (Charts.mainChart.series.length < 2) { // your question said "more than one element"
     		return true;
     	}
@@ -561,8 +560,6 @@ angular.module('webLog')
 			break;
 		}
     	CurrentSuite.activeQueries.push(graphDataObject);
-    	console.log("active in getGraphObj");
-    	console.log(CurrentSuite.activeQueries);
     	return graphDataObject;
     	
     };
@@ -570,18 +567,10 @@ angular.module('webLog')
     function splitDataOnDevice(suiteID, name) {
     	var graphArray = [];
     	var chosen = $scope.getChosen();
-    	
     	var addedUnknown = false;
     	
-    	if (chosen.devices.length === 0) {
-    		if (chosen.os.length === 0) {
-    			chosen.devices = getAllDevices();
-			} else if (chosen.platforms.length === 0) {
-				chosen.devices = getAllDevicesByVersion(chosen);
-			} else {
-				chosen.devices = getAllDevicesByPlatform(chosen);
-			}
-		}
+    	chosen.devices = getDataFromSpecs('platforms','devices', 'deviceid');
+    	
     	for (var i = 0; i < chosen.devices.length; i++) {
     		var dataRequest = {};
     		if (name) {
@@ -603,16 +592,130 @@ angular.module('webLog')
     	return graphArray;
     };
     
+    function containsChosen(array){
+    	for (var i = 0; i < array.length; i++) {
+			if (array[i].chosen) {
+				return true;
+			}
+		}
+    	return false;
+    };
+    
+    function getDataFromSpecs(base, child, key){
+    	console.log(CurrentSuite.currentSpecObject);
+    	console.log("get all");
+    	var specs = CurrentSuite.currentSpecObject[base];
+    	var dataArray = [];
+    	var chosenBaseArray = [];
+    	
+    	//browsers
+    	if (base == 'browsers') {
+			dataArray = getBrowsers(specs, key);
+		} else {
+		
+		//the rest
+			console.log("checking platforms");
+			//if chosen patforms are found, only add the chosen
+			if (containsChosen(specs)) {
+				console.log("adding chosen platforms");
+				for (var i = 0; i < specs.length; i++) {
+					if (specs[i].chosen) {
+			    		if (child != 'none') {
+			    			//if chosen childs are found only add the chosen
+			    			if (containsChosen(specs[i][child])) {
+			    				console.log("adding chosen children");
+					    		for (var j = 0; j < specs[i][child].length; j++) {
+					    			if (specs[i][child][j].chosen) {
+					    				dataArray.push(specs[i][child][j][key]);
+									}
+								}
+			    			} else {
+			    				console.log("adding all children");
+			    				//if NO chosen childs found adding all
+		    					for (var j = 0; j < specs[i][child].length; j++) {
+		    						dataArray.push(specs[i][child][j][key]);
+		    					}
+			    			}
+			    			//if no child is specified adding osName
+			    		} else {
+			    			dataArray.push(specs[i][key]);
+			    		}
+					}
+				}
+				//if NO chosen platforms are found adding all
+			} else {
+				console.log("adding all platforms");
+		    	for (var i = 0; i < specs.length; i++) {
+		    		if (child != 'none') {
+		    			//if chosen child found adding chosen
+		    			if (containsChosen(specs[i][child])) {
+		    				console.log("adding chosen children");
+				    		for (var j = 0; j < specs[i][child].length; j++) {
+				    			if (specs[i][child][j].chosen) {
+				    				dataArray.push(specs[i][child][j][key]);
+								}
+							}
+		    			} else {
+		    				console.log("adding all children");
+		    				//if NO chosen child found adding all
+	    					for (var j = 0; j < specs[i][child].length; j++) {
+	    						dataArray.push(specs[i][child][j][key]);
+	    					}
+		    			}
+		    			//if no child is specified adding osName
+		    		} else {
+		    			dataArray.push(specs[i][key]);
+		    		}
+				}
+			}
+		}
+    	console.log("IDs");
+	    console.log(dataArray);
+	    console.log("---------------------------------------------------------------------------");
+	    return dataArray;
+    };
+    
+    function getBrowsers(specs, key){
+    	browserIDs = [];
+    	if (containsChosen(specs)) {
+	    	for (var i = 0; i < specs.length; i++) {
+	    		if (specs[i].chosen) {
+	    			browserIDs.push(specs[i][key]);
+				}
+			}
+    	} else {
+    		for (var i = 0; i < specs.length; i++) {
+				browserIDs.push(specs[i][key]);
+			}
+    	}
+    	return browserIDs;
+    }
+    
+    function getDevices(){
+    	var specs = CurrentSuite.currentSpecObject;
+    	var deviceIDs = [];
+    	
+    	for (var i = 0; i < specs.platforms.length; i++) {
+			for (var j = 0; j < specs.platforms[i].devices.length; j++) {
+				 
+			}
+		}
+    	
+    	for (var i = 0; i < specs.platforms.length; i++) {
+    		for (var j = 0; j < specs.platforms[i].devices.length; j++) {
+    			if (deviceIDs.indexOf(specs.platforms[i].devices[j].deviceid) == -1) {
+    				deviceIDs.push(specs.platforms[i].devices[j].deviceid);
+				}
+			}
+		}
+    	return deviceIDs;
+    }
+    
     function splitDataOnVersion(suiteID, name) {
     	var graphArray = [];
     	var chosen = $scope.getChosen();
-    	if (chosen.os.length === 0) {
-    		if (chosen.devices.length === 0) {
-    			chosen.os = getAllVersions();
-			} else {
-				chosen.os = getVersionsByDevice(chosen);
-			}
-		}
+    	
+    	chosen.os = getDataFromSpecs('platforms','versions', 'osid');
     	
     	for (var i = 0; i < chosen.os.length; i++) {
     		var dataRequest = {};
@@ -638,9 +741,9 @@ angular.module('webLog')
     function splitDataOnBrowser(suiteID, name) {
     	var graphArray = [];
     	var chosen = $scope.getChosen();
-    	if (chosen.browsers.length === 0) {
-			chosen.browsers = getAllBrowsers();
-		}
+    	
+    	chosen.browsers = getDataFromSpecs('browsers', 'none', 'browserid');
+    	
     	for (var i = 0; i < chosen.browsers.length; i++) {
     		var dataRequest = {};
 
@@ -668,9 +771,7 @@ angular.module('webLog')
     	var graphArray = [];
     	var chosen = $scope.getChosen();
     	
-    	if (chosen.platforms.length === 0) {
-    			chosen.platforms = getAllPlatforms();
-		}
+    	chosen.platforms = getDataFromSpecs('platforms','none','osname');
     	
     	for (var i = 0; i < chosen.platforms.length; i++) {
     		var dataRequest = {};
@@ -898,19 +999,6 @@ angular.module('webLog')
 		}
     };
     
-    function getAllDevices(){
-    	var specs = CurrentSuite.currentSpecObject;
-    	var deviceIDs = [];
-    	for (var i = 0; i < specs.platforms.length; i++) {
-    		for (var j = 0; j < specs.platforms[i].devices.length; j++) {
-    			if (deviceIDs.indexOf(specs.platforms[i].devices[j].deviceid) == -1) {
-    				deviceIDs.push(specs.platforms[i].devices[j].deviceid);
-				}
-			}
-		}
-    	return deviceIDs;
-    }
-    
     function getAllDevicesByPlatform(chosen){
     	var specs = CurrentSuite.currentSpecObject;
     	var deviceIDs = [];
@@ -1002,7 +1090,6 @@ angular.module('webLog')
     	$scope.descTimestamps = reverseArray(CurrentSuite.currentTimeStampArray);
     	var graphDataArray = [];
     	for (var i = 0; i < data.length; i++) {
-    		console.log(data[i]);
     		var graphDataObj = {
     				runTime: [],
     				totalPass: [],
@@ -1012,7 +1099,6 @@ angular.module('webLog')
     		var graphName = data[i].name;
     		
 			for (var j = 0; j < data[i].data.length; j++) {
-		    	console.log("-------------------------");
 				if (isSkipped(data[i].data[j])) {
 					graphDataObj.runTime.push(null);
 					graphDataObj.totalPass.push(null);
@@ -1222,8 +1308,6 @@ angular.module('webLog')
     			type: "line"
     		});
 		}
-    	console.log("series");
-    	console.log(chart.series);
     	chart.yAxis.title.text = 'Pass percentage';
     	chart.title.text = "Percentage of passed tests";
     	delete Charts.mainChart.options.tooltip.valueDecimals;

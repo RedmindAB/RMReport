@@ -1,4 +1,4 @@
-package se.redmind.rmtest.db.read;
+package se.redmind.rmtest.db.lookup;
 
 
 
@@ -18,7 +18,7 @@ import se.redmind.rmtest.db.DBBridge;
 /**
  * Created by johan on 15-01-29.
  */
-public class ReadTestcaseFromDB extends DBBridge {
+public class TestcaseDbLookup extends DBBridge {
 
     public static Connection conn;
     String GET_TESTCASE_ID = "select testcase_id from testcase where testcasename= ";
