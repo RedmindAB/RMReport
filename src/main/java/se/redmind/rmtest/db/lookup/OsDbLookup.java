@@ -1,11 +1,11 @@
-package se.redmind.rmtest.db.read;
+package se.redmind.rmtest.db.lookup;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import se.redmind.rmtest.db.DBBridge;
 
-public class ReadOsFromDB extends DBBridge {
+public class OsDbLookup extends DBBridge {
 	
 	String GET_ALL_FROM_OS = "select * from os";
 	

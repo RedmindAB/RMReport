@@ -1,4 +1,4 @@
-package se.redmind.rmtest.db.read;
+package se.redmind.rmtest.db.lookup;
 
 import se.redmind.rmtest.db.DBBridge;
 
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by johan on 15-01-29.
  */
-public class ReadClassFromDB extends DBBridge{
+public class ClassDbLookup extends DBBridge{
 
     String GET_CLASS_ID = "select class_id from class where classname =";
    

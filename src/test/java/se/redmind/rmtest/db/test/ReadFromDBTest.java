@@ -4,8 +4,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.google.gson.JsonArray;
+
 import se.redmind.rmtest.db.DBCon;
-import se.redmind.rmtest.db.read.ReadClassFromDB;
+import se.redmind.rmtest.db.lookup.ClassDbLookup;
 import se.redmind.rmtest.db.lookup.ReportDbLookup;
 import se.redmind.rmtest.db.lookup.SuiteDbLookup;
 import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesDAO;
@@ -53,7 +54,7 @@ public class ReadFromDBTest {
     }
 
     @Test
-    public void getClassIDTest(){new ReadClassFromDB().getClassID("name");}
+    public void getClassIDTest(){new ClassDbLookup().getClassID("name");}
 
     @Test
     public void getSuitIdTest(){

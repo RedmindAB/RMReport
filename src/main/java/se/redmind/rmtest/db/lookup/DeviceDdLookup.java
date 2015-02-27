@@ -1,4 +1,4 @@
-package se.redmind.rmtest.db.read;
+package se.redmind.rmtest.db.lookup;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import se.redmind.rmtest.db.DBBridge;
 
-public class ReadDeviceFromDB extends DBBridge {
+public class DeviceDdLookup extends DBBridge {
 	
 	String GET_ALL_FROM_DEVICE = "select * from device";
 	

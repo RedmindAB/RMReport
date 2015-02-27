@@ -8,9 +8,9 @@ import java.util.List;
 import se.redmind.rmtest.db.create.browserinserter.BrowserInserter;
 import se.redmind.rmtest.db.create.deviceinserter.DeviceInserter;
 import se.redmind.rmtest.db.create.osinserter.OSInserter;
-import se.redmind.rmtest.db.read.ReadBrowserFromDB;
-import se.redmind.rmtest.db.read.ReadDeviceFromDB;
-import se.redmind.rmtest.db.read.ReadOsFromDB;
+import se.redmind.rmtest.db.lookup.BrowserDdLookup;
+import se.redmind.rmtest.db.lookup.DeviceDdLookup;
+import se.redmind.rmtest.db.lookup.OsDbLookup;
 import se.redmind.rmtest.report.parser.Driver;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
@@ -45,7 +45,7 @@ public class DriverValidation {
 	}
 	
 	public HashMap<String, Integer> getOSMap(){
-		ReadOsFromDB osFromDB = new ReadOsFromDB();
+		OsDbLookup osFromDB = new OsDbLookup();
 		//Get componenets to compare
 		OSInserter osInserter = new OSInserter();
 		HashMap<String, Integer> osIds = osFromDB.getOsVersionAndId();
@@ -70,7 +70,7 @@ public class DriverValidation {
 	}
 	
 	public HashMap<String, Integer> getDeviceMap(){
-		ReadDeviceFromDB deviceFromDB = new ReadDeviceFromDB();
+		DeviceDdLookup deviceFromDB = new DeviceDdLookup();
 		//Get componenets to compare
 		DeviceInserter inserter = new DeviceInserter();
 		HashMap<String, Integer> deviceIds = deviceFromDB.getDeviceNameAndId();
@@ -96,7 +96,7 @@ public class DriverValidation {
 	}
 	
 	public HashMap<String, Integer> getBrowserMap(){
-		ReadBrowserFromDB browserFromDB = new ReadBrowserFromDB();
+		BrowserDdLookup browserFromDB = new BrowserDdLookup();
 		//Get componenets to compare
 		BrowserInserter browserInserter = new BrowserInserter();
 		HashMap<String, Integer> osIds = browserFromDB.getBrowserVersionAndId();

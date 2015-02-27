@@ -12,7 +12,7 @@ import se.redmind.rmtest.db.create.suiteinserter.SuiteInserter;
 import se.redmind.rmtest.db.create.testcaseinserter.TestCaseInserter;
 import se.redmind.rmtest.db.create.testcaseruninserter.TestCaseRunInserter;
 import se.redmind.rmtest.db.lookup.TestcaseDbLookup;
-import se.redmind.rmtest.db.read.ReadClassFromDB;
+import se.redmind.rmtest.db.lookup.ClassDbLookup;
 import se.redmind.rmtest.db.lookup.ReportDbLookup;
 import se.redmind.rmtest.db.lookup.SuiteDbLookup;
 import se.redmind.rmtest.report.parser.Report;
@@ -33,14 +33,14 @@ public class ReportValidator {
 	private SuiteInserter suiteInserter;
 	private TestCaseInserter testCaseInserter;
 	private TestCaseRunInserter testCaseRunInserter;
-	private ReadClassFromDB readClassFromDB;
+	private ClassDbLookup readClassFromDB;
 	private SuiteDbLookup readSuiteFromDB;
 	private TestcaseDbLookup readTestcaseFromDB;
 	
 	public ReportValidator(String filename) {
 		this.filename = filename;
 		this.readFromDB = new ReportDbLookup();
-		this.readClassFromDB = new ReadClassFromDB();
+		this.readClassFromDB = new ClassDbLookup();
 		this.readSuiteFromDB = new SuiteDbLookup();
 		this.connection = DBCon.getDbInstance().getConnection();
 		this.loader = new ReportLoader();
