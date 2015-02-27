@@ -2,8 +2,6 @@ package se.redmind.rmtest.report.reportvalidation;
 
 import java.io.File;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -13,10 +11,10 @@ import se.redmind.rmtest.db.create.classinserter.ClassInserter;
 import se.redmind.rmtest.db.create.suiteinserter.SuiteInserter;
 import se.redmind.rmtest.db.create.testcaseinserter.TestCaseInserter;
 import se.redmind.rmtest.db.create.testcaseruninserter.TestCaseRunInserter;
+import se.redmind.rmtest.db.lookup.TestcaseDbLookup;
 import se.redmind.rmtest.db.read.ReadClassFromDB;
 import se.redmind.rmtest.db.read.ReadReportFromDB;
-import se.redmind.rmtest.db.read.ReadSuiteFromDB;
-import se.redmind.rmtest.db.read.ReadTestcaseFromDB;
+import se.redmind.rmtest.db.lookup.SuiteDbLookup;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
@@ -36,14 +34,14 @@ public class ReportValidator {
 	private TestCaseInserter testCaseInserter;
 	private TestCaseRunInserter testCaseRunInserter;
 	private ReadClassFromDB readClassFromDB;
-	private ReadSuiteFromDB readSuiteFromDB;
-	private ReadTestcaseFromDB readTestcaseFromDB;
+	private SuiteDbLookup readSuiteFromDB;
+	private TestcaseDbLookup readTestcaseFromDB;
 	
 	public ReportValidator(String filename) {
 		this.filename = filename;
 		this.readFromDB = new ReadReportFromDB();
 		this.readClassFromDB = new ReadClassFromDB();
-		this.readSuiteFromDB = new ReadSuiteFromDB();
+		this.readSuiteFromDB = new SuiteDbLookup();
 		this.connection = DBCon.getDbInstance().getConnection();
 		this.loader = new ReportLoader();
 		this.parser = new ReportXMLParser();
@@ -132,7 +130,7 @@ public class ReportValidator {
 	}
 	
 	private HashMap<String,Integer> getTestCases(Report report, HashMap<String, Integer> classIDs){
-		ReadTestcaseFromDB readTestcaseFromDB = new ReadTestcaseFromDB();
+		TestcaseDbLookup readTestcaseFromDB = new TestcaseDbLookup();
 		//get testcases from db.
 		HashMap<String, Integer> allFromTestcaseConcat = readTestcaseFromDB.getAllFromTestcaseConcat();
 		HashSet<String> addedTestCases = new HashSet<String>();
