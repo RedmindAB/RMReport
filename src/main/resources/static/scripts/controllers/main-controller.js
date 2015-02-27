@@ -138,8 +138,9 @@ angular.module('webLog')
 		//remove os checkbox
 		clearChosenOs();
 		
-		//remove platform checkboc
-		clearChosenPlatforms();
+		//remove platform checkbox
+		// The accordion closes those checkboxes, so no need to call this function
+		//clearChosenPlatforms();
 	}
 	
 	$scope.clearPlatformChosen = function(){
