@@ -112,14 +112,6 @@ public class ReadFromDBTest {
     }
     
     
-    @Ignore //driver dose not exist anymore
-    @Test
-    public void getDriverByTestcase(){
-        List<HashMap<String, String>> classname = new ReadTestcaseFromDB().getDriverFromTestcaseID(1);
-        for (HashMap hashMap : classname) {
-            System.out.println(hashMap);
-        }
-    }
     @Test
     public void getLastestSuiteRunFromIDTest(){
     }
