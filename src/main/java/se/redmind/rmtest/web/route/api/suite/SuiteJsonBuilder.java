@@ -1,4 +1,4 @@
-package se.redmind.rmtest.web.api.suite;
+package se.redmind.rmtest.web.route.api.suite;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
