@@ -35,9 +35,9 @@ public class GetGraphDataDAO {
 			JsonObject result = new JsonObject();
 			result.add("name", new JsonPrimitive(name));
 			result.add("data", dataArray);
-//			System.out.println(name+ " "+ result);
 			resultArray.add(result);
 		}
+		System.out.println(resultArray);
 		return new Gson().toJson(resultArray);
 	}
 
