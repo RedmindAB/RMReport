@@ -38,9 +38,13 @@
             </ul>
         </div>
         
-		<button style='margin:26px 1px 1px 1px' ng-disabled='Charts.mainChart.loading' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" ng-model='CurrentSuite.newLine' class="btn btn-default" id='graph_line' style='margin:2px'>
-			Add graph line
-		</button>
+		<div class='btn-group' align='center'>
+			<h5 style='margin-bottom:0px'>Add graph line&nbsp;</h5>
+			<button ng-disabled='Charts.mainChart.loading' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" ng-model='CurrentSuite.newLine' style='width:150px;margin:1px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+            <ul></ul>
+        </div>
         
 		<div class='btn-group' align='center'>
 			<h5 style='margin-bottom:0px'>Remove graph line</h5>
