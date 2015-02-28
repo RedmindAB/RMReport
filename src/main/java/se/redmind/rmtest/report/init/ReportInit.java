@@ -32,7 +32,9 @@ public class ReportInit {
 		Connection connection = DBCon.getDbInstance().getConnection();
 		try {
 			connection.setAutoCommit(false);
-			TimeEstimator estimator = new TimeEstimator(reportFiles.size(), 20);
+			TimeEstimator estimator = new TimeEstimator(reportFiles.size(), 8);
+			System.out.println(estimator.getTopMeter());
+			System.out.print(" ");
 			estimator.start();
 			for (File file : reportFiles) {
 					ReportValidator reportValidator = new ReportValidator(file.getName());
@@ -43,9 +45,10 @@ public class ReportInit {
 					}
 					estimator.addTick();
 					if (estimator.isMeassure()) {
-						System.out.println("Estimated time left: "+estimator.getEstimatedTimeLeftDouble()+" sec");
+						System.out.print("|");
 					}
 			}
+			System.out.print("\n");
 			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			try {
