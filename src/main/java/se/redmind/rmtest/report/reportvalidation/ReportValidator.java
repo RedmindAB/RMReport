@@ -152,4 +152,8 @@ public class ReportValidator {
 		}
 		return readTestcaseFromDB.getAllFromTestcaseConcat();
 	}
+	
+	public Report getReport(){
+		return report;
+	}
 }

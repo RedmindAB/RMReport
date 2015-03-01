@@ -115,4 +115,12 @@ public class ReportXMLParserTest {
 		}
 		assertEquals(32, skipped);
 	}
+	
+	@Test
+	public void getSuiteName(){
+		Report report = parser.getReportFromFile(file);
+		String suiteName = report.getSuiteName();
+		assertEquals("AnotherGeneratedSuite", suiteName);
+		
+	}
 }

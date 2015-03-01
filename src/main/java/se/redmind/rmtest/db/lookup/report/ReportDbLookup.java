@@ -40,6 +40,8 @@ public class ReportDbLookup extends DBBridge{
     String GET_SPECIFIC_METHOD_DRIVER_INFO = "select driver, timestamp, message, result, time from report where driver = ";
     String LIMIT = " limit 20";
     
+    private String GET_TIMESTAMPS_WITH_SUITE_NAME = "SELECT DISTINCT timestamp, suite.suitename FROM report INNER JOIN suite ON (report.suite_id = suite.suite_id);";
+    
    
     
     
@@ -67,7 +69,19 @@ public class ReportDbLookup extends DBBridge{
         return false;
     }
 	
-	
-	
+    public HashSet<String> getReportsWithSuiteNames(){
+    	ResultSet rs = readFromDB(GET_TIMESTAMPS_WITH_SUITE_NAME);
+    	HashSet<String> result = new HashSet<String>();
+    	try {
+			while (rs.next()) {
+				result.add(rs.getString("timestamp")+rs.getString("suitename"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return result;
+    }
+    
 }
 

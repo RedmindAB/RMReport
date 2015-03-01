@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import se.redmind.rmtest.db.DBCon;
+import se.redmind.rmtest.db.lookup.report.ReportExist;
+import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.reporthandler.ReportHandler;
 import se.redmind.rmtest.report.reportvalidation.ReportValidator;
 import se.redmind.rmtest.util.TimeEstimator;
@@ -29,6 +31,7 @@ public class ReportInit {
 		List<File> reportFiles = reportHandler.getReportFiles();
 		System.out.println("Found "+reportFiles.size()+" reports");
 		int addedReports = 0;
+		ReportExist reportExist = new ReportExist();
 		Connection connection = DBCon.getDbInstance().getConnection();
 		try {
 			connection.setAutoCommit(false);
@@ -38,14 +41,15 @@ public class ReportInit {
 			estimator.start();
 			for (File file : reportFiles) {
 					ReportValidator reportValidator = new ReportValidator(file.getName());
-					boolean existsInDB = reportValidator.reportExists();
+					Report report = reportValidator.getReport();
+					boolean existsInDB = reportExist.reportExists(report.getTimestamp(), report.getSuiteName());
 					if (!existsInDB) {
 						reportValidator.saveReport();
 						addedReports++;
 					}
 					estimator.addTick();
 					if (estimator.isMeassure()) {
-						System.out.print("|");
+						System.out.print("#");
 					}
 			}
 			System.out.print("\n");
