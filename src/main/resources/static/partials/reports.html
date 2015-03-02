@@ -128,8 +128,7 @@
                             <input style='margin-top:14px;margin-left:5px' ng-model='platform.chosen' ng-click="newContent()" id='input_osname' type="checkbox" class="mycheckbox" stop-click><label for="mycheckbox" style='font-weight:normal;'></label>
                             <accordion-group is-open='platform.chosen'>
                                 <accordion-heading id='reports_name' ng-click='togglePlatformChosen(platform);newContent();clearPlatformChosen()'> 
-                                    <div>
-                                    &nbsp;{{platform.osname}}</div>
+                                    <div ng-click='newContent()'>&nbsp;{{platform.osname}}</div>
                                 </accordion-heading>
                                 <table style='margin: -20px 0px -20px 0px'>
                                     <tr>
@@ -137,7 +136,7 @@
                                             <h4>Devices:&nbsp;</h4>
                                         </td>
                                         <td height='10px' style='padding:0px 10px 0px 10px' ng-repeat="device in platform.devices track by $index" >
-                                            <input ng-model="device.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">&nbsp;<div ng-click='setChosen(device)' style='display:inline-block;cursor:pointer'>{{device.devicename}}</div><label for="mycheckbox"></label>
+                                            <input ng-model="device.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">&nbsp;<div ng-click='setChosen(device);newContent()' style='display:inline-block;cursor:pointer'>{{device.devicename}}</div><label for="mycheckbox"></label>
                                         </td>
                                     </tr>
                                     <tr>
@@ -145,7 +144,7 @@
                                             <h4>Versions:&nbsp;</h4>
                                         </td>
                                         <td style='padding:0px 10px 0px 10px' ng-repeat="version in platform.versions track by $index">
-                                            <input ng-model="version.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">&nbsp;<div ng-click='setChosen(version)' style='display:inline-block;cursor:pointer'>{{version.osver}}</div><label for="mycheckbox"></label> 
+                                            <input ng-model="version.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">&nbsp;<div ng-click='setChosen(version);newContent()' style='display:inline-block;cursor:pointer'>{{version.osver}}</div><label for="mycheckbox"></label> 
                                         </td>
                                     </tr>
                                     <tr>
