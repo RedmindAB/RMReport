@@ -1,10 +1,10 @@
 <accordion close-others="true">
     <!-- repeated content -->
-    <div ng-repeat="case in CurrentSuite.currentCases| filter: Utilities.searchField | orderBy:'result' track by $index">
+    <div class='noselect' ng-repeat="case in CurrentSuite.currentCases| filter: Utilities.searchField | orderBy:'result' track by $index">
         <accordion-group style='margin-top:10px' ng-class='getPanel(case.result)' ng-style="{'background-color': getBgCo(case.result)}">
             <!-- non collapsing header -->
             <accordion-heading id='case_name'>
-                <div style='display:inline;'>{{case.osname}} - {{case.devicename}} -	{{case.osversion}} - {{case.browsername}} - {{case.result}} - {{case.timestamp}}</div><div style='margin-top:2px;float:right;display:inline'>{{case.timetorun}}</div>
+                <button style='width:120px' class='btn btn-default' ng-click="addCaseToGraph(case.osname, case.osversion, case.devicename, case.browsername, case.browserversion);$event.preventDefault();$event.stopPropagation();">This test only</button>&nbsp;<div style='display:inline;'>{{case.osname}} - {{case.devicename}} -	{{case.osversion}} - {{case.browsername}} - {{case.result}} - {{case.timestamp}}</div><div style='margin-top:2px;float:right;display:inline'>{{case.timetorun}}</div>
             </accordion-heading>
             <!-- non collapsing header End-->
 
@@ -13,7 +13,7 @@
                 <table class="table" style='margin: -10px 0px 0px 0px'>
                     <thead>
                         <tr style='border-style: hidden'>
-                            <th>Browser version <button class='btn btn-default' ng-click="addCaseToGraph(case.osname, case.osversion, case.devicename, case.browsername, case.browserversion)">Add to graph</button></th>
+                            <th>Browser version</th>
                         </tr>
                     </thead>
                     <tbody>

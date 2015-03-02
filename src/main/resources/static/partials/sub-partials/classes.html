@@ -1,19 +1,21 @@
-<accordion close-others="true">
-    <!-- repeated content -->
-    <div style='height:100%;margin-top:10px;cursor: pointer;word-break:break-all' id='method_name' ng-repeat="class in CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:['result', 'name'] track by $index "
-         ng-class='getPanel(class.result)' 
-         ng-style="{'background-color': getBgCo(class.result)}">
-        <!-- non collapsing header -->
-        <table width='100%'>
-            <tr>
-            	<td width='10px' id='lol'>
-            		<input style='float:left;margin-bottom:4px;margin-left:5px' style='float:left' type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="class.chosen" ng-click="newContent()"><label for="mycheckbox"></label>					                    
-            	</td>
-                <td ng-click="getMethods(class); setState('reports.methods'); resetFilterField()" ng-style="{'color' : getCo(class.result)}">
-					<h3 style='display:inline;margin:2px 0px 0px 0px'>&nbsp;{{class.name}}</h3> <h3 style='margin:2px 0px 0px 0px;float:right;display:inline'>&nbsp;{{formatDecimals(class.time)}}</h3>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <!-- repeated content  End-->
-</accordion>
+<div class='noselect'>
+	<accordion close-others="true">
+	    <!-- repeated content -->
+	    <div style='height:100%;margin-top:10px;cursor: pointer;word-break:break-all' id='method_name' ng-repeat="class in CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:['result', 'name'] track by $index "
+	         ng-class='getPanel(class.result)' 
+	         ng-style="{'background-color': getBgCo(class.result)}">
+	        <!-- non collapsing header -->
+	        <table width='100%'>
+	            <tr>
+	            	<td width='10px' id='lol'>
+	            		<input style='float:left;margin-bottom:4px;margin-left:5px' style='float:left' type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="class.chosen" ng-click="newContent()"><label for="mycheckbox"></label>					                    
+	            	</td>
+	                <td ng-click="getMethods(class); setState('reports.methods'); resetFilterField()" ng-style="{'color' : getCo(class.result)}">
+						<h3 style='display:inline;margin:2px 0px 0px 0px'>&nbsp;{{class.name}}</h3> <h3 style='margin:2px 0px 0px 0px;float:right;display:inline'>&nbsp;{{formatDecimals(class.time)}}</h3>
+	                </td>
+	            </tr>
+	        </table>
+	    </div>
+	    <!-- repeated content  End-->
+	</accordion>
+</div>

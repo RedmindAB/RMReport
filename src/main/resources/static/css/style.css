@@ -12,6 +12,15 @@ h3 {
 }
 /* End */
 
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 /* Bootstrap solution to get the buttons corners rounded */
 .btn-group > .btn:first-of-type {
 	margin-left: 0;
@@ -21,10 +30,6 @@ h3 {
 	-webkit-border-bottom-left-radius: 4px;
 	-moz-border-radius-bottomleft: 4px;
 	border-bottom-left-radius: 4px;
-}
-
-.accordion{
-	outline: none; 
 }
 
 .btn-group > .btn:last-of-type, .btn-group > .dropdown-toggle {
@@ -48,8 +53,6 @@ h3 {
 	height: 172px;
 }
 /* End */
-
-
 
 /* Site content */
 .container{
