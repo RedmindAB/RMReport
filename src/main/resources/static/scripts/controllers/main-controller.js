@@ -26,6 +26,15 @@ angular.module('webLog')
         $scope.showButton = !$scope.showButton;
     };
     
+    $scope.setChosen = function(value){
+    	if(value.chosen){
+    		delete value.chosen;
+    	}
+    	else{
+    		value.chosen = true;
+    	}
+    }
+    
     $scope.togglePlatformChosen = function(platform) {
     	if(platform.chosen){
     		delete platform.chosen;
