@@ -125,7 +125,7 @@
                     <div>		    
                         <accordion close-others="false">
                         	<div ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
-                            <input ng-disabled='true' style='margin-top:14px;margin-left:5px' ng-model='platform.chosen' ng-click="newContent()" id='input_osname' type="checkbox" class="mycheckbox" stop-click><label for="mycheckbox" style='font-weight:normal;'></label>
+                            <input style='margin-top:14px;margin-left:5px' ng-model='platform.chosen' ng-click="newContent()" id='input_osname' type="checkbox" class="mycheckbox" stop-click><label for="mycheckbox" style='font-weight:normal;'></label>
                             <accordion-group is-open='platform.chosen'>
                                 <accordion-heading id='reports_name' ng-click='togglePlatformChosen(platform);newContent();clearPlatformChosen()'> 
                                     <div>
