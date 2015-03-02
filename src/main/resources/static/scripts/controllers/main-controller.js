@@ -56,7 +56,12 @@ angular.module('webLog')
     
 	$scope.remove = function(item) { 
 		var index = Charts.mainChart.series.indexOf(item)
-		Charts.mainChart.series.splice(index, 1);   
+		Charts.mainChart.series.splice(index, 1);  
+ 		for (var i = 0; i < Charts.data.length; i++) {
+			if (Charts.data[i].name === item.name) {
+				Charts.data.splice(i, 1);
+			}
+		}
 	}
     	
     $scope.setAmountField = function(value){
