@@ -1218,7 +1218,13 @@ angular.module('webLog')
 					name : Charts.data[i].name,
 				});
 			}
-			
+			if(CurrentSuite.currentTimeStampArray.length <= 50){
+				Charts.mainChart.xAxis.tickInterval = 0.4;
+			} else if(CurrentSuite.currentTimeStampArray.length > 50 && CurrentSuite.currentTimeStampArray.length <= 100){
+	        	Charts.mainChart.xAxis.tickInterval = 2;
+	    	} else{
+	    		Charts.mainChart.xAxis.tickInterval = 5;
+	    	}
 			$scope.changeChartVariant();
 			Charts.mainChart.loading = false;
 			highlightPoint(CurrentSuite.currentTimeStamp);
@@ -1316,7 +1322,6 @@ angular.module('webLog')
     function runTimeChart() {
     	
     	var chart = Charts.mainChart;
-    	
     	chart.options.chart.type = "line";
     	chart.series = [];
     	chart.yAxis.max = undefined;
