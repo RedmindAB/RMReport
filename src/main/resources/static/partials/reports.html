@@ -113,7 +113,7 @@
                         <tr>
                             <td style='padding-right: 10px;font-size:20px' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
                                 <input style='margin-top:9px' type="checkbox" id='input_browser' ng-click="newContent()" ng-model="browser.chosen">
-                                <div ng-click='setChosen(browser)' style='display:inline;cursor:pointer'>{{browser.browsername}} - v.{{browser.browserver}}</div>
+                                <div ng-click='setChosen(browser);newContent()' style='display:inline;cursor:pointer'>{{browser.browsername}} - v.{{browser.browserver}}</div>
                             </td>
                         </tr>
                     </table>
