@@ -99,6 +99,33 @@ angular.module('webLog')
     	Utilities.searchField = "";
     }
     
+    $scope.setCasesSorting = function(order){
+    	console.log(CurrentSuite.currentCases);
+    	switch (order) {
+    	case 'name':
+    		Utilities.caseSorting = ['result','osname', 'devicename', 'osversion', 'browsername'];
+    	default:
+    		break;
+		case 'time':
+			Utilities.caseSorting = '-timetorun';
+			break;
+		}
+    }
+    
+    $scope.setClassMethodSorting = function(order){
+	    	switch (order) {
+			case "name":
+				console.log("hmmm");
+				Utilities.sorting = ['result', 'name'];
+				break;
+			case "time":
+				Utilities.sorting = 'time';
+				break;
+			default:
+				break;
+	    	}
+    }
+    
     $scope.imagePaths = ['img/aftonbladet.png', 'img/comaround.gif', 'img/aftonbladet.png'];
     
 	$scope.getMethods = function(testClass){
