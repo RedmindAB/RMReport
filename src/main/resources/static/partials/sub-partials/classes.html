@@ -1,5 +1,5 @@
+<a href="" ng-click="setClassMethodSorting('name'); reverse=!reverse">Name</a>    <a href="" style='float: right' ng-click="setClassMethodSorting('time'); reverse=!reverse">Time</a></th>
 <div class='noselect'>
-<a href="" ng-click="setClassMethodSorting('name'); reverse=!reverse">Name</a>    <a href="" ng-click="setClassMethodSorting('time'); reverse=!reverse">Time</a></th>
 	<accordion close-others="true">
 	    <!-- repeated content -->
 	    <div style='height:100%;margin-top:10px;cursor: pointer;word-break:break-all' id='method_name' ng-repeat="class in CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index "
