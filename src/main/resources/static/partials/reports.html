@@ -113,7 +113,7 @@
                         <tr>
                             <td style='padding-right: 10px;font-size:20px' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
                                 <input style='margin-top:9px' type="checkbox" id='input_browser' ng-click="newContent()" ng-model="browser.chosen">
-                                <div ng-click='setChosen(browser)' style='display:inline'>{{browser.browsername}} - v.{{browser.browserver}}</div>
+                                <div ng-click='setChosen(browser)' style='display:inline;cursor:pointer'>{{browser.browsername}} - v.{{browser.browserver}}</div>
                             </td>
                         </tr>
                     </table>
@@ -136,7 +136,7 @@
                                             <h4>Devices:&nbsp;</h4>
                                         </td>
                                         <td height='10px' style='padding:0px 10px 0px 10px' ng-repeat="device in platform.devices track by $index" >
-                                            <input ng-model="device.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">&nbsp;<div ng-click='setChosen(device)' style='display:inline-block'>{{device.devicename}}</div><label for="mycheckbox"></label>
+                                            <input ng-model="device.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">&nbsp;<div ng-click='setChosen(device)' style='display:inline-block;cursor:pointer'>{{device.devicename}}</div><label for="mycheckbox"></label>
                                         </td>
                                     </tr>
                                     <tr>
@@ -144,7 +144,7 @@
                                             <h4>Versions:&nbsp;</h4>
                                         </td>
                                         <td style='padding:0px 10px 0px 10px' ng-repeat="version in platform.versions track by $index">
-                                            <input ng-model="version.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">&nbsp;<div ng-click='setChosen(version)' style='display:inline-block'>{{version.osver}}</div><label for="mycheckbox"></label> 
+                                            <input ng-model="version.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">&nbsp;<div ng-click='setChosen(version)' style='display:inline-block;cursor:pointer'>{{version.osver}}</div><label for="mycheckbox"></label> 
                                         </td>
                                     </tr>
                                     <tr>
