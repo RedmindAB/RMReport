@@ -30,7 +30,7 @@
                 {{Utilities.amountField}}
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu scrollable-menu">
+            <ul class="dropdown-menu scrollable-menu" id='suite_runs'>
                 <li ng-repeat="run in runValues"><a ng-click="setAmountField(run);newContent()" id='timestamp'>
                         {{run}}
                     </a>
@@ -52,7 +52,7 @@
                 <span class="glyphicon glyphicon-trash"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li ng-repeat='serie in Charts.mainChart.series' ng-click='remove(serie)'><a style='cursor:pointer'>
+                <li ng-repeat='serie in Charts.mainChart.series' id='serie_name' ng-click='remove(serie)'><a style='cursor:pointer'>
                 	<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>&nbsp;{{serie.name}}
                 	</a>
                 </li>
@@ -74,7 +74,7 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li ng-repeat="variant in chartVariants"><a style='cursor:pointer' ng-click="changeChartVariant(variant)">
+                <li ng-repeat="variant in chartVariants"><a style='cursor:pointer' id='variant' ng-click="changeChartVariant(variant)">
                 {{variant}}
                 	</a>
                 </li>
@@ -87,7 +87,7 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li ng-repeat="breakPoint in breakPoints" ng-click='setBreakPoint(breakPoint);newContent()'><a style='cursor:pointer'>
+                <li ng-repeat="breakPoint in breakPoints" id='break_point' ng-click='setBreakPoint(breakPoint);newContent()'><a style='cursor:pointer'>
                 {{breakPoint}}
                 	</a>
                 </li>
