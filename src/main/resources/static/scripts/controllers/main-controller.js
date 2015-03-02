@@ -21,12 +21,6 @@ angular.module('webLog')
     	$scope.breakPointChoice = choice;
     }
     
-    function getSu(value){
-    	for (var i = 0; i < value.length; i++) {
-			
-		}
-    }
-    
     $scope.showButton = false;
     $scope.toggleButton = function() {
         $scope.showButton = !$scope.showButton;
@@ -104,7 +98,36 @@ angular.module('webLog')
     $scope.resetFilterField = function(){
     	Utilities.searchField = "";
     }
-        
+    
+    $scope.setCasesSorting = function(order){
+    	console.log(CurrentSuite.currentCases);
+    	switch (order) {
+    	case 'name':
+    		Utilities.caseSorting = ['result','osname', 'devicename', 'osversion', 'browsername'];
+    	default:
+    		break;
+		case 'time':
+			Utilities.caseSorting = '-timetorun';
+			break;
+		}
+    }
+    
+    $scope.setClassMethodSorting = function(order){
+	    	switch (order) {
+			case "name":
+				console.log("hmmm");
+				Utilities.sorting = ['result', 'name'];
+				break;
+			case "time":
+				Utilities.sorting = 'time';
+				break;
+			default:
+				break;
+	    	}
+    }
+    
+    $scope.imagePaths = ['img/aftonbladet.png', 'img/comaround.gif', 'img/aftonbladet.png'];
+    
 	$scope.getMethods = function(testClass){
 		$scope.clearOtherChosen(testClass);
 		CurrentSuite.currentClass=testClass;
