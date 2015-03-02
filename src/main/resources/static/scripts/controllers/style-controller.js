@@ -40,6 +40,15 @@ angular.module('webLog')
 			}
 	    }
 	    
+	    $scope.getButton = function(passed){
+	    	if(passed === "failure" || passed === "error")
+	    		return 'btn btn-danger';
+	    	else if(passed === "skipped")
+	    		return 'btn btn-warning';
+	    	else
+	    		return 'btn btn-success';
+	    }
+	    
 	    $scope.getPanel = function(passed){
 	    	if(passed === "failure" || passed === "error")
 	    		return 'panel panel-danger bg-danger';
