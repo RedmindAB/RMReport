@@ -166,7 +166,6 @@ angular.module('webLog')
 					delete CurrentSuite.currentSpecObject.platforms[i].devices[j].chosen;
 				}
 			}
-		console.log(CurrentSuite.currentSpecObject.platforms.devices);
 	}
 	
 	function clearChosenOs() {
@@ -242,8 +241,6 @@ angular.module('webLog')
 				testcases: [],
 				platforms:[]
 		};
-		console.log("suck");
-		console.log(CurrentSuite.currentSpecObject.platforms);
 		//add version to send
 		if (CurrentSuite.currentSpecObject.platforms) {
 			var platforms = CurrentSuite.currentSpecObject.platforms;
@@ -510,8 +507,6 @@ angular.module('webLog')
 			requestObject.push(activeQueries[i]);
 		}
 	   CurrentSuite.lastRunSize = getResLimit();
-	   console.log("request");
-	   console.log(requestObject);
 	   $http.post('/api/stats/graphdata', requestObject)
 	   .success(function(data, status, headers, config){
 		   $scope.createMainChart(data, newLine);
@@ -570,8 +565,41 @@ angular.module('webLog')
     	});
     }
     
+    function setChosenForCurrent(classId, methodId){
+    	for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
+			if (CurrentSuite.currentSuite[i].id === classId) {
+				if (methodId) {
+					for (var j = 0; j < CurrentSuite.currentSuite[i].testcases.length; j++) {
+						if (CurrentSuite.currentSuite[i].testcases[j].id === methodId) {
+							CurrentSuite.currentSuite[i].testcases[j].chosen = true;
+							break;
+						}
+					}
+				}
+					CurrentSuite.currentSuite[i].chosen = true;
+					break;
+				}
+			}
+		}
+    
     $scope.getGraphDataObject = function(suiteID, name){
     	var graphDataObject = [];
+    	
+    	switch ($state.$current.name) {
+		case 'reports.methods':
+			console.log("saving class");
+			setChosenForCurrent(CurrentSuite.currentClass.id);
+			console.log(CurrentSuite.currentSuite);
+			break;
+		case 'reports.cases':
+			console.log("saving method");
+			setChosenForCurrent(CurrentSuite.currentClass.id, CurrentSuite.currentMethod.id);
+			console.log(graphDataObject);
+			break;
+		default:
+			break;
+		}
+    	
     	switch ($scope.breakPointChoice) {
 		case "None":
 			graphDataObject = getAllDataAsOne(suiteID, name);
@@ -641,8 +669,6 @@ angular.module('webLog')
     };
     
     function getDataFromSpecs(base, child, key){
-    	console.log(CurrentSuite.currentSpecObject);
-    	console.log("get all");
     	var specs = CurrentSuite.currentSpecObject[base];
     	var dataArray = [];
     	var chosenBaseArray = [];
@@ -653,23 +679,19 @@ angular.module('webLog')
 		} else {
 		
 		//the rest
-			console.log("checking platforms");
 			//if chosen patforms are found, only add the chosen
 			if (containsChosen(specs)) {
-				console.log("adding chosen platforms");
 				for (var i = 0; i < specs.length; i++) {
 					if (specs[i].chosen) {
 			    		if (child != 'none') {
 			    			//if chosen childs are found only add the chosen
 			    			if (containsChosen(specs[i][child])) {
-			    				console.log("adding chosen children");
 					    		for (var j = 0; j < specs[i][child].length; j++) {
 					    			if (specs[i][child][j].chosen) {
 					    				dataArray.push(specs[i][child][j][key]);
 									}
 								}
 			    			} else {
-			    				console.log("adding all children");
 			    				//if NO chosen childs found adding all
 		    					for (var j = 0; j < specs[i][child].length; j++) {
 		    						dataArray.push(specs[i][child][j][key]);
@@ -683,19 +705,16 @@ angular.module('webLog')
 				}
 				//if NO chosen platforms are found adding all
 			} else {
-				console.log("adding all platforms");
 		    	for (var i = 0; i < specs.length; i++) {
 		    		if (child != 'none') {
 		    			//if chosen child found adding chosen
 		    			if (containsChosen(specs[i][child])) {
-		    				console.log("adding chosen children");
 				    		for (var j = 0; j < specs[i][child].length; j++) {
 				    			if (specs[i][child][j].chosen) {
 				    				dataArray.push(specs[i][child][j][key]);
 								}
 							}
 		    			} else {
-		    				console.log("adding all children");
 		    				//if NO chosen child found adding all
 	    					for (var j = 0; j < specs[i][child].length; j++) {
 	    						dataArray.push(specs[i][child][j][key]);
@@ -708,9 +727,6 @@ angular.module('webLog')
 				}
 			}
 		}
-    	console.log("IDs");
-	    console.log(dataArray);
-	    console.log("---------------------------------------------------------------------------");
 	    return dataArray;
     };
     
@@ -778,7 +794,6 @@ angular.module('webLog')
     };
     
     function sortDevicesByOsId(devices, osid){
-    	console.log(devices);
     	var sortedDevices = [];
     	var platformName = '';
     	var platforms = CurrentSuite.currentSpecObject.platforms
@@ -793,7 +808,6 @@ angular.module('webLog')
 							}
 						}
 					}
-					console.log(sortedDevices.length);
 					if (sortedDevices.length === 0) {
 						for (var j = 0; j < platforms[i].devices.length; j++) {
 							sortedDevices.push(platforms[i].devices[j].deviceid);
@@ -835,7 +849,6 @@ angular.module('webLog')
     		if (name) {
     			dataRequest.name = name;
     		} else {
-    			console.log(getDataFromSpecs('browsers', 'none', 'browsername'));
     			dataRequest.name = getBrowserByID(dataRequest.browsers[0]).browsername+" v."+getBrowserByID(dataRequest.browsers[0]).browserver;
     		}
     		
@@ -878,8 +891,6 @@ angular.module('webLog')
     	var graphArray = [];
     	var chosen = $scope.getChosen();
     	var dataRequest = {};
-    	
-    	console.log(chosen);
     	
     	if (name) {
     		dataRequest.name = name;
@@ -998,7 +1009,6 @@ angular.module('webLog')
     	var devices = [];
     	if (chosenDevices.length === 0) {
 			devices = getDevicesByPlatform(platformName, chosenDevices);
-			console.log(devices);
 			return devices;
 		} else {
 			var allDevices = [];
@@ -1164,8 +1174,6 @@ angular.module('webLog')
     		Charts.mainChart.loading = false;
     		return;
 		}
-    	console.log("response");
-    	console.log(data);
     	CurrentSuite.currentTimeStampArray = [];
     	for (var index = 0; index < data[0].data.length; index++) {
 			CurrentSuite.currentTimeStampArray.push(data[0].data[index].timestamp);
