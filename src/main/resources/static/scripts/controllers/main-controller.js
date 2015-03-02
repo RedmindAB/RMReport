@@ -1328,7 +1328,7 @@ angular.module('webLog')
 					connectNulls : false
 				} ],
 				xAxis : {
-					minTickInterval : 5,
+					tickInterval: 2,
 					labels : {
 						rotation : 45
 					}
