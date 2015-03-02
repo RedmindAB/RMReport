@@ -57,7 +57,7 @@ public class ReportValidator {
 	}
 	
 	public boolean reportExists(){
-		String timestamp = report.getTimestamp();
+		long timestamp = report.getTimestamp();
 		return readFromDB.reportExists(timestamp);
 	}
 	
@@ -151,5 +151,9 @@ public class ReportValidator {
 			testCaseInserter.executeBatch();
 		}
 		return readTestcaseFromDB.getAllFromTestcaseConcat();
+	}
+	
+	public Report getReport(){
+		return report;
 	}
 }

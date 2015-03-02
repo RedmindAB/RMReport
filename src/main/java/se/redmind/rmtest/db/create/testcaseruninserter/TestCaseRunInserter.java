@@ -45,7 +45,7 @@ public class TestCaseRunInserter extends DBBridge {
 				Integer classID = classIDs.get(testCase.getClassName());
 				map.put("class_id", ""+classID);
 				map.put("testcase_id", ""+testCases.get(testCase.getMethodName()+classID));
-				map.put("timestamp", report.getTimestamp());
+				map.put("timestamp", ""+report.getTimestamp());
 				map.put("result", testCase.getResult());
 				map.put("message", testCase.getMessage());
 				

@@ -28,14 +28,14 @@ public class ReportHandler {
 		return loader.getXMLReports();
 	}
 	
-	public JsonArray getReportList(){
-		 List<File> files = loader.getXMLReports();
-		 JsonArray reports = new JsonArray();
-		 for (File file : files) {
-			 reports.add(parser.getReportFromFile(file).getAsJsonObject());
-		 }
-		 return reports;
-	}
+//	public JsonArray getReportList(){
+//		 List<File> files = loader.getXMLReports();
+//		 JsonArray reports = new JsonArray();
+//		 for (File file : files) {
+//			 reports.add(parser.getReportFromFile(file).getAsJsonObject());
+//		 }
+//		 return reports;
+//	}
 	
 	public JsonObject getReportByTimestamp(String timestamp){
 		return null;
