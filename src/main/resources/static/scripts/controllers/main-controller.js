@@ -21,6 +21,12 @@ angular.module('webLog')
     	$scope.breakPointChoice = choice;
     }
     
+    function getSu(value){
+    	for (var i = 0; i < value.length; i++) {
+			
+		}
+    }
+    
     $scope.showButton = false;
     $scope.toggleButton = function() {
         $scope.showButton = !$scope.showButton;
@@ -98,9 +104,7 @@ angular.module('webLog')
     $scope.resetFilterField = function(){
     	Utilities.searchField = "";
     }
-    
-    $scope.imagePaths = ['img/aftonbladet.png', 'img/comaround.gif', 'img/aftonbladet.png'];
-    
+        
 	$scope.getMethods = function(testClass){
 		$scope.clearOtherChosen(testClass);
 		CurrentSuite.currentClass=testClass;

@@ -42,11 +42,11 @@ angular.module('webLog')
 	    
 	    $scope.getButton = function(passed){
 	    	if(passed === "failure" || passed === "error")
-	    		return 'btn btn-danger';
+	    		return 'btn btn-failure2';
 	    	else if(passed === "skipped")
-	    		return 'btn btn-warning';
+	    		return 'btn btn-warning2';
 	    	else
-	    		return 'btn btn-success';
+	    		return 'btn btn-success2';
 	    }
 	    
 	    $scope.getPanel = function(passed){
