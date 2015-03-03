@@ -100,4 +100,9 @@ angular.module('webLog')
 	    $scope.checkPassed = function(passed){
 	    	return passed === "passed";
 	    }
+	    
+	    $scope.showButton = false;
+	    $scope.toggleButton = function() {
+	        $scope.showButton = !$scope.showButton;
+	    };
 }])
