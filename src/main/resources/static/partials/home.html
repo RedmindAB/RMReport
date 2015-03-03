@@ -3,16 +3,19 @@
         <!-- Project logo -->
         <tr>
             <td>
-                <img id='section' class='image-paths' style="cursor: pointer;" ng-src="{{'img/' + suite.name + '.png'}}" ng-click="loadMainChart(suite.id); setState('reports.classes'); getSuiteSkeleton(suite);" alt='{{suite.name}}'></img><br><br><h3 style="cursor: pointer;display:inline;margin-left:5px;text-decoration:none" ng-click="loadMainChart(suite.id); setState('reports.classes'); getSuiteSkeleton(suite);">Go to classes</h3>
+                <img id='section' class='image-paths' style="cursor: pointer;" ng-src="{{'img/' + suite.name + '.png'}}" ng-click="loadMainChart(suite.id);
+                        setState('reports.classes');
+                        getSuiteSkeleton(suite);" alt='{{suite.name}}'></img><br><br><h3 style="cursor: pointer;display:inline;margin-left:5px;text-decoration:none" ng-click="loadMainChart(suite.id);
+                                setState('reports.classes');
+                                getSuiteSkeleton(suite);">Go to classes</h3>
             </td>
-        
         </tr>
         <!-- project logo END -->
         <!-- project chart -->
         <tr>
             <td colspan='3'>
-        		<highchart id="chart1" style='margin-top:20px;position:responsive;float:left;width:100%' config="chartHomeConfig[suite.id]"></highchart>
-        	</td>
+        <highchart id="chart1" style='margin-top:20px;position:responsive;float:left;width:100%' config="chartHomeConfig[suite.id]"></highchart>
+        </td>
         </tr>
         <!-- project chart END -->
     </table>
