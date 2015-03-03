@@ -4,10 +4,7 @@ angular.module('webLog')
     $scope.Charts = Charts;
     $scope.CurrentSuite = CurrentSuite;
     $scope.Utilities = Utilities;
-    $scope.suiteSkeleton = [];	
     $scope.$state = $state;
-    $scope.methods = {};
-    $scope.errorReport={};
     $scope.chartHomeConfig = {};
     $scope.chartMainConfig = {};
     $scope.allSuites = [];
@@ -86,6 +83,7 @@ angular.module('webLog')
 		}
     }
     
+    //sorting for reports/cases pass/fail-time
     $scope.setCasesSorting = function(order){
     	switch (order) {
     	case 'name':
@@ -98,6 +96,7 @@ angular.module('webLog')
 		}
     }
     
+    //sorting for reports/classes and reports/methods pass/fail-time
     $scope.setClassMethodSorting = function(order){
 	    	switch (order) {
 			case "name":
@@ -111,14 +110,16 @@ angular.module('webLog')
 	    	}
     }
     
-    $scope.imagePaths = ['img/aftonbladet.png', 'img/comaround.gif', 'img/aftonbladet.png'];
-    
+    //stores chosen class info and clears chosen for other classes
+    //when going into a class
 	$scope.getMethods = function(testClass){
 		$scope.clearOtherChosen(testClass);
 		CurrentSuite.currentClass=testClass;
 		CurrentSuite.currentMethods = CurrentSuite.currentClass.testcases;
 	}
 	
+	//used to clear other objects in the class/method/case view
+	//when going into a deeper level
 	$scope.clearOtherChosen = function(item){
 		//remove classes checkbox
 		if (CurrentSuite.currentSuite) {
@@ -148,6 +149,7 @@ angular.module('webLog')
 		}
 	}
 	
+	//use by "clear" button, clears every checkbox
 	$scope.clearAllChosen = function(){
 		//remove classes checkbox
 		clearChosenClasses();
@@ -165,7 +167,6 @@ angular.module('webLog')
 		clearChosenOs();
 		
 		//remove platform checkbox
-		// The accordion closes those checkboxes, so no need to call this function
 		clearChosenPlatforms();
 	}
 	
@@ -224,7 +225,7 @@ angular.module('webLog')
 		}
 	}
 	
-	function clearChosenMethods(chosenMethod) {
+	function clearChosenMethods() {
 		if (CurrentSuite.currentClass.testcases) {
 			for (var i = 0; i < CurrentSuite.currentClass.testcases.length; i++) {
 				if (CurrentSuite.currentClass.testcases[i].chosen) {
@@ -234,7 +235,7 @@ angular.module('webLog')
 		}
 	}
 	
-	function clearChosenClasses(chosenClass) {
+	function clearChosenClasses() {
 		if (CurrentSuite.currentSuite) {
 			for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
 				if (CurrentSuite.currentSuite[i].chosen) {
@@ -244,7 +245,11 @@ angular.module('webLog')
 		}
 	}
 	
+	//retrives all chosen in a object to
+	//send in query
 	$scope.getChosen = function(){
+		var platforms = CurrentSuite.currentSpecObject.platforms;
+		var browsers = CurrentSuite.currentSpecObject.browsers;
 		var chosen = {
 				os: [],
 				devices: [],
@@ -253,65 +258,55 @@ angular.module('webLog')
 				testcases: [],
 				platforms:[]
 		};
-		//add version to send
-		if (CurrentSuite.currentSpecObject.platforms) {
-			var platforms = CurrentSuite.currentSpecObject.platforms;
-			for (var i = 0; i < platforms.length; i++) {
-				var versions = platforms[i].versions;
-				for (var j = 0; j < versions.length; j++) {
-					if (versions[j].chosen) {
-						chosen.os.push(versions[j].osid);
+		if (platforms) {
+			//add version to send
+				for (var i = 0; i < platforms.length; i++) {
+					var versions = platforms[i].versions;
+					for (var j = 0; j < versions.length; j++) {
+						if (versions[j].chosen) {
+							chosen.os.push(versions[j].osid);
+						}
 					}
 				}
-			}
-		}
-		
-		//add devices to send
-		if (CurrentSuite.currentSpecObject.platforms) {
-			var platforms = CurrentSuite.currentSpecObject.platforms;
-			for (var i = 0; i < platforms.length; i++) {
-				var devices= platforms[i].devices;
-				for (var j = 0; j < devices.length; j++) {
-					if (devices[j].chosen) {
-						chosen.devices.push(devices[j].deviceid);
+			
+			//add devices to send
+				for (var i = 0; i < platforms.length; i++) {
+					var devices= platforms[i].devices;
+					for (var j = 0; j < devices.length; j++) {
+						if (devices[j].chosen) {
+							chosen.devices.push(devices[j].deviceid);
+						}
 					}
 				}
-			}
-		}
-		
-		//add platform to send
-		if (CurrentSuite.currentSpecObject.platforms) {
-			var platforms = CurrentSuite.currentSpecObject.platforms;
-			for (var i = 0; i < platforms.length; i++) {
-				if (platforms[i].chosen) {
-					var osids = [];
-					if (containsChosen(platforms[i].versions)) {
-						for (var j = 0; j < platforms[i].versions.length; j++) {
-							if (chosen.os.indexOf(platforms[i].versions[j].osid) == -1) {
-								if (platforms[i].versions[j].chosen) {
-									chosen.os.push(platforms[i].versions[j].osid);
+			
+			//add platform to send
+				for (var i = 0; i < platforms.length; i++) {
+					if (platforms[i].chosen) {
+						var osids = [];
+						if (containsChosen(platforms[i].versions)) {
+							for (var j = 0; j < platforms[i].versions.length; j++) {
+								if (chosen.os.indexOf(platforms[i].versions[j].osid) == -1) {
+									if (platforms[i].versions[j].chosen) {
+										chosen.os.push(platforms[i].versions[j].osid);
+									}
 								}
 							}
+						} else {
+							for (var j = 0; j < platforms[i].versions.length; j++) {
+								chosen.os.push(platforms[i].versions[j].osid);
+							}
 						}
-					} else {
-						for (var j = 0; j < platforms[i].versions.length; j++) {
-							chosen.os.push(platforms[i].versions[j].osid);
-						}
+						chosen.platforms.push(platforms[i].osname);
 					}
-					chosen.platforms.push(platforms[i].osname);
+				}
+			
+			//add browsers to send
+				for (var i = 0; i < browsers.length; i++) {
+					if (browsers[i].chosen) {
+						chosen.browsers.push(browsers[i].browserid);
+					}
 				}
 			}
-		}
-		
-		//add browsers to send
-		if (CurrentSuite.currentSpecObject.browsers) {
-			var browsers = CurrentSuite.currentSpecObject.browsers;
-			for (var i = 0; i < browsers.length; i++) {
-				if (browsers[i].chosen) {
-					chosen.browsers.push(browsers[i].browserid);
-				}
-			}
-		}
 		
 		//add classes to send
 		if (CurrentSuite.currentSuite) {

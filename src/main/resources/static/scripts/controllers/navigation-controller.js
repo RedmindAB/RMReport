@@ -1,7 +1,11 @@
-angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuite', 'Charts', function($scope, $state, CurrentSuite, Charts){
+angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuite', 'Charts','Utilities', function($scope, $state, CurrentSuite, Charts, Utilities){
 	
 	$scope.CurrentSuite = CurrentSuite;
 	$scope.Charts = Charts;
+	
+	$scope.$watch('$state.$current.name', function() {
+		Utilities.searchField = '';
+	});
 	
 	$scope.getPosition = function(){
 		switch ($state.$current.name) {
