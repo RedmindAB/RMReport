@@ -127,7 +127,7 @@
 	                        	<div ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
 	                            <input style='margin-top:14px;margin-left:5px' ng-model='platform.chosen' ng-click="newContent()" id='input_osname' type="checkbox" class="mycheckbox" stop-click><label for="mycheckbox" style='font-weight:normal;'></label>
 	                            <accordion-group is-open='platform.chosen'>
-	                                <accordion-heading id='reports_name' ng-click='setChosen(platform);newContent();clearPlatformChosen()'> 
+	                                <accordion-heading id='reports_name' ng-click='newContent();togglePlatformChosen(platform)'> 
 	                                    <div ng-click='newContent()'>&nbsp;{{platform.osname}}</div>
 	                                </accordion-heading>
 	                                <table style='margin: -20px 0px -20px 0px'>
@@ -183,13 +183,13 @@
 	    	<br>
 			<div class='btn-group' align='center'>
 				<h5 style='margin-bottom:0px'>Order by&nbsp;</h5>
-					<button style='width:100px' class='btn btn-default dropdown-toggle' ng-click="setSorting('pass/fail'); reverse=!reverse">
+					<button style='width:100px' id='passfail' class='btn btn-default dropdown-toggle' ng-click="setSorting('pass/fail'); reverse=!reverse">
 					Fail/Pass</button>
 	            <ul></ul>
 	        </div>
 			<div class='btn-group' align='center' style='float:right'>
 				<h5 style='margin-bottom:0px'>Order by&nbsp;</h5>
-					<button style='width:100px' class='btn btn-default dropdown-toggle' ng-click="setSorting('time'); reverse=!reverse">
+					<button style='width:100px' id='runtime' class='btn btn-default dropdown-toggle' ng-click="setSorting('time'); reverse=!reverse">
 					Run time</button>
 	            <ul></ul>
 	        </div>

@@ -18,6 +18,36 @@ angular.module('webLog')
     	$scope.breakPointChoice = choice;
     }
     
+    function clearPlatformChosen(platform){
+    	var platforms = CurrentSuite.currentSpecObject;
+    	console.log("Platform:" + platforms[0].osname + "osname: " + platform);
+    	for (var i = 0; i < platforms.length; i++) {
+			if(platforms[i].osname === platform){
+				for (var j = 0; j < platforms[i].devices.length; j++) {
+					if(platforms[i].devices[j].chosen){
+						delete platforms[i].devices[j].chosen;
+					}
+				}
+				for (var j = 0; j < platforms[i].versions.length; j++) {
+					if(platforms[i].versions[j].chosen){
+						delete platforms[i].versions[j].chosen;
+					}
+				}
+			}
+		}
+    }
+    
+    $scope.togglePlatformChosen = function(platform){
+    	console.log(platform);
+    	if(platform.chosen){
+    		clearPlatformChosen(platform);
+    		delete value.chosen;
+    	}
+    	else{
+    		platform.chosen = true;
+    	}
+    }
+    
     //set value chosen true for graph data
     $scope.setChosen = function(value){
     	if(value.chosen){
