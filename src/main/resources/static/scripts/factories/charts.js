@@ -65,12 +65,15 @@ angular.module('webLog')
 									height : 420,
 									zoomType : 'x'
 								},
-//						        legend: {
+						        legend: {
+						            itemHoverStyle: {
+						                color: '#FF0000'
+						            }
 //						            layout: 'vertical',
 //						            align: 'right',
 //						            verticalAlign: 'middle',
 //						            borderWidth: 0
-//						        },
+						        },
 								tooltip : {
 									crosshairs: true,
 						            shared: true,
