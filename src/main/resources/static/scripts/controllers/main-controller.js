@@ -83,31 +83,20 @@ angular.module('webLog')
 		}
     }
     
-    //sorting for reports/cases pass/fail-time
-    $scope.setCasesSorting = function(order){
-    	switch (order) {
-    	case 'name':
-    		Utilities.caseSorting = ['result','osname', 'devicename', 'osversion', 'browsername'];
-    	default:
-    		break;
+    //changes sorting in the class/method/case list
+    $scope.setSorting = function(sorting){
+    	switch (sorting) {
+		case 'pass/fail':
+			Utilities.sorting = ['result', 'name'];
+			Utilities.caseSorting = ['result','osname', 'devicename', 'osversion', 'browsername'];
+			break;
 		case 'time':
+			Utilities.sorting = '-time';
 			Utilities.caseSorting = '-timetorun';
+
+		default:
 			break;
 		}
-    }
-    
-    //sorting for reports/classes and reports/methods pass/fail-time
-    $scope.setClassMethodSorting = function(order){
-	    	switch (order) {
-			case "name":
-				Utilities.sorting = ['result', 'name'];
-				break;
-			case "time":
-				Utilities.sorting = 'time';
-				break;
-			default:
-				break;
-	    	}
     }
     
     //stores chosen class info and clears chosen for other classes

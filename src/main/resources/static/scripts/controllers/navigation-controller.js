@@ -5,6 +5,8 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuit
 	
 	$scope.$watch('$state.$current.name', function() {
 		Utilities.searchField = '';
+		Utilities.sorting = ['result', 'name'];
+		Utilities.caseSorting = ['result','osname', 'devicename', 'osversion', 'browsername'];
 	});
 	
 	$scope.getPosition = function(){
