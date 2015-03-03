@@ -52,13 +52,16 @@ angular.module('webLog')
 		}
 	}
     	
+	//sets the amount of timestamps to load
     $scope.setResultAmount = function(value){
     	Utilities.resultAmount = value;
     }
     
+    //colors reload button if changes are made to the query
     $scope.newContent = function(){
     	document.getElementById('button_reload').className = 'btn btn-primary';
     }
+    
     
     $scope.changeChartVariant = function(input){
     	Utilities.graphView = input;
@@ -1268,7 +1271,7 @@ angular.module('webLog')
 	    	} else{
 	    		Charts.mainChart.xAxis.tickInterval = 5;
 	    	}
-			$scope.changeChartVariant();
+			$scope.changeChartVariant(Utilities.graphView);
 			Charts.mainChart.loading = false;
 			highlightPoint(CurrentSuite.currentTimeStamp);
     };
