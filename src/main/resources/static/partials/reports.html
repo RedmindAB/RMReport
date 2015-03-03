@@ -180,10 +180,19 @@
 	            <input type="text" id="filter-field" class="form-control tool-tip" style="width:150px;display:inline" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>	
 				<h4 style='display:inline;vertical-align:bottom;cursor:pointer' ng-click="subNavLinks();">{{getPosition()}}</h4>
 	    	</div>
-	    	<div>
-	    		<button style='margin-top:5px;' class='btn btn-default' ng-click="setCasesSorting('name'); reverse=!reverse">Name</button>
-	    		<button style='margin-top:5px;float: right' class='btn btn-default' ng-click="setCasesSorting('time'); reverse=!reverse">Time</button>
-	    	</div>
+	    	<br>
+			<div class='btn-group' align='center'>
+				<h5 style='margin-bottom:0px'>Order by&nbsp;</h5>
+					<button style='width:100px' class='btn btn-default dropdown-toggle' ng-click="setCasesSorting('name'); reverse=!reverse">
+					Pass/Fail</button>
+	            <ul></ul>
+	        </div>
+			<div class='btn-group' align='center' style='float:right'>
+				<h5 style='margin-bottom:0px'>Order by&nbsp;</h5>
+					<button style='width:100px' class='btn btn-default dropdown-toggle' ng-click="setCasesSorting('time'); reverse=!reverse">
+					Run time</button>
+	            <ul></ul>
+	        </div>
 	    <!-- Chart variant dropdown END -->
 	
 	    <div>
