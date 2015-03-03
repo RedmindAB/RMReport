@@ -19,18 +19,17 @@ angular.module('webLog')
     }
     
     function clearPlatformChosen(platform){
-    	var platforms = CurrentSuite.currentSpecObject;
-    	console.log("Platform:" + platforms[0].osname + "osname: " + platform);
+    	var platforms = CurrentSuite.currentSpecObject.platforms;
     	for (var i = 0; i < platforms.length; i++) {
-			if(platforms[i].osname === platform){
-				for (var j = 0; j < platforms[i].devices.length; j++) {
-					if(platforms[i].devices[j].chosen){
-						delete platforms[i].devices[j].chosen;
+			if (platforms[i].osname === platform.osname) {
+				for (var j = 0; j < platforms[i].versions.length; j++) {
+					if (platforms[i].versions[j].chosen) {
+						delete platforms[i].versions[j].chosen;
 					}
 				}
-				for (var j = 0; j < platforms[i].versions.length; j++) {
-					if(platforms[i].versions[j].chosen){
-						delete platforms[i].versions[j].chosen;
+				for (var j = 0; j < platforms[i].devices.length; j++) {
+					if (platforms[i].devices[j].chosen) {
+						delete platforms[i].devices[j].chosen;
 					}
 				}
 			}
@@ -38,13 +37,11 @@ angular.module('webLog')
     }
     
     $scope.togglePlatformChosen = function(platform){
-    	console.log(platform);
-    	if(platform.chosen){
-    		clearPlatformChosen(platform);
-    		delete value.chosen;
-    	}
-    	else{
-    		platform.chosen = true;
+    	if (platform.chosen != undefined){
+    		if (platform.chosen === true) {
+				clearPlatformChosen(platform);
+			} else {
+			}
     	}
     }
     

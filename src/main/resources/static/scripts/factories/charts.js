@@ -68,7 +68,7 @@ angular.module('webLog')
 						        legend: {
 						            itemHoverStyle: {
 						                color: '#FF0000'
-						            }
+						            } 
 //						            layout: 'vertical',
 //						            align: 'right',
 //						            verticalAlign: 'middle',
