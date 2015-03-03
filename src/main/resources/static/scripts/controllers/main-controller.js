@@ -62,7 +62,7 @@ angular.module('webLog')
     	document.getElementById('button_reload').className = 'btn btn-primary';
     }
     
-    
+    //change view type of graph depending on dropdown
     $scope.changeChartVariant = function(input){
     	Utilities.graphView = input;
     	
@@ -84,10 +84,6 @@ angular.module('webLog')
 			passFailChart();
 			break;
 		}
-    }
-    
-    $scope.resetFilterField = function(){
-    	Utilities.searchField = "";
     }
     
     $scope.setCasesSorting = function(order){
