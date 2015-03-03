@@ -38,36 +38,12 @@ angular.module('webLog')
     	}
 	};
     
-	function isObjectEqual(a , b){
-	    var aProps = Object.getOwnPropertyNames(a);
-	    var bProps = Object.getOwnPropertyNames(b);
-
-	    if (aProps.length != bProps.length) {
-	        return false;
-	    }
-
-	    for (var i = 0; i < aProps.length; i++) {
-	        var propName = aProps[i];
-	        if (a[propName] !== b[propName]) {
-	            return false;
-	        }
-	    }
-	    return true;
-	}
-	
 	//remove object from data Array from trashcan
 	$scope.remove = function(item) { 
 		var index = Charts.mainChart.series.indexOf(item)
 		Charts.mainChart.series.splice(index, 1);  
  		for (var i = 0; i < Charts.data.length; i++) {
 			if (Charts.data[i].name === item.name) {
-				for (var j = 0; j < CurrentSuite.activeQueries.length; j++) {
-					for (var k = 0; k < CurrentSuite.activeQueries[j].length; k++) {
-						if (isObjectEqual(CurrentSuite.activeQueries[j][k], Charts.data[i].query)) {
-							CurrentSuite.activeQueries[j].splice(k,1);
-						}
-					}
-				}
 				Charts.data.splice(i, 1);
 			}
 		}
@@ -541,7 +517,7 @@ angular.module('webLog')
 	   CurrentSuite.lastRunSize = getResLimit();
 	   $http.post('/api/stats/graphdata', requestObject)
 	   .success(function(data, status, headers, config){
-		   $scope.createMainChart(data, newLine, requestObject);
+		   $scope.createMainChart(data, newLine);
 	   }).error(function(data, status, headers, config){
 		   console.log(data);
 	   });
@@ -1216,7 +1192,7 @@ angular.module('webLog')
 		}
 	}
 	
-    $scope.createMainChart = function(data, newLine, reqObj){
+    $scope.createMainChart = function(data, newLine){
     	if (data.length === 0) {
     		alert("There is no data for that combination");
     		Charts.mainChart.loading = false;
@@ -1255,7 +1231,6 @@ angular.module('webLog')
 				}
 			}
 			graphDataObj.name = graphName;
-			graphDataObj.query = reqObj[i];
 			graphDataArray.push(graphDataObj);
 		}
     	if (newLine) {
@@ -1332,6 +1307,9 @@ angular.module('webLog')
 				title:{
 					text: suite.name
 					},
+				subtitle:{
+					text: "Last 50 test runs"
+				},
 				series : [ {
 					data : [],
 					id : "pass",
