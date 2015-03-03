@@ -21,11 +21,7 @@ angular.module('webLog')
     	$scope.breakPointChoice = choice;
     }
     
-    $scope.showButton = false;
-    $scope.toggleButton = function() {
-        $scope.showButton = !$scope.showButton;
-    };
-    
+    //set value chosen true for graph data
     $scope.setChosen = function(value){
     	if(value.chosen){
     		delete value.chosen;
@@ -35,18 +31,9 @@ angular.module('webLog')
     	}
     }
     
-    $scope.togglePlatformChosen = function(platform) {
-    	if(platform.chosen){
-    		delete platform.chosen;
-    	}
-    	else{
-    		platform.chosen = true;
-    	}
-    		
-    }
-    
+    //checks if trashcan list contains more than one
     $scope.trashcanEmpty = function() {
-    	if (Charts.mainChart.series.length < 2) { // your question said "more than one element"
+    	if (Charts.mainChart.series.length < 2) {
     		return true;
     	}
     	else {
@@ -54,6 +41,7 @@ angular.module('webLog')
     	}
 	};
     
+	//remove object from data Array from trashcan
 	$scope.remove = function(item) { 
 		var index = Charts.mainChart.series.indexOf(item)
 		Charts.mainChart.series.splice(index, 1);  
@@ -64,8 +52,8 @@ angular.module('webLog')
 		}
 	}
     	
-    $scope.setAmountField = function(value){
-    	Utilities.amountField = value;
+    $scope.setResultAmount = function(value){
+    	Utilities.resultAmount = value;
     }
     
     $scope.newContent = function(){
@@ -100,7 +88,6 @@ angular.module('webLog')
     }
     
     $scope.setCasesSorting = function(order){
-    	console.log(CurrentSuite.currentCases);
     	switch (order) {
     	case 'name':
     		Utilities.caseSorting = ['result','osname', 'devicename', 'osversion', 'browsername'];
@@ -115,7 +102,6 @@ angular.module('webLog')
     $scope.setClassMethodSorting = function(order){
 	    	switch (order) {
 			case "name":
-				console.log("hmmm");
 				Utilities.sorting = ['result', 'name'];
 				break;
 			case "time":
@@ -366,25 +352,26 @@ angular.module('webLog')
 		}
 	}
 	
-    $scope.addCaseToGraph = function(osName, osVersion, deviceName, browserName, browserVer){
-    	var dataRequest = {};
-		dataRequest.suiteid = [CurrentSuite.currentSuiteInfo.id];
-		dataRequest.reslimit = getResLimit();
-		dataRequest.os = [getOsIdByVersion(osName,osVersion)];
-		dataRequest.devices = [getDeviceIdByName(deviceName)];
-		dataRequest.browsers = [getBrowserIdByname(browserName, browserVer)];
-		dataRequest.classes = [CurrentSuite.currentClass.id];
-		dataRequest.testcases = [CurrentSuite.currentMethod.id];
-		dataRequest.name = osName+"-"+osVersion+"-"+deviceName+"-"+browserName+"-"+browserVer;
-		
-		var requestObj = [dataRequest];
-    	$http.post('/api/stats/graphdata', requestObj)
-    	.success(function(data, status, headers, config){
-    		$scope.createMainChart(data, true);
-    	}).error(function(data, status, headers, config){
-    		console.log(data);
-    	});
-    }
+	function getCurrentPosName(){
+		switch ($state.current.name) {
+		case 'reports.classes':
+			return CurrentSuite.currentSuiteInfo.name;
+			break;
+		case 'reports.methods':
+			var className = CurrentSuite.currentClass.name.substring(CurrentSuite.currentClass.name.lastIndexOf('.') +1);
+			return className;
+			break;
+		case 'reports.cases':
+			return CurrentSuite.currentMethod.name;
+			break;
+		case 'home':
+			return 'Aggregation';
+			break;
+		default:
+			return 'Aggregation';
+			break;
+		}
+	}
 	
 	function getDeviceIdByName(deviceName){
 		var specs = CurrentSuite.currentSpecObject;
@@ -592,6 +579,26 @@ angular.module('webLog')
     	});
     }
     
+    $scope.addCaseToGraph = function(osName, osVersion, deviceName, browserName, browserVer){
+    	var dataRequest = {};
+		dataRequest.suiteid = [CurrentSuite.currentSuiteInfo.id];
+		dataRequest.reslimit = getResLimit();
+		dataRequest.os = [getOsIdByVersion(osName,osVersion)];
+		dataRequest.devices = [getDeviceIdByName(deviceName)];
+		dataRequest.browsers = [getBrowserIdByname(browserName, browserVer)];
+		dataRequest.classes = [CurrentSuite.currentClass.id];
+		dataRequest.testcases = [CurrentSuite.currentMethod.id];
+		dataRequest.name = osName+"-"+osVersion+"-"+deviceName+"-"+browserName+"-"+browserVer;
+		
+		var requestObj = [dataRequest];
+    	$http.post('/api/stats/graphdata', requestObj)
+    	.success(function(data, status, headers, config){
+    		$scope.createMainChart(data, true);
+    	}).error(function(data, status, headers, config){
+    		console.log(data);
+    	});
+    }
+    
     function setChosenForCurrent(classId, methodId){
     	for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
 			if (CurrentSuite.currentSuite[i].id === classId) {
@@ -614,14 +621,10 @@ angular.module('webLog')
     	
     	switch ($state.$current.name) {
 		case 'reports.methods':
-			console.log("saving class");
 			setChosenForCurrent(CurrentSuite.currentClass.id);
-			console.log(CurrentSuite.currentSuite);
 			break;
 		case 'reports.cases':
-			console.log("saving method");
 			setChosenForCurrent(CurrentSuite.currentClass.id, CurrentSuite.currentMethod.id);
-			console.log(graphDataObject);
 			break;
 		default:
 			break;
@@ -922,7 +925,7 @@ angular.module('webLog')
     	if (name) {
     		dataRequest.name = name;
 		} else {
-			dataRequest.name = 'Aggregation';
+			dataRequest.name = getCurrentPosName();
 		}
     	
 		dataRequest.suiteid = suiteID;
@@ -1156,7 +1159,7 @@ angular.module('webLog')
     }
     
     function getResLimit() {
-		var reslimit = Utilities.amountField;
+		var reslimit = Utilities.resultAmount;
 		if (!(isNaN(reslimit)) && !(reslimit === "")) {
 			reslimit = parseInt(reslimit);
 		} else {

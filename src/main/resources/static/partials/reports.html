@@ -27,11 +27,11 @@
 			<div class="btn-group" style='margin:1px' align='center'>
 	        <h5 style='margin-bottom:0px'>Number of suite runs</h5>
 	            <button style='width:150px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
-	                {{Utilities.amountField}}
+	                {{Utilities.resultAmount}}
 	                <span class="caret"></span>
 	            </button>
 	            <ul class="dropdown-menu scrollable-menu" id='suite_runs'>
-	                <li ng-repeat="run in runValues"><a ng-click="setAmountField(run);newContent()" id='timestamp'>
+	                <li ng-repeat="run in runValues"><a ng-click="setResultAmount(run);newContent()" id='timestamp'>
 	                        {{run}}
 	                    </a>
 	                </li>
@@ -127,7 +127,7 @@
 	                        	<div ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
 	                            <input style='margin-top:14px;margin-left:5px' ng-model='platform.chosen' ng-click="newContent()" id='input_osname' type="checkbox" class="mycheckbox" stop-click><label for="mycheckbox" style='font-weight:normal;'></label>
 	                            <accordion-group is-open='platform.chosen'>
-	                                <accordion-heading id='reports_name' ng-click='togglePlatformChosen(platform);newContent();clearPlatformChosen()'> 
+	                                <accordion-heading id='reports_name' ng-click='setChosen(platform);newContent();clearPlatformChosen()'> 
 	                                    <div ng-click='newContent()'>&nbsp;{{platform.osname}}</div>
 	                                </accordion-heading>
 	                                <table style='margin: -20px 0px -20px 0px'>
