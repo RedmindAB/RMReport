@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <!-- Custom style sheet -->
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/modal.css">
+        <link rel="stylesheet" href="css/styles.css">
     </head>
     <body ng-controller = "MainCtrl" class='noselect'>
         <div ng-controller = "StyleCtrl">
@@ -17,6 +19,10 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <a id='home' class="navbar-brand" ng-href="#/"><img src='img/logo.png' style='margin-top: -14px;margin-left:-30px'></img></a>
+                        <div class="btn-group" role="group" style='margin:-10px 0px 0px 10px'>
+						  <button type="button" class="btn btn-default btn-lg active" style='width:150px'>Graph View</button>
+						  <button type="button" class="btn btn-default btn-lg" style='width:150px'>Screenshot View</button>
+						</div>
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                                 data-target="#bs-example-navbar-collapse-1">
                             <span class="sr-only">Toggle navigation</span>
@@ -50,5 +56,9 @@
         <script src="scripts/controllers/style-controller.js"></script>
         <script src="scripts/directives/tooltip-directive.js"></script>
         <script src="scripts/directives/stop-click.js"></script>
-    </body>
+        <script src="scripts/directives/modal-directive.js"></script>
+		<script src="libs/angular-1.3.10/angular-animate.min.js"></script>
+		<script src="libs/angular-1.3.10/angular-touch.min.js"></script>
+		<script src="libs/TweenMax.min.js"></script>	
+	</body>
 </html>
