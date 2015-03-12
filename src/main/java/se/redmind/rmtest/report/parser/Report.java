@@ -85,7 +85,7 @@ public class Report{
 		this.failures = failures;
 		
 		String timeString = element.getAttribute(TIME);
-		double time = Double.valueOf(timeString);
+		double time = Double.valueOf(timeString.replace(",",""));
 		this.time = time;
 		
 		passed = isTestPassed(errors, failures);
