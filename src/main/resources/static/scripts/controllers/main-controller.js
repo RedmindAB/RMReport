@@ -1,9 +1,10 @@
 angular.module('webLog')
-    .controller('MainCtrl',['$scope', '$rootScope', '$http','$location', '$timeout','$state', 'CurrentSuite', 'Charts', 'Utilities', function($scope, $rootScope,$http, $location, $timeout, $state, CurrentSuite, Charts, Utilities){
+    .controller('MainCtrl',['$scope', '$rootScope', '$http','$location', '$timeout','$state', 'CurrentSuite', 'Charts', 'Utilities','ScreenshotMaster', function($scope, $rootScope,$http, $location, $timeout, $state, CurrentSuite, Charts, Utilities,ScreenshotMaster){
     	
     $scope.Charts = Charts;
     $scope.CurrentSuite = CurrentSuite;
     $scope.Utilities = Utilities;
+    $scope.ScreenshotMaster = ScreenshotMaster;
     $scope.$state = $state;
     $scope.chartHomeConfig = {};
     $scope.chartMainConfig = {};
@@ -132,6 +133,23 @@ angular.module('webLog')
 		$scope.clearOtherChosen(testClass);
 		CurrentSuite.currentClass=testClass;
 		CurrentSuite.currentMethods = CurrentSuite.currentClass.testcases;
+	}
+	
+	$scope.getAllCasesFromClass = function(){
+		console.log(CurrentSuite.currentClass);
+		
+		for (var i = 0; i < CurrentSuite.currentClass.testcases.length; i++) {
+		    $http.get('/api/driver/bytestcase?id='+CurrentSuite.currentClass.testcases[i].id+'&timestamp='+CurrentSuite.currentTimeStamp)
+		    .success(function(data, status, headers, config){ 
+		    	if(data){
+		    		ScreenshotMaster.methods.push(data);
+		    	};
+		    }).error(function(data, status, headers, config){
+		    	console.log(data);
+		    });
+		}
+		
+		console.log(ScreenshotMaster);
 	}
 	
 	//used to clear other objects in the class/method/case view
