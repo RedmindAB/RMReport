@@ -1,4 +1,4 @@
-angular.module('webLog', ['ui.router','ui.bootstrap',"highcharts-ng"])
+angular.module('webLog', ['ui.router','ui.bootstrap',"highcharts-ng", 'ngAnimate', 'ngTouch'])
     .config(function($urlRouterProvider, $stateProvider){
     	
     $urlRouterProvider.otherwise("/home");
