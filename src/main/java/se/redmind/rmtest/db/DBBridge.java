@@ -18,6 +18,17 @@ public abstract class DBBridge {
 		this.stringParser = new StringKeyValueParser();
 	}
 	
+	protected PreparedStatement prepareStatement(String sql){
+		try {
+			PreparedStatement prep = connection.prepareStatement(sql);
+			return prep;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	protected boolean insertToDB(String sql){
 		int result;
 		try {

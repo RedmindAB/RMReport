@@ -16,7 +16,6 @@ public class RMTRoute {
 	
 	private void init(){
 		staticFileLocation("/static");
-		after(new AddCacheFilter());
 		get(new Route("/") {
 			@Override
 			public Object handle(Request request, Response response) {

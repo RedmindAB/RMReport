@@ -5,6 +5,8 @@ import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesWS;
 import se.redmind.rmtest.web.route.api.device.getdevices.GetDevicesAMonthAgoWS;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseWS;
 import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
+import se.redmind.rmtest.web.route.api.screenshot.structure.ScreenshotStructureDAO;
+import se.redmind.rmtest.web.route.api.screenshot.structure.ScreenshotStructureWS;
 import se.redmind.rmtest.web.route.api.stats.grahoptions.GetGraphOptionsWS;
 import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
 import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteWS;
@@ -31,6 +33,8 @@ public class ApiRouter {
 		post(new GetGraphDataWS("/api/stats/graphdata"));
 		get(new GetGraphOptionsWS("/api/stats/options"));
 		get(new GetDevicesAMonthAgoWS("/api/device/notrunforamonth"));
+		get(new ScreenshotStructureWS("/api/screenshot/structure"));
+		
 	}
 	
 	

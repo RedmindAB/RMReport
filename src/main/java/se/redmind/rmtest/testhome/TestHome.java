@@ -16,10 +16,8 @@ public class TestHome {
 		// TODO Auto-generated method stub
 		 String testHome = null;
 		 if (isWindows()) {
-			 System.out.println("We're on windows");
 			 testHome = System.getenv("TESTHOME");
 		 } else {
-			 System.out.println("We're on a unixy system");
 			 InputStream fis;
 			 try {
 				 fis = new FileInputStream(System.getenv("HOME") + "/.RmTest");
@@ -29,9 +27,7 @@ public class TestHome {
 				 
 				 while ((line = br.readLine()) != null) {                
 					 if (line.contains("TESTHOME=")) {
-						 System.out.println(line);
 						 testHome = line.split("=")[1];
-						 System.out.println(testHome);
 					 }
 				 }
 			 } catch (FileNotFoundException e) {
@@ -64,7 +60,6 @@ public class TestHome {
 
 	 public static boolean isWindows()
 	 {
-		 System.out.println(getOsName());
 		 return getOsName().startsWith("Windows");
 	 }
 
