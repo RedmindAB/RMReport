@@ -1,10 +1,30 @@
+<modal-dialog show='false' width='100%' height='40%' style='background-color : transparent;'>
+<h1 align='center' style='color:white'>HTC</h1>
+<div class="container slider">
+    <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage"
+         ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+         ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}">
+
+    <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
+    <a class="arrow next" href="#" ng-click="prevSlide()"></a>
+    <nav class="nav">
+        <div class="wrapper">
+            <ul class="dots">
+                <li class="dot" ng-repeat="slide in slides">
+                    <a href="#" ng-class="{'active':isCurrentSlideIndex($index)}"
+						ng-click="setCurrentSlideIndex($index);">{{slide.description}}</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+</modal-dialog>
 <div class='noselect'>
 	<div style='height:100%;margin-top:10px;cursor: pointer;word-break:break-all' id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' 
 	          ng-style="{'background-color': getBgCo(CurrentSuite.currentClass.result)}">
 		<h3 ng-style="{'color' : getCo(CurrentSuite.currentClass.result)}">&nbsp;{{CurrentSuite.currentClass.name}}</h3>
 	
 			<!-- expandable methods -->
-			<accordion close-others="true">
+			<accordion close-others="false">
 			    <!-- repeated content -->
 			    <div class='noselect' ng-repeat="method in CurrentSuite.currentMethods| orderBy:Utilities.caseSorting:reverse track by $index">
 			        <accordion-group style='margin-top:10px' ng-class='getPanel(method.result)' ng-style="{'background-color': getBgCo(method.result)}">
@@ -19,11 +39,11 @@
 			            <!-- Content in collapsing Div -->
 
 			                <pre style='white-space:nowrap;float:left;width:100%'>
-				                <div align='center' ng-repeat='case in ScreenshotMaster.methods[0]' style='font-align:center;height:100%;margin-top:10px;cursor: pointer;word-break:break-all;width:220px;display:inline-block;margin-left:20px' id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' 
+				                <div align='center' ng-repeat='case in ScreenshotMaster.methods[0]' style='font-align:center;height:100%;margin-top:10px;cursor: pointer;word-break:break-all;width:220px;display:inline-block;margin:10px' id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' 
 							          ng-style="{'background-color': getBgCo(CurrentSuite.currentClass.result)}">
 					                	HTC One - Chrome{{CurrenSuite.currenSuiteInfo.name}}-{{case.devicename}}
 										<div ng-repeat='img in screenshotTestArray'>
-											<img  width='200px' height='300px' src="{{img}}"></img><br><br>
+											<img ng-click='toggleModal()' width='200px' height='300px' src="{{img}}" ng-click=''></img><br><br>
 										</div>	
 								</div>	
 			                </pre>
