@@ -1,4 +1,27 @@
+
+<modal-dialog show='false' width='100%' height='40%' style='background-color : transparent;'>
+<h1 align='center' style='color:white'>HTC</h1>
+<div class="container slider">
+    <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage"
+         ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+         ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}">
+
+    <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
+    <a class="arrow next" href="#" ng-click="prevSlide()"></a>
+    <nav class="nav">
+        <div class="wrapper">
+            <ul class="dots">
+                <li class="dot" ng-repeat="slide in slides">
+                    <a href="#" ng-class="{'active':isCurrentSlideIndex($index)}"
+						ng-click="setCurrentSlideIndex($index);">{{slide.description}}</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+</modal-dialog>
+
 <div class='noselect'>
+
     <!-- Chart -->
     <!-- project logo -->
     <img ng-src="{{'img/' + CurrentSuite.currentSuiteInfo.name + '.png'}}" style="cursor: pointer;margin-top:10px" class='image-paths' ng-click="setState('home')"></img> 
@@ -129,7 +152,7 @@
                                 <accordion-group is-open='platform.chosen'>
                                     <accordion-heading id='reports_name' ng-click='newContent()'> 
                                         <div ng-click='newContent(); togglePlatformChosen(platform)'>&nbsp;
-                                            {{platform.osname}} - {{platform.chosen}}
+                                            {{platform.osname}}
                                         </div>
                                     </accordion-heading>
                                     <table style='margin: -20px 0px -20px 0px'>
