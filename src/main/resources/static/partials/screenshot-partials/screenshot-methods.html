@@ -1,0 +1,41 @@
+<div class='noselect'>
+	<div style='height:100%;margin-top:10px;cursor: pointer;word-break:break-all' id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' 
+	          ng-style="{'background-color': getBgCo(CurrentSuite.currentClass.result)}">
+		<h3 ng-style="{'color' : getCo(CurrentSuite.currentClass.result)}">&nbsp;{{CurrentSuite.currentClass.name}}</h3>
+	
+			<!-- expandable methods -->
+			<accordion close-others="true">
+			    <!-- repeated content -->
+			    <div class='noselect' ng-repeat="method in CurrentSuite.currentMethods| orderBy:Utilities.caseSorting:reverse track by $index">
+			        <accordion-group style='margin-top:10px' ng-class='getPanel(method.result)' ng-style="{'background-color': getBgCo(method.result)}">
+			            <!-- non collapsing header -->
+			            <accordion-heading id='case_name'>
+							<div style='display:inline;'>
+			                    {{method.name}}
+							</div>
+			            </accordion-heading>
+			            <!-- non collapsing header End-->
+			
+			            <!-- Content in collapsing Div -->
+			            <div ng-class='getBG(method.result)' style='width:auto !important;display: inline;'>
+			                <table class="table"' >
+			                    <thead style='width:auto !important;'>
+			                        <tr style='border-style: hidden'>
+			                            <th ng-repeat="case in ScreenshotMaster.methods[0]" style='float:left;'>{{case.devicename}}-{{case.browsername}}</th>
+			                        </tr>
+			                    </thead>
+			                    <tbody>
+			                        <tr>
+			                            <td ng-repeat="case in ScreenshotMaster.methods[0]" style='float:left'>{{method.result}}</td>
+			                        </tr>
+			                    </tbody>
+			                </table>
+			            </div>
+			            <!-- Content in collapsing Div End -->
+			
+			        </accordion-group>
+			    </div>
+			    <!-- repeated content  End-->
+			</accordion>
+	</div>
+</div>

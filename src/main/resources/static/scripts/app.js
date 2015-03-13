@@ -33,6 +33,21 @@ angular.module('webLog', ['ui.router','ui.bootstrap',"highcharts-ng", 'ngAnimate
 	        url:'/cases',
 	        templateUrl: 'partials/sub-partials/cases.html',
 	        controller: ''
+	    })
+	    .state('screenshots',{
+	        url:'/screenshots',
+	        templateUrl: 'partials/screen-shots.html',
+	        controller: ''
+	    })
+	    .state('screenshots.classes',{
+	        url:'/classes',
+	        templateUrl: 'partials/screenshot-partials/screenshot-classes.html',
+	        controller: 'NavCtrl'
+	    })
+	    .state('screenshots.methods',{
+	        url:'/methods',
+	        templateUrl: 'partials/screenshot-partials/screenshot-methods.html',
+	        controller: 'NavCtrl'
 	    });
     });
 
