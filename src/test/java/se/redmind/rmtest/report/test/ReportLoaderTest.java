@@ -9,7 +9,10 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import se.redmind.rmtest.report.parser.Report;
+import se.redmind.rmtest.report.parser.ReportXMLParser;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
+import se.redmind.rmtest.report.reportvalidation.ReportValidator;
 
 public class ReportLoaderTest {
 	
@@ -59,8 +62,8 @@ public class ReportLoaderTest {
 	public void getSpecificXMLReport(){
 		File file = loader.getXMLReportByFileName(specificReportFileName);
 		assertEquals(specificReportFileName, file.getName());
-		
 	}
+	
 	
 	private static ReportLoader getReportLoader(){
 		ReportLoader loader = new ReportLoader(path, false);
