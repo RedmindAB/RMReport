@@ -36,6 +36,7 @@ public class ReportValidator {
 	private ClassDbLookup readClassFromDB;
 	private SuiteDbLookup readSuiteFromDB;
 	private TestcaseDbLookup readTestcaseFromDB;
+	private boolean validFilename;
 	
 	public ReportValidator(String filename) {
 		this.filename = filename;
@@ -44,6 +45,20 @@ public class ReportValidator {
 		this.readSuiteFromDB = new SuiteDbLookup();
 		this.connection = DBCon.getDbInstance().getConnection();
 		this.loader = new ReportLoader();
+		this.parser = new ReportXMLParser();
+		this.suiteInserter = new SuiteInserter();
+		this.testCaseRunInserter = new TestCaseRunInserter();
+		testCaseInserter = new TestCaseInserter();
+		loadReport();
+	}
+	
+	public ReportValidator(File file, ReportLoader loader) {
+		this.filename = file.getName();
+		this.readFromDB = new ReportDbLookup();
+		this.readClassFromDB = new ClassDbLookup();
+		this.readSuiteFromDB = new SuiteDbLookup();
+		this.connection = DBCon.getDbInstance().getConnection();
+		this.loader = loader;
 		this.parser = new ReportXMLParser();
 		this.suiteInserter = new SuiteInserter();
 		this.testCaseRunInserter = new TestCaseRunInserter();
@@ -62,6 +77,9 @@ public class ReportValidator {
 	}
 	
 	public void saveReport(){
+		if (!isValidFilename()) {
+			return;
+		}
 		report.convertToFullReport();
 		HashMap<String, Integer> classIDs = getTestClassIDs(report.getPresentTestClasses());
 		int suiteID = getSuiteID(report.getSuiteName());
@@ -151,6 +169,23 @@ public class ReportValidator {
 			testCaseInserter.executeBatch();
 		}
 		return readTestcaseFromDB.getAllFromTestcaseConcat();
+	}
+	
+	/**
+	 * validates if the filename matches RM report standards.
+	 * @return - boolean
+	 */
+	public boolean isValidFilename(){
+		return isValidFilename(filename);
+	}
+	
+	/**
+	 * validates if the String matches RM report standards.
+	 * @param filename - name of the file that should be validated.
+	 * @return - boolean
+	 */
+	public boolean isValidFilename(String filename){
+		return filename.matches("(TEST-)+([.a-zA-Z])+(-)+([0-9]{8}-[0-9]{6})+(.xml)");
 	}
 	
 	public Report getReport(){

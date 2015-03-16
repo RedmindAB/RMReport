@@ -26,6 +26,7 @@ public class FileWatcherQueueReader implements Runnable {
 			while (key != null) {
 				// we have a polled event, now we traverse it and
 				// receive all the states from it
+				boolean updatedReports = false;
 				for (WatchEvent event : key.pollEvents()) {
 //					System.out.printf("Received %s event for file: %s\n",
 //							event.kind(), event.context());
@@ -36,14 +37,18 @@ public class FileWatcherQueueReader implements Runnable {
 						ReportValidator reportValidator = new ReportValidator(
 								filename);
 						boolean reportExists = reportValidator.reportExists();
-						if (!reportExists) {
+						boolean validFilename = reportValidator.isValidFilename();
+						if (!reportExists && validFilename) {
 							System.out.println("found new report!");
 							reportValidator.saveReport();
+							updatedReports = true;
 						}
 					}
 				}
+				if (updatedReports) {
+					new InMemoryDBHandler().updateInMemoryDB();
+				}
 				key.reset();
-				new InMemoryDBHandler().updateInMemoryDB();
 				key = watchService.take();
 			}
 		} catch (InterruptedException e) {
