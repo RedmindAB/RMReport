@@ -37,7 +37,7 @@
 			            <!-- non collapsing header End-->
 			
 			            <!-- Content in collapsing Div -->
-<<<<<<< HEAD
+			            
 							<table ng-repeat='case in method.testcases' style='display:inline;padding:20px'>
 								<tr>
 									<td>{{case.device}} - {{case.browser}}</td>
@@ -49,18 +49,6 @@
 									</td>
 								</tr>
 							</table>
-=======
-
-			                <pre style='white-space:nowrap;float:left;width:100%'>
-				                <div align='center' ng-repeat='case in method.testcases' style='font-align:center;height:100%;margin-top:10px;cursor: pointer;word-break:break-all;width:220px;display:inline-block;margin:10px' id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' 
-							          ng-style="{'background-color': getBgCo(CurrentSuite.currentClass.result)}">
-					                	{{case.device}} - {{case.browser}}
-										<div ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index'> </br>
-											<img ng-click='toggleModal()' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}" ng-click=''></img><br><br>
-										</div>	
-								</div>	
-			                </pre>
->>>>>>> 08444fd29c032b5ad99a23dadda6cfd0501d7fa8
 
 			            <!-- Content in collapsing Div End -->
 			
