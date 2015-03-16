@@ -10,10 +10,8 @@ angular.module('webLog')
     link: function(scope, element, attrs) {
       scope.dialogStyle = {};
       if (attrs.width)
-    	console.log(attrs.width);
         scope.dialogStyle.width = "100%";
       if (attrs.height)
-    	console.log(attrs.height);
         scope.dialogStyle.height = "100%";
       scope.hideModal = function() {
         scope.show = false;
