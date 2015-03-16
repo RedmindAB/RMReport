@@ -42,9 +42,8 @@
 				                <div align='center' ng-repeat='case in method.testcases' style='font-align:center;height:100%;margin-top:10px;cursor: pointer;word-break:break-all;width:220px;display:inline-block;margin:10px' id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' 
 							          ng-style="{'background-color': getBgCo(CurrentSuite.currentClass.result)}">
 					                	{{case.device}} - {{case.browser}}
-										<div ng-repeat='screenshot in case.screenshots'>
-					                	Comment: {{getCommentFromFileName(screenshot)}} </br>
-											<img ng-click='toggleModal()' width='200px' ng-src="{{getScreenshotsFromFileName(screenshot)}}" ng-click=''></img><br><br>
+										<div ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index'> </br>
+											<img ng-click='toggleModal()' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}" ng-click=''></img><br><br>
 										</div>	
 								</div>	
 			                </pre>

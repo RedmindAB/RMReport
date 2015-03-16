@@ -58,4 +58,8 @@ angular.module('webLog').controller('ScreenshotCtrl', [ '$scope', '$state', '$ht
 		}
 	}
 	
+	$scope.getNumber = function(num) {
+	    return new Array(num);   
+	}
+	
 }]);
