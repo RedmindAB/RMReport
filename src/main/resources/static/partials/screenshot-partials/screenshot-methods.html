@@ -5,8 +5,8 @@
          ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
          ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}">
 
-    <a class="arrow prev" href="#" ng-click="nextSlide();$scope.stopPropagation();$scope.preventDefault()"></a>
-    <a class="arrow next" href="#" ng-click="prevSlide();$scope.stopPropagation();$scope.preventDefault()"></a>
+    <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
+    <a class="arrow next" href="#" ng-click="prevSlide()"></a>
     <nav class="nav">
         <div class="wrapper">
             <ul class="dots">
