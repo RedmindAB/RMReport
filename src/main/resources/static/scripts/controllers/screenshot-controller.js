@@ -2,6 +2,7 @@ angular.module('webLog').controller('ScreenshotCtrl', [ '$scope', '$state', '$ht
 	
 	$scope.ScreenshotMaster = ScreenshotMaster;
 	$scope.modalShown = false;
+	$scope.caseArraySize = []
 	
 	$scope.toggleModal = function() {
 		$scope.modalShown = !$scope.modalShown;
@@ -17,6 +18,7 @@ angular.module('webLog').controller('ScreenshotCtrl', [ '$scope', '$state', '$ht
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		ScreenshotMaster.data = data
+	    		setCaseSizeByMethod();
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -24,6 +26,9 @@ angular.module('webLog').controller('ScreenshotCtrl', [ '$scope', '$state', '$ht
 	}
 	
 	$scope.getScreenshotsFromFileName = function(fileName){
+		if (!fileName) {
+			return 'img/placeholder.png';
+		}
 		return '/api/screenshot/byfilename?timestamp='+CurrentSuite.currentTimeStamp+'&filename='+fileName;
 	}
 	
@@ -36,10 +41,25 @@ angular.module('webLog').controller('ScreenshotCtrl', [ '$scope', '$state', '$ht
 		} else {
 			var comment = path.substring()
 			return comment.slice(0,index);
-			
 		}
+	}
+	
+	function setCaseSizeByMethod(){
+		var data = ScreenshotMaster.data;
 		
-		
+		for (var i = 0; i < data.length; i++) {
+			var screenshotLength = 0;
+			for (var j = 0; j < data[i].testcases.length; j++) {
+				if (data[i].testcases[j].screenshots.length > screenshotLength) {
+					screenshotLength = data[i].testcases[j].screenshots.length;
+				}
+			}
+			data[i].screenshotLength = screenshotLength;
+		}
+	}
+	
+	$scope.getNumber = function(num) {
+	    return new Array(num);   
 	}
 	
 }]);
