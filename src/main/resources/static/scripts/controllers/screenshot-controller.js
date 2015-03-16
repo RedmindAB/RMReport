@@ -27,4 +27,19 @@ angular.module('webLog').controller('ScreenshotCtrl', [ '$scope', '$state', '$ht
 		return '/api/screenshot/byfilename?timestamp='+CurrentSuite.currentTimeStamp+'&filename='+fileName;
 	}
 	
+	$scope.getCommentFromFileName = function(fileName){
+		var path = fileName;
+		var index = path.indexOf("-_-");
+		
+		if (index === -1) {
+			return undefined;
+		} else {
+			var comment = path.substring()
+			return comment.slice(0,index);
+			
+		}
+		
+		
+	}
+	
 }]);

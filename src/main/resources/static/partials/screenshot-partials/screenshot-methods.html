@@ -43,6 +43,7 @@
 							          ng-style="{'background-color': getBgCo(CurrentSuite.currentClass.result)}">
 					                	{{case.device}} - {{case.browser}}
 										<div ng-repeat='screenshot in case.screenshots'>
+					                	Comment: {{getCommentFromFileName(screenshot)}} </br>
 											<img ng-click='toggleModal()' width='200px' ng-src="{{getScreenshotsFromFileName(screenshot)}}" ng-click=''></img><br><br>
 										</div>	
 								</div>	
