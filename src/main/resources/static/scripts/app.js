@@ -37,7 +37,7 @@ angular.module('webLog', ['ui.router','ui.bootstrap',"highcharts-ng", 'ngAnimate
 	    .state('screenshots',{
 	        url:'/screenshots',
 	        templateUrl: 'partials/screen-shots.html',
-	        controller: ''
+	        controller: 'ScreenshotCtrl'
 	    })
 	    .state('screenshots.classes',{
 	        url:'/classes',

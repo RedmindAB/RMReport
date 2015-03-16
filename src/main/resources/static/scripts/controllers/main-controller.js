@@ -1,22 +1,6 @@
 angular.module('webLog')
     .controller('MainCtrl',['$scope', '$rootScope', '$http','$location', '$timeout','$state', 'CurrentSuite', 'Charts', 'Utilities','ScreenshotMaster', function($scope, $rootScope,$http, $location, $timeout, $state, CurrentSuite, Charts, Utilities,ScreenshotMaster){
     	
-    		  $scope.modalShown = false;
-    		  $scope.toggleModal = function() {
-    			  
-    			  if($scope.modalShown != true){
-    				     window.setTimeout(function() {
-    				    	 $scope.modalShown = true;
-    				    	 console.log("modalShown Before: " + $scope.modalShown);
-    				        }, 1000);
-    			  }
-    			  else if($scope.modalShown != false){
- 				     window.setTimeout(function() {
-				    	 $scope.modalShown = false;
-				    	 console.log("modalShown After: " + $scope.modalShown);
-				        }, 1000);
-    			  }
-    		  };
     	$scope.screenshotTestArray = ["img/img00.jpg", "img/img01.jpg", "img/AnotherGeneratedSuite.png"];
         $scope.slides = [
                          {image: 'img/img00.jpg', description: 'Image 00'},
