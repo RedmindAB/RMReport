@@ -26,7 +26,7 @@
 			<!-- expandable methods -->
 			<accordion close-others="false">
 			    <!-- repeated content -->
-			    <div class='noselect' ng-repeat="method in CurrentSuite.currentMethods| orderBy:Utilities.caseSorting:reverse track by $index">
+			    <div class='noselect' ng-repeat="method in ScreenshotMaster.data | orderBy:Utilities.caseSorting:reverse track by $index">
 			        <accordion-group style='margin-top:10px' ng-class='getPanel(method.result)' ng-style="{'background-color': getBgCo(method.result)}">
 			            <!-- non collapsing header -->
 			            <accordion-heading id='case_name'>
@@ -39,11 +39,11 @@
 			            <!-- Content in collapsing Div -->
 
 			                <pre style='white-space:nowrap;float:left;width:100%'>
-				                <div align='center' ng-repeat='case in ScreenshotMaster.methods[0]' style='font-align:center;height:100%;margin-top:10px;cursor: pointer;word-break:break-all;width:220px;display:inline-block;margin:10px' id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' 
+				                <div align='center' ng-repeat='case in method.testcases' style='font-align:center;height:100%;margin-top:10px;cursor: pointer;word-break:break-all;width:220px;display:inline-block;margin:10px' id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' 
 							          ng-style="{'background-color': getBgCo(CurrentSuite.currentClass.result)}">
-					                	HTC One - Chrome{{CurrenSuite.currenSuiteInfo.name}}-{{case.devicename}}
-										<div ng-repeat='img in screenshotTestArray'>
-											<img ng-click='toggleModal()' width='200px' src="{{img}}" ng-click=''></img><br><br>
+					                	{{case.device}} - {{case.browser}}
+										<div ng-repeat='screenshot in case.screenshots'>
+											<img ng-click='toggleModal()' width='200px' ng-src="{{getScreenshotsFromFileName(screenshot)}}" ng-click=''></img><br><br>
 										</div>	
 								</div>	
 			                </pre>

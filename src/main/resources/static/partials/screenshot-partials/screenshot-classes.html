@@ -6,7 +6,7 @@
              ng-style="{'background-color': getBgCo(class.result)}"
              >
             <!-- non collapsing header -->
-			<h3 ng-style="{'color' : getCo(class.result)}" ng-click="getMethods(class); getAllCasesFromClass(); setState('screenshots.methods')">&nbsp;{{class.name}}</h3>
+			<h3 ng-style="{'color' : getCo(class.result)}" ng-click="getMethods(class); loadScreenshotsFromClass(); setState('screenshots.methods')">&nbsp;{{class.name}}</h3>
         </div>
         <!-- repeated content  End-->
     </accordion>

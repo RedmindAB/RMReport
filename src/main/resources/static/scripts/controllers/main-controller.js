@@ -165,23 +165,6 @@ angular.module('webLog')
 		CurrentSuite.currentMethods = CurrentSuite.currentClass.testcases;
 	}
 	
-	$scope.getAllCasesFromClass = function(){
-		console.log(CurrentSuite.currentClass);
-		
-		for (var i = 0; i < CurrentSuite.currentClass.testcases.length; i++) {
-		    $http.get('/api/driver/bytestcase?id='+CurrentSuite.currentClass.testcases[i].id+'&timestamp='+CurrentSuite.currentTimeStamp)
-		    .success(function(data, status, headers, config){ 
-		    	if(data){
-		    		ScreenshotMaster.methods.push(data);
-		    	};
-		    }).error(function(data, status, headers, config){
-		    	console.log(data);
-		    });
-		}
-		
-		console.log(ScreenshotMaster);
-	}
-	
 	//used to clear other objects in the class/method/case view
 	//when going into a deeper level
 	$scope.clearOtherChosen = function(item){
