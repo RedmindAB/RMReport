@@ -14,7 +14,17 @@ public class ScreenshotByFilenameWS extends Route {
 		super(path);
 		screenshotHandler = new ScreenshotHandler();
 	}
-
+	
+	/**
+	 * @api {get} /screenshot/byfilename
+	 * @apiName ScreenshotByFilename
+	 * @apiGroup Screenshot
+	 * @apiParam {Number} timestamp timestamp the screenshot should be related to.
+	 * @apiParam {String} filename the name of the file.
+	 * 
+	 * @apiSuccess {Image} image the image from the timestamp and filename is returned.
+	 * 
+	 */
 	@Override
 	public Object handle(Request request, Response response) {
 		String timestamp = request.queryParams("timestamp");

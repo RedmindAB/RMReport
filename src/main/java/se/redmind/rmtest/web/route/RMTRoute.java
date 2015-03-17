@@ -22,6 +22,13 @@ public class RMTRoute {
 				return null;
 			}
 		});
+		get(new Route("/api/doc") {
+			@Override
+			public Object handle(Request request, Response response) {
+				response.redirect("/api/doc/index.html");
+				return response;
+			}
+		});
 	}
 	
 }

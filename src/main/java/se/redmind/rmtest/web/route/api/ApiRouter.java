@@ -24,8 +24,8 @@ public class ApiRouter {
 	
 	private void init(){
 		
+		//added to apidoc
 		get(new GetSuitesWS("/api/suite/getsuites"));
-		// Gets the skeleton to build the structure of the page. 
 		get(new GetLatestSuiteWS("/api/suite/latestbyid"));
 		get(new GetSuiteByTimestampWS("/api/suite/bytimestamp"));
 		get(new GetClassesWS("/api/class/getclasses"));
@@ -33,9 +33,14 @@ public class ApiRouter {
 		get(new GetDriverByTestcaseWS("/api/driver/bytestcase"));
 		post(new GetGraphDataWS("/api/stats/graphdata"));
 		get(new GetGraphOptionsWS("/api/stats/options"));
-		get(new GetDevicesAMonthAgoWS("/api/device/notrunforamonth"));
 		get(new ScreenshotStructureWS("/api/screenshot/structure"));
 		get(new ScreenshotByFilenameWS("/api/screenshot/byfilename"));
+		
+		//added to apidocs, but no result example added.
+		get(new GetDevicesAMonthAgoWS("/api/device/notrunforamonth"));
+		
+		//not added to apidocs
+		
 	}
 	
 	

@@ -14,12 +14,75 @@ public class GetGraphDataWS extends Route {
 		super(path);
 	}
 
+	/**
+	 * @api {post} /stats/graphdata
+	 * @apiName Graph Data
+	 * @apiGroup Stats
+	 * 
+	 * @apiParamExample {json} Request-Example:
+	 *[
+	 *	{	
+	 *		"name":'Nexus One',
+	 *		"suiteid":1,
+	 *		"reslimit":50,
+	 *		"os":[1,2],
+	 *		"devices":[1,2],
+	 *		"browsers":[1,2],
+	 *		"classes":[2],
+	 *		"testcases":[3]
+	 *},
+	 *{	
+	 *		"name":'iPhone 6',
+	 *		"suiteid":1,
+	 *		"reslimit":50,
+	 *		"os":[1,2],
+	 *		"devices":[1,2],
+	 *		"browsers":[1,2],
+	 *		"classes":[2],
+	 *		"testcases":[3]
+	 *	}	
+	 *]
+	 *
+	 *@apiSuccessExample {json} Success-Response:
+	 *[
+	 *	{
+	 *	"name":"Aggregation",
+	 *	"data":[
+	 *			{
+	 *			"timestamp":20150313164647,
+	 *			"time":13.307,
+	 *			"pass":4,
+	 *			"fail":0,
+	 *			"error":0,
+	 *			"skipped":0
+	 *			},
+	 *			{
+	 *			"timestamp":20150313165619,
+	 *			"time":14.871,
+	 *			"pass":4,
+	 *			"fail":0,
+	 *			"error":0,
+	 *			"skipped":0
+	 *			},
+	 *			{
+	 *			"timestamp":20150316092847,
+	 *			"time":20.255000000000003,
+	 *			"pass":4,
+	 *			"fail":0,
+	 *			"error":0,
+	 *			"skipped":0
+	 *			}
+	 *		]
+	 *	}
+	 *]
+	 */
 	@Override
 	public Object handle(Request request, Response response) {
 		try {
 			String data = (String) request.body();
 			JsonArray json = new Gson().fromJson(data, JsonArray.class);
-			return new GetGraphDataDAO().getGraphData(json);
+			String res = new GetGraphDataDAO().getGraphData(json);
+			return res;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
