@@ -18,42 +18,31 @@
 			
 			            <!-- Content in collapsing Div -->
 			            
-							<table ng-repeat='case in method.testcases' style='display:inline-block;padding:20px'>
+							<table ng-repeat='case in method.testcases track by $index' style='display:inline-block;padding:20px'>
 								<tr>
 									<td>{{case.device}} - {{case.browser}}</td>
 								</tr>
-								<tr ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index'>
+				<modal-dialog width='100%' toggle='toggleModal()' show='modalShown'
+					height='40%' style='background-color : transparent;'>
+				<h1 align='center' style='color: white'>{{getCurrentSlideInfo(method)}}</h1>
+				<a class="arrow prev" href="#" ng-click="nextSlide()"></a>
+					<a class="arrow next" href="#" ng-click="prevSlide()"></a>
+				<div class="container slider">
+					<img onmousedown="event.preventDefault" style='width: 800px;margin:-20px 0px 0px -20px' ng-repeat="slide in slides"
+						class="slide slide-animation nonDraggableImage"
+						ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+						ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}">
+				</div>
+				</modal-dialog>
+				<tr ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index'>
 									<td height='450px' valign='top' ng-style="{'border-color': getBorder()}">
 										<img ng-click='setSlides(method.testcases, $index, $parent.$index); toggleModal();' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img><br><br>
-										
-										
-										<modal-dialog width='100%' toggle='toggleModal()' show='modalShown' height='40%' style='background-color : transparent;'>
-											<h1 align='center' style='color:white'>HTC</h1>
-											<div class="container slider">
-											    <img style='width:800px' ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage"
-											         ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
-											         ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}">
-													{{slide}}
-											    <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
-											    <a class="arrow next" href="#" ng-click="prevSlide()"></a>
-											    <nav class="nav">
-											        <div class="wrapper">
-											            <ul class="dots">
-											                <li class="dot" ng-repeat="slide in slides">
-											                    <a href="#" ng-class="{'active':isCurrentSlideIndex($index)}"
-																	ng-click="setCurrentSlideIndex($index);">{{hej}}</a></li>
-											            </ul>
-											        </div>
-											    </nav>
-											</div>
-										</modal-dialog>
-										
-										
+
 									</td>
 								</tr>
 							</table>
 
-			            <!-- Content in collapsing Div End -->
+			<!-- Content in collapsing Div End -->
 			
 			        </accordion-group>
 			    </div>
