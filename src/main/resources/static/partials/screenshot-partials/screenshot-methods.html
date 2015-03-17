@@ -30,7 +30,7 @@
 										<modal-dialog width='100%' toggle='toggleModal()' show='modalShown' height='40%' style='background-color : transparent;'>
 											<h1 align='center' style='color:white'>HTC</h1>
 											<div class="container slider">
-											    <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage"
+											    <img style='width:800px' ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage"
 											         ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
 											         ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}">
 													{{slide}}
