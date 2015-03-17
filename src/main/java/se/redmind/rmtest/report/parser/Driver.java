@@ -9,9 +9,9 @@ public class Driver {
 		this.driver = driver;
 		handleDriver();
 	}
-	
+
 	private void handleDriver(){
-		String[] sliced = driver.split("_");
+		String[] sliced = getSlized();
 		if (sliced.length > 1) {
 			this.os 		= getValue(sliced, 0);
 			this.osVer 		= getValue(sliced, 1);
@@ -20,11 +20,16 @@ public class Driver {
 			this.browserVer	= getValue(sliced, 4);
 		}
 	}
+
+	private String[] getSlized() {
+		String[] sliced = driver.split("_");
+		return sliced;
+	}
 	
 	private String getValue(String[] sliced, int index){
 		try {
 			String value = sliced[index];
-			if (value.length() == 0) {
+			if (value.length() <= 0) {
 				broken = true;
 			}
 			return value;
