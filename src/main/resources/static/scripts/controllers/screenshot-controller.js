@@ -72,15 +72,17 @@ angular.module('webLog').controller('ScreenshotCtrl', [ '$scope', '$state', '$ht
 	//slider specifics
     $scope.slides = [];
 
-    $scope.setSlides= function(screenshots){
+    $scope.setSlides= function(cases, index, parentIndex){
     	var screenArray = [];
-    	for (var i = 0; i < screenshots.length; i++) {
-			screenArray.push($scope.getScreenshotsFromFileName(screenshots[i]));
+    	for (var i = 0; i < cases.length; i++) {
+			screenArray.push($scope.getScreenshotsFromFileName(cases[i].screenshots[index]));
 		}
     	
     	console.log("screenshots");
-    	console.log(screenArray);
+    	console.log(screenArray[i]);
     	$scope.slides = screenArray;
+    	console.log(parentIndex);
+    	 $scope.setCurrentSlideIndex(parentIndex);
     }
     
      $scope.direction = 'left';
