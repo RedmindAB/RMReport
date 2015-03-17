@@ -18,13 +18,13 @@
 			
 			            <!-- Content in collapsing Div -->
 			            
-							<table ng-repeat='case in method.testcases' style='display:inline-block;padding:20px'>
+							<table ng-repeat='case in method.testcases track by $index' style='display:inline-block;padding:20px'>
 								<tr>
 									<td>{{case.device}} - {{case.browser}}</td>
 								</tr>
 				<modal-dialog width='100%' toggle='toggleModal()' show='modalShown'
 					height='40%' style='background-color : transparent;'>
-				<h1 align='center' style='color: white'>HTC</h1>
+				<h1 align='center' style='color: white'>{{getCurrentSlideInfo(method)}}</h1>
 				<div class="container slider">
 					<img style='width: 800px' ng-repeat="slide in slides"
 						class="slide slide-animation nonDraggableImage"

@@ -78,16 +78,18 @@ angular.module('webLog').controller('ScreenshotCtrl', [ '$scope', '$state', '$ht
 			screenArray.push($scope.getScreenshotsFromFileName(cases[i].screenshots[index]));
 		}
     	
-    	console.log("screenshots");
-    	console.log(screenArray[i]);
     	$scope.slides = screenArray;
-    	console.log(parentIndex);
     	 $scope.setCurrentSlideIndex(parentIndex);
     }
     
      $scope.direction = 'left';
      $scope.currentIndex = 0;
 
+     $scope.getCurrentSlideInfo = function(method){
+    	 var info = method.testcases[$scope.currentIndex].device + " - " + method.testcases[$scope.currentIndex].browser;
+    	 return info;
+     }
+     
      $scope.setCurrentSlideIndex = function (index) {
          $scope.direction = (index > $scope.currentIndex) ? 'left' : 'right';
          $scope.currentIndex = index;
