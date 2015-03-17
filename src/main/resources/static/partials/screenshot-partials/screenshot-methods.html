@@ -1,22 +1,3 @@
-<modal-dialog width='100%' toggle='toggleModal()' show='modalShown' height='40%' style='background-color : transparent;'>
-<h1 align='center' style='color:white'>HTC</h1>
-    <img style=' left: 50%; margin-right: -50%;top:50%;transform: translate(-50%, -50%)'
-    	 ng-repeat="slide in getScreenByIndex()" class="slide slide-animation nonDraggableImage"
-         ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
-         ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}">
-		{{slide}}
-    <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
-    <a class="arrow next" href="#" ng-click="prevSlide()"></a>
-    <nav class="nav">
-        <div class="wrapper">
-            <ul class="dots">
-                <li class="dot" ng-repeat="slide in slides">
-                    <a href="#" ng-class="{'active':isCurrentSlideIndex($index)}"
-						ng-click="setCurrentSlideIndex($index);">{{slide.description}}</a></li>
-            </ul>
-        </div>
-    </nav>
-</modal-dialog>
 <div class='noselect'>
 	<div style='height:100%;margin-top:10px;cursor: pointer;word-break:break-all' id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' 
 	          ng-style="{'background-color': getBgCo(CurrentSuite.currentClass.result)}">
@@ -43,8 +24,31 @@
 								</tr>
 								<tr ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index'>
 									<td height='450px' valign='top' ng-style="{'border-color': getBorder()}">
-										Comment: {{getCommentFromFileName(case.screenshots[$index])}} </br>
-										<img ng-click='toggleModal()' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img><br><br>
+										<img ng-click='setSlides(case.screenshots); toggleModal();' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img><br><br>
+										
+										
+										<modal-dialog width='100%' toggle='toggleModal()' show='modalShown' height='40%' style='background-color : transparent;'>
+											<h1 align='center' style='color:white'>HTC</h1>
+											<div class="container slider">
+											    <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage"
+											         ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+											         ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}">
+													{{slide}}
+											    <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
+											    <a class="arrow next" href="#" ng-click="prevSlide()"></a>
+											    <nav class="nav">
+											        <div class="wrapper">
+											            <ul class="dots">
+											                <li class="dot" ng-repeat="slide in slides">
+											                    <a href="#" ng-class="{'active':isCurrentSlideIndex($index)}"
+																	ng-click="setCurrentSlideIndex($index);">{{hej}}</a></li>
+											            </ul>
+											        </div>
+											    </nav>
+											</div>
+										</modal-dialog>
+										
+										
 									</td>
 								</tr>
 							</table>
