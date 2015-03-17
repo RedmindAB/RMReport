@@ -42,10 +42,10 @@
 								<tr>
 									<td>{{case.device}} - {{case.browser}}</td>
 								</tr>
-								<tr ng-repeat='screenshot in case.screenshots'>
+								<tr ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index'>
 									<td height='450px' valign='top' ng-style="{'border-color': getBorder()}">
-										Comment: {{getCommentFromFileName(screenshot)}} </br>
-										<img ng-click='toggleModal()' width='200px' ng-src="{{getScreenshotsFromFileName(screenshot)}}"></img><br><br>
+										Comment: {{getCommentFromFileName(case.screenshots[$index])}} </br>
+										<img ng-click='toggleModal()' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img><br><br>
 									</td>
 								</tr>
 							</table>
