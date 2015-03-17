@@ -12,6 +12,12 @@ angular.module('webLog').controller('ScreenshotCtrl', [ '$scope', '$state', '$ht
 		$scope.toggleModal();
 	});
 	
+	$scope.getScreenByIndex = function(){
+		var array = [];
+		array.push($scope.getScreenshotsFromFileName(ScreenshotMaster.data[0].testcases[0].screenshots[0]));
+		return array;
+	}
+	
 	$scope.loadScreenshotsFromClass = function(){
 		
 	    $http.get('/api/screenshot/structure?timestamp='+CurrentSuite.currentTimeStamp+'&classid='+CurrentSuite.currentClass.id)
