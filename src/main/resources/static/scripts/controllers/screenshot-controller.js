@@ -14,7 +14,7 @@ angular.module('webLog').controller('ScreenshotCtrl', [ '$scope', '$state', '$ht
 	
 	$scope.getScreenByIndex = function(){
 		var array = [];
-		array.push($scope.getScreenshotsFromFileName(ScreenshotMaster.data[0].testcases[0].screenshots[0]));
+		array.push($scope.getScreenshotsFromFileName(ScreenshotMaster.data[0].testcases[1].screenshots[0]));
 		return array;
 	}
 	

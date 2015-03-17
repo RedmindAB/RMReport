@@ -1,7 +1,7 @@
 <modal-dialog width='100%' toggle='toggleModal()' show='modalShown' height='40%' style='background-color : transparent;'>
 <h1 align='center' style='color:white'>HTC</h1>
-<div class="container slider">
-    <img ng-repeat="slide in getScreenByIndex()" class="slide slide-animation nonDraggableImage"
+    <img style=' left: 50%; margin-right: -50%;top:50%;transform: translate(-50%, -50%)'
+    	 ng-repeat="slide in getScreenByIndex()" class="slide slide-animation nonDraggableImage"
          ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
          ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}">
 		{{slide}}
@@ -16,7 +16,6 @@
             </ul>
         </div>
     </nav>
-</div>
 </modal-dialog>
 <div class='noselect'>
 	<div style='height:100%;margin-top:10px;cursor: pointer;word-break:break-all' id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' 
