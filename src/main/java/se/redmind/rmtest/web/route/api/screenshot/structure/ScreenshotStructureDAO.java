@@ -12,7 +12,7 @@ import se.redmind.rmtest.web.route.api.screenshot.ScreenshotFolderDAO;
 
 public class ScreenshotStructureDAO extends DBBridge {
 
-	private String query = "SELECT classname, testcasename, osname, osversion, devicename, browsername, browserversion  FROM report NATURAL JOIN (os,suite,testcase, class, device, browser) WHERE report.class_id = {class_id} AND timestamp = {timestamp} AND class.class_id = report.class_id;";
+	private String query = "SELECT result, classname, testcasename, osname, osversion, devicename, browsername, browserversion  FROM report NATURAL JOIN (os,suite,testcase, class, device, browser) WHERE report.class_id = {class_id} AND timestamp = {timestamp} AND class.class_id = report.class_id;";
 	
 	public JsonArray getStructure(String classid, String timestamp){
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -29,6 +29,7 @@ public class ScreenshotStructureDAO extends DBBridge {
 		sfDAO.getFilesByTimestamp(timestamp);
 		try {
 			while (rs.next()) {
+				String result = rs.getString("result");
 				String classname = rs.getString("classname");
 				String methodname = rs.getString("testcasename");
 				String osname = rs.getString("osname");
@@ -39,7 +40,7 @@ public class ScreenshotStructureDAO extends DBBridge {
 				
 				String fileName = sfDAO.generateFilename(classname, methodname, timestamp, osname, osver, browsername, browserver, devicename);
 				List<String> fileNamesWithPrefix = sfDAO.getFilenames(fileName, timestamp);
-				builder.addTestcase(methodname, browsername, devicename, fileNamesWithPrefix);
+				builder.addTestcase(methodname, browsername, devicename, result,fileNamesWithPrefix);
 			}
 			return builder.getAsJsonArray();
 		} catch (SQLException e) {

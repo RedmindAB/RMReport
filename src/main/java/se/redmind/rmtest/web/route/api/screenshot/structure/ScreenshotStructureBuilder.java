@@ -9,6 +9,7 @@ import com.google.gson.JsonPrimitive;
 
 public class ScreenshotStructureBuilder {
 
+	private static final String RESULT = "result";
 	private static final String NAME = "name";
 	private static final String TESTCASES = "testcases";
 	private TreeMap<String, JsonObject> methodMap;
@@ -19,10 +20,11 @@ public class ScreenshotStructureBuilder {
 		
 	}
 	
-	public void addTestcase(String methodname, String browsername, String devicename, List<String> screenshots){
+	public void addTestcase(String methodname, String browsername, String devicename, String result, List<String> screenshots){
 		JsonObject method = getMethod(methodname);
 		JsonObject testcase = new JsonObject();
 		testcase.addProperty("device", devicename);
+		testcase.addProperty("result", result);
 		testcase.addProperty("browser", browsername);
 		testcase.add("screenshots", generateFilenameArray(screenshots));
 		method.get(TESTCASES).getAsJsonArray().add(testcase);
