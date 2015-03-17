@@ -1,36 +1,6 @@
 angular.module('webLog')
     .controller('MainCtrl',['$scope', '$rootScope', '$http','$location', '$timeout','$state', 'CurrentSuite', 'Charts', 'Utilities','ScreenshotMaster', function($scope, $rootScope,$http, $location, $timeout, $state, CurrentSuite, Charts, Utilities,ScreenshotMaster){
     	
-    	$scope.screenshotTestArray = ["img/img00.jpg", "img/img01.jpg", "img/AnotherGeneratedSuite.png"];
-        $scope.slides = [
-                         {image: 'img/img00.jpg', description: 'Image 00'},
-                         {image: 'img/img01.jpg', description: 'Image 01'},
-                         {image: 'img/img02.jpg', description: 'Image 02'},
-                         {image: 'img/img03.jpg', description: 'Image 03'},
-                         {image: 'img/img04.jpg', description: 'Image 04'}
-                     ];
-
-                     $scope.direction = 'left';
-                     $scope.currentIndex = 0;
-
-                     $scope.setCurrentSlideIndex = function (index) {
-                         $scope.direction = (index > $scope.currentIndex) ? 'left' : 'right';
-                         $scope.currentIndex = index;
-                     };
-
-                     $scope.isCurrentSlideIndex = function (index) {
-                         return $scope.currentIndex === index;
-                     };
-
-                     $scope.prevSlide = function () {
-                         $scope.direction = 'left';
-                         $scope.currentIndex = ($scope.currentIndex < $scope.slides.length - 1) ? ++$scope.currentIndex : 0;
-                     };
-
-                     $scope.nextSlide = function () {
-                         $scope.direction = 'right';
-                         $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
-                     };
     $scope.Charts = Charts;
     $scope.CurrentSuite = CurrentSuite;
     $scope.Utilities = Utilities;

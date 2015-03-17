@@ -67,6 +67,10 @@ angular.module('webLog')
 	    		return 'bg-success';
 	    };
 	    
+	    $scope.getBorder = function(){
+	    	return '#A94442';
+	    }
+	    
 	    $scope.getBgCo = function(passed){
 	    	if(passed === "failure" || passed === "error")
 	    		return '#F2DEDE';
