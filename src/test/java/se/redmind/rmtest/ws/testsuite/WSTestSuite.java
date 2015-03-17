@@ -34,7 +34,6 @@ public class WSTestSuite {
 	public static void afterClass(){
 		//remove testdb
 		File dbFile = new File(dbPath);
-		
 		try {
 			Files.delete(dbFile.toPath());
 			System.out.println("Test DB deleted");
