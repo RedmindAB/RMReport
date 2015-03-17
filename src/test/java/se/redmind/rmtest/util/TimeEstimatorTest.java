@@ -36,10 +36,4 @@ public class TimeEstimatorTest {
 			Thread.sleep(1);
 		}
 	}
-	
-	@Test
-	public void sampleTest(){
-		assertEquals(1, 1);
-	}
-
 }
