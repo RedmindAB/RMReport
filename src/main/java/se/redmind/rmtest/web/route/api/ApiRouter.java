@@ -2,8 +2,10 @@ package se.redmind.rmtest.web.route.api;
 
 import static spark.Spark.*;
 import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesWS;
+import se.redmind.rmtest.web.route.api.classes.passfail.PassFailClassWS;
 import se.redmind.rmtest.web.route.api.device.getdevices.GetDevicesAMonthAgoWS;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseWS;
+import se.redmind.rmtest.web.route.api.longpoll.change.CheckForChangeWS;
 import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
 import se.redmind.rmtest.web.route.api.screenshot.byfilename.ScreenshotByFilenameWS;
 import se.redmind.rmtest.web.route.api.screenshot.structure.ScreenshotStructureDAO;
@@ -29,6 +31,7 @@ public class ApiRouter {
 		get(new GetLatestSuiteWS("/api/suite/latestbyid"));
 		get(new GetSuiteByTimestampWS("/api/suite/bytimestamp"));
 		get(new GetClassesWS("/api/class/getclasses"));
+		get(new PassFailClassWS("/api/class/passfail"));
 		get(new GetMethodsWS("/api/method/getmethods"));
 		get(new GetDriverByTestcaseWS("/api/driver/bytestcase"));
 		post(new GetGraphDataWS("/api/stats/graphdata"));
@@ -40,7 +43,7 @@ public class ApiRouter {
 		get(new GetDevicesAMonthAgoWS("/api/device/notrunforamonth"));
 		
 		//not added to apidocs
-		
+		get(new CheckForChangeWS("/api/long"));
 	}
 	
 	
