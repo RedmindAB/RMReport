@@ -1,14 +1,14 @@
 <div ng-repeat="suite in allSuites" class='noselect'>
-    <table style='width:100%;margin-top:10px'>
+    <table class='table-home'>
         <!-- Project logo -->
         <tr>
             <td>
-                <img id='section' class='image-paths' style="cursor: pointer;" ng-src="{{'img/' + suite.name + '.png'}}" ng-click="loadMainChart(suite.id);
+                <img id='section' class='image-paths pointer' ng-src="{{'img/' + suite.name + '.png'}}" ng-click="loadMainChart(suite.id);
                         setState('reports.classes');
-                        getSuiteSkeleton(suite);" alt='{{suite.name}}'></img><br><br><h3 style="cursor: pointer;display:inline;margin-left:5px;text-decoration:none" ng-click="loadMainChart(suite.id);
+                        getSuiteSkeleton(suite);" alt='{{suite.name}}'></img><br><br><h3 class='pointer inline home-img' ng-click="loadMainChart(suite.id);
                                 setState('reports.classes');
                                 getSuiteSkeleton(suite);">Go to graph</h3>
-                                <br><br><h3 style="cursor: pointer;display:inline;margin-left:5px;text-decoration:none" ng-click="loadMainChart(suite.id);
+                                <br><br><h3 class='pointer inline home-img' ng-click="loadMainChart(suite.id);
                                 setState('screenshots.classes');
                                 getSuiteSkeleton(suite);">Go to screen shots</h3>
             </td>
@@ -17,7 +17,7 @@
         <!-- project chart -->
         <tr>
             <td colspan='3'>
-        <highchart id="chart1" style='margin-top:20px;position:responsive;float:left;width:100%' config="chartHomeConfig[suite.id]"></highchart>
+        <highchart id="chart1" class='high-chart' config="chartHomeConfig[suite.id]"></highchart>
         </td>
         </tr>
         <!-- project chart END -->

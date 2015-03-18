@@ -2,7 +2,7 @@
 
     <!-- Chart -->
     <!-- project logo -->
-    <img ng-src="{{'img/' + CurrentSuite.currentSuiteInfo.name + '.png'}}" style="cursor: pointer;margin-top:10px" class='image-paths' ng-click="setState('home')"></img> 
+    <img ng-src="{{'img/' + CurrentSuite.currentSuiteInfo.name + '.png'}}" class='image-paths mrg-t-t pointer' ng-click="setState('home')"></img> 
     <!-- project logo END-->
     <link rel="stylesheet" href="css/style.css">		
     <!-- navigation links -->
@@ -11,9 +11,9 @@
         <table>
             <tr>
                 <td>
-                    <div style='word-wrap:break-all' id="navigation-classes" ng-click="setState('reports.classes')" class="navTextStuff" ng-show="showClassLink('classes')">{{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
-                    <div style='word-break:break-all' id="navigation-methods" ng-click="setState('reports.methods')" class="navTextStuff" ng-show="showClassLink('methods')">&#10140; {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
-                    <div style='word-break:break-all' id="navigation-drivers" ng-click="setState('reports.cases')" class="navTextStuff" ng-show="showClassLink('cases')">&#10140; {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
+                    <div id="navigation-classes" ng-click="setState('reports.classes')" class="navTextStuff wordbreak" ng-show="showClassLink('classes')">{{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
+                    <div id="navigation-methods" ng-click="setState('reports.methods')" class="navTextStuff wordbreak" ng-show="showClassLink('methods')">&#10140; {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
+                    <div id="navigation-drivers" ng-click="setState('reports.cases')" class="navTextStuff wordbreak" ng-show="showClassLink('cases')">&#10140; {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
                 </td>
             </tr>
         </table>
@@ -21,13 +21,13 @@
     <!-- navigation links END -->
     <!-- chart -->
     <br><br>
-    <highchart style='position:responsive;float:left;width:100%' id="chart1" config="chartMainConfig"></highchart>
+    <highchart class='high-chart' config="chartMainConfig"></highchart>
     <!-- chart END -->
 
     <!-- Chart variant dropdown START -->
-    <div class="btn-group" style='margin:1px' align='center'>
-        <h5 style='margin-bottom:0px'>Number of suite runs</h5>
-        <button style='width:150px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
+    <div class="btn-group" align='center'>
+        <h5 class='mrg-b'>Number of suite runs</h5>
+        <button id='button_suite' class="btn btn-default dropdown-toggle btn-width" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
             {{Utilities.resultAmount}}
             <span class="caret"></span>
         </button>
@@ -40,70 +40,70 @@
     </div>
 
     <div class='btn-group' align='center'>
-        <h5 style='margin-bottom:0px'>Add graph line&nbsp;</h5>
-        <button ng-disabled='Charts.mainChart.loading' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" ng-model='CurrentSuite.newLine' style='width:150px;margin:1px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
+        <h5 class='mrg-b'>Add graph line&nbsp;</h5>
+        <button ng-disabled='Charts.mainChart.loading' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" ng-model='CurrentSuite.newLine' id='button_break' class="btn btn-default dropdown-toggle btn-width" type="button" id="suite-dropdown" data-toggle="dropdown">
             <span class="glyphicon glyphicon-plus"></span>
         </button>
         <ul></ul>
     </div>
 
     <div class='btn-group' align='center'>
-        <h5 style='margin-bottom:0px'>Remove graph line</h5>
-        <button ng-disabled="trashcanEmpty()" style='width:150px;margin:1px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
+        <h5 class='mrg-b'>Remove graph line</h5>
+        <button ng-disabled="trashcanEmpty()" id='button_break' class="btn btn-default dropdown-toggle btn-width" type="button" id="suite-dropdown" data-toggle="dropdown">
             <span class="glyphicon glyphicon-trash"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
-            <li ng-repeat='serie in Charts.mainChart.series' id='serie_name' ng-click='remove(serie)'><a style='cursor:pointer'>
+            <li ng-repeat='serie in Charts.mainChart.series' id='serie_name' ng-click='remove(serie)'><a class='pointer'>
                     <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>&nbsp;{{serie.name}}
                 </a>
             </li>
         </ul>
     </div>
 
-    <form style='display:inline;float:right'>
-        <button class="btn btn-default" ng-disabled='Charts.mainChart.loading' id='button_reload' style='margin:26px 1px 1px 1px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, false); checkQuestions()" onClick="document.getElementById('button_reload').className = 'btn btn-default'">
+    <form class='inline float-right'>
+        <button class="btn btn-default reload-button" ng-disabled='Charts.mainChart.loading' id='button_reload' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, false); checkQuestions()" onClick="document.getElementById('button_reload').className = 'btn btn-default'">
             Reload
         </button>
     </form>	
 
     <br>
-    <div style='display:inline'>
+    <div class='inline'>
         <div class="btn-group" align='center'>
-            <h5 style='margin-bottom:0px'>Choose graph view</h5>
-            <button style='width:150px;margin:1px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
+            <h5 class='mrg-b'>Choose graph view</h5>
+            <button id='button_break' class="btn btn-default dropdown-toggle btn-width" type="button" id="suite-dropdown" data-toggle="dropdown">
                 {{Utilities.graphView}}
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li ng-repeat="variant in chartVariants"><a style='cursor:pointer' id='variant' ng-click="changeChartVariant(variant)">
+                <li ng-repeat="variant in chartVariants"><a class='pointer' id='variant' ng-click="changeChartVariant(variant)">
                         {{variant}}
                     </a>
                 </li>
             </ul>
         </div>
         <div class='btn-group' align='center'>
-            <h5 style='margin-bottom:0px'>Choose break point</h5>
-            <button style='width:150px;margin:1px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
+            <h5 class='mrg-b'>Choose break point</h5>
+            <button id='button_break' class="btn btn-default dropdown-toggle btn-width" type="button" id="suite-dropdown" data-toggle="dropdown">
                 {{breakPointChoice}}
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li ng-repeat="breakPoint in breakPoints" id='break_point' ng-click='setBreakPoint(breakPoint); newContent()'><a style='cursor:pointer'>
+                <li ng-repeat="breakPoint in breakPoints" id='break_point' ng-click='setBreakPoint(breakPoint); newContent()'><a class='pointer'>
                         {{breakPoint}}
                     </a>
                 </li>
             </ul>
         </div>
     </div>
-    <div style='display:inline'>
+    <div class='inline'>
         <accordion close-others="false">
             <!-- repeated content -->
-            <div width='100%' style='margin:7px 3px 3px 3px;' id='expandable'>
+            <div width='100%' class='acc_margin' id='expandable'>
                 <accordion-group >
 
                     <accordion-heading id='reports_spec'>
                         <div ng-click='toggleButton()'>Specifications<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                            <button style='width: 60px;' ng-show='showButton' id='button_clear' class="btn btn-default" ng-click="$event.preventDefault(); $event.stopPropagation(); clearAllChosen(); newContent()">
+                            <button ng-show='showButton' id='button_clear' class="btn btn-default btn-width-clear" ng-click="$event.preventDefault(); $event.stopPropagation(); clearAllChosen(); newContent()">
                                 Clear
                             </button>
                         </div>
@@ -131,22 +131,25 @@
                     <div>		    
                         <accordion close-others="false">
                             <div ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
-                                <input style='margin-top:14px;margin-left:5px' ng-model='platform.chosen' ng-click="newContent()" id='input_osname' type="checkbox" class="mycheckbox" ><label for="mycheckbox" style='font-weight:normal;'></label>
+                                <input ng-model='platform.chosen' ng-click="newContent()" id='input_osname' type="checkbox" class="mycheckbox" ><label for="mycheckbox"></label>
                                 <accordion-group is-open='platform.chosen'>
                                     <accordion-heading id='reports_name' ng-click='newContent()'> 
                                         <div ng-click='newContent(); togglePlatformChosen(platform)'>&nbsp;
                                             {{platform.osname}}
                                         </div>
                                     </accordion-heading>
-                                    <table>
+
+                                    <table class='table-m'>
+
                                         <tr>
                                             <td height='10px'>
                                                 <h4 class="option-headline">Devices:&nbsp;</h4>
                                             </td>
                                             <td class="option-item" height='10px' ng-repeat="device in platform.devices track by $index" >
+
                                                 <input ng-model="device.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">
                                                 	&nbsp;
-                                                <div ng-click='setChosen(device); newContent()' style='display:inline-block;cursor:pointer'>
+                                                <div ng-click='setChosen(device); newContent()' class='inline-pointer'>
                                                 	{{device.devicename}}
                                                 </div>
                                                 <label for="mycheckbox"></label>
@@ -159,7 +162,7 @@
                                             <td ng-repeat="version in platform.versions track by $index">
                                                 <input ng-model="version.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">
                                                 	&nbsp;
-                                                <div ng-click='setChosen(version); newContent()' style='display:inline-block;cursor:pointer'>
+                                                <div ng-click='setChosen(version); newContent()' class='inline pointer'>
                                                 	{{version.osver}}
                                                 </div>
                                                 <label for="mycheckbox"></label> 
@@ -179,11 +182,9 @@
             <!-- repeated content  End-->
         </accordion>
     </div>
-    <div class='row' style='border:10px solid #D4D9DD'>
-    </div>
-    <div class="btn-group" style='margin-top:10px;'>
-        <h5 style='margin-bottom:0px'>Choose timestamp</h5>
-        <button style='width:150px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
+    <div class="btn-group mrg-t-t">
+        <h5 class='mrg-btn'>Choose timestamp</h5>
+        <button id='button_suite' class="btn btn-default dropdown-toggle btn-width" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
             {{CurrentSuite.currentTimeStamp}}
             <span class="caret"></span>
         </button>
@@ -194,20 +195,20 @@
             </li>
         </ul>
     </div>
-    <div class="btn-group" style='margin-top:35px;word-break:break-all'>
-        <input type="text" id="filter-field" class="form-control tool-tip" style="width:150px;display:inline" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>	
-        <h4 style='display:inline;vertical-align:bottom;cursor:pointer' ng-click="subNavLinks();">{{getPosition()}}</h4>
+    <div class="btn-group wordbreak mrg-t-p">
+        <input type="text" id="filter-field" class="form-control tool-tip btn-width inline" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>	
+        <h4 class='va inline pointer' ng-click="subNavLinks();">{{getPosition()}}</h4>
     </div>
     <br>
     <div class='btn-group' align='center'>
-        <h5 style='margin-bottom:0px'>Order by&nbsp;</h5>
-        <button style='width:100px' id='passfail' class='btn btn-default dropdown-toggle' ng-click="setSorting('pass/fail'); reverse = !reverse">
+        <h5 class='mrg-b'>Order by&nbsp;</h5>
+        <button id='passfail' class='btn btn-default dropdown-toggle btn-width-fp' ng-click="setSorting('pass/fail'); reverse = !reverse">
             Fail/Pass</button>
         <ul></ul>
     </div>
-    <div class='btn-group' align='center' style='float:right'>
-        <h5 style='margin-bottom:0px'>Order by&nbsp;</h5>
-        <button style='width:100px' id='runtime' class='btn btn-default dropdown-toggle' ng-click="setSorting('time'); reverse = !reverse">
+    <div class='btn-group float-right' align='center'>
+        <h5 class='mrg-b'>Order by&nbsp;</h5>
+        <button id='runtime' class='btn btn-default dropdown-toggle btn-width-fp' ng-click="setSorting('time'); reverse = !reverse">
             Run time</button>
         <ul></ul>
     </div>
