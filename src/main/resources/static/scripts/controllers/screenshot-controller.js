@@ -1,4 +1,4 @@
-angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$state', '$http', 'ScreenshotMaster', 'CurrentSuite', function($window ,$scope, $state, $http, ScreenshotMaster, CurrentSuite) {
+angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$rootScope', '$state', '$http', 'ScreenshotMaster', 'CurrentSuite', function($window ,$scope, $rootScope,$state, $http, ScreenshotMaster, CurrentSuite) {
 	
 	$scope.ScreenshotMaster = ScreenshotMaster;
 	$scope.modalShown = false;
@@ -10,6 +10,10 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$st
 	
 	$scope.$on("closeModal", function() {
 		$scope.toggleModal();
+	});
+	
+	$rootScope.$on("wrongScreenData", function(){
+		$scope.loadScreenshotsFromClass();
 	});
 	
 	document.addEventListener('dragstart', function (e) { e.preventDefault(); });
@@ -26,6 +30,7 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$st
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		ScreenshotMaster.data = data
+	    		ScreenshotMaster.currentClass = CurrentSuite.currentClass.id
 	    		setCaseSizeByMethod();
 	    	};
 	    }).error(function(data, status, headers, config){
