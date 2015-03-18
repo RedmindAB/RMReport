@@ -73,7 +73,15 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$st
 	
 	//slider specifics
     $scope.slides = [];
-
+    $scope.direction = 'left';
+    $scope.currentIndex = 0;
+    $scope.currentMethod = "unknown";
+    $scope.currentSlideInfo = "unknown";
+    	
+    $scope.setCurrentMethod = function(method){
+    	$scope.currentMethod = method;
+    }
+    
     $scope.setSlides= function(cases, index, parentIndex){
     	var screenArray = [];
     	for (var i = 0; i < cases.length; i++) {
@@ -84,11 +92,10 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$st
     	 $scope.setCurrentSlideIndex(parentIndex);
     }
     
-     $scope.direction = 'left';
-     $scope.currentIndex = 0;
-
-     $scope.getCurrentSlideInfo = function(method){
-    	 var info = method.testcases[$scope.currentIndex].device + " - " + method.testcases[$scope.currentIndex].browser;
+     $scope.getCurrentSlideInfo = function(){
+    	 if ($scope.currentMethod !== 'unknown') {
+    		 var info = $scope.currentMethod.testcases[$scope.currentIndex].device + " - " + $scope.currentMethod.testcases[$scope.currentIndex].browser;
+    	 }
     	 return info;
      }
      
