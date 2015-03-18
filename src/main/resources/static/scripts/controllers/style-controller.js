@@ -109,6 +109,15 @@ angular.module('webLog')
 	    $scope.toggleButton = function() {
 	        $scope.showButton = !$scope.showButton;
 	    };
+	    
+	    $scope.getNavColor = function(state){
+	    	if ($state.includes(state)) {
+	    		return '#DC062A';
+			} else {
+				return '#5F5E5D';
+			}
+	    }
+	    
 }])
 .animation('.slide-animation', function () {
         return {

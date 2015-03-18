@@ -1,4 +1,4 @@
-angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuite', 'Charts','Utilities', function($scope, $state, CurrentSuite, Charts, Utilities){
+angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state', 'CurrentSuite', 'Charts','Utilities','ScreenshotMaster', function($scope, $rootScope,$state, CurrentSuite, Charts, Utilities, ScreenshotMaster){
 	
 	$scope.CurrentSuite = CurrentSuite;
 	$scope.Charts = Charts;
@@ -38,6 +38,32 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuit
 			break;
 		default:
 			break;
+		}
+	}
+	
+	$scope.goToGraphView = function(){
+		if (ScreenshotMaster.previousView !== undefined) {
+			$state.transitionTo(ScreenshotMaster.previousView);
+		} else {
+			if (CurrentSuite.currentSuite.length == 0) {
+				$state.transitionTo('home');
+			} else {
+				$state.transitionTo('reports.classes');
+			}
+		}		
+	}
+	
+	$scope.goToScreenshotView = function(){
+		ScreenshotMaster.previousView = $state.$current.name;
+		if (CurrentSuite.currentSuite == undefined) {
+			$state.transitionTo('home');
+		} else if (CurrentSuite.currentClass.length == 0) {
+			$state.transitionTo('screenshots.classes');
+		} else {
+			if (ScreenshotMaster.currentClass != CurrentSuite.currentClass.id) {
+				 $scope.$emit('wrongScreenData');
+			}
+			$state.transitionTo('screenshots.methods');
 		}
 	}
 	

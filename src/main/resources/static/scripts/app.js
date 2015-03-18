@@ -3,6 +3,7 @@ angular.module('webLog', ['ui.router','ui.bootstrap',"highcharts-ng", 'ngAnimate
     	
     $urlRouterProvider.otherwise("/home");
     
+    //states
     $stateProvider
         .state('home',{
             url: '/home',
