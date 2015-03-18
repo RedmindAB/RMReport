@@ -5,9 +5,12 @@
             <!-- non collapsing header -->
             <table width='100%'>
                 <tr>
-                    <td width='10px;'>
-                        <input style='float:left;margin-left:5px' ng-click="newContent()" type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="method.chosen"><label style='vertical-align:bottom' for="mycheckbox" ></label>					                    
+					<td width='10px' id='lol'>
+                    	<input style='float:left;margin-bottom:4px;margin-left:5px' type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="method.chosen" ng-click="newContent()">
+                    	<label for="mycheckbox"></label>					                    
                     </td>
+                    
+                    
                     <td ng-click="getCases(method);
                             setState('reports.cases');" ng-style="{'color' : getCo(method.result)}">
 						<h3 class="accordion-name-container" style='float:left;display:inline;'>&nbsp;{{method.name}}</h3> 
