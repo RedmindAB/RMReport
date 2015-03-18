@@ -10,7 +10,7 @@
         <!-- Custom style sheet -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/modal.css">
-        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/slider.css">
     </head>
     <body ng-controller = "MainCtrl" class='noselect'>
         <div ng-controller = "StyleCtrl">
@@ -18,8 +18,8 @@
             <nav class="container navbar navbar-custom navbar-fixed-top">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                    <div style='display:inline' ng-controller = "NavCtrl">
-                    	<a id='home' class="navbar-brand" ng-href="#/"><img src='img/logo.png' style='margin-top: -14px;margin-left:-30px'></img></a>
+                    <div class='inline' ng-controller = "NavCtrl">
+                    	<a id='home' class="navbar-brand home" ng-href="#/"><img src='img/logo.png'></img></a>
 						<a id='graph_view' href='' ng-click="goToGraphView()">Graph View</a>
 						<a id='screenshot_view' href='' ng-click="goToScreenshotView()">Screenshot View</a>
 					</div>
@@ -31,7 +31,7 @@
                             <span class="icon-bar"></span>
                         </button>        	
                     </div>
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style='float:right;'></div>
+                    <div class="collapse navbar-collapse float-right" id="bs-example-navbar-collapse-1"></div>
                     <!-- /.navbar-collapse -->
                 </div>
                 <!-- /.container-fluid -->

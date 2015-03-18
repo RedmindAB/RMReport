@@ -1,7 +1,7 @@
 <div class='noselect'>
     <accordion close-others="true">
         <!-- repeated content -->
-        <div style='height:100%;margin-top:10px;cursor: pointer;word-break:break-all' id='method_name' ng-repeat="class in CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index "
+        <div class='height-h mrg-t-t pointer wordbreak' id='method_name' ng-repeat="class in CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index "
              ng-class='getPanel(class.result)' 
              ng-style="{'background-color': getBgCo(class.result)}"
              >
