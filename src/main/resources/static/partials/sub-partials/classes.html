@@ -10,7 +10,7 @@
                     <td width='10px' id='lol'>
                         <input style='float:left;margin-bottom:4px;margin-left:5px' style='float:left' type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="class.chosen" ng-click="newContent()"><label for="mycheckbox"></label>					                    
                     </td>
-                    <td ng-click="getMethods(class); setState('reports.methods');" ng-style="{'color' : getCo(class.result)}">
+                    <td id='get_methods' ng-click="getMethods(class); setState('reports.methods');" ng-style="{'color' : getCo(class.result)}">
                         <h3 style='display:inline;margin:2px 0px 0px 0px'>&nbsp;{{class.name}}</h3> <h3 style='margin:2px 0px 0px 0px;float:right;display:inline'>&nbsp;{{formatDecimals(class.time)}}</h3>
                     </td>
                 </tr>

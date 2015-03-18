@@ -9,7 +9,7 @@
 			    <div class='noselect' ng-repeat="method in ScreenshotMaster.data | orderBy:Utilities.caseSorting:reverse track by $index">
 			        <accordion-group style='margin-top:10px' ng-class='getPanel(method.result)' ng-style="{'background-color': getBgCo(method.result)}">
 			            <!-- non collapsing header -->
-			            <accordion-heading id='case_name' style='margin: 0px 5px 0px 5px'>
+			            <accordion-heading id='method_name' style='margin: 0px 5px 0px 5px'>
 							<div style='display:inline;'>
 			                    {{method.name}}
 							</div>
@@ -26,7 +26,7 @@
 								<tr ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index'>
 
 									<td height='450px' valign='top' ng-style="{'border-color': getBorder()}">
-										<img ng-click='setCurrentMethod(method); setSlides(method.testcases, $index, $parent.$index); toggleModal();' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img><br><br>
+										<img id='set_method' ng-click='setCurrentMethod(method); setSlides(method.testcases, $index, $parent.$index); toggleModal();' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img><br><br>
 
 									</td>
 								</tr>
@@ -41,7 +41,7 @@
 	</div>
 </div>
 
-<modal-dialog width='100%' toggle='toggleModal()' show='modalShown'
+<modal-dialog width='100%' id='modal_dialog' toggle='toggleModal()' show='modalShown'
 			  height='40%' style='background-color : transparent;'>
 	<h1 align='center' style='color: white'>
 		{{currentMethod.name}}</br>
@@ -51,21 +51,21 @@
 		<nav class="nav" style='top:85px;'>
 		<div class="wrapper">
 			<ul class="dots">
-				<li class="dot" ng-repeat="slide in slides"><a href="#"
+				<li class="dot" id='dot' ng-repeat="slide in slides"><a href="#"
 					ng-class="{'active':isCurrentSlideIndex($index)}"
 					ng-click="setCurrentSlideIndex($index);">{{slide.description}}</a></li>
 			</ul>
 		</div>
 	</nav>
 	<br>
-	<a class="arrow prev" href="#" ng-click="nextSlide()"></a>
-	<a class="arrow next" href="#" ng-click="prevSlide()"></a>
+	<a class="arrow prev" id='arrow_prev' href="#" ng-click="nextSlide()"></a>
+	<a class="arrow next" id='arrow_next' href="#" ng-click="prevSlide()"></a>
 	<div class="container slider">
 		<img onmousedown="event.preventDefault" style='width: 800px;margin:-20px 0px 0px -20px' ng-repeat="slide in slides"
 			 class="slide slide-animation nonDraggableImage"
 			 ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
 			 ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}">
-</div>
+	</div>
 </modal-dialog>
 
 
