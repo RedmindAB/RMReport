@@ -20,11 +20,11 @@
                     <div class="navbar-header">
 
                     <div class='inline' ng-controller = "NavCtrl">
-                    	<a id='home' class="navbar-brand" ng-href="#/"><img src='img/logo.png' style='margin-top: -14px;margin-left:-30px'></img></a>
-						<a id='graph_view' href='' ng-click="goToGraphView()" ng-style="{'color': getNavColor('reports')}" style="margin-left:10px;font-size:0.7em;">
+                    	<a id='home' class="navbar-brand" ng-href="#/"><img src='img/logo.png' class='home'></img></a>
+						<a id='graph_view' href='' ng-click="goToGraphView()" ng-style="{'color': getNavColor('reports')}" class='view'>
 							Graph View
 						</a>
-						<a id='screenshot_view' href='' ng-click="goToScreenshotView()" ng-style="{'color': getNavColor('screenshots')}" style="margin-left:10px;font-size:0.7em;">
+						<a id='screenshot_view' href='' ng-click="goToScreenshotView()" ng-style="{'color': getNavColor('screenshots')}" class='view'>
 							Screenshot View
 						</a>
 					</div>
