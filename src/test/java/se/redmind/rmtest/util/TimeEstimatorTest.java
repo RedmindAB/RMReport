@@ -36,5 +36,4 @@ public class TimeEstimatorTest {
 			Thread.sleep(1);
 		}
 	}
-
 }

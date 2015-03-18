@@ -9,13 +9,13 @@ import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.lookup.report.ReportExist;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.reporthandler.ReportHandler;
+import se.redmind.rmtest.report.reportloader.ReportLoader;
 import se.redmind.rmtest.report.reportvalidation.ReportValidator;
 import se.redmind.rmtest.util.TimeEstimator;
 
 public class ReportInit {
 
-	
-	
+	private String reportPath;
 	private ReportHandler reportHandler;
 
 	public ReportInit() {
@@ -23,6 +23,7 @@ public class ReportInit {
 	}
 	
 	public ReportInit(String reportPath){
+		this.reportPath = reportPath;
 		reportHandler = new ReportHandler(reportPath);
 	}
 	
@@ -40,7 +41,7 @@ public class ReportInit {
 			System.out.print(" ");
 			estimator.start();
 			for (File file : reportFiles) {
-					ReportValidator reportValidator = new ReportValidator(file.getName());
+					ReportValidator reportValidator = getReportValidator(file);
 					Report report = reportValidator.getReport();
 					boolean existsInDB = reportExist.reportExists(report.getTimestamp(), report.getSuiteName());
 					if (!existsInDB) {
@@ -63,6 +64,13 @@ public class ReportInit {
 			e.printStackTrace();
 		}
 		return addedReports;
+	}
+	
+	private ReportValidator getReportValidator(File file){
+		if (reportPath != null) {
+			return new ReportValidator(file, new ReportLoader(reportPath, false));
+		}
+		return new ReportValidator(file.getName());
 	}
 	
 }

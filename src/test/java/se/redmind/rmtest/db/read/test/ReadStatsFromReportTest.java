@@ -56,6 +56,7 @@ public class ReadStatsFromReportTest {
 	}
 	
 	
+	@Ignore
 	@Test
 	public void test() {
 		String queryFromJsonObject = readStatsFromReport.getQueryFromJsonObject(params, 123L);

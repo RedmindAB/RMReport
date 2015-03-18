@@ -27,7 +27,7 @@ public class DriverTest {
 	public void testIsBroken(){
 		String driverName = "Android_4.4.4_HTC One_safari_";
 		Driver driver = new Driver(driverName);
-		assertFalse(driver.isBroken());
+		assertTrue(driver.isBroken());
 	}
 	
 	@Test
