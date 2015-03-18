@@ -113,9 +113,9 @@
                     <table>
                         <tr>
 
-                            <td style='padding-left: 10px;font-size:20px' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
-                                <input style='margin-top:9px' type="checkbox" id='input_browser' ng-click="newContent()" ng-model="browser.chosen">
-                                <div ng-click='setChosen(browser); newContent()' style='display:inline;cursor:pointer'>{{browser.browsername}}</div>
+                            <td class='padding-l' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
+                                <input class='mrg-t-t' type="checkbox" id='input_browser' ng-click="newContent()" ng-model="browser.chosen">
+                                <div ng-click='setChosen(browser); newContent()' class='inline pointer'>{{browser.browsername}}</div>
                             </td>
                         </tr>
                     </table>
@@ -138,14 +138,14 @@
                                     <table class='table-m'>
 
                                         <tr>
-                                            <td height='10px'>
-                                                <h4 style="margin-left:10px">Devices:&nbsp;</h4>
+                                            <td class='height-t'>
+                                                <h4 class='mrg-l'>Devices:&nbsp;</h4>
                                             </td>
 
-                                            <td height='10px' style='padding:0px 10px 0px 10px' ng-repeat="device in platform.devices track by $index" >
+                                            <td class='height-t padding' ng-repeat="device in platform.devices track by $index" >
                                                 <input ng-model="device.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">
                                                 	&nbsp;
-                                                <div ng-click='setChosen(device); newContent()' style='display:inline-block;cursor:pointer'>
+                                                <div ng-click='setChosen(device); newContent()' class='inline-pointer'>
                                                 	{{device.devicename}}
                                                 </div>
                                                 <label for="mycheckbox"></label>
@@ -153,12 +153,12 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <h4 style="margin-left:10px">Versions:&nbsp;</h4>
+                                                <h4 class='mrg-l'>Versions:&nbsp;</h4>
                                             </td>
-                                            <td style='padding:0px 10px 0px 10px' ng-repeat="version in platform.versions track by $index">
+                                            <td class='padding' ng-repeat="version in platform.versions track by $index">
                                                 <input ng-model="version.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">
                                                 	&nbsp;
-                                                <div ng-click='setChosen(version); newContent()' style='display:inline-block;cursor:pointer'>
+                                                <div ng-click='setChosen(version); newContent()' class='inline pointer'>
                                                 	{{version.osver}}
                                                 </div>
                                                 <label for="mycheckbox"></label> 
