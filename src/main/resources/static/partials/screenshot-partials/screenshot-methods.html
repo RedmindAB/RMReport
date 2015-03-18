@@ -1,7 +1,6 @@
 <div class='noselect' ng-controller = "NavCtrl">
-	<div style='height:100%;margin-top:10px;cursor: pointer;word-break:break-all' id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' 
-	          ng-style="{'background-color': getBgCo(CurrentSuite.currentClass.result)}">
-		<h3 ng-style="{'color' : getCo(CurrentSuite.currentClass.result)}">&nbsp;{{CurrentSuite.currentClass.name}}</h3>
+	<div class="screenshot-container" id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' ng-style="{'background-color': getBgCo(CurrentSuite.currentClass.result)}">
+		<h3 class="accordion-name-container" ng-style="{'color' : getCo(CurrentSuite.currentClass.result)}">&nbsp;{{CurrentSuite.currentClass.name}}</h3>
 	
 			<!-- expandable methods -->
 			<accordion close-others="false">

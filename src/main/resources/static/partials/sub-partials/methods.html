@@ -10,7 +10,8 @@
                     </td>
                     <td ng-click="getCases(method);
                             setState('reports.cases');" ng-style="{'color' : getCo(method.result)}">
-                        <h3 style='display:inline;margin:2px 0px 0px 0px'>&nbsp;{{method.name}}</h3> <h3 style='margin:2px 0px 0px 0px;float:right;display:inline'>&nbsp;{{formatDecimals(method.time)}}</h3>
+						<h3 class="accordion-name-container" style='float:left;display:inline;'>&nbsp;{{method.name}}</h3> 
+                        <h3 class="accordion-name-container" style='float:right;display:inline'>&nbsp;{{formatDecimals(method.time)}}</h3>
                     </td>
                 </tr>
             </table>
