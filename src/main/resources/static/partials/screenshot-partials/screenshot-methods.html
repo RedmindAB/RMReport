@@ -7,7 +7,7 @@
 			<accordion close-others="false">
 			    <!-- repeated content -->
 			    <div class='noselect' ng-repeat="method in ScreenshotMaster.data | orderBy:Utilities.caseSorting:reverse track by $index">
-			        <accordion-group style='margin-top:10px' ng-class='getPanel(method.result)' ng-style="{'background-color': getBgCo(method.result)}">
+			        <accordion-group style='margin-top:10px' ng-class='getPanel(method.result)' >
 			            <!-- non collapsing header -->
 			            <accordion-heading id='method_name' style='margin: 0px 5px 0px 5px'>
 							<div style='display:inline;'>
@@ -17,15 +17,14 @@
 			            <!-- non collapsing header End-->
 			
 			            <!-- Content in collapsing Div -->
-			            
-							<table ng-repeat='case in method.testcases track by $index' style='display:inline-block;padding:20px'>
+							<table ng-repeat='case in method.testcases track by $index' class='panel' ng-style="{'background-color': getBgCo(method.result)}" style='display:inline-block;padding:20px;margin-right:5px'>
 								<tr>
 									<td>{{case.device}} - {{case.browser}}</td>
 								</tr>
 
 								<tr ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index'>
 
-									<td height='450px' valign='top' ng-style="{'border-color': getBorder()}">
+									<td height='450px' valign='top'>
 										<img id='set_method' ng-click='setCurrentMethod(method); setSlides(method.testcases, $index, $parent.$index); toggleModal();' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img><br><br>
 
 									</td>
