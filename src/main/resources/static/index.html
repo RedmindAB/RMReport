@@ -18,10 +18,10 @@
             <nav class="container navbar navbar-custom navbar-fixed-top">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                    <div style='display:inline'>
+                    <div style='display:inline' ng-controller = "NavCtrl">
                     	<a id='home' class="navbar-brand" ng-href="#/"><img src='img/logo.png' style='margin-top: -14px;margin-left:-30px'></img></a>
-						<a href=''>Graph View</a>
-						<a href=''>Screenshot View</a>
+						<a href='' ng-click="goToGraphView()">Graph View</a>
+						<a href='' ng-click="goToScreenshotView()">Screenshot View</a>
 					</div>
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                                 data-target="#bs-example-navbar-collapse-1">

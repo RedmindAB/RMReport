@@ -1,4 +1,4 @@
-angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuite', 'Charts','Utilities', function($scope, $state, CurrentSuite, Charts, Utilities){
+angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state', 'CurrentSuite', 'Charts','Utilities','ScreenshotMaster', function($scope, $rootScope,$state, CurrentSuite, Charts, Utilities, ScreenshotMaster){
 	
 	$scope.CurrentSuite = CurrentSuite;
 	$scope.Charts = Charts;
@@ -38,6 +38,28 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$state', 'CurrentSuit
 			break;
 		default:
 			break;
+		}
+	}
+	
+	$scope.goToGraphView = function(){
+		if (CurrentSuite.currentSuite == undefined) {
+			$scope.setState('home');
+		} else {
+			$scope.setState('reports.classes');
+		}
+	}
+	
+	$scope.goToScreenshotView = function(){
+		if (CurrentSuite.currentSuite == undefined) {
+			$scope.setState('home');
+		} else if (CurrentSuite.currentClass.length == 0) {
+			$scope.setState('screenshots.classes');
+		} else {
+			if (ScreenshotMaster.currentClass != CurrentSuite.currentClass.id) {
+				console.log("sending");
+				 $scope.$emit('wrongScreenData');
+			}
+			$scope.setState('screenshots.methods');
 		}
 	}
 	
