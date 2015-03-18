@@ -26,6 +26,7 @@ public class PassFailClassWS extends Route {
 	 *	fail:4,
 	 *	error:0,
 	 *	skipped:1
+	 *	total:126
 	 *}
 	 */
 	@Override
