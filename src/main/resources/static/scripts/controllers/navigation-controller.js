@@ -42,24 +42,28 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 	}
 	
 	$scope.goToGraphView = function(){
-		if (CurrentSuite.currentSuite == undefined) {
-			$scope.setState('home');
+		if (ScreenshotMaster.previousView !== undefined) {
+			$state.transitionTo(ScreenshotMaster.previousView);
 		} else {
-			$scope.setState('reports.classes');
-		}
+			if (CurrentSuite.currentSuite.length == 0) {
+				$state.transitionTo('home');
+			} else {
+				$state.transitionTo('reports.classes');
+			}
+		}		
 	}
 	
 	$scope.goToScreenshotView = function(){
+		ScreenshotMaster.previousView = $state.$current.name;
 		if (CurrentSuite.currentSuite == undefined) {
-			$scope.setState('home');
+			$state.transitionTo('home');
 		} else if (CurrentSuite.currentClass.length == 0) {
-			$scope.setState('screenshots.classes');
+			$state.transitionTo('screenshots.classes');
 		} else {
 			if (ScreenshotMaster.currentClass != CurrentSuite.currentClass.id) {
-				console.log("sending");
 				 $scope.$emit('wrongScreenData');
 			}
-			$scope.setState('screenshots.methods');
+			$state.transitionTo('screenshots.methods');
 		}
 	}
 	
