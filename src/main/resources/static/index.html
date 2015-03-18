@@ -20,8 +20,12 @@
                     <div class="navbar-header">
                     <div style='display:inline' ng-controller = "NavCtrl">
                     	<a id='home' class="navbar-brand" ng-href="#/"><img src='img/logo.png' style='margin-top: -14px;margin-left:-30px'></img></a>
-						<a id='graph_view' href='' ng-click="goToGraphView()">Graph View</a>
-						<a id='screenshot_view' href='' ng-click="goToScreenshotView()">Screenshot View</a>
+						<a id='graph_view' href='' ng-click="goToGraphView()" ng-style="{'color': getNavColor('reports')}" style="margin-left:10px;font-size:0.7em;">
+							Graph View
+						</a>
+						<a id='screenshot_view' href='' ng-click="goToScreenshotView()" ng-style="{'color': getNavColor('screenshots')}" style="margin-left:10px;font-size:0.7em;">
+							Screenshot View
+						</a>
 					</div>
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                                 data-target="#bs-example-navbar-collapse-1">
