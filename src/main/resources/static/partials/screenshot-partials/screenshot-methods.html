@@ -9,7 +9,7 @@
 			    <div class='noselect' ng-repeat="method in ScreenshotMaster.data | orderBy:Utilities.caseSorting:reverse track by $index">
 			        <accordion-group style='margin-top:10px' ng-class='getPanel(method.result)' ng-style="{'background-color': getBgCo(method.result)}">
 			            <!-- non collapsing header -->
-			            <accordion-heading id='case_name'>
+			            <accordion-heading id='case_name' style='margin: 0px 5px 0px 5px'>
 							<div style='display:inline;'>
 			                    {{method.name}}
 							</div>
