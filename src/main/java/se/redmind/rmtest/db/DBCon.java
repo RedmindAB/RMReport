@@ -6,7 +6,8 @@ import java.sql.*;
  * Created by johan on 15-01-26.
  */
 public class DBCon {
-
+	
+	private Long lastUpdated;
 	public static enum instance {DISK, INMEMORY};
     private static DBCon dbInstance = null;
     private static Connection conn;
@@ -106,6 +107,15 @@ public class DBCon {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    }
+    
+    public synchronized void refreshLastUpdated(){
+    	this.lastUpdated = System.currentTimeMillis();
+    	this.lastUpdated.notifyAll();
+    }
+    
+    public synchronized Long getLastUpdated(){
+    	return lastUpdated;
     }
     
     public void dropIMDB(){
