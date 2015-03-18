@@ -112,9 +112,15 @@
                     <!-- BROWSERS START -->
                     <table>
                         <tr>
+<<<<<<< HEAD
                             <td class='browser' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
                                 <input class='browser-m' type="checkbox" id='input_browser' ng-click="newContent()" ng-model="browser.chosen">
                                 <div ng-click='setChosen(browser); newContent()' class='inline browser'>{{browser.browsername}} - v.{{browser.browserver}}</div>
+=======
+                            <td style='padding-left: 10px;font-size:20px' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
+                                <input style='margin-top:9px' type="checkbox" id='input_browser' ng-click="newContent()" ng-model="browser.chosen">
+                                <div ng-click='setChosen(browser); newContent()' style='display:inline;cursor:pointer'>{{browser.browsername}}</div>
+>>>>>>> 76b3f9d1831dd9e6e7a2a27d72771865077de5d1
                             </td>
                         </tr>
                     </table>
@@ -133,21 +139,34 @@
                                             {{platform.osname}}
                                         </div>
                                     </accordion-heading>
+
                                     <table class='table-m'>
+
                                         <tr>
                                             <td height='10px'>
-                                                <h4>Devices:&nbsp;</h4>
+                                                <h4 style="margin-left:10px">Devices:&nbsp;</h4>
                                             </td>
-                                            <td height='10px' class='padding' ng-repeat="device in platform.devices track by $index" >
-                                                <input ng-model="device.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">&nbsp;<div class='inline-block pointer' ng-click='setChosen(device); newContent()'>{{device.devicename}}</div><label for="mycheckbox"></label>
+
+                                            <td height='10px' style='padding:0px 10px 0px 10px' ng-repeat="device in platform.devices track by $index" >
+                                                <input ng-model="device.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">
+                                                	&nbsp;
+                                                <div ng-click='setChosen(device); newContent()' style='display:inline-block;cursor:pointer'>
+                                                	{{device.devicename}}
+                                                </div>
+                                                <label for="mycheckbox"></label>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <h4>Versions:&nbsp;</h4>
+                                                <h4 style="margin-left:10px">Versions:&nbsp;</h4>
                                             </td>
-                                            <td class='padding' ng-repeat="version in platform.versions track by $index">
-                                                <input ng-model="version.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">&nbsp;<div class='inline-block pointer' ng-click='setChosen(version); newContent()'>{{version.osver}}</div><label for="mycheckbox"></label> 
+                                            <td style='padding:0px 10px 0px 10px' ng-repeat="version in platform.versions track by $index">
+                                                <input ng-model="version.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">
+                                                	&nbsp;
+                                                <div ng-click='setChosen(version); newContent()' style='display:inline-block;cursor:pointer'>
+                                                	{{version.osver}}
+                                                </div>
+                                                <label for="mycheckbox"></label> 
                                             </td>
                                         </tr>
                                         <tr>
