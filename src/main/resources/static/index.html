@@ -15,12 +15,12 @@
     <body ng-controller = "MainCtrl" class='noselect'>
         <div ng-controller = "StyleCtrl">
             <div class='triangle-overlay'><img src='img/triangle.png'></img></div>
-            <nav class="container navbar navbar-custom">
+            <nav class="container navbar navbar-custom" ng-controller='NavCtrl'>
                 <div class="container-fluid">
                     <div class="navbar-header">
                     <div>
                     	<a id='home' ng-href="#/"><img src='img/logo.png' class='home'></img></a>
-						<a id='graph_view' href='' ng-click="goToGraphView()" ng-style="{'color': getNavColor('reports')}" class='view'>
+						<a id='graph_view' href='' ng-click="goToGraphView()" ng-style="{'color': getNavColor('reports')}" class='view view-mrg-l'>
 							Graph View
 						</a>
 						<a id='screenshot_view' href='' ng-click="goToScreenshotView()" ng-style="{'color': getNavColor('screenshots')}" class='view'>

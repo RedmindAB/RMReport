@@ -14,11 +14,12 @@
 							<div class='inline'>
 			                    {{method.name}}
 							</div>
-						</div>
+					</div>
 			            </accordion-heading>
 			            <!-- non collapsing header End-->
 			
 			            <!-- Content in collapsing Div -->
+							
 							<table ng-repeat='case in method.testcases track by $index' ng-style="{'background-color': getBgCo(method.result)}" class='panel inline-block padding-t mrg-rf'>
 								<tr>
 									<td>{{case.device}} - {{case.browser}}</td>
