@@ -18,30 +18,8 @@
             <!-- non collapsing header End-->
 
             <!-- Content in collapsing Div -->
-            <div ng-class='getBG(case.result)'>
-                <table class="table" class='mrg-browser'>
-                    <thead>
-                        <tr class='hidden'>
-                            <th>Browser version</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{case.browserversion}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <accordion ng-if="case.message.length > 2" close others="true">
-                    <accordion-group ng-class='getPanel(case.result)' ng-style="{'background-color': getBgCo(case.result)}">
-                        <accordion-heading id='case_message'>
-                            Display Error Message
-                        </accordion-heading>
-
-                        <pre>{{case.message}}</pre>
-                    </accordion-group>
-                </accordion>	            
-            </div>
+                        <pre ng-if="case.message !== '{message}'">{{case.message}}</pre>
+                        <pre ng-if="case.message === '{message}'">No Message To Display</pre>
             <!-- Content in collapsing Div End -->
 
         </accordion-group>

@@ -491,6 +491,7 @@ angular.module('webLog')
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		CurrentSuite.currentCases = data;
+	    		console.log(data);
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -528,7 +529,6 @@ angular.module('webLog')
 	}
 	
 	function getPassFailTotByMethod(timestamp, classObj, methods){
-		console.log(classObj);
 		for (var i = 0; i < methods.length; i++) {
 			getPassFailByMethod(timestamp, classObj, methods[i]);
 		}
@@ -552,7 +552,6 @@ angular.module('webLog')
 			if(data){
 				method.stats = data 
 				method.stats.totFail = getTotFail(data);
-				console.log(method);
 			};
 		}).error(function(data, status, headers, config){
 			console.log(data);
