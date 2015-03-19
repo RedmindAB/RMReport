@@ -5,16 +5,16 @@
             <!-- non collapsing header -->
             <table width='100%'>
                 <tr>
-					<td width='10px' id='lol'>
-                    	<input class='float-left mrg-b-f mrg-l-f' type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="method.chosen" ng-click="newContent()">
+					<td class='checkbox-holder' id='lol'>
+                    	<input class='float-left mrg-b-f mrg-l-f' style="margin-top:0px" type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="method.chosen" ng-click="newContent()">
                     	<label for="mycheckbox"></label>					                    
                     </td>
                     
                     
                     <td ng-click="getCases(method);
                             setState('reports.cases');" ng-style="{'color' : getCo(method.result)}">
-						<h3 class="accordion-name-container float-left inline">&nbsp;{{method.name}}</h3> 
-                        <h3 class="accordion-name-container float-right inline">&nbsp;{{formatDecimals(method.time)}}</h3>
+						<h4 class="accordion-name-container float-left inline">{{method.name}}</h4> 
+                        <h4 class="accordion-name-container float-right inline">&nbsp;{{formatDecimals(method.time)}}</h4>
                         <p class="accordion-name-container float-right inline">Skipped: {{method.stats.skipped}} Failed: {{method.stats.totFail}}</p>
                     </td>
                 </tr>
