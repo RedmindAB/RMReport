@@ -15,12 +15,11 @@
     <body ng-controller = "MainCtrl" class='noselect'>
         <div ng-controller = "StyleCtrl">
             <div class='triangle-overlay'><img src='img/triangle.png'></img></div>
-            <nav class="container navbar navbar-custom navbar-fixed-top">
+            <nav class="container navbar navbar-custom">
                 <div class="container-fluid">
                     <div class="navbar-header">
-
-                    <div class='inline' ng-controller = "NavCtrl">
-                    	<a id='home' class="navbar-brand" ng-href="#/"><img src='img/logo.png' class='home'></img></a>
+                    <div>
+                    	<a id='home' ng-href="#/"><img src='img/logo.png' class='home'></img></a>
 						<a id='graph_view' href='' ng-click="goToGraphView()" ng-style="{'color': getNavColor('reports')}" class='view'>
 							Graph View
 						</a>
@@ -28,16 +27,9 @@
 							Screenshot View
 						</a>
 					</div>
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                data-target="#bs-example-navbar-collapse-1">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>        	
-                    </div>
                     <div class="collapse navbar-collapse float-right" id="bs-example-navbar-collapse-1"></div>
                     <!-- /.navbar-collapse -->
+                </div>
                 </div>
                 <!-- /.container-fluid -->
             </nav>
