@@ -53,6 +53,13 @@ define({ "api": [
             "optional": false,
             "field": "timestamp",
             "description": "<p>timestamp of the suite.</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": true,
+            "field": "testcaseid",
+            "description": "<p>id of the method/testcase.</p> "
           }
         ]
       }

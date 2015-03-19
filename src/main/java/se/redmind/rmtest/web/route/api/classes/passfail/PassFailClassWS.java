@@ -19,6 +19,7 @@ public class PassFailClassWS extends Route {
 	 * 
 	 * @apiParam {Number} classid ID of the class.
 	 * @apiParam {Number} timestamp timestamp of the suite.
+	 * @apiParam {Number} [testcaseid] id of the method/testcase.
 	 * 
 	 *@apiSuccessExample {json} Success-Response:
 	 *{
@@ -33,7 +34,8 @@ public class PassFailClassWS extends Route {
 	public Object handle(Request request, Response response) {
 		String timestamp = request.queryParams("timestamp");
 		String classid = request.queryParams("classid");
-		return new Gson().toJson(new PassFailDAO().getPassFail(timestamp, classid, null));
+		String testcaseid = request.queryParams("testcaseid");
+		return new Gson().toJson(new PassFailDAO().getPassFail(timestamp, classid, testcaseid));
 	}
 
 	
