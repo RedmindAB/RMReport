@@ -11,8 +11,9 @@
                         <input class='float-left mrg-b-f mrg-l mrg-l-f' type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="class.chosen" ng-click="newContent()"><label for="mycheckbox"></label>					                    
                     </td>
                     <td id='get_methods' ng-click="getMethods(class); setState('reports.methods');" ng-style="{'color' : getCo(class.result)}">
-                        <h3 class="accordion-name-container float-left inline">&nbsp;{{class.name}}</h3> 
-                        <h3 class="accordion-name-container float-right inline">{{class.stats.totFail}}/{{class.stats.total}}&nbsp;&nbsp;{{formatDecimals(class.time)}}</h3>
+                        <h3 class="accordion-name-container float-left inline">&nbsp;{{class.name}}</h3>
+                        <h3 class="accordion-name-container float-right inline">&nbsp;&nbsp;{{formatDecimals(class.time)}}</h3>
+                        <p class="accordion-name-container float-right inline">Skipped: {{class.stats.skipped}} Failed: {{class.stats.totFail}}</p>
                     </td>
                 </tr>
             </table>
