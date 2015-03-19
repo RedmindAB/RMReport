@@ -1,7 +1,7 @@
 <accordion close-others="true">
 
     <!-- repeated content -->
-    <div class='noselect' ng-repeat="case in CurrentSuite.currentCases| filter: Utilities.searchField | orderBy:Utilities.caseSorting:reverse track by $index">
+    <div ng-repeat="case in CurrentSuite.currentCases| filter: Utilities.searchField | orderBy:Utilities.caseSorting:reverse track by $index">
         <accordion-group class='mrg-t-t' ng-class='getPanel(case.result)' ng-style="{'background-color': getBgCo(case.result)}">
             <!-- non collapsing header -->
             <accordion-heading id='case_name'>
@@ -19,7 +19,7 @@
 
             <!-- Content in collapsing Div -->
             <div ng-class='getBG(case.result)'>
-                <table class="table" class='mrg-browser'>
+                <table class="table mrg-browser">
                     <thead>
                         <tr class='hidden'>
                             <th>Browser version</th>
@@ -38,7 +38,7 @@
                             Display Error Message
                         </accordion-heading>
 
-                        <pre>{{case.message}}</pre>
+                        <pre class='select'>{{case.message}}</pre>
                     </accordion-group>
                 </accordion>	            
             </div>

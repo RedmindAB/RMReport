@@ -188,6 +188,19 @@ fieldset[disabled] .btn-warning2.active {
     -ms-user-select: none;
     user-select: none;
 }
+
+/* End */
+
+/* Style to unrestrict users from selecting text*/
+.select {
+	-webkit-touch-callout: text;
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
 /* End */
 
 /* Redmind triangle */
@@ -412,7 +425,8 @@ fieldset[disabled] .btn-warning2.active {
 }
 
 .top-d{
-	top: 85px;
+	top: 0px;
+	display:inline-block;
 }
 
 .slide-img{

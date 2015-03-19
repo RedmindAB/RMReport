@@ -1,4 +1,4 @@
-<div class='noselect' ng-controller = "NavCtrl">
+<div ng-controller = "NavCtrl">
 
 	<div class="screenshot-container" id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' ng-style="{'background-color': getBgCo(CurrentSuite.currentClass.result)}">
 		<h3 class="accordion-name-container" ng-style="{'color' : getCo(CurrentSuite.currentClass.result)}">&nbsp;{{CurrentSuite.currentClass.name}}</h3>
@@ -46,16 +46,13 @@
 		{{currentMethod.name}}</br>
 		{{getCurrentSlideInfo()}}
 	</h1>
-	<br>
-		<nav class="nav" class='top-d'>
-		<div class="wrapper">
+		<div class="wrapper mrg-t" align='center'>
 			<ul class="dots">
-				<li class="dot" id='dot' ng-repeat="slide in slides"><a href="#"
+				<li class="dot top-d" id='dot' ng-repeat="slide in slides"><a href="#"
 					ng-class="{'active':isCurrentSlideIndex($index)}"
 					ng-click="setCurrentSlideIndex($index);">{{slide.description}}</a></li>
 			</ul>
 		</div>
-	</nav>
 	<br>
 	<a class="arrow prev" id='arrow_prev' href="#" ng-click="nextSlide()"></a>
 	<a class="arrow next" id='arrow_next' href="#" ng-click="prevSlide()"></a>
