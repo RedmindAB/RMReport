@@ -475,7 +475,9 @@ angular.module('webLog')
 	    		getPassFailTotByClass(timestamp, CurrentSuite.currentSuite);
 	    		if (CurrentSuite.currentClass != undefined) {
 	    			CurrentSuite.currentMethods = getMethodsByClassId(CurrentSuite.currentClass.id);
-	    			getPassFailTotByMethod(timestamp, CurrentSuite.currentClass, CurrentSuite.currentMethods);
+	    			if (CurrentSuite.currentMethods !== undefined) {
+	    				getPassFailTotByMethod(timestamp, CurrentSuite.currentClass, CurrentSuite.currentMethods);
+					}
 	    			if ($state.current.name === "reports.cases") {
 	    				$scope.getCases(CurrentSuite.currentMethod);
 					}
@@ -493,7 +495,6 @@ angular.module('webLog')
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		CurrentSuite.currentCases = data;
-	    		console.log(data);
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
