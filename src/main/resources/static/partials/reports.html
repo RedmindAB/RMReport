@@ -2,7 +2,7 @@
 
     <!-- Chart -->
     <!-- project logo -->
-    <img ng-src="{{'img/' + CurrentSuite.currentSuiteInfo.name + '.png'}}" style="cursor: pointer;margin-top:10px" class='image-paths' ng-click="setState('home')"></img> 
+    <img ng-src="{{'img/' + CurrentSuite.currentSuiteInfo.name + '.png'}}" style="cursor: pointer" class='image-paths' ng-click="setState('home')"></img> 
     <!-- project logo END-->
     <link rel="stylesheet" href="css/style.css">		
     <!-- navigation links -->
@@ -83,7 +83,7 @@
         </div>
         <div class='btn-group' align='center'>
             <h5 style='margin-bottom:0px'>Choose break point</h5>
-            <button style='width:150px;margin:1px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
+            <button style='width:150px;' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
                 {{breakPointChoice}}
                 <span class="caret"></span>
             </button>
