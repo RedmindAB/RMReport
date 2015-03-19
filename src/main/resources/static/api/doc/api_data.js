@@ -33,6 +33,52 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/class/passfail",
+    "title": "",
+    "name": "PassFail",
+    "group": "Class",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "timestamp",
+            "description": "<p>timestamp of the suite.</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "classid",
+            "description": "<p>ID of the class.</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": true,
+            "field": "testcaseid",
+            "description": "<p>ID of the method/testcase.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n\tpass:121,\n\tfail:4,\n\terror:0,\n\tskipped:1\n\ttotal:126\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./src/main/java/se/redmind/rmtest/web/route/api/classes/passfail/PassFailClassWS.java",
+    "groupTitle": "Class"
+  },
+  {
+    "type": "get",
     "url": "/device/notrunforamonth",
     "title": "",
     "name": "NotRunForAMonth",

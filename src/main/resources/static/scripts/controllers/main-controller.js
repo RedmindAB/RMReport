@@ -133,6 +133,7 @@ angular.module('webLog')
 		$scope.clearOtherChosen(testClass);
 		CurrentSuite.currentClass=testClass;
 		CurrentSuite.currentMethods = CurrentSuite.currentClass.testcases;
+		getPassFailTotByMethod(CurrentSuite.currentTimeStamp, CurrentSuite.currentClass, CurrentSuite.currentMethods);
 	}
 	
 	//used to clear other objects in the class/method/case view
@@ -450,6 +451,14 @@ angular.module('webLog')
 	    	if(data){
 	    		$scope.getSpecsInfo(suite.id);
 	    		CurrentSuite.currentSuite = data;
+	    		
+	    		var timestamp
+	    		if (CurrentSuite.currentTimeStamp === '') {
+					timestamp = suite.lastTimeStamp;
+				} else {
+					timestamp = CurrentSuite.currentTimeStamp;
+				}
+	    		getPassFailTotByClass(timestamp, CurrentSuite.currentSuite);
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
@@ -461,8 +470,10 @@ angular.module('webLog')
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		CurrentSuite.currentSuite = data;
+	    		getPassFailTotByClass(timestamp, CurrentSuite.currentSuite);
 	    		if (CurrentSuite.currentClass != undefined) {
 	    			CurrentSuite.currentMethods = getMethodsByClassId(CurrentSuite.currentClass.id);
+	    			getPassFailTotByMethod(timestamp, CurrentSuite.currentClass, CurrentSuite.currentMethods);
 	    			if ($state.current.name === "reports.cases") {
 	    				$scope.getCases(CurrentSuite.currentMethod);
 					}
@@ -509,6 +520,49 @@ angular.module('webLog')
 	    	console.log(data);
 	    });
 	};
+	
+	function getPassFailTotByClass(timestamp, classObj){
+		for (var i = 0; i < classObj.length; i++) {
+			getPassFailByClass(timestamp, classObj[i]);
+		}
+	}
+	
+	function getPassFailTotByMethod(timestamp, classObj, methods){
+		console.log(classObj);
+		for (var i = 0; i < methods.length; i++) {
+			getPassFailByMethod(timestamp, classObj, methods[i]);
+		}
+	}
+	
+	function getPassFailByClass(timestamp, classObj){
+		$http.get('/api/class/passfail?timestamp=' + timestamp + '&classid='+classObj.id)
+		.success(function(data, status, headers, config){ 
+			if(data){
+				classObj.stats = data 
+				classObj.stats.totFail = getTotFail(data);
+			};
+		}).error(function(data, status, headers, config){
+			console.log(data);
+		});
+	}
+	
+	function getPassFailByMethod(timestamp, classObj, method){
+		$http.get('/api/class/passfail?timestamp=' + timestamp + '&classid='+classObj.id+'&testcaseid='+method.id)
+		.success(function(data, status, headers, config){ 
+			if(data){
+				method.stats = data 
+				method.stats.totFail = getTotFail(data);
+				console.log(method);
+			};
+		}).error(function(data, status, headers, config){
+			console.log(data);
+		});
+	}
+	
+	function getTotFail(passFailData){
+		var totFail = parseInt(passFailData.error) + parseInt(passFailData.failure);
+		return totFail;
+	}
 	
    $scope.loadMainChart = function(suiteID, newLine) {
 	   	Charts.mainChart.loading = 'Generating impressivly relevant statistics...';
@@ -1296,6 +1350,8 @@ angular.module('webLog')
     	for (var index = 0; index < data[0].data.length; index++) {
 			timeStamps.push(data[0].data[index].timestamp);
 		}
+    	
+    	suite.lastTimeStamp = timeStamps[timeStamps.length-1];
     	
         var chartHomeConfigObject = {
 				options : {

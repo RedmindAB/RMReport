@@ -14,11 +14,12 @@ public class PassFailClassWS extends Route {
 
 	/**
 	 * @api {get} /class/passfail
-	 * @apiName GetClasses
+	 * @apiName PassFail
 	 * @apiGroup Class
 	 * 
-	 * @apiParam {Number} classid ID of the class.
 	 * @apiParam {Number} timestamp timestamp of the suite.
+	 * @apiParam {Number} classid ID of the class.
+	 * @apiParam {Number} [testcaseid] ID of the method/testcase.
 	 * 
 	 *@apiSuccessExample {json} Success-Response:
 	 *{
@@ -26,13 +27,15 @@ public class PassFailClassWS extends Route {
 	 *	fail:4,
 	 *	error:0,
 	 *	skipped:1
+	 *	total:126
 	 *}
 	 */
 	@Override
 	public Object handle(Request request, Response response) {
 		String timestamp = request.queryParams("timestamp");
 		String classid = request.queryParams("classid");
-		return new Gson().toJson(new PassFailDAO().getPassFail(timestamp, classid, null));
+		String testcaseid = request.queryParams("testcaseid");
+		return new Gson().toJson(new PassFailDAO().getPassFail(timestamp, classid, testcaseid));
 	}
 
 	

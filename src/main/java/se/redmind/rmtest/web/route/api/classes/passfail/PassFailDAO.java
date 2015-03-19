@@ -17,9 +17,17 @@ public class PassFailDAO extends DBBridge {
 		map.put("classid", classid);
 		map.put("timestamp", timestamp);
 		String sql = stringParser.getString(query, map);
+		sql += addFilters(testcaseid);
 		return runSqlQuery(sql);
 	}
 	
+	private String addFilters(String testcaseid) {
+		if (testcaseid != null) {
+			return " AND testcase_id = "+testcaseid;
+		}
+		return "";
+	}
+
 	public JsonObject runSqlQuery(String sql){
 		JsonObject json = new JsonObject();
 		ResultSet rs = readFromDB(sql);
