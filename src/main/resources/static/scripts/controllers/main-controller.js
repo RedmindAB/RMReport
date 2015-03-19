@@ -1377,7 +1377,16 @@ angular.module('webLog')
 							}
 							}
 						}
-					}
+					},
+			        legend: {
+			            itemHoverStyle: {
+			                color: '#FF0000'
+			            },
+			            layout: 'vertical',
+			            align: 'right',
+			            verticalAlign: 'middle',
+			            borderWidth: 0
+			        },
 				},
 				title:{
 					text: suite.name
@@ -1388,7 +1397,7 @@ angular.module('webLog')
 				series : [ {
 					data : [],
 					id : "pass",
-					name : "Pass",
+					name : "Passed",
 					type : "column",
 					color : "green",
 					dashStyle : "Solid",
@@ -1396,7 +1405,7 @@ angular.module('webLog')
 				}, {
 					data : [],
 					id : "fail",
-					name : "Fail",
+					name : "Failed",
 					type : "column",
 					color : '#FF0000',
 					dashStyle : "Solid",
