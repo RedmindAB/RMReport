@@ -19,6 +19,8 @@ angular.module('webLog')
     	$scope.breakPointChoice = choice;
     }
     
+    $scope.mock = colors;
+    
     function clearPlatformChosen(platform){
     	var platforms = CurrentSuite.currentSpecObject.platforms;
     	for (var i = 0; i < platforms.length; i++) {
