@@ -6,7 +6,7 @@ angular.module('webLog')
 	    	timeStamps: '',
 	    	graphView: 'Pass/Fail',
 	    	runValues: ["10", "20", "50", "100", "500"],
-	    	sorting: ['result', 'name'],
+	    	sorting: ['result','stats.totFail', 'name'],
 	    	caseSorting: ['result','osname', 'devicename', 'osversion', 'browsername']
 	    };
 	});
