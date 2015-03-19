@@ -5,15 +5,17 @@
         <accordion-group class='mrg-t-t' ng-class='getPanel(case.result)' ng-style="{'background-color': getBgCo(case.result)}">
             <!-- non collapsing header -->
             <accordion-heading id='case_name'>
-                <button class='thistestonly' id='thistestonly' ng-class='getButton(case.result)' ng-click="addCaseToGraph(case.osname, case.osversion, case.devicename, case.browsername, case.browserversion); $event.preventDefault(); $event.stopPropagation();">
-                	This test only
-                </button>&nbsp;
-                <div class='inline'>
-                    {{case.osname}} - {{case.devicename}} -	{{case.osversion}} - {{case.browsername}} {{case.timestamp}}
-                </div>
-                <div class="accordion-name-container float-right inline">
-					{{case.timetorun}}
-                </div>
+	            <div>
+	                <button class='thistestonly' id='thistestonly' ng-class='getButton(case.result)' ng-click="addCaseToGraph(case.osname, case.osversion, case.devicename, case.browsername, case.browserversion); $event.preventDefault(); $event.stopPropagation();">
+	                	This test only
+	                </button>&nbsp;
+	                <div class='inline'>
+	                    {{case.osname}} - {{case.devicename}} -	{{case.osversion}} - {{case.browsername}} {{case.timestamp}}
+	                </div>
+	                <div class="accordion-name-container float-right inline">
+						{{case.timetorun}}
+	                </div>
+				</div>
             </accordion-heading>
             <!-- non collapsing header End-->
 
