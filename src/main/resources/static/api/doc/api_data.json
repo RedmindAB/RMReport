@@ -35,18 +35,11 @@
     "type": "get",
     "url": "/class/passfail",
     "title": "",
-    "name": "GetClasses",
+    "name": "PassFail",
     "group": "Class",
     "parameter": {
       "fields": {
         "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "classid",
-            "description": "<p>ID of the class.</p> "
-          },
           {
             "group": "Parameter",
             "type": "Number",
@@ -57,9 +50,16 @@
           {
             "group": "Parameter",
             "type": "Number",
+            "optional": false,
+            "field": "classid",
+            "description": "<p>ID of the class.</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
             "optional": true,
             "field": "testcaseid",
-            "description": "<p>id of the method/testcase.</p> "
+            "description": "<p>ID of the method/testcase.</p> "
           }
         ]
       }

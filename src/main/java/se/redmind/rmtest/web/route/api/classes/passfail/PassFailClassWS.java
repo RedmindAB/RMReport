@@ -14,12 +14,12 @@ public class PassFailClassWS extends Route {
 
 	/**
 	 * @api {get} /class/passfail
-	 * @apiName GetClasses
+	 * @apiName PassFail
 	 * @apiGroup Class
 	 * 
-	 * @apiParam {Number} classid ID of the class.
 	 * @apiParam {Number} timestamp timestamp of the suite.
-	 * @apiParam {Number} [testcaseid] id of the method/testcase.
+	 * @apiParam {Number} classid ID of the class.
+	 * @apiParam {Number} [testcaseid] ID of the method/testcase.
 	 * 
 	 *@apiSuccessExample {json} Success-Response:
 	 *{
