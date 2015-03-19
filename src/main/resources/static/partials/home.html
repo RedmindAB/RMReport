@@ -1,4 +1,4 @@
-<div ng-repeat="suite in allSuites">
+<div ng-repeat="suite in allSuites track by $index">
     <table class='table-home'>
         <!-- Project logo -->
         <tr>
@@ -22,4 +22,6 @@
         </tr>
         <!-- project chart END -->
     </table>
+        	<!-- separator -->
+    	<div ng-if="$index !== allSuites.length -1" class='row' style='border:10px solid #D4D9DD'></div>
 </div>
