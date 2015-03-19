@@ -73,6 +73,7 @@ public class ReportTestCase{
 		}
 		else {
 			passed = true;
+			this.message = "";
 			this.resultType = ResultType.PASSED;
 		}
 		
