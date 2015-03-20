@@ -2,7 +2,7 @@
 
     <!-- Chart -->
     <!-- project logo -->
-    <img ng-src="{{'img/' + CurrentSuite.currentSuiteInfo.name + '.png'}}" style="cursor: pointer;margin-top:10px" class='image-paths' ng-click="setState('home')"></img> 
+    <img ng-src="{{'img/' + CurrentSuite.currentSuiteInfo.name + '.png'}}" style="cursor: pointer" class='image-paths' ng-click="setState('home')"></img> 
     <!-- project logo END-->
     <link rel="stylesheet" href="css/style.css">		
     <!-- navigation links -->
@@ -83,7 +83,7 @@
         </div>
         <div class='btn-group' align='center'>
             <h5 style='margin-bottom:0px'>Choose break point</h5>
-            <button style='width:150px;margin:1px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
+            <button style='width:150px;' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
                 {{breakPointChoice}}
                 <span class="caret"></span>
             </button>
@@ -99,7 +99,7 @@
         <accordion close-others="false">
             <!-- repeated content -->
             <div width='100%' style='margin:7px 3px 3px 3px;' id='expandable'>
-                <accordion-group >
+                <accordion-group>
 
                     <accordion-heading id='reports_spec'>
                         <div ng-click='toggleButton()'>Specifications<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
@@ -179,37 +179,41 @@
             <!-- repeated content  End-->
         </accordion>
     </div>
-    <div class='row' style='border:10px solid #D4D9DD'>
-    </div>
-    <div class="btn-group" style='margin-top:10px;'>
-        <h5 style='margin-bottom:0px'>Choose timestamp</h5>
-        <button style='width:150px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
-            {{CurrentSuite.currentTimeStamp}}
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu scrollable-menu">
-            <li ng-repeat="timeStamp in descTimestamps"><a ng-click="loadNewTimeStamp(timeStamp)" id='timestamp'>
-                    {{timeStamp}}
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div class="btn-group" style='margin-top:35px;word-break:break-all'>
-        <input type="text" id="filter-field" class="form-control tool-tip" style="width:150px;display:inline" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>	
-        <h4 style='display:inline;vertical-align:bottom;cursor:pointer' ng-click="subNavLinks();">{{getPosition()}}</h4>
-    </div>
-    <br>
-    <div class='btn-group' align='center'>
-        <h5 style='margin-bottom:0px'>Order by&nbsp;</h5>
-        <button style='width:100px' id='passfail' class='btn btn-default dropdown-toggle' ng-click="setSorting('pass/fail'); reverse = !reverse">
-            Fail/Pass</button>
-        <ul></ul>
-    </div>
-    <div class='btn-group' align='center' style='float:right'>
-        <h5 style='margin-bottom:0px'>Order by&nbsp;</h5>
-        <button style='width:100px' id='runtime' class='btn btn-default dropdown-toggle' ng-click="setSorting('time'); reverse = !reverse">
-            Run time</button>
-        <ul></ul>
+    
+    	<!-- separator -->
+   	<div class='row' style='border:10px solid #D4D9DD'></div>
+   	<h4 style='cursor:pointer;text-align:center' ng-click="subNavLinks();">{{getPosition()}}</h4>
+   	<div id="class-method-option-container">
+	    <div class='btn-group' align='center' id = "class-method-option-left">
+	        <h5 style='margin-bottom:0px'>Order by&nbsp;</h5>
+	        <button style='width:100px' id='passfail' class='btn btn-default dropdown-toggle' ng-click="setSorting('pass/fail'); reverse = !reverse">
+	            Fail/Pass</button>
+	        <ul></ul>
+	    </div>
+   	<div id="class-method-option-center">
+	    <div class="btn-group">
+	        <h5 style='margin-bottom:0px;margin-top:0px'>Choose timestamp</h5>
+	        <button style='width:150px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
+	            {{CurrentSuite.currentTimeStamp}}
+	            <span class="caret"></span>
+	        </button>
+	        <ul class="dropdown-menu scrollable-menu">
+	            <li ng-repeat="timeStamp in descTimestamps"><a ng-click="loadNewTimeStamp(timeStamp)" id='timestamp'>
+	                    {{timeStamp}}
+	                </a>
+	            </li>
+	        </ul>
+	    </div>
+	    <div class="btn-group" style='margin-top:15px;word-break:break-all'>
+	        <input type="text" id="filter-field" class="form-control tool-tip" style="width:150px;display:inline" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>	
+	    </div>
+   	</div>
+	    <div class='btn-group' align='center' id = "class-method-option-right" style='float:right'>
+	        <h5 style='margin-bottom:0px'>Order by&nbsp;</h5>
+	        <button style='width:100px' id='runtime' class='btn btn-default dropdown-toggle' ng-click="setSorting('time'); reverse = !reverse">
+	            Run time</button>
+	        <ul></ul>
+	    </div>
     </div>
     <!-- Chart variant dropdown END -->
 

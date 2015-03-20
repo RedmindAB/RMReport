@@ -36,6 +36,8 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	    }).error(function(data, status, headers, config){
 	    	console.log(data);
 	    });
+	    
+	    console.log(ScreenshotMaster);
 	}
 	
 	$scope.getScreenshotsFromFileName = function(fileName){

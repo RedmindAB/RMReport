@@ -1,16 +1,16 @@
-<div ng-repeat="suite in allSuites">
+<div ng-repeat="suite in allSuites track by $index">
     <table class='table-home'>
         <!-- Project logo -->
         <tr>
             <td>
                 <img id='section' class='image-paths pointer' ng-src="{{'img/' + suite.name + '.png'}}" ng-click="loadMainChart(suite.id);
                         setState('reports.classes');
-                        getSuiteSkeleton(suite);" alt='{{suite.name}}'></img><br><br><h3 class='pointer inline home-img' ng-click="loadMainChart(suite.id);
+                        getSuiteSkeleton(suite);" alt='{{suite.name}}'></img><br><br><h4 class='pointer inline home-img' ng-click="loadMainChart(suite.id);
                                 setState('reports.classes');
-                                getSuiteSkeleton(suite);">Go to graph</h3>
-                                <br><br><h3 class='pointer inline home-img' ng-click="loadMainChart(suite.id);
+                                getSuiteSkeleton(suite);">Go to graph</h4>
+                                <br><h4 class='pointer inline home-img' ng-click="loadMainChart(suite.id);
                                 setState('screenshots.classes');
-                                getSuiteSkeleton(suite);">Go to screen shots</h3>
+                                getSuiteSkeleton(suite);">Go to screen shots</h4>
             </td>
         </tr>
         <!-- project logo END -->
@@ -22,4 +22,6 @@
         </tr>
         <!-- project chart END -->
     </table>
+        	<!-- separator -->
+    	<div ng-if="$index !== allSuites.length -1" class='row' style='border:10px solid #D4D9DD'></div>
 </div>

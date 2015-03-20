@@ -7,12 +7,12 @@
             <!-- non collapsing header -->
             <table width='100%'>
                 <tr>
-                    <td width='10px' id='lol'>
-                        <input class='float-left mrg-b-f mrg-l mrg-l-f' type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="class.chosen" ng-click="newContent()"><label for="mycheckbox"></label>					                    
+                    <td class="checkbox-holder" id='lol'>
+                        <input class='float-left mrg-b-f mrg-l mrg-l-f' style="margin-top:0px" type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="class.chosen" ng-click="newContent()"><label for="mycheckbox"></label>					                    
                     </td>
                     <td id='get_methods' ng-click="getMethods(class); setState('reports.methods');" ng-style="{'color' : getCo(class.result)}">
-                        <h3 class="accordion-name-container float-left inline">&nbsp;{{class.name}}</h3>
-                        <h3 class="accordion-name-container float-right inline">&nbsp;&nbsp;{{formatDecimals(class.time)}}</h3>
+                        <h4 class="accordion-name-container float-left inline">{{class.name}}</h4>
+                        <h4 class="accordion-name-container float-right inline">&nbsp;&nbsp;{{formatDecimals(class.time)}}</h4>
                         <p class="accordion-name-container float-right inline">Skipped: {{class.stats.skipped}} Failed: {{class.stats.totFail}}</p>
                     </td>
                 </tr>

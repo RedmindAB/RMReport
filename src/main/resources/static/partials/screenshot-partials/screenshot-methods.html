@@ -1,13 +1,17 @@
 <div ng-controller = "NavCtrl">
 
 	<div class="screenshot-container" id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' ng-style="{'background-color': getBgCo(CurrentSuite.currentClass.result)}">
-		<h3 class="accordion-name-container" ng-style="{'color' : getCo(CurrentSuite.currentClass.result)}">&nbsp;{{CurrentSuite.currentClass.name}}</h3>
+		<h4 class="accordion-name-container" ng-style="{'color' : getCo(CurrentSuite.currentClass.result)}">
+			&nbsp;{{CurrentSuite.currentClass.name}}
+		</h4>
 	
 			<!-- expandable methods -->
 			<accordion close-others="false">
 			    <!-- repeated content -->
+
 			    <div class='noselect' ng-repeat="method in ScreenshotMaster.data | orderBy:Utilities.caseSorting:reverse track by $index">
 			        <accordion-group style='margin-top: 10px' ng-class='getPanel(method.result)' >
+
 			            <!-- non collapsing header -->
 			            <accordion-heading id='method_name' style='margin: 0px 5px 0px 5px'>
 			            <div>
