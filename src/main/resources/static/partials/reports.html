@@ -181,37 +181,39 @@
     </div>
     
     	<!-- separator -->
-    	<div class='row' style='border:10px solid #D4D9DD'></div>
-    	
-    <div class="btn-group">
-        <h5 style='margin-bottom:0px;margin-top:0px'>Choose timestamp</h5>
-        <button style='width:150px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
-            {{CurrentSuite.currentTimeStamp}}
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu scrollable-menu">
-            <li ng-repeat="timeStamp in descTimestamps"><a ng-click="loadNewTimeStamp(timeStamp)" id='timestamp'>
-                    {{timeStamp}}
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div class="btn-group" style='margin-top:15px;word-break:break-all'>
-        <input type="text" id="filter-field" class="form-control tool-tip" style="width:150px;display:inline" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>	
-        <h4 style='display:inline;vertical-align:bottom;cursor:pointer' ng-click="subNavLinks();">{{getPosition()}}</h4>
-    </div>
-    <br>
-    <div class='btn-group' align='center'>
-        <h5 style='margin-bottom:0px'>Order by&nbsp;</h5>
-        <button style='width:100px' id='passfail' class='btn btn-default dropdown-toggle' ng-click="setSorting('pass/fail'); reverse = !reverse">
-            Fail/Pass</button>
-        <ul></ul>
-    </div>
-    <div class='btn-group' align='center' style='float:right'>
-        <h5 style='margin-bottom:0px'>Order by&nbsp;</h5>
-        <button style='width:100px' id='runtime' class='btn btn-default dropdown-toggle' ng-click="setSorting('time'); reverse = !reverse">
-            Run time</button>
-        <ul></ul>
+   	<div class='row' style='border:10px solid #D4D9DD'></div>
+   	<h4 style='cursor:pointer;text-align:center' ng-click="subNavLinks();">{{getPosition()}}</h4>
+   	<div id="class-method-option-container">
+	    <div class='btn-group' align='center' id = "class-method-option-left">
+	        <h5 style='margin-bottom:0px'>Order by&nbsp;</h5>
+	        <button style='width:100px' id='passfail' class='btn btn-default dropdown-toggle' ng-click="setSorting('pass/fail'); reverse = !reverse">
+	            Fail/Pass</button>
+	        <ul></ul>
+	    </div>
+   	<div id="class-method-option-center">
+	    <div class="btn-group">
+	        <h5 style='margin-bottom:0px;margin-top:0px'>Choose timestamp</h5>
+	        <button style='width:150px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
+	            {{CurrentSuite.currentTimeStamp}}
+	            <span class="caret"></span>
+	        </button>
+	        <ul class="dropdown-menu scrollable-menu">
+	            <li ng-repeat="timeStamp in descTimestamps"><a ng-click="loadNewTimeStamp(timeStamp)" id='timestamp'>
+	                    {{timeStamp}}
+	                </a>
+	            </li>
+	        </ul>
+	    </div>
+	    <div class="btn-group" style='margin-top:15px;word-break:break-all'>
+	        <input type="text" id="filter-field" class="form-control tool-tip" style="width:150px;display:inline" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>	
+	    </div>
+   	</div>
+	    <div class='btn-group' align='center' id = "class-method-option-right" style='float:right'>
+	        <h5 style='margin-bottom:0px'>Order by&nbsp;</h5>
+	        <button style='width:100px' id='runtime' class='btn btn-default dropdown-toggle' ng-click="setSorting('time'); reverse = !reverse">
+	            Run time</button>
+	        <ul></ul>
+	    </div>
     </div>
     <!-- Chart variant dropdown END -->
 
