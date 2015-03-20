@@ -4,6 +4,10 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	$scope.modalShown = false;
 	$scope.caseArraySize = []
 	
+	$scope.getMethodContentWidth = function(method){
+		return method.screenshotLength;
+	}
+	
 	$scope.toggleModal = function() {
 		$scope.modalShown = !$scope.modalShown;
 	};
