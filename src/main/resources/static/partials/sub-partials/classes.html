@@ -1,19 +1,19 @@
 <div>
     <accordion close-others="true">
         <!-- repeated content -->
-        <div class='height-h mrg-t-t pointer wordbreak' id='method_name' ng-repeat="class in CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index "
+        <div class='classes' id='method_name' ng-repeat="class in CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index "
              ng-class='getPanel(class.result)' 
              ng-style="{'background-color': getBgCo(class.result)}">
             <!-- non collapsing header -->
             <table width='100%'>
                 <tr>
                     <td class="checkbox-holder" id='lol'>
-                        <input class='float-left mrg-b-f mrg-l mrg-l-f' style="margin-top:0px" type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="class.chosen" ng-click="newContent()"><label for="mycheckbox"></label>					                    
+                        <input class='classes-input' style="margin-top:0px" type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="class.chosen" ng-click="newContent()"><label for="mycheckbox"></label>					                    
                     </td>
                     <td id='get_methods' ng-click="getMethods(class); setState('reports.methods');" ng-style="{'color' : getCo(class.result)}">
-                        <h4 class="accordion-name-container float-left inline">{{class.name}}</h4>
-                        <h4 class="accordion-name-container float-right inline">&nbsp;&nbsp;{{formatDecimals(class.time)}}</h4>
-                        <p class="accordion-name-container float-right inline">Skipped: {{class.stats.skipped}} Failed: {{class.stats.totFail}}</p>
+                        <h4 class="accordion-name-container text-left">{{class.name}}</h4>
+                        <h4 class="accordion-name-container text-right">&nbsp;&nbsp;{{formatDecimals(class.time)}}</h4>
+                        <p class="accordion-name-container text-right">Skipped: {{class.stats.skipped}} Failed: {{class.stats.totFail}}</p>
                     </td>
                 </tr>
             </table>

@@ -116,7 +116,7 @@
 							<td class="option-item option-browser" height='10px' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index" >
 								<input ng-model="browser.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">
 									&nbsp;
-								<div ng-click='setChosen(browser); newContent()' style='display:inline-block;cursor:pointer'>
+								<div ng-click='setChosen(browser); newContent()' class='reports-cursor-inline'>
 									{{browser.browsername}}
 								</div>
 								<label for="mycheckbox"></label>
@@ -131,7 +131,7 @@
                     <div>		    
                         <accordion close-others="false">
                             <div ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
-                                <input style='margin-top:14px;margin-left:5px' ng-model='platform.chosen' ng-click="newContent()" id='input_osname' type="checkbox" class="mycheckbox" ><label for="mycheckbox" style='font-weight:normal;'></label>
+                                <input class='mycheckbox reports-input' ng-model='platform.chosen' ng-click="newContent()" id='input_osname' type="checkbox" ><label for="mycheckbox" style='font-weight:normal;'></label>
                                 <accordion-group is-open='platform.chosen'>
                                     <accordion-heading id='reports_name' ng-click='newContent()'> 
                                         <div ng-click='newContent(); togglePlatformChosen(platform)'>&nbsp;
@@ -146,7 +146,7 @@
                                             <td class="option-item" height='10px' ng-repeat="device in platform.devices track by $index" >
                                                 <input ng-model="device.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">
                                                 	&nbsp;
-                                                <div ng-click='setChosen(device); newContent()' style='display:inline-block;cursor:pointer'>
+                                                <div ng-click='setChosen(device); newContent()' class='reports-cursor-inline'>
                                                 	{{device.devicename}}
                                                 </div>
                                                 <label for="mycheckbox"></label>
@@ -159,7 +159,7 @@
                                             <td ng-repeat="version in platform.versions track by $index">
                                                 <input ng-model="version.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">
                                                 	&nbsp;
-                                                <div ng-click='setChosen(version); newContent()' style='display:inline-block;cursor:pointer'>
+                                                <div ng-click='setChosen(version); newContent()' class='reports-cursor-inline'>
                                                 	{{version.osver}}
                                                 </div>
                                                 <label for="mycheckbox"></label> 
@@ -182,7 +182,7 @@
     
     	<!-- separator -->
    	<div class='row' style='border:10px solid #D4D9DD'></div>
-   	<h4 style='cursor:pointer;text-align:center' ng-click="subNavLinks();">{{getPosition()}}</h4>
+   	<h4 class='reports-h4' ng-click="subNavLinks();">{{getPosition()}}</h4>
    	<div id="class-method-option-container">
 	    <div class='btn-group' align='center' id = "class-method-option-left">
 	        <h5 style='margin-bottom:0px'>Order by&nbsp;</h5>
@@ -192,7 +192,7 @@
 	    </div>
    	<div id="class-method-option-center">
 	    <div class="btn-group">
-	        <h5 style='margin-bottom:0px;margin-top:0px'>Choose timestamp</h5>
+	        <h5 class='reports-h5'>Choose timestamp</h5>
 	        <button style='width:150px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
 	            {{CurrentSuite.currentTimeStamp}}
 	            <span class="caret"></span>
@@ -204,9 +204,9 @@
 	            </li>
 	        </ul>
 	    </div>
-	    <div class="btn-group" style='margin-top:15px;word-break:break-all'>
-	        <input type="text" id="filter-field" class="form-control tool-tip" style="width:150px;display:inline" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>	
-	    </div>
+	    <div class='btn-group'>
+	        <input type="text" id="filter-field" class="reports-filter form-control tool-tip reports-filter-input" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>	
+   		</div>
    	</div>
 	    <div class='btn-group' align='center' id = "class-method-option-right" style='float:right'>
 	        <h5 style='margin-bottom:0px'>Order by&nbsp;</h5>

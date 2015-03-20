@@ -1,21 +1,21 @@
 <div>
     <accordion close-others="true">
         <!-- repeated content -->
-        <div class='height-h mrg-t-t pointer' id='method_name' ng-repeat="method in CurrentSuite.currentMethods| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index" ng-class='getPanel(method.result)' ng-style="{'background-color': getBgCo(method.result)}">
+        <div class='methods' id='method_name' ng-repeat="method in CurrentSuite.currentMethods| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index" ng-class='getPanel(method.result)' ng-style="{'background-color': getBgCo(method.result)}">
             <!-- non collapsing header -->
             <table width='100%'>
                 <tr>
 					<td class='checkbox-holder' id='lol'>
-                    	<input class='float-left mrg-b-f mrg-l-f' style="margin-top:0px" type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="method.chosen" ng-click="newContent()">
+                    	<input class='methods-input' style="margin-top:0px" type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="method.chosen" ng-click="newContent()">
                     	<label for="mycheckbox"></label>					                    
                     </td>
                     
                     
                     <td ng-click="getCases(method);
                             setState('reports.cases');" ng-style="{'color' : getCo(method.result)}">
-						<h4 class="accordion-name-container float-left inline">{{method.name}}</h4> 
-                        <h4 class="accordion-name-container float-right inline">&nbsp;{{formatDecimals(method.time)}}</h4>
-                        <p class="accordion-name-container float-right inline">Skipped: {{method.stats.skipped}} Failed: {{method.stats.totFail}}</p>
+						<h4 class="accordion-name-container text-left">{{method.name}}</h4> 
+                        <h4 class="accordion-name-container text-right">&nbsp;{{formatDecimals(method.time)}}</h4>
+                        <p class="accordion-name-container text-right">Skipped: {{method.stats.skipped}} Failed: {{method.stats.totFail}}</p>
                     </td>
                 </tr>
             </table>
