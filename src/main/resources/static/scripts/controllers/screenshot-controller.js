@@ -4,6 +4,10 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	$scope.modalShown = false;
 	$scope.caseArraySize = []
 	
+	$scope.getMethodContentWidth = function(method){
+		return method.testcases.length * 247;
+	}
+	
 	$scope.toggleModal = function() {
 		$scope.modalShown = !$scope.modalShown;
 	};
@@ -71,6 +75,11 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 			}
 			data[i].screenshotLength = screenshotLength;
 		}
+	}
+	
+	$scope.getFailError = function(obj){
+		var tot = obj.error + obj.failure;
+		return tot;
 	}
 	
 	$scope.getNumber = function(num) {
