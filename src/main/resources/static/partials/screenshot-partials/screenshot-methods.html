@@ -44,14 +44,14 @@
 </div>
 
 <modal-dialog width='100%' id='modal_dialog' toggle='toggleModal()' show='modalShown'
-			  height='40%' class='bg-t'>
+			  height='40%' style='background-color : transparent'>
 	<h1 align='center' class='white'>
 		{{currentMethod.name}}</br>
 		{{getCurrentSlideInfo()}}
 	</h1>
-		<div class="wrapper mrg-t" align='center'>
+		<div class="wrapper" align='center'>
 			<ul class="dots">
-				<li class="dot top-d" id='dot' ng-repeat="slide in slides"><a href="#"
+				<li class="dot screenshot-methods-description" id='dot' ng-repeat="slide in slides"><a href="#"
 					ng-class="{'active':isCurrentSlideIndex($index)}"
 					ng-click="setCurrentSlideIndex($index);">{{slide.description}}</a></li>
 			</ul>
