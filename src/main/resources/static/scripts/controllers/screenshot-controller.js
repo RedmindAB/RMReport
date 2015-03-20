@@ -73,6 +73,11 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 		}
 	}
 	
+	$scope.getFailError = function(obj){
+		var tot = obj.error + obj.failure;
+		return tot;
+	}
+	
 	$scope.getNumber = function(num) {
 	    return new Array(num);   
 	}
