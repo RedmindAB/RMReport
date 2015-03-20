@@ -36,7 +36,7 @@ public class PropertiesReader {
 			System.err.println("No properties file was detected, creating template file:");
 			properties.put(TEST_DIR, "/PATH/TO/surefire-reports");
 			try {
-				properties.store(new FileOutputStream(this.file), "Created: "+new Date());
+				properties.store(new FileOutputStream(this.file), "Created: "+new Date()+" add more test directories with ',' as a divider");
 				System.out.println("config.prop created at: "+file.getAbsolutePath());
 				System.err.println("Exiting program");
 				System.exit(0);
