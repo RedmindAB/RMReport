@@ -38,13 +38,13 @@ public class ReportValidator {
 	private TestcaseDbLookup readTestcaseFromDB;
 	private boolean validFilename;
 	
-	public ReportValidator(String filename) {
+	public ReportValidator(String filename, String path) {
 		this.filename = filename;
 		this.readFromDB = new ReportDbLookup();
 		this.readClassFromDB = new ClassDbLookup();
 		this.readSuiteFromDB = new SuiteDbLookup();
 		this.connection = DBCon.getDbInstance().getConnection();
-		this.loader = new ReportLoader();
+		this.loader = new ReportLoader(path, false);
 		this.parser = new ReportXMLParser();
 		this.suiteInserter = new SuiteInserter();
 		this.testCaseRunInserter = new TestCaseRunInserter();

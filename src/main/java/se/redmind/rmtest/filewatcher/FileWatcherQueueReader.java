@@ -11,15 +11,16 @@ import static java.nio.file.StandardWatchEventKinds.*;
 public class FileWatcherQueueReader implements Runnable {
 
 	private WatchService watchService;
+	private String path;
 
-	public FileWatcherQueueReader(WatchService watchService) {
+	public FileWatcherQueueReader(WatchService watchService, String path) {
 		this.watchService = watchService;
+		this.path = path;
 	}
 
 	@SuppressWarnings({ "rawtypes", "unused" })
 	@Override
 	public void run() {
-		System.out.println("File watcher is running!");
 		try {
 			// get the first event before looping
 			WatchKey key = watchService.take();
@@ -35,7 +36,7 @@ public class FileWatcherQueueReader implements Runnable {
 					if (event.kind().equals(ENTRY_CREATE) && isXmlFile) {
 						System.out.println(filename);
 						ReportValidator reportValidator = new ReportValidator(
-								filename);
+								filename, path);
 						boolean reportExists = reportValidator.reportExists();
 						boolean validFilename = reportValidator.isValidFilename();
 						if (!reportExists && validFilename) {

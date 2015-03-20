@@ -18,17 +18,13 @@ public class ReportInit {
 	private String reportPath;
 	private ReportHandler reportHandler;
 
-	public ReportInit() {
-		reportHandler = new ReportHandler();
-	}
-	
 	public ReportInit(String reportPath){
 		this.reportPath = reportPath;
 		reportHandler = new ReportHandler(reportPath);
 	}
 	
 	public int initReports(){
-		System.out.println("Checking reports!");
+		System.out.println("Checking "+reportPath);
 		List<File> reportFiles = reportHandler.getReportFiles();
 		System.out.println("Found "+reportFiles.size()+" reports");
 		int addedReports = 0;
@@ -70,7 +66,7 @@ public class ReportInit {
 		if (reportPath != null) {
 			return new ReportValidator(file, new ReportLoader(reportPath, false));
 		}
-		return new ReportValidator(file.getName());
+		return new ReportValidator(file.getName(), reportPath);
 	}
 	
 }

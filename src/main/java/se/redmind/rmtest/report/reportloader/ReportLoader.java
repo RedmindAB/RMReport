@@ -10,12 +10,6 @@ public class ReportLoader {
 	public static String reportFolderPath;
 	private File reportFolder = null;
 	
-	/**
-	 * Creates a new instance of the ReportLoader where the path to the report folder is expected to be PROJECT_DIR/target/surefire-reports.
-	 */
-	public ReportLoader() {
-		reportFolderPath = searchReportFolderPath();
-	}
 	
 	/**
 	 * Create a new instance of the ReportLoader where the path is set to a specific folder.
@@ -24,11 +18,6 @@ public class ReportLoader {
 	 */
 	public ReportLoader(String pathToReportFolder, boolean createFolderIfNotExists){
 		reportFolderPath = findFolder(pathToReportFolder, createFolderIfNotExists);
-	}
-	
-	private String searchReportFolderPath(){
-		String reportDir = new PropertiesReader().getTestDirectory();
-		return findFolder(reportDir, false);
 	}
 	
 	/**

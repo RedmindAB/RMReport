@@ -48,8 +48,10 @@ public class PropertiesReader {
 		
 	}
 	
-	public String getTestDirectory(){
-		return properties.getProperty(TEST_DIR);
+	public String[] getTestDirectory(){
+		String property = properties.getProperty(TEST_DIR);
+		String[] dirs = property.split(",");
+		return dirs;
 	}
 	
 	
