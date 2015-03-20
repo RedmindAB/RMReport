@@ -1,17 +1,13 @@
 <div ng-controller = "NavCtrl">
 
 	<div class="screenshot-container" id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' ng-style="{'background-color': getBgCo(CurrentSuite.currentClass.result)}">
-		<h4 class="accordion-name-container" ng-style="{'color' : getCo(CurrentSuite.currentClass.result)}">
-			&nbsp;{{CurrentSuite.currentClass.name}}
-		</h4>
+		<h3 class="accordion-name-container" ng-style="{'color' : getCo(CurrentSuite.currentClass.result)}">&nbsp;{{CurrentSuite.currentClass.name}}</h3>
 	
 			<!-- expandable methods -->
 			<accordion close-others="false">
 			    <!-- repeated content -->
-
 			    <div class='noselect' ng-repeat="method in ScreenshotMaster.data | orderBy:Utilities.caseSorting:reverse track by $index">
-			        <accordion-group style='margin-top: 10px' ng-class='getPanel(method.result)' >
-
+			        <accordion-group style='margin-top:10px' ng-class='getPanel(method.result)' >
 			            <!-- non collapsing header -->
 			            <accordion-heading id='method_name' style='margin: 0px 5px 0px 5px'>
 			            <div>
@@ -30,8 +26,10 @@
 								</tr>
 
 								<tr ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index'>
-									<td class='screenshot-methods-td'>
-										<img  width='200px' id='set_method' ng-click='setCurrentMethod(method); setSlides(method.testcases, $index, $parent.$index); toggleModal();' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img>
+
+									<td height='450px' valign='top'>
+										<img id='set_method' ng-click='setCurrentMethod(method); setSlides(method.testcases, $index, $parent.$index); toggleModal();' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img><br><br>
+
 									</td>
 								</tr>
 							</table>
@@ -45,7 +43,8 @@
 	</div>
 </div>
 
-<modal-dialog id='modal_dialog' toggle='toggleModal()' show='modalShown' class='modal-dialog'>
+<modal-dialog width='100%' id='modal_dialog' toggle='toggleModal()' show='modalShown'
+			  height='40%' class='bg-t'>
 	<h1 align='center' class='white'>
 		{{currentMethod.name}}</br>
 		{{getCurrentSlideInfo()}}
