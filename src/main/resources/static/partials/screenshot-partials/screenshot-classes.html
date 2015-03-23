@@ -2,7 +2,7 @@
     <accordion close-others="true">
         <!-- repeated content -->
 
-        <div class="screenshot-container screenshot-class-display" id='method_name' ng-repeat="class in CurrentSuite.currentSuite| orderBy:['result','-stats.totFail','name'] track by $index "
+        <div class="screenshot-class-display" id='class_name' ng-repeat="class in CurrentSuite.currentSuite| orderBy:['result','-stats.totFail','name'] track by $index "
              ng-class='getPanel(class.result)' 
              ng-style="{'background-color': getBgCo(class.result)}"
              >

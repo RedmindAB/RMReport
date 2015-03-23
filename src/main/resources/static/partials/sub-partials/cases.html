@@ -20,8 +20,8 @@
             <!-- non collapsing header End-->
 
             <!-- Content in collapsing Div -->
-                        <pre class="select stack-trace" ng-if="case.message !== '{message}' && case.message !== ''">{{case.message}}</pre>
-                        <pre class="stack-trace" ng-if="case.message === '{message}' || case.message === ''">No Message To Display</pre>
+                        <pre class="select stack-trace" ng-if="case.message !== ''">{{case.message}}</pre>
+                        <pre class="stack-trace" ng-if="case.message === ''">No Message To Display</pre>
             <!-- Content in collapsing Div End -->
 
         </accordion-group>
