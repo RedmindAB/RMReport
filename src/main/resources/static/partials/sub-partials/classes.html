@@ -1,7 +1,7 @@
 <div>
     <accordion close-others="true">
         <!-- repeated content -->
-        <div class='class-method-container' id='class-name' ng-repeat="class in CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index "
+        <div class='class-method-container' style="margin-top:10px" id='class-name' ng-repeat="class in CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index "
              ng-class='getPanel(class.result)' 
              ng-style="{'background-color': getBgCo(class.result)}">
             <!-- non collapsing header -->
