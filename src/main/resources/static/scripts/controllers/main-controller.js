@@ -22,6 +22,7 @@ angular.module('webLog')
     $scope.mock = colors;
     
     function clearPlatformChosen(platform){
+    	console.log("clearing");
     	var platforms = CurrentSuite.currentSpecObject.platforms;
     	for (var i = 0; i < platforms.length; i++) {
 			if (platforms[i].osname === platform.osname) {
@@ -190,16 +191,16 @@ angular.module('webLog')
 		clearChosenPlatforms();
 	}
 	
-	$scope.clearPlatformChosen = function(){
-			for (var i = 0; i < CurrentSuite.currentSpecObject.platforms.length; i++) {
-				for (var j = 0; j < CurrentSuite.currentSpecObject.platforms[i].versions.length; j++) {
-						delete CurrentSuite.currentSpecObject.platforms[i].versions[j].chosen;
-				}
-				for (var j = 0; j < CurrentSuite.currentSpecObject.platforms[i].devices.length; j++) {
-					delete CurrentSuite.currentSpecObject.platforms[i].devices[j].chosen;
-				}
-			}
-	}
+//	$scope.clearPlatformChosen = function(){
+//			for (var i = 0; i < CurrentSuite.currentSpecObject.platforms.length; i++) {
+//				for (var j = 0; j < CurrentSuite.currentSpecObject.platforms[i].versions.length; j++) {
+//						delete CurrentSuite.currentSpecObject.platforms[i].versions[j].chosen;
+//				}
+//				for (var j = 0; j < CurrentSuite.currentSpecObject.platforms[i].devices.length; j++) {
+//					delete CurrentSuite.currentSpecObject.platforms[i].devices[j].chosen;
+//				}
+//			}
+//	}
 	
 	function clearChosenOs() {
 		if (CurrentSuite.currentSpecObject.platforms) {

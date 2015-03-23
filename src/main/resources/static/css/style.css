@@ -39,7 +39,14 @@ h3 {
 .panel-body{
 	padding: 0px;
 	overflow-x:scroll;
-} 
+}
+
+.panel-heading{
+	padding-top:0px;
+	padding-bottom:0px;
+	padding-left:10px;
+	padding-right:10px;
+}
  
 .btn-success2:hover, 
 .btn-success2:focus, 
@@ -311,7 +318,8 @@ fieldset[disabled] .btn-warning2.active {
 
 .mycheckbox 
 { 
-    float: left; 
+    float: left;
+    margin-top:10px;
     background: url('http://www.gravatar.com/avatar/a2614a382fe86e0f69c1beb27182a63b?s=32&d=identicon&r=PG'); 
 }
 
@@ -466,6 +474,20 @@ label {
 
 /* Specifications style */
 
+.accordion-toggle{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+.specs-heading{
+	padding:0px;
+}
+
+.spec-option-header{
+	margin-left:10px;
+	margin-right:10px;
+}
+
 .option-headline{
 	margin:0px;
 	margin-left:10px;
@@ -487,6 +509,10 @@ label {
 	
 /* End */
 
+.specs-container{
+	margin-top:10px;
+}
+
 /*screenshot style*/
 
 .screenshot-container{
@@ -502,6 +528,7 @@ label {
 .screenshot-class-display{
 	padding-left:10px;
 	padding-right:10px;
+	cursor:pointer;
 }
 
 .screenshot-nav{
