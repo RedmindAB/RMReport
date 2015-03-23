@@ -4,6 +4,7 @@ import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.InMemoryDBHandler;
 import se.redmind.rmtest.filewatcher.FileWatcher;
 import se.redmind.rmtest.report.init.ReportInit;
+import se.redmind.rmtest.web.properties.PropertiesReader;
 import se.redmind.rmtest.web.route.RMTRoute;
 
 import java.sql.SQLException;
@@ -15,7 +16,11 @@ public class Main {
 		//starts the database.
 		DBCon.getDbInstance();
 		//Searches though the report directory for reports that are not added yet.
-		int addedreports = new ReportInit().initReports();
+		String[] testDirectories = new PropertiesReader().getTestDirectory();
+		int addedreports = 0;
+		for (String string : testDirectories) {
+			addedreports += new ReportInit(string).initReports();
+		}
 		System.out.println("Added "+addedreports+" reports.");
 		//init the In Memory DB
 		System.out.println("Init the in memory db...");

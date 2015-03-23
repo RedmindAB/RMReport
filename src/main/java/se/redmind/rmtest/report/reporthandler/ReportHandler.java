@@ -14,11 +14,6 @@ public class ReportHandler {
 	private ReportLoader loader;
 	private ReportXMLParser parser;
 	
-	public ReportHandler() {
-		this.loader = new ReportLoader();
-		this.parser = new ReportXMLParser();
-	}
-	
 	public ReportHandler(String path){
 		this.loader = new ReportLoader(path, false);
 		this.parser = new ReportXMLParser();
