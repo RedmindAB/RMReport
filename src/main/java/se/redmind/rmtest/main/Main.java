@@ -13,6 +13,7 @@ import java.sql.SQLException;
 public class Main {
 	
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
+		System.out.println("Starting the database...");
 		//starts the database.
 		DBCon.getDbInstance();
 		//Searches though the report directory for reports that are not added yet.
