@@ -10,30 +10,22 @@ public class TimeEstimatorTest {
 	int range = 100;
 	
 	@Test
-	public void test() throws InterruptedException {
-		TimeEstimator est = new TimeEstimator(ticks, range);
+	public void getMeterTest() throws InterruptedException{
+		TimeEstimator est = new TimeEstimator(ticks);
 		est.start();
+		System.out.println(est.getTopMeter());
+		System.out.print(" ");
 		for (int i = 0; i < ticks; i++) {
 			est.addTick();
-			if (est.isMeassure()) {
-				System.out.println(est.getEstimatedTimeLeftDouble());
-			}
+			est.meassure();
 			Thread.sleep(1);
 		}
 	}
 	
 	@Test
-	public void getMeterTest() throws InterruptedException{
-		TimeEstimator est = new TimeEstimator(ticks, range);
-		est.start();
-		System.out.println(est.getTopMeter());
-		System.out.print("|");
-		for (int i = 0; i < ticks; i++) {
-			est.addTick();
-			if (est.isMeassure()) {
-				System.out.print(".");
-			}
-			Thread.sleep(1);
-		}
+	public void timeIncreaseTest(){
+		TimeEstimator est = new TimeEstimator(10);
+		double increase = est.getIncrease(100,10);
+		assertEquals(0.1, increase, 0);
 	}
 }
