@@ -2,14 +2,14 @@
     <accordion close-others="true">
         <!-- repeated content -->
 
-        <div class="screenshot-class-display" id='class_name' ng-repeat="class in CurrentSuite.currentSuite| orderBy:['result','-stats.totFail','name'] track by $index "
+        <div class="screenshot-class-display" ng-click="getMethods(class); loadScreenshotsFromClass(); setState('screenshots.methods')" id='class_name' ng-repeat="class in CurrentSuite.currentSuite| orderBy:['result','-stats.totFail','name'] track by $index "
              ng-class='getPanel(class.result)' 
              ng-style="{'background-color': getBgCo(class.result)}"
              >
             <!-- non collapsing header -->
             <div style="display:inline-block;width:100%">
-				<h4 id='get_methods' class="accordion-name-container text-left" ng-style="{'color' : getCo(class.result)}" ng-click="getMethods(class); loadScreenshotsFromClass(); setState('screenshots.methods')">{{class.name}}</h4>
-				<h4 id='get_methods' class="accordion-name-container text-right" ng-style="{'color' : getCo(class.result)}" ng-click="getMethods(class); loadScreenshotsFromClass(); setState('screenshots.methods')">&nbsp;Skipped: {{class.stats.skipped}} Failed: {{class.stats.totFail}}</h4>
+				<h4 id='get_methods' class="accordion-name-container text-left" ng-style="{'color' : getCo(class.result)}">{{class.name}}</h4>
+				<h4 id='get_methods' class="accordion-name-container text-right" ng-style="{'color' : getCo(class.result)}">&nbsp;Skipped: {{class.stats.skipped}} Failed: {{class.stats.totFail}}</h4>
             </div>
         </div>
         <!-- repeated content  End-->
