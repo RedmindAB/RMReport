@@ -25,7 +25,12 @@ public class ReportInit {
 	
 	public int initReports(){
 		System.out.println("Checking "+reportPath);
-		List<File> reportFiles = reportHandler.getReportFiles();
+		List<File> reportFiles = null;
+		try {
+			reportFiles = reportHandler.getReportFiles();
+		} catch (Exception e) {
+			return 0;
+		}
 		System.out.println("Found "+reportFiles.size()+" reports");
 		int addedReports = 0;
 		ReportExist reportExist = new ReportExist();
