@@ -65,6 +65,7 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 			}
 			$state.transitionTo('screenshots.methods');
 		}
+		console.log(ScreenshotMaster);
 	}
 	
 	$scope.setState = function(newState){
