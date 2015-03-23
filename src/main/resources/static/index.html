@@ -17,8 +17,8 @@
 		<div class='triangle-overlay'>
 			<img src='img/triangle.png'></img>
 		</div>
-		<nav class="container navbar navbar-custom" ng-controller='NavCtrl'>
-			<div class="container-fluid">
+		<div class="container container-fluid" style='background-color:#D4D9DD'>
+			<nav class="navbar navbar-custom" ng-controller='NavCtrl'>
 				<div class="navbar-header">
 					<div>
 						<a id='home' ng-href="#/"><img src='img/logo.png' class='home'></img></a>
@@ -33,10 +33,10 @@
 						id="bs-example-navbar-collapse-1"></div>
 					<!-- /.navbar-collapse -->
 				</div>
-			</div>
-			<!-- /.container-fluid -->
-		</nav>
-		<div class="container container-fluid" class="container">
+				<!-- /.container-fluid -->
+			</nav>
+		</div>
+		<div class="container container-fluid">
 			<div ui-view></div>
 		</div>
 	</div>
