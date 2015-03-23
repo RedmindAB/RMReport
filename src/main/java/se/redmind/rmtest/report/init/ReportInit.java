@@ -32,7 +32,7 @@ public class ReportInit {
 		Connection connection = DBCon.getDbInstance().getConnection();
 		try {
 			connection.setAutoCommit(false);
-			TimeEstimator estimator = new TimeEstimator(reportFiles.size(), 8);
+			TimeEstimator estimator = new TimeEstimator(reportFiles.size());
 			System.out.println(estimator.getTopMeter());
 			System.out.print(" ");
 			estimator.start();
@@ -45,9 +45,7 @@ public class ReportInit {
 						addedReports++;
 					}
 					estimator.addTick();
-					if (estimator.isMeassure()) {
-						System.out.print("#");
-					}
+					estimator.meassure();
 			}
 			System.out.print("\n");
 			connection.setAutoCommit(true);

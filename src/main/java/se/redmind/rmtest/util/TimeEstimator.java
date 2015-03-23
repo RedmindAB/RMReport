@@ -1,22 +1,24 @@
 package se.redmind.rmtest.util;
 
-import javax.security.auth.callback.LanguageCallback;
 
 public class TimeEstimator {
 	
 	int ticks;
 	int currentTick;
+	int totalDone;
 	int meassureRange;
 	long lastTick;
 	long startTime;
 	long endTime;
 	long[] data;
+	long[] historyDif;
 	
-	public TimeEstimator(int ticks, int meassureRange) {
+	public TimeEstimator(int size) {
 		this.currentTick = 0;
-		this.ticks = ticks;
-		this.meassureRange = meassureRange;
-		this.data = new long[ticks];
+		this.ticks = size;
+		this.meassureRange = 100;
+		this.data = new long[size];
+		this.historyDif = new long[size];
 	}
 	
 	public void start(){
@@ -30,27 +32,32 @@ public class TimeEstimator {
 		currentTick++;
 		lastTick = System.currentTimeMillis();
 	}
-	
-	public boolean isMeassure(){
-		return currentTick % meassureRange == 0;
+
+	public double getIncrease(long currentTicktime, long lastTicktime) {
+		double res = (double) lastTicktime / currentTicktime;
+		if (Double.isInfinite(res)) {
+			return 1;
+		}
+		return res;
 	}
 	
-	public long getEstimatedTimeLeftMills(){
-		int start = currentTick-meassureRange;
-		if (start<0) {
-			return 0;
-		}
+	public double getTimeIncreasePercent(long[] data, int currentTick){
 		long total = 0;
-		for (int i = start; i < start+meassureRange; i++) {
-//			System.out.println(data[i]);
-			total+=data[i];
+		for (int i = 0; i < currentTick; i++) {
+			total+= data[i];
 		}
-		long result = (total/meassureRange)*(ticks-currentTick);
+		double result = (double)total/currentTick;
 		return result;
 	}
 	
-	public double getEstimatedTimeLeftDouble(){
-		return (double) getEstimatedTimeLeftMills()/1000;
+	public void meassure(){
+		double percentDone = ((double)currentTick/ticks * 100d);
+		if (percentDone == Math.floor(percentDone)) {
+			for (int i = 0; i < percentDone-totalDone; i++) {
+				System.out.print("#");
+			}
+			totalDone = (int) percentDone;
+		}
 	}
 	
 	public boolean isMeassureTime(){
@@ -62,7 +69,7 @@ public class TimeEstimator {
 	public String getTopMeter(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("|");
-		int length = ticks / meassureRange;
+		int length = meassureRange;
 		for (int i = 0; i < length; i++) {
 			sb.append("-");
 		}
