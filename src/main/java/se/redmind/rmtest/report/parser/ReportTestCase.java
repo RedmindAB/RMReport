@@ -70,6 +70,7 @@ public class ReportTestCase{
 		}
 		else if (skippedElement != null){
 			this.resultType = ResultType.SKIPPED;
+			this.message = "";
 		}
 		else {
 			passed = true;
