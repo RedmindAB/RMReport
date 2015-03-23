@@ -52,7 +52,7 @@ public class TimeEstimator {
 	
 	public void meassure(){
 		double percentDone = ((double)currentTick/ticks * 100d);
-		if (percentDone == Math.floor(percentDone)) {
+		if (percentDone == Math.rint(percentDone)) {
 			for (int i = 0; i < percentDone-totalDone; i++) {
 				System.out.print("#");
 			}
