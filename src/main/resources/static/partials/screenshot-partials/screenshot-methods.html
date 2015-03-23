@@ -20,13 +20,12 @@
 			            <!-- non collapsing header End-->
 			
 			            <!-- Content in collapsing Div -->
-							<div style="width:{{getMethodContentWidth(method)}}px">
+							<div style="width:{{getMethodContentWidth(method)}}px;margin:-10px 10px 10px 15px">
 							<table ng-repeat="case in method.testcases | orderBy:['result','device','browser'] track by $index" ng-style="{'background-color': getBgCo(case.result)}" class='panel screenshot-methods-table'>
 								<tr>
 									<td>{{case.device}} - {{case.browser}}</td>
 								</tr>
 								<tr ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index'>
-
 									<td height='450px' valign='top'>
 										<img id='set_method' ng-click='setCurrentMethod(method); setSlides(method.testcases, $index, $parent.$index); toggleModal();' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img><br><br>
 
