@@ -14,22 +14,22 @@ public class FileWatcher {
 
 	public static void Run() {
 		for (String testFolder : directoryPaths) {
-			System.out.println("File watcher starting to check: " + testFolder);
 			Path path = Paths.get(testFolder);
 			if (path == null) {
 				throw new UnsupportedOperationException();
 			}
+			FileWatcherQueueReader queueReader = null;
 			try {
 				WatchService watcher = path.getFileSystem().newWatchService();
-				FileWatcherQueueReader queueReader = new FileWatcherQueueReader(
+				queueReader = new FileWatcherQueueReader(
 						watcher, testFolder);
+				path.register(watcher, ENTRY_CREATE, ENTRY_MODIFY);
+
+				System.out.println("File watcher starting to check: " + testFolder);
 				Thread thread = new Thread(queueReader, "DirectoryWatcher");
 				thread.start();
-
-				path.register(watcher, ENTRY_CREATE, ENTRY_MODIFY);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.err.println("failed to start File watcher for path: "+testFolder);
 			}
 		}
 	}
