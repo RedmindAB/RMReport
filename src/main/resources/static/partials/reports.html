@@ -98,11 +98,11 @@
     <div style='display:inline'>
         <accordion close-others="false">
             <!-- repeated content -->
-            <div width='100%' style='margin:7px 3px 3px 3px;' id='expandable'>
+            <div width='100%' class="specs-container" id='expandable'>
                 <accordion-group>
 
                     <accordion-heading id='reports_spec'>
-                        <div ng-click='toggleButton()'>Specifications<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+                        <div class="accordion-toggle" ng-click='toggleButton()'>Specifications<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
                             <button style='width: 60px;' ng-show='showButton' id='button_clear' class="btn btn-default" ng-click="$event.preventDefault(); $event.stopPropagation(); clearAllChosen(); newContent()">
                                 Clear
                             </button>
@@ -112,12 +112,11 @@
                     <!-- BROWSERS START -->
                     <table>
                         <tr>
-                         <td><h4 class="option-headline">Browsers:&nbsp;</h4></td>
+                         <td><p class="option-headline">Browsers:&nbsp; &nbsp;</p></td>
 							<td class="option-item option-browser" height='10px' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index" >
 								<input ng-model="browser.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">
-									&nbsp;
 								<div ng-click='setChosen(browser); newContent()' class='reports-cursor-inline'>
-									{{browser.browsername}}
+									{{browser.browsername}}&nbsp;&nbsp;
 								</div>
 								<label for="mycheckbox"></label>
 							</td>
@@ -131,43 +130,53 @@
                     <div>		    
                         <accordion close-others="false">
                             <div ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
-                                <input class='mycheckbox reports-input' ng-model='platform.chosen' ng-click="newContent()" id='input_osname' type="checkbox" ><label for="mycheckbox" style='font-weight:normal;'></label>
-                                <accordion-group is-open='platform.chosen'>
+                                <accordion-group is-open='platform.chosen' class="spec-option-header" style="margin-bottom:10px">
                                     <accordion-heading id='reports_name' ng-click='newContent()'> 
-                                        <div ng-click='newContent(); togglePlatformChosen(platform)'>&nbsp;
-                                            {{platform.osname}}
-                                        </div>
+                                    <table width='100%'>
+						                <tr>
+						                    <td class="checkbox-holder" id='lol'>
+						                        <input class='classes-input' style="margin-top:0px" type="checkbox" id='checkbox_1' class="mycheckbox" ng-model='platform.chosen' ng-click="newContent();togglePlatformChosen(platform)"><label for="mycheckbox"></label>					                    
+						                    </td>
+						                    <td ng-click="newContent();togglePlatformChosen(platform)">
+						                        <p ng-click="newContent();togglePlatformChosen(platform)" class="accordion-name-container text-left">{{platform.osname}}</p>
+						                    </td>
+						                </tr>
+						            </table>
                                     </accordion-heading>
-                                    <table>
-                                        <tr>
-                                            <td height='10px'>
-                                                <h4 class="option-headline">Devices:&nbsp;</h4>
-                                            </td>
-                                            <td class="option-item" height='10px' ng-repeat="device in platform.devices track by $index" >
-                                                <input ng-model="device.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">
-                                                	&nbsp;
-                                                <div ng-click='setChosen(device); newContent()' class='reports-cursor-inline'>
-                                                	{{device.devicename}}
-                                                </div>
-                                                <label for="mycheckbox"></label>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <h4 class="option-headline">Versions:&nbsp;</h4>
-                                            </td>
-                                            <td ng-repeat="version in platform.versions track by $index">
-                                                <input ng-model="version.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">
-                                                	&nbsp;
-                                                <div ng-click='setChosen(version); newContent()' class='reports-cursor-inline'>
-                                                	{{version.osver}}
-                                                </div>
-                                                <label for="mycheckbox"></label> 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                        </tr>
-                                    </table>
+                                    
+                                    
+                                    
+                                    
+                                    
+									<table>
+										<tr>
+											<td>
+												<p class="option-headline">Devices:&nbsp; &nbsp;</p>
+											</td>
+											<td class="option-item option-browser" height='10px' ng-repeat="device in platform.devices track by $index">
+												<input ng-model="device.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">
+												<div ng-click='setChosen(device); newContent()' class='reports-cursor-inline'>
+													{{device.devicename}}&nbsp;&nbsp;
+												</div>
+												<label for="mycheckbox"></label>
+											</td>
+				                        </tr>
+				                    </table>
+				                    <table>
+										<tr>
+											<td>
+												<p class="option-headline">Versions:&nbsp; &nbsp;</p>
+											</td>
+											<td class="option-item option-browser" height='10px' ng-repeat="version in platform.versions track by $index">
+												<input ng-model="version.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">
+												<div ng-click='setChosen(version); newContent()' class='reports-cursor-inline'>
+													{{version.osver}}&nbsp;&nbsp;
+												</div>
+												<label for="mycheckbox"></label>
+											</td>
+				                        </tr>
+				                    </table>
+                                    
                                 </accordion-group>
                             </div>
                         </accordion>	            
