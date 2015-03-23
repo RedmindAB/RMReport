@@ -108,7 +108,6 @@ angular.module('webLog')
 	    $scope.showButton = false;
 	    $scope.toggleButton = function() {
 	        $scope.showButton = !$scope.showButton;
-	        console.log($scope.showButton);
 	    };
 	    
 	    $scope.getNavColor = function(state){

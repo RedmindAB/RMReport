@@ -38,10 +38,8 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	    		setCaseSizeByMethod();
 	    	};
 	    }).error(function(data, status, headers, config){
-	    	console.log(data);
+	    	console.error(data);
 	    });
-	    
-	    console.log(ScreenshotMaster);
 	}
 	
 	$scope.getScreenshotsFromFileName = function(fileName){

@@ -22,7 +22,6 @@ angular.module('webLog')
     $scope.mock = colors;
     
     function clearPlatformChosen(platform){
-    	console.log("clearing");
     	var platforms = CurrentSuite.currentSpecObject.platforms;
     	for (var i = 0; i < platforms.length; i++) {
 			if (platforms[i].osname === platform.osname) {
@@ -432,7 +431,7 @@ angular.module('webLog')
 			}
     	};
     }).error(function(data, status, headers, config){
-    	console.log(data);
+    	console.error(data);
     });
 	
 	$scope.getSpecsInfo = function(suiteID){
@@ -443,7 +442,7 @@ angular.module('webLog')
 	    		CurrentSuite.currentSpecObject = data;
 	    	};
 	    }).error(function(data, status, headers, config){
-	    	console.log(data);
+	    	console.error(data);
 	    });
 	}
 	
@@ -464,7 +463,7 @@ angular.module('webLog')
 	    		getPassFailTotByClass(timestamp, CurrentSuite.currentSuite);
 	    	};
 	    }).error(function(data, status, headers, config){
-	    	console.log(data);
+	    	console.error(data);
 	    });
 	}
 	
@@ -486,7 +485,7 @@ angular.module('webLog')
 	    		$scope.getSpecsInfo(CurrentSuite.currentSuiteInfo.id);
 	    	};
 	    }).error(function(data, status, headers, config){
-	    	console.log(data);
+	    	console.error(data);
 	    });
 	}
 	
@@ -498,7 +497,7 @@ angular.module('webLog')
 	    		CurrentSuite.currentCases = data;
 	    	};
 	    }).error(function(data, status, headers, config){
-	    	console.log(data);
+	    	console.error(data);
 	    });
 	}
 	
@@ -510,7 +509,7 @@ angular.module('webLog')
 	    		CurrentSuite.currentClasses = data;
 	    	};
 	    }).error(function(data, status, headers, config){
-	    	console.log(data);
+	    	console.error(data);
 	    });
 	};
 	
@@ -522,7 +521,7 @@ angular.module('webLog')
 	    		CurrentSuite.currentClasses = data;
 	    	};
 	    }).error(function(data, status, headers, config){
-	    	console.log(data);
+	    	console.error(data);
 	    });
 	};
 	
@@ -546,7 +545,7 @@ angular.module('webLog')
 				classObj.stats.totFail = getTotFail(data);
 			};
 		}).error(function(data, status, headers, config){
-			console.log(data);
+			console.error(data);
 		});
 	}
 	
@@ -558,7 +557,7 @@ angular.module('webLog')
 				method.stats.totFail = getTotFail(data);
 			};
 		}).error(function(data, status, headers, config){
-			console.log(data);
+			console.error(data);
 		});
 	}
 	
@@ -593,7 +592,7 @@ angular.module('webLog')
 	   .success(function(data, status, headers, config){
 		   $scope.createMainChart(data, newLine);
 	   }).error(function(data, status, headers, config){
-		   console.log(data);
+		   console.error(data);
 	   });
    };
    
@@ -631,7 +630,7 @@ angular.module('webLog')
     	.success(function(data, status, headers, config){ 
     		$scope.createHomeChart(data, suite);
     	}).error(function(data, status, headers, config){
-    		console.log(data);
+    		console.error(data);
     	});
 	};
 		
@@ -643,7 +642,7 @@ angular.module('webLog')
     	.success(function(data, status, headers, config){ 
     		$scope.currentGraphData = data;
     	}).error(function(data, status, headers, config){
-    		console.log(data);
+    		console.error(data);
     	});
     }
     
@@ -663,7 +662,7 @@ angular.module('webLog')
     	.success(function(data, status, headers, config){
     		$scope.createMainChart(data, true);
     	}).error(function(data, status, headers, config){
-    		console.log(data);
+    		console.error(data);
     	});
     }
     
@@ -721,7 +720,7 @@ angular.module('webLog')
 
 		default:
 			graphDataObject = getAllDataAsOne(suiteID, name);
-			console.log("Something went wrong");
+			console.error("Something went wrong");
 			break;
 		}
     	CurrentSuite.activeQueries.push(graphDataObject);
