@@ -9,7 +9,7 @@
 			    <div class='noselect' ng-repeat="method in ScreenshotMaster.data | orderBy:['result','name'] track by $index">
 			        <accordion-group style="margin-top:10px;padding:0px;" ng-class='getPanel(method.result)' >
 			            <!-- non collapsing header -->
-			            <accordion-heading id='method_name' style='margin: 0px 5px 0px 5px;'>
+			            <accordion-heading id='method_name'>
 							<div class="accordion-toggle" style="display:inline-block;width:100%">
 								<p class="accordion-name-container text-left" style="margin:0px" ng-style="{'color' : getCo(method.result)}">{{method.name}}</p>
 								<p class="accordion-name-container text-right" style="margin:0px" ng-style="{'color' : getCo(method.result)}">&nbsp;Skipped: {{method.skipped}} Failed: {{getFailError(method)}}</p>
@@ -18,17 +18,17 @@
 			            <!-- non collapsing header End-->
 			
 			            <!-- Content in collapsing Div -->
-							<div style="width:{{getMethodContentWidth(method)}}px;margin:-20px 5px 0px 5px;">
-							<table ng-repeat="case in method.testcases | orderBy:['result','device','browser'] track by $index" ng-style="{'background-color': getBgCo(case.result)}" class='panel screenshot-methods-table'>
-								<tr>
-									<td>{{case.device}} - {{case.browser}}</td>
-								</tr>
-								<tr ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index'>
-									<td height='450px' valign='top'>
-										<img id='set_method' ng-click='setCurrentMethod(method); setSlides(method.testcases, $index, $parent.$index); toggleModal();' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img><br><br>
-									</td>
-								</tr>
-							</table>
+							<div style="width:{{getMethodContentWidth(method)}}px;" class="screenshot-view">
+								<table ng-repeat="case in method.testcases | orderBy:['result','device','browser'] track by $index" ng-style="{'background-color': getBgCo(case.result)}" class='panel screenshot-methods-table' width="242px">
+									<tr>
+										<td>{{case.device}} - {{case.browser}}</td>
+									</tr>
+									<tr ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index'>
+										<td height='450px' valign='top'>
+											<img id='set_method' ng-click='setCurrentMethod(method); setSlides(method.testcases, $index, $parent.$index); toggleModal();' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img><br><br>
+										</td>
+									</tr>
+								</table>
 							</div>
 
 			<!-- Content in collapsing Div End -->

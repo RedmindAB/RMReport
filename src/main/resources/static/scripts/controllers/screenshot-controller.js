@@ -5,7 +5,7 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	$scope.caseArraySize = []
 	
 	$scope.getMethodContentWidth = function(method){
-		return method.testcases.length * 247;
+		return (method.testcases.length * 252)+10;
 	}
 	
 	$scope.toggleModal = function() {
