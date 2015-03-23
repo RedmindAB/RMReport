@@ -20,7 +20,7 @@
 			            <!-- non collapsing header End-->
 			
 			            <!-- Content in collapsing Div -->
-							<div style="width:{{getMethodContentWidth(method)}}px;margin:-10px 10px 10px 15px">
+							<div style="width:{{getMethodContentWidth(method)}}px;margin:-15px 5px 5px 10px">
 							<table ng-repeat="case in method.testcases | orderBy:['result','device','browser'] track by $index" ng-style="{'background-color': getBgCo(case.result)}" class='panel screenshot-methods-table'>
 								<tr>
 									<td>{{case.device}} - {{case.browser}}</td>
