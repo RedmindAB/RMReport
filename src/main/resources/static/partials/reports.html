@@ -52,7 +52,7 @@
 			data-toggle="tooltip" data-placement="top" tooltip>
 			{{Utilities.resultAmount}} <span class="caret"></span>
 		</button>
-		<ul class="dropdown-menu scrollable-menu" id='suite_runs'>
+		<ul class="dropdown-menu scrollable-menu" id='suite_runs_drop'>
 			<li ng-repeat="run in runValues"><a
 				ng-click="setResultAmount(run); newContent()" id='timestamp'>
 					{{run}} </a></li>
