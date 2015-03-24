@@ -459,8 +459,8 @@ angular.module('webLog')
 					timestamp = suite.lastTimeStamp;
 				} else {
 					timestamp = CurrentSuite.currentTimeStamp;
+					CurrentSuite.currentTimeStamp = suite.lastTimeStamp;
 				}
-	    		CurrentSuite.currentTimeStamp = suite.lastTimeStamp;
 	    		getPassFailTotByClass(timestamp, CurrentSuite.currentSuite);
 	    	};
 	    }).error(function(data, status, headers, config){

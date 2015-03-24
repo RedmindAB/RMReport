@@ -72,7 +72,7 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 						$state.transitionTo('screenshots.methods');
 					} else {
 						console.log("wrong data");
-						$scope.$emit('wrongScreenData');
+						$rootScope.$emit('wrongScreenData');
 						$state.transitionTo('screenshots.methods');
 					}
 				}
