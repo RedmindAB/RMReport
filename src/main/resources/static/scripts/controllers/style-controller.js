@@ -89,11 +89,11 @@ angular.module('webLog')
 	    };
 	    $scope.getLogo = function(passed){
 	    	if(passed == 1)
-	    		return "img/logo1.png";
+	    		return "img/logos/logo1.png";
 	    	else if(passed == 2)
-	    		return 'img/logo1.jpg';
+	    		return 'img/logos/logo1.jpg';
 	    	else
-	    		return 'img/logo3.jpg';    
+	    		return 'img/logos/logo3.jpg';    
 	    };
 	    
 	    $scope.formatDecimals = function(numberWithWayToManyDecimals){

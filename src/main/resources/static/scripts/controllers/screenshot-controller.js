@@ -44,7 +44,7 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	
 	$scope.getScreenshotsFromFileName = function(fileName){
 		if (!fileName) {
-			return 'img/placeholder2.png';
+			return 'img/logos/placeholder2.png';
 		}
 		return '/api/screenshot/byfilename?timestamp='+CurrentSuite.currentTimeStamp+'&filename='+fileName;
 	}
