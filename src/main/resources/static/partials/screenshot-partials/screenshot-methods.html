@@ -19,7 +19,7 @@
 			
 			            <!-- Content in collapsing Div -->
 							<div style="width:{{getMethodContentWidth(method)}}px;" class="screenshot-view">
-								<table ng-repeat="case in method.testcases | orderBy:['result','device','browser'] track by $index" ng-style="{'background-color': getBgCo(case.result)}" class='panel screenshot-methods-table' width="242px">
+								<table ng-repeat="case in method.testcases | orderBy:['result','device','browser'] track by $index" ng-style="{'background-color': getBgCo(case.result)}" class='panel screenshot-methods-table' width="222px">
 									<tr>
 										<td>{{case.device}} - {{case.browser}}</td>
 									</tr>
