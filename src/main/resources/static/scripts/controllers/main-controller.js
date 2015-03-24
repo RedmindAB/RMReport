@@ -1525,13 +1525,44 @@ angular.module('webLog')
     	delete Charts.mainChart.options.tooltip.valueDecimals;
 	}
     
-    $scope.clearCurrentClass = function(){
-    	CurrentSuite.currentClass = [];
-    	CurrentSuite.currentTimeStamp = '';
-    	ScreenshotMaster.currentClass = undefined;
-    	
+    $scope.clearData = function(){
     	
     	console.log(CurrentSuite);
+    	
+    	CurrentSuite.currentClass = [];
+    	CurrentSuite.currentTimeStamp = '';
+    	CurrentSuite
+    	
+    	ScreenshotMaster.data = [];
+    	ScreenshotMaster.currentClass = undefined;
+    	ScreenshotMaster.currentTimestamp = undefined;
+    	ScreenshotMaster.previousView = undefined;
+    	console.log(ScreenshotMaster);
+    	
+    	CurrentSuite.activeQueries = [];
+    	CurrentSuite.currentCases = [];
+    	CurrentSuite.currentClass = [];
+    	CurrentSuite.currentClasses = [];
+    	CurrentSuite.currentDriver = [];
+    	CurrentSuite.currentDriverRuns = [];
+    	CurrentSuite.currentMethod = [];
+    	CurrentSuite.currentMethods = [];
+    	CurrentSuite.currentSpecObject = [];
+    	CurrentSuite.currentSuite = [];
+    	CurrentSuite.currentSuiteInfo = [];
+    	CurrentSuite.currentTimeStamp = '';
+    	CurrentSuite.currentTimeStampArray = [];
+    	CurrentSuite.lastRunSize = 50;
+    	CurrentSuite.newLine = false;
+    	CurrentSuite.currentSpecObject = [];
+    	
+    	Utilities.searchField = '';
+    	Utilities.resultAmount = '50';
+    	Utilities.timeStamps = '';
+    	Utilities.graphView = 'Pass/Fail';
+    	
+    	$scope.breakPointChoice = 'None';
+    	
     }
     
     
