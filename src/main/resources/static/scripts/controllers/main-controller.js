@@ -460,6 +460,7 @@ angular.module('webLog')
 				} else {
 					timestamp = CurrentSuite.currentTimeStamp;
 				}
+	    		CurrentSuite.currentTimeStamp = suite.lastTimeStamp;
 	    		getPassFailTotByClass(timestamp, CurrentSuite.currentSuite);
 	    	};
 	    }).error(function(data, status, headers, config){
@@ -1523,6 +1524,17 @@ angular.module('webLog')
     	chart.title.text = "Percentage of passed tests";
     	delete Charts.mainChart.options.tooltip.valueDecimals;
 	}
+    
+    $scope.clearCurrentClass = function(){
+    	CurrentSuite.currentClass = [];
+    	CurrentSuite.currentTimeStamp = '';
+    	ScreenshotMaster.currentClass = undefined;
+    	
+    	
+    	console.log(CurrentSuite);
+    }
+    
+    
 }])
 .animation('.slide-animation', function () {
         return {

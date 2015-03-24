@@ -42,30 +42,53 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 	}
 	
 	$scope.goToGraphView = function(){
-		if (ScreenshotMaster.previousView !== undefined) {
-			$state.transitionTo(ScreenshotMaster.previousView);
-		} else {
-			if (CurrentSuite.currentSuite.length == 0) {
-				$state.transitionTo('home');
-			} else {
-				$state.transitionTo('reports.classes');
-			}
-		}		
+		if ($state.current.name === 'screenshots.classes') {
+			$state.transitionTo('reports.classes');
+		} else if ($state.current.name === 'screenshots.methods'){
+			$state.transitionTo('reports.methods');
+		}
 	}
 	
 	$scope.goToScreenshotView = function(){
 		ScreenshotMaster.previousView = $state.$current.name;
-		if (CurrentSuite.currentSuite == undefined) {
+		
+		console.log(CurrentSuite.currentTimeStamp);
+		
+		if (CurrentSuite.currentSuite.length === 0) {
+			console.log("suite is undefined");
 			$state.transitionTo('home');
-		} else if (CurrentSuite.currentClass.length == 0) {
-			$state.transitionTo('screenshots.classes');
 		} else {
-			if (ScreenshotMaster.currentClass != CurrentSuite.currentClass.id) {
-				 $scope.$emit('wrongScreenData');
+			if (CurrentSuite.currentClass.length === 0) {
+				console.log("class is undefined");
+				$state.transitionTo('screenshots.classes');
+			} else {
+				if (!classExistsInSuite(CurrentSuite.currentClass)) {
+					console.log("class does not exist in suite");
+					$state.transitionTo('screenshots.classes');
+				} else {
+					console.log("class exists");
+					if (ScreenshotMaster.currentClass === CurrentSuite.currentClass.id && ScreenshotMaster.currentTimestamp === CurrentSuite.currentTimeStamp) {
+						console.log("data is the same");
+						$state.transitionTo('screenshots.methods');
+					} else {
+						console.log("wrong data");
+						$scope.$emit('wrongScreenData');
+						$state.transitionTo('screenshots.methods');
+					}
+				}
 			}
-			$state.transitionTo('screenshots.methods');
 		}
 	}
+	
+	function classExistsInSuite(classObj){
+		for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
+			if (classObj.id === CurrentSuite.currentSuite[i].id) {
+				return true;
+			}
+		}
+		return false;
+	};
+	
 	
 	$scope.setState = function(newState){
 		$state.transitionTo(newState);

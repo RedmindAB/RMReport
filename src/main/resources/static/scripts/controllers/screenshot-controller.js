@@ -35,6 +35,7 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	    	if(data){
 	    		ScreenshotMaster.data = data
 	    		ScreenshotMaster.currentClass = CurrentSuite.currentClass.id
+	    		ScreenshotMaster.currentTimestamp = CurrentSuite.currentTimeStamp;
 	    		setCaseSizeByMethod();
 	    	};
 	    }).error(function(data, status, headers, config){

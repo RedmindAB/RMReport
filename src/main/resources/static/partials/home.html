@@ -10,12 +10,12 @@
 				alt='{{suite.name}}'></img><br>
 			<br>
 			<h4 class='home-h4'
-					ng-click="loadMainChart(suite.id);
+					ng-click="clearCurrentClass();loadMainChart(suite.id);
                                 setState('reports.classes');
                                 getSuiteSkeleton(suite);">Go
 					to graph</h4> <br>
 			<h4 class='home-h4'
-					ng-click="loadMainChart(suite.id);
+					ng-click="clearCurrentClass();loadMainChart(suite.id);
                                 setState('screenshots.classes');
                                 getSuiteSkeleton(suite);">Go
 					to screen shots</h4></td>
