@@ -4,25 +4,28 @@
 		<tr>
 			<td><img id='section' class='image-paths'
 				style='cursor: pointer' ng-src="{{'img/suites/' + suite.name + '.png'}}"
-				ng-click="loadMainChart(suite.id);
+				ng-click="clearData();
+						loadMainChart(suite.id);
                         setState('reports.classes');
                         getSuiteSkeleton(suite);"
 				alt='{{suite.name}}'></img><br>
 			<br>
 			<h4 class='home-h4'
-					ng-click="clearCurrentClass();loadMainChart(suite.id);
+					ng-click="clearData();
+								loadMainChart(suite.id);
                                 setState('reports.classes');
                                 getSuiteSkeleton(suite);">Go
 					to graph</h4> <br>
 			<h4 class='home-h4'
-					ng-click="clearCurrentClass();loadMainChart(suite.id);
+					ng-click="clearData();
+								loadMainChart(suite.id);
                                 setState('screenshots.classes');
                                 getSuiteSkeleton(suite);">Go
 					to screen shots</h4></td>
 		</tr>
 		<!-- project logo END -->
 		<!-- project chart -->
-		<tr>
+		<tr style='width:100%'>
 			<td colspan='3'><highchart id="chart1" class='high-chart'
 					config="chartHomeConfig[suite.id]"></highchart></td>
 		</tr>
