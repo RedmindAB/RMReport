@@ -52,28 +52,28 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 	$scope.goToScreenshotView = function(){
 		ScreenshotMaster.previousView = $state.$current.name;
 		
-		console.log(CurrentSuite.currentTimeStamp);
-		
-		if (CurrentSuite.currentSuite.length === 0) {
-			console.log("suite is undefined");
-			$state.transitionTo('home');
-		} else {
-			if (CurrentSuite.currentClass.length === 0) {
-				console.log("class is undefined");
-				$state.transitionTo('screenshots.classes');
+		if ($state.current.name !== 'home') {
+			if (CurrentSuite.currentSuite.length === 0) {
+				console.log("suite is undefined");
+				$state.transitionTo('home');
 			} else {
-				if (!classExistsInSuite(CurrentSuite.currentClass)) {
-					console.log("class does not exist in suite");
+				if (CurrentSuite.currentClass.length === 0) {
+					console.log("class is undefined");
 					$state.transitionTo('screenshots.classes');
 				} else {
-					console.log("class exists");
-					if (ScreenshotMaster.currentClass === CurrentSuite.currentClass.id && ScreenshotMaster.currentTimestamp === CurrentSuite.currentTimeStamp) {
-						console.log("data is the same");
-						$state.transitionTo('screenshots.methods');
+					if (!classExistsInSuite(CurrentSuite.currentClass)) {
+						console.log("class does not exist in suite");
+						$state.transitionTo('screenshots.classes');
 					} else {
-						console.log("wrong data");
-						$rootScope.$emit('wrongScreenData');
-						$state.transitionTo('screenshots.methods');
+						console.log("class exists");
+						if (ScreenshotMaster.currentClass === CurrentSuite.currentClass.id && ScreenshotMaster.currentTimestamp === CurrentSuite.currentTimeStamp) {
+							console.log("data is the same");
+							$state.transitionTo('screenshots.methods');
+						} else {
+							console.log("wrong data");
+							$rootScope.$emit('wrongScreenData');
+							$state.transitionTo('screenshots.methods');
+						}
 					}
 				}
 			}
