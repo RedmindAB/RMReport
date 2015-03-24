@@ -5,7 +5,7 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	$scope.caseArraySize = []
 	
 	$scope.getMethodContentWidth = function(method){
-		return method.testcases.length * 247;
+		return (method.testcases.length * 232)+10;
 	}
 	
 	$scope.toggleModal = function() {
@@ -17,6 +17,7 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	});
 	
 	$rootScope.$on("wrongScreenData", function(){
+		console.log("getting new data");
 		$scope.loadScreenshotsFromClass();
 	});
 	
@@ -34,7 +35,9 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		ScreenshotMaster.data = data
+	    		console.log(data);
 	    		ScreenshotMaster.currentClass = CurrentSuite.currentClass.id
+	    		ScreenshotMaster.currentTimestamp = CurrentSuite.currentTimeStamp;
 	    		setCaseSizeByMethod();
 	    	};
 	    }).error(function(data, status, headers, config){
@@ -44,9 +47,9 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	
 	$scope.getScreenshotsFromFileName = function(fileName){
 		if (!fileName) {
-			return 'img/placeholder.png';
+			return 'img/logos/placeholder2.png';
 		}
-		return '/api/screenshot/byfilename?timestamp='+CurrentSuite.currentTimeStamp+'&filename='+fileName;
+		return '/api/screenshot/byfilename?timestamp='+ScreenshotMaster.currentTimestamp+'&filename='+fileName;
 	}
 	
 	$scope.getCommentFromFileName = function(fileName){

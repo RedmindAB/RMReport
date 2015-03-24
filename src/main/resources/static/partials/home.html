@@ -1,27 +1,34 @@
 <div ng-repeat="suite in allSuites track by $index">
-    <table class='table-home'>
-        <!-- Project logo -->
-        <tr>
-            <td>
-                <img id='section' class='image-paths' style='cursor:pointer' ng-src="{{'img/' + suite.name + '.png'}}" ng-click="loadMainChart(suite.id);
+	<table class='table-home'>
+		<!-- Project logo -->
+		<tr>
+			<td><img id='section' class='image-paths'
+				style='cursor: pointer' ng-src="{{'img/suites/' + suite.name + '.png'}}"
+				ng-click="loadMainChart(suite.id);
                         setState('reports.classes');
-                        getSuiteSkeleton(suite);" alt='{{suite.name}}'></img><br><br><h4 class='home-h4' ng-click="loadMainChart(suite.id);
+                        getSuiteSkeleton(suite);"
+				alt='{{suite.name}}'></img><br>
+			<br>
+			<h4 class='home-h4'
+					ng-click="clearCurrentClass();loadMainChart(suite.id);
                                 setState('reports.classes');
-                                getSuiteSkeleton(suite);">Go to graph</h4>
-                                <br><h4 class='home-h4' ng-click="loadMainChart(suite.id);
+                                getSuiteSkeleton(suite);">Go
+					to graph</h4> <br>
+			<h4 class='home-h4'
+					ng-click="clearCurrentClass();loadMainChart(suite.id);
                                 setState('screenshots.classes');
-                                getSuiteSkeleton(suite);">Go to screen shots</h4>
-            </td>
-        </tr>
-        <!-- project logo END -->
-        <!-- project chart -->
-        <tr>
-            <td colspan='3'>
-        <highchart id="chart1" class='high-chart' config="chartHomeConfig[suite.id]"></highchart>
-        </td>
-        </tr>
-        <!-- project chart END -->
-    </table>
-        	<!-- separator -->
-    	<div ng-if="$index !== allSuites.length -1" class='row' style='border:10px solid #D4D9DD'></div>
+                                getSuiteSkeleton(suite);">Go
+					to screen shots</h4></td>
+		</tr>
+		<!-- project logo END -->
+		<!-- project chart -->
+		<tr>
+			<td colspan='3'><highchart id="chart1" class='high-chart'
+					config="chartHomeConfig[suite.id]"></highchart></td>
+		</tr>
+		<!-- project chart END -->
+	</table>
+	<!-- separator -->
+	<div ng-if="$index !== allSuites.length -1" class='row'
+		style='border: 10px solid #D4D9DD'></div>
 </div>

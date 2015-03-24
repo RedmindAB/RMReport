@@ -1,4 +1,7 @@
 /* General Styling*/
+html * {
+    outline: 0 !important;
+}
 
 body{
 	background-color: #D4D9DD;
@@ -208,7 +211,11 @@ fieldset[disabled] .btn-warning2.active {
 .myAccordion.ui-state-hover, .myAccordion.ui-state-focus {text-decoration:none;}
 
 /* Style to restrict users from selecting text*/
-
+.ui-state-focus { outline: none; }
+.ui-accordion-header {outline: none;}
+.ui-state-focus{
+    outline: none;
+}
 .noselect {
 	-webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -267,8 +274,8 @@ fieldset[disabled] .btn-warning2.active {
 .navbar-custom {
     background-color: #D4D9DD;
     color: #666666;
-    margin-bottom:-12px;
-    margin-left:41px;
+    margin-bottom:0px;
+    margin-left:5px;
 }
 
 /* End */
@@ -376,8 +383,8 @@ fieldset[disabled] .btn-warning2.active {
 
 .screenshot-methods-table{
 	display:inline-block;
-	padding:20px;
-	margin-right: 5px;
+	padding:10px;
+	margin:5px;
 }
 
 .screenshot-methods-description{
@@ -523,6 +530,10 @@ label {
 	padding-bottom:10px;
 	padding-right:10px;
 	padding-left:10px;
+}
+
+.screenshot-view{
+ padding:5px;
 }
 
 .screenshot-class-display{

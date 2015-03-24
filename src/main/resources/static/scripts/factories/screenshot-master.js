@@ -3,6 +3,7 @@ angular.module('webLog')
 		return {
 			data:[],
 			currentClass: undefined,
+			currentTimestamp: undefined,
 			previousView: undefined
 		};
 	});

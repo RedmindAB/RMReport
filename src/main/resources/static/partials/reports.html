@@ -1,239 +1,281 @@
 <div>
 
-    <!-- Chart -->
-    <!-- project logo -->
-    <img ng-src="{{'img/' + CurrentSuite.currentSuiteInfo.name + '.png'}}" style="cursor: pointer" class='image-paths' ng-click="setState('home')"></img> 
-    <!-- project logo END-->
-    <link rel="stylesheet" href="css/style.css">		
-    <!-- navigation links -->
-    <br><br>
-    <h4>
-        <table>
-            <tr>
-                <td>
-                    <div style='word-wrap:break-all' id="navigation-classes" ng-click="setState('reports.classes')" class="navTextStuff" ng-show="showClassLink('classes')">{{CurrentSuite.currentSuiteInfo.name}}&nbsp;</p></div>
-                    <div style='word-break:break-all' id="navigation-methods" ng-click="setState('reports.methods')" class="navTextStuff" ng-show="showClassLink('methods')">&#10140; {{CurrentSuite.currentClass.name}}&nbsp;</p></div>
-                    <div style='word-break:break-all' id="navigation-drivers" ng-click="setState('reports.cases')" class="navTextStuff" ng-show="showClassLink('cases')">&#10140; {{CurrentSuite.currentMethod.name}}&nbsp;</p></div>
-                </td>
-            </tr>
-        </table>
-    </h4>
-    <!-- navigation links END -->
-    <!-- chart -->
-    <br><br>
-    <highchart style='position:responsive;float:left;width:100%' id="chart1" config="chartMainConfig"></highchart>
-    <!-- chart END -->
+	<!-- Chart -->
+	<!-- project logo -->
+	<img ng-src="{{'img/suites/' + CurrentSuite.currentSuiteInfo.name + '.png'}}"
+		style="cursor: pointer" class='image-paths'
+		ng-click="setState('home')"></img>
+	<!-- project logo END-->
+	<link rel="stylesheet" href="css/style.css">
+	<!-- navigation links -->
+	<br>
+	<br>
+	<h4>
+		<table>
+			<tr>
+				<td>
+					<div style='word-wrap: break-all' id="navigation-classes"
+						ng-click="setState('reports.classes')" class="navTextStuff"
+						ng-show="showClassLink('classes')">
+						{{CurrentSuite.currentSuiteInfo.name}}&nbsp;
+						</p>
+					</div>
+					<div style='word-break: break-all' id="navigation-methods"
+						ng-click="setState('reports.methods')" class="navTextStuff"
+						ng-show="showClassLink('methods')">
+						&#10140; {{CurrentSuite.currentClass.name}}&nbsp;
+						</p>
+					</div>
+					<div style='word-break: break-all' id="navigation-drivers"
+						ng-click="setState('reports.cases')" class="navTextStuff"
+						ng-show="showClassLink('cases')">
+						&#10140; {{CurrentSuite.currentMethod.name}}&nbsp;
+						</p>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</h4>
+	<!-- navigation links END -->
+	<!-- chart -->
+	<br>
+	<br>
+	<highchart style='position:responsive;float:left;width:100%'
+		id="chart1" config="chartMainConfig"></highchart>
+	<!-- chart END -->
 
-    <!-- Chart variant dropdown START -->
-    <div class="btn-group" style='margin:1px' align='center'>
-        <h5 style='margin-bottom:0px'>Number of suite runs</h5>
-        <button style='width:150px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
-            {{Utilities.resultAmount}}
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu scrollable-menu" id='suite_runs'>
-            <li ng-repeat="run in runValues"><a ng-click="setResultAmount(run); newContent()" id='timestamp'>
-                    {{run}}
-                </a>
-            </li>
-        </ul>
-    </div>
+	<!-- Chart variant dropdown START -->
+	<div class="btn-group" style='margin: 1px' align='center'>
+		<h5 style='margin-bottom: 0px'>Number of suite runs</h5>
+		<button style='width: 150px' id='suite_runs'
+			class="btn btn-default dropdown-toggle" type="button"
+			id="numberof_suite_dropdown" data-toggle="dropdown" aria-expanded="true"
+			title="Select suite run to display" data-toggle="tooltip"
+			data-placement="top" tooltip>
+			{{Utilities.resultAmount}} <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu scrollable-menu" id='suite_runs'>
+			<li ng-repeat="run in runValues"><a
+				ng-click="setResultAmount(run); newContent()" id='timestamp'>
+					{{run}} </a></li>
+		</ul>
+	</div>
 
-    <div class='btn-group' align='center'>
-        <h5 style='margin-bottom:0px'>Add graph line&nbsp;</h5>
-        <button ng-disabled='Charts.mainChart.loading' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)" ng-model='CurrentSuite.newLine' style='width:150px;margin:1px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
-            <span class="glyphicon glyphicon-plus"></span>
-        </button>
-        <ul></ul>
-    </div>
+	<div class='btn-group' align='center'>
+		<h5 style='margin-bottom: 0px'>Add graph line&nbsp;</h5>
+		<button ng-disabled='Charts.mainChart.loading'
+			ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)"
+			ng-model='CurrentSuite.newLine' style='width: 150px; margin: 1px'
+			id='add_graph_line' class="btn btn-default dropdown-toggle"
+			type="button" id="suite-dropdown" data-toggle="dropdown">
+			<span class="glyphicon glyphicon-plus"></span>
+		</button>
+		<ul></ul>
+	</div>
 
-    <div class='btn-group' align='center'>
-        <h5 style='margin-bottom:0px'>Remove graph line</h5>
-        <button ng-disabled="trashcanEmpty()" style='width:150px;margin:1px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
-            <span class="glyphicon glyphicon-trash"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-            <li ng-repeat='serie in Charts.mainChart.series' id='serie_name' ng-click='remove(serie)'><a style='cursor:pointer'>
-                    <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>&nbsp;{{serie.name}}
-                </a>
-            </li>
-        </ul>
-    </div>
+	<div class='btn-group' align='center'>
+		<h5 style='margin-bottom: 0px'>Remove graph line</h5>
+		<button ng-disabled="trashcanEmpty()"
+			style='width: 150px; margin: 1px' id='button_break'
+			class="btn btn-default dropdown-toggle" type="button"
+			id="remove_graph_line" data-toggle="dropdown">
+			<span class="glyphicon glyphicon-trash"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li ng-repeat='serie in Charts.mainChart.series' id='serie_name'
+				ng-click='remove(serie)'><a style='cursor: pointer'> <span
+					class='glyphicon glyphicon-trash' aria-hidden='true'></span>&nbsp;{{serie.name}}
+			</a></li>
+		</ul>
+	</div>
 
-    <form style='display:inline;float:right'>
-        <button class="btn btn-default" ng-disabled='Charts.mainChart.loading' id='button_reload' style='margin:26px 1px 1px 1px' ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, false); checkQuestions()" onClick="document.getElementById('button_reload').className = 'btn btn-default'">
-            Reload
-        </button>
-    </form>	
+	<form style='display: inline; float: right'>
+		<button class="btn btn-default" ng-disabled='Charts.mainChart.loading'
+			id='button_reload' style='margin: 26px 1px 1px 1px'
+			ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, false); checkQuestions()"
+			onClick="document.getElementById('button_reload').className = 'btn btn-default'">
+			Reload</button>
+	</form>
 
-    <br>
-    <div style='display:inline'>
-        <div class="btn-group" align='center'>
-            <h5 style='margin-bottom:0px'>Choose graph view</h5>
-            <button style='width:150px;margin:1px' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
-                {{Utilities.graphView}}
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li ng-repeat="variant in chartVariants"><a style='cursor:pointer' id='variant' ng-click="changeChartVariant(variant)">
-                        {{variant}}
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class='btn-group' align='center'>
-            <h5 style='margin-bottom:0px'>Choose break point</h5>
-            <button style='width:150px;' id='button_break' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown">
-                {{breakPointChoice}}
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li ng-repeat="breakPoint in breakPoints" id='break_point' ng-click='setBreakPoint(breakPoint); newContent()'><a style='cursor:pointer'>
-                        {{breakPoint}}
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div style='display:inline'>
-        <accordion close-others="false">
-            <!-- repeated content -->
-            <div width='100%' class="specs-container" id='expandable'>
-                <accordion-group>
+	<br>
+	<div style='display: inline'>
+		<div class="btn-group" align='center'>
+			<h5 style='margin-bottom: 0px'>Choose graph view</h5>
+			<button style='width: 150px; margin: 1px' id='choose_graph_view'
+				class="btn btn-default dropdown-toggle" type="button"
+				id="suite-dropdown" data-toggle="dropdown">
+				{{Utilities.graphView}} <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li ng-repeat="variant in chartVariants"><a
+					style='cursor: pointer' id='variant'
+					ng-click="changeChartVariant(variant)"> {{variant}} </a></li>
+			</ul>
+		</div>
+		<div class='btn-group' align='center'>
+			<h5 style='margin-bottom: 0px'>Choose break point</h5>
+			<button style='width: 150px;' id='choose_break_point'
+				class="btn btn-default dropdown-toggle" type="button"
+				id="suite-dropdown" data-toggle="dropdown">
+				{{breakPointChoice}} <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li ng-repeat="breakPoint in breakPoints" id='break_point'
+					ng-click='setBreakPoint(breakPoint); newContent()'><a
+					style='cursor: pointer'> {{breakPoint}} </a></li>
+			</ul>
+		</div>
+	</div>
+	<div style='display: inline'>
+		<accordion close-others="false"> <!-- repeated content -->
+		<div width='100%' class="specs-container" id='expandable'>
+			<accordion-group> <accordion-heading
+				id='reports_spec'>
+			<div class="accordion-toggle" ng-click='toggleButton()'>
+				Specifications<span class="glyphicon glyphicon-triangle-bottom"
+					aria-hidden="true"></span>
+				<button style='width: 60px;' ng-show='showButton' id='button_clear'
+					class="btn btn-default"
+					ng-click="$event.preventDefault(); $event.stopPropagation(); clearAllChosen(); newContent()">
+					Clear</button>
+			</div>
+			</accordion-heading> <!-- BROWSERS START -->
+			<table>
+				<tr>
+					<td><p class="option-headline">Browsers:&nbsp; &nbsp;</p></td>
+					<td class="option-item option-browser" height='10px'
+						ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
+						<input ng-model="browser.chosen" ng-click="newContent()"
+						type="checkbox" id="mycheckbox">
+						<div ng-click='setChosen(browser); newContent()'
+							class='reports-cursor-inline'>
+							{{browser.browsername}}&nbsp;&nbsp;</div> <label for="mycheckbox"></label>
+					</td>
+				</tr>
+			</table>
 
-                    <accordion-heading id='reports_spec'>
-                        <div class="accordion-toggle" ng-click='toggleButton()'>Specifications<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                            <button style='width: 60px;' ng-show='showButton' id='button_clear' class="btn btn-default" ng-click="$event.preventDefault(); $event.stopPropagation(); clearAllChosen(); newContent()">
-                                Clear
-                            </button>
-                        </div>
-                    </accordion-heading>
 
-                    <!-- BROWSERS START -->
-                    <table>
-                        <tr>
-                         <td><p class="option-headline">Browsers:&nbsp; &nbsp;</p></td>
-							<td class="option-item option-browser" height='10px' ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index" >
-								<input ng-model="browser.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">
-								<div ng-click='setChosen(browser); newContent()' class='reports-cursor-inline'>
-									{{browser.browsername}}&nbsp;&nbsp;
-								</div>
-								<label for="mycheckbox"></label>
+			<!-- BROWSERS END --> <!-- Content in collapsing Div -->
+			<div>
+				<accordion close-others="false">
+				<div
+					ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
+					<accordion-group is-open='platform.chosen'
+						class="spec-option-header" style="margin-bottom:10px">
+					<accordion-heading id='reports_name' ng-click='newContent()'>
+					<table width='100%'>
+						<tr>
+							<td class="checkbox-holder"><input
+								class='classes-input' style="margin-top: 0px" type="checkbox"
+								id='checkbox_1' class="mycheckbox" ng-model='platform.chosen'
+								ng-click="newContent();togglePlatformChosen(platform)"><label
+								for="mycheckbox"></label></td>
+							<td ng-click="newContent();togglePlatformChosen(platform)">
+								<p ng-click="newContent();togglePlatformChosen(platform)"
+									class="accordion-name-container text-left">{{platform.osname}}</p>
 							</td>
-                        </tr>
-                    </table>
-
-
-                    <!-- BROWSERS END -->
-
-                    <!-- Content in collapsing Div -->
-                    <div>		    
-                        <accordion close-others="false">
-                            <div ng-repeat="platform in CurrentSuite.currentSpecObject.platforms track by $index">
-                                <accordion-group is-open='platform.chosen' class="spec-option-header" style="margin-bottom:10px">
-                                    <accordion-heading id='reports_name' ng-click='newContent()'> 
-                                    <table width='100%'>
-						                <tr>
-						                    <td class="checkbox-holder" id='lol'>
-						                        <input class='classes-input' style="margin-top:0px" type="checkbox" id='checkbox_1' class="mycheckbox" ng-model='platform.chosen' ng-click="newContent();togglePlatformChosen(platform)"><label for="mycheckbox"></label>					                    
-						                    </td>
-						                    <td ng-click="newContent();togglePlatformChosen(platform)">
-						                        <p ng-click="newContent();togglePlatformChosen(platform)" class="accordion-name-container text-left">{{platform.osname}}</p>
-						                    </td>
-						                </tr>
-						            </table>
-                                    </accordion-heading>
-                                    
-                                    
-                                    
-                                    
-                                    
-									<table>
-										<tr>
-											<td>
-												<p class="option-headline">Devices:&nbsp; &nbsp;</p>
-											</td>
-											<td class="option-item option-browser" height='10px' ng-repeat="device in platform.devices track by $index">
-												<input ng-model="device.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">
-												<div ng-click='setChosen(device); newContent()' class='reports-cursor-inline'>
-													{{device.devicename}}&nbsp;&nbsp;
-												</div>
-												<label for="mycheckbox"></label>
-											</td>
-				                        </tr>
-				                    </table>
-				                    <table>
-										<tr>
-											<td>
-												<p class="option-headline">Versions:&nbsp; &nbsp;</p>
-											</td>
-											<td class="option-item option-browser" height='10px' ng-repeat="version in platform.versions track by $index">
-												<input ng-model="version.chosen" ng-click="newContent()" type="checkbox" id="mycheckbox">
-												<div ng-click='setChosen(version); newContent()' class='reports-cursor-inline'>
-													{{version.osver}}&nbsp;&nbsp;
-												</div>
-												<label for="mycheckbox"></label>
-											</td>
-				                        </tr>
-				                    </table>
-                                    
-                                </accordion-group>
-                            </div>
-                        </accordion>	            
-                    </div>
-                    <!-- Content in collapsing Div End -->
-
-                </accordion-group>
-            </div>
-            <!-- repeated content  End-->
-        </accordion>
-    </div>
-    
-    	<!-- separator -->
-   	<div class='row'></div>
-   	<h4 class='reports-h4' ng-click="subNavLinks();">{{getPosition()}}</h4>
-   	<div id="class-method-option-container">
-	    <div class='btn-group' align='center' id = "class-method-option-left">
-	        <h5 style='margin-bottom:0px'>Order by&nbsp;</h5>
-	        <button style='width:100px' id='passfail' class='btn btn-default dropdown-toggle' ng-click="setSorting('pass/fail'); reverse = !reverse">
-	            Fail/Pass</button>
-	        <ul></ul>
-	    </div>
-   	<div id="class-method-option-center">
-	    <div class="btn-group">
-	        <h5 class='reports-h5'>Choose timestamp</h5>
-	        <button style='width:150px' id='button_suite' class="btn btn-default dropdown-toggle" type="button" id="suite-dropdown" data-toggle="dropdown" aria-expanded="true" title="Select suite run to display" data-toggle="tooltip" data-placement="top" tooltip>
-	            {{CurrentSuite.currentTimeStamp}}
-	            <span class="caret"></span>
-	        </button>
-	        <ul class="dropdown-menu scrollable-menu">
-	            <li ng-repeat="timeStamp in descTimestamps"><a ng-click="loadNewTimeStamp(timeStamp)" id='timestamp'>
-	                    {{timeStamp}}
-	                </a>
-	            </li>
-	        </ul>
-	    </div>
-	    <div class='btn-group'>
-	        <input type="text" id="filter-field" class="reports-filter form-control tool-tip reports-filter-input" ng-model='Utilities.searchField' placeholder="Filter" title="Write something to filter on" data-toggle="tooltip" data-placement="right" tooltip>	
-   		</div>
-   	</div>
-	    <div class='btn-group' align='center' id = "class-method-option-right" style='float:right'>
-	        <h5 style='margin-bottom:0px'>Order by&nbsp;</h5>
-	        <button style='width:100px' id='runtime' class='btn btn-default dropdown-toggle' ng-click="setSorting('time'); reverse = !reverse">
-	            Run time</button>
-	        <ul></ul>
-	    </div>
-    </div>
-    <!-- Chart variant dropdown END -->
-
-    <div>
-    </div>
+						</tr>
+					</table>
+					</accordion-heading>
 
 
 
-    <!-- load chart with data button -->
-    <!-- load chart with data button END -->
 
-    <!-- view for current classes/methods/drivers etc -->
-    <div ui-view></div>
+
+					<table>
+						<tr>
+							<td>
+								<p class="option-headline">Devices:&nbsp; &nbsp;</p>
+							</td>
+							<td class="option-item option-browser" height='10px'
+								ng-repeat="device in platform.devices track by $index"><input
+								ng-model="device.chosen" ng-click="newContent()" type="checkbox"
+								id="mycheckbox">
+								<div ng-click='setChosen(device); newContent()'
+									class='reports-cursor-inline'>
+									{{device.devicename}}&nbsp;&nbsp;</div> <label for="mycheckbox"></label>
+							</td>
+						</tr>
+					</table>
+					<table>
+						<tr>
+							<td>
+								<p class="option-headline">Versions:&nbsp; &nbsp;</p>
+							</td>
+							<td class="option-item option-browser" height='10px'
+								ng-repeat="version in platform.versions track by $index"><input
+								ng-model="version.chosen" ng-click="newContent()"
+								type="checkbox" id="mycheckbox">
+								<div ng-click='setChosen(version); newContent()'
+									class='reports-cursor-inline'>
+									{{version.osver}}&nbsp;&nbsp;</div> <label for="mycheckbox"></label>
+							</td>
+						</tr>
+					</table>
+
+					</accordion-group>
+				</div>
+				</accordion>
+			</div>
+			<!-- Content in collapsing Div End --> </accordion-group>
+		</div>
+		<!-- repeated content  End--> </accordion>
+	</div>
+
+	<!-- separator -->
+	<div class='row'></div>
+	<h4 class='reports-h4' ng-click="subNavLinks();">{{getPosition()}}</h4>
+	<div id="class-method-option-container">
+		<div class='btn-group' align='center' id="class-method-option-left">
+			<h5 style='margin-bottom: 0px'>Order by&nbsp;</h5>
+			<button style='width: 100px' id='order_by'
+				class='btn btn-default dropdown-toggle'
+				ng-click="setSorting('pass/fail'); reverse = !reverse">
+				Fail/Pass</button>
+			<ul></ul>
+		</div>
+		<div id="class-method-option-center">
+			<div class="btn-group">
+				<h5 class='reports-h5'>Choose timestamp</h5>
+				<button style='width: 150px' id='button_suite'
+					class="btn btn-default dropdown-toggle" type="button"
+					id="suite-dropdown" data-toggle="dropdown" aria-expanded="true"
+					title="Select suite run to display" data-toggle="tooltip"
+					data-placement="top" tooltip>
+					{{CurrentSuite.currentTimeStamp}} <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu scrollable-menu">
+					<li ng-repeat="timeStamp in descTimestamps"><a
+						ng-click="loadNewTimeStamp(timeStamp)" id='timestamp'>
+							{{timeStamp}} </a></li>
+				</ul>
+			</div>
+			<div class='btn-group'>
+				<input type="text" id="filter-field"
+					class="reports-filter form-control tool-tip reports-filter-input"
+					ng-model='Utilities.searchField' placeholder="Filter"
+					title="Write something to filter on" data-toggle="tooltip"
+					data-placement="right" tooltip>
+			</div>
+		</div>
+		<div class='btn-group' align='center' id="class-method-option-right"
+			style='float: right'>
+			<h5 style='margin-bottom: 0px'>Order by&nbsp;</h5>
+			<button style='width: 100px' id='runtime'
+				class='btn btn-default dropdown-toggle'
+				ng-click="setSorting('time'); reverse = !reverse">Run time</button>
+			<ul></ul>
+		</div>
+	</div>
+	<!-- Chart variant dropdown END -->
+
+	<div></div>
+
+
+
+	<!-- load chart with data button -->
+	<!-- load chart with data button END -->
+
+	<!-- view for current classes/methods/drivers etc -->
+	<div ui-view></div>
 </div>
