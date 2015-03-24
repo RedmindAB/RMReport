@@ -1,15 +1,14 @@
 <div>
-
 	<!-- Chart -->
 	<!-- project logo -->
-	<img ng-src="{{'img/suites/' + CurrentSuite.currentSuiteInfo.name + '.png'}}"
+	<img
+		ng-src="{{'img/suites/' + CurrentSuite.currentSuiteInfo.name + '.png'}}"
 		style="cursor: pointer" class='image-paths'
 		ng-click="setState('home')"></img>
 	<!-- project logo END-->
 	<link rel="stylesheet" href="css/style.css">
 	<!-- navigation links -->
-	<br>
-	<br>
+	<br> <br>
 	<h4>
 		<table>
 			<tr>
@@ -38,8 +37,7 @@
 	</h4>
 	<!-- navigation links END -->
 	<!-- chart -->
-	<br>
-	<br>
+	<br> <br>
 	<highchart style='position:responsive;float:left;width:100%'
 		id="chart1" config="chartMainConfig"></highchart>
 	<!-- chart END -->
@@ -49,9 +47,9 @@
 		<h5 style='margin-bottom: 0px'>Number of suite runs</h5>
 		<button style='width: 150px' id='suite_runs'
 			class="btn btn-default dropdown-toggle" type="button"
-			id="numberof_suite_dropdown" data-toggle="dropdown" aria-expanded="true"
-			title="Select suite run to display" data-toggle="tooltip"
-			data-placement="top" tooltip>
+			id="numberof_suite_dropdown" data-toggle="dropdown"
+			aria-expanded="true" title="Select suite run to display"
+			data-toggle="tooltip" data-placement="top" tooltip>
 			{{Utilities.resultAmount}} <span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu scrollable-menu" id='suite_runs'>
@@ -165,9 +163,9 @@
 					<accordion-heading id='reports_name' ng-click='newContent()'>
 					<table width='100%'>
 						<tr>
-							<td class="checkbox-holder"><input
-								class='classes-input' style="margin-top: 0px" type="checkbox"
-								id='checkbox_1' class="mycheckbox3" ng-model='platform.chosen'
+							<td class="checkbox-holder"><input class='classes-input'
+								style="margin-top: 0px" type="checkbox" id='checkbox_1'
+								class="mycheckbox3" ng-model='platform.chosen'
 								ng-click="newContent();togglePlatformChosen(platform)"><label
 								for="mycheckbox"></label></td>
 							<td ng-click="newContent();togglePlatformChosen(platform)">
@@ -268,14 +266,6 @@
 		</div>
 	</div>
 	<!-- Chart variant dropdown END -->
-
-	<div></div>
-
-
-
-	<!-- load chart with data button -->
-	<!-- load chart with data button END -->
-
 	<!-- view for current classes/methods/drivers etc -->
 	<div ui-view></div>
 </div>
