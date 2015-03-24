@@ -13,9 +13,10 @@ import java.sql.SQLException;
 public class Main {
 	
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
-		System.out.println("Starting the database...");
+		System.out.print("Starting the database... ");
 		//starts the database.
 		DBCon.getDbInstance();
+		System.out.print("DONE!\n");
 		//Searches though the report directory for reports that are not added yet.
 		String[] testDirectories = new PropertiesReader().getTestDirectory();
 		int addedreports = 0;
