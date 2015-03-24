@@ -47,9 +47,9 @@
 	<!-- Chart variant dropdown START -->
 	<div class="btn-group" style='margin: 1px' align='center'>
 		<h5 style='margin-bottom: 0px'>Number of suite runs</h5>
-		<button style='width: 150px' id='button_suite'
+		<button style='width: 150px' id='suite_runs'
 			class="btn btn-default dropdown-toggle" type="button"
-			id="suite-dropdown" data-toggle="dropdown" aria-expanded="true"
+			id="numberof_suite_dropdown" data-toggle="dropdown" aria-expanded="true"
 			title="Select suite run to display" data-toggle="tooltip"
 			data-placement="top" tooltip>
 			{{Utilities.resultAmount}} <span class="caret"></span>
@@ -66,7 +66,7 @@
 		<button ng-disabled='Charts.mainChart.loading'
 			ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)"
 			ng-model='CurrentSuite.newLine' style='width: 150px; margin: 1px'
-			id='button_break' class="btn btn-default dropdown-toggle"
+			id='add_graph_line' class="btn btn-default dropdown-toggle"
 			type="button" id="suite-dropdown" data-toggle="dropdown">
 			<span class="glyphicon glyphicon-plus"></span>
 		</button>
@@ -78,7 +78,7 @@
 		<button ng-disabled="trashcanEmpty()"
 			style='width: 150px; margin: 1px' id='button_break'
 			class="btn btn-default dropdown-toggle" type="button"
-			id="suite-dropdown" data-toggle="dropdown">
+			id="remove_graph_line" data-toggle="dropdown">
 			<span class="glyphicon glyphicon-trash"></span>
 		</button>
 		<ul class="dropdown-menu" role="menu">
@@ -101,7 +101,7 @@
 	<div style='display: inline'>
 		<div class="btn-group" align='center'>
 			<h5 style='margin-bottom: 0px'>Choose graph view</h5>
-			<button style='width: 150px; margin: 1px' id='button_break'
+			<button style='width: 150px; margin: 1px' id='choose_graph_view'
 				class="btn btn-default dropdown-toggle" type="button"
 				id="suite-dropdown" data-toggle="dropdown">
 				{{Utilities.graphView}} <span class="caret"></span>
@@ -114,7 +114,7 @@
 		</div>
 		<div class='btn-group' align='center'>
 			<h5 style='margin-bottom: 0px'>Choose break point</h5>
-			<button style='width: 150px;' id='button_break'
+			<button style='width: 150px;' id='choose_break_point'
 				class="btn btn-default dropdown-toggle" type="button"
 				id="suite-dropdown" data-toggle="dropdown">
 				{{breakPointChoice}} <span class="caret"></span>
@@ -146,10 +146,10 @@
 					<td class="option-item option-browser" height='10px'
 						ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
 						<input ng-model="browser.chosen" ng-click="newContent()"
-						type="checkbox" id="mycheckbox">
+						type="checkbox" id="mycheckbox1">
 						<div ng-click='setChosen(browser); newContent()'
 							class='reports-cursor-inline'>
-							{{browser.browsername}}&nbsp;&nbsp;</div> <label for="mycheckbox"></label>
+							{{browser.browsername}}&nbsp;&nbsp;</div> <label for="mycheckbox2"></label>
 					</td>
 				</tr>
 			</table>
@@ -165,9 +165,9 @@
 					<accordion-heading id='reports_name' ng-click='newContent()'>
 					<table width='100%'>
 						<tr>
-							<td class="checkbox-holder" id='lol'><input
+							<td class="checkbox-holder"><input
 								class='classes-input' style="margin-top: 0px" type="checkbox"
-								id='checkbox_1' class="mycheckbox" ng-model='platform.chosen'
+								id='checkbox_1' class="mycheckbox3" ng-model='platform.chosen'
 								ng-click="newContent();togglePlatformChosen(platform)"><label
 								for="mycheckbox"></label></td>
 							<td ng-click="newContent();togglePlatformChosen(platform)">
@@ -228,7 +228,7 @@
 	<div id="class-method-option-container">
 		<div class='btn-group' align='center' id="class-method-option-left">
 			<h5 style='margin-bottom: 0px'>Order by&nbsp;</h5>
-			<button style='width: 100px' id='passfail'
+			<button style='width: 100px' id='order_by_fail_pass'
 				class='btn btn-default dropdown-toggle'
 				ng-click="setSorting('pass/fail'); reverse = !reverse">
 				Fail/Pass</button>
@@ -237,7 +237,7 @@
 		<div id="class-method-option-center">
 			<div class="btn-group">
 				<h5 class='reports-h5'>Choose timestamp</h5>
-				<button style='width: 150px' id='button_suite'
+				<button style='width: 150px' id='choose_timestamp'
 					class="btn btn-default dropdown-toggle" type="button"
 					id="suite-dropdown" data-toggle="dropdown" aria-expanded="true"
 					title="Select suite run to display" data-toggle="tooltip"
@@ -261,7 +261,7 @@
 		<div class='btn-group' align='center' id="class-method-option-right"
 			style='float: right'>
 			<h5 style='margin-bottom: 0px'>Order by&nbsp;</h5>
-			<button style='width: 100px' id='runtime'
+			<button style='width: 100px' id='order_by_runtime'
 				class='btn btn-default dropdown-toggle'
 				ng-click="setSorting('time'); reverse = !reverse">Run time</button>
 			<ul></ul>

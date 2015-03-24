@@ -1,4 +1,7 @@
 /* General Styling*/
+html * {
+    outline: 0 !important;
+}
 
 body{
 	background-color: #D4D9DD;
@@ -208,7 +211,11 @@ fieldset[disabled] .btn-warning2.active {
 .myAccordion.ui-state-hover, .myAccordion.ui-state-focus {text-decoration:none;}
 
 /* Style to restrict users from selecting text*/
-
+.ui-state-focus { outline: none; }
+.ui-accordion-header {outline: none;}
+.ui-state-focus{
+    outline: none;
+}
 .noselect {
 	-webkit-touch-callout: none;
     -webkit-user-select: none;
