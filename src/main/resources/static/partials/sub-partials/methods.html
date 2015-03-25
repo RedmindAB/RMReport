@@ -5,8 +5,8 @@
             <!-- non collapsing header -->
             <table width='100%'>
                 <tr>
-					<td class='checkbox-holder' id='lol'>
-                    	<input class='methods-input' style="margin-top:0px" type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="method.chosen" ng-click="newContent()">
+					<td class='checkbox-holder'>
+                    	<input class='methods-input' style="margin-top:0px" type="checkbox" id='checkbox{{$index}}' class="mycheckbox" ng-model="method.chosen" ng-click="newContent()">
                     	<label for="mycheckbox"></label>					                    
                     </td>
                     
