@@ -7,8 +7,8 @@
             <!-- non collapsing header -->
             <table width='100%'>
                 <tr>
-                    <td class="checkbox-holder" id='lol'>
-                        <input class='classes-input' style="margin-top:0px" type="checkbox" id='checkbox_1' class="mycheckbox" ng-model="class.chosen" ng-click="newContent()"><label for="mycheckbox"></label>					                    
+                    <td class="checkbox-holder">
+                        <input class='classes-input' style="margin-top:0px" type="checkbox" id='checkbox{{$index}}' class="mycheckbox" ng-model="class.chosen" ng-click="newContent()"><label for="mycheckbox"></label>					                    
                     </td>
                     <td id='get_methods' ng-click="getMethods(class); setState('reports.methods');" ng-style="{'color' : getCo(class.result)}">
                         <h4 class="accordion-name-container text-left">{{class.name}}</h4>
