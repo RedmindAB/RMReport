@@ -1,4 +1,4 @@
-<p class="screenshot-nav" ng-click="setState('screenshots.classes')">Go back to Classes</p>
+<p id='go_to_classes' class="screenshot-nav" ng-click="setState('screenshots.classes')">Go back to Classes</p>
 <div>
 	<div class="screenshot-container" id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' ng-style="{'background-color': getBgCo(CurrentSuite.currentClass.result)}">
 		<h4 class="accordion-name-container" ng-style="{'color' : getCo(CurrentSuite.currentClass.result)}">&nbsp;{{CurrentSuite.currentClass.name}}</h4>
