@@ -35,7 +35,6 @@ public class LongPollingHandler implements Runnable {
 	
 	public void addReponseObject(Request request ,Response response){
 		responseList.add(new RequestResponseContainer(request, response));
-		System.out.println(responseList.size());
 	}
 	
 	private void createResponsBodies(){
