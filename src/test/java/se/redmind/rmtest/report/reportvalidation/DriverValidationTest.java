@@ -6,6 +6,7 @@ import java.io.File;
 import java.util.HashMap;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import se.redmind.rmtest.db.DBCon;
@@ -30,6 +31,7 @@ public class DriverValidationTest {
 		driverValidation = new DriverValidation(report);
 	}
 	
+	@Ignore
 	@Test
 	public void testOS() {
 		HashMap<String, Integer> osMap = driverValidation.getOSMap();
@@ -45,6 +47,7 @@ public class DriverValidationTest {
 		assertEquals(10, osMap2.size());
 	}
 	
+	
 	@Test
 	public void testDevice() {
 		HashMap<String, Integer> deviceMap = driverValidation.getDeviceMap();
@@ -55,6 +58,7 @@ public class DriverValidationTest {
 		assertTrue(deviceMap.containsKey("Nexus 6"));
 	}
 	
+	@Ignore
 	@Test
 	public void testBrowser(){
 		HashMap<String, Integer> browserMap = driverValidation.getBrowserMap();
