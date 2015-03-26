@@ -231,6 +231,13 @@
 			<ul></ul>
 		</div>
 		<div id="class-method-option-center">
+			<div class='btn-group'>
+				<input type="text" id="filter-field"
+					style="width:175px"
+					class="reports-filter form-control tool-tip reports-filter-input"
+					ng-model='Utilities.searchField' placeholder="Filter"
+					title="Write something to filter on">
+			</div>
 			<div class="btn-group">
 				<h5 class='reports-h5'>Choose timestamp to load</h5>
 				<button style='width: 175px' id='choose_timestamp'
@@ -244,13 +251,6 @@
 						ng-click="loadNewTimeStamp(timeStamp)" id='timestamp' style="cursor:pointer">
 							{{timeStamp}} </a></li>
 				</ul>
-			</div>
-			<div class='btn-group'>
-				<input type="text" id="filter-field"
-					style="width:175px"
-					class="reports-filter form-control tool-tip reports-filter-input"
-					ng-model='Utilities.searchField' placeholder="Filter"
-					title="Write something to filter on">
 			</div>
 		</div>
 		<div class='btn-group' align='center' id="class-method-option-right"
