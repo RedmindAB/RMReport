@@ -17,7 +17,6 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	});
 	
 	$rootScope.$on("wrongScreenData", function(){
-		console.log("getting new data");
 		$scope.loadScreenshotsFromClass();
 	});
 	
@@ -35,7 +34,6 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		ScreenshotMaster.data = data
-	    		console.log(data);
 	    		ScreenshotMaster.currentClass = CurrentSuite.currentClass.id
 	    		ScreenshotMaster.currentTimestamp = CurrentSuite.currentTimeStamp;
 	    		setCaseSizeByMethod();

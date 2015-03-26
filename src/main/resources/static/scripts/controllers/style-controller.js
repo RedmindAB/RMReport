@@ -118,6 +118,11 @@ angular.module('webLog')
 			}
 	    }
 	    
+	    $scope.getLogo = function(suiteName){
+	    	var path = 'img/suites/' + suiteName + '.png';
+	    	return path;
+	    }
+	    
 }])
 .animation('.slide-animation', function () {
         return {

@@ -162,11 +162,16 @@
 					<accordion-heading id='reports_name' ng-click='newContent()'>
 					<table width='100%'>
 						<tr>
-							<td class="checkbox-holder"><input class='classes-input'
-								style="margin-top: 0px" type="checkbox" id='checkbox_1'
-								class="mycheckbox3" ng-model='platform.chosen'
-								ng-click="newContent();togglePlatformChosen(platform)"><label
-								for="mycheckbox"></label></td>
+							<td class="checkbox-holder">
+								<input class='classes-input'
+									style="margin-top: 0px" type="checkbox" id='checkbox_1'
+									class="mycheckbox3" ng-model='platform.chosen'
+									ng-click="newContent();togglePlatformChosen(platform)">
+								</input>
+								<label
+									for="mycheckbox">
+								</label>
+							</td>
 							<td ng-click="newContent();togglePlatformChosen(platform)">
 								<p ng-click="newContent();togglePlatformChosen(platform)"
 									class="accordion-name-container text-left">{{platform.osname}}</p>

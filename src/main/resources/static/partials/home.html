@@ -3,15 +3,17 @@
 		<!-- Project logo -->
 		<tr>
 		
-			<td><img id='section' ng-class=" {'disabled': !homeChartLoaded(suite)}" 
-				class='image-paths'
-				style='cursor: pointer' ng-src="{{'img/suites/' + suite.name + '.png'}}"
-				ng-click="clearData();
+			<td><img check-image id='section' ng-class=" {'disabled': !homeChartLoaded(suite)}" 
+					class='image-paths'
+					style='cursor: pointer' ng-src="{{'img/suites/' + suite.name + '.png'}}"
+					ng-click="clearData();
 						loadMainChart(suite.id);
                         setState('reports.classes');
                         getSuiteSkeleton(suite);"
-				alt='{{suite.name}}'></img><br><br>
-			<br>
+					alt='{{suite.name}}'>
+				</img>
+				<br>
+				<br>
 			<h4 ng-class=" {'disabled': !homeChartLoaded(suite)}"
 				class='home-h4'
 					ng-click="clearData();
