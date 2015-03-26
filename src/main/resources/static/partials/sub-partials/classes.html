@@ -11,8 +11,8 @@
                         <input class='classes-input' style="margin-top:0px" type="checkbox" id='checkbox{{$index}}' class="mycheckbox" ng-model="class.chosen" ng-click="newContent()"><label for="mycheckbox"></label>					                    
                     </td>
                     <td id='get_methods' ng-click="getMethods(class); setState('reports.methods');" ng-style="{'color' : getCo(class.result)}">
-                        <h4 class="accordion-name-container text-left">{{class.name}}</h4>
-                        <h4 class="accordion-name-container text-right">&nbsp;&nbsp;{{formatDecimals(class.time)}}</h4>
+                        <p class="accordion-name-container text-left">{{class.name}}</p>
+                        <p class="accordion-name-container text-right">&nbsp;&nbsp;{{formatDecimals(class.time)}}</p>
                         <p class="accordion-name-container text-right">Skipped: {{class.stats.skipped}} Failed: {{class.stats.totFail}}</p>
                     </td>
                 </tr>

@@ -31,7 +31,7 @@
 										<td>{{case.device}} - {{case.browser}}</td>
 									</tr>
 									<tr ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index'>
-										<td height='450px' valign='top'>
+										<td height='450px' style='overflow:scroll' valign='top'>
 											<img id='screenshot{{$index}}' ng-click='setCurrentMethod(method); setSlides(method.testcases, $index, $parent.$index); toggleModal();' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img><br><br>
 										</td>
 									</tr>
