@@ -9,7 +9,7 @@
 	                <button style='width:120px' id='thistestonly' ng-class='getButton(case.result)' ng-click="addCaseToGraph(case.osname, case.osversion, case.devicename, case.browsername, case.browserversion); $event.preventDefault(); $event.stopPropagation();">
 	                	This test only
 	                </button>&nbsp;
-	                <div style='display:inline'>
+	                <div style='display:inline' class='accordion-name-container'>
 	                    {{case.osname}} - {{case.devicename}} -	{{case.osversion}} - {{case.browsername}} {{case.timestamp}}
 	                </div>
 	                <div class="accordion-name-container" style='float:right'>
