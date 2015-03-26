@@ -59,8 +59,8 @@
 	<a class="arrow prev" id='arrow_prev' href="#" ng-click="nextSlide()"></a>
 	<a class="arrow next" id='arrow_next' href="#" ng-click="prevSlide()"></a>
 	<div class="container slider">
-		<img onmousedown="event.preventDefault" class='slide-img table-m' ng-repeat="slide in slides"
-			 class="slide slide-animation nonDraggableImage"
+		<img onmousedown="event.preventDefault" ng-repeat="slide in slides"
+			 class="slide slide-animation nonDraggableImage slide-img table-m"
 			 ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
 			 ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}">
 	</div>
