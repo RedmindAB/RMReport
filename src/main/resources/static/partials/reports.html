@@ -44,7 +44,7 @@
 
 	<!-- Chart variant dropdown START -->
 	<div class="btn-group" style='margin: 1px' align='center'>
-		<h5 style='margin-bottom: 0px'>Number of suite runs</h5>
+		<h5 style='margin-bottom: 0px'>Choose amount to load</h5>
 		<button style='width: 150px' id='suite_runs'
 			class="btn btn-default dropdown-toggle" type="button"
 			id="numberof_suite_dropdown" data-toggle="dropdown"
@@ -59,19 +59,7 @@
 	</div>
 
 	<div class='btn-group' align='center'>
-		<h5 style='margin-bottom: 0px'>Add graph line&nbsp;</h5>
-		<button ng-disabled='Charts.mainChart.loading'
-			ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)"
-			ng-model='CurrentSuite.newLine' style='width: 150px; margin: 1px'
-			id='add_graph_line' class="btn btn-default dropdown-toggle"
-			type="button" id="suite-dropdown" data-toggle="dropdown">
-			<span class="glyphicon glyphicon-plus"></span>
-		</button>
-		<ul></ul>
-	</div>
-
-	<div class='btn-group' align='center'>
-		<h5 style='margin-bottom: 0px'>Remove graph line</h5>
+		<h5 style='margin-bottom: 0px'>Choose a line to remove</h5>
 		<button ng-disabled="trashcanEmpty()"
 			style='width: 150px; margin: 1px' id='button_break'
 			class="btn btn-default dropdown-toggle" type="button"
@@ -85,19 +73,30 @@
 			</a></li>
 		</ul>
 	</div>
-
-	<form style='display: inline; float: right'>
+	
+	<!-- Load data buttons -->
+	<div style='float: right'>
 		<button class="btn btn-default" ng-disabled='Charts.mainChart.loading'
-			id='button_reload' style='margin: 26px 1px 1px 1px'
+			id='button_reload'
 			ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, false); checkQuestions()"
+			style="width: 175px;float:right; margin-top:10px"
 			onClick="document.getElementById('button_reload').className = 'btn btn-default'">
-			Reload</button>
-	</form>
+			Clear graph and reload
+		</button><br>
+		<button ng-disabled='Charts.mainChart.loading'
+			ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)"
+			id='add_graph_line' class="btn btn-default"
+			type="button"
+			style="width: 175px;float:right; margin-top:10px">
+			Add choices to graph
+			<!-- span class="glyphicon glyphicon-plus"></span-->
+		</button>
+	</div>
 
 	<br>
 	<div style='display: inline'>
 		<div class="btn-group" align='center'>
-			<h5 style='margin-bottom: 0px'>Choose graph view</h5>
+			<h5 style='margin-bottom: 0px'>Choose data to display</h5>
 			<button style='width: 150px; margin: 1px' id='choose_graph_view'
 				class="btn btn-default dropdown-toggle" type="button"
 				id="suite-dropdown" data-toggle="dropdown">
@@ -110,7 +109,7 @@
 			</ul>
 		</div>
 		<div class='btn-group' align='center'>
-			<h5 style='margin-bottom: 0px'>Choose break point</h5>
+			<h5 style='margin-bottom: 0px'>Create a line for each:</h5>
 			<button style='width: 150px;' id='choose_break_point'
 				class="btn btn-default dropdown-toggle" type="button"
 				id="suite-dropdown" data-toggle="dropdown">
