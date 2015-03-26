@@ -94,7 +94,7 @@
 	</div>
 
 	<br>
-	<div style='display: inline'>
+	<div style='display: inline-block;'>
 		<div class="btn-group" align='center'>
 			<h5 style='margin-bottom: 0px'>Choose data to display</h5>
 			<button style='width: 150px; margin: 1px' id='choose_graph_view'
@@ -121,19 +121,20 @@
 					style='cursor: pointer'> {{breakPoint}} </a></li>
 			</ul>
 		</div>
+		
+		<button class="btn btn-default specs-clear-button"
+			ng-click="clearAllChosen(); newContent();">
+			Clear all checkboxes
+		</button>
 	</div>
 	<div style='display: inline'>
 		<accordion close-others="false"> <!-- repeated content -->
 		<div width='100%' class="specs-container" id='expandable'>
-			<accordion-group> <accordion-heading
-				id='reports_spec'>
+			<accordion-group> 
+			<accordion-heading id='reports_spec'>
 			<div class="accordion-toggle" ng-click='toggleButton()'>
 				Specifications<span class="glyphicon glyphicon-triangle-bottom"
 					aria-hidden="true"></span>
-				<button style='width: 60px;' ng-show='showButton' id='button_clear'
-					class="btn btn-default"
-					ng-click="$event.preventDefault(); $event.stopPropagation(); clearAllChosen(); newContent()">
-					Clear</button>
 			</div>
 			</accordion-heading> <!-- BROWSERS START -->
 			<table>
