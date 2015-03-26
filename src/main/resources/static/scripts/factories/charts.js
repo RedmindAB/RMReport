@@ -47,6 +47,7 @@ angular.module('webLog')
 								},
 							},
 							useHighStocks : false,
+							loading : true,
 							size : {
 								height : 400
 							},
