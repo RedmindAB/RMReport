@@ -60,10 +60,11 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 		var path = fileName;
 		var index = path.indexOf("-_-");
 		var order = path.split("-_-");
+		var order2 = order[0].split("-");
 		if(index === -1)
-			return "Unsorted image";
+			return "";
 		else
-			return order[0];
+			return order2[1];
 	}
 	
 	function setCaseSizeByMethod(){
