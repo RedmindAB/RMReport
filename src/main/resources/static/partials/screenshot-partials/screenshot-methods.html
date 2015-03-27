@@ -1,4 +1,11 @@
-<p id='go_to_classes' class="screenshot-nav" ng-click="setState('screenshots.classes')">Go back to Classes</p>
+<div class="screenshot-nav-container">
+	<div class="screenshot-nav-left">
+		<h4 id='go_to_classes' class="screenshot-nav" ng-click="setState('screenshots.classes')">Choose another class</h4>
+	</div>
+	<div class="screenshot-nav-center">
+		<h4 class="screenshot-nav">{{CurrentSuite.currentTimeStamp}}</h4>
+	</div>
+</div>
 <div>
 	<div class="screenshot-container" id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' ng-style="{'background-color': getBgCo(CurrentSuite.currentClass.result)}">
 		<h4 class="accordion-name-container" ng-style="{'color' : getCo(CurrentSuite.currentClass.result)}">&nbsp;{{CurrentSuite.currentClass.name}}</h4>
@@ -19,12 +26,12 @@
 			
 			            <!-- Content in collapsing Div -->
 							<div ng-if="method.screenshotLength > 0" style="width:{{getMethodContentWidth(method)}}px;" class="screenshot-view">
-								<table id='table{{$index}}' ng-repeat="case in method.testcases | orderBy:['result','device','browser'] track by $index" ng-style="{'background-color': getBgCo(case.result)}" class='panel screenshot-methods-table' width="222px">
+								<table valign='top' id='table{{$index}}' ng-repeat="case in method.testcases | orderBy:['result','device','browser'] track by $index" ng-style="{'background-color': getBgCo(case.result)}" class='panel screenshot-methods-table' width="222px">
 									<tr>
 										<td>{{case.device}} - {{case.browser}}</td>
 									</tr>
 									<tr ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index'>
-										<td height='450px' valign='top'>
+										<td height='450px' style='overflow:scroll' valign='top'>
 											<img id='screenshot{{$index}}' ng-click='setCurrentMethod(method); setSlides(method.testcases, $index, $parent.$index); toggleModal();' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img><br><br>
 										</td>
 									</tr>
@@ -59,8 +66,8 @@
 	<a class="arrow prev" id='arrow_prev' href="#" ng-click="nextSlide()"></a>
 	<a class="arrow next" id='arrow_next' href="#" ng-click="prevSlide()"></a>
 	<div class="container slider">
-		<img onmousedown="event.preventDefault" class='slide-img table-m' ng-repeat="slide in slides"
-			 class="slide slide-animation nonDraggableImage"
+		<img onmousedown="event.preventDefault" ng-repeat="slide in slides"
+			 class="slide slide-animation nonDraggableImage slide-img table-m"
 			 ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
 			 ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}">
 	</div>

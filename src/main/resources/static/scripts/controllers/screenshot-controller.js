@@ -17,7 +17,6 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	});
 	
 	$rootScope.$on("wrongScreenData", function(){
-		console.log("getting new data");
 		$scope.loadScreenshotsFromClass();
 	});
 	
@@ -35,7 +34,6 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		ScreenshotMaster.data = data
-	    		console.log(data);
 	    		ScreenshotMaster.currentClass = CurrentSuite.currentClass.id
 	    		ScreenshotMaster.currentTimestamp = CurrentSuite.currentTimeStamp;
 	    		setCaseSizeByMethod();
@@ -134,6 +132,39 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
          $scope.direction = 'right';
          $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
      };
-	
-	
-}]);
+}])
+.animation('.slide-animation', function () {
+        return {
+            beforeAddClass: function (element, className, done) {
+                var scope = element.scope();
+
+                if (className == 'ng-hide') {
+                    var finishPoint = element.parent().width();
+                    if(scope.direction !== 'right') {
+                        finishPoint = -finishPoint;
+                    }
+                    TweenMax.to(element, 0.5, {left: finishPoint, onComplete: done });
+                }
+                else {
+                    done();
+                }
+            },
+            removeClass: function (element, className, done) {
+                var scope = element.scope();
+
+                if (className == 'ng-hide') {
+                    element.removeClass('ng-hide');
+
+                    var startPoint = element.parent().width();
+                    if(scope.direction === 'right') {
+                        startPoint = -startPoint;
+                    }
+
+                    TweenMax.fromTo(element, 0.5, { left: startPoint }, {left: 0, onComplete: done });
+                }
+                else {
+                    done();
+                }
+            }
+        };
+});

@@ -47,6 +47,7 @@ angular.module('webLog')
 								},
 							},
 							useHighStocks : false,
+							loading : true,
 							size : {
 								height : 400
 							},
@@ -133,10 +134,5 @@ angular.module('webLog')
 								text: "lots of tests"
 							}
 						},
-
-					// HOME PAGE CHART
-					// TIME------------------------------------------------------------------------------
-
 					}
-
 				});

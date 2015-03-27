@@ -21,6 +21,10 @@ angular.module('webLog')
     
     $scope.mock = colors;
     
+    $scope.homeChartLoaded = function(suite){
+    	return $scope.chartHomeConfig[suite.id] !== undefined && $scope.chartHomeConfig[suite.id].loading === false;
+    }
+    
     function clearPlatformChosen(platform){
     	var platforms = CurrentSuite.currentSpecObject.platforms;
     	for (var i = 0; i < platforms.length; i++) {
@@ -626,7 +630,7 @@ angular.module('webLog')
     			browsers: [],
     			classes:[],
     			testcases:[]
-    });
+    	});
     	$http.post('/api/stats/graphdata', requestObject)
     	.success(function(data, status, headers, config){ 
     		$scope.createHomeChart(data, suite);
@@ -1424,6 +1428,7 @@ angular.module('webLog')
 					},
 				},
 				useHighStocks : false,
+				loading:true,
 				size : {
 					height : 400
 				},
@@ -1442,6 +1447,7 @@ angular.module('webLog')
 		}
 		chartHomeConfigObject.xAxis.categories = timeStamps;
 		$scope.chartHomeConfig[suite.id] = chartHomeConfigObject;
+		$scope.chartHomeConfig[suite.id].loading = false;
     };
     
     function runTimeChart() {
@@ -1527,8 +1533,6 @@ angular.module('webLog')
     
     $scope.clearData = function(){
     	
-    	console.log(CurrentSuite);
-    	
     	CurrentSuite.currentClass = [];
     	CurrentSuite.currentTimeStamp = '';
     	CurrentSuite
@@ -1537,7 +1541,6 @@ angular.module('webLog')
     	ScreenshotMaster.currentClass = undefined;
     	ScreenshotMaster.currentTimestamp = undefined;
     	ScreenshotMaster.previousView = undefined;
-    	console.log(ScreenshotMaster);
     	
     	CurrentSuite.activeQueries = [];
     	CurrentSuite.currentCases = [];

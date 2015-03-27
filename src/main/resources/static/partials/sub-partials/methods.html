@@ -13,8 +13,8 @@
                     
                     <td ng-click="getCases(method);
                             setState('reports.cases');" ng-style="{'color' : getCo(method.result)}">
-						<h4 class="accordion-name-container text-left">{{method.name}}</h4> 
-                        <h4 class="accordion-name-container text-right">&nbsp;{{formatDecimals(method.time)}}</h4>
+						<p class="accordion-name-container text-left">{{method.name}}</p> 
+                        <p class="accordion-name-container text-right">&nbsp;{{formatDecimals(method.time)}}</p>
                         <p class="accordion-name-container text-right">Skipped: {{method.stats.skipped}} Failed: {{method.stats.totFail}}</p>
                     </td>
                 </tr>
