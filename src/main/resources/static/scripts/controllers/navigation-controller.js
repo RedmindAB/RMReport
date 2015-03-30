@@ -51,7 +51,6 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 	
 	$scope.goToScreenshotView = function(){
 		ScreenshotMaster.previousView = $state.$current.name;
-		
 		if ($state.current.name !== 'home') {
 			if (CurrentSuite.currentSuite.length === 0) {
 				$state.transitionTo('home');

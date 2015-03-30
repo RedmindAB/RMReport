@@ -7,55 +7,55 @@ angular.module('webLog')
 						data : [],
 						// HOME PAGE CHART
 						// ------------------------------------------------------------------------------
-						homeChart : {
-							options : {
-								chart : {
-									type : "areaspline",
-									backgroundColor : '#ecf0f1'
-								},
-								plotOptions : {
-									series : {
-										stacking : "normal"
-									}
-								}
-							},
-							series : [ {
-								data : [],
-								id : "pass",
-								name : "Pass",
-								type : "column",
-								color : "green",
-								dashStyle : "Solid",
-								connectNulls : false
-							}, {
-								data : [],
-								id : "fail",
-								name : "Fail",
-								type : "column",
-								color : '#FF0000',
-								dashStyle : "Solid",
-								connectNulls : false
-							} ],
-							xAxis : {
-								labels : {
-									rotation : 45
-								}
-							},
-							yAxis : {
-								title : {
-									text : 'Number of tests'
-								},
-							},
-							useHighStocks : false,
-							loading : true,
-							size : {
-								height : 400
-							},
-							// function (optional)
-							func : function(chart) {
-								// setup some logic for the chart
-							}
-						},
+//						homeChart : {
+//							options : {
+//								chart : {
+//									type : "areaspline",
+//									backgroundColor : '#ecf0f1'
+//								},
+//								plotOptions : {
+//									series : {
+//										stacking : "normal"
+//									}
+//								}
+//							},
+//							series : [ {
+//								data : [],
+//								id : "pass",
+//								name : "Pass",
+//								type : "column",
+//								color : "green",
+//								dashStyle : "Solid",
+//								connectNulls : false
+//							}, {
+//								data : [],
+//								id : "fail",
+//								name : "Fail",
+//								type : "column",
+//								color : '#FF0000',
+//								dashStyle : "Solid",
+//								connectNulls : false
+//							} ],
+//							xAxis : {
+//								labels : {
+//									rotation : 45
+//								}
+//							},
+//							yAxis : {
+//								title : {
+//									text : 'Number of tests'
+//								},
+//							},
+//							useHighStocks : false,
+//							loading : true,
+//							size : {
+//								height : 400
+//							},
+//							// function (optional)
+//							func : function(chart) {
+//								// setup some logic for the chart
+//							}
+//						},
 
 						// MAIN PAGE CHART NORM
 						// ------------------------------------------------------------------------------

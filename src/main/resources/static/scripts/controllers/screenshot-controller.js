@@ -22,12 +22,6 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	
 	document.addEventListener('dragstart', function (e) { e.preventDefault(); });
 	
-	$scope.getScreenByIndex = function(){
-		var array = [];
-		array.push($scope.getScreenshotsFromFileName(ScreenshotMaster.data[0].testcases[1].screenshots[0]));
-		return array;
-	}
-	
 	$scope.loadScreenshotsFromClass = function(){
 		
 	    $http.get('/api/screenshot/structure?timestamp='+CurrentSuite.currentTimeStamp+'&classid='+CurrentSuite.currentClass.id)
@@ -60,6 +54,17 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 			var comment = path.substring()
 			return comment.slice(0,index);
 		}
+	}
+	// Ordering function for screenshots - in progress...
+	$scope.getScreenshotOrder = function(fileName){
+		var path = fileName;
+		var index = path.indexOf("-_-");
+		var order = path.split("-_-");
+		var order2 = order[0].split("-");
+		if(index === -1)
+			return "";
+		else
+			return order2[1];
 	}
 	
 	function setCaseSizeByMethod(){
