@@ -1387,8 +1387,8 @@ angular.module('webLog')
 										$scope.getSuiteSkeletonByTimeStamp(this.category);
 										$scope.loadMainChart(suite.id);
 										$state.transitionTo('reports.classes');
+									}
 								}
-							}
 							}
 						}
 					},
