@@ -9,25 +9,31 @@ import se.redmind.rmtest.web.route.RMTRoute;
 
 import java.sql.SQLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 public class Main {
+
 	
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
-		System.out.print("Starting the database... ");
+		Logger log = LogManager.getLogger(Main.class);
+		log.info("Starting Redmind report");
+		log.info("Starting database...");
 		//starts the database.
 		DBCon.getDbInstance();
-		System.out.print("DONE!\n");
+		log.info("Stating database done");
 		//Searches though the report directory for reports that are not added yet.
 		String[] testDirectories = new PropertiesReader().getTestDirectory();
 		int addedreports = 0;
 		for (String string : testDirectories) {
 			addedreports += new ReportInit(string).initReports();
 		}
-		System.out.println("Added "+addedreports+" reports.");
+		log.info("Added "+addedreports+" reports.");
 		//init the In Memory DB
-		System.out.println("Init the in memory db...");
+		log.info("Init the in memory db...");
 		new InMemoryDBHandler().init();
-		System.out.println("Init the in memory db DONE!");
+		log.info("Init the in memory db DONE!");
 		//Listens to file changes in the report directory.
 		FileWatcher.Run();
 		//start the webserver.

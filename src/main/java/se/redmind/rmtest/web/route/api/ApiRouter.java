@@ -5,6 +5,7 @@ import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesWS;
 import se.redmind.rmtest.web.route.api.classes.passfail.PassFailClassWS;
 import se.redmind.rmtest.web.route.api.device.getdevices.GetDevicesAMonthAgoWS;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseWS;
+import se.redmind.rmtest.web.route.api.filter.ApiBeforeFilter;
 import se.redmind.rmtest.web.route.api.longpoll.change.CheckForChangeWS;
 import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
 import se.redmind.rmtest.web.route.api.screenshot.byfilename.ScreenshotByFilenameWS;
@@ -25,6 +26,9 @@ public class ApiRouter {
 	}
 	
 	private void init(){
+		
+		//API-filters
+		after(new ApiBeforeFilter());
 		
 		//added to apidoc
 		get(new GetSuitesWS("/api/suite/getsuites"));

@@ -1,8 +1,12 @@
 package se.redmind.rmtest.web.route.api.stats.graphdata;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 
 import spark.Request;
 import spark.Response;
@@ -10,6 +14,8 @@ import spark.Route;
 
 public class GetGraphDataWS extends Route {
 
+	Logger log = LogManager.getLogger(GetGraphDataWS.class);
+	
 	public GetGraphDataWS(String path) {
 		super(path);
 	}
@@ -80,6 +86,7 @@ public class GetGraphDataWS extends Route {
 	public Object handle(Request request, Response response) {
 		try {
 			String data = (String) request.body();
+			log(request, data);
 			JsonArray json = new Gson().fromJson(data, JsonArray.class);
 			String res = new GetGraphDataDAO().getGraphData(json);
 			return res;
@@ -87,6 +94,14 @@ public class GetGraphDataWS extends Route {
 			e.printStackTrace();
 		}
 		return "nope";
+	}
+
+	private void log(Request request, String body) {
+		HttpServletRequest rawRequest = request.raw();
+		String contextPath = request.pathInfo();
+		String type = rawRequest.getMethod();
+		String id = rawRequest.getSession().getId();
+		log.debug("session id: {} type: {} - {} data: {}", id, type, contextPath, body);
 	}
 
 }
