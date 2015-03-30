@@ -1362,6 +1362,15 @@ angular.module('webLog')
     	
         var chartHomeConfigObject = {
 				options : {
+					tooltip : {
+						crosshairs: true,
+			            shared: true,
+			            useHTML: true,
+			            headerFormat: '<small>{point.key}</small><table>',
+			            pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
+			            '<td style="text-align: right"><b>{point.y}</b></td></tr>',
+			            footerFormat: '</table>',
+					},
 					chart : {
 						type : "areaspline",
 						backgroundColor : '#ecf0f1'
@@ -1378,8 +1387,8 @@ angular.module('webLog')
 										$scope.getSuiteSkeletonByTimeStamp(this.category);
 										$scope.loadMainChart(suite.id);
 										$state.transitionTo('reports.classes');
+									}
 								}
-							}
 							}
 						}
 					},
@@ -1417,7 +1426,7 @@ angular.module('webLog')
 					connectNulls : false
 				} ],
 				xAxis : {
-					tickInterval: 2,
+					tickInterval: 0.9,
 					labels : {
 						rotation : 45
 					}

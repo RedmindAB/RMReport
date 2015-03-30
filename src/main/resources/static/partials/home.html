@@ -32,7 +32,7 @@
 		<!-- project logo END -->
 		<!-- project chart -->
 		<tr style='width:100%'>
-			<td colspan='3'><highchart id="chart1" class='high-chart'
+			<td colspan='3'><highchart ng-if="chartHomeConfig[suite.id] !== undefined" id="chart1" class='high-chart'
 					config="chartHomeConfig[suite.id]"></highchart></td>
 		</tr>
 		<!-- project chart END -->
