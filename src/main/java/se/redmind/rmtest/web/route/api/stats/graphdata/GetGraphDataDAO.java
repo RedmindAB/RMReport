@@ -3,6 +3,9 @@ package se.redmind.rmtest.web.route.api.stats.graphdata;
 import java.sql.ResultSet;
 import java.util.HashMap;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import se.redmind.rmtest.web.route.api.ErrorResponse;
 
 import com.google.gson.Gson;
@@ -13,6 +16,8 @@ import com.google.gson.JsonPrimitive;
 
 public class GetGraphDataDAO {
 
+	Logger log = LogManager.getLogger(GetGraphDataDAO.class);
+	
 	private int reslimit = 0;
 	private int suite_id = 0;
 	private boolean error = false;
@@ -49,6 +54,7 @@ public class GetGraphDataDAO {
 			reslimit = firstParams.get("reslimit").getAsInt();
 			suite_id = firstParams.get("suiteid").getAsInt();
 		} catch (Exception e) {
+			log.error("Could not extract variables for graphdata from response");
 			error = true;
 		}
 	}
@@ -57,9 +63,11 @@ public class GetGraphDataDAO {
 		JsonArray badParams = new JsonArray();
 		if (suite_id<1) {
 			badParams.add(new JsonPrimitive("suite id was not set to a valid value"));
+			log.error("suite id (suite_id) was not set to a valid value");
 		}
 		if (reslimit<1) {
 			badParams.add(new JsonPrimitive("reslimit is not set to a valid value"));
+			log.error("result limit (reslimit) was not set to a valid value");
 		}
 		return new ErrorResponse(badParams);
 	}
