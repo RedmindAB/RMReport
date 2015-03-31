@@ -2,6 +2,7 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	
 	$scope.ScreenshotMaster = ScreenshotMaster;
 	$scope.modalShown = false;
+	$scope.modalShown2 = false;
 	$scope.caseArraySize = [];
 	
 	$scope.getMethodContentWidth = function(method){
@@ -14,6 +15,14 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	
 	$scope.$on("closeModal", function() {
 		$scope.toggleModal();
+	});
+	
+	$scope.toggleModal2 = function() {
+		$scope.modalShown2 = !$scope.modalShown2;
+	};
+	
+	$scope.$on("closeModal2", function() {
+		$scope.toggleModal2();
 	});
 	
 	document.addEventListener('dragstart', function (e) { 
