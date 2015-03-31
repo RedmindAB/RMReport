@@ -1,5 +1,8 @@
 package se.redmind.rmtest.filewatcher;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
@@ -29,10 +32,12 @@ public class FileWatcherQueueReader implements Runnable {
 				// receive all the states from it
 				boolean updatedReports = false;
 				for (WatchEvent event : key.pollEvents()) {
-//					System.out.printf("Received %s event for file: %s\n",
-//							event.kind(), event.context());
 					String filename = event.context().toString();
 					boolean isXmlFile = filename.toLowerCase().endsWith(".xml");
+					while (!isCompletelyWritten(path, filename)) {
+						System.out.println("File is not done, waiting for 50ms");
+						Thread.sleep(50);
+					}
 					if (event.kind().equals(ENTRY_CREATE) && isXmlFile) {
 						System.out.println(filename);
 						ReportValidator reportValidator = new ReportValidator(
@@ -53,9 +58,32 @@ public class FileWatcherQueueReader implements Runnable {
 				key = watchService.take();
 			}
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			System.err.println("something went wrong: restarting filewatcher!");
+			run();
 		}
 		System.out.println("Stopping file watcher thread");
+	}
+	
+	private boolean isCompletelyWritten(String path, String filename) {
+		File dir = new File(path);
+		path = dir.getAbsolutePath();
+		File file = new File(path+filename);
+	    RandomAccessFile stream = null;
+	    try {
+	        stream = new RandomAccessFile(file, "rw");
+	        return true;
+	    } catch (Exception e) {
+	    	System.err.println(e.getMessage());
+	    } finally {
+	        if (stream != null) {
+	            try {
+	                stream.close();
+	            } catch (IOException e) {
+	            	System.err.println(e.getMessage());
+	            }
+	        }
+	    }
+	    return false;
 	}
 
 }

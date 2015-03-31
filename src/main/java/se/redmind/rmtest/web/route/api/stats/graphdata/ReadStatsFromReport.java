@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -17,6 +20,8 @@ import se.redmind.rmtest.db.lookup.report.ReportDbLookup;
 
 public class ReadStatsFromReport extends DBBridge{
 
+	Logger log = LogManager.getLogger(ReadStatsFromReport.class);
+	
 	String GET_REPORTS_BY_SUITEID = "SELECT timestamp, result, time FROM report WHERE suite_id = {suiteid} ORDER BY timestamp DESC;";
 	public static final String OS = "os";
 	public static final String DEVICES = "devices";
@@ -53,8 +58,7 @@ public class ReadStatsFromReport extends DBBridge{
 	
 	public HashMap<Long, JsonObject> getGraphDataAsHashMap(JsonObject params, long minTimestamp){
 		String sql = getQueryFromJsonObject(params, minTimestamp);
-//		System.out.println(sql);
-//		System.out.println("----");
+		log.debug("SQL: {}", sql);
 		int reslimit = params.get("reslimit").getAsInt();
 		ResultSet rs = readFromDB(sql, reslimit);
 		return extractGraphData(rs);
