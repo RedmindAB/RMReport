@@ -91,9 +91,8 @@ public class GetGraphDataWS extends Route {
 			String res = new GetGraphDataDAO().getGraphData(json);
 			return res;
 		} catch (Exception e) {
-			e.printStackTrace();
+			return e.getStackTrace().toString();
 		}
-		return "nope";
 	}
 
 	private void log(Request request, String body) {

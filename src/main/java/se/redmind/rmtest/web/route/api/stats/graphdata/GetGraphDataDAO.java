@@ -2,25 +2,26 @@ package se.redmind.rmtest.web.route.api.stats.graphdata;
 
 import java.sql.ResultSet;
 import java.util.HashMap;
-import java.util.List;
 
-import se.redmind.rmtest.util.GraphDataExtractor;
+import se.redmind.rmtest.web.route.api.ErrorResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 
 public class GetGraphDataDAO {
 
-	private int reslimit;
-	private int suite_id;
+	private int reslimit = 0;
+	private int suite_id = 0;
+	private boolean error = false;
 
 	public String getGraphData(JsonArray paramsArray){
 		initLocalVariables(paramsArray);
-		
+		if (error) {
+			return checkErrors(getFirstJson(paramsArray)).toString();
+		}
 		ReadStatsFromReport reportStats = new ReadStatsFromReport();
 		GraphDataBuilder graphBuilder = new GraphDataBuilder();
 		JsonArray resultArray = new JsonArray();
@@ -39,14 +40,28 @@ public class GetGraphDataDAO {
 				resultArray.add(result);
 			}
 		}
-//		System.out.println(resultArray);
 		return new Gson().toJson(resultArray);
 	}
 
 	private void initLocalVariables(JsonArray paramsArray) {
-		JsonObject firstParams = getFirstJson(paramsArray);
-		reslimit = firstParams.get("reslimit").getAsInt();
-		suite_id = firstParams.get("suiteid").getAsInt();
+		try {
+			JsonObject firstParams = getFirstJson(paramsArray);
+			reslimit = firstParams.get("reslimit").getAsInt();
+			suite_id = firstParams.get("suiteid").getAsInt();
+		} catch (Exception e) {
+			error = true;
+		}
+	}
+	
+	private ErrorResponse checkErrors(JsonObject params){
+		JsonArray badParams = new JsonArray();
+		if (suite_id<1) {
+			badParams.add(new JsonPrimitive("suite id was not set to a valid value"));
+		}
+		if (reslimit<1) {
+			badParams.add(new JsonPrimitive("reslimit is not set to a valid value"));
+		}
+		return new ErrorResponse(badParams);
 	}
 	
 	public JsonObject getFirstJson(JsonArray paramsArray){
