@@ -6,7 +6,7 @@ angular.module('webLog')
             attrs.$observe('ngSrc', function(ngSrc) {
                 $http.get(ngSrc).success(function(){
                 }).error(function(){
-                    element.attr('src', '/img/logos/no-logo.png'); // set default image
+                    element.attr('src', 'assets/img/logos/no-logo.png'); // set default image
                 });
             });
         }

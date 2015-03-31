@@ -1,8 +1,9 @@
-angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$rootScope', '$state', '$http', 'ScreenshotMaster', 'CurrentSuite', function($window ,$scope, $rootScope,$state, $http, ScreenshotMaster, CurrentSuite) {
+angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$rootScope', '$state', '$http', 'ScreenshotMaster', 'CurrentSuite','RestLoader', function($window ,$scope, $rootScope,$state, $http, ScreenshotMaster, CurrentSuite, RestLoader) {
 	
 	$scope.ScreenshotMaster = ScreenshotMaster;
 	$scope.modalShown = false;
-	$scope.caseArraySize = []
+	$scope.modalShown2 = false;
+	$scope.caseArraySize = [];
 	
 	$scope.getMethodContentWidth = function(method){
 		return (method.testcases.length * 232)+10;
@@ -16,30 +17,25 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 		$scope.toggleModal();
 	});
 	
-	$rootScope.$on("wrongScreenData", function(){
-		$scope.loadScreenshotsFromClass();
+	$scope.toggleModal2 = function() {
+		$scope.modalShown2 = !$scope.modalShown2;
+	};
+	
+	$scope.$on("closeModal2", function() {
+		$scope.toggleModal2();
 	});
 	
-	document.addEventListener('dragstart', function (e) { e.preventDefault(); });
+	document.addEventListener('dragstart', function (e) { 
+		e.preventDefault(); 
+	});
 	
-	$scope.loadScreenshotsFromClass = function(){
-		
-	    $http.get('/api/screenshot/structure?timestamp='+CurrentSuite.currentTimeStamp+'&classid='+CurrentSuite.currentClass.id)
-	    .success(function(data, status, headers, config){ 
-	    	if(data){
-	    		ScreenshotMaster.data = data
-	    		ScreenshotMaster.currentClass = CurrentSuite.currentClass.id
-	    		ScreenshotMaster.currentTimestamp = CurrentSuite.currentTimeStamp;
-	    		setCaseSizeByMethod();
-	    	};
-	    }).error(function(data, status, headers, config){
-	    	console.error(data);
-	    });
+	$scope.loadScreenshotsFromClass = function(classObj){
+		RestLoader.loadScreenshotsFromClass(classObj);
 	}
 	
 	$scope.getScreenshotsFromFileName = function(fileName){
 		if (!fileName) {
-			return 'img/logos/placeholder2.png';
+			return 'assets/img/logos/placeholder2.png';
 		}
 		return '/api/screenshot/byfilename?timestamp='+ScreenshotMaster.currentTimestamp+'&filename='+fileName;
 	}
@@ -67,19 +63,19 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 			return order2[1];
 	}
 	
-	function setCaseSizeByMethod(){
-		var data = ScreenshotMaster.data;
-		
-		for (var i = 0; i < data.length; i++) {
-			var screenshotLength = 0;
-			for (var j = 0; j < data[i].testcases.length; j++) {
-				if (data[i].testcases[j].screenshots.length > screenshotLength) {
-					screenshotLength = data[i].testcases[j].screenshots.length;
-				}
-			}
-			data[i].screenshotLength = screenshotLength;
-		}
-	}
+//	function setCaseSizeByMethod(){
+//		var data = ScreenshotMaster.data;
+//		
+//		for (var i = 0; i < data.length; i++) {
+//			var screenshotLength = 0;
+//			for (var j = 0; j < data[i].testcases.length; j++) {
+//				if (data[i].testcases[j].screenshots.length > screenshotLength) {
+//					screenshotLength = data[i].testcases[j].screenshots.length;
+//				}
+//			}
+//			data[i].screenshotLength = screenshotLength;
+//		}
+//	}
 	
 	$scope.getFailError = function(obj){
 		var tot = obj.error + obj.failure;

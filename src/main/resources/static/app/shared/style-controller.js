@@ -1,5 +1,7 @@
 angular.module('webLog')
-	.controller('StyleCtrl', ['$scope', '$state', function($scope, $state){
+	.controller('StyleCtrl', ['$scope', '$state', 'Utilities', function($scope, $state, Utilities){
+		
+		$scope.Utilities = Utilities;
 		
 	    $scope.getCurrentState= function(state){
 	    	return $state.includes(state);
@@ -120,6 +122,9 @@ angular.module('webLog')
 	    
 	    $scope.getLogo = function(suiteName){
 	    	var path = 'img/suites/' + suiteName + '.png';
+	    	
+	    	
+	    	
 	    	return path;
 	    }
 	    

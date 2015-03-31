@@ -7,48 +7,48 @@ angular.module('webLog', ['ui.router','ui.bootstrap',"highcharts-ng", 'ngAnimate
     $stateProvider
         .state('home',{
             url: '/home',
-            templateUrl: 'partials/home.html',
-            controller: 'NavCtrl'
+            templateUrl: 'app/components/dashboard/home.html',
+            controller: 'DashboardCtrl'
         })
         .state('reports',{
 	        url:'/reports',
-	        templateUrl: 'partials/reports.html',
-	        controller: 'NavCtrl'
+	        templateUrl: 'app/components/graph/reports.html',
+	        controller: 'GraphCtrl'
         })
         .state('reports.classes',{
 	        url:'/classes',
-	        templateUrl: 'partials/sub-partials/classes.html',
-	        controller: ''
+	        templateUrl: 'app/components/suite-info/classes.html',
+	        controller: 'SuiteInfoCtrl'
         })
         .state('reports.methods',{
 	        url:'/methods',
-	        templateUrl: 'partials/sub-partials/methods.html',
-	        controller: ''
+	        templateUrl: 'app/components/suite-info/methods.html',
+	        controller: 'SuiteInfoCtrl'
         })
         .state('reports.drivers',{
 	        url:'/drivers',
-	        templateUrl: 'partials/sub-partials/drivers.html',
-	        controller: ''
+	        templateUrl: 'app/components/suite-info/drivers.html',
+	        controller: 'SuiteInfoCtrl'
         })
 	    .state('reports.cases',{
 	        url:'/cases',
-	        templateUrl: 'partials/sub-partials/cases.html',
-	        controller: ''
+	        templateUrl: 'app/components/suite-info/cases.html',
+	        controller: 'SuiteInfoCtrl'
 	    })
 	    .state('screenshots',{
 	        url:'/screenshots',
-	        templateUrl: 'partials/screen-shots.html',
+	        templateUrl: 'app/components/screenshots/screen-shots.html',
 	        controller: 'ScreenshotCtrl'
 	    })
 	    .state('screenshots.classes',{
 	        url:'/classes',
-	        templateUrl: 'partials/screenshot-partials/screenshot-classes.html',
-	        controller: 'NavCtrl'
+	        templateUrl: 'app/components/screenshots/screenshot-classes.html',
+	        controller: ''
 	    })
 	    .state('screenshots.methods',{
 	        url:'/methods',
-	        templateUrl: 'partials/screenshot-partials/screenshot-methods.html',
-	        controller: 'NavCtrl'
+	        templateUrl: 'app/components/screenshots/screenshot-methods.html',
+	        controller: ''
 	    });
     });
 

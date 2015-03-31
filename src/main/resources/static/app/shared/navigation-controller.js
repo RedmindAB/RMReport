@@ -1,12 +1,12 @@
-angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state', 'CurrentSuite', 'Charts','Utilities','ScreenshotMaster', function($scope, $rootScope,$state, CurrentSuite, Charts, Utilities, ScreenshotMaster){
+angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state', '$location', 'CurrentSuite', 'Charts','Utilities','ScreenshotMaster', 'RestLoader', function($scope, $rootScope,$state, $location, CurrentSuite, Charts, Utilities, ScreenshotMaster, RestLoader){
 	
 	$scope.CurrentSuite = CurrentSuite;
 	$scope.Charts = Charts;
 	
-	$scope.$watch('$state.$current.name', function() {
-		Utilities.searchField = '';
-		Utilities.sorting = ['result', 'name'];
-		Utilities.caseSorting = ['result','osname', 'devicename', 'osversion', 'browsername'];
+	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+				Utilities.searchField = '';
+				Utilities.sorting = ['result', 'name'];
+				Utilities.caseSorting = ['result','osname', 'devicename', 'osversion', 'browsername'];
 	});
 	
 	$scope.getPosition = function(){
@@ -64,7 +64,8 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 						if (ScreenshotMaster.currentClass === CurrentSuite.currentClass.id && ScreenshotMaster.currentTimestamp === CurrentSuite.currentTimeStamp) {
 							$state.transitionTo('screenshots.methods');
 						} else {
-							$rootScope.$emit('wrongScreenData');
+//							$rootScope.$emit('wrongScreenData');
+							RestLoader.loadScreenshotsFromClass(CurrentSuite.currentClass);
 							$state.transitionTo('screenshots.methods');
 						}
 					}
@@ -121,10 +122,8 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 		}
 	}   
 	var resetWebApp = function(){
-		if (CurrentSuite.currentSuiteInfo.length === 0) {
-			if ($state.$current.name !== 'home') {
-				$scope.setState('home');
-			}
+		if (CurrentSuite.currentSuite.length === 0) {
+			$location.path("/");
 		}
 	}
 	resetWebApp();
