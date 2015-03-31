@@ -1,0 +1,108 @@
+.slider {
+	width: 80%;
+	height: 1000px;
+	position: relative;
+	overflow-x: hidden;
+	overflow-t: visible;
+	border: 20px solid #FFF;
+	overflow: scroll;
+}
+
+.slide {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.arrow {
+	position: absolute;
+	z-index: 1002;
+	display: block;
+	top: 215px;
+	margin-top: -35px;
+	width: 36px;
+	height: 71px;
+	outline: none;
+	cursor: pointer;
+	background: url(../img/blank.gif) no-repeat;
+}
+
+.arrow.prev {
+	opacity: 1;
+	left: 5px;
+	background-image: url(../img/paddle_prev_fff.png);
+	transition: 0.2s linear all;
+}
+
+.arrow.next {
+	opacity: 1;
+	right: 5px;
+	background-image: url(../img/paddle_next_fff.png);
+	transition: 0.2s linear all;
+}
+
+/*---------------------------------------------------------
+NAV
+---------------------------------------------------------*/
+.nav {
+	text-align: center;
+	display: block;
+	position: absolute;
+	z-index: 1002;
+	left: 0;
+	bottom: -4px;
+	right: 0;
+	height: 48px;
+}
+
+.nav .wrapper {
+	margin: 0 auto;
+	width: 100%;
+	padding: 1em 0 .8em;
+}
+
+.nav ul {
+	margin: 0;
+	width: 100%;
+}
+
+.nav .dot, .nav .dot a {
+	display: inline-block;
+	zoom: 1;
+}
+
+.dots .dot {
+	position: relative;
+	margin: 0 8px;
+	width: 12px;
+	height: 12px;
+	margin-bottom: 15px;
+}
+
+.dots .dot a {
+	position: absolute;
+	top: 20px;
+	left: 2px;
+	width: 12px;
+	height: 12px;
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	background: #FFF;
+	border: 1px solid transparent;
+	outline: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	-webkit-transition: background-color 0.25s, border-color 0.25s;
+	-moz-transition: background-color 0.25s, border-color 0.25s;
+	transition: background-color 0.25s, border-color 0.25s;
+}
+
+.dots .dot a.active {
+	border-color: #FFF;
+	background-color: transparent;
+}

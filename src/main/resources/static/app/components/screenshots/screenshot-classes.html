@@ -1,0 +1,30 @@
+	<!-- project logo -->
+<div class="screenshot-nav-container">
+	<div class="screenshot-nav-left">
+		<h4 id='go-to-suites' class="screenshot-nav" ng-click="setState('home')">Go back to suites</h4>
+	</div>
+	<div class="screenshot-nav-center">
+		<h4 class="screenshot-nav">{{CurrentSuite.currentTimeStamp}}</h4>
+	</div>
+</div>
+<div>
+	<accordion close-others="true"> <!-- repeated content -->
+
+	<div class="screenshot-class-display"
+		ng-controller="SuiteInfoCtrl"
+		id='class_name'
+		ng-repeat="class in CurrentSuite.currentSuite| orderBy:['result','-stats.totFail','name'] track by $index "
+		ng-click="getMethods(class); loadScreenshotsFromClass(class); setState('screenshots.methods')"
+		ng-class='getPanel(class.result)'
+		ng-style="{'background-color': getBgCo(class.result)}">
+		<!-- non collapsing header -->
+		<div style="display: inline-block; width: 100%">
+			<h4 id='get_methods' class="accordion-name-container text-left"
+				ng-style="{'color' : getCo(class.result)}">{{class.name}}</h4>
+			<h4 id='get_methods' class="accordion-name-container text-right"
+				ng-style="{'color' : getCo(class.result)}">&nbsp;Skipped:
+				{{class.stats.skipped}} Failed: {{class.stats.totFail}}</h4>
+		</div>
+	</div>
+	<!-- repeated content  End--> </accordion>
+</div>
