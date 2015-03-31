@@ -22,6 +22,7 @@ import se.redmind.rmtest.report.reportloader.ReportLoader;
 
 public class ReportValidator {
 	
+	private String reportPath;
 	private ReportDbLookup readFromDB;
 	private ReportLoader loader;
 	private ReportXMLParser parser;
@@ -49,6 +50,7 @@ public class ReportValidator {
 		this.suiteInserter = new SuiteInserter();
 		this.testCaseRunInserter = new TestCaseRunInserter();
 		testCaseInserter = new TestCaseInserter();
+		this.reportPath = path;
 		loadReport();
 	}
 	
@@ -63,6 +65,7 @@ public class ReportValidator {
 		this.suiteInserter = new SuiteInserter();
 		this.testCaseRunInserter = new TestCaseRunInserter();
 		testCaseInserter = new TestCaseInserter();
+		this.reportPath = loader.getReportFolderPath();
 		loadReport();
 	}
 	
@@ -188,7 +191,15 @@ public class ReportValidator {
 		return filename.matches("(TEST-)+([.a-zA-Z])+(-)+([0-9]{8}-[0-9]{6})+(.xml)");
 	}
 	
+	public File getReportFile(){
+		return this.reportFile;
+	}
+	
 	public Report getReport(){
 		return report;
+	}
+	
+	public ReportLoader getReportLoader(){
+		return this.loader;
 	}
 }
