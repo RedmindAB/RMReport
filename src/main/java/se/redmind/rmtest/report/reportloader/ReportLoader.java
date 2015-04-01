@@ -3,11 +3,9 @@ package se.redmind.rmtest.report.reportloader;
 import java.io.File;
 import java.util.ArrayList;
 
-import se.redmind.rmtest.web.properties.PropertiesReader;
-
 public class ReportLoader {
 	
-	public static String reportFolderPath;
+	private String reportFolderPath;
 	private File reportFolder = null;
 	
 	

@@ -3,10 +3,10 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 	$scope.CurrentSuite = CurrentSuite;
 	$scope.Charts = Charts;
 	
-	$scope.$watch('$state.$current.name', function() {
-		Utilities.searchField = '';
-		Utilities.sorting = ['result', 'name'];
-		Utilities.caseSorting = ['result','osname', 'devicename', 'osversion', 'browsername'];
+	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+				Utilities.searchField = '';
+				Utilities.sorting = ['result', 'name'];
+				Utilities.caseSorting = ['result','osname', 'devicename', 'osversion', 'browsername'];
 	});
 	
 	$scope.getPosition = function(){

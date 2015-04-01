@@ -3,8 +3,8 @@ angular.module('webLog')
 	
 	var restLoader = this;
 	
-	restLoader.loadTimestamp = function(timestamp){
-		restLoader.getSuiteSkeletonByTimestamp(timestamp);
+	restLoader.loadTimestamp = function(timestamp, firstLoad){
+		restLoader.getSuiteSkeletonByTimestamp(timestamp, firstLoad);
 		CurrentSuite.currentTimeStamp = timestamp;
 	};
 	
@@ -24,6 +24,30 @@ angular.module('webLog')
 					CurrentSuite.currentTimeStamp = suite.lastTimeStamp;
 				}
 	    		getPassFailTotByClass(timestamp, CurrentSuite.currentSuite);
+	    	};
+	    }).error(function(data, status, headers, config){
+	    	console.error(data);
+	    });
+	};
+	
+	restLoader.getSuiteSkeletonByTimestamp = function(timestamp, firstLoad){
+	    $http.get("/api/suite/bytimestamp?suiteid="+ CurrentSuite.currentSuiteInfo.id + "&timestamp="+timestamp)
+	    .success(function(data, status, headers, config){ 
+	    	if(data){
+	    		CurrentSuite.currentSuite = data;
+	    		getPassFailTotByClass(timestamp, CurrentSuite.currentSuite);
+	    		if (CurrentSuite.currentClass != undefined) {
+	    			CurrentSuite.currentMethods = CurrentSuite.getMethodsByClassId(CurrentSuite.currentClass.id);
+	    			if (CurrentSuite.currentMethods !== undefined) {
+	    				restLoader.getPassFailTotByMethod(timestamp, CurrentSuite.currentClass, CurrentSuite.currentMethods);
+					}
+	    			if ($state.current.name === "reports.cases") {
+	    				restLoader.getCases(CurrentSuite.currentMethod);
+					}
+				}
+	    		if (firstLoad) {
+	    			getSpecsInfo(CurrentSuite.currentSuiteInfo.id);
+				}
 	    	};
 	    }).error(function(data, status, headers, config){
 	    	console.error(data);
@@ -94,28 +118,6 @@ angular.module('webLog')
 		});
 	}
     
-	restLoader.getSuiteSkeletonByTimestamp = function(timestamp){
-	    $http.get("/api/suite/bytimestamp?suiteid="+ CurrentSuite.currentSuiteInfo.id + "&timestamp="+timestamp)
-	    .success(function(data, status, headers, config){ 
-	    	if(data){
-	    		CurrentSuite.currentSuite = data;
-	    		getPassFailTotByClass(timestamp, CurrentSuite.currentSuite);
-	    		if (CurrentSuite.currentClass != undefined) {
-	    			CurrentSuite.currentMethods = CurrentSuite.getMethodsByClassId(CurrentSuite.currentClass.id);
-	    			if (CurrentSuite.currentMethods !== undefined) {
-	    				restLoader.getPassFailTotByMethod(timestamp, CurrentSuite.currentClass, CurrentSuite.currentMethods);
-					}
-	    			if ($state.current.name === "reports.cases") {
-	    				restLoader.getCases(CurrentSuite.currentMethod);
-					}
-				}
-	    		getSpecsInfo(CurrentSuite.currentSuiteInfo.id);
-	    	};
-	    }).error(function(data, status, headers, config){
-	    	console.error(data);
-	    });
-	};
-	
 	restLoader.getCases = function(method){
 		CurrentSuite.currentMethod = method;
 	    $http.get('/api/driver/bytestcase?id='+CurrentSuite.currentMethod.id+'&timestamp='+CurrentSuite.currentTimeStamp)

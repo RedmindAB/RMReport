@@ -280,7 +280,7 @@ angular.module('webLog')
 										click: function(e){
 											Utilities.clearData();
 											CurrentSuite.currentSuiteInfo = suite;
-											RestLoader.loadTimestamp(this.category);
+											RestLoader.loadTimestamp(this.category, true);
 											chartMaker.loadMainChart(suite.id, true);
 											$state.transitionTo('reports.classes');
 										}

@@ -29,7 +29,13 @@ public abstract class DBBridge {
 		return null;
 	}
 	
-	protected boolean insertToDB(String sql){
+	
+	/**
+	 * inserts the sql into the database, SQLite only supports one thread to write to the database at the time so the method is synchronized.
+	 * @param sql
+	 * @return
+	 */
+	protected synchronized boolean insertToDB(String sql){
 		int result;
 		try {
 			Statement statement = connection.createStatement();
@@ -40,7 +46,12 @@ public abstract class DBBridge {
 		
 		return result > 0;
 	}
-	protected void insertToDB(Statement statement){
+	
+	/**
+	 * inserts the statement into the database, SQLite only supports one thread to write to the database at the time so the method is synchronized.
+	 * @param statement
+	 */
+	protected synchronized void insertToDB(Statement statement){
 		try {
 			statement.executeBatch();
 		} catch (SQLException e) {
@@ -49,7 +60,11 @@ public abstract class DBBridge {
 		}
 	}
 	
-	protected void insertToDB(PreparedStatement preparedStatement){
+	/**
+	 * inserts the prepared statement into the database, SQLite only supports one thread to write to the database at the time so the method is synchronized.
+	 * @param preparedStatement
+	 */
+	protected synchronized void insertToDB(PreparedStatement preparedStatement){
 		try {
 			preparedStatement.executeBatch();
 		} catch (SQLException e) {

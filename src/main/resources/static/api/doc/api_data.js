@@ -328,6 +328,45 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/suite/syso",
+    "title": "",
+    "name": "GetSysos",
+    "group": "Suite",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "timestamp",
+            "description": "<p>timestamp of the text you want to retrieve.</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "suiteid",
+            "description": "<p>suite ID of the text you want to retrieve.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "Description of driver is: OSX_UNKNOWN_UNKNOWN_chrome_UNKNOWN\nNumber of treads executing in parrallel: 2\nThis is a RemoteWebDriver Started driver: \netc... etc...",
+          "type": "text"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./src/main/java/se/redmind/rmtest/web/route/api/suite/syso/GetSuiteSysosWS.java",
+    "groupTitle": "Suite"
+  },
+  {
+    "type": "get",
     "url": "/suite/latestbyid",
     "title": "",
     "name": "Get_latest_by_id",

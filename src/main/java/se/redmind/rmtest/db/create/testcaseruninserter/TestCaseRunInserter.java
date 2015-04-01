@@ -1,6 +1,5 @@
 package se.redmind.rmtest.db.create.testcaseruninserter;
 
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;

@@ -16,6 +16,7 @@ import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
 import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteWS;
 import se.redmind.rmtest.web.route.api.suite.bytimestamp.GetSuiteByTimestampWS;
 import se.redmind.rmtest.web.route.api.suite.getsuites.GetSuitesWS;
+import se.redmind.rmtest.web.route.api.suite.syso.GetSuiteSysosWS;
 
 public class ApiRouter {
 
@@ -34,6 +35,7 @@ public class ApiRouter {
 		get(new GetSuitesWS("/api/suite/getsuites"));
 		get(new GetLatestSuiteWS("/api/suite/latestbyid"));
 		get(new GetSuiteByTimestampWS("/api/suite/bytimestamp"));
+		get(new GetSuiteSysosWS("/api/suite/syso"));
 		get(new GetClassesWS("/api/class/getclasses"));
 		get(new PassFailClassWS("/api/class/passfail"));
 		get(new GetMethodsWS("/api/method/getmethods"));
