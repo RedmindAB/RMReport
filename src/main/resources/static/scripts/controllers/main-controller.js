@@ -122,7 +122,7 @@ angular.module('webLog')
 	}
 	
     // HTTP -----------------------------------------------------------------------------------------------------------
-	
+
 	$scope.setCurrentSuite = function(suite){
 		CurrentSuite.currentSuite = suite;
 	    $http.get('/api/class/getclasses?suiteid='+CurrentSuite.currentSuite.id)

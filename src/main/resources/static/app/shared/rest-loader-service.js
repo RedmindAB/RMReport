@@ -3,6 +3,18 @@ angular.module('webLog')
 	
 	var restLoader = this;
 	
+	restLoader.getConsolePrint = function(){
+		
+	    $http.get('api/suite/syso?suiteid=' + CurrentSuite.currentSuiteInfo.id + '&timestamp=' + CurrentSuite.currentTimeStamp)
+	    .success(function(data, status, headers, config){ 
+	    	ScreenshotMaster.consolePrint = data;
+	    	console.log("ID: " + CurrentSuite.currentSuiteInfo.id + " Timestamp: " + CurrentSuite.currentTimeStamp);
+	    	console.log(ScreenshotMaster.consolePrint);
+	    }).error(function(data, status, headers, config){
+	    	console.error(data);
+	    });
+	}
+	
 	restLoader.loadTimestamp = function(timestamp, firstLoad){
 		restLoader.getSuiteSkeletonByTimestamp(timestamp, firstLoad);
 		CurrentSuite.currentTimeStamp = timestamp;

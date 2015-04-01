@@ -139,6 +139,10 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
          $scope.direction = 'right';
          $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
      };
+     
+     $scope.getConsolePrint = function(){
+    	 RestLoader.getConsolePrint();
+     }
 }])
 .animation('.slide-animation', function () {
         return {

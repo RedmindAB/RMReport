@@ -8,7 +8,7 @@
 	</div>
 </div>
 <div>
-		<p class='accordion-name-container' ng-click='toggleModal2();'>System out prints</p>
+		<p class='accordion-name-container' ng-click='getConsolePrint();toggleModal2();'>System out prints</p>
 			<!-- expandable methods -->
 			<accordion close-others="false">
 			    <!-- repeated content -->
@@ -61,27 +61,8 @@
 	<div class="container slider" style='color:black;font-size:20px;'>
 		<table align='center' style='margin-top:20px'>
 			<tr>
-				<td style='color:#A94442'>
-					1. 
-				</td>
-				<td style='padding-left:5px;color:#A94442'>
-					Couldn´t open driver Chrome
-				</td>
-			</tr>
-			<tr>
-				<td style='color:#3C763D'>
-					2. 
-				</td>
-				<td style='padding-left:5px;color:#3C763D'>
-					Screenshot for test1 has successfully been captured.
-				</td>
-			</tr>
-			<tr>
-				<td style='color:#A94442'>
-					3. 
-				</td>
-				<td style='padding-left:5px;color:#A94442'>
-					Screenshot for test2 couldn´t be captured.
+				<td>
+					<pre>{{ScreenshotMaster.consolePrint}}</pre>
 				</td>
 			</tr>
 		</table>
