@@ -374,6 +374,7 @@ angular.module('webLog')
 		};
    
 	function getPassFailTotByClass(timestamp, classObj){
+		console.log(CurrentSuite.currentTimeStamp);
 		for (var i = 0; i < classObj.length; i++) {
 			restLoader.getPassFailByClass(timestamp, classObj[i]);
 		}
