@@ -7,6 +7,8 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 				Utilities.searchField = '';
 				Utilities.sorting = ['result', 'name'];
 				Utilities.caseSorting = ['result','osname', 'devicename', 'osversion', 'browsername'];
+				CurrentSuite.clearChosenClasses();
+				CurrentSuite.clearChosenMethods();
 	});
 	
 	$scope.getPosition = function(){
