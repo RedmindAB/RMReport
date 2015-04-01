@@ -11,6 +11,7 @@ import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.reporthandler.ReportHandler;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
 import se.redmind.rmtest.report.reportvalidation.ReportValidator;
+import se.redmind.rmtest.report.sysout.ReportSystemOutPrintFile;
 import se.redmind.rmtest.util.TimeEstimator;
 
 public class ReportInit {
@@ -47,6 +48,8 @@ public class ReportInit {
 					boolean existsInDB = reportExist.reportExists(report.getTimestamp(), report.getSuiteName());
 					if (!existsInDB) {
 						reportValidator.saveReport();
+						ReportSystemOutPrintFile sysoFile = new ReportSystemOutPrintFile(reportValidator);
+						sysoFile.copyReportOutputFile();
 						addedReports++;
 					}
 					estimator.addTick();

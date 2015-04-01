@@ -7,12 +7,18 @@ import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import se.redmind.rmtest.db.InMemoryDBHandler;
 import se.redmind.rmtest.report.reportvalidation.ReportValidator;
+import se.redmind.rmtest.report.sysout.ReportSystemOutPrintFile;
 import static java.nio.file.StandardWatchEventKinds.*;
 
 public class FileWatcherQueueReader implements Runnable {
 
+	private Logger log = LogManager.getLogger(FileWatcherQueueReader.class);
+	
 	private WatchService watchService;
 	private String path;
 
@@ -21,7 +27,7 @@ public class FileWatcherQueueReader implements Runnable {
 		this.path = path;
 	}
 
-	@SuppressWarnings({ "rawtypes", "unused" })
+	@SuppressWarnings({ "rawtypes" })
 	@Override
 	public void run() {
 		try {
@@ -35,7 +41,7 @@ public class FileWatcherQueueReader implements Runnable {
 					String filename = event.context().toString();
 					boolean isXmlFile = filename.toLowerCase().endsWith(".xml");
 					while (!isCompletelyWritten(path, filename)) {
-						System.out.println("File is not done, waiting for 50ms");
+						log.info("File is not done, waiting for 50ms");
 						Thread.sleep(50);
 					}
 					if (event.kind().equals(ENTRY_CREATE) && isXmlFile) {
@@ -45,8 +51,10 @@ public class FileWatcherQueueReader implements Runnable {
 						boolean reportExists = reportValidator.reportExists();
 						boolean validFilename = reportValidator.isValidFilename();
 						if (!reportExists && validFilename) {
-							System.out.println("found new report!");
+							log.info("found new report!");
 							reportValidator.saveReport();
+							ReportSystemOutPrintFile sysoFile = new ReportSystemOutPrintFile(reportValidator);
+							sysoFile.copyReportOutputFile();
 							updatedReports = true;
 						}
 					}
@@ -58,10 +66,10 @@ public class FileWatcherQueueReader implements Runnable {
 				key = watchService.take();
 			}
 		} catch (InterruptedException e) {
-			System.err.println("something went wrong: restarting filewatcher!");
+			log.error("something went wrong: restarting filewatcher!");
 			run();
 		}
-		System.out.println("Stopping file watcher thread");
+		log.info("Stopping file watcher thread");
 	}
 	
 	private boolean isCompletelyWritten(String path, String filename) {
@@ -73,13 +81,13 @@ public class FileWatcherQueueReader implements Runnable {
 	        stream = new RandomAccessFile(file, "rw");
 	        return true;
 	    } catch (Exception e) {
-	    	System.err.println(e.getMessage());
+	    	log.error(e.getMessage());
 	    } finally {
 	        if (stream != null) {
 	            try {
 	                stream.close();
 	            } catch (IOException e) {
-	            	System.err.println(e.getMessage());
+	            	log.error(e.getMessage());
 	            }
 	        }
 	    }

@@ -85,7 +85,7 @@ angular.module('webLog')
 	    	if(passed === "failure" || passed === "error")
 	    		return '#A94442';
 	    	else if(passed === "skipped")
-	    		return '#FEF7E4';
+	    		return '#8D6E3F';
 	    	else
 	    		return '#3C763D';
 	    };
