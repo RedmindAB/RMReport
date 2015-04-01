@@ -1,6 +1,6 @@
 .slider {
-	width: 80%;
-	height: 1000px;
+	width: 100%;
+	height:80vh;
 	position: relative;
 	overflow-x: hidden;
 	overflow-t: visible;
@@ -29,14 +29,16 @@
 
 .arrow.prev {
 	opacity: 1;
-	left: 5px;
+	left:-30px;
+	top:50%;
 	background-image: url(../img/paddle_prev_fff.png);
 	transition: 0.2s linear all;
 }
 
 .arrow.next {
 	opacity: 1;
-	right: 5px;
+	right:-30px;
+	top:50%;
 	background-image: url(../img/paddle_next_fff.png);
 	transition: 0.2s linear all;
 }
