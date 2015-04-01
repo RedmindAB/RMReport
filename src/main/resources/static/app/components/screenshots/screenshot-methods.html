@@ -38,7 +38,7 @@
 									</tr>
 									<tr ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index'>
 										<td height='450px' style='vertical-align:top;overflow:scroll;text-transform: capitalize;'>
-											<p style='margin-left:5px;margin-bottom:-2px'>{{getScreenshotOrder(case.screenshots[$index])}}</p>
+											<p style='margin-left:5px;margin-bottom:-2px' ng-if='case.screenshots[$index] !== undefined'>{{getScreenshotOrder(case.screenshots[$index])}}</p>
 											<img style='max-height:430px' id='screenshot{{$index}}' ng-click='setCurrentMethod(method); setSlides(method.testcases, $index, $parent.$index); toggleModal();' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img><br><br>									
 										</td>
 									</tr>

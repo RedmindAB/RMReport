@@ -166,7 +166,7 @@ angular.module('webLog')
 	    		chart.series.push({
 					data : Charts.data[i].totalFail,
 					name : Charts.data[i].name,
-					color: getSerieColor(i),
+					color: getSerieColor(1),
 					type : "column",
 					dashStyle : "Solid",
 					connectNulls : false
@@ -188,7 +188,7 @@ angular.module('webLog')
 	    		chart.series.push({
 					data : Charts.data[i].totalPass,
 					name : Charts.data[i].name,
-					color: getSerieColor(i),
+					color: getSerieColor(0),
 					type : "column",
 					dashStyle : "Solid",
 					connectNulls : false
