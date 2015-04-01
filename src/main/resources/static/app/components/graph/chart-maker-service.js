@@ -84,6 +84,7 @@ angular.module('webLog')
 	    				click : function(e) {
 	    					RestLoader.loadTimestamp(this.category);
 	    					chartMaker.highlightPoint(this.category);
+	    					$('#mainChart').highcharts().zoomOut();
 	    				}
 	    			}
 	    	};
