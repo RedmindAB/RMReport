@@ -8,8 +8,6 @@ angular.module('webLog')
 	    $http.get('api/suite/syso?suiteid=' + CurrentSuite.currentSuiteInfo.id + '&timestamp=' + CurrentSuite.currentTimeStamp)
 	    .success(function(data, status, headers, config){ 
 	    	ScreenshotMaster.consolePrint = data;
-	    	console.log("ID: " + CurrentSuite.currentSuiteInfo.id + " Timestamp: " + CurrentSuite.currentTimeStamp);
-	    	console.log(ScreenshotMaster.consolePrint);
 	    }).error(function(data, status, headers, config){
 	    	console.error(data);
 	    });
