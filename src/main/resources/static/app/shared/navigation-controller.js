@@ -57,7 +57,7 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 			if (CurrentSuite.currentSuite.length === 0) {
 				$state.transitionTo('home');
 			} else {
-				if (CurrentSuite.currentClass.length === 0) {
+				if (CurrentSuite.currentClass.length === 0 || $state.$current.name === 'reports.classes') {
 					$state.transitionTo('screenshots.classes');
 				} else {
 					if (!classExistsInSuite(CurrentSuite.currentClass)) {
@@ -66,7 +66,6 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 						if (ScreenshotMaster.currentClass === CurrentSuite.currentClass.id && ScreenshotMaster.currentTimestamp === CurrentSuite.currentTimeStamp) {
 							$state.transitionTo('screenshots.methods');
 						} else {
-//							$rootScope.$emit('wrongScreenData');
 							RestLoader.loadScreenshotsFromClass(CurrentSuite.currentClass);
 							$state.transitionTo('screenshots.methods');
 						}
