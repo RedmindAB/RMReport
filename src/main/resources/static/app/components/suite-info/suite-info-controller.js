@@ -18,7 +18,6 @@ angular.module('webLog')
 	//stores chosen class info and clears chosen for other classes
 	//when going into a class
 	$scope.getMethods = function(classObj){
-		console.log("getting them");
 		CurrentSuite.clearOtherChosen(classObj);
 		CurrentSuite.currentClass = classObj;
 		CurrentSuite.currentMethods = CurrentSuite.currentClass.testcases;

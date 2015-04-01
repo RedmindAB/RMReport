@@ -74,7 +74,7 @@ angular.module('webLog')
 	    	},
 	        clearData: function(timestamp){
 	        	CurrentSuite.currentClass = [];
-	        	CurrentSuite.currentTimeStamp = '';
+	        	CurrentSuite.currentTimeStamp = timestamp;
 	        	
 	        	ScreenshotMaster.data = [];
 	        	ScreenshotMaster.currentClass = undefined;
@@ -102,8 +102,6 @@ angular.module('webLog')
 	        	this.timeStamps = '';
 	        	this.graphView = 'Pass/Fail';
 	        	this.breakPointChoice = 'None';
-	        	
-	        	CurrentSuite.currentTimeStamp = timestamp;
 	        }
 	    };
 	}]);

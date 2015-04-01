@@ -5,7 +5,7 @@ angular.module('webLog')
 	$scope.allSuites = [];
 	
     $scope.homeChartLoaded = function(suite){
-    	return Charts.chartHomeConfig[suite.id] !== undefined && Charts.chartHomeConfig[suite.id].loading === false;
+    	return Charts.chartHomeConfig[suite.id] !== undefined && Charts.chartHomeConfig[suite.id].loading === false && suite.lastTimeStamp !== undefined;
     }
 	
     $scope.getSuiteSkeleton = function(suite){
