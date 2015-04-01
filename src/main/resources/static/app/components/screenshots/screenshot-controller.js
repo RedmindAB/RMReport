@@ -40,6 +40,12 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 		return '/api/screenshot/byfilename?timestamp='+ScreenshotMaster.currentTimestamp+'&filename='+fileName;
 	}
 	
+	$scope.getScreenshotsFromTimestamp = function(){
+		if ($state.$current.name === 'screenshots.methods') {
+			RestLoader.loadScreenshotsFromClass(CurrentSuite.currentClass)
+		}
+	}
+	
 	$scope.getCommentFromFileName = function(fileName){
 		var path = fileName;
 		var index = path.indexOf("-_-");

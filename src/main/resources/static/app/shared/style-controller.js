@@ -15,6 +15,12 @@ angular.module('webLog')
 	    	$event.stopPropagation();
 	    }
 	    
+	    $scope.removePackagePath = function(classPath){
+	    	var lastDot = classPath.lastIndexOf(".");
+	    	var className = classPath.substring(lastDot+1);
+	    	return className;
+	    }
+	    
 	    $scope.showClassLink = function(page){
 	    	switch (page) {
 			case "classes":

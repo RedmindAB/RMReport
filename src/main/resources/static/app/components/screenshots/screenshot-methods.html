@@ -4,14 +4,11 @@
 		<h4 id='go_to_classes' class="screenshot-nav" ng-click="setState('screenshots.classes')">Choose another class</h4>
 	</div>
 	<div class="screenshot-nav-center">
-		<h4 class="screenshot-nav">{{CurrentSuite.currentTimeStamp}}</h4>
+		<h4 class="screenshot-nav">{{removePackagePath(CurrentSuite.currentClass.name)}}</h4>
 	</div>
 </div>
 <div>
-	<div class="screenshot-container" id='method_name' ng-class='getPanel(CurrentSuite.currentClass.result)' ng-style="{'background-color': getBgCo(CurrentSuite.currentClass.result)}">
-		<p class='accordion-name-container' ng-click='toggleModal2();' style='margin-left:5px'>System out prints</p>
-		<h4 class="accordion-name-container" ng-style="{'color' : getCo(CurrentSuite.currentClass.result)}">&nbsp;{{CurrentSuite.currentClass.name}}</h4>
-	
+		<p class='accordion-name-container' ng-click='toggleModal2();'>System out prints</p>
 			<!-- expandable methods -->
 			<accordion close-others="false">
 			    <!-- repeated content -->
@@ -53,7 +50,6 @@
 			    </div>
 			    <!-- repeated content  End-->
 			</accordion>
-	</div>
 </div>
 
 <modal-dialog-sysos width='100%' id='modal_dialog' toggle='toggleModal2()' show='modalShown2'
