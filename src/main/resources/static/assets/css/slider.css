@@ -1,7 +1,7 @@
 .slider {
 	width: 100%;
 	height:80vh;
-	position: relative;
+	position: responsive;	
 	overflow-x: hidden;
 	overflow-t: visible;
 	border: 20px solid #FFF;
@@ -18,8 +18,6 @@
 	position: absolute;
 	z-index: 1002;
 	display: block;
-	top: 215px;
-	margin-top: -35px;
 	width: 36px;
 	height: 71px;
 	outline: none;
@@ -29,16 +27,15 @@
 
 .arrow.prev {
 	opacity: 1;
-	left:-30px;
-	top:50%;
+	left:-40px;
 	background-image: url(../img/paddle_prev_fff.png);
 	transition: 0.2s linear all;
 }
 
 .arrow.next {
 	opacity: 1;
-	right:-30px;
-	top:50%;
+	float:right;
+	right:-40px;
 	background-image: url(../img/paddle_next_fff.png);
 	transition: 0.2s linear all;
 }

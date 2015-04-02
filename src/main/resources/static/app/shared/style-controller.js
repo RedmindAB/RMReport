@@ -95,14 +95,6 @@ angular.module('webLog')
 	    	else
 	    		return '#3C763D';
 	    };
-	    $scope.getLogo = function(passed){
-	    	if(passed == 1)
-	    		return "img/logos/logo1.png";
-	    	else if(passed == 2)
-	    		return 'img/logos/logo1.jpg';
-	    	else
-	    		return 'img/logos/logo3.jpg';    
-	    };
 	    
 	    $scope.formatDecimals = function(numberWithWayToManyDecimals){
 	    	var numberWithDecentAmountOfDecimals = numberWithWayToManyDecimals.toFixed(2);

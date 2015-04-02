@@ -73,7 +73,7 @@
 			  style='background-color : transparent;color:white'>
 	<h1 align='center' class='white'>
 		{{currentMethod.name}}</br>
-		{{getCurrentSlideInfo()}}
+		{{getCurrentSlideInfo()}}	
 	</h1>
 		<div class="wrapper" align='center'>
 			<ul class="dots">
@@ -83,8 +83,10 @@
 			</ul>
 		</div>
 	<br>
-	<a class="arrow prev" id='arrow_prev' href="#" ng-click="nextSlide()"></a>
-	<a class="arrow next" id='arrow_next' href="#" ng-click="prevSlide()"></a>
+	<div class="container2" style='width:100%'>
+		<a class="arrow prev" id='arrow_prev' href="#" ng-click="nextSlide()"></a>
+		<a class="arrow next" id='arrow_next' href="#" ng-click="prevSlide()"></a>
+	</div>
 	<div class="container slider">
 		<img onmousedown="event.preventDefault" ng-repeat="slide in slides"
 			 class="slide slide-animation nonDraggableImage slide-img table-m"
