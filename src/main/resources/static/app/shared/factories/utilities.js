@@ -20,12 +20,12 @@ angular.module('webLog')
 	        setBreakPoint: function(choice){
 	        	this.breakPointChoice = choice;
 	        },
-	    	sorting: ['result','-stats.totFail','name'],
+	    	sorting: ['-stats.totFail','result','name'],
 	    	caseSorting: ['result','osname', 'devicename', 'osversion', 'browsername'],
 	        setSorting: function(sorting){
 	        	switch (sorting) {
 	    		case 'pass/fail':
-	    			this.sorting = ['result', 'name'];
+	    			this.sorting = ['-stats.totFail','result','name'];
 	    			this.caseSorting = ['result','osname', 'devicename', 'osversion', 'browsername'];
 	    			break;
 	    		case 'time':
@@ -35,6 +35,10 @@ angular.module('webLog')
 	    		default:
 	    			break;
 	    		}
+	        },
+	        resetSorting: function(){
+		    	this.sorting = ['-stats.totFail','result','name'];
+		    	this.caseSorting = ['result','osname', 'devicename', 'osversion', 'browsername'];
 	        },
 	        breakPoints: ["None", "Browser", "Version", "Device", "Platform"],
 	        breakPointChoice: "None",
