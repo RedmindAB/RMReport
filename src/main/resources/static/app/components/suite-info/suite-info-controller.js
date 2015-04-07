@@ -21,7 +21,7 @@ angular.module('webLog')
 		CurrentSuite.clearOtherChosen(classObj);
 		CurrentSuite.currentClass = classObj;
 		CurrentSuite.currentMethods = CurrentSuite.currentClass.testcases;
-		RestLoader.getPassFailTotByMethod(CurrentSuite.currentTimeStamp, classObj);
+		RestLoader.getPassFailTotByMethod(CurrentSuite.currentTimeStamp, classObj, CurrentSuite.currentMethods);
 	}
 	
 //	function getPassFailTotByMethod(timestamp, classObj){

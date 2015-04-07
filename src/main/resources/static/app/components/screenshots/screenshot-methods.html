@@ -12,7 +12,7 @@
 			<!-- expandable methods -->
 			<accordion close-others="false">
 			    <!-- repeated content -->
-			    <div class='noselect' ng-repeat="method in ScreenshotMaster.data | orderBy:['result','name'] track by $index">
+			    <div class='noselect' ng-repeat="method in ScreenshotMaster.data | orderBy:['-stats.totFail','result','name'] track by $index">
 			        <accordion-group style="margin-top:10px;padding:0px;" ng-class='getPanel(method.result)' >
 			            <!-- non collapsing header -->
 			            <accordion-heading id='method_name'>
@@ -21,7 +21,7 @@
 									{{method.name}}&nbsp;&nbsp;Screenshots: {{method.screenshotLength}}
 								</p>
 								<p class="accordion-name-container text-right" style="margin:0px" ng-style="{'color' : getCo(method.result)}">
-									&nbsp;Skipped: {{method.skipped}} Failed: {{getFailError(method)}}
+									&nbsp;Skipped: {{method.skipped}} Failed: {{method.stats.totFail}}
 								</p>
 	           				</div>
 			            </accordion-heading>
@@ -91,14 +91,3 @@
 			 ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}">
 	</div>
 </modal-dialog>
-
-
-
-
-
-
-
-
-
-
-
