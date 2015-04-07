@@ -8,7 +8,7 @@
 	</div>
 </div>
 <div>
-		<p class='accordion-name-container' ng-click='toggleModal2();'>System out prints</p>
+		<p class='accordion-name-container' style='cursor:pointer' ng-click='getConsolePrint();toggleModal2();'>System out prints</p>
 			<!-- expandable methods -->
 			<accordion close-others="false">
 			    <!-- repeated content -->
@@ -58,42 +58,20 @@
 		System out prints
 	</h1>
 	<br>
-	<div class="container slider" style='color:black;font-size:20px;'>
+	<div class="container slider" style='color:black;font-size:20px;>
 		<table align='center' style='margin-top:20px'>
 			<tr>
-				<td style='color:#A94442'>
-					1. 
-				</td>
-				<td style='padding-left:5px;color:#A94442'>
-					Couldn´t open driver Chrome
-				</td>
-			</tr>
-			<tr>
-				<td style='color:#3C763D'>
-					2. 
-				</td>
-				<td style='padding-left:5px;color:#3C763D'>
-					Screenshot for test1 has successfully been captured.
-				</td>
-			</tr>
-			<tr>
-				<td style='color:#A94442'>
-					3. 
-				</td>
-				<td style='padding-left:5px;color:#A94442'>
-					Screenshot for test2 couldn´t be captured.
+				<td style='text-align:left'>
+					<pre>{{ScreenshotMaster.consolePrint}}</pre>
 				</td>
 			</tr>
 		</table>
 	</div>
 </modal-dialog-sysos>
 
-<modal-dialog width='100%' id='modal_dialog' toggle='toggleModal()' show='modalShown'
-			  height='40%' style='background-color : transparent;color:white'>
-	<h1 align='center' class='white'>
-		{{currentMethod.name}}</br>
-		{{getCurrentSlideInfo()}}
-	</h1>
+<modal-dialog id='modal_dialog' toggle='toggleModal()' show='modalShown'
+			  style='background-color : transparent;color:white'>
+	
 		<div class="wrapper" align='center'>
 			<ul class="dots">
 				<li class="dot screenshot-methods-description" id='dot' ng-repeat="slide in slides"><a href="#"
@@ -102,8 +80,10 @@
 			</ul>
 		</div>
 	<br>
-	<a class="arrow prev" id='arrow_prev' href="#" ng-click="nextSlide()"></a>
-	<a class="arrow next" id='arrow_next' href="#" ng-click="prevSlide()"></a>
+	<div class="container2" style='width:100%'>
+		<a class="arrow prev" id='arrow_prev' href="#" ng-click="nextSlide()"></a>
+		<a class="arrow next" id='arrow_next' href="#" ng-click="prevSlide()"></a>
+	</div>
 	<div class="container slider">
 		<img onmousedown="event.preventDefault" ng-repeat="slide in slides"
 			 class="slide slide-animation nonDraggableImage slide-img table-m"
