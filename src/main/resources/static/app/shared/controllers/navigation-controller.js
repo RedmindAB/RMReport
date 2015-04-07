@@ -5,8 +5,7 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 	
 	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
 				Utilities.searchField = '';
-				Utilities.sorting = ['-stats.totFail','result','name'];
-				Utilities.caseSorting = ['result','osname', 'devicename', 'osversion', 'browsername'];
+				Utilities.resetSorting();
 				CurrentSuite.clearChosenClasses();
 				CurrentSuite.clearChosenMethods();
 	});
