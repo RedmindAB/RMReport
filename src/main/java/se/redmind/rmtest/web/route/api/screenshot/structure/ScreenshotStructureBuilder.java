@@ -9,6 +9,7 @@ import com.google.gson.JsonPrimitive;
 
 public class ScreenshotStructureBuilder {
 
+	private static final String TESTCASE_ID = "id";
 	private static final String SKIPPED = "skipped";
 	private static final String ERROR = "error";
 	private static final String FAILURE = "failure";
@@ -24,8 +25,8 @@ public class ScreenshotStructureBuilder {
 		
 	}
 	
-	public void addTestcase(String methodname, String browsername, String devicename, String result, List<String> screenshots){
-		JsonObject method = getMethod(methodname, result);
+	public void addTestcase(String methodname, String browsername, String devicename, String result, int testcase_id, List<String> screenshots){
+		JsonObject method = getMethod(methodname, result, testcase_id);
 		JsonObject testcase = new JsonObject();
 		testcase.addProperty("device", devicename);
 		testcase.addProperty(RESULT, result);
@@ -42,8 +43,8 @@ public class ScreenshotStructureBuilder {
 		return array;
 	}
 	
-	private JsonObject getMethod(String methodname, String result){
-		JsonObject method = getMethod(methodname);
+	private JsonObject getMethod(String methodname, String result, int testcase_id){
+		JsonObject method = getMethod(methodname, testcase_id);
 		incResult(result, method);
 		return method;
 	}
@@ -74,11 +75,12 @@ public class ScreenshotStructureBuilder {
 		}
 	}
 
-	private JsonObject getMethod(String methodname){
+	private JsonObject getMethod(String methodname, int testcase_id){
 		JsonObject method = methodMap.get(methodname);
 		if (method == null) {
 			method = new JsonObject();
 			method.addProperty(NAME, methodname);
+			method.addProperty(TESTCASE_ID, testcase_id);
 			method.addProperty(RESULT, PASSED);
 			method.addProperty(PASSED, 0);
 			method.addProperty(FAILURE, 0);
