@@ -71,7 +71,12 @@
 
 <modal-dialog id='modal_dialog' toggle='toggleModal()' show='modalShown'
 			  style='background-color : transparent;color:white'>
-	
+		<div>
+		<h1 align='center' class='white'>
+			{{currentMethod.name}}</br>
+			{{getCurrentSlideInfo()}}	
+		</h1>
+		</div>
 		<div class="wrapper" align='center'>
 			<ul class="dots">
 				<li class="dot screenshot-methods-description" id='dot' ng-repeat="slide in slides"><a href="#"
