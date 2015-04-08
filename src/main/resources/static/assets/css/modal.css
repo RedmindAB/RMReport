@@ -14,6 +14,21 @@
 .ng-modal-dialog {
 	/* A centered div above the overlay with a box shadow. */
 	z-index: 10000;
+	position: fixed;
+	width: 50%; /* Default */
+	/* Center the dialog */
+	left: 50%;
+  	top: 0px;
+	border: none;
+	transform: translate(-50%, -0%);
+	-webkit-transform: translate(-50%, -0%);
+	-moz-transform: translate(-50%, -0%);
+	width:800px;
+}
+
+.ng-modal-dialog-sysos {
+	/* A centered div above the overlay with a box shadow. */
+	z-index: 10000;
 	position: absolute;
 	width: 50%; /* Default */
 	/* Center the dialog */
