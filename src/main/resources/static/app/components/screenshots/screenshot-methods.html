@@ -12,7 +12,7 @@
 			<!-- expandable methods -->
 			<accordion close-others="false">
 			    <!-- repeated content -->
-			    <div class='noselect' ng-repeat="method in ScreenshotMaster.data | orderBy:['result','name'] track by $index">
+			    <div class='noselect' ng-repeat="method in ScreenshotMaster.data | orderBy:['-stats.totFail','result','name'] track by $index">
 			        <accordion-group style="margin-top:10px;padding:0px;" ng-class='getPanel(method.result)' >
 			            <!-- non collapsing header -->
 			            <accordion-heading id='method_name'>
@@ -21,7 +21,7 @@
 									{{method.name}}&nbsp;&nbsp;Screenshots: {{method.screenshotLength}}
 								</p>
 								<p class="accordion-name-container text-right" style="margin:0px" ng-style="{'color' : getCo(method.result)}">
-									&nbsp;Skipped: {{method.skipped}} Failed: {{getFailError(method)}}
+									&nbsp;Skipped: {{method.skipped}} Failed: {{method.stats.totFail}}
 								</p>
 	           				</div>
 			            </accordion-heading>
@@ -54,11 +54,11 @@
 
 <modal-dialog-sysos width='100%' id='modal_dialog' toggle='toggleModal2()' show='modalShown2'
 			  height='40%' style='background-color : transparent;color:white'>
-	<h1 align='center' class='white'>
+	<h1 align='center'>
 		System out prints
 	</h1>
 	<br>
-	<div class="container slider" style='color:black;font-size:20px;>
+	<div class="container slider" style='color:black;font-size:20px;'>
 		<table align='center' style='margin-top:20px'>
 			<tr>
 				<td style='text-align:left'>
@@ -71,7 +71,12 @@
 
 <modal-dialog id='modal_dialog' toggle='toggleModal()' show='modalShown'
 			  style='background-color : transparent;color:white'>
-	
+		<div>
+		<h1 align='center' class='white'>
+			{{currentMethod.name}}</br>
+			{{getCurrentSlideInfo()}}	
+		</h1>
+		</div>
 		<div class="wrapper" align='center'>
 			<ul class="dots">
 				<li class="dot screenshot-methods-description" id='dot' ng-repeat="slide in slides"><a href="#"
@@ -91,14 +96,3 @@
 			 ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}">
 	</div>
 </modal-dialog>
-
-
-
-
-
-
-
-
-
-
-

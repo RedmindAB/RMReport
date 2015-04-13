@@ -4,7 +4,6 @@ angular.module('webLog')
 	var restLoader = this;
 	
 	restLoader.getConsolePrint = function(){
-		
 	    $http.get('api/suite/syso?suiteid=' + CurrentSuite.currentSuiteInfo.id + '&timestamp=' + CurrentSuite.currentTimeStamp)
 	    .success(function(data, status, headers, config){ 
 	    	ScreenshotMaster.consolePrint = data;
@@ -12,11 +11,6 @@ angular.module('webLog')
 	    	console.error(data);
 	    });
 	}
-	
-	restLoader.loadTimestamp = function(timestamp, firstLoad){
-		restLoader.getSuiteSkeletonByTimestamp(timestamp, firstLoad);
-		CurrentSuite.currentTimeStamp = timestamp;
-	};
 	
 	restLoader.getSuiteSkeleton = function(suite){
 		CurrentSuite.currentSuiteInfo = suite;
@@ -176,6 +170,7 @@ angular.module('webLog')
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		ScreenshotMaster.data = data
+	    		restLoader.getPassFailTotByMethod(CurrentSuite.currentTimeStamp, classObj, ScreenshotMaster.data);
 	    		ScreenshotMaster.currentClass = CurrentSuite.currentClass.id
 	    		ScreenshotMaster.currentTimestamp = CurrentSuite.currentTimeStamp;
 	    		setCaseSizeByMethod();
@@ -184,6 +179,11 @@ angular.module('webLog')
 	    	console.error(data);
 	    });
 	}
+	
+	restLoader.loadTimestamp = function(timestamp, firstLoad){
+		restLoader.getSuiteSkeletonByTimestamp(timestamp, firstLoad);
+		CurrentSuite.currentTimeStamp = timestamp;
+	};
 	
 	function setCaseSizeByMethod(){
 		var data = ScreenshotMaster.data;
@@ -401,8 +401,8 @@ angular.module('webLog')
 		});
 	}
 	
-	restLoader.getPassFailTotByMethod = function(timestamp, classObj){
-		var methods = CurrentSuite.currentMethods;
+	restLoader.getPassFailTotByMethod = function(timestamp, classObj, methodArray){
+		var methods = methodArray;
 		for (var i = 0; i < methods.length; i++) {
 			restLoader.getPassFailByMethod(timestamp, classObj, methods[i]);
 		}
