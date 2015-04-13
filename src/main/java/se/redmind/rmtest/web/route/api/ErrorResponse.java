@@ -1,5 +1,13 @@
 package se.redmind.rmtest.web.route.api;
 
+import java.io.IOException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import spark.Request;
+import spark.Response;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -7,15 +15,31 @@ import com.google.gson.JsonObject;
 
 public class ErrorResponse {
 
+	Logger log;
+	
 	private String message;
 	private JsonElement json;
 	
-	public ErrorResponse(String message) {
+	public ErrorResponse(String message, Class<?> invokingClass) {
 		this.message = message;
+		errorResponse(invokingClass);
 	}
 	
-	public ErrorResponse(JsonElement json) {
+	public ErrorResponse(JsonElement json, Class<?> invokingClass) {
 		this.json = json;
+		errorResponse(invokingClass);
+	}
+	
+	private void errorResponse(Class<?> invokingClass){
+		this.log = LogManager.getLogger(invokingClass.getSimpleName());
+		log();
+	}
+	
+	private void log(){
+		if (message != null) {
+			log.error(message);
+		}
+		else log.error(toString());
 	}
 	
 	@Override

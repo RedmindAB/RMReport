@@ -33,7 +33,7 @@ public class GetSuiteSysosWS extends Route {
 			GetSuiteSysosDAO getSuiteSysosDAO = new GetSuiteSysosDAO();
 			result = getSuiteSysosDAO.getSysos(timestamp, suiteid);
 		} catch (Exception e) {
-			return new ErrorResponse(e.getMessage()).toString();
+			return new ErrorResponse(e.getMessage(), GetSuiteSysosWS.class).toString();
 		}
 		return result;
 	}

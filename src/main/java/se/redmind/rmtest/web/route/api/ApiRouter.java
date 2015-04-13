@@ -11,6 +11,8 @@ import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
 import se.redmind.rmtest.web.route.api.screenshot.byfilename.ScreenshotByFilenameWS;
 import se.redmind.rmtest.web.route.api.screenshot.structure.ScreenshotStructureDAO;
 import se.redmind.rmtest.web.route.api.screenshot.structure.ScreenshotStructureWS;
+import se.redmind.rmtest.web.route.api.seleniumgrid.SeleniumGridDAO;
+import se.redmind.rmtest.web.route.api.seleniumgrid.SeleniumGridWS;
 import se.redmind.rmtest.web.route.api.stats.grahoptions.GetGraphOptionsWS;
 import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
 import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteWS;
@@ -44,7 +46,7 @@ public class ApiRouter {
 		get(new GetGraphOptionsWS("/api/stats/options"));
 		get(new ScreenshotStructureWS("/api/screenshot/structure"));
 		get(new ScreenshotByFilenameWS("/api/screenshot/byfilename"));
-		
+		get(new SeleniumGridWS("/api/selenium/griddata"));
 		//added to apidocs, but no result example added.
 		get(new GetDevicesAMonthAgoWS("/api/device/notrunforamonth"));
 		

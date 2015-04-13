@@ -69,7 +69,7 @@ public class GetGraphDataDAO {
 			badParams.add(new JsonPrimitive("reslimit is not set to a valid value"));
 			log.error("result limit (reslimit) was not set to a valid value");
 		}
-		return new ErrorResponse(badParams);
+		return new ErrorResponse(badParams, GetGraphDataDAO.class);
 	}
 	
 	public JsonObject getFirstJson(JsonArray paramsArray){
