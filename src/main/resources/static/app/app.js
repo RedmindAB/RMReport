@@ -1,7 +1,7 @@
 angular.module('webLog', ['ui.router','ui.bootstrap',"highcharts-ng", 'ngAnimate', 'ngTouch'])
     .config(function($urlRouterProvider, $stateProvider){
     	
-    $urlRouterProvider.otherwise("/home");
+    $urlRouterProvider.otherwise("/console");
     
     //states
     $stateProvider
@@ -48,6 +48,11 @@ angular.module('webLog', ['ui.router','ui.bootstrap',"highcharts-ng", 'ngAnimate
 	    .state('screenshots.methods',{
 	        url:'/methods',
 	        templateUrl: 'app/components/screenshots/screenshot-methods.html',
+	        controller: ''
+	    })
+	    .state('console',{
+	        url:'/console',
+	        templateUrl: 'app/components/grid-console/console.html',
 	        controller: ''
 	    });
     });
