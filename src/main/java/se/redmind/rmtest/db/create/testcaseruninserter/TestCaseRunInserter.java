@@ -5,6 +5,9 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import se.redmind.rmtest.db.DBBridge;
 import se.redmind.rmtest.db.create.testcaseinserter.TestCaseInserter;
 import se.redmind.rmtest.db.lookup.testcase.TestcaseDbLookup;
@@ -15,6 +18,8 @@ import se.redmind.rmtest.report.reportvalidation.DriverValidation;
 import se.redmind.rmtest.util.StringKeyValueParser;
 
 public class TestCaseRunInserter extends DBBridge {
+	
+	Logger log = LogManager.getLogger(TestCaseRunInserter.class);
 	
 	private TestCaseInserter testCaseInserter;
 	private TestcaseDbLookup readTestcaseFromDB;
@@ -73,7 +78,7 @@ public class TestCaseRunInserter extends DBBridge {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			e.printStackTrace();
+			log.error("Could not insert report. suite name: "+report.getSuiteName()+" timestamp: "+report.getTimestamp()+" message: "+e.getMessage());
 		}
 		
 		

@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.lookup.report.ReportExist;
 import se.redmind.rmtest.report.parser.Report;
@@ -15,6 +18,8 @@ import se.redmind.rmtest.report.sysout.ReportSystemOutPrintFile;
 import se.redmind.rmtest.util.TimeEstimator;
 
 public class ReportInit {
+	
+	Logger log = LogManager.getLogger(ReportInit.class);
 
 	private String reportPath;
 	private ReportHandler reportHandler;
@@ -36,6 +41,7 @@ public class ReportInit {
 		int addedReports = 0;
 		ReportExist reportExist = new ReportExist();
 		Connection connection = DBCon.getDbInstance().getConnection();
+		File currentFile = null;
 		try {
 			connection.setAutoCommit(false);
 			TimeEstimator estimator = new TimeEstimator(reportFiles.size());
@@ -43,6 +49,7 @@ public class ReportInit {
 			System.out.print(" ");
 			estimator.start();
 			for (File file : reportFiles) {
+					currentFile = file;
 					ReportValidator reportValidator = getReportValidator(file);
 					Report report = reportValidator.getReport();
 					boolean existsInDB = reportExist.reportExists(report.getTimestamp(), report.getSuiteName());
@@ -57,13 +64,14 @@ public class ReportInit {
 			}
 			System.out.print("\n");
 			connection.setAutoCommit(true);
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			try {
 				connection.rollback();
 			} catch (SQLException e1) {
-				e1.printStackTrace();
+				log.error("Could not rollback database: "+e1.getMessage());
 			}
-			e.printStackTrace();
+			log.error("Error inserting report: "+currentFile.getAbsolutePath());
+			System.err.println("Error inserting report, check if the file contains errors: "+currentFile.getAbsolutePath());
 		}
 		return addedReports;
 	}

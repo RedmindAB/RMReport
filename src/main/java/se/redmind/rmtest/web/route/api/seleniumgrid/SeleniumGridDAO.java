@@ -22,7 +22,7 @@ public class SeleniumGridDAO {
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			int responseCode = con.getResponseCode();
 			if (responseCode != 200) {
-				return new ErrorResponse("offline", SeleniumGridDAO.class).toString();
+				return new ErrorResponse("offline or wrong URL", SeleniumGridDAO.class).toString();
 			}
 			InputStream inputStream = con.getInputStream();
 			BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
@@ -33,8 +33,7 @@ public class SeleniumGridDAO {
 			}
 			return builder.toString();
 		} catch (IOException e) {
-			e.printStackTrace();
-			return new ErrorResponse("offline", SeleniumGridDAO.class).toString();
+			return new ErrorResponse("offline or wrong URL", SeleniumGridDAO.class).toString();
 		}
 	}
 
