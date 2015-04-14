@@ -1,7 +1,7 @@
 angular.module('webLog', ['ui.router','ui.bootstrap',"highcharts-ng", 'ngAnimate', 'ngTouch'])
     .config(function($urlRouterProvider, $stateProvider){
     	
-    $urlRouterProvider.otherwise("/grid");
+    $urlRouterProvider.otherwise("/home");
     
     //states
     $stateProvider
