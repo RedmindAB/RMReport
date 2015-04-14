@@ -1,0 +1,47 @@
+<div ng-controller="GridCtrl">
+	<div>
+		<div class='desktop'>
+			<h3>Desktop</h3>
+			<div ng-repeat="driver in gridData.FreeProxies" ng-if="isDesktop(driver.capabilities[0].platform)" class='box'>
+				<div class='logo'>
+				<img src='assets/img/logos/console/windows.png'></img>
+				</div>
+				<div class='desc'>
+					Port: {{driver.configuration.port}}<br>
+					Protocol: {{driver.capabilities[0].seleniumProtocol}}<br>
+					Platform: {{driver.capabilities[0].platform}}<br>
+					OS: {{driver.capabilities[0].osname}}<br>
+					<br><b>Browsers: </b>
+					<div ng-repeat="capability in driver.capabilities">
+					{{capability.browserName}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<h3 ng-if="isDevicesConnected()">Device</h3>
+		<div ng-repeat="driver in gridData.FreeProxies" ng-if="!isDesktop(driver.capabilities[0].platform)" class='device'>
+			<div class='box'>
+				<div class='desc'>
+					Appium<br>
+					iPhone 6<br>
+					iOS<br>
+					Safari<br>
+					Chrome
+				</div>
+				<img src='assets/img/logos/console/apple_device.png' class='logo'></img>
+			</div>
+			<div class='box'>
+				<div class='desc'>
+					Appium<br>
+					Galaxy S6<br>
+					iOS<br>
+					Safari<br>
+					Chrome
+				</div>
+				<img src='assets/img/logos/console/android.png' class='logo'></img>
+			</div>
+		</div>
+	</div>
+	<div ui-view></div>
+</div>

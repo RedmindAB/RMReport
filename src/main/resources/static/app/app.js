@@ -49,6 +49,11 @@ angular.module('webLog', ['ui.router','ui.bootstrap',"highcharts-ng", 'ngAnimate
 	        url:'/methods',
 	        templateUrl: 'app/components/screenshots/screenshot-methods.html',
 	        controller: ''
+	    })
+	    .state('grid',{
+	        url:'/grid',
+	        templateUrl: 'app/components/grid/grid.html',
+	        controller: ''
 	    });
     });
 
