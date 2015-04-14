@@ -2,10 +2,8 @@
 	<div>
 		<div class='desktop'>
 			<h3>Desktop</h3>
-			<div ng-repeat="driver in gridData.FreeProxies" ng-if="isDesktop(driver.capabilities[0].platform)" class='box'>
-				<div class='logo'>
-				<img src='assets/img/logos/console/windows.png'></img>
-				</div>
+			<div ng-repeat="driver in gridData.FreeProxies" ng-if="isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
+				<img class='logo' src='assets/img/logos/console/windows.png'></img>
 				<div class='desc'>
 					Port: {{driver.configuration.port}}<br>
 					Protocol: {{driver.capabilities[0].seleniumProtocol}}<br>
@@ -13,7 +11,7 @@
 					OS: {{driver.capabilities[0].osname}}<br>
 					<br><b>Browsers: </b>
 					<div ng-repeat="capability in driver.capabilities">
-					{{capability.browserName}}
+					<img ng-src="{{getBrowserImage(capability.browserName)}}"></img>
 					</div>
 				</div>
 			</div>
@@ -28,6 +26,8 @@
 					iOS<br>
 					Safari<br>
 					Chrome
+				</div>
+				<div style='margin-right:100%'>
 				</div>
 				<img src='assets/img/logos/console/apple_device.png' class='logo'></img>
 			</div>

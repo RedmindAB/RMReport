@@ -7,6 +7,15 @@ angular.module('webLog')
 		return dataObj === "MAC" || dataObj === "PC";
 	}
 	
+	$scope.getBrowserImage = function(browserName){
+		if(browserName === "firefox"){
+			return "assets/img/logos/console/firefox.png";
+		}
+		else{
+			return "assets/img/logos/console/chrome.png";
+		}
+	}
+	
 	$scope.isDevicesConnected = function(){
 		if($scope.gridData !== undefined){
 		var proxies = $scope.gridData.FreeProxies;
