@@ -131,7 +131,7 @@ angular.module('webLog')
 						},
 						capabilities: [
 						               {
-						            	    rmDeviceType: "mobile",
+						            	    rmDeviceType: "Mobile",
 						               		osname: "ANDROID",
 											platform: "ANDROID",
 											platformName: "Android",
@@ -156,7 +156,7 @@ angular.module('webLog')
 						},
 						capabilities: [
 						               {
-						            	    rmDeviceType: "mobile",
+						            	    rmDeviceType: "Mobile",
 						               		osname: "IOS",
 											platform: "IOS",
 											platformName: "IOS",
@@ -187,7 +187,7 @@ angular.module('webLog')
 											appActivity: ".debug.DebugMainActivity",
 											appWaitActivity: ".Splash",
 											platformVersion: "11",
-											deviceName: "iPa",
+											deviceName: "iPad Air",
 											deviceId: "ZX1G524BJK",
 						               }
 						               ]
