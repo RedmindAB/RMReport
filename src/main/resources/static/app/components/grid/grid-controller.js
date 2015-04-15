@@ -6,6 +6,31 @@ angular.module('webLog')
 			FreeProxies:[]
 	};
 	
+	$scope.getOSLogo = function(os){
+		switch (os) {
+		case "MAC":
+			return "assets/img/logos/console/apple_mac.png";
+			break;
+
+		case "PC":
+			return "assets/img/logos/console/windows.png";
+			break;
+
+		case "ANDROID":
+			return "assets/img/logos/console/android.png";
+			break;
+			
+		case "IOS":
+			return "assets/img/logos/console/apple_device.png";
+			break;
+			
+
+		default:
+			return "";
+			break;
+		}
+	}
+	
 	$scope.isDesktop = function(dataObj){
 		return dataObj === "MAC" || dataObj === "PC";
 	}
@@ -21,7 +46,7 @@ angular.module('webLog')
 	
 	$scope.isDevicesConnected = function(){
 		if($scope.gridData !== undefined){
-		var proxies = $scope.gridData.FreeProxies;
+		var proxies = $scope.mockData.FreeProxies;
 			for(var i = 0; i < proxies.length; i++){
 				if(proxies[i].capabilities[0].platform != "MAC" && proxies[i].capabilities[0].platform != "PC"){
 					return true;

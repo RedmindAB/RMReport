@@ -5,7 +5,6 @@ angular.module('webLog')
         link: function(scope, element, attrs) {
         	var width = $(".logo").width();
         	$(".box").width(width);
-        	console.log(width);
         }
     };
 });
