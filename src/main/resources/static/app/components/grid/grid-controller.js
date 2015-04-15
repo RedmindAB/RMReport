@@ -60,6 +60,7 @@ angular.module('webLog')
     .success(function(data, status, headers, config){ 
     	if(data){
     		$scope.gridData = data;
+    		console.log(data);
     	};
     }).error(function(data, status, headers, config){
     	console.error(data);
