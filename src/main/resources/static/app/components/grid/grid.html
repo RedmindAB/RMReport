@@ -23,10 +23,10 @@
 				<div ng-repeat="driver in mockData.FreeProxies" ng-if="!isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
 				<img class='logo' ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' style='vertical-align:middle'></img>
 				<div class='desc'>
+					<h4>{{driver.capabilities[0].deviceName}}</h4>
 					<b>appActivity:</b> {{driver.capabilities[0].appActivity}}<br>
 					<b>appWaitActivity:</b> {{driver.capabilities[0].appWaitActivity}}<br>
 					<b>deviceId:</b> {{driver.capabilities[0].deviceId}}<br>
-					<b>deviceName:</b> {{driver.capabilities[0].deviceName}}<br>
 					<b>osname:</b> {{driver.capabilities[0].osname}}<br>
 					<b>platform:</b> {{driver.capabilities[0].platform}}<br>
 					<b>platformName:</b> {{driver.capabilities[0].platformName}}<br>
