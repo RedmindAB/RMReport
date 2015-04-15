@@ -19,38 +19,38 @@
 			<div class='triangle-overlay'>
 				<img src='assets/img/logos/triangle.png'></img>
 			</div>
-			<div class="container container-fluid" style='background-color:#D4D9DD'>
-			
-				<nav class="navbar navbar-default nav-header">
-					 <div class="navbar-header">
-						<div>
-							<a id='home' ng-href="#/"><img style="margin-right:50px" src='assets/img/logos/logo.png' class='home'></img></a>
-							<a id='screenshot_view' href='' ng-click="goToGridView()" ng-style="{'color': getNavColor('grid')}" class='view nav-active'>
-								Grid
-							</a>
-							<a id='screenshot_view' href='' ng-click="goToDashboardView()"
-								ng-style="{'color': getNavColor('home')}" class='view'>
-								Dashboard
-							</a>
-							<a id='graph_view' href='' ng-click="goToGraphView()"
-								ng-style="{'color': getNavColor('reports')}" class='view'> 
-								Reports 
-							</a>
-							<a id='screenshot_view' href='' ng-click="goToScreenshotView()"
-								ng-style="{'color': getNavColor('screenshots')}" class='view'>
-								Visualizer 
-							</a>
-						</div>
-					</div>
-						<div class="collapse navbar-collapse" style='float: right'
-							id="bs-example-navbar-collapse-1"></div>
-				</nav>
-			
-			
-			
-			
-			
-			</div>
+			<nav class="navbar navbar-default">
+			<div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->		
+		    <a id='home' ng-href="#/"><img style="margin-right:50px" src='assets/img/logos/logo.png' class='home'></img></a>
+
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style='float:left'>
+					<span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+				</button>
+						    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style='float:left'>
+				<div>
+					<a id='screenshot_view' href='' ng-click="goToGridView()" ng-style="{'color': getNavColor('grid')}" class='view nav-active'>
+						Grid
+					</a>
+					<a id='screenshot_view' href='' ng-click="goToDashboardView()"
+						ng-style="{'color': getNavColor('home')}" class='view'>
+						Dashboard
+					</a>
+					<a id='graph_view' href='' ng-click="goToGraphView()"
+						ng-style="{'color': getNavColor('reports')}" class='view'> 
+						Reports 
+					</a>
+					<a id='screenshot_view' href='' ng-click="goToScreenshotView()"
+						ng-style="{'color': getNavColor('screenshots')}" class='view'>
+						Visualizer 
+					</a>
+				</div>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+			</nav>
 			<div class="container container-fluid" style="margin-bottom:100px; margin-top:57px">
 				<div ui-view></div>
 			</div>
