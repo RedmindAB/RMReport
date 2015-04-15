@@ -3,6 +3,15 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 	$scope.CurrentSuite = CurrentSuite;
 	$scope.Charts = Charts;
 	
+	$scope.isActive = function(state){
+		if($state.includes(state)){
+			return 'active';
+		}
+		else{
+			return '';
+		}
+	}
+	
 	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
 				Utilities.searchField = '';
 				Utilities.resetSorting();
