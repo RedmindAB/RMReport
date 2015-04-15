@@ -3,12 +3,25 @@
 		<div class='desktop'>
 			<h3>Desktop</h3>
 			<div ng-repeat="driver in gridData.FreeProxies" ng-if="isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
-				<img class='logo' src='assets/img/logos/console/windows.png' style='vertical-align:middle'></img>
+				<img class='logo' src='assets/img/logos/console/android.png' style='vertical-align:middle'></img>
 				<div class='desc'>
 					Port: {{driver.configuration.port}}<br>
 					Protocol: {{driver.capabilities[0].seleniumProtocol}}<br>
 					Platform: {{driver.capabilities[0].platform}}<br>
 					OS: {{driver.capabilities[0].osname}}<br>
+					Port: {{driver.configuration.port}}<br>
+					Protocol: {{driver.capabilities[0].seleniumProtocol}}<br>
+					Platform: {{driver.capabilities[0].platform}}<br>
+					OS: {{driver.capabilities[0].osname}}<br>
+					Port: {{driver.configuration.port}}<br>
+					Protocol: {{driver.capabilities[0].seleniumProtocol}}<br>
+					Platform: {{driver.capabilities[0].platform}}<br>
+					OS: {{driver.capabilities[0].osname}}<br>
+					Port: {{driver.configuration.port}}<br>
+					Protocol: {{driver.capabilities[0].seleniumProtocol}}<br>
+					Platform: {{driver.capabilities[0].platform}}<br>
+					OS: {{driver.capabilities[0].osname}}<br>
+					
 					<br><b>Browsers: </b>
 					<div ng-repeat="capability in driver.capabilities">
 					<img ng-src="{{getBrowserImage(capability.browserName)}}"></img>

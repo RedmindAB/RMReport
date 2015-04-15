@@ -3,8 +3,8 @@ angular.module('webLog')
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-        	var width = $(".box").width();
-        	$(".logo").width(width);
+        	var width = $(".logo").width();
+        	$(".box").width(width);
         	console.log(width);
         }
     };
