@@ -21,25 +21,29 @@
 			</div>
 			<div class="container container-fluid" style='background-color:#D4D9DD'>
 			
-			
-			
-			
-			
 				<nav class="navbar navbar-default nav-header">
 					 <div class="navbar-header">
 						<div>
-							<a id='home' ng-href="#/"><img src='assets/img/logos/logo.png' class='home'></img></a>
+							<a id='home' ng-href="#/"><img style="margin-right:50px" src='assets/img/logos/logo.png' class='home'></img></a>
+							<a id='screenshot_view' href='' ng-click="goToGridView()" ng-style="{'color': getNavColor('grid')}" class='view nav-active'>
+								Grid
+							</a>
+							<a id='screenshot_view' href='' ng-click="goToDashboardView()"
+								ng-style="{'color': getNavColor('home')}" class='view'>
+								Dashboard
+							</a>
 							<a id='graph_view' href='' ng-click="goToGraphView()"
-								ng-style="{'color': getNavColor('reports')}" class='view'
-								style='margin-left: 50px'> Reports </a> <a
-								id='screenshot_view' href='' ng-click="goToScreenshotView()"
+								ng-style="{'color': getNavColor('reports')}" class='view'> 
+								Reports 
+							</a>
+							<a id='screenshot_view' href='' ng-click="goToScreenshotView()"
 								ng-style="{'color': getNavColor('screenshots')}" class='view'>
-								Visualizer </a>
+								Visualizer 
+							</a>
 						</div>
+					</div>
 						<div class="collapse navbar-collapse" style='float: right'
 							id="bs-example-navbar-collapse-1"></div>
-						<!-- /.navbar-collapse -->
-					</div>
 				</nav>
 			
 			
