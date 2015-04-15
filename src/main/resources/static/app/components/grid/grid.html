@@ -3,7 +3,7 @@
 		<div class='desktop'>
 			<h3>Desktop</h3>
 			<div ng-repeat="driver in gridData.FreeProxies" ng-if="isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
-				<img class='logo' src='assets/img/logos/console/windows.png'></img>
+				<img class='logo' src='assets/img/logos/console/windows.png' style='vertical-align:middle'></img>
 				<div class='desc'>
 					Port: {{driver.configuration.port}}<br>
 					Protocol: {{driver.capabilities[0].seleniumProtocol}}<br>

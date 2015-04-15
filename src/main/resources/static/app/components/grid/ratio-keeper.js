@@ -3,9 +3,9 @@ angular.module('webLog')
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-        	var width = $(".box").height();
-        	$(".box").width(width);
-        	
+        	var width = $(".box").width();
+        	$(".logo").width(width);
+        	console.log(width);
         }
     };
 });
