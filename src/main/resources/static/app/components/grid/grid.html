@@ -1,8 +1,11 @@
 <div ng-controller="GridCtrl">
 	<div>
 		<div class='desktop'>
-			<h3>Desktop</h3>
-			<div ng-repeat="driver in GridData.data.FreeProxies" ng-if="isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
+			<h3 class="grid-h3">
+				Desktops
+			</h3>
+			<div ng-repeat="driver in mockData.FreeProxies" ng-if="isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
+>>>>>>> ec70cf459c48f631cf353dfe46d63d089cb7b8ed
 				<img class='logo' ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' style='vertical-align:middle'></img>
 				<div class='desc'>
 					<b>Port:</b> {{driver.configuration.port}}<br>
@@ -19,7 +22,12 @@
 			</div>
 		</div>
 		
-		<h3 ng-if="isDevicesConnected()">Device</h3>
+			<div ng-if="isDevicesConnected()" class='row'
+		style='border: 10px solid #D4D9DD'></div>
+		
+		<h3 class="grid-h3" ng-if="isDevicesConnected()">
+			Devices
+		</h3>
 				<div ng-repeat="driver in mockData.FreeProxies" ng-if="!isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
 				<img class='logo' ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' style='vertical-align:middle'></img>
 				<div class='desc'>
