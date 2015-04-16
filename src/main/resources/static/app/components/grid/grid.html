@@ -5,7 +5,6 @@
 			<div ng-repeat="driver in GridData.data.FreeProxies" ng-if="isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
 				<img class='logo' ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' style='vertical-align:middle'></img>
 				<div class='desc'>
-					<b>Port:</b> {{driver.configuration.port}}<br>
 					<b>Protocol:</b> {{driver.capabilities[0].seleniumProtocol}}<br>
 					<b>Platform:</b> {{driver.capabilities[0].platform}}<br>
 					<b>OS:</b> {{driver.capabilities[0].osname}}<br>
@@ -19,7 +18,7 @@
 			</div>
 		</div>
 		
-		<h3 ng-if="isDevicesConnected()">Device</h3>
+		<h3 ng-if="isDevicesConnected()">Devices</h3>
 				<div ng-repeat="driver in mockData.FreeProxies" ng-if="!isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
 				<img class='logo' ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' style='vertical-align:middle'></img>
 				<div class='desc'>
