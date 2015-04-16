@@ -15,6 +15,7 @@ public class PropertiesReader {
 	
 	private static final String TEST_DIR = "testDir";
 	private static final String GRID_QUERY_SERVLET_URL = "gridQueryServletURL";
+	private static final String PORT = "port";
 	
 	public PropertiesReader() {
 		propFilePath = System.getProperty("user.dir")+"/config.prop";
@@ -58,5 +59,13 @@ public class PropertiesReader {
 	
 	public String getSeleniumGridURL(){
 		return properties.getProperty(GRID_QUERY_SERVLET_URL);
+	}
+
+	public int getPort() {
+		String port = properties.getProperty(PORT);
+		if (port == null) {
+			port = "0";
+		}
+		return Integer.valueOf(port);
 	}
 }
