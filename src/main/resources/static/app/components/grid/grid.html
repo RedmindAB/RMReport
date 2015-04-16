@@ -2,7 +2,7 @@
 	<div>
 		<div class='desktop'>
 			<h3>Desktop</h3>
-			<div ng-repeat="driver in mockData.FreeProxies" ng-if="isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
+			<div ng-repeat="driver in GridData.data.FreeProxies" ng-if="isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
 				<img class='logo' ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' style='vertical-align:middle'></img>
 				<div class='desc'>
 					<b>Port:</b> {{driver.configuration.port}}<br>
