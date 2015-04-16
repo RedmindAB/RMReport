@@ -15,8 +15,12 @@ angular.module('webLog')
 		
 	});
 	
-	console.log("Starting");
-	Polling.startPolling('grid', restURL);
+	function setData(obj){
+		GridData.data = obj;
+	}
+	
+	
+	Polling.startPolling('grid', restURL, GridData, setData);
 	
 	$scope.getOSLogo = function(os){
 		switch (os) {
@@ -57,8 +61,8 @@ angular.module('webLog')
 	}
 	
 	$scope.isDevicesConnected = function(){
-		if($scope.gridData !== undefined){
-		var proxies = $scope.mockData.FreeProxies;
+		if(GridData.data.FreeProxies){
+		var proxies = GridData.data.FreeProxies;
 			for(var i = 0; i < proxies.length; i++){
 				if(proxies[i].capabilities[0].platform != "MAC" && proxies[i].capabilities[0].platform != "PC"){
 					return true;
@@ -69,15 +73,15 @@ angular.module('webLog')
 	}
 	
 
-	$http.get('/api/selenium/griddata')
-    .success(function(data, status, headers, config){ 
-    	if(data){
-    		$scope.gridData = data;
-    		console.log(data);
-    	};
-    }).error(function(data, status, headers, config){
-    	console.error(data);
-    });
+//	$http.get('/api/selenium/griddata')
+//    .success(function(data, status, headers, config){ 
+//    	if(data){
+//    		$scope.gridData = data;
+//    		console.log(data);
+//    	};
+//    }).error(function(data, status, headers, config){
+//    	console.error(data);
+//    });
 
 	mockStuff();
 	
