@@ -10,14 +10,25 @@ import spark.Route;
 
 public class RMTRoute {
 
-	public RMTRoute() {
+	/**
+	 * Starts the webserver and runs the API setup.
+	 * @param argPort - Optional. the port the application should listen to, if 0 is passed as an argument the port will be the standard 4567
+	 */
+	public RMTRoute(int argPort) {
+		setupPort(argPort);
+		init();
+		new ApiRouter();
+	}
+
+	private void setupPort(int argPort) {
 		PropertiesReader props = new PropertiesReader();
 		int port = props.getPort();
 		if (port != 0) {
-			setPort(port);
+			if (argPort != 0) {
+				setPort(argPort);
+			}
+			else setPort(port);
 		}
-		init();
-		new ApiRouter();
 	}
 	
 	private void init(){

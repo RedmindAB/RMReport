@@ -27,7 +27,7 @@ public class WSTestSuite {
 		DBCon.getDbTestInstance();
 		new ReportInit(reportPath).initReports();
 		new InMemoryDBHandler().init();
-		new RMTRoute();
+		new RMTRoute(4567);
 	}
 	
 	@AfterClass()
