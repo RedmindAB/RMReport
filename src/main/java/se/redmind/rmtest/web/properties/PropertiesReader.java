@@ -14,6 +14,8 @@ public class PropertiesReader {
 	private File file;
 	
 	private static final String TEST_DIR = "testDir";
+	private static final String GRID_QUERY_SERVLET_URL = "gridQueryServletURL";
+	private static final String PORT = "port";
 	
 	public PropertiesReader() {
 		propFilePath = System.getProperty("user.dir")+"/config.prop";
@@ -35,6 +37,7 @@ public class PropertiesReader {
 		if (testDir == null) {
 			System.err.println("No properties file was detected, creating template file:");
 			properties.put(TEST_DIR, "/PATH/TO/surefire-reports");
+			properties.put(GRID_QUERY_SERVLET_URL, "http://localhost:4444/grid/admin/GridQueryServlet");
 			try {
 				properties.store(new FileOutputStream(this.file), "Created: "+new Date()+" add more test directories with ',' as a divider");
 				System.out.println("config.prop created at: "+file.getAbsolutePath());
@@ -54,5 +57,15 @@ public class PropertiesReader {
 		return dirs;
 	}
 	
-	
+	public String getSeleniumGridURL(){
+		return properties.getProperty(GRID_QUERY_SERVLET_URL);
+	}
+
+	public int getPort() {
+		String port = properties.getProperty(PORT);
+		if (port == null) {
+			port = "0";
+		}
+		return Integer.valueOf(port);
+	}
 }

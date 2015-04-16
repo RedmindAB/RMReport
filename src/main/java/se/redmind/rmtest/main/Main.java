@@ -37,7 +37,21 @@ public class Main {
 		//Listens to file changes in the report directory.
 		FileWatcher.Run();
 		//start the webserver.
-		new RMTRoute();
+		int port = setupPort(args);
+		new RMTRoute(port);
+	}
+
+	private static int setupPort(String[] args) {
+		try {
+			String port = args[0];
+			int argPort = 0;
+			if (port != null) {
+				argPort = Integer.valueOf(port);
+			}
+			return argPort;
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 
 
