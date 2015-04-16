@@ -34,10 +34,7 @@
 				
 				<div>
 				<ul class="nav nav-tabs" class='nav-tab-style' style='margin-left:270px;border:none'>
-				  <li role="presentation" ng-class="isActive('grid')"><a id='screenshot_view' href='' ng-click="goToGridView()" ng-style="{'color': getNavColor('grid')}">
-						Grid
-					</a></li>
-				  <li role="presentation" ng-class="isActive('home')"><a id='screenshot_view' href='' ng-click="goToDashboardView()"
+				  <li class='dash' role="presentation" ng-class="isActive('home')"><a id='screenshot_view' href='' ng-click="goToDashboardView()"
 						ng-style="{'color': getNavColor('home')}">
 						Dashboard
 					</a></li>
@@ -48,6 +45,9 @@
 				  <li role="presentation" ng-class="isActive('screenshots')"><a id='screenshot_view' href='' ng-click="goToScreenshotView()"
 						ng-style="{'color': getNavColor('screenshots')}">
 						Visualizer 
+					</a></li>
+				  <li role="presentation" ng-class="isActive('grid')"><a id='screenshot_view' href='' ng-click="goToGridView()" ng-style="{'color': getNavColor('grid')}">
+						Grid
 					</a></li>
 				</ul>
 					
@@ -91,6 +91,8 @@
 	<script src="app/components/suite-info/suite-info-controller.js"></script>
 	<script src="app/components/dashboard/dashboard-controller.js"></script>
 	<script src="app/components/screenshots/screenshot-controller.js"></script>
+	<script src="app/components/grid/grid-data.js"></script>
+	<script src="app/components/grid/polling.js"></script>	
 	<script src="app/components/grid/grid-controller.js"></script>
 	<script src="app/components/grid/ratio-keeper.js"></script>
 	

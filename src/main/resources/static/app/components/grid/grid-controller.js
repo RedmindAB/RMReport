@@ -1,10 +1,22 @@
 angular.module('webLog')
-.controller("GridCtrl", ["$scope", "$http", function($scope, $http){
+.controller("GridCtrl", ["$scope", "$rootScope", "$http", "Polling", "GridData", function($scope, $rootScope ,$http, Polling, GridData){
 	
-	$scope.gridData = undefined;
+	$scope.GridData = GridData;
 	$scope.mockData ={
 			FreeProxies:[]
 	};
+	var restURL = "/api/selenium/griddata";
+	
+	var pollController = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+		if(fromState.name === 'grid'){
+			Polling.stopPolling("grid");
+		}
+		pollController();
+		
+	});
+	
+	console.log("Starting");
+	Polling.startPolling('grid', restURL);
 	
 	$scope.getOSLogo = function(os){
 		switch (os) {
@@ -56,6 +68,7 @@ angular.module('webLog')
 		return false;
 	}
 	
+
 	$http.get('/api/selenium/griddata')
     .success(function(data, status, headers, config){ 
     	if(data){
@@ -65,7 +78,7 @@ angular.module('webLog')
     }).error(function(data, status, headers, config){
     	console.error(data);
     });
-	
+
 	mockStuff();
 	
 	function mockStuff(){
