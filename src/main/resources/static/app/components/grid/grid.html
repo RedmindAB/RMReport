@@ -1,47 +1,46 @@
 <div ng-controller="GridCtrl">
 	<div>
 		<div class='desktop'>
-			<h3>Desktop</h3>
-			<div ng-repeat="driver in gridData.FreeProxies" ng-if="isDesktop(driver.capabilities[0].platform)" class='box'>
-				<div class='logo'>
-				<img src='assets/img/logos/console/windows.png'></img>
-				</div>
+			<h3 class="grid-h3">
+				Desktops
+			</h3>
+			<div ng-repeat="driver in mockData.FreeProxies" ng-if="isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
+				<img class='logo' ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' style='vertical-align:middle'></img>
 				<div class='desc'>
-					Port: {{driver.configuration.port}}<br>
-					Protocol: {{driver.capabilities[0].seleniumProtocol}}<br>
-					Platform: {{driver.capabilities[0].platform}}<br>
-					OS: {{driver.capabilities[0].osname}}<br>
+					<b>Port:</b> {{driver.configuration.port}}<br>
+					<b>Protocol:</b> {{driver.capabilities[0].seleniumProtocol}}<br>
+					<b>Platform:</b> {{driver.capabilities[0].platform}}<br>
+					<b>OS:</b> {{driver.capabilities[0].osname}}<br>
+					<b>Port:</b> {{driver.configuration.port}}<br>
+					
 					<br><b>Browsers: </b>
 					<div ng-repeat="capability in driver.capabilities">
-					{{capability.browserName}}
+						<img ng-src="{{getBrowserImage(capability.browserName)}}" style='float:left'></img>
 					</div>
 				</div>
 			</div>
 		</div>
-		<br>
-		<h3 ng-if="isDevicesConnected()">Device</h3>
-		<div ng-repeat="driver in gridData.FreeProxies" ng-if="!isDesktop(driver.capabilities[0].platform)" class='device'>
-			<div class='box'>
+		
+			<div ng-if="isDevicesConnected()" class='row'
+		style='border: 10px solid #D4D9DD'></div>
+		
+		<h3 class="grid-h3" ng-if="isDevicesConnected()">
+			Devices
+		</h3>
+				<div ng-repeat="driver in mockData.FreeProxies" ng-if="!isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
+				<img class='logo' ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' style='vertical-align:middle'></img>
 				<div class='desc'>
-					Appium<br>
-					iPhone 6<br>
-					iOS<br>
-					Safari<br>
-					Chrome
+					<h4>{{driver.capabilities[0].deviceName}}</h4>
+					<b>appActivity:</b> {{driver.capabilities[0].appActivity}}<br>
+					<b>appWaitActivity:</b> {{driver.capabilities[0].appWaitActivity}}<br>
+					<b>deviceId:</b> {{driver.capabilities[0].deviceId}}<br>
+					<b>osname:</b> {{driver.capabilities[0].osname}}<br>
+					<b>platform:</b> {{driver.capabilities[0].platform}}<br>
+					<b>platformName:</b> {{driver.capabilities[0].platformName}}<br>
+					<b>platformVersion:</b> {{driver.capabilities[0].platformVersion}}<br>
+					<b>rmDeviceType:</b> {{driver.capabilities[0].rmDeviceType}}<br>
 				</div>
-				<img src='assets/img/logos/console/apple_device.png' class='logo'></img>
 			</div>
-			<div class='box'>
-				<div class='desc'>
-					Appium<br>
-					Galaxy S6<br>
-					iOS<br>
-					Safari<br>
-					Chrome
-				</div>
-				<img src='assets/img/logos/console/android.png' class='logo'></img>
-			</div>
-		</div>
 	</div>
 	<div ui-view></div>
 </div>

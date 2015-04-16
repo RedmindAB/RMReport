@@ -3,6 +3,15 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 	$scope.CurrentSuite = CurrentSuite;
 	$scope.Charts = Charts;
 	
+	$scope.isActive = function(state){
+		if($state.includes(state)){
+			return 'active';
+		}
+		else{
+			return '';
+		}
+	}
+	
 	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
 				Utilities.searchField = '';
 				Utilities.resetSorting();
@@ -42,7 +51,19 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 		}
 	}
 	
+	$scope.goToDashboardView = function(){
+		$state.transitionTo("home");
+	}
+	
+	$scope.goToGridView = function(){
+		$state.transitionTo("grid");
+	}
+	
 	$scope.goToGraphView = function(){
+		if ($state.current.name === "grid") {
+			$state.transitionTo("home");
+			return;
+		}
 		if ($state.current.name === 'screenshots.classes') {
 			$state.transitionTo('reports.classes');
 		} else if ($state.current.name === 'screenshots.methods'){
@@ -51,6 +72,10 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 	}
 	
 	$scope.goToScreenshotView = function(){
+		if ($state.current.name === "grid") {
+			$state.transitionTo("home");
+			return;
+		}
 		ScreenshotMaster.previousView = $state.$current.name;
 		if ($state.current.name !== 'home') {
 			if (CurrentSuite.currentSuite.length === 0) {
