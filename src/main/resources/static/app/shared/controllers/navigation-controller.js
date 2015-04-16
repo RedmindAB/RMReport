@@ -5,10 +5,14 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 	
 	$scope.isActive = function(state){
 		if($state.includes(state)){
+			if($state.is('reports.classes')){
+	        	$(".reports").removeClass("disabled");
+			}
 			return 'active';
 		}
 		else{
-			return '';
+        	$(".reports").addClass("disabled");		
+			return 'none';
 		}
 	}
 	
