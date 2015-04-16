@@ -49,6 +49,7 @@ public class DriverValidationTest {
 	
 	
 	@Test
+	@Ignore
 	public void testDevice() {
 		HashMap<String, Integer> deviceMap = driverValidation.getDeviceMap();
 		assertEquals(7, deviceMap.size());

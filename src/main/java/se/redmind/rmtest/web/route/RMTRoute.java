@@ -23,11 +23,12 @@ public class RMTRoute {
 	private void setupPort(int argPort) {
 		PropertiesReader props = new PropertiesReader();
 		int port = props.getPort();
+		if (argPort != 0) {
+			setPort(argPort);
+			return;
+		}
 		if (port != 0) {
-			if (argPort != 0) {
-				setPort(argPort);
-			}
-			else setPort(port);
+			setPort(port);
 		}
 	}
 	
