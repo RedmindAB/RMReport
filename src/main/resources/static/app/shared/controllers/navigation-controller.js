@@ -3,20 +3,34 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 	$scope.CurrentSuite = CurrentSuite;
 	$scope.Charts = Charts;
 	
+	$scope.isNavActive = function(state1, state2){
+		if($state.includes(state1) || $state.includes(state2)){
+			return true;
+		}
+		else{	
+			return false;
+		}
+	}
+	
 	$scope.isActive = function(state){
 		if($state.includes(state)){
-			if($state.is('reports.classes')){
-	        	$(".reports").removeClass("disabled");
-			}
-			return 'active';
+			return true;
 		}
-		else{
-        	$(".reports").addClass("disabled");		
-			return 'none';
+		else{	
+			return false;
 		}
 	}
 	
 	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+				//$scope.isActive(toState);
+				/*console.log(toState.name);
+				if(toState.name === "reports.classes"){
+					$(".reports").removeClass("disabled");
+				}
+				else{
+					$(".reports").addClass("disabled");
+				}*/
+	
 				Utilities.searchField = '';
 				Utilities.resetSorting();
 				CurrentSuite.clearChosenClasses();
