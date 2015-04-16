@@ -2,7 +2,7 @@
 	<div>
 		<div class='desktop'>
 			<h3 class="grid-h3">Desktops</h3>
-			<div ng-repeat="driver in GridData.data.FreeProxies" ng-if="isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
+			<div ng-repeat="driver in GridData.data.FreeProxies track by $index" ng-if="isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
 				<img class='logo' ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' style='vertical-align:middle'></img>
 				<div class='desc'>
 					<b>Protocol:</b> {{driver.capabilities[0].seleniumProtocol}}<br>
@@ -11,7 +11,7 @@
 					<b>Port:</b> {{driver.configuration.port}}<br>
 					
 					<br><b>Browsers: </b>
-					<div ng-repeat="capability in driver.capabilities">
+					<div ng-repeat="capability in driver.capabilities track by $index">
 						<img ng-src="{{getBrowserImage(capability.browserName)}}" style='float:left'></img>
 					</div>
 				</div>
@@ -19,7 +19,7 @@
 		</div>
 		
 		<h3 ng-if="isDevicesConnected()">Devices</h3>
-				<div ng-repeat="driver in mockData.FreeProxies" ng-if="!isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
+				<div ng-repeat="driver in GridData.data.FreeProxies track by $index" ng-if="!isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
 				<img class='logo' ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' style='vertical-align:middle'></img>
 				<div class='desc'>
 					<h4>{{driver.capabilities[0].deviceName}}</h4>
