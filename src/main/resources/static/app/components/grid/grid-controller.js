@@ -68,8 +68,7 @@ angular.module('webLog')
 		return false;
 	}
 	
-<<<<<<< HEAD
-=======
+
 	$http.get('/api/selenium/griddata')
     .success(function(data, status, headers, config){ 
     	if(data){
@@ -79,8 +78,7 @@ angular.module('webLog')
     }).error(function(data, status, headers, config){
     	console.error(data);
     });
-	
->>>>>>> ec70cf459c48f631cf353dfe46d63d089cb7b8ed
+
 	mockStuff();
 	
 	function mockStuff(){
