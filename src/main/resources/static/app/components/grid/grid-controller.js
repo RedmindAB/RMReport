@@ -19,7 +19,6 @@ angular.module('webLog')
 		GridData.data = obj;
 	}
 	
-	
 	Polling.startPolling('grid', restURL, GridData, setData);
 	
 	$scope.getOSLogo = function(os){
@@ -60,7 +59,42 @@ angular.module('webLog')
 		}
 	}
 	
-	$scope.isDevicesConnected = function(){
+	$scope.noNodesConnected = function(){
+		if(GridData.data.FreeProxies != undefined){
+			if(GridData.data.FreeProxies.length === 0 && GridData.data.BusyProxies.length === 0){
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else{
+			return false;
+		}
+	}
+	
+	$scope.isHubConnected = function(){
+		if(GridData.data.error != undefined){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	$scope.isDesktopNodesConnected = function(){
+		if(GridData.data.FreeProxies){
+		var proxies = GridData.data.FreeProxies;
+			for(var i = 0; i < proxies.length; i++){
+				if(proxies[i].capabilities[0].platform === "MAC" || proxies[i].capabilities[0].platform === "PC"){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	$scope.isDeviceNodesConnected = function(){
 		if(GridData.data.FreeProxies){
 		var proxies = GridData.data.FreeProxies;
 			for(var i = 0; i < proxies.length; i++){
@@ -214,7 +248,6 @@ angular.module('webLog')
 				$scope.mockData.FreeProxies.push(data);
 			}
 		}
-		console.log($scope.mockData);
 	}
 	
 }]);

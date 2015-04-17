@@ -7,7 +7,7 @@ angular.module('webLog')
 			if(!polls[name]){
 				var poller = function(){
 					$http.get(url)
-				    .success(function(data, status, headers, config){ 
+				    .success(function(data, status, headers, config){
 				    	if(data){
 				    		if (dataObj !== data) {
 				    			func(data);
