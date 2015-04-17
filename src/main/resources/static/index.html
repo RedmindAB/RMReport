@@ -42,11 +42,11 @@
 						ng-style="{'color': getNavColor('reports')}" > 
 						Reports 
 					</a></li>
-				  <li role="presentation" ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('screenshots')}"><a id='screenshot_view' href='' ng-click="goToScreenshotView()"
+				  <li class='visual' role="presentation" ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('screenshots')}"><a id='screenshot_view' href='' ng-click="goToScreenshotView()"
 						ng-style="{'color': getNavColor('screenshots')}">
 						Visualizer 
 					</a></li>
-				  <li role="presentation" ng-class="{'active': isActive('grid')}"><a id='screenshot_view' href='' ng-click="goToGridView()" ng-style="{'color': getNavColor('grid')}">
+				  <li class='grid' role="presentation" ng-class="{'active': isActive('grid')}"><a id='screenshot_view' href='' ng-click="goToGridView()" ng-style="{'color': getNavColor('grid')}">
 						Grid
 					</a></li>
 				</ul>
