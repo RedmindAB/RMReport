@@ -22,7 +22,8 @@ angular.module('webLog')
 		            layout: 'vertical',
 		            align: 'right',
 		            verticalAlign: 'middle',
-		            borderWidth: 0
+		            borderWidth: 0,
+		            maxHeight:270
 		        },
 				tooltip : {
 					crosshairs: true,
