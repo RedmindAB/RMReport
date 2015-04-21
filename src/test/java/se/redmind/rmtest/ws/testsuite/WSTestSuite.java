@@ -17,6 +17,7 @@ import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
 import se.redmind.rmtest.webservicetests.GetClassesWSTest;
 import se.redmind.rmtest.webservicetests.GetDriverByTestcaseWSTest;
 import se.redmind.rmtest.webservicetests.GetGraphDataWSTest;
+import se.redmind.rmtest.webservicetests.GetGraphOptionsWSTest;
 import se.redmind.rmtest.webservicetests.GetLatestSuiteWSTest;
 import se.redmind.rmtest.webservicetests.GetMethodsWSTest;
 import se.redmind.rmtest.webservicetests.GetSuitesWSTest;
@@ -27,7 +28,8 @@ import se.redmind.rmtest.webservicetests.GetSuitesWSTest;
 					GetLatestSuiteWSTest.class,
 					GetDriverByTestcaseWSTest.class,
 					GetClassesWSTest.class, 
-					GetGraphDataWSTest.class})
+					GetGraphDataWSTest.class,
+					GetGraphOptionsWSTest.class})
 public class WSTestSuite{
 
 	private static String reportPath = System.getProperty("user.dir")+"/reports_for_test";

@@ -89,11 +89,9 @@ public class GetGraphDataWS extends Route {
 	public Object handle(Request request, Response response) {
 		try {
 			String data = (String) request.body();
-			System.out.println(data);
 			if (logEnable) log(request, data);
 			JsonArray json = new Gson().fromJson(data, JsonArray.class);
 			String res = new GetGraphDataDAO().getGraphData(json);
-			System.out.println(res);
 			return res;
 		} catch (Exception e) {
 			e.printStackTrace();
