@@ -20,6 +20,7 @@ import se.redmind.rmtest.webservicetests.GetGraphOptionsWSTest;
 import se.redmind.rmtest.webservicetests.GetLatestSuiteWSTest;
 import se.redmind.rmtest.webservicetests.GetMethodsWSTest;
 import se.redmind.rmtest.webservicetests.GetSuiteByTimestampWSTest;
+import se.redmind.rmtest.webservicetests.GetSuiteSysoWSTest;
 import se.redmind.rmtest.webservicetests.GetSuitesWSTest;
 import se.redmind.rmtest.webservicetests.PassFailClassWSTest;
 
@@ -33,7 +34,8 @@ import se.redmind.rmtest.webservicetests.PassFailClassWSTest;
 					GetGraphDataWSTest.class,
 					GetGraphOptionsWSTest.class,
 					GetSuiteByTimestampWSTest.class,
-					PassFailClassWSTest.class})
+					PassFailClassWSTest.class,
+					GetSuiteSysoWSTest.class})
 
 public class WSTestSuite{
 

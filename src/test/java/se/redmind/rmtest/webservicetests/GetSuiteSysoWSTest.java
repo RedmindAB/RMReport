@@ -17,6 +17,7 @@ import com.google.gson.JsonObject;
 import se.redmind.rmtest.web.route.api.classes.passfail.PassFailClassWS;
 import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
 import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
+import se.redmind.rmtest.web.route.api.suite.syso.GetSuiteSysosWS;
 import spark.Request;
 import spark.Response;
 
@@ -24,24 +25,19 @@ import spark.Response;
 public class GetSuiteSysoWSTest {
 	
 	@Test
-	public void getMethods_true()  {
+	public void getSuiteSyos_checkLength()  {
 		Request request = mock(Request.class);
 		Response response = mock(Response.class);
-		when(request.queryParams("classid")).thenReturn("1");
-		when(request.queryParams("timestamp")).thenReturn("20150110080009");
-		when(request.queryParams("testcaseid")).thenReturn("1");
+		when(request.queryParams("suiteid")).thenReturn("1");
+		when(request.queryParams("timestamp")).thenReturn("20150415130511");
 		
-		PassFailClassWS ws = new PassFailClassWS("");
+		String basedir = System.getProperty("user.dir")+"/reports_for_test/sysos";
 		
-		Object result = ws.handle(request, response);
-		Gson gson = new Gson();
-		JsonObject object = gson.fromJson(result.toString(), JsonObject.class);
-		int total = 0;
-		total += object.get("passed").getAsInt();
-		total += object.get("error").getAsInt();
-		total += object.get("failure").getAsInt();
-		total += object.get("skipped").getAsInt();
-		assertEquals(total, object.get("total").getAsInt());
+		GetSuiteSysosWS ws = new GetSuiteSysosWS("", basedir);
+		
+		String result = (String) ws.handle(request, response);
+		assertNotNull(result);
+		assertTrue(result.length() > 0);
 	}
 	
 }

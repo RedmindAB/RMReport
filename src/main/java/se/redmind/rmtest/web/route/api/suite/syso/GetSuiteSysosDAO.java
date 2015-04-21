@@ -9,7 +9,14 @@ import se.redmind.rmtest.report.sysout.ReportSystemOutPrintFile;
 
 public class GetSuiteSysosDAO {
 
-	private static final String BASEDIR = ReportSystemOutPrintFile.BASEDIR;
+	private static String BASEDIR = ReportSystemOutPrintFile.BASEDIR;
+	
+	public GetSuiteSysosDAO(String basedir) {
+		this.BASEDIR = basedir;
+	}
+	
+	public GetSuiteSysosDAO() {
+	}
 	
 	public String getSysos(long timestamp, int suiteid){
 		try {
