@@ -16,7 +16,7 @@ import com.google.gson.JsonArray;
 public class GetClassesWSTest {
 	
 	@Test
-	public void getMethods_true()  {
+	public void getClasses_true()  {
 		Request request = mock(Request.class);
 		Response response = mock(Response.class);
 		when(request.queryParams("suiteid")).thenReturn("1");
@@ -26,7 +26,7 @@ public class GetClassesWSTest {
 		Object result = ws.handle(request, response);
 		Gson gson = new Gson();
 		JsonArray array = gson.fromJson(result.toString(), JsonArray.class);
-		assertEquals(10, array.size());
+		assertEquals(2, array.size());
 
 	}
 

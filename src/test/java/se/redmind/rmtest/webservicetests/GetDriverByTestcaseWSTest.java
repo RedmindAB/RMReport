@@ -27,6 +27,6 @@ public class GetDriverByTestcaseWSTest {
 		Object result = ws.handle(request, response);
 		Gson gson = new Gson();
 		JsonArray array = gson.fromJson(result.toString(), JsonArray.class);
-		assertEquals(16, array.size());
+		assertEquals(8, array.size());
 	}
 }
