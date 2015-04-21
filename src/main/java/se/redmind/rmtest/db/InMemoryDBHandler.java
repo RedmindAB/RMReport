@@ -12,6 +12,11 @@ public class InMemoryDBHandler {
 	Connection connection = DBCon.getDbInstance().getInMemoryConnection();
 	public static final int timestamplimit = 150;
 	public static boolean updatingIMDB = false;
+	private String dbname;
+	
+	public InMemoryDBHandler(String dbname) {
+		this.dbname = dbname;
+	}
 	
 	public void init(){
 		try {
@@ -48,7 +53,7 @@ public class InMemoryDBHandler {
 	}
 	
 	public String getAttachDatabaseSQL(){
-		String databasePath = System.getProperty("user.dir")+"/RMTest.db";
+		String databasePath = System.getProperty("user.dir")+"/"+dbname+".db";
 		return "ATTACH DATABASE '"+databasePath+"' AS rmtest;";
 	}
 	

@@ -2,6 +2,9 @@ package se.redmind.rmtest.webservicetests;
 
 import static org.junit.Assert.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,44 +15,108 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 
 import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
+import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
 import spark.Request;
 import spark.Response;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GetGraphDataWSTest {
 	
-	
-	@Before
-	public void before(){
+	public JsonArray generateRequestJson(String name, int reslimit, int[] os, int[] devices, int[] browsers, int[] classes, int[] testcases){
+		JsonArray array = new JsonArray();
+		JsonObject object = new JsonObject();
+		object.addProperty("name", name);
+		object.addProperty("suiteid", 1);
+		object.addProperty("reslimit", reslimit);
 		
+		//add OS's
+		object.add("os", generateArray(os));
+		//add devices
+		object.add("devices", generateArray(devices));
+		object.add("browsers", generateArray(browsers));
+		object.add("classes", generateArray(classes));
+		object.add("testcases", generateArray(testcases));
+		array.add(object);
+		return array;
+	}
+
+	private JsonArray generateArray(int[] ids) {
+		JsonArray array = new JsonArray();
+		for (int id : ids) {
+			array.add(new JsonPrimitive(id));
+		}
+		return array;
 	}
 	
 	@Test
-	public void getMethods_true()  {
+	public void getGraphdata_basicRequest()  {
 		Request request = mock(Request.class);
 		Response response = mock(Response.class);
-		when(request.queryParams("classid")).thenReturn("1");
 		
-		GetMethodsWS ws = new GetMethodsWS("");
+		String generateRequestJson = generateRequestJson("nexus 6", 5, new int[0], new int[0], new int[0], new int[0], new int[0]).toString();
+		when(request.body()).thenReturn(generateRequestJson);
+		
+		GetGraphDataWS ws = new GetGraphDataWS("");
+		ws.setLoggingEnabled(false);
 		
 		Object result = ws.handle(request, response);
 		Gson gson = new Gson();
 		JsonArray array = gson.fromJson(result.toString(), JsonArray.class);
-		assertEquals(4, array.size());
-//		assertEquals(1, array.get(0).getAsJsonObject().get("id").getAsInt());
+		JsonObject resultJson = array.get(0).getAsJsonObject();
+		assertEquals("nexus 6", resultJson.get("name").getAsString());
+		assertEquals(5, resultJson.get("data").getAsJsonArray().size());
 	}
 	
-	@Test
-	public void getMethods_minus1()  {
-		Request request = mock(Request.class);
-		Response response = mock(Response.class);
-		when(request.queryParams("classid")).thenReturn("-1");
-		
-		GetMethodsWS ws = new GetMethodsWS("");
-		
-		Object handle = ws.handle(request, response);
-		assertEquals("[]", handle.toString());
-	}
+//	@Test
+//	public void getGraphdata_limitedResult()  {
+//		Request request = mock(Request.class);
+//		Response response = mock(Response.class);
+//		
+//		String generateRequestJson = generateRequestJson("nexus 6", 15, new int[]{1}, new int[0], new int[0], new int[0], new int[0]).toString();
+//		when(request.body()).thenReturn(generateRequestJson);
+//		
+//		GetGraphDataWS ws = new GetGraphDataWS("");
+//		ws.setLoggingEnabled(false);
+//		
+//		Object result = ws.handle(request, response);
+//		System.out.println(generateRequestJson+"\n"+result);
+//		Gson gson = new Gson();
+//		JsonArray array = gson.fromJson(result.toString(), JsonArray.class);
+//		JsonObject resultJson = array.get(0).getAsJsonObject();
+//		assertEquals("nexus 6", resultJson.get("name").getAsString());
+//		assertEquals(10, resultJson.get("data").getAsJsonArray().size());
+//	}
+//	
+//	@Test
+//	public void getGraphdata_multiRequest()  {
+//		Request request = mock(Request.class);
+//		Response response = mock(Response.class);
+//		
+//		JsonArray firstArray = generateRequestJson("first array", 15, new int[]{1}, new int[0], new int[0], new int[0], new int[0]);
+//		JsonArray secondArray = generateRequestJson("second array", 15, new int[]{1}, new int[0], new int[0], new int[0], new int[0]);
+//		firstArray.addAll(secondArray);
+//		when(request.body()).thenReturn(new Gson().toJson(firstArray));
+//		
+//		GetGraphDataWS ws = new GetGraphDataWS("");
+//		ws.setLoggingEnabled(false);
+//		
+//		Object result = ws.handle(request, response);
+//		Gson gson = new Gson();
+//		JsonArray array = gson.fromJson(result.toString(), JsonArray.class);
+//		//assert the result to be 2 two objects
+//		assertEquals(2, array.size());
+//		//checks values in the first result
+//		JsonObject resultJson = array.get(0).getAsJsonObject();
+//		assertEquals("first array", resultJson.get("name").getAsString());
+//		assertEquals(10, resultJson.get("data").getAsJsonArray().size());
+//		
+//		//checks values in second result
+//		resultJson = array.get(1).getAsJsonObject();
+//		assertEquals("second array", resultJson.get("name").getAsString());
+//		assertEquals(10, resultJson.get("data").getAsJsonArray().size());
+//	}
 }

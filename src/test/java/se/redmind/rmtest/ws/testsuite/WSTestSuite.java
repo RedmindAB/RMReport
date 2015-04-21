@@ -13,17 +13,27 @@ import org.junit.runners.Suite;
 import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.InMemoryDBHandler;
 import se.redmind.rmtest.report.init.ReportInit;
-import se.redmind.rmtest.web.route.RMTRoute;
-import se.redmind.rmtest.web.route.api.suite.getsuites.GetSuitesWS;
+import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
 import se.redmind.rmtest.webservicetests.GetClassesWSTest;
 import se.redmind.rmtest.webservicetests.GetDriverByTestcaseWSTest;
+import se.redmind.rmtest.webservicetests.GetGraphDataWSTest;
+import se.redmind.rmtest.webservicetests.GetGraphOptionsWSTest;
 import se.redmind.rmtest.webservicetests.GetLatestSuiteWSTest;
 import se.redmind.rmtest.webservicetests.GetMethodsWSTest;
 import se.redmind.rmtest.webservicetests.GetSuiteByTimestampWSTest;
 import se.redmind.rmtest.webservicetests.GetSuitesWSTest;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({GetMethodsWSTest.class, GetSuitesWSTest.class, GetLatestSuiteWSTest.class, GetDriverByTestcaseWSTest.class, GetClassesWSTest.class, GetSuiteByTimestampWSTest.class })
+
+@Suite.SuiteClasses({GetMethodsWSTest.class,
+					GetSuitesWSTest.class,
+					GetLatestSuiteWSTest.class,
+					GetDriverByTestcaseWSTest.class,
+					GetClassesWSTest.class, 
+					GetGraphDataWSTest.class,
+					GetGraphOptionsWSTest.class,
+					GetSuiteByTimestampWSTest.class})
+
 public class WSTestSuite{
 
 	private static String reportPath = System.getProperty("user.dir")+"/reports_for_test";
@@ -33,7 +43,7 @@ public class WSTestSuite{
 	public static void beforeClass(){
 		DBCon.getDbTestInstance();
 		new ReportInit(reportPath).initReports();
-		new InMemoryDBHandler().init();
+		new InMemoryDBHandler("testRMTest").init();
 //		new RMTRoute(4567);
 	}
 	
