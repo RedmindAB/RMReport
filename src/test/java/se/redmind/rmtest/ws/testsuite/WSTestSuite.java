@@ -15,11 +15,12 @@ import se.redmind.rmtest.db.InMemoryDBHandler;
 import se.redmind.rmtest.report.init.ReportInit;
 import se.redmind.rmtest.web.route.RMTRoute;
 import se.redmind.rmtest.web.route.api.suite.getsuites.GetSuitesWS;
+import se.redmind.rmtest.webservicetests.GetGraphDataWSTest;
 import se.redmind.rmtest.webservicetests.GetMethodsWSTest;
 import se.redmind.rmtest.webservicetests.GetSuitesWSTest;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({GetMethodsWSTest.class, GetSuitesWSTest.class})
+@Suite.SuiteClasses({GetMethodsWSTest.class, GetSuitesWSTest.class, GetGraphDataWSTest.class})
 public class WSTestSuite {
 
 	private static String reportPath = System.getProperty("user.dir")+"/reports_for_test";
