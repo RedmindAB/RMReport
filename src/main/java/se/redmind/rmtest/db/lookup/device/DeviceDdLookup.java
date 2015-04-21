@@ -26,5 +26,4 @@ public class DeviceDdLookup extends DBBridge {
 		return hm;
 	}
 	
-
 }

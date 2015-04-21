@@ -12,26 +12,25 @@ import org.mockito.runners.MockitoJUnitRunner;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
-import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
-import se.redmind.rmtest.web.route.api.suite.getsuites.GetSuitesWS;
+import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteWS;
 import spark.Request;
 import spark.Response;
 
 @RunWith(MockitoJUnitRunner.class)
-public class GetSuitesWSTest {
+public class GetLatestSuiteWSTest {
 	
 	
 	@Test
-	public void getSuites_true()  {
+	public void getLatestSuite_true()  {
 		Request request = mock(Request.class);
 		Response response = mock(Response.class);
+		when(request.queryParams("suiteid")).thenReturn("1");
 		
-		GetSuitesWS ws = new GetSuitesWS("");
+		GetLatestSuiteWS ws = new GetLatestSuiteWS("");
 		
 		Object result = ws.handle(request, response);
 		Gson gson = new Gson();
 		JsonArray array = gson.fromJson(result.toString(), JsonArray.class);
-		assertEquals(1, array.size());
-//		assertEquals(1, array.get(0).getAsJsonObject().get("id").getAsInt());
+		assertEquals(10, array.size());
 	}
 }
