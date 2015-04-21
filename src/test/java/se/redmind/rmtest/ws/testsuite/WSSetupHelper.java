@@ -25,35 +25,27 @@ import se.redmind.rmtest.webservicetests.GetSuiteSysoWSTest;
 import se.redmind.rmtest.webservicetests.GetSuitesWSTest;
 import se.redmind.rmtest.webservicetests.PassFailClassWSTest;
 
-@RunWith(Suite.class)
-
-@Suite.SuiteClasses({GetMethodsWSTest.class,
-					GetSuitesWSTest.class,
-					GetLatestSuiteWSTest.class,
-					GetDriverByTestcaseWSTest.class,
-					GetClassesWSTest.class, 
-					GetGraphDataWSTest.class,
-					GetGraphOptionsWSTest.class,
-					GetSuiteByTimestampWSTest.class,
-					PassFailClassWSTest.class,
-					GetSuiteSysoWSTest.class,
-					GetScreenshotStructureWSTest.class})
-
-public class WSTestSuite{
+public class WSSetupHelper{
 
 	private static String reportPath = System.getProperty("user.dir")+"/reports_for_test";
 	private static String dbPath = System.getProperty("user.dir")+"/testRMtest.db";
 	
-	@BeforeClass()
-	public static void beforeClass(){
-		DBCon.getDbTestInstance();
-		new ReportInit(reportPath).initReports();
-		new InMemoryDBHandler("testRMTest").init();
-//		new RMTRoute(4567);
+	public WSSetupHelper() {
+		beforeClass();
 	}
 	
-	@AfterClass()
-	public static void afterClass(){
+	public static void beforeClass(){
+		boolean testmode = DBCon.isTestmode();
+		if (!testmode) {
+			deleteOldDatabase();
+			DBCon.getDbTestInstance();
+			new ReportInit(reportPath).initReports();
+			new InMemoryDBHandler("testRMTest").init();
+	//		new RMTRoute(4567);
+		}
+	}
+	
+	public static void deleteOldDatabase(){
 		//remove testdb
 		File dbFile = new File(dbPath);
 		try {

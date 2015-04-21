@@ -20,11 +20,12 @@ import com.google.gson.JsonPrimitive;
 
 import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
 import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
+import se.redmind.rmtest.ws.testsuite.WSSetupHelper;
 import spark.Request;
 import spark.Response;
 
 @RunWith(MockitoJUnitRunner.class)
-public class GetGraphDataWSTest {
+public class GetGraphDataWSTest extends WSSetupHelper{
 	
 	public JsonArray generateRequestJson(String name, int reslimit, int[] os, int[] devices, int[] browsers, int[] classes, int[] testcases){
 		JsonArray array = new JsonArray();

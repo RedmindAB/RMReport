@@ -13,11 +13,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
 import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteWS;
+import se.redmind.rmtest.ws.testsuite.WSSetupHelper;
 import spark.Request;
 import spark.Response;
 
 @RunWith(MockitoJUnitRunner.class)
-public class GetLatestSuiteWSTest {
+public class GetLatestSuiteWSTest extends WSSetupHelper{
 	
 	
 	@Test

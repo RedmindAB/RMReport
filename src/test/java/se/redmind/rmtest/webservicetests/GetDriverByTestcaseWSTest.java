@@ -7,13 +7,14 @@ import static org.mockito.Mockito.when;
 import org.junit.Test;
 
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseWS;
+import se.redmind.rmtest.ws.testsuite.WSSetupHelper;
 import spark.Request;
 import spark.Response;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
-public class GetDriverByTestcaseWSTest {
+public class GetDriverByTestcaseWSTest extends WSSetupHelper{
 
 	@Test
 	public void getDriverByTestcaseWS_true()  {

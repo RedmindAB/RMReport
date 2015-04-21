@@ -7,13 +7,14 @@ import static org.mockito.Mockito.when;
 import org.junit.Test;
 
 import se.redmind.rmtest.web.route.api.suite.bytimestamp.GetSuiteByTimestampWS;
+import se.redmind.rmtest.ws.testsuite.WSSetupHelper;
 import spark.Request;
 import spark.Response;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
-public class GetSuiteByTimestampWSTest {
+public class GetSuiteByTimestampWSTest extends WSSetupHelper{
 
 	
 	@Test

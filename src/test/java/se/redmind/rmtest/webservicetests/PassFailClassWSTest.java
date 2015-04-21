@@ -17,11 +17,12 @@ import com.google.gson.JsonObject;
 import se.redmind.rmtest.web.route.api.classes.passfail.PassFailClassWS;
 import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
 import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
+import se.redmind.rmtest.ws.testsuite.WSSetupHelper;
 import spark.Request;
 import spark.Response;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PassFailClassWSTest {
+public class PassFailClassWSTest extends WSSetupHelper {
 	
 	@Test
 	public void getMethods_true()  {

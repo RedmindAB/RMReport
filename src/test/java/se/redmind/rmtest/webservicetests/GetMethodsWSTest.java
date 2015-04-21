@@ -16,11 +16,12 @@ import com.google.gson.JsonObject;
 
 import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
 import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
+import se.redmind.rmtest.ws.testsuite.WSSetupHelper;
 import spark.Request;
 import spark.Response;
 
 @RunWith(MockitoJUnitRunner.class)
-public class GetMethodsWSTest {
+public class GetMethodsWSTest extends WSSetupHelper{
 	
 	@Test
 	public void getMethods_true()  {

@@ -26,7 +26,7 @@ public class DriverValidationTest {
 	@BeforeClass
 	public static void beforeClass(){
 		dbc = DBCon.getDbTestInstance();
-		dbc.dropDatabase(dbc.getConnection());
+//		dbc.dropDatabase(dbc.getConnection());
 		Report report = parser.getReportFromFile(file);
 		driverValidation = new DriverValidation(report);
 	}

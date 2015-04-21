@@ -18,11 +18,12 @@ import com.google.gson.JsonObject;
 import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
 import se.redmind.rmtest.web.route.api.screenshot.structure.ScreenshotStructureWS;
 import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
+import se.redmind.rmtest.ws.testsuite.WSSetupHelper;
 import spark.Request;
 import spark.Response;
 
 @RunWith(MockitoJUnitRunner.class)
-public class GetScreenshotStructureWSTest {
+public class GetScreenshotStructureWSTest extends WSSetupHelper{
 	
 	@Test
 	public void getScreenshotStructure()  {
