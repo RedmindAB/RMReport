@@ -19,10 +19,11 @@ import se.redmind.rmtest.webservicetests.GetClassesWSTest;
 import se.redmind.rmtest.webservicetests.GetDriverByTestcaseWSTest;
 import se.redmind.rmtest.webservicetests.GetLatestSuiteWSTest;
 import se.redmind.rmtest.webservicetests.GetMethodsWSTest;
+import se.redmind.rmtest.webservicetests.GetSuiteByTimestampWSTest;
 import se.redmind.rmtest.webservicetests.GetSuitesWSTest;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({GetMethodsWSTest.class, GetSuitesWSTest.class, GetLatestSuiteWSTest.class, GetDriverByTestcaseWSTest.class, GetClassesWSTest.class })
+@Suite.SuiteClasses({GetMethodsWSTest.class, GetSuitesWSTest.class, GetLatestSuiteWSTest.class, GetDriverByTestcaseWSTest.class, GetClassesWSTest.class, GetSuiteByTimestampWSTest.class })
 public class WSTestSuite{
 
 	private static String reportPath = System.getProperty("user.dir")+"/reports_for_test";
