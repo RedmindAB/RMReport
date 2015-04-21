@@ -60,7 +60,7 @@ public class FileWatcherQueueReader implements Runnable {
 					}
 				}
 				if (updatedReports) {
-					new InMemoryDBHandler().updateInMemoryDB();
+					new InMemoryDBHandler("RMTest").updateInMemoryDB();
 				}
 				key.reset();
 				key = watchService.take();
