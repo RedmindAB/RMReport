@@ -31,6 +31,6 @@ public class GetLatestSuiteWSTest {
 		Object result = ws.handle(request, response);
 		Gson gson = new Gson();
 		JsonArray array = gson.fromJson(result.toString(), JsonArray.class);
-		assertEquals(10, array.size());
+		assertEquals(2, array.size());
 	}
 }
