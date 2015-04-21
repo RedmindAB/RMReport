@@ -6,6 +6,7 @@ import java.nio.file.Files;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -13,10 +14,10 @@ import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.InMemoryDBHandler;
 import se.redmind.rmtest.report.init.ReportInit;
 import se.redmind.rmtest.web.route.RMTRoute;
-import se.redmind.rmtest.ws.classes.WSTests;
+import se.redmind.rmtest.webservicetests.GetMethodsWSTest;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses(WSTests.class)
+@Suite.SuiteClasses(GetMethodsWSTest.class)
 public class WSTestSuite {
 
 	private static String reportPath = System.getProperty("user.dir")+"/reports_for_test";
@@ -41,5 +42,4 @@ public class WSTestSuite {
 			e.printStackTrace();
 		}
 	}
-	
 }
