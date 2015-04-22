@@ -32,10 +32,11 @@ public class Main {
 		log.info("Added "+addedreports+" reports.");
 		//init the In Memory DB
 		log.info("Init the in memory db...");
-		new InMemoryDBHandler().init();
+		new InMemoryDBHandler("RMTest").init();
 		log.info("Init the in memory db DONE!");
 		//Listens to file changes in the report directory.
 		FileWatcher.Run();
+		
 		//start the webserver.
 		int port = setupPort(args);
 		new RMTRoute(port);

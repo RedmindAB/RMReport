@@ -2,6 +2,7 @@ package se.redmind.rmtest.web.route.api.stats.graphdata;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,9 +16,11 @@ import spark.Route;
 public class GetGraphDataWS extends Route {
 
 	Logger log = LogManager.getLogger(GetGraphDataWS.class);
+	private boolean logEnable;
 	
 	public GetGraphDataWS(String path) {
 		super(path);
+		logEnable = true;
 	}
 
 	/**
@@ -86,12 +89,13 @@ public class GetGraphDataWS extends Route {
 	public Object handle(Request request, Response response) {
 		try {
 			String data = (String) request.body();
-			log(request, data);
+			if (logEnable) log(request, data);
 			JsonArray json = new Gson().fromJson(data, JsonArray.class);
 			String res = new GetGraphDataDAO().getGraphData(json);
 			return res;
 		} catch (Exception e) {
-			return e.getStackTrace().toString();
+			e.printStackTrace();
+			return e.getMessage();
 		}
 	}
 
@@ -100,7 +104,12 @@ public class GetGraphDataWS extends Route {
 		String contextPath = request.pathInfo();
 		String type = rawRequest.getMethod();
 		String id = rawRequest.getSession().getId();
+		
 		log.debug("session id: {} type: {} - {} data: {}", id, type, contextPath, body);
 	}
-
+	
+	public void setLoggingEnabled(boolean active){
+		this.logEnable = active;
+	}
+	
 }

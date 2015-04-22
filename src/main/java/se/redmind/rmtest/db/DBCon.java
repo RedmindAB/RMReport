@@ -30,7 +30,7 @@ public class DBCon {
     }
     
     public static DBCon getDbTestInstance()  {
-        if(dbInstance == null){
+        if(dbInstance == null || testMode == false){
             dbInstance = new DBCon();
                 conn = dbInstance.connect("testRMTest.db");
                 dbInstance.create(conn);
@@ -125,5 +125,9 @@ public class DBCon {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+    }
+    
+    public static boolean isTestmode(){
+    	return testMode;
     }
 }

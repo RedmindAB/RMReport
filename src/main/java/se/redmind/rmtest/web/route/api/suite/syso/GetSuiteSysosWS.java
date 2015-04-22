@@ -7,8 +7,15 @@ import spark.Route;
 
 public class GetSuiteSysosWS extends Route {
 
+	private String basedir;
+	
 	public GetSuiteSysosWS(String path) {
 		super(path);
+	}
+	
+	public GetSuiteSysosWS(String path, String basedir) {
+		super(path);
+		this.basedir = basedir;
 	}
 
 	/**
@@ -30,7 +37,10 @@ public class GetSuiteSysosWS extends Route {
 		try {
 			long timestamp = Long.valueOf(request.queryParams("timestamp"));
 			Integer suiteid = Integer.valueOf(request.queryParams("suiteid"));
-			GetSuiteSysosDAO getSuiteSysosDAO = new GetSuiteSysosDAO();
+			
+			GetSuiteSysosDAO getSuiteSysosDAO;
+			if (basedir != null) getSuiteSysosDAO = new GetSuiteSysosDAO();
+			else getSuiteSysosDAO = new GetSuiteSysosDAO(basedir);
 			result = getSuiteSysosDAO.getSysos(timestamp, suiteid);
 		} catch (Exception e) {
 			return new ErrorResponse(e.getMessage(), GetSuiteSysosWS.class).toString();

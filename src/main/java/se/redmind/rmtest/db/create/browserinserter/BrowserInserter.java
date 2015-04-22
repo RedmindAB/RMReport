@@ -2,11 +2,8 @@ package se.redmind.rmtest.db.create.browserinserter;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.HashMap;
 
 import se.redmind.rmtest.db.DBBridge;
-import se.redmind.rmtest.util.StringKeyValueParser;
 
 public class BrowserInserter extends DBBridge {
 
