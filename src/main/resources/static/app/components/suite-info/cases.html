@@ -5,7 +5,7 @@
         <accordion-group style='margin-top:10px' ng-class='getPanel(case.result)' ng-style="{'background-color': getBgCo(case.result)}">
             <!-- non collapsing header -->
             <accordion-heading id='case_name'>
-	            <div class="accordion-toggle">
+	            <div class="accordion-toggle" id="case-{{$index}}">
 	                <button id="case-thistest-{{$index}}" style='width:120px' id='thistestonly' ng-class='getButton(case.result)' ng-click="addCaseToGraph(case.osname, case.osversion, case.devicename, case.browsername, case.browserversion); $event.preventDefault(); $event.stopPropagation();">
 	                	This test only
 	                </button>&nbsp;
