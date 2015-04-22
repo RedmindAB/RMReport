@@ -13,6 +13,7 @@ import se.redmind.rmtest.web.route.api.ErrorResponse;
 public class SeleniumGridDAO {
 
 	public SeleniumGridDAO() {
+		
 	}
 	
 	public String getSelenumGridData() {
