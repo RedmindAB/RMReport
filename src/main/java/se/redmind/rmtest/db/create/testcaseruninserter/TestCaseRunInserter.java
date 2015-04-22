@@ -33,16 +33,15 @@ public class TestCaseRunInserter extends DBBridge {
 		readTestcaseFromDB = new TestcaseDbLookup();
 	}
 	
-	public void insertTestCases(Report report, int suiteID, HashMap<String, Integer> classIDs, HashMap<String,Integer> testCases, DriverValidation driverValidation){
+	public boolean insertTestCases(Report report, int suiteID, HashMap<String, Integer> classIDs, HashMap<String,Integer> testCases, DriverValidation driverValidation){
 		String sql = "";
 		try {
 			Statement pStatement = connection.createStatement();
 			List<ReportTestCase> testCaseArray = report.getTestCaseArray();
 			StringKeyValueParser parser = new StringKeyValueParser(INSERT_TESTCASERUN);
 			for (ReportTestCase testCase : testCaseArray) {
-				if (testCase.isBroken()) {
-					continue;
-				}
+				try {
+					
 				HashMap<String, String> map = new HashMap<String,String>();
 				Driver driver = testCase.getDriver();
 				map.put("suite_id", ""+suiteID);
@@ -67,9 +66,13 @@ public class TestCaseRunInserter extends DBBridge {
 				map.put("time", ""+testCase.getTime());
 				sql = parser.getString(map);
 				pStatement.addBatch(sql);
+				} catch (Exception e) {
+					return false;
+				}
 			}
 			long start = System.currentTimeMillis();
 			int[] executeBatch = pStatement.executeBatch();
+			return true;
 //			System.out.println(System.currentTimeMillis() - start);
 		} catch (SQLException e) {
 			try {
@@ -79,6 +82,7 @@ public class TestCaseRunInserter extends DBBridge {
 				e1.printStackTrace();
 			}
 			log.error("Could not insert report. suite name: "+report.getSuiteName()+" timestamp: "+report.getTimestamp()+" message: "+e.getMessage());
+			return false;
 		}
 		
 		

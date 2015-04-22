@@ -38,6 +38,10 @@ public class Driver {
 			return null;
 		}
 	}
+	
+//	public boolean isValidDriverSpecification(){
+//		return driver.matches("([a-zA-Z0-9])+(_)+([a-zA-Z0-9])+(_)+([a-zA-Z0-9])+(_)+([a-zA-Z0-9])+(_)+([a-zA-Z0-9])");
+//	}
 
 	public String getDriverFullName() {
 		return driver;

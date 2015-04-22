@@ -62,7 +62,7 @@ public class Report{
 		generateReportFromElement(element);
 	}
 
-	private void generateReportFromElement(Element element) {
+	private boolean generateReportFromElement(Element element) {
 		String name = element.getAttribute(NAME);
 		this.name = name;
 		this.suite_name = extractSuiteName(name);
@@ -97,7 +97,7 @@ public class Report{
 				Element testCase = (Element) testCaseNodes.item(i);
 				ReportTestCase test = new ReportTestCase(testCase);
 				if (test.isBroken()) {
-					continue;
+					return false;
 				}
 				testCaseArray.add(test);
 				String driver = test.getDriverName();
@@ -114,13 +114,15 @@ public class Report{
 				drivers.add(new JsonPrimitive(driver));
 			}
 		}
+		return true;
 	}
 	
-	public void convertToFullReport(){
+	public boolean convertToFullReport(){
 		if (simpleReport) {
 			simpleReport = false;
-			generateReportFromElement(this.file);
+			return generateReportFromElement(this.file);
 		}
+		return true;
 	}
 	
 	public String removePunctuations(String string, String replacement){

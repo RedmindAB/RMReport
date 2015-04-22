@@ -79,16 +79,19 @@ public class ReportValidator {
 		return readFromDB.reportExists(timestamp);
 	}
 	
-	public void saveReport(){
+	public boolean saveReport(){
 		if (!isValidFilename()) {
-			return;
+			return false;
 		}
-		report.convertToFullReport();
+		boolean convertToFullReport = report.convertToFullReport();
+		if (!convertToFullReport) {
+			return false;
+		}
 		HashMap<String, Integer> classIDs = getTestClassIDs(report.getPresentTestClasses());
 		int suiteID = getSuiteID(report.getSuiteName());
 		HashMap<String, Integer> testCases = getTestCases(report, classIDs);
 		DriverValidation driverValidation = new DriverValidation(report);
-		testCaseRunInserter.insertTestCases(report, suiteID, classIDs, testCases, driverValidation);
+		return testCaseRunInserter.insertTestCases(report, suiteID, classIDs, testCases, driverValidation);
 	}
 
 	public int getSuiteID(String suiteName){

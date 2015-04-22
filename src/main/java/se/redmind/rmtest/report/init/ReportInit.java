@@ -54,7 +54,11 @@ public class ReportInit {
 					Report report = reportValidator.getReport();
 					boolean existsInDB = reportExist.reportExists(report.getTimestamp(), report.getSuiteName());
 					if (!existsInDB) {
-						reportValidator.saveReport();
+						boolean saveReport = reportValidator.saveReport();
+						if (!saveReport) {
+							System.err.println("Error inserting report, check if the file is broken: "+currentFile.getAbsolutePath());
+							continue;
+						}
 						ReportSystemOutPrintFile sysoFile = new ReportSystemOutPrintFile(reportValidator);
 						sysoFile.copyReportOutputFile();
 						addedReports++;
@@ -71,7 +75,8 @@ public class ReportInit {
 				log.error("Could not rollback database: "+e1.getMessage());
 			}
 			log.error("Error inserting report: "+currentFile.getAbsolutePath());
-			System.err.println("Error inserting report, check if the file contains errors: "+currentFile.getAbsolutePath());
+			System.err.println("Error inserting report, check if the is broken: "+currentFile.getAbsolutePath());
+			e.printStackTrace();
 		}
 		return addedReports;
 	}
