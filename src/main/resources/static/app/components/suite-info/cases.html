@@ -6,13 +6,13 @@
             <!-- non collapsing header -->
             <accordion-heading id='case_name'>
 	            <div class="accordion-toggle">
-	                <button style='width:120px' id='thistestonly' ng-class='getButton(case.result)' ng-click="addCaseToGraph(case.osname, case.osversion, case.devicename, case.browsername, case.browserversion); $event.preventDefault(); $event.stopPropagation();">
+	                <button id="case-thistest-{{$index}}" style='width:120px' id='thistestonly' ng-class='getButton(case.result)' ng-click="addCaseToGraph(case.osname, case.osversion, case.devicename, case.browsername, case.browserversion); $event.preventDefault(); $event.stopPropagation();">
 	                	This test only
 	                </button>&nbsp;
-	                <div style='display:inline' class='accordion-name-container'>
+	                <div id="case-name-{{$index}}" style='display:inline' class='accordion-name-container'>
 	                    {{case.osname}} - {{case.devicename}} -	{{case.osversion}} - {{case.browsername}} {{case.timestamp}}
 	                </div>
-	                <div class="accordion-name-container" style='float:right'>
+	                <div id="case-runtime-{{$index}}" class="accordion-name-container" style='float:right'>
 						{{case.timetorun}}
 	                </div>
 				</div>
