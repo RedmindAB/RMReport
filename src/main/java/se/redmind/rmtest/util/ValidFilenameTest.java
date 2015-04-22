@@ -9,11 +9,12 @@ import org.junit.Test;
 
 import se.redmind.rmtest.report.reportloader.ReportLoader;
 import se.redmind.rmtest.report.reportvalidation.ReportValidator;
+import se.redmind.rmtest.report.test.ReportLoaderTest;
 
 public class ValidFilenameTest {
 	
 	public static String path = System.getProperty("user.dir")+"/reports_for_test";
-	public static String specificReportFileName = "TEST-test.java.se.redmind.rmtest.selenium.example.AnotherGeneratedSuite-20150309-080322.xml";
+	public static String specificReportFileName = ReportLoaderTest.specificReportFileName;
 	public static File file;
 	public static ReportValidator val;
 	private static ReportLoader loader;
