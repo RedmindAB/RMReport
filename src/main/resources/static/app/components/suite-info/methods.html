@@ -11,11 +11,11 @@
                     </td>
                     
                     
-                    <td ng-click="getCases(method);
+                    <td id='method-{{$index}}' ng-click="getCases(method);
                             setState('reports.cases');" ng-style="{'color' : getCo(method.result)}">
-						<p class="accordion-name-container text-left">{{method.name}}</p> 
-                        <p class="accordion-name-container text-right">&nbsp;{{formatDecimals(method.time)}}</p>
-                        <p class="accordion-name-container text-right">Skipped: {{method.stats.skipped}} Failed: {{method.stats.totFail}}</p>
+						<p id="method-name-{{$index}}" class="accordion-name-container text-left">{{method.name}}</p> 
+                        <p id="method-runtime-{{$index}}" class="accordion-name-container text-right">&nbsp;{{formatDecimals(method.time)}}</p>
+                        <p id="method-pasfail-{{$index}}" class="accordion-name-container text-right">Skipped: {{method.stats.skipped}} Failed: {{method.stats.totFail}}</p>
                     </td>
                 </tr>
             </table>
