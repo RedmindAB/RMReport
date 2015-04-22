@@ -1,4 +1,4 @@
-package se.redmind.rmtest.util;
+package se.redmind.rmtest.report.reportvalidation;
 
 import static org.junit.Assert.*;
 
