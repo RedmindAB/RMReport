@@ -14,14 +14,14 @@
 					</img>
 					<br>
 					<br>
-				<h4 ng-class=" {'disabled': !homeChartLoaded(suite)}"
+				<h4 id='go_graph' ng-class=" {'disabled': !homeChartLoaded(suite)}"
 					class='home-h4'
 						ng-click="Utilities.clearData(suite.lastTimeStamp);
 									loadMainChart(suite.id);
 	                                setState('reports.classes');
 	                                getSuiteSkeleton(suite);">
 									Go to graph</h4> <br><br>
-				<h4 ng-class=" {'disabled': !homeChartLoaded(suite)}"
+				<h4 id='go_ss' ng-class=" {'disabled': !homeChartLoaded(suite)}"
 				class='home-h4'
 						ng-click="Utilities.clearData(suite.lastTimeStamp);
 									loadMainChart(suite.id);

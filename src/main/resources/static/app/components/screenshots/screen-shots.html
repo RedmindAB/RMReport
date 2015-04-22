@@ -12,9 +12,9 @@
 					title="Select suite run to display">
 					{{CurrentSuite.currentTimeStamp}} <span class="caret"></span>
 				</button>
-				<ul class="dropdown-menu scrollable-menu" ng-controller = "GraphCtrl">
-					<li ng-repeat="timestamp in Utilities.descTimestamps">
-						<a ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp); getScreenshotsFromTimestamp(timestamp)" id='timestamp' style="cursor:pointer">
+				<ul id='choose_timestamp_drop' class="dropdown-menu scrollable-menu" ng-controller = "GraphCtrl">
+					<li id='timestamp_{{$index}}' ng-repeat="timestamp in Utilities.descTimestamps">
+						<a ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp); getScreenshotsFromTimestamp(timestamp)" style="cursor:pointer">
 							{{timestamp}} 
 						</a>
 					</li>

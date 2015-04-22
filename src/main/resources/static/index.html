@@ -34,19 +34,19 @@
 				
 				<div>
 				<ul class="nav nav-tabs" class='nav-tab-style' style='margin-left:270px;border:none'>
-				  <li class='dash' role="presentation" ng-class="{'active': isActive('home')}"><a id='screenshot_view' href='' ng-click="goToDashboardView();"
+				  <li id='dash' class='dash' role="presentation" ng-class="{'active': isActive('home')}"><a id='dash_view' href='' ng-click="goToDashboardView();"
 						ng-style="{'color': getNavColor('home')}">
 						Dashboard
 					</a></li>
-				  <li class='reports' role="presentation"  ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('reports')}" ng-class=""><a id='graph_view' href='' ng-click="goToGraphView()"
+				  <li id='reports' class='reports' role="presentation"  ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('reports')}" ng-class=""><a id='reports_view' href='' ng-click="goToGraphView()"
 						ng-style="{'color': getNavColor('reports')}" > 
 						Reports 
 					</a></li>
-				  <li class='visual' role="presentation" ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('screenshots')}"><a id='screenshot_view' href='' ng-click="goToScreenshotView()"
+				  <li id='visual' class='visual' role="presentation" ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('screenshots')}"><a id='visual_view' href='' ng-click="goToScreenshotView()"
 						ng-style="{'color': getNavColor('screenshots')}">
 						Visualizer 
 					</a></li>
-				  <li class='grid' role="presentation" ng-class="{'active': isActive('grid')}"><a id='screenshot_view' href='' ng-click="goToGridView()" ng-style="{'color': getNavColor('grid')}">
+				  <li id='grid' class='grid' role="presentation" ng-class="{'active': isActive('grid')}"><a id='grid_view' href='' ng-click="goToGridView()" ng-style="{'color': getNavColor('grid')}">
 						Grid
 					</a></li>
 				</ul>
