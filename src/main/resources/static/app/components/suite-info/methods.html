@@ -1,5 +1,5 @@
 <div>
-    <accordion close-others="true">
+    <accordion id="method-group" close-others="true">
         <!-- repeated content -->
         <div class='class-method-container'style="margin-top:10px" id='method_name' ng-repeat="method in CurrentSuite.currentMethods| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index" ng-class='getPanel(method.result)' ng-style="{'background-color': getBgCo(method.result)}">
             <!-- non collapsing header -->
