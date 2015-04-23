@@ -1,5 +1,5 @@
 <div>
-    <accordion close-others="true">
+    <accordion id="class-group" close-others="true">
         <!-- repeated content -->
         <div class='class-method-container' style="margin-top:10px" id='class-name' ng-repeat="class in CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index "
              ng-class='getPanel(class.result)' 
