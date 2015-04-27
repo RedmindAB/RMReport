@@ -41,7 +41,6 @@ public class WSSetupHelper{
 			DBCon.getDbTestInstance();
 			new ReportInit(reportPath).initReports();
 			new InMemoryDBHandler("testRMTest").init();
-	//		new RMTRoute(4567);
 		}
 	}
 	
