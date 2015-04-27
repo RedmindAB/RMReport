@@ -8,7 +8,7 @@
 	</div>
 </div>
 <div>
-		<p class='accordion-name-container' style='cursor:pointer' ng-click='getConsolePrint();toggleModal2();'>System out prints</p>
+		<p id='syso' class='accordion-name-container' style='cursor:pointer' ng-click='getConsolePrint();toggleModal2();'>System out prints</p>
 			<!-- expandable methods -->
 			<accordion close-others="false">
 			    <!-- repeated content -->
@@ -54,7 +54,7 @@
 
 <modal-dialog-sysos width='100%' id='modal_dialog' toggle='toggleModal2()' show='modalShown2'
 			  height='40%' style='background-color : transparent;color:white'>
-	<h1 align='center'>
+	<h1 id='syso-header' align='center'>
 		System out prints
 	</h1>
 	<br>
