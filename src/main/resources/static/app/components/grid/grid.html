@@ -4,10 +4,9 @@
 			<h4 ng-if="isHubConnected()">Selenium hub is not running</h4>
 			<h4 ng-if="noNodesConnected()">No nodes connected</h4>
 			<h3 class="grid-h3" ng-if="isDesktopNodesConnected()">Desktops</h3>
-			<div ng-repeat="driver in GridData.data.FreeProxies track by $index" ng-if="isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
+			<div ng-repeat="driver in GridData.data.FreeProxies track by $index" ng-if="isDesktop(driver.capabilities[0].platformName)" class='box' ratio-keeper>
 				<img class='logo' ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' style='vertical-align:middle'></img>
 				<div class='desc'>
-					<b>Protocol:</b> {{driver.capabilities[0].seleniumProtocol}}<br>
 					<b>Platform:</b> {{driver.capabilities[0].platform}}<br>
 					<b>OS:</b> {{driver.capabilities[0].osname}}<br>
 					<b>Port:</b> {{driver.configuration.port}}<br>
@@ -21,18 +20,14 @@
 		</div>
 		
 		<h3 ng-if="isDeviceNodesConnected()">Devices</h3>
-				<div ng-repeat="driver in GridData.data.FreeProxies track by $index" ng-if="!isDesktop(driver.capabilities[0].platform)" class='box' ratio-keeper>
+				<div ng-repeat="driver in GridData.data.FreeProxies track by $index" ng-if="!isDesktop(driver.capabilities[0].platformName)" class='box' ratio-keeper>
 				<img class='logo' ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' style='vertical-align:middle'></img>
 				<div class='desc'>
 					<h4>{{driver.capabilities[0].deviceName}}</h4>
-					<b>appActivity:</b> {{driver.capabilities[0].appActivity}}<br>
-					<b>appWaitActivity:</b> {{driver.capabilities[0].appWaitActivity}}<br>
-					<b>deviceId:</b> {{driver.capabilities[0].deviceId}}<br>
-					<b>osname:</b> {{driver.capabilities[0].osname}}<br>
-					<b>platform:</b> {{driver.capabilities[0].platform}}<br>
-					<b>platformName:</b> {{driver.capabilities[0].platformName}}<br>
-					<b>platformVersion:</b> {{driver.capabilities[0].platformVersion}}<br>
-					<b>rmDeviceType:</b> {{driver.capabilities[0].rmDeviceType}}<br>
+					<b>platform name:</b> {{driver.capabilities[0].platformName}}<br>
+					<b>platform version:</b> {{driver.capabilities[0].platformVersion}}<br>
+					<b>device type:</b> {{driver.capabilities[0].rmDeviceType}}<br>
+					<b>browser:</b> {{driver.capabilities[0].browserName}}<br>
 				</div>
 			</div>
 	</div>
