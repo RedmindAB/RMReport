@@ -11,54 +11,83 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/modal.css">
 <link rel="stylesheet" href="assets/css/slider.css">
-<link rel="shortcut icon" href="assets/img/logos/favicon.ico"/>
+<link rel="shortcut icon" href="assets/img/logos/favicon.ico" />
 </head>
 <body class='noselect'>
 	<div ng-controller="StyleCtrl">
-		<div ng-controller = "NavCtrl">
+		<div ng-controller="NavCtrl">
 			<div class='triangle-overlay'>
 				<img src='assets/img/logos/triangle.png'></img>
-			</div> 
+			</div>
 			<nav class="navbar navbar-default navheader">
-			<div class="container-fluid" style='padding:0;'>
-		    <!-- Brand and toggle get grouped for better mobile display -->		
-		    <a id='home' ng-href="#/"><img style="margin-right:50px" src='assets/img/logos/logo.png' class='home'></img></a>
+				<div class="container-fluid" style='padding: 0;'>
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<a id='home' ng-href="#/"><img style="margin-right: 50px"
+						src='assets/img/logos/logo.png' class='home'></img></a>
 
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style='float:left'>
-					<span class="sr-only">Toggle navigation</span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style='float:left'>
-				
-				<div>
-				<ul class="nav nav-tabs" class='nav-tab-style' style='margin-left:270px;border:none'>
-				  <li id='dash' class='dash' role="presentation" ng-class="{'active': isActive('home')}"><a id='dash_view' href='' ng-click="goToDashboardView();"
-						ng-style="{'color': getNavColor('home')}">
-						Dashboard
-					</a></li>
-				  <li id='reports' class='reports' role="presentation"  ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('reports')}" ng-class=""><a id='reports_view' href='' ng-click="goToGraphView()"
-						ng-style="{'color': getNavColor('reports')}" > 
-						Reports 
-					</a></li>
-				  <li id='visual' class='visual' role="presentation" ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('screenshots')}"><a id='visual_view' href='' ng-click="goToScreenshotView()"
-						ng-style="{'color': getNavColor('screenshots')}">
-						Visualizer 
-					</a></li>
-				  <li id='grid' class='grid' role="presentation" ng-class="{'active': isActive('grid')}"><a id='grid_view' href='' ng-click="goToGridView()" ng-style="{'color': getNavColor('grid')}">
-						Grid
-					</a></li>
-				</ul>
-					
-					
-					
-					
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						style='float: left'>
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<div class="collapse navbar-collapse"
+						id="bs-example-navbar-collapse-1" style='float: left'>
+
+						<div>
+							<ul class="nav nav-tabs" class='nav-tab-style'
+								style='margin-left: 270px; border: none'>
+								<li id='dash' class='dash' role="presentation"
+									ng-class="{'active': isActive('home')}"><a id='dash_view'
+									href='' ng-click="goToDashboardView();"
+									ng-style="{'color': getNavColor('home')}"> Dashboard </a></li>
+								<li id='reports' class='reports' role="presentation"
+									ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('reports')}"
+									ng-class=""><a id='reports_view' href=''
+									ng-click="goToGraphView()"
+									ng-style="{'color': getNavColor('reports')}"> Reports </a></li>
+								<li id='visual' class='visual' role="presentation"
+									ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('screenshots')}"><a
+									id='visual_view' href='' ng-click="goToScreenshotView()"
+									ng-style="{'color': getNavColor('screenshots')}">
+										Visualizer </a></li>
+								<li id='grid' class='grid' role="presentation"
+									ng-class="{'active': isActive('grid')}"><a id='grid_view'
+									href='' ng-click="goToGridView()"
+									ng-style="{'color': getNavColor('grid')}"> Grid </a></li>
+								<li id='grid' class='grid disabled' role="presentation"
+									ng-class="{'active': isActive('grid')}"><a id='grid_view'
+									href='' ng-click="goToGridView()"
+									ng-style="{'color': getNavColor('grid')}"> Admin </a></li>
+								<li class="dropdown" style='cursor:pointer;float:right;margin-right:100px'><a data-toggle="dropdown"
+									class="dropdown-toggle" style='color: inherit;'>Choose Project<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a href="#">Aftonbladet</a></li>
+										<li><a href="#">Comaround</a></li>
+										<li><a href="#">GoogleTests</a></li>
+									</ul>	
+								</li>
+								<li class="dropdown" style='cursor:pointer;float:right;'><a data-toggle="dropdown"
+									class="dropdown-toggle" style='color: inherit;'>Choose Suite<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a href="#">RandomClass0</a></li>
+										<li><a href="#">RandomClass1</a></li>
+										<li><a href="#">RandomClass2</a></li>
+										<li><a href="#">RandomClass3</a></li>
+										<li><a href="#">RandomClass4</a></li>
+										<li><a href="#">RandomClass5</a></li>
+									</ul></li>
+							</ul>
+						</div>
+
+					</div>
+					<!-- /.navbar-collapse -->
 				</div>
-		    </div><!-- /.navbar-collapse -->
-		  </div><!-- /.container-fluid -->
+				<!-- /.container-fluid -->
 			</nav>
-			<div class="container container-fluid" style="margin-bottom:100px; margin-top:57px">
+			<div class="container container-fluid"
+				style="margin-bottom: 100px; margin-top: 57px">
 				<div ui-view></div>
 			</div>
 		</div>
@@ -77,7 +106,7 @@
 	<script src="app/shared/factories/current-suite.js"></script>
 	<script src="app/shared/factories/screenshot-master.js"></script>
 	<script src="app/shared/factories/charts.js"></script>
-	<script src="app/shared/factories/polling.js"></script>	
+	<script src="app/shared/factories/polling.js"></script>
 	<script src="app/shared/factories/utilities.js"></script>
 	<script src="app/shared/controllers/style-controller.js"></script>
 	<script src="app/shared/controllers/navigation-controller.js"></script>
@@ -95,6 +124,6 @@
 	<script src="app/components/grid/grid-data.js"></script>
 	<script src="app/components/grid/grid-controller.js"></script>
 	<script src="app/components/grid/ratio-keeper.js"></script>
-	
+
 </body>
 </html>
