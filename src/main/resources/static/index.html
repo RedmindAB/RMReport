@@ -19,7 +19,7 @@
 			<div class='triangle-overlay'>
 				<img src='assets/img/logos/triangle.png'></img>
 			</div>
-			<nav class="navbar navbar-default">
+			<nav class="navbar navbar-default" style='position:fixed;top:0;width:100%;z-index:9999'>
 				<div class="navbar-header" style='padding: 0;'>
 					<!-- Brand and toggle get grouped for better mobile display -->
 
@@ -40,8 +40,8 @@
 			<!-- div ng-controller='NavBarCtrl' id="navbarCollapse" class="collapse navbar-collapse" -->
 			<div ng-controller='NavBarCtrl'>
 							<ul class="nav nav-tabs" class='nav-tab-style'
-								style='border: none'>
-								<a id='home' ng-href="#/"><img style="margin-right: 50px"
+								style='border: none;position:fixed;top:0'>
+								<a id='home' ng-href="#/"><img style="margin:10px 50px 0px 10px"
 						src='assets/img/logos/logo.png' class='home'></img></a>
 								<li id='dash' class='dash' role="presentation"
 									ng-class="{'active': isActive('home')}"><a id='dash_view'
