@@ -40,8 +40,8 @@
 			<!-- div ng-controller='NavBarCtrl' id="navbarCollapse" class="collapse navbar-collapse" -->
 			<div ng-controller='NavBarCtrl'>
 							<ul class="nav nav-tabs" class='nav-tab-style'
-								style='border: none;position:fixed;top:0'>
-								<a id='home' ng-href="#/"><img style="margin:10px 50px 0px 10px"
+								style='border: none;position:fixed;top:8px'>
+								<a id='home' ng-href="#/"><img style="margin:5px 50px 0px 10px"
 						src='assets/img/logos/logo.png' class='home'></img></a>
 								<li id='dash' class='dash' role="presentation"
 									ng-class="{'active': isActive('home')}"><a id='dash_view'
@@ -71,7 +71,7 @@
 								</li>   
 								<li class="dropdown" style='cursor:pointer;'><a data-toggle="dropdown"
 									class="dropdown-toggle" style='color: inherit;'>{{chooseProject()}}<b class="caret"></b></a>
-									<ul class="dropdown-menu">
+									<ul class="dropdown-menu scrollable-menu">
 										<li style='width:100%' ng-repeat='suite in CurrentSuite.allSuites track by $index'><a href="#" ng-click="Utilities.clearData(suite.lastTimeStamp);
 									loadMainChart(suite.id, 'true', 'Aggregation');
 	                                getSuiteSkeleton(suite)">{{suite.name}}</a></li>
