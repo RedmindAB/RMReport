@@ -12,7 +12,7 @@
 			<!-- expandable methods -->
 			<accordion close-others="false">
 			    <!-- repeated content -->
-			    <div class='noselect' ng-repeat="method in ScreenshotMaster.data | orderBy:['-stats.totFail','result','name'] track by $index">
+			    <div class='noselect' ng-repeat="method in ScreenshotMaster.data | orderBy:['-stats.totFail','result','name']">
 			        <accordion-group style="margin-top:10px;padding:0px;" ng-class='getPanel(method.result)' >
 			            <!-- non collapsing header -->
 			            <accordion-heading>
