@@ -58,10 +58,10 @@
 									href='' ng-click="goToGridView()"
 									ng-style="{'color': getNavColor('grid')}"> Grid </a>
 								</li>
-								<li id='grid' class='grid disabled' role="presentation"
-									ng-class="{'active': isActive('grid')}"><a id='grid_view'
-									href='' ng-click="goToGridView()"
-									ng-style="{'color': getNavColor('grid')}"> Admin </a>
+								<li id='grid' class='grid' role="presentation"
+									ng-class="{'active': isActive('admin')}"><a id='grid_view'
+									href='' ng-click="setState('admin');"
+									ng-style="{'color': getNavColor('admin')}"> Admin </a>
 								</li>   
 								<li class="dropdown" style='cursor:pointer;float:right;margin-right:130px'><a data-toggle="dropdown"
 									class="dropdown-toggle" style='color: inherit;'>{{chooseProject()}}<b class="caret"></b></a>
@@ -127,6 +127,8 @@
 	<script src="app/components/grid/grid-controller.js"></script>
 	<script src="app/components/grid/ratio-keeper.js"></script>
 	<script src="app/components/navbar/navbar-controller.js"></script>
+	<script src="app/components/admin/admin-controller.js"></script>
+	
 
 </body>
 </html>
