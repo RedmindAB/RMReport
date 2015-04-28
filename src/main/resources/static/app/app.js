@@ -61,5 +61,3 @@ angular.module('webLog', ['ui.router','ui.bootstrap',"highcharts-ng", 'ngAnimate
 		    controller: ''
 		});
     });
-
-

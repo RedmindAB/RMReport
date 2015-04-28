@@ -19,24 +19,31 @@
 			<div class='triangle-overlay'>
 				<img src='assets/img/logos/triangle.png'></img>
 			</div>
-			<nav class="navbar navbar-default navheader">
-				<div class="container-fluid" style='padding: 0;'>
+			<nav class="navbar navbar-default">
+				<div class="navbar-header" style='padding: 0;'>
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a id='home' ng-href="#/"><img style="margin-right: 50px"
-						src='assets/img/logos/logo.png' class='home'></img></a>
 
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+
+					<button type="button" class="navbar-toggle "
+						data-toggle="collapse" data-target="#navbarCollapse"
 						style='float: left'>
 						<span class="sr-only">Toggle navigation</span> <span
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<div class="collapse navbar-collapse"
-						id="bs-example-navbar-collapse-1" style='float: left'>
-						<div ng-controller='NavBarCtrl'>
+						
+					
+					</div>
+					
+					<!-- /.navbar-collapse -->
+				
+				<!-- /.container-fluid -->
+			
+			<div ng-controller='NavBarCtrl' id="navbarCollapse" class="collapse navbar-collapse">
 							<ul class="nav nav-tabs" class='nav-tab-style'
-								style='margin-left: 270px; border: none'>
+								style='border: none'>
+								<a id='home' ng-href="#/"><img style="margin-right: 50px"
+						src='assets/img/logos/logo.png' class='home'></img></a>
 								<li id='dash' class='dash' role="presentation"
 									ng-class="{'active': isActive('home')}"><a id='dash_view'
 									href='' ng-click="goToDashboardView();"
@@ -63,30 +70,23 @@
 									href='' ng-click="setState('admin');"
 									ng-style="{'color': getNavColor('admin')}"> Admin </a>
 								</li>   
-								<li class="dropdown" style='cursor:pointer;float:right;margin-right:130px'><a data-toggle="dropdown"
+								<li class="dropdown" style='cursor:pointer;'><a data-toggle="dropdown"
 									class="dropdown-toggle" style='color: inherit;'>{{chooseProject()}}<b class="caret"></b></a>
-									<ul class="dropdown-menu" style='width:auto'>
-										<li ng-repeat='suite in CurrentSuite.allSuites track by $index'><a href="#" ng-click="Utilities.clearData(suite.lastTimeStamp);
+									<ul class="dropdown-menu">
+										<li style='width:100%' ng-repeat='suite in CurrentSuite.allSuites track by $index'><a href="#" ng-click="Utilities.clearData(suite.lastTimeStamp);
 									loadMainChart(suite.id, 'true', 'Aggregation');
 	                                getSuiteSkeleton(suite)">{{suite.name}}</a></li>
 									</ul>	
 								</li>
-								<li ng-if='CurrentSuite.currentSuite.length > 0' class="dropdown" style='cursor:pointer;float:right;'><a data-toggle="dropdown"
+								<li ng-if='CurrentSuite.currentSuite.length > 0' class="dropdown" style='cursor:pointer;'><a data-toggle="dropdown"
 									class="dropdown-toggle" style='color: inherit;'>{{CurrentSuite.currentTimeStamp}}<b class="caret"></b></a>
 									<ul class="dropdown-menu scrollable-menu">
-										<li ng-repeat="timestamp in Utilities.descTimestamps"><a ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp)" href="#">{{timestamp}}</a></li>
+										<li style='width:100%' ng-repeat="timestamp in Utilities.descTimestamps"><a ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp)" href="#">{{timestamp}}</a></li>
 									</ul>
 								</li>
 							</ul>
 						</div>
-							</ul>
-						</div>
-
-					</div>
-					<!-- /.navbar-collapse -->
-				
-				<!-- /.container-fluid -->
-			</nav>
+						</nav>
 			<div class="container container-fluid"
 				style="margin-bottom: 100px; margin-top: 57px">
 				<div ui-view></div>
