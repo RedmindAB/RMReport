@@ -247,20 +247,6 @@
 					ng-model='Utilities.searchField' placeholder="Filter"
 					title="Write something to filter on">
 			</div>
-			<div class="btn-group" ng-controller = "SuiteInfoCtrl">
-				<h5 class='reports-h5'>Choose timestamp to load</h5>
-				<button style='width: 175px' id='choose_timestamp'
-					class="btn btn-default dropdown-toggle" type="button"
-					id="suite-dropdown" data-toggle="dropdown" aria-expanded="true"
-					title="Select suite run to display">
-					{{CurrentSuite.currentTimeStamp}} <span class="caret"></span>
-				</button>
-				<ul id="timestamp-dropdown" class="dropdown-menu scrollable-menu">
-					<li ng-repeat="timestamp in Utilities.descTimestamps">
-					<a id='timestamp-suite-{{timestamp}}' ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp)" style="cursor:pointer">
-							{{timestamp}} </a></li>
-				</ul>
-			</div>
 		</div>
 		<div class='btn-group' align='center' id="class-method-option-right"
 			style='float: right'>
