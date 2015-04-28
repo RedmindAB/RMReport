@@ -54,7 +54,12 @@ angular.module('webLog', ['ui.router','ui.bootstrap',"highcharts-ng", 'ngAnimate
 	        url:'/grid',
 	        templateUrl: 'app/components/grid/grid.html',
 	        controller: ''
-	    });
+	    })
+		.state('admin',{
+		    url:'/admin',
+		    templateUrl: 'app/components/admin/admin.html',
+		    controller: ''
+		});
     });
 
 

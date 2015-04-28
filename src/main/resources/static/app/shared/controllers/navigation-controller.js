@@ -4,7 +4,7 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 	$scope.Charts = Charts;
 	
 	$scope.isNavActive = function(state1, state2){
-		if($state.includes(state1) || $state.includes(state2)){
+		if(CurrentSuite.currentSuiteInfo.name !== undefined){
 			return true;
 		}
 		else{	
@@ -78,43 +78,42 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 	}
 	
 	$scope.goToGraphView = function(){
-		if ($state.current.name === "grid") {
-			$state.transitionTo("home");
-			return;
-		}
 		if ($state.current.name === 'screenshots.classes') {
 			$state.transitionTo('reports.classes');
 		} else if ($state.current.name === 'screenshots.methods'){
 			$state.transitionTo('reports.methods');
 		}
+		else{
+			$state.transitionTo('reports.classes');
+		}
 	}
 	
 	$scope.goToScreenshotView = function(){
-		if ($state.current.name === "grid") {
-			$state.transitionTo("home");
-			return;
-		}
+		console.log("0");
 		ScreenshotMaster.previousView = $state.$current.name;
-		if ($state.current.name !== 'home') {
 			if (CurrentSuite.currentSuite.length === 0) {
+				console.log("1");
 				$state.transitionTo('home');
 			} else {
 				if (CurrentSuite.currentClass.length === 0 || $state.$current.name === 'reports.classes') {
+					console.log("2");
 					$state.transitionTo('screenshots.classes');
 				} else {
 					if (!classExistsInSuite(CurrentSuite.currentClass)) {
+						console.log("3");
 						$state.transitionTo('screenshots.classes');
 					} else {
 						if (ScreenshotMaster.currentClass === CurrentSuite.currentClass.id && ScreenshotMaster.currentTimestamp === CurrentSuite.currentTimeStamp) {
+							console.log("4");
 							$state.transitionTo('screenshots.methods');
 						} else {
+							console.log("5");
 							RestLoader.loadScreenshotsFromClass(CurrentSuite.currentClass);
 							$state.transitionTo('screenshots.methods');
 						}
 					}
 				}
 			}
-		}
 	}
 	
 	function classExistsInSuite(classObj){
