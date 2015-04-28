@@ -164,14 +164,7 @@
 					<table width='100%'>
 						<tr>
 							<td class="checkbox-holder">
-								<input class='classes-input'
-									style="margin-top: 0px" type="checkbox" id='checkbox_1'
-									class="mycheckbox3" ng-model='platform.chosen'
-									ng-click="Utilities.newContent();togglePlatformChosen(platform)">
-								</input>
-								<label
-									for="mycheckbox">
-								</label>
+								<span ng-if="platform.chosen" class="glyphicon glyphicon-check icon-check" aria-hidden="true"></span>
 							</td>
 							<td id="spec-{{platform.osname}}" class="platform-name platform-{{platform.chosen}}" ng-click="Utilities.newContent();togglePlatformChosen(platform)">
 								<p ng-click="Utilities.newContent();togglePlatformChosen(platform)"
