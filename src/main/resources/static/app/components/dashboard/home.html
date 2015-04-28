@@ -1,4 +1,4 @@
-<div ng-controller="GraphCtrl" ng-repeat="suite in allSuites track by $index">
+<div ng-controller="GraphCtrl" ng-repeat="suite in CurrentSuite.allSuites track by $index">
 	<table class='table-home'>
 		<!-- Project logo -->
 		<tr>
@@ -20,14 +20,14 @@
 									loadMainChart(suite.id);
 	                                setState('reports.classes');
 	                                getSuiteSkeleton(suite);">
-									Go to graph</h4> <br><br>
+									Go to Reports</h4> <br><br>
 				<h4 id='go_ss_{{$index}}' ng-class=" {'disabled': !homeChartLoaded(suite)}"
 				class='home-h4'
 						ng-click="Utilities.clearData(suite.lastTimeStamp);
 									loadMainChart(suite.id);
 	                                setState('screenshots.classes');
 	                                getSuiteSkeleton(suite);">
-	                                Go to screenshots</h4>
+	                                Go to Visualizer</h4>
 				</td>
 			</div>
 		</tr>

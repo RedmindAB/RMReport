@@ -134,7 +134,7 @@ angular.module('webLog')
 	    });
 	}
 	
-    restLoader.loadMainChart = function(suiteID, newLine, createMainChart) {
+    restLoader.loadMainChart = function(suiteID, newLine, createMainChart,name) {
 	   	Charts.mainChart.loading = 'Generating impressivly relevant statistics...';
 	   	var activeQueries = [];
  	   if (!newLine) {
@@ -151,7 +151,7 @@ angular.module('webLog')
 		   CurrentSuite.activeQueries = [];
 	   }
  	   
-	   var requestObject = getGraphDataObject(suiteID);
+	   var requestObject = getGraphDataObject(suiteID,name);
 	   	for (var i = 0; i < activeQueries.length; i++) {
 			requestObject.push(activeQueries[i]);
 		}
@@ -248,7 +248,6 @@ angular.module('webLog')
 	    	var graphArray = [];
 	    	var chosen = CurrentSuite.getChosen();
 	    	var dataRequest = {};
-	    	
 	    	if (name) {
 	    		dataRequest.name = name;
 			} else {

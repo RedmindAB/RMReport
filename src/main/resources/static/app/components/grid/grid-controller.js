@@ -46,8 +46,8 @@ angular.module('webLog')
 		}
 	}
 	
-	$scope.isDesktop = function(dataObj){
-		return dataObj === "MAC" || dataObj === "PC";
+	$scope.isDesktop = function(platformName){
+		return platformName === undefined;
 	}
 	
 	$scope.getBrowserImage = function(browserName){
@@ -117,137 +117,188 @@ angular.module('webLog')
 //    	console.error(data);
 //    });
 
-	mockStuff();
-	
-	function mockStuff(){
-		$scope.mockData.FreeProxies = [];
-		
-		for (var i = 0; i < 50; i++) {
-			if (i < 10) {
-				
-				var data = {
-						configuration:{
-							port: 6651
-						},
-						capabilities: [
-						               {
-						            	   seleniumProtocol: "WebDriver",
-						            	   osname: "OSX",
-						            	   platform: "MAC",
-						            	   browserName: "firefox",
-						            	   
-						               },
-						               {
-						   				seleniumProtocol: "WebDriver",
-										osname: "OSX",
-										platform: "MAC",
-										browserName: "chrome",
-						               }
-						               ]
-				}
-				
-				$scope.mockData.FreeProxies.push(data);
-			}
-			
-			if (i > 10 && i < 20) {
-				
-				var data = {
-						configuration:{
-							port: 6652
-						},
-						capabilities: [
-						               {
-						            	   seleniumProtocol: "WebDriver",
-						            	   osname: "WINDOWS",
-						            	   platform: "PC",
-						            	   browserName: "firefox",
-						            	   
-						               },
-						               {
-						   				seleniumProtocol: "WebDriver",
-										osname: "WINDOWS",
-										platform: "PC",
-										browserName: "chrome",
-						               }
-						               ]
-				}
-				
-				$scope.mockData.FreeProxies.push(data);
-			}
-			
-			if (i > 20 && i < 30) {
-				
-				var data = {
-						configuration:{
-							port: 6653
-						},
-						capabilities: [
-						               {
-						            	    rmDeviceType: "Mobile",
-						               		osname: "ANDROID",
-											platform: "ANDROID",
-											platformName: "Android",
-											appActivity: ".debug.DebugMainActivity",
-											appWaitActivity: ".Splash",
-											platformVersion: "5.1",
-											deviceName: "Nexus 6",
-											deviceId: "ZX1G524BJK",
-						               }
-						               ]
-				}
-				
-				$scope.mockData.FreeProxies.push(data);
-				
-				
-			}
-			
-			if (i > 30 && i < 40) {
-				var data = {
-						configuration:{
-							port: 6654
-						},
-						capabilities: [
-						               {
-						            	    rmDeviceType: "Mobile",
-						               		osname: "IOS",
-											platform: "IOS",
-											platformName: "IOS",
-											appActivity: ".debug.DebugMainActivity",
-											appWaitActivity: ".Splash",
-											platformVersion: "11",
-											deviceName: "iPhone 6",
-											deviceId: "ZX1G524BJK",
-						               }
-						               ]
-				}
-				
-				$scope.mockData.FreeProxies.push(data);
-			}
-			
-			if (i > 40 && i < 50) {
-				
-				var data = {
-						configuration:{
-							port: 6653
-						},
-						capabilities: [
-						               {
-						            	    rmDeviceType: "Surf Pad",
-						               		osname: "IOS",
-											platform: "IOS",
-											platformName: "IOS",
-											appActivity: ".debug.DebugMainActivity",
-											appWaitActivity: ".Splash",
-											platformVersion: "11",
-											deviceName: "iPad Air",
-											deviceId: "ZX1G524BJK",
-						               }
-						               ]
-				}
-				
-				$scope.mockData.FreeProxies.push(data);
-			}
-		}
-	}
+//	mockStuff();
+//	
+//	function mockStuff(){
+//		$scope.mockData= {
+//				   "BusyProxies":[
+//
+//				                  ],
+//				                  "FreeProxies":[
+//				                     {
+//				                        "class":"org.openqa.grid.common.RegistrationRequest",
+//				                        "capabilities":[
+//				                           {
+//				                              "newCommandTimeout":"300",
+//				                              "osname":"ANDROID",
+//				                              "rmDeviceType":"mobile",
+//				                              "platform":"ANDROID",
+//				                              "platformVersion":"4.4.4",
+//				                              "deviceName":"C6903",
+//				                              "platformName":"Android",
+//				                              "browserName":"Chrome",
+//				                              "description":"Sony C6903  4.4.4",
+//				                              "maxInstances":1,
+//				                              "appWaitActivity":"WAIT_ACTIVITY",
+//				                              "deviceId":"BH905NSB0D"
+//				                           }
+//				                        ],
+//				                        "configuration":{
+//				                           "port":8081,
+//				                           "host":"192.168.75.120",
+//				                           "servlets":"se.redmind.rmtest.selenium.grid.servlets.GridQueryServlet",
+//				                           "cleanUpCycle":5000,
+//				                           "browserTimeout":0,
+//				                           "hubHost":"192.168.75.120",
+//				                           "registerCycle":5000,
+//				                           "capabilityMatcher":"org.openqa.grid.internal.utils.DefaultCapabilityMatcher",
+//				                           "newSessionWaitTimeout":-1,
+//				                           "url":"http://192.168.75.120:8081/wd/hub",
+//				                           "prioritizer":null,
+//				                           "remoteHost":"http://192.168.75.120:8081",
+//				                           "register":true,
+//				                           "throwOnCapabilityNotPresent":true,
+//				                           "nodePolling":5000,
+//				                           "proxy":"org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
+//				                           "maxSession":1,
+//				                           "role":"hub",
+//				                           "jettyMaxThreads":-1,
+//				                           "hubPort":4444,
+//				                           "timeout":300000
+//				                        }
+//				                     },
+//				                     {
+//				                        "class":"org.openqa.grid.common.RegistrationRequest",
+//				                        "capabilities":[
+//				                           {
+//				                              "newCommandTimeout":"300",
+//				                              "osname":"ANDROID",
+//				                              "rmDeviceType":"mobile",
+//				                              "platform":"ANDROID",
+//				                              "platformVersion":"5.0.1",
+//				                              "deviceName":"Nexus 9",
+//				                              "platformName":"Android",
+//				                              "browserName":"Chrome",
+//				                              "description":"google Nexus 9  5.0.1",
+//				                              "maxInstances":1,
+//				                              "appWaitActivity":"WAIT_ACTIVITY",
+//				                              "deviceId":"HT4CPJT00302"
+//				                           }
+//				                        ],
+//				                        "configuration":{
+//				                           "port":8082,
+//				                           "host":"192.168.75.120",
+//				                           "servlets":"se.redmind.rmtest.selenium.grid.servlets.GridQueryServlet",
+//				                           "cleanUpCycle":5000,
+//				                           "browserTimeout":0,
+//				                           "hubHost":"192.168.75.120",
+//				                           "registerCycle":5000,
+//				                           "capabilityMatcher":"org.openqa.grid.internal.utils.DefaultCapabilityMatcher",
+//				                           "newSessionWaitTimeout":-1,
+//				                           "url":"http://192.168.75.120:8082/wd/hub",
+//				                           "prioritizer":null,
+//				                           "remoteHost":"http://192.168.75.120:8082",
+//				                           "register":true,
+//				                           "throwOnCapabilityNotPresent":true,
+//				                           "nodePolling":5000,
+//				                           "proxy":"org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
+//				                           "maxSession":1,
+//				                           "role":"hub",
+//				                           "jettyMaxThreads":-1,
+//				                           "hubPort":4444,
+//				                           "timeout":300000
+//				                        }
+//				                     },
+//				                     {
+//				                        "class":"org.openqa.grid.common.RegistrationRequest",
+//				                        "capabilities":[
+//				                           {
+//				                              "newCommandTimeout":"300",
+//				                              "platform":"MAC",
+//				                              "platformVersion":"8.3",
+//				                              "rmDeviceType":"mobile",
+//				                              "platformName":"iOS",
+//				                              "deviceName":"iPhone 5",
+//				                              "browserName":"Safari",
+//				                              "maxInstances":1,
+//				                              "description":"iPhone 5  8.3 AutogubbesMini3",
+//				                              "launchTimeout":"30000",
+//				                              "version":"8.3"
+//				                           }
+//				                        ],
+//				                        "configuration":{
+//				                           "port":4723,
+//				                           "servlets":"se.redmind.rmtest.selenium.grid.servlets.GridQueryServlet",
+//				                           "host":"192.168.75.120",
+//				                           "cleanUpCycle":2000,
+//				                           "browserTimeout":0,
+//				                           "hubHost":"192.168.75.120",
+//				                           "registerCycle":5000,
+//				                           "capabilityMatcher":"org.openqa.grid.internal.utils.DefaultCapabilityMatcher",
+//				                           "newSessionWaitTimeout":-1,
+//				                           "url":"http://192.168.75.120:4723/wd/hub",
+//				                           "prioritizer":null,
+//				                           "remoteHost":"http://192.168.75.120:4723",
+//				                           "register":true,
+//				                           "throwOnCapabilityNotPresent":true,
+//				                           "nodePolling":5000,
+//				                           "proxy":"org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
+//				                           "maxSession":1,
+//				                           "role":"hub",
+//				                           "jettyMaxThreads":-1,
+//				                           "hubPort":4444,
+//				                           "timeout":30000
+//				                        }
+//				                     },
+//				                     {
+//				                        "class":"org.openqa.grid.common.RegistrationRequest",
+//				                        "capabilities":[
+//				                           {
+//				                              "seleniumProtocol":"WebDriver",
+//				                              "osname":"OSX",
+//				                              "platform":"MAC",
+//				                              "browserName":"firefox",
+//				                              "description":"OSX firefox",
+//				                              "maxInstances":1
+//				                           },
+//				                           {
+//				                              "seleniumProtocol":"WebDriver",
+//				                              "osname":"OSX",
+//				                              "platform":"MAC",
+//				                              "browserName":"chrome",
+//				                              "description":"OSX chrome",
+//				                              "maxInstances":1
+//				                           }
+//				                        ],
+//				                        "configuration":{
+//				                           "port":6650,
+//				                           "nodeConfig":"macNodeConf.json",
+//				                           "servlets":"se.redmind.rmtest.selenium.grid.servlets.GridQueryServlet",
+//				                           "host":"localhost",
+//				                           "cleanUpCycle":5000,
+//				                           "browserTimeout":0,
+//				                           "hubHost":"localhost",
+//				                           "registerCycle":5000,
+//				                           "capabilityMatcher":"org.openqa.grid.internal.utils.DefaultCapabilityMatcher",
+//				                           "newSessionWaitTimeout":-1,
+//				                           "url":"http://localhost:6650",
+//				                           "prioritizer":null,
+//				                           "remoteHost":"http://localhost:6650",
+//				                           "register":true,
+//				                           "throwOnCapabilityNotPresent":true,
+//				                           "nodePolling":5000,
+//				                           "proxy":"org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
+//				                           "maxSession":5,
+//				                           "role":"node",
+//				                           "jettyMaxThreads":-1,
+//				                           "hubPort":4444,
+//				                           "timeout":300000
+//				                        }
+//				                     }
+//				                  ]
+//				               }
+//		
+//		
+//	}
 	
 }]);
