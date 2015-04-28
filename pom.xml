@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>RMT-web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<groupId>se.redmin</groupId>
 	<build>
 		<plugins>
@@ -45,6 +45,26 @@
 					</descriptorRefs>
 				</configuration>
 			</plugin>
+			<!-- If this is about to be implemented, the scripts starting RMReport in bamboo must be edited to include the new version in the POM.
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>autoincrement-versions-maven-plugin</artifactId>
+				<version>2.0-SNAPSHOT</version>
+				<executions>
+					<execution>
+						<id>update-pom-versions</id>
+						<goals>
+							<goal>increment</goal>
+							<goal>commit</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<autoIncrementVersion>true</autoIncrementVersion>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			 -->
 		</plugins>
 	</build>
 	<dependencies>
@@ -95,5 +115,14 @@
 			<version>2.0.1</version>
 		  </dependency>
 	</dependencies>
-
+	<pluginRepositories>
+    <pluginRepository>
+        <id>autoincrement-versions-maven-plugin</id>
+        <name>autoincrement-versions-maven-plugin</name>
+        <url>http://autoincrement-versions-maven-plugin.googlecode.com/svn/repo</url>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+    </pluginRepository>
+</pluginRepositories>
 </project>

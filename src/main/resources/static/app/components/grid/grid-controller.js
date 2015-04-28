@@ -86,7 +86,7 @@ angular.module('webLog')
 		if(GridData.data.FreeProxies){
 		var proxies = GridData.data.FreeProxies;
 			for(var i = 0; i < proxies.length; i++){
-				if(proxies[i].capabilities[0].platform === "MAC" || proxies[i].capabilities[0].platform === "PC"){
+				if(proxies[i].capabilities[0].platform === "MAC" || proxies[i].capabilities[0].platform === "PC" && proxies[i].capabilities[0].platformName == undefined){
 					return true;
 				}
 			}
@@ -98,7 +98,7 @@ angular.module('webLog')
 		if(GridData.data.FreeProxies){
 		var proxies = GridData.data.FreeProxies;
 			for(var i = 0; i < proxies.length; i++){
-				if(proxies[i].capabilities[0].platform != "MAC" && proxies[i].capabilities[0].platform != "PC"){
+				if(proxies[i].capabilities[0].platformName != undefined){
 					return true;
 				}
 			}
