@@ -1,4 +1,6 @@
-angular.module('webLog').controller('NavBarCtrl', ['$scope', '$state', 'ChartMaker', 'RestLoader', 'Utilities', function($scope, $state, ChartMaker, RestLoader, Utilities){
+angular.module('webLog').controller('NavBarCtrl', ['$scope', '$state', 'ChartMaker', 'RestLoader', 'Utilities', 'CurrentSuite', function($scope, $state, ChartMaker, RestLoader, Utilities, CurrentSuite){
+	
+	$scope.CurrentSuite = CurrentSuite;
 	
     $scope.highlightPoint = function(timestamp){
     	ChartMaker.highlightPoint(timestamp);
@@ -22,4 +24,14 @@ angular.module('webLog').controller('NavBarCtrl', ['$scope', '$state', 'ChartMak
     	ChartMaker.loadMainChart(suiteID,newLine, name);
     }
 	
+    $scope.chooseProject = function(){
+    	if(CurrentSuite.currentSuiteInfo.name === undefined){
+    		return 'Choose Project';
+    	}
+    	else{
+    		return CurrentSuite.currentSuiteInfo.name;
+    	}
+    }
+   
+    
 }])

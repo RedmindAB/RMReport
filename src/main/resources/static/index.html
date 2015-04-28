@@ -64,7 +64,7 @@
 									ng-style="{'color': getNavColor('grid')}"> Admin </a>
 								</li>   
 								<li class="dropdown" style='cursor:pointer;float:right;margin-right:130px'><a data-toggle="dropdown"
-									class="dropdown-toggle" style='color: inherit;'>Choose Project<b class="caret"></b></a>
+									class="dropdown-toggle" style='color: inherit;'>{{chooseProject()}}<b class="caret"></b></a>
 									<ul class="dropdown-menu" style='width:auto'>
 										<li ng-repeat='suite in CurrentSuite.allSuites track by $index'><a href="#" ng-click="Utilities.clearData(suite.lastTimeStamp);
 									loadMainChart(suite.id, 'true', 'Aggregation');
@@ -72,7 +72,7 @@
 									</ul>	
 								</li>
 								<li ng-if='CurrentSuite.currentSuite.length > 0' class="dropdown" style='cursor:pointer;float:right;'><a data-toggle="dropdown"
-									class="dropdown-toggle" style='color: inherit;'>Choose Suite<b class="caret"></b></a>
+									class="dropdown-toggle" style='color: inherit;'>{{CurrentSuite.currentTimeStamp}}<b class="caret"></b></a>
 									<ul class="dropdown-menu scrollable-menu">
 										<li ng-repeat="timestamp in Utilities.descTimestamps"><a ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp)" href="#">{{timestamp}}</a></li>
 									</ul>
