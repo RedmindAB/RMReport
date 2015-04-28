@@ -1,9 +1,9 @@
-<div ng-controller="GraphCtrl" ng-repeat="suite in allSuites track by $index">
+<div ng-controller="GraphCtrl" ng-repeat="suite in CurrentSuite.allSuites track by $index">
 	<table class='table-home'>
 		<!-- Project logo -->
 		<tr>
-			<div ng-controller = "SuiteInfoCtrl">
-				<td><img check-image id='section_{{$index}}' ng-class=" {'disabled': !homeChartLoaded(suite)}" 
+			<!-- div ng-controller = "SuiteInfoCtrl">
+				<td><img check-image id='section' ng-class=" {'disabled': !homeChartLoaded(suite)}" 
 						class='image-paths'
 						style='cursor: pointer' ng-src="{{Utilities.getSuiteLogo(suite.name)}}"
 						ng-click="Utilities.clearData(suite.lastTimeStamp);
@@ -29,7 +29,7 @@
 	                                getSuiteSkeleton(suite);">
 	                                Go to Visualizer</h4>
 				</td>
-			</div>
+			</div  -->
 		</tr>
 		<!-- project logo END -->
 		<!-- project chart -->
@@ -40,6 +40,6 @@
 		<!-- project chart END -->
 	</table>
 	<!-- separator -->
-	<div ng-if="$index !== allSuites.length -1" class='row'
+	<div ng-if="$index !== CurrentSuite.allSuites.length -1" class='row'
 		style='border: 10px solid #D4D9DD'></div>
 </div>

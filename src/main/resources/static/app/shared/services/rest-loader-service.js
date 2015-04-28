@@ -12,6 +12,18 @@ angular.module('webLog')
 	    });
 	}
 	
+	function setClassResult(classes){
+		for (var i = 0; i < classes.length; i++) {
+			if (classes[i].failure >= 1) {
+				classes[i].result = "failure";
+			} else if(classes[i].failure === 0 && classes[i].passed === 0) {
+				classes[i].result = "skipped";
+			} else {
+				classes[i].result = "passed";
+			}
+		}
+	}
+	
 	restLoader.getSuiteSkeleton = function(suite){
 		CurrentSuite.currentSuiteInfo = suite;
 	    $http.get('/api/suite/latestbyid?suiteid=' + suite.id)
@@ -19,7 +31,7 @@ angular.module('webLog')
 	    	if(data){
 	    		getSpecsInfo(suite.id);
 	    		CurrentSuite.currentSuite = data;
-	    		
+	    		setClassResult(CurrentSuite.currentSuite);
 	    		var timestamp
 	    		if (CurrentSuite.currentTimeStamp === '') {
 					timestamp = suite.lastTimeStamp;
@@ -39,6 +51,7 @@ angular.module('webLog')
 	    .success(function(data, status, headers, config){ 
 	    	if(data){
 	    		CurrentSuite.currentSuite = data;
+	    		setClassResult(CurrentSuite.currentSuite);
 	    		getPassFailTotByClass(timestamp, CurrentSuite.currentSuite);
 	    		if (CurrentSuite.currentClass != undefined) {
 	    			CurrentSuite.currentMethods = CurrentSuite.getMethodsByClassId(CurrentSuite.currentClass.id);
@@ -134,7 +147,7 @@ angular.module('webLog')
 	    });
 	}
 	
-    restLoader.loadMainChart = function(suiteID, newLine, createMainChart) {
+    restLoader.loadMainChart = function(suiteID, newLine, createMainChart,name) {
 	   	Charts.mainChart.loading = 'Generating impressivly relevant statistics...';
 	   	var activeQueries = [];
  	   if (!newLine) {
@@ -151,7 +164,7 @@ angular.module('webLog')
 		   CurrentSuite.activeQueries = [];
 	   }
  	   
-	   var requestObject = getGraphDataObject(suiteID);
+	   var requestObject = getGraphDataObject(suiteID,name);
 	   	for (var i = 0; i < activeQueries.length; i++) {
 			requestObject.push(activeQueries[i]);
 		}
@@ -248,7 +261,6 @@ angular.module('webLog')
 	    	var graphArray = [];
 	    	var chosen = CurrentSuite.getChosen();
 	    	var dataRequest = {};
-	    	
 	    	if (name) {
 	    		dataRequest.name = name;
 			} else {

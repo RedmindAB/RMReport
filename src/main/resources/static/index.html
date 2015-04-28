@@ -34,19 +34,20 @@
 					</button>
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1" style='float: left'>
-
-						<div>
+						<div ng-controller='NavBarCtrl'>
 							<ul class="nav nav-tabs" class='nav-tab-style'
 								style='margin-left: 270px; border: none'>
 								<li id='dash' class='dash' role="presentation"
 									ng-class="{'active': isActive('home')}"><a id='dash_view'
 									href='' ng-click="goToDashboardView();"
-									ng-style="{'color': getNavColor('home')}"> Dashboard </a></li>
+									ng-style="{'color': getNavColor('home')}"> Dashboard </a>
+								</li>
 								<li id='reports' class='reports' role="presentation"
 									ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('reports')}"
 									ng-class=""><a id='reports_view' href=''
 									ng-click="goToGraphView()"
-									ng-style="{'color': getNavColor('reports')}"> Reports </a></li>
+									ng-style="{'color': getNavColor('reports')}"> Reports </a>
+								</li>
 								<li id='visual' class='visual' role="presentation"
 									ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('screenshots')}"><a
 									id='visual_view' href='' ng-click="goToScreenshotView()"
@@ -55,40 +56,41 @@
 								<li id='grid' class='grid' role="presentation"
 									ng-class="{'active': isActive('grid')}"><a id='grid_view'
 									href='' ng-click="goToGridView()"
-									ng-style="{'color': getNavColor('grid')}"> Grid </a></li>
-								<li id='grid' class='grid disabled' role="presentation"
-									ng-class="{'active': isActive('grid')}"><a id='grid_view'
-									href='' ng-click="goToGridView()"
-									ng-style="{'color': getNavColor('grid')}"> Admin </a></li>
-								<li class="dropdown" style='cursor:pointer;float:right;margin-right:100px'><a data-toggle="dropdown"
-									class="dropdown-toggle" style='color: inherit;'>Choose Project<b class="caret"></b></a>
-									<ul class="dropdown-menu">
-										<li><a href="#">Aftonbladet</a></li>
-										<li><a href="#">Comaround</a></li>
-										<li><a href="#">GoogleTests</a></li>
+									ng-style="{'color': getNavColor('grid')}"> Grid </a>
+								</li>
+								<li id='grid' class='grid' role="presentation"
+									ng-class="{'active': isActive('admin')}"><a id='grid_view'
+									href='' ng-click="setState('admin');"
+									ng-style="{'color': getNavColor('admin')}"> Admin </a>
+								</li>   
+								<li class="dropdown" style='cursor:pointer;float:right;margin-right:130px'><a data-toggle="dropdown"
+									class="dropdown-toggle" style='color: inherit;'>{{chooseProject()}}<b class="caret"></b></a>
+									<ul class="dropdown-menu" style='width:auto'>
+										<li ng-repeat='suite in CurrentSuite.allSuites track by $index'><a href="#" ng-click="Utilities.clearData(suite.lastTimeStamp);
+									loadMainChart(suite.id, 'true', 'Aggregation');
+	                                getSuiteSkeleton(suite)">{{suite.name}}</a></li>
 									</ul>	
 								</li>
-								<li class="dropdown" style='cursor:pointer;float:right;'><a data-toggle="dropdown"
-									class="dropdown-toggle" style='color: inherit;'>Choose Suite<b class="caret"></b></a>
-									<ul class="dropdown-menu">
-										<li><a href="#">RandomClass0</a></li>
-										<li><a href="#">RandomClass1</a></li>
-										<li><a href="#">RandomClass2</a></li>
-										<li><a href="#">RandomClass3</a></li>
-										<li><a href="#">RandomClass4</a></li>
-										<li><a href="#">RandomClass5</a></li>
-									</ul></li>
+								<li ng-if='CurrentSuite.currentSuite.length > 0' class="dropdown" style='cursor:pointer;float:right;'><a data-toggle="dropdown"
+									class="dropdown-toggle" style='color: inherit;'>{{CurrentSuite.currentTimeStamp}}<b class="caret"></b></a>
+									<ul class="dropdown-menu scrollable-menu">
+										<li ng-repeat="timestamp in Utilities.descTimestamps"><a ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp)" href="#">{{timestamp}}</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
 							</ul>
 						</div>
 
 					</div>
 					<!-- /.navbar-collapse -->
-				</div>
+				
 				<!-- /.container-fluid -->
 			</nav>
 			<div class="container container-fluid"
 				style="margin-bottom: 100px; margin-top: 57px">
 				<div ui-view></div>
+			</div>
 			</div>
 		</div>
 	</div>
@@ -124,6 +126,9 @@
 	<script src="app/components/grid/grid-data.js"></script>
 	<script src="app/components/grid/grid-controller.js"></script>
 	<script src="app/components/grid/ratio-keeper.js"></script>
+	<script src="app/components/navbar/navbar-controller.js"></script>
+	<script src="app/components/admin/admin-controller.js"></script>
+	
 
 </body>
 </html>

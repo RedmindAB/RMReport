@@ -11,14 +11,14 @@ import com.google.gson.JsonPrimitive;
 public class SuiteJsonBuilder {
 
 	
-	private static final String SKIPPED = "skipped";
-	private static final String FAILURE = "failure";
-	private static final String PASSED = "passed";
-	private static final String RESULT = "result";
-	private static final String TIME = "time";
-	private static final String ID = "id";
-	private static final String NAME = "name";
-	private static final String TESTCASES = "testcases";
+	public static final String SKIPPED = "skipped";
+	public static final String FAILURE = "failure";
+	public static final String PASSED = "passed";
+	public static final String RESULT = "result";
+	public static final String TIME = "time";
+	public static final String ID = "id";
+	public static final String NAME = "name";
+	public static final String TESTCASES = "testcases";
 	private JsonArray suiteArray;
 	private HashMap<Integer, JsonObject> classMap;
 	private ResultSet rs;
@@ -62,11 +62,20 @@ public class SuiteJsonBuilder {
 		testCase.add(RESULT, extractResult(result, skipped, fails));
 		testCase.add(TIME, new JsonPrimitive(time));
 		testCases.add(testCase);
+		updateClassResults(result, fails, skipped, testClass);
+	}
+
+	public void updateClassResults(int result, int fails, int skipped,
+			JsonObject testClass) {
 		if (fails > 0) {
-			testClass.addProperty(RESULT, FAILURE);
+			testClass.addProperty(FAILURE, testClass.get(FAILURE).getAsInt()+fails);
 		}
-		else if (skipped == result){
-			testClass.addProperty(RESULT, SKIPPED);;
+		if (skipped > 0){
+			testClass.addProperty(SKIPPED, testClass.get(SKIPPED).getAsInt()+skipped);
+		}
+		int passed = result - skipped - fails;
+		if (passed > 0){
+			testClass.addProperty(PASSED, testClass.get(PASSED).getAsInt()+passed);
 		}
 	}
 
@@ -78,7 +87,9 @@ public class SuiteJsonBuilder {
 			testclass.add(NAME, new JsonPrimitive(className));
 			testclass.add(TIME, new JsonPrimitive(0f));
 			testclass.add(TESTCASES, new JsonArray());
-			testclass.addProperty(RESULT, PASSED);
+			testclass.addProperty(PASSED, 0);
+			testclass.addProperty(FAILURE, 0);
+			testclass.addProperty(SKIPPED, 0);
 			classMap.put(class_id, testclass);
 		}
 		return testclass;

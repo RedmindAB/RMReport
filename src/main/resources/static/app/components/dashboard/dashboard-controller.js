@@ -2,7 +2,7 @@ angular.module('webLog')
 .controller('DashboardCtrl',['$scope', '$http','$state', 'CurrentSuite','RestLoader', 'ChartMaker', 'Charts', function($scope, $http,$state, CurrentSuite, RestLoader, ChartMaker, Charts){
     	
 	$scope.Charts = Charts;
-	$scope.allSuites = [];
+	$scope.CurrentSuite = CurrentSuite;
 	
     $scope.homeChartLoaded = function(suite){
     	return Charts.chartHomeConfig[suite.id] !== undefined && Charts.chartHomeConfig[suite.id].loading === false && suite.lastTimeStamp !== undefined;
@@ -19,9 +19,9 @@ angular.module('webLog')
     $http.get('/api/suite/getsuites')
     .success(function(data, status, headers, config){ 
     	if(data){
-    		$scope.allSuites = data;
-    		for (var i = 0; i < $scope.allSuites.length; i++) {
-    			createHomeChartFromID($scope.allSuites[i]);
+    		CurrentSuite.allSuites = data;
+    		for (var i = 0; i < CurrentSuite.allSuites.length; i++) {
+    			createHomeChartFromID(CurrentSuite.allSuites[i]);
 			}
     	};
     }).error(function(data, status, headers, config){
