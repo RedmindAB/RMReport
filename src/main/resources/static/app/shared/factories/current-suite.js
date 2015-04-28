@@ -6,6 +6,7 @@ angular.module('webLog')
 		    	currentClass: [],
 		    	currentClasses: [],
 		    	currentMethod: [],
+		    	allSuites: [],
 		    	currentMethods: [],
 		    	currentDriver: [],
 		    	currentCases: [],
