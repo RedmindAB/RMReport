@@ -156,6 +156,7 @@ angular.module('webLog')
 			requestObject.push(activeQueries[i]);
 		}
 	   CurrentSuite.lastRunSize = Utilities.getResLimit();
+	   console.log(requestObject);
 	   $http.post('/api/stats/graphdata', requestObject)
 	   .success(function(data, status, headers, config){
 		   createMainChart(data,newLine);

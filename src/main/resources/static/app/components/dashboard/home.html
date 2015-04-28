@@ -1,9 +1,9 @@
-<div ng-controller="GraphCtrl" ng-repeat="suite in allSuites track by $index">
+<div ng-controller="GraphCtrl" ng-repeat="suite in CurrentSuite.allSuites track by $index">
 	<table class='table-home'>
 		<!-- Project logo -->
 		<tr>
 			<div ng-controller = "SuiteInfoCtrl">
-				<td><img check-image id='section_{{$index}}' ng-class=" {'disabled': !homeChartLoaded(suite)}" 
+				<td><img check-image id='section' ng-class=" {'disabled': !homeChartLoaded(suite)}" 
 						class='image-paths'
 						style='cursor: pointer' ng-src="{{Utilities.getSuiteLogo(suite.name)}}"
 						ng-click="Utilities.clearData(suite.lastTimeStamp);
