@@ -67,7 +67,7 @@
 									class="dropdown-toggle" style='color: inherit;'>Choose Project<b class="caret"></b></a>
 									<ul class="dropdown-menu" style='width:auto'>
 										<li ng-repeat='suite in CurrentSuite.allSuites track by $index'><a href="#" ng-click="Utilities.clearData(suite.lastTimeStamp);
-									loadMainChart(suite.id);
+									loadMainChart(suite.id, 'true', 'Aggregation');
 	                                getSuiteSkeleton(suite)">{{suite.name}}</a></li>
 									</ul>	
 								</li>

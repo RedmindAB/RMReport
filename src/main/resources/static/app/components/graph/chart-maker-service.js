@@ -3,8 +3,8 @@ angular.module('webLog')
 	
 	var chartMaker = this;
 	
-	chartMaker.loadMainChart = function(suiteID,newLine){
-		RestLoader.loadMainChart(suiteID, newLine, createMainChart);
+	chartMaker.loadMainChart = function(suiteID,newLine,name){
+		RestLoader.loadMainChart(suiteID, newLine, createMainChart, name);
 	}
 	
 	chartMaker.loadHomeChart = function(suite){

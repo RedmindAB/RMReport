@@ -1,4 +1,4 @@
-angular.module('webLog').controller('NavBarCtrl', ['$scope', 'ChartMaker', 'RestLoader', 'Utilities', function($scope, ChartMaker, RestLoader, Utilities){
+angular.module('webLog').controller('NavBarCtrl', ['$scope', '$state', 'ChartMaker', 'RestLoader', 'Utilities', function($scope, $state, ChartMaker, RestLoader, Utilities){
 	
     $scope.highlightPoint = function(timestamp){
     	ChartMaker.highlightPoint(timestamp);
@@ -10,10 +10,16 @@ angular.module('webLog').controller('NavBarCtrl', ['$scope', 'ChartMaker', 'Rest
 	
 	$scope.getSuiteSkeleton= function(suite){
 		RestLoader.getSuiteSkeleton(suite);
+		if ($state.includes("reports")) {
+			$state.transitionTo("reports.classes");
+		} else if($state.includes("screenshots")){
+			$state.transitionTo("screenshots.classes");
+		} else {
+		}
 	}
 	
-    $scope.loadMainChart = function(suiteID, newLine){
-    	ChartMaker.loadMainChart(suiteID,newLine);
+    $scope.loadMainChart = function(suiteID, newLine, name){
+    	ChartMaker.loadMainChart(suiteID,newLine, name);
     }
 	
 }])
