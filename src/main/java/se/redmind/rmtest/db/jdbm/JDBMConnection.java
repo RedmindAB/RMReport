@@ -72,5 +72,4 @@ public class JDBMConnection {
 	public String get(String key) {
 		return messageMap.get(key);
 	}
-	
 }
