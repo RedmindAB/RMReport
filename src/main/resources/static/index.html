@@ -64,23 +64,23 @@
 									href='' ng-click="goToGridView()"
 									ng-style="{'color': getNavColor('grid')}"> Grid </a>
 								</li>
-								<li id='grid' class='grid' role="presentation"
-									ng-class="{'active': isActive('admin')}"><a id='grid_view'
+								<li id='admin' role="presentation"
+									ng-class="{'active': isActive('admin')}"><a
 									href='' ng-click="setState('admin');"
 									ng-style="{'color': getNavColor('admin')}"> Admin </a>
 								</li>   
-								<li class="dropdown" style='cursor:pointer;'><a data-toggle="dropdown"
+								<li id='choose_project' class="dropdown" style='cursor:pointer;'><a data-toggle="dropdown"
 									class="dropdown-toggle" style='color: inherit;'>{{chooseProject()}}<b class="caret"></b></a>
 									<ul class="dropdown-menu scrollable-menu">
-										<li style='width:100%' ng-repeat='suite in CurrentSuite.allSuites track by $index'><a href="#" ng-click="Utilities.clearData(suite.lastTimeStamp);
+										<li id='{{suite.name}}' style='width:100%' ng-repeat='suite in CurrentSuite.allSuites track by $index'><a href="#" ng-click="Utilities.clearData(suite.lastTimeStamp);
 									loadMainChart(suite.id, 'true', 'Aggregation');
 	                                getSuiteSkeleton(suite)">{{suite.name}}</a></li>
 									</ul>	
 								</li>
-								<li ng-if='CurrentSuite.currentSuite.length > 0' class="dropdown" style='cursor:pointer;'><a data-toggle="dropdown"
+								<li id='choose_timestamp' ng-if='CurrentSuite.currentSuite.length > 0' class="dropdown" style='cursor:pointer;'><a data-toggle="dropdown"
 									class="dropdown-toggle" style='color: inherit;'>{{CurrentSuite.currentTimeStamp}}<b class="caret"></b></a>
 									<ul class="dropdown-menu scrollable-menu">
-										<li style='width:100%' ng-repeat="timestamp in Utilities.descTimestamps"><a ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp)" href="#">{{timestamp}}</a></li>
+										<li id='{{timestamp}}' style='width:100%' ng-repeat="timestamp in Utilities.descTimestamps"><a ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp)" href="#">{{timestamp}}</a></li>
 									</ul>
 								</li>
 							</ul>
