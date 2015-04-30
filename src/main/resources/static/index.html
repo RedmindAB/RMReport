@@ -24,14 +24,17 @@
     
     <div ng-controller="StyleCtrl">
 		<div ng-controller="NavCtrl">
+			<div class='triangle-overlay'>
+				<img src='assets/img/logos/triangle.png'></img>
+			</div>
 			<!-- div class='triangle-overlay'>
 				<img src='assets/img/logos/triangle.png'></img>
 			</div -->
         <!-- Extra components navbar -->
         <div class="navbar navbar-default yamm" ng-controller="NavBarCtrl" style='position:fixed;z-index:9999;width:100%'>
           <div class="navbar-header">
-            <button type="button" data-toggle="collapse" data-target="#navbar-collapse-2" class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
             <a id='home' ng-href="#/"><img src='assets/img/logos/logo.png' class='home navbar-brand'></img></a>
+            <button type="button" data-toggle="collapse" data-target="#navbar-collapse-2" class="navbar-toggle" style='float:left'><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
           </div>
           <div id="navbar-collapse-2" class="navbar-collapse collapse" >
             <ul class="nav navbar-nav">
