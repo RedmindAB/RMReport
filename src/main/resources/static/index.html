@@ -8,12 +8,12 @@
     <meta name="author" content="@geedmo">
 	<title>Redmind Reports</title>
     <!-- Bootstrap and demo CSS -->
-    <link href="demo/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="demo/components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="demo/css/demo.css" rel="stylesheet">
+    <link href="assets/navbar/demo/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/navbar/demo/components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="assets/navbar/demo/css/demo.css" rel="stylesheet">
     <!-- Yamm styles-->
     <link rel="stylesheet" href="assets/css/style.css">
-    <link href="yamm/yamm.css" rel="stylesheet">
+    <link href="assets/navbar/yamm/yamm.css" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/modal.css">
 <link rel="stylesheet" href="assets/css/slider.css">
 <link rel="shortcut icon" href="assets/img/logos/favicon.ico" />
@@ -56,32 +56,33 @@
 							ng-class="{'active': isActive('grid')}"><a id='grid_view'
 							href='' ng-click="goToGridView()"
 							ng-style="{'color': getNavColor('grid')}"> Grid </a></li>
-						<li id='grid' class='grid' role="presentation"
-							ng-class="{'active': isActive('admin')}"><a id='grid_view'
+						<li id='admin' class='admin' role="presentation"
+							ng-class="{'active': isActive('admin')}"><a id='admin_view'
 							href='' ng-click="setState('admin');"
 							ng-style="{'color': getNavColor('admin')}"> Admin </a></li>
-						<li class="dropdown" style='cursor: pointer;'><a
+							</ul>
+      					<ul class="nav navbar-nav navbar-right">	
+						<li class="dropdown" style='cursor: pointer;'><a id='choose_project'
 							data-toggle="dropdown" class="dropdown-toggle"
 							style='color: inherit;'>{{chooseProject()}}<b class="caret"></b></a>
 							<ul class="dropdown-menu scrollable-menu">
 								<li style='width: 100%'
-									ng-repeat='suite in CurrentSuite.allSuites track by $index'><a
+									ng-repeat='suite in CurrentSuite.allSuites track by $index'><a id='{{suite.name}}'
 									href="#"
 									ng-click="Utilities.clearData(suite.lastTimeStamp);
 									loadMainChart(suite.id, 'true', 'Aggregation');
 	                                getSuiteSkeleton(suite)">{{suite.name}}</a></li>
 							</ul></li>
 						<li ng-if='CurrentSuite.currentSuite.length > 0' class="dropdown"
-							style='cursor: pointer;'><a data-toggle="dropdown"
+							style='cursor: pointer;'><a data-toggle="dropdown" id='choose_timestamp'
 							class="dropdown-toggle" style='color: inherit;'>{{CurrentSuite.currentTimeStamp}}<b
 								class="caret"></b></a>
 							<ul class="dropdown-menu scrollable-menu">
 								<li style='width: 100%'
 									ng-repeat="timestamp in Utilities.descTimestamps"><a
-									ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp)"
+id='{{timestamp}}'									ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp)"
 									href="#">{{timestamp}}</a></li>
 							</ul></li>
-              </li>
             </ul>
         
           </div>
@@ -98,8 +99,8 @@
     
     <!-- /container -->
     <!-- Bootstrap core JavaScript-->
-    <script src="demo/components/jquery/dist/jquery.js"></script>
-    <script src="demo/components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/navbar/demo/components/jquery/dist/jquery.js"></script>
+    <script src="assets/navbar/demo/components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css"></script>
     <script>
       $(function() {
