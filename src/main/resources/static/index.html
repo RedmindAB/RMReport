@@ -76,7 +76,7 @@
 							id='choose_project' data-toggle="dropdown"
 							class="dropdown-toggle" style='color: inherit;'>{{chooseProject()}}<b
 								class="caret"></b></a>
-							<ul class="dropdown-menu scrollable-menu">
+							<ul id='dropdown-project' class="dropdown-menu scrollable-menu">
 								<li style='width: 100%'
 									ng-repeat='suite in CurrentSuite.allSuites track by $index'><a
 									id='{{suite.name}}' href="#"
@@ -89,7 +89,7 @@
 							id='choose_timestamp' class="dropdown-toggle"
 							style='color: inherit;'>{{CurrentSuite.currentTimeStamp}}<b
 								class="caret"></b></a>
-							<ul class="dropdown-menu scrollable-menu">
+							<ul id='dropdown-timestamp' class="dropdown-menu scrollable-menu">
 								<li style='width: 100%'
 									ng-repeat="timestamp in Utilities.descTimestamps"><a
 									id='{{timestamp}}'
