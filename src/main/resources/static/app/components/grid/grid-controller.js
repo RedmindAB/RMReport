@@ -5,6 +5,22 @@ angular.module('webLog')
 	$scope.mockData ={
 			FreeProxies:[]
 	};
+	$scope.currentGridObject = {};
+	
+	$scope.gridModalShown = false;
+	
+	$scope.gridToggleModal = function() {
+		$scope.gridModalShown = !$scope.gridModalShown;
+	};
+	
+	$scope.$on("closeModal", function() {
+		$scope.gridToggleModal();
+	});
+	
+	$scope.setCurrentGrid = function(grid){
+		$scope.currentGridObject = JSON.stringify(grid,null,4);
+	}
+	
 	var restURL = "/api/selenium/griddata";
 	
 	var pollController = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){

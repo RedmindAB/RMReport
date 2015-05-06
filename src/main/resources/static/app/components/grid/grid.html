@@ -4,7 +4,7 @@
 			<h4 ng-if="isHubConnected()">Selenium hub is not running</h4>
 			<h4 ng-if="noNodesConnected()">No nodes connected</h4>
 			<h3 class="grid-h3" ng-if="isDesktopNodesConnected()">Desktops</h3>
-			<div ng-repeat="driver in GridData.data.FreeProxies track by $index" ng-if="isDesktop(driver.capabilities[0].platformName)" class='box' ratio-keeper>
+			<div ng-click="gridToggleModal();setCurrentGrid(driver)" ng-repeat="driver in GridData.data.FreeProxies track by $index" ng-if="isDesktop(driver.capabilities[0].platformName)" class='box' ratio-keeper>
 				<img class='logo' ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' style='vertical-align:middle'></img>
 				<div class='desc'>
 					<b>Platform:</b> {{driver.capabilities[0].platform}}<br>
@@ -20,7 +20,7 @@
 		</div>
 		
 		<h3 ng-if="isDeviceNodesConnected()">Devices</h3>
-				<div ng-repeat="driver in GridData.data.FreeProxies track by $index" ng-if="!isDesktop(driver.capabilities[0].platformName)" class='box' ratio-keeper>
+				<div ng-click="gridToggleModal();setCurrentGrid(driver)" ng-repeat="driver in GridData.data.FreeProxies track by $index" ng-if="!isDesktop(driver.capabilities[0].platformName)" class='box' ratio-keeper>
 				<img class='logo' ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' style='vertical-align:middle'></img>
 				<div class='desc'>
 					<h4>{{driver.capabilities[0].deviceName}}</h4>
@@ -32,4 +32,21 @@
 			</div>
 	</div>
 	<div ui-view></div>
+	
+<modal-dialog-sysos width='100%' id='gridModalDialog' toggle='gridToggleModal()' show='gridModalShown'
+			  height='40%' style='background-color : transparent;color:white'>
+	<h1 id='json-header' align='center'>
+		json blaff!
+	</h1>
+	<br>
+	<div class="container slider" style='color:black;font-size:20px;'>
+		<table align='center' style='margin-top:20px'>
+			<tr>
+				<td style='text-align:left'>
+					<pre>{{currentGridObject}}</pre>
+				</td>
+			</tr>
+		</table>
+	</div>
+</modal-dialog-sysos>
 </div>

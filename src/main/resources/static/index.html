@@ -48,26 +48,27 @@
 					</button>
 				</div>
 				<div id="navbar-collapse-2" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li id='dash' class='dash' role="presentation"
-							ng-class="{'active': isActive('home')}"><a id='dash_view'
+					<ul class="nav navbar-nav" data-toggle="collapse"
+						data-target=".nav-collapse">
+						<li id='dash' role="presentation"
+							ng-class="{'active': isActive('home')}"><a id='dash_view' class='a'
 							href='' ng-click="goToDashboardView();"
 							ng-style="{'color': getNavColor('home')}"> Dashboard </a></li>
 						<li id='reports' class='reports' role="presentation"
 							ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('reports')}"
-							ng-class=""><a id='reports_view' href=''
+							ng-class=""><a id='reports_view' class='a' href=''
 							ng-click="goToGraphView()"
 							ng-style="{'color': getNavColor('reports')}"> Reports </a></li>
 						<li id='visual' class='visual' role="presentation"
 							ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('screenshots')}"><a
-							id='visual_view' href='' ng-click="goToScreenshotView()"
+							id='visual_view' class='a' href='' ng-click="goToScreenshotView()"
 							ng-style="{'color': getNavColor('screenshots')}"> Visualizer</a></li>
 						<li id='grid' class='grid' role="presentation"
-							ng-class="{'active': isActive('grid')}"><a id='grid_view'
+							ng-class="{'active': isActive('grid')}"><a id='grid_view' class='a'
 							href='' ng-click="goToGridView()"
 							ng-style="{'color': getNavColor('grid')}"> Grid </a></li>
 						<li id='admin' class='admin' role="presentation"
-							ng-class="{'active': isActive('admin')}"><a id='admin_view'
+							ng-class="{'active': isActive('admin')}"><a id='admin_view' class='a'
 							href='' ng-click="setState('admin');"
 							ng-style="{'color': getNavColor('admin')}"> Admin </a></li>
 					</ul>
@@ -126,7 +127,11 @@
         $(document).on('click', '.yamm .dropdown-menu', function(e) {
           e.stopPropagation()
         })
-      })
+      });
+       $(".a").click(function () {
+            if ($("#navbar-collapse-2").css('display')!='none')
+            $("#navbar-collapse-2").click();
+        });
     </script>
 	<!-- tweet and share :)-->
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
@@ -152,6 +157,7 @@
 	<script src="app/shared/directives/stop-click.js"></script>
 	<script src="app/shared/directives/modal-directive.js"></script>
 	<script src="app/shared/directives/modal-directive-sysos.js"></script>
+	<script src="app/shared/directives/modal-directive-json.js"></script>
 	<script src="app/shared/directives/check-image.js"></script>
 	<script src="app/components/graph/chart-maker-service.js"></script>
 	<script src="app/components/graph/graph-controller.js"></script>
