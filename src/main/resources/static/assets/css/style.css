@@ -3,10 +3,6 @@ html * {
     outline: 0 !important;
 }
 
-.navbar{
-	cursor:pointer;
-}
-
 body{
 	background-color: #D4D9DD;
 }
@@ -66,6 +62,22 @@ h3 {
 
 .desc{
 	float:left;
+}
+
+/* End */
+
+/* Style for Bootstrap navbar pointer and hover */
+
+.navbar{
+	cursor:pointer;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #EDEDED;
+}
+
+.navbar-nav .dropdown:hover .dropdown-menu > li > a:hover, .dropdown:hover .dropdown-menu > li > a:focus{
+    background-color: #EDEDED;
 }
 
 /* End */
