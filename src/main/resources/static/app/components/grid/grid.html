@@ -20,7 +20,7 @@
 		</div>
 		
 		<h3 ng-if="isDeviceNodesConnected()">Devices</h3>
-				<div ng-repeat="driver in GridData.data.FreeProxies track by $index" ng-if="!isDesktop(driver.capabilities[0].platformName)" class='box' ratio-keeper>
+				<div ng-click="gridToggleModal();setCurrentGrid(driver)" ng-repeat="driver in GridData.data.FreeProxies track by $index" ng-if="!isDesktop(driver.capabilities[0].platformName)" class='box' ratio-keeper>
 				<img class='logo' ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' style='vertical-align:middle'></img>
 				<div class='desc'>
 					<h4>{{driver.capabilities[0].deviceName}}</h4>

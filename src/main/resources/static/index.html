@@ -48,8 +48,9 @@
 					</button>
 				</div>
 				<div id="navbar-collapse-2" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li id='dash' class='dash' role="presentation"
+					<ul class="nav navbar-nav" data-toggle="collapse"
+						data-target=".nav-collapse">
+						<li id='dash' role="presentation"
 							ng-class="{'active': isActive('home')}"><a id='dash_view' class='a'
 							href='' ng-click="goToDashboardView();"
 							ng-style="{'color': getNavColor('home')}"> Dashboard </a></li>
@@ -126,7 +127,7 @@
         $(document).on('click', '.yamm .dropdown-menu', function(e) {
           e.stopPropagation()
         })
-      })
+      });
        $(".a").click(function () {
             if ($("#navbar-collapse-2").css('display')!='none')
             $("#navbar-collapse-2").click();
