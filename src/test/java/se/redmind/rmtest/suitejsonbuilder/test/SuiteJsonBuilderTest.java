@@ -31,7 +31,7 @@ public class SuiteJsonBuilderTest {
 	}
 
 	
-	//passed test
+	//passed test 
 	@Test
 	public void getExtractResult_passed() {
 		SuiteJsonBuilder sjb = new SuiteJsonBuilder(rs);
