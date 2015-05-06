@@ -36,7 +36,7 @@
 				<div id="navbar-collapse-2" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
 						<li id='dash' role="presentation" ng-class="{'active': isActive('home')}">
-							<a id='dash_view' ng-click="goToDashboardView();" ng-style="{'color': getNavColor('home')}" class=""> Dashboard</a>
+							<a id='dash_view' ng-click="goToDashboardView();" ng-style="{'color': getNavColor('home')}" class="hidden-xs"> Dashboard</a>
 							<a id='dash_view_dd' ng-click="goToDashboardView();" ng-style="{'color': getNavColor('home')}" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse"> Dashboard</a>
 						</li>
 						<li id='reports' class='reports' role="presentation" ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('reports')}" ng-class="">
