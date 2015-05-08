@@ -318,7 +318,7 @@ angular.module('webLog')
 						id : "skip",
 						name : "Skipped",
 						type : "column",
-						color : "yellow",
+						color : "#EEDB00",
 						dashStyle : "Solid",
 						connectNulls : false
 					},{
