@@ -53,7 +53,7 @@
 </div>
 
 <modal-dialog-sysos width='100%' id='modal_dialog' toggle='toggleModal2()' show='modalShown2'
-			  height='40%' style='background-color : transparent;color:white'>
+			  height='40%' style='background-color : transparent;color:white' toggle-modal="toggleModal2()">
 	<h1 id='syso-header' align='center'>
 		System out prints
 	</h1>
@@ -70,7 +70,7 @@
 </modal-dialog-sysos>
 
 <modal-dialog id='modal_dialog' toggle='toggleModal()' show='modalShown'
-			  style='background-color : transparent;color:white'>
+			  style='background-color : transparent;color:white' toggle-modal="toggleModal()">
 		<div>
 		<h1 align='center' class='white'>
 			{{currentMethod.name}}</br>
