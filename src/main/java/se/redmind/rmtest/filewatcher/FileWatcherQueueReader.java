@@ -3,6 +3,7 @@ package se.redmind.rmtest.filewatcher;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.file.Files;
 import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
@@ -40,9 +41,11 @@ public class FileWatcherQueueReader implements Runnable {
 				for (WatchEvent event : key.pollEvents()) {
 					String filename = event.context().toString();
 					boolean isXmlFile = filename.toLowerCase().endsWith(".xml");
-					while (!isCompletelyWritten(path, filename)) {
+					int _try = 0;
+					while (!isCompletelyWritten(path, filename) || _try == 10) {
 						log.info("File is not done, waiting for 50ms");
 						Thread.sleep(50);
+						_try++;
 					}
 					if (event.kind().equals(ENTRY_CREATE) && isXmlFile) {
 						System.out.println(filename);
@@ -57,6 +60,7 @@ public class FileWatcherQueueReader implements Runnable {
 							sysoFile.copyReportOutputFile();
 							updatedReports = true;
 						}
+						else log.info(filename+" is not a valid report");
 					}
 				}
 				if (updatedReports) {
@@ -78,7 +82,7 @@ public class FileWatcherQueueReader implements Runnable {
 		File file = new File(path+filename);
 	    RandomAccessFile stream = null;
 	    try {
-	        stream = new RandomAccessFile(file, "rw");
+	        stream = new RandomAccessFile(path+filename, "rw");
 	        return true;
 	    } catch (Exception e) {
 	    	log.error(e.getMessage());
@@ -86,6 +90,7 @@ public class FileWatcherQueueReader implements Runnable {
 	        if (stream != null) {
 	            try {
 	                stream.close();
+	                Files.deleteIfExists(file.toPath());
 	            } catch (IOException e) {
 	            	log.error(e.getMessage());
 	            }

@@ -35,8 +35,9 @@ public class ReportSystemOutPrintFile {
 		}
 		int suiteid = reportValidator.getSuiteID(report.getSuiteName());
 		long timestamp = report.getTimestamp();
-		File saveFile = new File(BASEDIR+"/"+suiteid+"/"+timestamp+".txt");
-		saveFile.mkdirs();
+		File folder = new File(BASEDIR+"/"+suiteid);
+		folder.mkdirs();
+		File saveFile = new File(folder.getAbsolutePath()+timestamp+".txt");
 		try {
 			Files.copy(sysOutputFile.toPath(), saveFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
