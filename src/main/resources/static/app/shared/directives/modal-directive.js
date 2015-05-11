@@ -3,7 +3,8 @@ angular.module('webLog')
   return {
     restrict: 'E',
     scope: {
-      show: '='
+      show: '=',
+      toggleModal: '&',
     },
     replace: true, // Replace with the template below
     transclude: true, // we want to insert custom content inside the directive
@@ -19,7 +20,7 @@ angular.module('webLog')
       };
     },
     template: 	"<div class='ng-modal' ng-show='show'>" +
-    				"<div class='ng-modal-overlay'></div>" +
+    				"<div class='ng-modal-overlay' ng-click='toggleModal()'></div>" +
     				"<div class='ng-modal-dialog' ng-style='dialogStyle'>" +
     					"<div class='ng-modal-close' ng-click='hideModal()'>X</div>" +
     					"<div class='ng-modal-dialog-content' ng-transclude></div>" +

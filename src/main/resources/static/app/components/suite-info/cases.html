@@ -10,7 +10,7 @@
 	                	This test only
 	                </button>&nbsp;
 	                <div id="case-name-{{$index}}" style='display:inline' class='accordion-name-container'>
-	                    {{case.osname}} - {{case.devicename}} -	{{case.osversion}} - {{case.browsername}} {{case.timestamp}}
+	                    {{case.osname}} - {{case.devicename}} -	{{case.osversion}} - {{case.browsername}} {{case.timestamp}} {{case.result}}
 	                </div>
 	                <div id="case-runtime-{{$index}}" class="accordion-name-container" style='float:right'>
 						{{case.timetorun}}
@@ -20,8 +20,12 @@
             <!-- non collapsing header End-->
 
             <!-- Content in collapsing Div -->
-                        <pre class="select stack-trace" ng-if="case.message !== ''">{{case.message}}</pre>
-                        <pre class="stack-trace" ng-if="case.message === ''">No Message To Display</pre>
+	            <div ng-if="case.result === 'failure' || case.result === 'error'">
+		            <pre class="select stack-trace" ng-if="case.message !== ''">{{case.message}}</pre>
+		            <pre class="stack-trace" ng-if="case.message === ''">No message to display</pre>
+	            </div>
+	            <pre class="stack-trace" ng-if="case.result === 'passed'">This test passed</pre>
+	            <pre class="stack-trace" ng-if="case.result === 'skipped'">This test was skipped or ignored</pre>
             <!-- Content in collapsing Div End -->
 
         </accordion-group>
