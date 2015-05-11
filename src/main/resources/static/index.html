@@ -58,20 +58,20 @@
 					</ul>
 					<ul class="nav navbar-nav">
 						<li class="dropdown" style='cursor: pointer;'>
-							<a id='choose_project' data-toggle="dropdown" class="dropdown-toggle" style='color: inherit;'>{{chooseProject()}}<b class="caret"></b></a>
+							<a id='choose_project' data-toggle="dropdown" class="dropdown-toggle hidden-xs" style='color: inherit;'>{{chooseProject()}}<b class="caret"></b></a>
+							<a id='choose_project_dd' data-toggle="dropdown" class="dropdown-toggle visible-xs" style='color: inherit;'>{{chooseProject()}}<b class="caret"></b></a>
 							<ul id='dropdown-project' class="dropdown-menu scrollable-menu">
 								<li style='width: 100%' ng-repeat='suite in CurrentSuite.allSuites track by $index'>
-									<a id='{{suite.name}}' ng-click="Utilities.clearData(suite.lastTimeStamp); loadMainChart(suite.id, 'true', 'Aggregation'); getSuiteSkeleton(suite)" class="hidden-xs">{{suite.name}}</a>
-									<a id='{{suite.name}}_dd' ng-click="Utilities.clearData(suite.lastTimeStamp); loadMainChart(suite.id, 'true', 'Aggregation'); getSuiteSkeleton(suite)" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse">{{suite.name}}</a>
+									<a id='{{suite.name}}' ng-click="Utilities.clearData(suite.lastTimeStamp); loadMainChart(suite.id, 'true', 'Aggregation'); getSuiteSkeleton(suite)" data-toggle="collapse" data-target=".navbar-collapse">{{suite.name}}</a>
 								</li>
 							</ul>
 						</li>
 						<li ng-if='CurrentSuite.currentSuite.length > 0' class="dropdown" style='cursor: pointer;'>
-							<a data-toggle="dropdown" id='choose_timestamp' class="dropdown-toggle" style='color: inherit;'>{{CurrentSuite.currentTimeStamp}}<b class="caret"></b></a>
+							<a data-toggle="dropdown" id='choose_timestamp' class="dropdown-toggle hidden-xs" style='color: inherit;'>{{CurrentSuite.currentTimeStamp}}<b class="caret"></b></a>
+							<a data-toggle="dropdown" id='choose_timestamp_dd' class="dropdown-toggle visible-xs" style='color: inherit;'>{{CurrentSuite.currentTimeStamp}}<b class="caret"></b></a>
 							<ul id='dropdown-timestamp' class="dropdown-menu scrollable-menu">
 								<li style='width: 100%' ng-repeat="timestamp in Utilities.descTimestamps">
-									<a id='{{timestamp}}' ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp)" class="hidden-xs">{{timestamp}}</a>
-									<a id='{{timestamp}}_dd' ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp)" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse">{{timestamp}}</a>
+									<a id='{{timestamp}}' ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp)">{{timestamp}}</a>
 								</li>
 							</ul>
 						</li>
