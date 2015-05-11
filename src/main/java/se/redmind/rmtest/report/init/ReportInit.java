@@ -3,6 +3,8 @@ package se.redmind.rmtest.report.init;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -23,10 +25,16 @@ public class ReportInit {
 
 	private String reportPath;
 	private ReportHandler reportHandler;
+	private ArrayList<String> brokenReports;
+	private int addedReports = 0;
+	private ReportExist reportExist;
+	private TimeEstimator estimator;
 
 	public ReportInit(String reportPath){
 		this.reportPath = reportPath;
 		reportHandler = new ReportHandler(reportPath);
+		this.brokenReports = new ArrayList<String>();
+		reportExist = new ReportExist();
 	}
 	
 	public int initReports(){
@@ -36,51 +44,76 @@ public class ReportInit {
 		} catch (Exception e) {
 			return 0;
 		}
+		estimator =  new TimeEstimator(reportFiles.size());
 		System.out.println("Checking "+reportPath);
 		System.out.println("Found "+reportFiles.size()+" reports");
-		int addedReports = 0;
-		ReportExist reportExist = new ReportExist();
 		Connection connection = DBCon.getDbInstance().getConnection();
-		File currentFile = null;
+		Iterator<File> reportIterator = reportFiles.iterator();
 		try {
 			connection.setAutoCommit(false);
-			TimeEstimator estimator = new TimeEstimator(reportFiles.size());
 			System.out.println(estimator.getTopMeter());
 			System.out.print(" ");
 			estimator.start();
-			for (File file : reportFiles) {
-					currentFile = file;
-					ReportValidator reportValidator = getReportValidator(file);
-					Report report = reportValidator.getReport();
-					boolean existsInDB = reportExist.reportExists(report.getTimestamp(), report.getSuiteName());
-					if (!existsInDB) {
-						boolean saveReport = reportValidator.saveReport();
-						if (!saveReport) {
-							System.err.println("Error inserting report, check if the file is broken: "+currentFile.getAbsolutePath());
-							continue;
-						}
-						ReportSystemOutPrintFile sysoFile = new ReportSystemOutPrintFile(reportValidator);
-						sysoFile.copyReportOutputFile();
-						addedReports++;
-					}
-					estimator.addTick();
-					estimator.meassure();
-			}
+			insertReport(reportIterator);
 			System.out.print("\n");
 			connection.setAutoCommit(true);
 		} catch (Exception e) {
 			try {
+				log.error("Rolling back database "+e.getMessage());
 				connection.rollback();
-			} catch (SQLException e1) {
+				connection.commit();
+				connection.setAutoCommit(true);
+			} catch (Exception e1) {
 				log.error("Could not rollback database: "+e1.getMessage());
 			}
-			log.error("Error inserting report: "+currentFile.getAbsolutePath());
-			System.err.println("Error inserting report, check if the is broken: "+currentFile.getAbsolutePath());
 			e.printStackTrace();
 		}
+		printBrokenReports();
 		return addedReports;
 	}
+
+	private void insertReport(Iterator<File> fileIterator) {
+		try {
+			if (!fileIterator.hasNext()) {
+				return;
+			}
+			File file = fileIterator.next();
+			ReportValidator reportValidator = getReportValidator(file);
+			Report report = reportValidator.getReport();
+			boolean existsInDB = reportExist.reportExists(report.getTimestamp(), report.getSuiteName());
+			if (!existsInDB) {
+				boolean saveReport = reportValidator.saveReport();
+				if (!saveReport) {
+					brokenReports.add(file.getAbsolutePath());
+					insertReport(fileIterator);
+					estimator.addTick();
+					estimator.meassure();
+					return;
+				}
+				ReportSystemOutPrintFile sysoFile = new ReportSystemOutPrintFile(reportValidator);
+				sysoFile.copyReportOutputFile();
+				addedReports++;
+			}
+			estimator.addTick();
+			estimator.meassure();
+			insertReport(fileIterator);
+			return;
+		} catch (Exception e) {
+			insertReport(fileIterator);
+		}
+	}
 	
+
+	private void printBrokenReports() {
+		if (brokenReports.size() > 0) {
+			System.err.println("Broken reports: "+brokenReports.size());
+			for (String reportname : brokenReports) {
+				System.err.println(reportname);
+			}
+		}
+		else System.out.println("No broken reports");
+	}
+
 	private ReportValidator getReportValidator(File file){
 		if (reportPath != null) {
 			return new ReportValidator(file, new ReportLoader(reportPath, false));

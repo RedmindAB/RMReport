@@ -1,5 +1,7 @@
 package se.redmind.rmtest.report.parser;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Element;
 
 import com.google.gson.JsonElement;
@@ -7,6 +9,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 public class ReportTestCase{
+	
+	Logger log = LogManager.getLogger(ReportTestCase.class);
 
 	public static final String 	
 	NAME = "name",
@@ -39,6 +43,7 @@ public class ReportTestCase{
 		name = element.getAttribute(NAME);
 		broken = checkIfBroken();
 		if (broken) {
+			log.warn(name+" is a broken testcase");
 			return;
 		}
 		
@@ -108,7 +113,8 @@ public class ReportTestCase{
 	public String getMethodName(){
 		int end = name.indexOf("[");
 		if (end > 0) {
-			return name.substring(0, end);
+			String res = name.substring(0, end);
+			return res;
 		}
 		return null;
 	}
