@@ -30,6 +30,7 @@ public class ScreenshotHandler {
 	private void writeImageToStream(BufferedImage image, ByteArrayOutputStream imgBAO) {
 		try {
 			ImageIO.write(image, "png", imgBAO);
+			imgBAO.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
