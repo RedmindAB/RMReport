@@ -48,28 +48,28 @@ angular.module('webLog')
 			}
 	    }
 	    
-	    $scope.getButton = function(passed){
-	    	if(passed === "failure" || passed === "error")
+	    $scope.getButton = function(result){
+	    	if(result === "failure" || result === "error")
 	    		return 'btn btn-failure2';
-	    	else if(passed === "skipped")
+	    	else if(result === "skipped")
 	    		return 'btn btn-warning2';
 	    	else
 	    		return 'btn btn-success2';
 	    }
 	    
-	    $scope.getPanel = function(passed){
-	    	if(passed === "failure" || passed === "error")
+	    $scope.getPanel = function(result){
+	    	if(result === "failure" || result === "error")
 	    		return 'panel panel-danger bg-danger';
-	    	else if(passed === "skipped")
+	    	else if(result === "skipped")
 	    		return 'panel panel-warning bg-success warning';
 	    	else
 	    		return 'panel panel-success bg-success success';
 	    };
 	    
-	    $scope.getBG = function(passed){
-	    	if(passed === "failure" || passed === "error")
+	    $scope.getBG = function(result){
+	    	if(result === "failure" || result === "error")
 	    		return 'bg-danger';
-	    	else if(passed === "skipped")
+	    	else if(result === "skipped")
 	    		return 'bg-warning';
 	    	else
 	    		return 'bg-success';
@@ -79,18 +79,18 @@ angular.module('webLog')
 	    	return '#A94442';
 	    }
 	    
-	    $scope.getBgCo = function(passed){
-	    	if(passed === "failure" || passed === "error")
+	    $scope.getBgCo = function(result){
+	    	if(result === "failure" || result === "error")
 	    		return '#F2DEDE';
-	    	else if(passed === "skipped")
+	    	else if(result === "skipped")
 	    		return '#FEF7E4';
 	    	else
 	    		return '#DFF0D8';
 	    };
-	    $scope.getCo = function(passed){
-	    	if(passed === "failure" || passed === "error")
+	    $scope.getCo = function(result){
+	    	if(result === "failure" || result === "error")
 	    		return '#A94442';
-	    	else if(passed === "skipped")
+	    	else if(result === "skipped")
 	    		return '#8D6E3F';
 	    	else
 	    		return '#3C763D';

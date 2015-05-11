@@ -1,10 +1,9 @@
 angular.module('webLog')
-.directive('modalDialog', ['$rootScope', function($rootScope) {
+.directive('modalDialogJson', ['$rootScope', function($rootScope) {
   return {
     restrict: 'E',
     scope: {
-      show: '=',
-      toggleModal: '&',
+      show: '='
     },
     replace: true, // Replace with the template below
     transclude: true, // we want to insert custom content inside the directive
@@ -16,13 +15,13 @@ angular.module('webLog')
         scope.dialogStyle.height = "100%";
       scope.hideModal = function() {
         scope.show = false;
-        $rootScope.$broadcast("closeModal");
+        $rootScope.$broadcast("closeModal3");
       };
     },
     template: 	"<div class='ng-modal' ng-show='show'>" +
-    				"<div class='ng-modal-overlay' ng-click='toggleModal()'></div>" +
-    				"<div class='ng-modal-dialog' ng-style='dialogStyle'>" +
-    					"<div class='ng-modal-close' ng-click='hideModal()'>X</div>" +
+    				"<div class='ng-modal-overlay'></div>" +
+    				"<div class='ng-modal-dialog-json' ng-style='dialogStyle'>" +
+    					"<div id='close' class='ng-modal-close' ng-click='hideModal()'>X</div>" +
     					"<div class='ng-modal-dialog-content' ng-transclude></div>" +
     				"</div>" +
     			"</div>"

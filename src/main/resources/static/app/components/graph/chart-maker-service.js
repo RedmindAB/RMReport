@@ -313,12 +313,20 @@ angular.module('webLog')
 						color : "green",
 						dashStyle : "Solid",
 						connectNulls : false
-					}, {
+					},{
+						data : [],
+						id : "skip",
+						name : "Skipped",
+						type : "column",
+						color : "#EEDB00",
+						dashStyle : "Solid",
+						connectNulls : false
+					},{
 						data : [],
 						id : "fail",
 						name : "Failed",
 						type : "column",
-						color : '#FF0000',
+						color : '#DD072B',
 						dashStyle : "Solid",
 						connectNulls : false
 					} ],
@@ -349,7 +357,8 @@ angular.module('webLog')
 	        
 			for (var j = 0; j < data[0].data.length; j++) {
 				chartHomeConfigObject.series[0].data.push(data[0].data[j].pass);
-				chartHomeConfigObject.series[1].data.push(data[0].data[j].fail + data[0].data[j].error);
+				chartHomeConfigObject.series[1].data.push(data[0].data[j].skipped);
+				chartHomeConfigObject.series[2].data.push(data[0].data[j].fail + data[0].data[j].error);
 			}
 			chartHomeConfigObject.xAxis.categories = timeStamps;
 			Charts.chartHomeConfig[suite.id] = chartHomeConfigObject;

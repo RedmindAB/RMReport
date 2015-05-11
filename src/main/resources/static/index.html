@@ -1,103 +1,81 @@
 <!DOCTYPE html>
 <html ng-app="webLog">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Yet another megamenu for Bootstrap 3">
-<meta name="author" content="@geedmo">
-<title>Redmind Reports</title>
-<!-- Bootstrap and demo CSS -->
-<link
-	href="assets/navbar/demo/components/bootstrap/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="assets/navbar/demo/components/bootstrap/dist/css/bootstrap-theme.min.css"
-	rel="stylesheet">
-<link href="assets/navbar/demo/css/demo.css" rel="stylesheet">
-<!-- Yamm styles-->
-<link rel="stylesheet" href="assets/css/style.css">
-<link href="assets/navbar/yamm/yamm.css" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/modal.css">
-<link rel="stylesheet" href="assets/css/slider.css">
-<link rel="shortcut icon" href="assets/img/logos/favicon.ico" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Yet another megamenu for Bootstrap 3">
+	<meta name="author" content="@geedmo">
+	<title>Redmind Reports</title>
+	<!-- Bootstrap and demo CSS -->
+	<link href="assets/navbar/demo/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="assets/navbar/demo/components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="assets/navbar/demo/css/demo.css" rel="stylesheet">
+	<!-- Yamm styles-->
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link href="assets/navbar/yamm/yamm.css" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/modal.css">
+	<link rel="stylesheet" href="assets/css/slider.css">
+	<link rel="shortcut icon" href="assets/img/logos/favicon.ico">
 </head>
-
 <body>
-	<!-- Demo navbar -->
-
 	<div ng-controller="StyleCtrl">
 		<div ng-controller="NavCtrl">
 			<div class='triangle-overlay'>
 				<img src='assets/img/logos/triangle.png'></img>
 			</div>
-			<!-- div class='triangle-overlay'>
-				<img src='assets/img/logos/triangle.png'></img>
-			</div -->
-			<!-- Extra components navbar -->
 			<div class="navbar navbar-default yamm" ng-controller="NavBarCtrl"
 				style='position: fixed; z-index: 9999; width: 100%'>
 				<div class="navbar-header">
-					<a id='home' ng-href="#/"><img src='assets/img/logos/logo.png'
-						class='home navbar-brand'></img></a>
-					<button type="button" data-toggle="collapse"
-						data-target="#navbar-collapse-2" class="navbar-toggle"
-						style='float: left'>
-						<span class="icon-bar"></span><span class="icon-bar"></span><span
-							class="icon-bar"></span>
+					<a id='home' ng-href="#/"><img src='assets/img/logos/logo.png' class='home navbar-brand'></img></a>
+					<button type="button" data-toggle="collapse" data-target="#navbar-collapse-2" class="navbar-toggle" style='float: left'>
+						<span class="icon-bar"></span><span class="icon-bar"></span>
+						<span class="icon-bar"></span>
 					</button>
 				</div>
 				<div id="navbar-collapse-2" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li id='dash' class='dash' role="presentation"
-							ng-class="{'active': isActive('home')}"><a id='dash_view'
-							href='' ng-click="goToDashboardView();"
-							ng-style="{'color': getNavColor('home')}"> Dashboard </a></li>
-						<li id='reports' class='reports' role="presentation"
-							ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('reports')}"
-							ng-class=""><a id='reports_view' href=''
-							ng-click="goToGraphView()"
-							ng-style="{'color': getNavColor('reports')}"> Reports </a></li>
-						<li id='visual' class='visual' role="presentation"
-							ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('screenshots')}"><a
-							id='visual_view' href='' ng-click="goToScreenshotView()"
-							ng-style="{'color': getNavColor('screenshots')}"> Visualizer</a></li>
-						<li id='grid' class='grid' role="presentation"
-							ng-class="{'active': isActive('grid')}"><a id='grid_view'
-							href='' ng-click="goToGridView()"
-							ng-style="{'color': getNavColor('grid')}"> Grid </a></li>
-						<li id='admin' class='admin' role="presentation"
-							ng-class="{'active': isActive('admin')}"><a id='admin_view'
-							href='' ng-click="setState('admin');"
-							ng-style="{'color': getNavColor('admin')}"> Admin </a></li>
+						<li id='dash' role="presentation" ng-class="{'active': isActive('home')}">
+							<a id='dash_view' ng-click="goToDashboardView();" ng-style="{'color': getNavColor('home')}" class="hidden-xs"> Dashboard</a>
+							<a id='dash_view_dd' ng-click="goToDashboardView();" ng-style="{'color': getNavColor('home')}" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse"> Dashboard</a>
+						</li>
+						<li id='reports' class='reports' role="presentation" ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('reports')}" ng-class="">
+							<a id='reports_view' ng-click="goToGraphView()" ng-style="{'color': getNavColor('reports')}" class="hidden-xs"> Reports </a>
+							<a id='reports_view_dd' ng-click="goToGraphView()" ng-style="{'color': getNavColor('reports')}" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse"> Reports </a>
+						</li>
+						<li id='visual' class='visual' role="presentation" ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('screenshots')}">
+							<a id='visual_view' ng-click="goToScreenshotView()" ng-style="{'color': getNavColor('screenshots')}" class="hidden-xs"> Visualizer</a>
+							<a id='visual_view_dd' ng-click="goToScreenshotView()" ng-style="{'color': getNavColor('screenshots')}" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse"> Visualizer</a>
+						</li>
+						<li id='grid' class='grid' role="presentation" ng-class="{'active': isActive('grid')}">
+							<a id='grid_view' ng-click="goToGridView()" ng-style="{'color': getNavColor('grid')}" class="hidden-xs"> Grid </a>
+							<a id='grid_view_dd' ng-click="goToGridView()" ng-style="{'color': getNavColor('grid')}" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse"> Grid </a>
+						</li>
+						<li id='admin' class='admin' role="presentation" ng-class="{'active': isActive('admin')}">
+							<a id='admin_view' ng-click="setState('admin');" ng-style="{'color': getNavColor('admin')}" class="hidden-xs"> Admin </a>
+							<a id='admin_view_dd' ng-click="setState('admin');" ng-style="{'color': getNavColor('admin')}" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse"> Admin </a>
+						</li>
 					</ul>
 					<ul class="nav navbar-nav">
-						<li class="dropdown" style='cursor: pointer;'><a
-							id='choose_project' data-toggle="dropdown"
-							class="dropdown-toggle" style='color: inherit;'>{{chooseProject()}}<b
-								class="caret"></b></a>
+						<li class="dropdown" style='cursor: pointer;'>
+							<a id='choose_project' data-toggle="dropdown" class="dropdown-toggle hidden-xs" style='color: inherit;'>{{chooseProject()}}<b class="caret"></b></a>
+							<a id='choose_project_dd' data-toggle="dropdown" class="dropdown-toggle visible-xs" style='color: inherit;'>{{chooseProject()}}<b class="caret"></b></a>
 							<ul id='dropdown-project' class="dropdown-menu scrollable-menu">
-								<li style='width: 100%'
-									ng-repeat='suite in CurrentSuite.allSuites track by $index'><a
-									id='{{suite.name}}' href="#"
-									ng-click="Utilities.clearData(suite.lastTimeStamp);
-							loadMainChart(suite.id, 'true', 'Aggregation');
-                               getSuiteSkeleton(suite)">{{suite.name}}</a></li>
-							</ul></li>
-						<li ng-if='CurrentSuite.currentSuite.length > 0' class="dropdown"
-							style='cursor: pointer;'><a data-toggle="dropdown"
-							id='choose_timestamp' class="dropdown-toggle"
-							style='color: inherit;'>{{CurrentSuite.currentTimeStamp}}<b
-								class="caret"></b></a>
+								<li style='width: 100%' ng-repeat='suite in CurrentSuite.allSuites track by $index'>
+									<a id='{{suite.name}}' ng-click="Utilities.clearData(suite.lastTimeStamp); loadMainChart(suite.id, 'true', 'Aggregation'); getSuiteSkeleton(suite)" data-toggle="collapse" data-target=".navbar-collapse">{{suite.name}}</a>
+								</li>
+							</ul>
+						</li>
+						<li ng-if='CurrentSuite.currentSuite.length > 0' class="dropdown" style='cursor: pointer;'>
+							<a data-toggle="dropdown" id='choose_timestamp' class="dropdown-toggle hidden-xs" style='color: inherit;'>{{CurrentSuite.currentTimeStamp}}<b class="caret"></b></a>
+							<a data-toggle="dropdown" id='choose_timestamp_dd' class="dropdown-toggle visible-xs" style='color: inherit;'>{{CurrentSuite.currentTimeStamp}}<b class="caret"></b></a>
 							<ul id='dropdown-timestamp' class="dropdown-menu scrollable-menu">
-								<li style='width: 100%'
-									ng-repeat="timestamp in Utilities.descTimestamps"><a
-									id='{{timestamp}}'
-									ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp)"
-									href="#">{{timestamp}}</a></li>
-							</ul></li>
+								<li style='width: 100%' ng-repeat="timestamp in Utilities.descTimestamps">
+									<a id='{{timestamp}}' ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp)">{{timestamp}}</a>
+								</li>
+							</ul>
+						</li>
 					</ul>
-
 				</div>
 			</div>
 			<br>
@@ -107,29 +85,13 @@
 			<div class="container container-fluid">
 				<div ui-view></div>
 			</div>
-
 		</div>
 	</div>
-
-
-
 	<!-- /container -->
 	<!-- Bootstrap core JavaScript-->
 	<script src="assets/navbar/demo/components/jquery/dist/jquery.js"></script>
-	<script
-		src="assets/navbar/demo/components/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script
-		src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css"></script>
-	<script>
-      $(function() {
-        window.prettyPrint && prettyPrint()
-        $(document).on('click', '.yamm .dropdown-menu', function(e) {
-          e.stopPropagation()
-        })
-      })
-    </script>
-	<!-- tweet and share :)-->
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	<script src="assets/navbar/demo/components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css"></script>
 	<script src="assets/libs/jquery.js"></script>
 	<script src="assets/libs/angular-1.3.10/angular.min.js"></script>
 	<script src="assets/libs/bootstrap/ui-bootstrap-tpls-0.12.0.min.js"></script>
@@ -152,6 +114,7 @@
 	<script src="app/shared/directives/stop-click.js"></script>
 	<script src="app/shared/directives/modal-directive.js"></script>
 	<script src="app/shared/directives/modal-directive-sysos.js"></script>
+	<script src="app/shared/directives/modal-directive-json.js"></script>
 	<script src="app/shared/directives/check-image.js"></script>
 	<script src="app/components/graph/chart-maker-service.js"></script>
 	<script src="app/components/graph/graph-controller.js"></script>
