@@ -46,7 +46,7 @@ public class ReportXMLParserTest {
 		NodeList list = parser.getNodeList(file, "testcase");
 		for (int i = 0; i < list.getLength(); i++) {
 			Element element = (Element) list.item(i);
-			ReportTestCase testCase = new ReportTestCase(element);
+			ReportTestCase testCase = new ReportTestCase(element, "hej");
 			boolean testNameIsNotEmpty = testCase.getName().length() > 0;
 			assertTrue(testNameIsNotEmpty);
 		}

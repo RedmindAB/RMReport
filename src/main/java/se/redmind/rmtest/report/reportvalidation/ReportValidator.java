@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.create.classinserter.ClassInserter;
 import se.redmind.rmtest.db.create.suiteinserter.SuiteInserter;
@@ -21,6 +24,8 @@ import se.redmind.rmtest.report.parser.ReportXMLParser;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
 
 public class ReportValidator {
+	
+	Logger log = LogManager.getLogger(ReportValidator.class);
 	
 	private String reportPath;
 	private ReportDbLookup readFromDB;
@@ -81,10 +86,12 @@ public class ReportValidator {
 	
 	public boolean saveReport(){
 		if (!isValidFilename()) {
+			log.warn(reportFile.getName()+"is not a valid report file");
 			return false;
 		}
 		boolean convertToFullReport = report.convertToFullReport();
 		if (!convertToFullReport) {
+			log.warn(reportFile.getName()+" was not able to convert to a full report");
 			return false;
 		}
 		HashMap<String, Integer> classIDs = getTestClassIDs(report.getPresentTestClasses());

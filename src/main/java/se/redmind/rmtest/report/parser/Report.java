@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -13,6 +15,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 public class Report{
+	
+	private Logger log = LogManager.getLogger(Report.class);
 	
 	private String 
 	TESTCASES = "testcases",
@@ -95,10 +99,12 @@ public class Report{
 			driverSet = new HashSet<String>();
 			for (int i = 0; i < testCaseNodes.getLength(); i++) {
 				Element testCase = (Element) testCaseNodes.item(i);
-				ReportTestCase test = new ReportTestCase(testCase);
+				ReportTestCase test = new ReportTestCase(testCase, extractSuitePackage(name));
 				if (test.isBroken()) {
+					log.warn("Broken testcase: "+i+" case text: "+testCaseNodes.item(i).getTextContent());
 					return false;
 				}
+				if (test.isSuiteTestCase()) continue;
 				testCaseArray.add(test);
 				String driver = test.getDriverName();
 				if (!driverSet.contains(driver)) {
@@ -128,6 +134,11 @@ public class Report{
 	public String removePunctuations(String string, String replacement){
 		return string.replace(".", replacement);
 		
+	}
+	
+	public String extractSuitePackage(String name){
+		int end = name.lastIndexOf("(");
+		return name.substring(0, end);
 	}
 	
 	public String extractSuiteName(String name){

@@ -1,6 +1,15 @@
-angular.module('webLog').controller('NavBarCtrl', ['$scope', '$state', 'ChartMaker', 'RestLoader', 'Utilities', 'CurrentSuite', function($scope, $state, ChartMaker, RestLoader, Utilities, CurrentSuite){
+angular.module('webLog').controller('NavBarCtrl', ['$scope', '$state', '$window', 'ChartMaker', 'RestLoader', 'Utilities', 'CurrentSuite', function($scope, $state,$window, ChartMaker, RestLoader, Utilities, CurrentSuite){
 	
 	$scope.CurrentSuite = CurrentSuite;
+	
+	$scope.isSmallWindowToggle = function(){
+		return $window.window.innerWidth < 900  ? 'collapse' : '';
+	}
+	
+	$scope.isSmallWindowTarget = function(){
+		return $window.width < 900  ? '.navbar-collapse' : '';
+	}
+	console.log($scope.isSmallWindowToggle());
 	
     $scope.highlightPoint = function(timestamp){
     	ChartMaker.highlightPoint(timestamp);
