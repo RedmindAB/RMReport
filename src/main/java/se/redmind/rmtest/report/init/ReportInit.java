@@ -54,7 +54,7 @@ public class ReportInit {
 			System.out.println(estimator.getTopMeter());
 			System.out.print(" ");
 			estimator.start();
-			insertReport(reportIterator);
+			insertReports(reportIterator);
 			System.out.print("\n");
 			connection.setAutoCommit(true);
 		} catch (Exception e) {
@@ -72,7 +72,7 @@ public class ReportInit {
 		return addedReports;
 	}
 
-	private void insertReport(Iterator<File> fileIterator) {
+	private void insertReports(Iterator<File> fileIterator) {
 		try {
 			if (!fileIterator.hasNext()) {
 				return;
@@ -85,7 +85,7 @@ public class ReportInit {
 				boolean saveReport = reportValidator.saveReport();
 				if (!saveReport) {
 					brokenReports.add(file.getAbsolutePath());
-					insertReport(fileIterator);
+					insertReports(fileIterator);
 					estimator.addTick();
 					estimator.meassure();
 					return;
@@ -96,10 +96,10 @@ public class ReportInit {
 			}
 			estimator.addTick();
 			estimator.meassure();
-			insertReport(fileIterator);
+			insertReports(fileIterator);
 			return;
 		} catch (Exception e) {
-			insertReport(fileIterator);
+			insertReports(fileIterator);
 		}
 	}
 	

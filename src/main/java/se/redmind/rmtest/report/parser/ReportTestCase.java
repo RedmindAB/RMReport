@@ -33,9 +33,13 @@ public class ReportTestCase{
 	private double time;
 	private boolean passed;
 	private Driver driverParser;
+	private String suite_name;
+
+	private boolean suiteIsTestcase;
 	
-	public ReportTestCase(Element element) {
+	public ReportTestCase(Element element, String suite_name) {
 		passed = false;
+		this.suite_name = suite_name;
 		generateTestCaseFromElement(element);
 	}
 	
@@ -43,6 +47,11 @@ public class ReportTestCase{
 		name = element.getAttribute(NAME);
 		broken = checkIfBroken();
 		if (broken) {
+			boolean testCaseNameSameAsSuiteName = isTestCaseNameSameAsSuiteName(name);
+			if (testCaseNameSameAsSuiteName) {
+				broken = false;
+				return;
+			}
 			log.warn(name+" is a broken testcase");
 			return;
 		}
@@ -105,7 +114,7 @@ public class ReportTestCase{
 		if (name.contains("[")) {
 		int start = name.lastIndexOf("[");
 		int end = name.lastIndexOf("]");
-			return name.substring(start+1, end);
+		return name.substring(start+1, end);
 		}
 		return name;
 	}
@@ -117,6 +126,11 @@ public class ReportTestCase{
 			return res;
 		}
 		return null;
+	}
+	
+	private boolean isTestCaseNameSameAsSuiteName(String methodName){
+		suiteIsTestcase = methodName.equals(suite_name);
+		return suiteIsTestcase;
 	}
 	
 	public String getResult(){
@@ -177,5 +191,9 @@ public class ReportTestCase{
 	
 	public boolean isBroken(){
 		return this.broken;
+	}
+	
+	public boolean isSuiteTestCase(){
+		return suiteIsTestcase;
 	}
 }
