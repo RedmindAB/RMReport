@@ -9,21 +9,6 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 		return (method.testcases.length * 232)+10;
 	}
 	
-	$scope.show = true;
-	
-	$scope.hideScreen = function(method){
-		var status = true;
-		if($scope.show !== false){
-			for(var i = 0; i < method.length; i++){
-				if(method[i].screenshotLength === 0)
-					status = false;
-				else
-					status = true;
-			}
-		}
-		$scope.show = status;
-	}
-	
 	$scope.toggleModal = function() {
 		$scope.modalShown = !$scope.modalShown;
 	};

@@ -9,19 +9,10 @@
 </div>
 <div>
 		<p id='syso-header' class='accordion-name-container' style='cursor:pointer' ng-click='getConsolePrint();toggleModal2();'>System out prints</p>
-		<table>
-			<tr>
-				<td height='15px'>
-					<input type="checkbox" id="mycheckbox" ng-click='hideScreen(ScreenshotMaster.data, $index)'>
-					Hide tests without screenshots<label for="mycheckbox"></label>
-				</td>
-			</tr>
-		</table>
 			<!-- expandable methods -->
 			<accordion close-others="false">
 			    <!-- repeated content -->
 			    <div class='noselect' ng-repeat="method in ScreenshotMaster.data | orderBy:['-stats.totFail','result','name']">
-			        <div ng-show='show'>
 				        <accordion-group style="margin-top:10px;padding:0px;" ng-class='getPanel(method.result)' >
 				            <!-- non collapsing header -->
 				            <accordion-heading>
@@ -56,7 +47,6 @@
 				<!-- Content in collapsing Div End -->
 				
 				        </accordion-group>
-			    	</div>
 			    </div>
 			    <!-- repeated content  End-->
 			</accordion>
