@@ -96,25 +96,19 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 	}
 	
 	$scope.goToScreenshotView = function(){
-		console.log("0");
 		ScreenshotMaster.previousView = $state.$current.name;
 			if (CurrentSuite.currentSuite.length === 0) {
-				console.log("1");
 				$state.transitionTo('home');
 			} else {
 				if (CurrentSuite.currentClass.length === 0 || $state.$current.name === 'reports.classes') {
-					console.log("2");
 					$state.transitionTo('screenshots.classes');
 				} else {
 					if (!classExistsInSuite(CurrentSuite.currentClass)) {
-						console.log("3");
 						$state.transitionTo('screenshots.classes');
 					} else {
 						if (ScreenshotMaster.currentClass === CurrentSuite.currentClass.id && ScreenshotMaster.currentTimestamp === CurrentSuite.currentTimeStamp) {
-							console.log("4");
 							$state.transitionTo('screenshots.methods');
 						} else {
-							console.log("5");
 							RestLoader.loadScreenshotsFromClass(CurrentSuite.currentClass);
 							$state.transitionTo('screenshots.methods');
 						}
