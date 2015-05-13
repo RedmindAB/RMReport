@@ -14,10 +14,10 @@ public class MessageDAO {
 		this.con = con;
 	}
 	
-	public void saveIfNotExists(String hash, String message){
-		String result = con.get(hash);
+	public void saveIfNotExists(String id, String message){
+		String result = con.get(id);
 		if (result == null) {
-			con.save(hash, message);
+			con.save(id, message);
 		}
 	}
 	
