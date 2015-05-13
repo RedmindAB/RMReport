@@ -209,6 +209,12 @@ angular.module('webLog')
 				}
 			}
 			data[i].screenshotLength = screenshotLength;
+			if (data[i].screenshotLength > 0) {
+				data.screenshotsExists = true;
+			}
+		}
+		if (data.screenshotsExists === undefined) {
+			data.screenshotsExists = false;
 		}
 	}
 	

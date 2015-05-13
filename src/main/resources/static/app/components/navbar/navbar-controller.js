@@ -19,6 +19,12 @@ angular.module('webLog').controller('NavBarCtrl', ['$scope', '$state', '$window'
 		RestLoader.loadTimestamp(timestamp);
 	}
 	
+	$scope.getScreenshotsFromTimestamp = function(){
+		if ($state.$current.name === 'screenshots.methods') {
+			RestLoader.loadScreenshotsFromClass(CurrentSuite.currentClass)
+		}
+	}
+	
 	$scope.getSuiteSkeleton= function(suite){
 		RestLoader.getSuiteSkeleton(suite);
 		if ($state.includes("reports")) {

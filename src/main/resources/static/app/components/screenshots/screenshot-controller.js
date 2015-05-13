@@ -4,6 +4,15 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	$scope.modalShown = false;
 	$scope.modalShown2 = false;
 	$scope.caseArraySize = [];
+	$scope.noScreenshotsExists = false;
+	
+	$scope.noScreenShotsExists = function(){
+		return ScreenshotMaster.data.screenshotsExists !== undefined && ScreenshotMaster.data.screenshotsExists === false;
+	}
+	
+	$scope.containsScreenshots = function(method){
+		return method.screenshotLength > 0;
+	}
 	
 	$scope.getMethodContentWidth = function(method){
 		return (method.testcases.length * 232)+10;

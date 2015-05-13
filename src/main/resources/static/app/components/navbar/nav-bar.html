@@ -39,7 +39,7 @@
 				<a data-toggle="dropdown" id='choose_timestamp' class="dropdown-toggle" style='color: inherit;'>{{CurrentSuite.currentTimeStamp}}<b class="caret"></b></a>
 				<ul id='dropdown-timestamp' class="dropdown-menu scrollable-menu">
 					<li style='width: 100%' ng-repeat="timestamp in Utilities.descTimestamps">
-						<a id='{{timestamp}}' ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp)">{{timestamp}}</a>
+						<a id='{{timestamp}}' ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp);getScreenshotsFromTimestamp()">{{timestamp}}</a>
 					</li>
 				</ul>
 			</li>
