@@ -9,7 +9,6 @@ angular.module('webLog').controller('NavBarCtrl', ['$scope', '$state', '$window'
 	$scope.isSmallWindowTarget = function(){
 		return $window.width < 900  ? '.navbar-collapse' : '';
 	}
-	console.log($scope.isSmallWindowToggle());
 	
     $scope.highlightPoint = function(timestamp){
     	ChartMaker.highlightPoint(timestamp);

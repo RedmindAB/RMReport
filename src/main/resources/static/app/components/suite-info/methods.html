@@ -6,13 +6,12 @@
             <table width='100%'>
                 <tr>
 					<td class='checkbox-holder'>
-                    	<input class='methods-input' style="margin-top:0px" type="checkbox" id='checkbox{{$index}}' class="mycheckbox" ng-model="method.chosen" ng-click="newContent()">
-                    	<label for="mycheckbox"></label>					                    
+                    	<icon-checkbox content="method" id='checkbox{{$index}}' ></icon-checkbox>					                    
                     </td>
                     
                     
                     <td id='method-{{$index}}' ng-click="getCases(method);
-                            setState('reports.cases');" ng-style="{'color' : getCo(method.result)}">
+                            setState('reports.cases');" ng-style="{'color' : getCo(method.result)}" class="icon-checkbox-guard">
 						<p id="method-name-{{$index}}" class="accordion-name-container text-left">{{method.name}}</p> 
                         <p id="method-runtime-{{$index}}" class="accordion-name-container text-right">&nbsp;{{formatDecimals(method.time)}}</p>
                         <p id="method-passfail-{{$index}}" class="accordion-name-container text-right">Skipped: {{method.stats.skipped}} Failed: {{method.stats.totFail}}</p>
