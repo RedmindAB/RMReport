@@ -6,8 +6,17 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	$scope.caseArraySize = [];
 	$scope.noScreenshotsExists = false;
 	
+	$scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+		$scope.modalShown = false;
+		$scope.modalShown2 = false;
+	});
+	
 	$scope.noScreenShotsExists = function(){
 		return ScreenshotMaster.data.screenshotsExists !== undefined && ScreenshotMaster.data.screenshotsExists === false;
+	}
+	
+	$scope.makeArray = function (number) {
+		return new Array(number);
 	}
 	
 	$scope.containsScreenshots = function(method){
@@ -42,7 +51,7 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 		RestLoader.loadScreenshotsFromClass(classObj);
 	}
 	
-	$scope.getScreenshotsFromFileName = function(fileName){
+	$scope.getScreenshotsFromFileName = function(fileName, caseObj){
 		if (!fileName) {
 			return 'assets/img/logos/placeholder2.png';
 		}

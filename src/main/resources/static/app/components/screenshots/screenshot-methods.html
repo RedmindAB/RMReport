@@ -29,6 +29,25 @@
 				            <!-- non collapsing header End-->
 				
 				            <!-- Content in collapsing Div -->
+				            
+				            
+				            <div ng-if="method.screenshotLength > 0" style="width:{{getMethodContentWidth(method)}}px;" class="screenshot-view">
+								<table>
+									<tr>
+										<td ng-repeat="case in method.testcases">{{case.device}}</td>
+									</tr>
+									<tr style="background-color:'blue'" ng-repeat="screenshot in makeArray(method.screenshotLength) track by $index" ng-init="screenshotIndex = $index">
+										<td ng-repeat="case in method.testcases">
+											<p style='margin-left:5px;margin-bottom:-2px' ng-if='case.screenshots[$parent.$index] !== undefined'>{{getScreenshotOrder(case.screenshots[screenshotIndex])}}</p>
+											<img style='max-height:430px' id='screenshot{{screenshotIndex}}-{{$index}}' ng-click='setCurrentMethod(method); setSlides(method.testcases, $index, screenshotIndex); toggleModal();' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[screenshotIndex])}}"></img><br><br>
+										</td>
+									</tr>
+								</table>
+							</div>
+				            
+				            
+				            
+				            <!-- 
 								<div ng-if="method.screenshotLength > 0" style="width:{{getMethodContentWidth(method)}}px;" class="screenshot-view">
 									<table id='table_{{$index}}' style='vertical-align:top;' id='table{{$index}}' ng-repeat="case in method.testcases | orderBy:['result','device','browser'] track by $index" ng-style="{'background-color': getBgCo(case.result)}" class='panel screenshot-methods-table' width="222px">
 										<tr>
@@ -42,7 +61,7 @@
 										</tr>
 									</table>
 								</div>
-								
+							-->
 								<p ng-if="method.screenshotLength === 0" class="no-screenshot">No screenshots taken</p>
 		
 				<!-- Content in collapsing Div End -->
