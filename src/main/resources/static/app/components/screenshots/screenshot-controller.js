@@ -10,6 +10,10 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 		return ScreenshotMaster.data.screenshotsExists !== undefined && ScreenshotMaster.data.screenshotsExists === false;
 	}
 	
+	$scope.makeArray = function (number) {
+		return new Array(number);
+	}
+	
 	$scope.containsScreenshots = function(method){
 		return method.screenshotLength > 0;
 	}
@@ -42,7 +46,7 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 		RestLoader.loadScreenshotsFromClass(classObj);
 	}
 	
-	$scope.getScreenshotsFromFileName = function(fileName){
+	$scope.getScreenshotsFromFileName = function(fileName, caseObj){
 		if (!fileName) {
 			return 'assets/img/logos/placeholder2.png';
 		}
