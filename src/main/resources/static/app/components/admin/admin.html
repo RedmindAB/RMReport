@@ -1,3 +1,47 @@
-<div ng-controller="AdminCtrl">
-<h3>Contents will be added soon</h3>
+<div>
+	<p style="font-size:2em">Paths to projects</p>
+	<div ng-repeat="path in config.reportPaths track by $index" class="row admin-input">
+		<div class="col-md-4">
+			<input 
+				type="text" id="new project path"
+				class="form-control tool-tip uneditable-input"
+				value="{{path}}"
+				title="Existing project path">
+			</input>
+		</div>
+		<div class="col-md-1" style="width:auto">
+			<span 
+				class="glyphicon glyphicon-remove remove-icon tool-tip" 
+				ng-click='removePath($index)' 
+				style='cursor:pointer; font-size:2.2em'
+				title="Remove path">
+			</span>
+		</div>
+		<div class="col-md-2">
+			<button 
+				id='add-project'
+				class='btn btn-default'
+				ng-click="changePath(path, $index)">
+				Save changes
+			</button>
+		</div>
+	</div>
+	<div class="row admin-input">
+		<div class="col-md-4">
+			<input 
+				type="text" id="new project path"
+				class="form-control tool-tip"
+				ng-model='newPath' placeholder="New project path"
+				title="Enter complete path to new project">
+			</input>
+		</div>
+		<div class="col-md-2">
+			<button 
+				id='add-project'
+				class='btn btn-default'
+				ng-click="addPath(newPath)">
+				Add project
+			</button>
+		</div>
+	</div>
 </div>
