@@ -27,7 +27,7 @@ angular.module('webLog')
 	$scope.removePath = function(index){
 		console.log("removing path: " + index);
 		
-		$http.delete('/api/admin/reportdir/'+index, request)
+		$http.delete('/api/admin/reportdir/'+index)
    		.success(function(data, status, headers, config){
    			console.log("path changed");
    		}).error(function(data, status, headers, config){
