@@ -1,6 +1,10 @@
 package se.redmind.rmtest.web.route.api;
 
 import static spark.Spark.*;
+import se.redmind.rmtest.web.route.api.admin.config.GetConfigWS;
+import se.redmind.rmtest.web.route.api.admin.port.ChangePortWS;
+import se.redmind.rmtest.web.route.api.admin.reportdir.CreateReportDirWS;
+import se.redmind.rmtest.web.route.api.admin.reportdir.UpdateReportDirWS;
 import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesWS;
 import se.redmind.rmtest.web.route.api.classes.passfail.PassFailClassWS;
 import se.redmind.rmtest.web.route.api.device.getdevices.GetDevicesAMonthAgoWS;
@@ -51,6 +55,10 @@ public class ApiRouter {
 		get(new GetDevicesAMonthAgoWS("/api/device/notrunforamonth"));
 		
 		//not added to apidocs
+		post(new ChangePortWS("/api/admin/port/:portnum"));
+		post(new CreateReportDirWS("/api/admin/reportdir"));
+		put(new UpdateReportDirWS("/api/admin/reportdir/:index"));
+		get(new GetConfigWS("/api/admin/config"));
 		get(new CheckForChangeWS("/api/long"));
 	}
 	

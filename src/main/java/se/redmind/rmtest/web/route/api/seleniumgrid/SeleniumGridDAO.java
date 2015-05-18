@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import se.redmind.rmtest.web.properties.PropertiesReader;
+import se.redmind.rmtest.web.properties.ConfigHandler;
 import se.redmind.rmtest.web.route.api.ErrorResponse;
 
 public class SeleniumGridDAO {
@@ -19,7 +19,7 @@ public class SeleniumGridDAO {
 	public String getSelenumGridData() {
 		URL url;
 		try {
-			String servletPath = new PropertiesReader().getSeleniumGridURL();
+			String servletPath = ConfigHandler.getInstance().getSeleniumGridURL();
 			if (servletPath == null) {
 				servletPath = "http://localhost:4444/grid/admin/GridQueryServlet";
 			}

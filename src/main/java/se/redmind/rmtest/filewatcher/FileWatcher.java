@@ -6,11 +6,11 @@ import java.nio.file.Paths;
 import java.nio.file.WatchService;
 
 import static java.nio.file.StandardWatchEventKinds.*;
-import se.redmind.rmtest.web.properties.PropertiesReader;
+import se.redmind.rmtest.web.properties.ConfigHandler;
 
 public class FileWatcher {
 
-	public static String[] directoryPaths = new PropertiesReader().getTestDirectory();
+	public static String[] directoryPaths = ConfigHandler.getInstance().getReportPaths();
 
 	public static void Run() {
 		for (String testFolder : directoryPaths) {

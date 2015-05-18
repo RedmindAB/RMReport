@@ -1,7 +1,7 @@
 package se.redmind.rmtest.web.route;
 
 import static spark.Spark.*;
-import se.redmind.rmtest.web.properties.PropertiesReader;
+import se.redmind.rmtest.web.properties.ConfigHandler;
 import se.redmind.rmtest.web.route.api.ApiRouter;
 import se.redmind.rmtest.web.route.api.cache.AddCacheFilter;
 import spark.Request;
@@ -21,8 +21,7 @@ public class RMTRoute {
 	}
 
 	private void setupPort(int argPort) {
-		PropertiesReader props = new PropertiesReader();
-		int port = props.getPort();
+		int port = ConfigHandler.getInstance().getPort();
 		if (argPort != 0) {
 			setPort(argPort);
 			return;
