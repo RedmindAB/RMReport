@@ -11,7 +11,16 @@ public class ChangePortWS extends Route {
 	public ChangePortWS(String path) {
 		super(path);
 	}
-
+	
+	/**
+	 * @api {put} /admin/port/:portnum
+	 * @apiName ScreenshotByFilename
+	 * @apiGroup Admin
+	 * @apiParam {Number} portnum port number that should be set as default port.
+	 * 
+	 * @apiSuccess {boolean} boolean
+	 * 
+	 */
 	@Override
 	public Object handle(Request request, Response response) {
 		ConfigHandler cHandler = ConfigHandler.getInstance();

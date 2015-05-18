@@ -53,11 +53,11 @@ public class ApiRouter {
 		get(new SeleniumGridWS("/api/selenium/griddata"));
 		//added to apidocs, but no result example added.
 		get(new GetDevicesAMonthAgoWS("/api/device/notrunforamonth"));
+		put(new UpdateReportDirWS("/api/admin/reportdir/:index"));
+		put(new ChangePortWS("/api/admin/port/:portnum"));
 		
 		//not added to apidocs
-		post(new ChangePortWS("/api/admin/port/:portnum"));
 		post(new CreateReportDirWS("/api/admin/reportdir"));
-		put(new UpdateReportDirWS("/api/admin/reportdir/:index"));
 		get(new GetConfigWS("/api/admin/config"));
 		get(new CheckForChangeWS("/api/long"));
 	}

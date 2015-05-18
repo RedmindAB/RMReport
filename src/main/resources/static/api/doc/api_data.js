@@ -1,5 +1,110 @@
 define({ "api": [
   {
+    "type": "post",
+    "url": "/admin/reportdir",
+    "title": "",
+    "name": "CreateReportDir",
+    "group": "Admin",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n\t[\"a/nice/path\",\n\t\"another/nice/Path\"]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "boolean",
+            "optional": false,
+            "field": "boolean",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "./src/main/java/se/redmind/rmtest/web/route/api/admin/reportdir/CreateReportDirWS.java",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "put",
+    "url": "/admin/reportdir/:index",
+    "title": "",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "index",
+            "description": "<p>index of the report directory to change.</p> "
+          }
+        ]
+      }
+    },
+    "group": "Admin",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "boolean",
+            "optional": false,
+            "field": "return",
+            "description": "<p>a boolean of success or fail.</p> "
+          }
+        ]
+      }
+    },
+    "description": "<p>set the body of the request to the path that should replace the old path.</p> ",
+    "version": "0.0.0",
+    "filename": "./src/main/java/se/redmind/rmtest/web/route/api/admin/reportdir/UpdateReportDirWS.java",
+    "groupTitle": "Admin",
+    "name": "PutAdminReportdirIndex"
+  },
+  {
+    "type": "put",
+    "url": "/admin/port/:portnum",
+    "title": "",
+    "name": "ScreenshotByFilename",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "portnum",
+            "description": "<p>port number that should be set as default port.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "boolean",
+            "optional": false,
+            "field": "boolean",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "./src/main/java/se/redmind/rmtest/web/route/api/admin/port/ChangePortWS.java",
+    "groupTitle": "Admin"
+  },
+  {
     "type": "get",
     "url": "/class/getclasses",
     "title": "",
