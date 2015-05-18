@@ -15,6 +15,20 @@ public class CreateReportDirWS extends Route {
 		super(path);
 	}
 
+	
+	/**
+	 * @api {post} /admin/reportdir
+	 * @apiName CreateReportDir
+	 * @apiGroup Admin
+	 * @apiParamExample {json} Request-Example:
+	 * 	{
+	 * 		["a/nice/path",
+	 * 		"another/nice/Path"]
+	 * 	}
+ 	 *
+	 * @apiSuccess {boolean} boolean 
+	 * 
+	 */
 	@Override
 	public Object handle(Request request, Response response) {
 		String reportdirs = request.body();

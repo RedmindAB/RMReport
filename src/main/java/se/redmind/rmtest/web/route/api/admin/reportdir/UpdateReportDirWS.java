@@ -11,6 +11,13 @@ public class UpdateReportDirWS extends Route {
 		super(path);
 	}
 
+	/**
+	 * @api {put} /admin/reportdir/:index
+	 * @apiParam {Number} index index of the report directory to change.
+	 * @apiGroup Admin
+	 * @apiSuccess {boolean} return a boolean of success or fail.
+	 * @apiDescription set the body of the request to the path that should replace the old path.
+	 */
 	@Override
 	public Object handle(Request request, Response response) {
 		String path = request.body();
