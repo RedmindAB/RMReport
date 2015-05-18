@@ -143,8 +143,7 @@
 					<td><p class="option-headline">Browsers:&nbsp; &nbsp;</p></td>
 					<td class="option-item option-browser" height='10px'
 						ng-repeat="browser in CurrentSuite.currentSpecObject.browsers track by $index">
-						<input ng-model="browser.chosen" ng-click="Utilities.newContent()"
-						type="checkbox" id="mycheckbox1">
+						<icon-checkbox content="browser"></icon-checkbox>
 						<div id="browser-{{browser.browsername}}" ng-click='setChosen(browser); Utilities.newContent()'
 							class='reports-cursor-inline browser-name'>
 							{{browser.browsername}}</div> <label for="mycheckbox2"></label>
@@ -164,9 +163,10 @@
 					<table width='100%'>
 						<tr>
 							<td class="checkbox-holder">
-								<span ng-if="platform.chosen" class="glyphicon glyphicon-check icon-check" aria-hidden="true"></span>
+								<span ng-if='platform.chosen' class='glyphicon glyphicon-check'></span>
+								<span ng-if='!platform.chosen' class='glyphicon glyphicon-unchecked'></span>
 							</td>
-							<td id="spec-{{platform.osname}}" class="platform-name platform-{{platform.chosen}}" ng-click="Utilities.newContent();togglePlatformChosen(platform)">
+							<td id="spec-{{platform.osname}}" class="platform-name platform-{{platform.chosen}} icon-checkbox-guard" ng-click="Utilities.newContent();togglePlatformChosen(platform)">
 								<p ng-click="Utilities.newContent();togglePlatformChosen(platform)"
 									class="accordion-name-container text-left">
 									{{platform.osname}}
@@ -186,9 +186,8 @@
 								<p class="option-headline">Devices:&nbsp; &nbsp;</p>
 							</td>
 							<td class="option-item option-browser" height='10px'
-								ng-repeat="device in platform.devices track by $index"><input
-								ng-model="device.chosen" ng-click="Utilities.newContent()" type="checkbox"
-								id="mycheckbox">
+								ng-repeat="device in platform.devices track by $index">
+								<icon-checkbox content="device"></icon-checkbox>
 								<div id="device-{{device.devicename}}" ng-click='setChosen(device); Utilities.newContent()'
 									class='reports-cursor-inline device-name'>
 									{{device.devicename}}</div> <label for="mycheckbox"></label>
@@ -201,9 +200,8 @@
 								<p class="option-headline">Versions:&nbsp; &nbsp;</p>
 							</td>
 							<td class="option-item option-browser" height='10px'
-								ng-repeat="version in platform.versions track by $index"><input
-								ng-model="version.chosen" ng-click="Utilities.newContent()"
-								type="checkbox" id="mycheckbox">
+								ng-repeat="version in platform.versions track by $index">
+								<icon-checkbox content="version"></icon-checkbox>
 								<div id="version-{{version.osver}}" ng-click='setChosen(version); Utilities.newContent()'
 									class='reports-cursor-inline version-name'>
 									{{version.osver}}</div> <label for="mycheckbox"></label>
