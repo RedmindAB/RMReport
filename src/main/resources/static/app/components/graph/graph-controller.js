@@ -6,6 +6,10 @@ angular.module('webLog')
     $scope.descTimestamps = [];
     $scope.CurrentSuite = CurrentSuite;
     
+    $scope.newContent = function(){
+    	Utilities.newContent();
+    }
+    
     $scope.highlightPoint = function(timestamp){
     	ChartMaker.highlightPoint(timestamp);
     }
