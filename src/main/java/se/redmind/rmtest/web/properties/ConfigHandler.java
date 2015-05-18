@@ -84,6 +84,11 @@ public class ConfigHandler {
 		JsonArray pathsJson = configJson.getReportPaths();
 		return new Gson().fromJson(pathsJson, String[].class);
 	}
+	
+	public void deleteReportPath(int index) {
+		configJson.getReportPaths().remove(index);
+		autoCommit();
+	}
 
 	public int getPort() {
 		return configJson.getPort();
@@ -106,5 +111,6 @@ public class ConfigHandler {
 	public ConfigJson getConfig(){
 		return configJson;
 	}
+
 
 }
