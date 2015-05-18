@@ -4,6 +4,7 @@ import static spark.Spark.*;
 import se.redmind.rmtest.web.route.api.admin.config.GetConfigWS;
 import se.redmind.rmtest.web.route.api.admin.port.ChangePortWS;
 import se.redmind.rmtest.web.route.api.admin.reportdir.CreateReportDirWS;
+import se.redmind.rmtest.web.route.api.admin.reportdir.DeleteReportDir;
 import se.redmind.rmtest.web.route.api.admin.reportdir.UpdateReportDirWS;
 import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesWS;
 import se.redmind.rmtest.web.route.api.classes.passfail.PassFailClassWS;
@@ -58,6 +59,7 @@ public class ApiRouter {
 		
 		//not added to apidocs
 		post(new CreateReportDirWS("/api/admin/reportdir"));
+		delete(new DeleteReportDir("/api/admin/reportdir/:index"));
 		get(new GetConfigWS("/api/admin/config"));
 		get(new CheckForChangeWS("/api/long"));
 	}
