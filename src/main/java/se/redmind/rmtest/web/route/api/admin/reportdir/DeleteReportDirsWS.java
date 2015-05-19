@@ -20,6 +20,7 @@ public class DeleteReportDirsWS extends Route {
 	@Override
 	public Object handle(Request request, Response response) {
 		JsonArray reportArray = new Gson().fromJson(request.body(), JsonArray.class);
+		System.out.println(reportArray);
 		ConfigHandler cHandler = ConfigHandler.getInstance();
 		ConfigJson config = cHandler.getConfig();
 		JsonArray reportPaths = config.getReportPaths();
@@ -27,6 +28,7 @@ public class DeleteReportDirsWS extends Route {
 		for (JsonElement index : reportArray) {
 			removeArray.add(reportPaths.get(index.getAsInt()));
 		}
+		System.out.println(removeArray);
 		cHandler.removeAllPaths(removeArray);
 		return true;
 	}
