@@ -1,5 +1,7 @@
 package se.redmind.rmtest.web.route.api.admin.reportdir;
 
+import java.io.IOException;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -19,17 +21,27 @@ public class DeleteReportDirsWS extends Route {
 
 	@Override
 	public Object handle(Request request, Response response) {
-		String body = request.body();
-		JsonArray reportArray = new Gson().fromJson(body, JsonArray.class);
-		ConfigHandler cHandler = ConfigHandler.getInstance();
-		ConfigJson config = cHandler.getConfig();
-		JsonArray reportPaths = config.getReportPaths();
-		JsonArray removeArray = new JsonArray();
-		for (JsonElement index : reportArray) {
-			removeArray.add(reportPaths.get(index.getAsInt()));
+		try {
+			String body = request.body();
+			JsonArray reportArray = new Gson().fromJson(body, JsonArray.class);
+			ConfigHandler cHandler = ConfigHandler.getInstance();
+			ConfigJson config = cHandler.getConfig();
+			JsonArray reportPaths = config.getReportPaths();
+			JsonArray removeArray = new JsonArray();
+			for (JsonElement index : reportArray) {
+				removeArray.add(reportPaths.get(index.getAsInt()));
+			}
+			cHandler.removeAllPaths(removeArray);
+			return true;
+		} catch (Exception e) {
+			try {
+				response.raw().sendError(417, e.getMessage());
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			response.status(417);
+			return response;
 		}
-		cHandler.removeAllPaths(removeArray);
-		return true;
 	}
 
 }
