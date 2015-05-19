@@ -1,5 +1,8 @@
 package se.redmind.rmtest.web.route.api.admin.reportdir;
 
+import java.io.IOException;
+
+import se.redmind.rmtest.util.FileUtil;
 import se.redmind.rmtest.web.properties.ConfigHandler;
 import spark.Request;
 import spark.Response;
@@ -23,8 +26,21 @@ public class UpdateReportDirWS extends Route {
 		String path = request.body();
 		String index = request.params("index");
 		ConfigHandler cHandler = ConfigHandler.getInstance();
-		cHandler.updateReportPath(Integer.valueOf(index), path);
-		return true;
+		boolean directoryExists = FileUtil.directoryExists(path);
+		if (directoryExists) {
+			cHandler.updateReportPath(Integer.valueOf(index), path);
+			return true;
+		}
+		else {
+			try {
+				response.raw().sendError(417, "Path do not exist:"+path);
+				response.status(417);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return response;
+		}
 	}
 
 }
