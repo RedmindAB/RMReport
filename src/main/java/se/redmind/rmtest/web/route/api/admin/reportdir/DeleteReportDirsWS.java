@@ -28,7 +28,7 @@ public class DeleteReportDirsWS extends Route {
 			removeArray.add(reportPaths.get(index.getAsInt()));
 		}
 		cHandler.removeAllPaths(removeArray);
-		return null;
+		return true;
 	}
 
 }
