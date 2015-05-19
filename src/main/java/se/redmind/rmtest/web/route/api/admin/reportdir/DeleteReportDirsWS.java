@@ -19,7 +19,9 @@ public class DeleteReportDirsWS extends Route {
 
 	@Override
 	public Object handle(Request request, Response response) {
-		JsonArray reportArray = new Gson().fromJson(request.body(), JsonArray.class);
+		String body = request.body();
+		System.out.println(body);
+		JsonArray reportArray = new Gson().fromJson(body, JsonArray.class);
 		System.out.println(reportArray);
 		ConfigHandler cHandler = ConfigHandler.getInstance();
 		ConfigJson config = cHandler.getConfig();
