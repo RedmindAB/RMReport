@@ -28,7 +28,6 @@ public class GetClassesWSTest extends WSSetupHelper{
 		Gson gson = new Gson();
 		JsonArray array = gson.fromJson(result.toString(), JsonArray.class);
 		assertEquals(2, array.size());
-
 	}
 
 }

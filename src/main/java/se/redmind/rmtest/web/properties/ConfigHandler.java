@@ -2,6 +2,7 @@ package se.redmind.rmtest.web.properties;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 
 public class ConfigHandler {
@@ -110,6 +111,13 @@ public class ConfigHandler {
 	
 	public ConfigJson getConfig(){
 		return configJson;
+	}
+
+	public void removeAllPaths(JsonArray removeArray) {
+		for (JsonElement jsonElement : removeArray) {
+			configJson.getReportPaths().remove(jsonElement);
+		}
+		autoCommit();
 	}
 
 
