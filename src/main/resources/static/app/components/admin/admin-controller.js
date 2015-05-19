@@ -83,9 +83,9 @@ angular.module('webLog')
 	}
 	
 	function removePaths(){
-		var request = $scope.configCompare.removeList;
+		var request = [0];
 		console.log(request);
-		$http.delete('/api/admin/reportdir', request)
+		$http.delete('/api/admin/reportdir', {data:request})
 		.success(function(data, status, headers, config){
 		}).error(function(data, status, headers, config){
    		console.error(data);
