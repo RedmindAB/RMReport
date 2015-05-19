@@ -56,9 +56,9 @@ public class ApiRouter {
 		get(new GetDevicesAMonthAgoWS("/api/device/notrunforamonth"));
 		put(new UpdateReportDirWS("/api/admin/reportdir/:index"));
 		put(new ChangePortWS("/api/admin/port/:portnum"));
+		post(new CreateReportDirWS("/api/admin/reportdir"));
 		
 		//not added to apidocs
-		post(new CreateReportDirWS("/api/admin/reportdir"));
 		delete(new DeleteReportDir("/api/admin/reportdir/:index"));
 		get(new GetConfigWS("/api/admin/config"));
 		get(new CheckForChangeWS("/api/long"));
