@@ -54,6 +54,7 @@ public class ApiRouter {
 		get(new ScreenshotStructureWS("/api/screenshot/structure"));
 		get(new ScreenshotByFilenameWS("/api/screenshot/byfilename"));
 		get(new SeleniumGridWS("/api/selenium/griddata"));
+		
 		//added to apidocs, but no result example added.
 		get(new GetDevicesAMonthAgoWS("/api/device/notrunforamonth"));
 		put(new UpdateReportDirWS("/api/admin/reportdir/:index"));
