@@ -31,13 +31,28 @@
 				            <!-- Content in collapsing Div -->
 				            
 								<div ng-if="method.screenshotLength > 0" style="width:{{getMethodContentWidth(method)}}px;" class="screenshot-view">
-										<div ng-repeat="case in method.testcases | orderBy:['result','device','browser'] track by $index" ng-style="{'background-color': getBgCo(case.result)}" class='panel'>
-											<div ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index' style='display:inline-block;margin:20px 0px 20px 20px;vertical-align:top;overflow:scroll;height:150px'>
-												{{case.device}} - {{case.browser}}
-												<p style='margin-left:5px;margin-bottom:-2px' ng-if='case.screenshots[$index] !== undefined'>{{getScreenshotOrder(case.screenshots[$index])}}</p>
-												<img id='screenshot{{$index}}' ng-click='setCurrentMethod(method); setSlides(method.testcases, $index, $parent.$index); toggleModal();' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img>							
-											</div>
-										</div>
+									<table id='table_{{$index}}' class='table_screenhots' id='table{{$index}}'> 
+										<tr ng-style="{'background-color': getBgCo(case.result)}" class='panel screenshot-methods-table'>
+											<td ng-repeat="case in method.testcases | orderBy:['result','device','browser'] track by $index">
+												<div ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index' style='display:inline-block;height:180px;overflow:hidden'>
+													<p ng-if='case.screenshots[$index] !== undefined && $index !== 1'>{{case.device}} - {{case.browser}}</p>
+													<p style='margin-left:5px;margin-bottom:-2px' ng-if='case.screenshots[$index] !== undefined && $index !== 1'>{{getScreenshotOrder(case.screenshots[$index])}}</p>
+													<img style='max-height:430px' id='screenshot{{$index}}' ng-if='case.screenshots[$index] !== undefined && $index !== 1' ng-click='setCurrentMethod(method); setSlides(method.testcases, $index, $parent.$index); toggleModal();' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img><br><br>									
+												</div>
+											</td>
+										</tr>
+										<tr ng-style="{'background-color': getBgCo(case.result)}" class='panel screenshot-methods-table' >
+											<td ng-repeat="case in method.testcases | orderBy:['result','device','browser'] track by $index" style='vertical-align:top'>
+												<div ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index' style='display:inline-block;height:180px;'>
+													<p ng-if='case.screenshots[$index] !== undefined && $index !== 0'>{{case.device}} - {{case.browser}}</p>
+													<p style='margin-left:5px;margin-bottom:-2px' ng-if='case.screenshots[$index] !== undefined && $index !== 0'>{{getScreenshotOrder(case.screenshots[$index])}}</p>
+													<div style='height:180px;overflow:scroll'>
+														<img id='screenshot{{$index}}' ng-if='case.screenshots[$index] !== undefined && $index !== 0' ng-click='setCurrentMethod(method); setSlides(method.testcases, $index, $parent.$index); toggleModal();' width='200px' ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"></img><br><br>									
+													</div>
+												</div>
+											</td>
+										</tr>
+									</table>
 								</div>
 							
 								<p ng-if="method.screenshotLength === 0" class="no-screenshot">No screenshots taken</p>
