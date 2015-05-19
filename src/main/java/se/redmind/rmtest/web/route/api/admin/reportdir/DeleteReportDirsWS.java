@@ -25,8 +25,7 @@ public class DeleteReportDirsWS extends Route {
 			String body = request.body();
 			JsonArray reportArray = new Gson().fromJson(body, JsonArray.class);
 			ConfigHandler cHandler = ConfigHandler.getInstance();
-			ConfigJson config = cHandler.getConfig();
-			JsonArray reportPaths = config.getReportPaths();
+			JsonArray reportPaths = cHandler.getConfig().getReportPaths();
 			JsonArray removeArray = new JsonArray();
 			for (JsonElement index : reportArray) {
 				removeArray.add(reportPaths.get(index.getAsInt()));
