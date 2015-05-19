@@ -4,13 +4,18 @@ angular.module('webLog')
 	$scope.config = {};
 	$scope.configCompare = {}
 	$scope.newPath = '';
+	$scope.errorMessages = [];
 	
 	var requestObj = {};
 
 	loadRootConfig();
 	
 	$scope.addPath = function(path){
-		$scope.configCompare.reportPaths.push(path);
+		if (!pathExists(path)) {
+			$scope.configCompare.reportPaths.push(path);
+		} else {
+			$scope.errorMessages.push({index: -1, message: "Path allready exists"});
+		}
 		$scope.newPath = '';
 	}
 	
@@ -41,6 +46,7 @@ angular.module('webLog')
 	}
 	
 	$scope.saveChanges = function(){
+		$scope.errorMessages = [];
 		addPaths();
 		changePaths();
 		removePaths();
@@ -49,13 +55,12 @@ angular.module('webLog')
 	
 	function changePaths(){
 		for (var i = 0; i < $scope.configCompare.reportPaths.length; i++) {
-			if ($scope.isPathChanged(i)) {
-				console.log("changing stuff");
+			if ($scope.isPathChanged(i) && !$scope.isToBeRemoved(i)) {
 				var request = $scope.configCompare.reportPaths[i];
 				$http.put('/api/admin/reportdir/'+i, request)
 		   		.success(function(data, status, headers, config){
 		   		}).error(function(data, status, headers, config){
-			   		console.error(data);
+			   		$scope.errorMessages.push({index: getIndexFromError(config.url), message: "Path did not exist"});
 		   		});
 			}
 		}
@@ -74,7 +79,7 @@ angular.module('webLog')
 			$http.post('/api/admin/reportdir', request)
 			.success(function(data, status, headers, config){
 			}).error(function(data, status, headers, config){
-	   		console.error(data);
+				$scope.errorMessages.push({index: -1, message: "An added path was incorrect"});
 			});
 		}
 		for (var i = 0; i < request.length; i++) {
@@ -83,8 +88,7 @@ angular.module('webLog')
 	}
 	
 	function removePaths(){
-		var request = [0];
-		console.log(request);
+		var request = $scope.configCompare.removeList;
 		$http.delete('/api/admin/reportdir', {data:request})
 		.success(function(data, status, headers, config){
 		}).error(function(data, status, headers, config){
@@ -102,5 +106,28 @@ angular.module('webLog')
 	
 	$scope.isNewPath = function(index){
 		return index >= $scope.config.reportPaths.length;
+	}
+	
+	function pathExists(path){
+		for (var i = 0; i < $scope.configCompare.reportPaths.length; i++) {
+			if ($scope.configCompare.reportPaths[i] === path) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	$scope.readErrorMessage = function(index){
+		for (var i = 0; i < $scope.errorMessages.length; i++) {
+			if ($scope.errorMessages[i].index === index) {
+				return $scope.errorMessages[i].message;
+			}
+		}
+	}
+	
+	function getIndexFromError(msg){
+		var i = msg.lastIndexOf("/");
+		var index = parseInt(msg.substring(i+1));
+		return index;
 	}
 }]);
