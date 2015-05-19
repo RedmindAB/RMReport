@@ -1,47 +1,55 @@
 <div>
 	<p style="font-size:2em">Paths to projects</p>
-	<div ng-repeat="path in config.reportPaths track by $index" class="row admin-input">
+	<div ng-repeat="path in configCompare.reportPaths track by $index" class="row admin-input">
 		<div class="col-md-4">
 			<input 
-				type="text" id="new project path"
+				type="text" id="existing-project-path"
 				class="form-control tool-tip uneditable-input"
-				ng-model="path"
+				ng-model="configCompare.reportPaths[$index]"
+				ng-class="{
+					'validate-change': isPathChanged($index),
+					'validate-new': isNewPath($index),
+					'validate-remove': isToBeRemoved($index)
+				}"
 				title="Existing project path">
 			</input>
 		</div>
 		<div class="col-md-1" style="width:auto">
-			<span 
+			<span
+				id="remove-path"
 				class="glyphicon glyphicon-remove remove-icon tool-tip" 
 				ng-click='removePath($index)' 
-				style='cursor:pointer; font-size:2.2em'
-				title="Remove path">
+				title="Tag for removal">
 			</span>
-		</div>
-		<div class="col-md-2">
-			<button 
-				id='add-project'
-				class='btn btn-default'
-				ng-click="changePath(path, $index)">
-				Save changes
-			</button>
 		</div>
 	</div>
 	<div class="row admin-input">
 		<div class="col-md-4">
 			<input 
-				type="text" id="new project path"
+				type="text" id="new-project-path"
 				class="form-control tool-tip"
-				ng-model='newPath' placeholder="New project path"
-				title="Enter complete path to new project report folder">
+				ng-model='newPath' placeholder="New project reports path"
+				title="Enter complete path to new project reports folder">
 			</input>
 		</div>
 		<div class="col-md-2">
 			<button 
 				id='add-project'
-				class='btn btn-default'
-				ng-click="addPath(newPath)">
+				class='btn btn-default tool-tip'
+				ng-click="addPath(newPath)"
+				title="Tag for adding">
 				Add project
 			</button>
 		</div>
 	</div>
+		<div class="row">
+		<div class="col-md-2">
+			<button 
+				id='save-changes'
+				class='btn btn-default'
+				ng-click="saveChanges()">
+				Save changes
+			</button>
+		</div>
+		</div>
 </div>
