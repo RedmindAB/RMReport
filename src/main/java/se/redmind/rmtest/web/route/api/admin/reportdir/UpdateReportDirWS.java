@@ -24,7 +24,7 @@ public class UpdateReportDirWS extends Route {
 		String index = request.params("index");
 		ConfigHandler cHandler = ConfigHandler.getInstance();
 		cHandler.updateReportPath(Integer.valueOf(index), path);
-		return null;
+		return true;
 	}
 
 }

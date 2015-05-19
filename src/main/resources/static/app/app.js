@@ -58,6 +58,6 @@ angular.module('webLog', ['ui.router','ui.bootstrap',"highcharts-ng", 'ngAnimate
 		.state('admin',{
 		    url:'/admin',
 		    templateUrl: 'app/components/admin/admin.html',
-		    controller: ''
+		    controller: 'AdminCtrl'
 		});
     });
