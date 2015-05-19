@@ -83,14 +83,13 @@ angular.module('webLog')
 	}
 	
 	function removePaths(){
-		for (var i = 0; i < $scope.configCompare.removeList.length; i++) {
-			var index = $scope.configCompare.removeList[i];
-			$http.delete('/api/admin/reportdir/'+index)
-			.success(function(data, status, headers, config){
-			}).error(function(data, status, headers, config){
-	   		console.error(data);
-			});
-		}
+		var request = $scope.configCompare.removeList;
+		console.log(request);
+		$http.delete('/api/admin/reportdir', request)
+		.success(function(data, status, headers, config){
+		}).error(function(data, status, headers, config){
+   		console.error(data);
+		});
 	}
 	
 	$scope.isToBeRemoved = function(index){
