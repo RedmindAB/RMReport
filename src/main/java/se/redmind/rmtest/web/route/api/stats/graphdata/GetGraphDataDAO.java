@@ -23,6 +23,7 @@ public class GetGraphDataDAO {
 	private boolean error = false;
 
 	public String getGraphData(JsonArray paramsArray){
+		//Init the local variables, so that we know what suite_id and limit there is to this request.
 		initLocalVariables(paramsArray);
 		if (error) {
 			return checkErrors(getFirstJson(paramsArray)).toString();
@@ -30,12 +31,15 @@ public class GetGraphDataDAO {
 		ReadStatsFromReport reportStats = new ReadStatsFromReport();
 		GraphDataBuilder graphBuilder = new GraphDataBuilder();
 		JsonArray resultArray = new JsonArray();
+		//Get all the timestamps from now to the result limit.
 		ResultSet timestamps = reportStats.getTimestamps(reslimit, suite_id);
-		
+		//sort the timestamps
 		graphBuilder.generateTimestampList(timestamps);
 		for (JsonElement params : paramsArray) {
 			JsonObject paramsAsObject = params.getAsJsonObject();
+			//Get the name of this dataset (a line on the graph, showed as a legend).
 			String name = paramsAsObject.get("name").getAsString();
+			//Get the data from the database, save each row to a JsonObject and map it with a timestamp.
 			HashMap<Long, JsonObject> graphData = reportStats.getGraphDataAsHashMap(paramsAsObject, graphBuilder.getMinTimestamp());
 			JsonArray dataArray = graphBuilder.getDataArray(graphData);
 			if (dataArray != null) {

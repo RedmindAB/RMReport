@@ -28,8 +28,8 @@ public class Main {
 		//Searches though the report directory for reports that are not added yet.
 		String[] testDirectories = ConfigHandler.getInstance().getReportPaths();
 		int addedreports = 0;
-		for (String string : testDirectories) {
-			addedreports += new ReportInit(string).initReports();
+		for (String path : testDirectories) {
+			addedreports += new ReportInit(path).initReports();
 		}
 		System.out.println("Added "+addedreports+" reports.");
 		//init the In Memory DB

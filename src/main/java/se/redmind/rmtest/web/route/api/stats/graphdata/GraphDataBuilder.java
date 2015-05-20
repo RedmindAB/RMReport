@@ -41,6 +41,7 @@ public class GraphDataBuilder {
 		if (graphData.size()<1) {
 			return null;
 		}
+		//iterate through all timestamps and add the graphData to the result array.
 		for (Long timestamp : timestampArray) {
 			graphDataToReturn.add(getJsonFromTimestamp(timestamp, graphData));
 		}
@@ -53,6 +54,7 @@ public class GraphDataBuilder {
 
 	private JsonObject getJsonFromTimestamp(long timestamp, HashMap<Long, JsonObject> graphData){
 		JsonObject data = null; 
+		//If the timestamp dose not exist in the graphData from the database. mark the timestamp as a skipped run.
 		if ((data = graphData.get(timestamp)) == null) {
 			data = new JsonObject();
 			data.add("timestamp", new JsonPrimitive(timestamp));
