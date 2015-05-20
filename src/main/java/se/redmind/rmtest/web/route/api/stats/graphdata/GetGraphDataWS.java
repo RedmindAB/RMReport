@@ -58,7 +58,7 @@ public class GetGraphDataWS extends Route {
 	 *	"name":"Aggregation",
 	 *	"data":[
 	 *			{
-	 *			"timestamp":20150313164647,
+	 *			"timestamp":20150513164647,
 	 *			"time":13.307,
 	 *			"pass":4,
 	 *			"fail":0,
@@ -66,7 +66,7 @@ public class GetGraphDataWS extends Route {
 	 *			"skipped":0
 	 *			},
 	 *			{
-	 *			"timestamp":20150313165619,
+	 *			"timestamp":20150513165619,
 	 *			"time":14.871,
 	 *			"pass":4,
 	 *			"fail":0,
@@ -74,7 +74,7 @@ public class GetGraphDataWS extends Route {
 	 *			"skipped":0
 	 *			},
 	 *			{
-	 *			"timestamp":20150316092847,
+	 *			"timestamp":20150516092847,
 	 *			"time":20.255000000000003,
 	 *			"pass":4,
 	 *			"fail":0,

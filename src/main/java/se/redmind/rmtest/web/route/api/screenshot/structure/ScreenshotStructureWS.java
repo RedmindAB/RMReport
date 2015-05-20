@@ -51,7 +51,7 @@ public class ScreenshotStructureWS extends Route {
 	 *				result: "passed",
 	 *				browser: "chrome",
 	 *				screenshots: [
-	 *					"se.redmind.rmtest.selenium.example.GoogleExample.testGoogle2-20150313164647[OSX_UNKNOWN_UNKNOWN_chrome_UNKNOWN].png"
+	 *					"se.redmind.rmtest.selenium.example.GoogleExample.testGoogle2-20150513164647[OSX_UNKNOWN_UNKNOWN_chrome_UNKNOWN].png"
 	 *				]
 	 *			},
 	 *			{
@@ -59,7 +59,7 @@ public class ScreenshotStructureWS extends Route {
 	 *				result: "passed",
 	 *				browser: "firefox",
 	 *				screenshots: [
-	 *					"se.redmind.rmtest.selenium.example.GoogleExample.testGoogle2-20150313164647[OSX_UNKNOWN_UNKNOWN_firefox_UNKNOWN].png"
+	 *					"se.redmind.rmtest.selenium.example.GoogleExample.testGoogle2-20150513164647[OSX_UNKNOWN_UNKNOWN_firefox_UNKNOWN].png"
 	 *				]
 	 *			}
 	 *		]
