@@ -1,143 +1,106 @@
+	<!-- project logo -->
 <div class="screenshot-nav-container">
-
-	<!-- Go back button -->
 	<div class="screenshot-nav-left">
-		<h4 
-			id='go_to_classes' 
-			class="screenshot-nav" 
-			ng-click="setState('screenshots.classes')">
-			Choose another class
-		</h4>
+		<h4 id='go_to_classes' class="screenshot-nav" ng-click="setState('screenshots.classes')">Choose another class</h4>
 	</div>
-	
-	<!-- Current possition -->
 	<div class="screenshot-nav-center">
-		<h4 class="screenshot-nav">
-			{{removePackagePath(CurrentSuite.currentClass.name)}}
-		</h4>
+		<h4 class="screenshot-nav">{{removePackagePath(CurrentSuite.currentClass.name)}}</h4>
 	</div>
 </div>
 <div>
-	
-	<!-- Console prints modal link -->
-	<p
+	<p 
 		id='syso-header' 
 		class='accordion-name-container' 
 		style='cursor:pointer' 
 		ng-click='getConsolePrint();toggleModal2();'>
-		Console prints
+		System out prints
 	</p>
 	
 	<h1 ng-if="noScreenShotsExists()">
 		No screenshots taken in this build
 	</h1>
-	
-	<!-- Screenshots container -->
+
 	<accordion close-others="false">
 	    <div 
 	    	ng-if="containsScreenshots(method)" 
 	    	class='noselect' 
 	    	ng-repeat="method in ScreenshotMaster.data | orderBy:['-stats.totFail','result','name']">
 	        <accordion-group style="margin-top:10px;padding:0px;" ng-class='getPanel(method.result)' >
-	        
-	        	<!-- Method info -->
 	            <accordion-heading>
 					<div id='method-{{$index}}' class="accordion-toggle" style="display:inline-block;width:100%">
 						<p 
 							class="accordion-name-container text-left" 
-							style="margin:0px" ng-style="{'color' : getCo(method.result)}">
+							style="margin:0px" 
+							ng-style="{'color' : getCo(method.result)}">
 							{{method.name}}&nbsp;&nbsp;Screenshots: {{method.screenshotLength}}
 						</p>
 						<p 
 							class="accordion-name-container text-right" 
 							style="margin:0px" ng-style="{'color' : getCo(method.result)}">
-							Skipped: {{method.skipped}} Failed: {{method.stats.totFail}}
+							&nbsp;Skipped: {{method.skipped}} Failed: {{method.stats.totFail}}
 						</p>
-          			</div>
+          				</div>
 	            </accordion-heading>
 	            
-	            <!-- Screenshots -->
-				<div ng-if="method.screenshotLength > 0" style="width:{{getMethodContentWidth(method)}}px;" class="screenshot-view">
-					<table id='table_{{$index}}' class='table_screenhots'> 
-						<tr ng-style="{'background-color': getBgCo(case.result)}" class='panel screenshot-methods-table'>
-							<td ng-repeat="case in method.testcases | orderBy:['result','device','browser'] track by $index">
-								<div 
-									ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index' 
-									style='display:inline-block;height:180px;overflow:hidden'>
-									<p ng-if='case.screenshots[$index] !== undefined && $index !== 1'>
-										{{case.device}} - {{case.browser}}
-									</p>
-									<p 
-										style='margin-left:5px;margin-bottom:-2px' 
-										ng-if='case.screenshots[$index] !== undefined && $index !== 1'>
-										{{getScreenshotOrder(case.screenshots[$index])}}
-									</p>
-									<img 
-										style='max-height:430px' 
-										id='screenshot{{$index}}' 
-										ng-if='case.screenshots[$index] !== undefined && $index !== 1' 
-										width='200px' 
-										ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"
-										ng-click='setCurrentMethod(method); 
-												setSlides(method.testcases, $index, $parent.$index); 
-												toggleModal();' />
-										
-										<br>
-										<br>
-								</div>
+	            <div 
+	            	ng-if="method.screenshotLength > 0" 
+	            	style="width:{{getMethodContentWidth(method)}}px;" 
+	            	class="screenshot-view">
+					<table style="margin-top:5px; margin-bottom:5px;border-collapse: separate;border-spacing: 10px 0px;">
+						<tr>
+							<td 
+								ng-repeat="case in method.testcases" 
+								ng-style="{'background-color': getBgCo(case.result)}" 
+								class='panel screenshot-td screenshot-background-top'>
+								{{case.device}}
 							</td>
 						</tr>
-						<tr ng-style="{'background-color': getBgCo(case.result)}" class='panel screenshot-methods-table' >
+						<tr 
+							ng-repeat="screenshot in makeArray(method.screenshotLength) track by $index" 
+							ng-init="screenshotIndex = $index">
 							<td 
-								ng-repeat="case in method.testcases | orderBy:['result','device','browser'] track by $index" 
-								style='vertical-align:top'>
-								<div ng-repeat='screenshot in getNumber(method.screenshotLength) track by $index' style='display:inline-block;height:180px;'>
-									<p ng-if='case.screenshots[$index] !== undefined && $index !== 0'>
-										{{case.device}} - {{case.browser}}
-									</p>
-									<p style='margin-left:5px;margin-bottom:-2px' ng-if='case.screenshots[$index] !== undefined && $index !== 0'>{{getScreenshotOrder(case.screenshots[$index])}}</p>
-									<div style='height:180px;overflow:scroll'>
-										<img 
-											id='screenshot{{$index}}' 
-											ng-if='case.screenshots[$index] !== undefined && $index !== 0' 
-											ng-src="{{getScreenshotsFromFileName(case.screenshots[$index])}}"
-											ng-click='setCurrentMethod(method); 
-													setSlides(method.testcases, $index, $parent.$index); 
-													toggleModal();' width='200px' />
-											
-											<br>
-											<br>									
-									</div>
-								</div>
+								ng-repeat="case in method.testcases" 
+								style="vertical-align:top;" 
+								ng-style="{'background-color': getBgCo(case.result)}" 
+								ng-class="isLastIndex(screenshotIndex, method.screenshotLength) ? 'screenshot-background-bot': 'screenshot-background-mid'">
+								<p 
+									style='margin-left:5px;margin-bottom:-2px' 
+									ng-if='case.screenshots[$parent.$index] !== undefined'>
+									{{getScreenshotOrder(case.screenshots[screenshotIndex])}}
+								</p>
+								<img 
+									style='max-height:430px; vertical-align:top;' 
+									id='screenshot{{screenshotIndex}}-{{$index}}' 
+									ng-click='setCurrentMethod(method); 
+											setSlides(method.testcases, $index, screenshotIndex); 
+											toggleModal();' 
+									width='200px' 
+									ng-src="{{getScreenshotsFromFileName(case.screenshots[screenshotIndex])}}"/>
+									
+									<br>
+									<br>
 							</td>
 						</tr>
 					</table>
 				</div>
-			
-				<p ng-if="method.screenshotLength === 0" class="no-screenshot">
-					No screenshots taken
-				</p>
 	        </accordion-group>
 	    </div>
-	    <!-- repeated content  End-->
 	</accordion>
 </div>
 
 <!-- Console print modal -->
 <modal-dialog-sysos 
-	id='modal_dialog' 
 	width='100%' 
+	id='modal_dialog' 
 	toggle='toggleModal2()' 
 	show='modalShown2'
 	height='40%' 
 	style='background-color : transparent;color:white' 
 	toggle-modal="toggleModal2()">
 	<h1 id='syso-header' align='center'>
-		System out prints
+		Console prints
 	</h1>
-	
 	<br>
-	
 	<div class="container slider" style='color:black;font-size:20px;'>
 		<table align='center' style='margin-top:20px'>
 			<tr>
@@ -149,7 +112,7 @@
 	</div>
 </modal-dialog-sysos>
 
-<!-- Screenshot modal -->
+<!-- Screeshot modal -->
 <modal-dialog 
 	id='modal_dialog' 
 	toggle='toggleModal()' 
@@ -159,7 +122,7 @@
 		<div>
 		<h1 align='center' class='white'>
 			{{currentMethod.name}}
-			</br>
+			<br/>
 			{{getCurrentSlideInfo()}}	
 		</h1>
 		</div>
@@ -180,8 +143,18 @@
 		</div>
 	<br>
 	<div class="container2" style='width:100%'>
-		<a id='arrow_prev' class="arrow prev" href="#" ng-click="nextSlide()"></a>
-		<a id='arrow_next' class="arrow next" href="#" ng-click="prevSlide()"></a>
+		<a 
+			id='arrow_prev' 
+			class="arrow prev" 
+			href="#" 
+			ng-click="nextSlide()">
+		</a>
+		<a 
+			id='arrow_next' 
+			class="arrow next"
+			href="#" 
+			ng-click="prevSlide()">
+		</a>
 	</div>
 	<div class="container slider">
 		<img 

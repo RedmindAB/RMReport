@@ -161,6 +161,11 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
      $scope.getConsolePrint = function(){
     	 RestLoader.getConsolePrint();
      }
+     
+     $scope.isLastIndex = function(index,length){
+    	 return index+1 === length;
+     }
+     
 }])
 .animation('.slide-animation', function () {
         return {
