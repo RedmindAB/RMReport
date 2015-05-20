@@ -14,7 +14,7 @@ angular.module('webLog')
 		if (!pathExists(path)) {
 			$scope.configCompare.reportPaths.push(path);
 		} else {
-			$scope.errorMessages.push({index: -1, message: "Path allready exists"});
+			$scope.errorMessages.push({index: -1, message: "Path already exists"});
 		}
 		$scope.newPath = '';
 	}

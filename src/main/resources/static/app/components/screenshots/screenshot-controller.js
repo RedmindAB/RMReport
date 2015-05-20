@@ -6,11 +6,6 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	$scope.caseArraySize = [];
 	$scope.noScreenshotsExists = false;
 	
-	$scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-		$scope.modalShown = false;
-		$scope.modalShown2 = false;
-	});
-	
 	$scope.noScreenShotsExists = function(){
 		return ScreenshotMaster.data.screenshotsExists !== undefined && ScreenshotMaster.data.screenshotsExists === false;
 	}
@@ -161,6 +156,11 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
      $scope.getConsolePrint = function(){
     	 RestLoader.getConsolePrint();
      }
+     
+     $scope.isLastIndex = function(index,length){
+    	 return index+1 === length;
+     }
+     
 }])
 .animation('.slide-animation', function () {
         return {

@@ -1,4 +1,5 @@
-angular.module('webLog').controller('NavBarCtrl', ['$scope', '$state', '$window', 'ChartMaker', 'RestLoader', 'Utilities', 'CurrentSuite', function($scope, $state,$window, ChartMaker, RestLoader, Utilities, CurrentSuite){
+angular.module('webLog')
+.controller('NavBarCtrl', ['$scope', '$state', '$window', 'ChartMaker', 'RestLoader', 'Utilities', 'CurrentSuite', function($scope, $state,$window, ChartMaker, RestLoader, Utilities, CurrentSuite){
 	
 	$scope.CurrentSuite = CurrentSuite;
 	
@@ -46,6 +47,4 @@ angular.module('webLog').controller('NavBarCtrl', ['$scope', '$state', '$window'
     		return CurrentSuite.currentSuiteInfo.name;
     	}
     }
-   
-    
 }])

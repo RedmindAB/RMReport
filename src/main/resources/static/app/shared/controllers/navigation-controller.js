@@ -22,15 +22,6 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 	}
 	
 	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
-		//$scope.isActive(toState);
-		/*console.log(toState.name);
-		if(toState.name === "reports.classes"){
-			$(".reports").removeClass("disabled");
-		}
-		else{
-			$(".reports").addClass("disabled");
-		}*/
-//		collapseNavbar();
 		Utilities.searchField = '';
 		Utilities.resetSorting();
 		CurrentSuite.clearChosenClasses();

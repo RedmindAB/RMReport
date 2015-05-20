@@ -1,45 +1,147 @@
-<div class="navbar navbar-default yamm" ng-controller="NavBarCtrl"
+<div 
+	class="navbar navbar-default yamm" 
+	ng-controller="NavBarCtrl" 
 	style='position: fixed; z-index: 9999; width: 100%'>
 	<div class="navbar-header">
-		<a id='home' ng-href="#/"><img src='assets/img/logos/logo.png' class='home navbar-brand'></img></a>
-		<button type="button" data-toggle="collapse" data-target="#navbar-collapse-2" class="navbar-toggle" style='float: left'>
-			<span class="icon-bar"></span><span class="icon-bar"></span>
+	
+		<!-- Logo -->
+		<a id='home' ng-href="#/">
+			<img src='assets/img/logos/logo.png' class='home navbar-brand'/>
+		</a>
+		
+		<!-- Hamburger -->
+		<button 
+			type="button" 
+			data-toggle="collapse" 
+			data-target="#navbar-collapse-2" 
+			class="navbar-toggle" 
+			style='float: left'>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
 	</div>
+	
+	<!-- Navigation Links -->
 	<div id="navbar-collapse-2" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
+			<!-- Dashboard -->
 			<li id='dash' role="presentation" ng-class="{'active': isActive('home')}">
-				<a id='dash_view' ng-click="goToDashboardView();" ng-style="{'color': getNavColor('home')}" ng-attr-data-toggle="{{isSmallWindowToggle()}}" data-target=".navbar-collapse"> Dashboard</a>
+				<a 
+					id='dash_view' 
+					ng-click="goToDashboardView();" 
+					ng-style="{'color': getNavColor('home')}" 
+					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
+					data-target=".navbar-collapse"> 
+					Dashboard
+				</a>
 			</li>
+			
+			<!-- Reports -->
 			<li id='reports' class='reports' role="presentation" ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('reports')}" ng-class="">
-				<a id='reports_view' ng-click="goToGraphView()" ng-style="{'color': getNavColor('reports')}" ng-attr-data-toggle="{{isSmallWindowToggle()}}" data-target=".navbar-collapse"> Reports </a>
+				<a 
+					id='reports_view' 
+					ng-click="goToGraphView()" 
+					ng-style="{'color': getNavColor('reports')}" 
+					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
+					data-target=".navbar-collapse"> 
+					Reports
+				</a>
 			</li>
+			
+			<!-- Visualizer -->
 			<li id='visual' class='visual' role="presentation" ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('screenshots')}">
-				<a id='visual_view' ng-click="goToScreenshotView()" ng-style="{'color': getNavColor('screenshots')}" ng-attr-data-toggle="{{isSmallWindowToggle()}}" data-target=".navbar-collapse"> Visualizer</a>
+				<a 
+					id='visual_view' 
+					ng-click="goToScreenshotView()" 
+					ng-style="{'color': getNavColor('screenshots')}" 
+					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
+					data-target=".navbar-collapse">
+					Visualizer
+				</a>
 			</li>
+			
+			<!-- Grid -->
 			<li id='grid' class='grid' role="presentation" ng-class="{'active': isActive('grid')}">
-				<a id='grid_view' ng-click="goToGridView()" ng-style="{'color': getNavColor('grid')}" ng-attr-data-toggle="{{isSmallWindowToggle()}}" data-target=".navbar-collapse"> Grid </a>
+				<a 
+					id='grid_view' 
+					ng-click="goToGridView()" 
+					ng-style="{'color': getNavColor('grid')}" 
+					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
+					data-target=".navbar-collapse"> 
+					Grid
+				</a>
 			</li>
+			
+			<!-- Admin -->
 			<li id='admin' class='admin' role="presentation" ng-class="{'active': isActive('admin')}">
-				<a id='admin_view' ng-click="setState('admin');" ng-style="{'color': getNavColor('admin')}" ng-attr-data-toggle="{{isSmallWindowToggle()}}" data-target=".navbar-collapse"> Admin </a>
+				<a 
+					id='admin_view' 
+					ng-click="setState('admin');" 
+					ng-style="{'color': getNavColor('admin')}" 
+					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
+					data-target=".navbar-collapse"> 
+					Admin
+				</a>
 			</li>
 		</ul>
+		
+		<!-- Dropdowns -->
 		<ul class="nav navbar-nav">
+		
+			<!-- Choose project -->
 			<li class="dropdown" style='cursor: pointer;'>
-				<a id='choose_project' data-toggle="dropdown" class="dropdown-toggle" style='color: inherit;'>{{chooseProject()}}<b class="caret"></b></a>
+				<a 
+					id='choose_project' 
+					data-toggle="dropdown" 
+					class="dropdown-toggle" 
+					style='color: inherit;'>
+					{{chooseProject()}}
+					<b class="caret"></b>
+				</a>
 				<ul id='dropdown-project' class="dropdown-menu scrollable-menu">
 					<li style='width: 100%' ng-repeat='suite in CurrentSuite.allSuites track by $index'>
-						<a class="hidden-xs" id='{{suite.name}}' ng-click="Utilities.clearData(suite.lastTimeStamp); loadMainChart(suite.id, 'true', 'Aggregation'); getSuiteSkeleton(suite)">{{suite.name}}</a>
-						<a class="visible-xs" id='{{suite.name}}' ng-click="Utilities.clearData(suite.lastTimeStamp); loadMainChart(suite.id, 'true', 'Aggregation'); getSuiteSkeleton(suite)" data-toggle="collapse" data-target=".navbar-collapse">{{suite.name}}</a>
+						<a 
+							id='{{suite.name}}' 
+							ng-click="Utilities.clearData(suite.lastTimeStamp); 
+									loadMainChart(suite.id, 'true', 'Aggregation'); 
+									getSuiteSkeleton(suite)"
+							class="hidden-xs">
+							{{suite.name}}
+						</a>
+						<a 
+							id='{{suite.name}}' 
+							class="visible-xs" 
+							ng-click="Utilities.clearData(suite.lastTimeStamp); 
+									loadMainChart(suite.id, 'true', 'Aggregation'); 
+									getSuiteSkeleton(suite)" 
+							data-toggle="collapse" 
+							data-target=".navbar-collapse">
+							{{suite.name}}
+						</a>
 					</li>
 				</ul>
 			</li>
+			
+			<!-- Choose timestamp -->
 			<li ng-if='CurrentSuite.currentSuite.length > 0' class="dropdown" style='cursor: pointer;'>
-				<a data-toggle="dropdown" id='choose_timestamp' class="dropdown-toggle" style='color: inherit;'>{{CurrentSuite.currentTimeStamp}}<b class="caret"></b></a>
+				<a 
+					id='choose_timestamp' 
+					data-toggle="dropdown" 
+					class="dropdown-toggle" 
+					style='color: inherit;'>
+					{{CurrentSuite.currentTimeStamp}}
+					<b class="caret"></b>
+				</a>
 				<ul id='dropdown-timestamp' class="dropdown-menu scrollable-menu">
 					<li style='width: 100%' ng-repeat="timestamp in Utilities.descTimestamps">
-						<a id='{{timestamp}}' ng-click="getSuiteSkeletonByTimestamp(timestamp); highlightPoint(timestamp);getScreenshotsFromTimestamp()">{{timestamp}}</a>
+						<a 
+							id='{{timestamp}}' 
+							ng-click="getSuiteSkeletonByTimestamp(timestamp); 
+									highlightPoint(timestamp);
+									getScreenshotsFromTimestamp()">
+							{{timestamp}}
+						</a>
 					</li>
 				</ul>
 			</li>
