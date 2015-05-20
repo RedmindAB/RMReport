@@ -24,7 +24,6 @@ angular.module('webLog')
   			   }
   		   }
   	   }
-//  	   delete Charts.mainChart.xAxis.plotLines[0].value;
      }
 	
 	 function createMainChart(data, newLine){
@@ -105,7 +104,6 @@ angular.module('webLog')
 		    		Charts.mainChart.xAxis.tickInterval = 5;
 		    	}
 				chartMaker.changeChartVariant(Utilities.graphView);
-//				$scope.chartMainConfig = Charts.mainChart;
 				Charts.mainChart.loading = false;
 				chartMaker.highlightPoint(CurrentSuite.currentTimeStamp);
 	    };
@@ -346,9 +344,7 @@ angular.module('webLog')
 					size : {
 						height : 400
 					},
-					// function (optional)
 					func : function(chart) {
-						// setup some logic for the chart
 					}
 				}
 	    	

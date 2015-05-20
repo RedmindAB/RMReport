@@ -1,11 +1,29 @@
 <div ng-controller="GridCtrl">
 	<div>
 		<div class='desktop'>
-			<h4 ng-if="isHubConnected()">Selenium hub is not running</h4>
-			<h4 ng-if="noNodesConnected()">No nodes connected</h4>
-			<h3 class="grid-h3" ng-if="isDesktopNodesConnected()">Desktops</h3>
-			<div ng-click="gridToggleModal();setCurrentGrid(driver)" ng-repeat="driver in GridData.data.FreeProxies track by $index" ng-if="isDesktop(driver.capabilities[0].platformName)" class='box' ratio-keeper>
-				<img class='logo' ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' style='vertical-align:middle'></img>
+			<!-- Status texts -->
+			<h4 ng-if="isHubConnected()">
+				Selenium hub is not running
+			</h4>
+			<h4 ng-if="noNodesConnected()">
+				No nodes connected
+			</h4>
+			<h3 ng-if="isDesktopNodesConnected()" class="grid-h3">
+				Desktops
+			</h3>
+			
+			<!-- Desktops -->
+			<div 
+				ng-click="gridToggleModal();setCurrentGrid(driver)" 
+				ng-repeat="driver in GridData.data.FreeProxies track by $index" 
+				ng-if="isDesktop(driver.capabilities[0].platformName)" 
+				class='box' 
+				ratio-keeper>
+				<img 
+					class='logo' 
+					ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' 
+					style='vertical-align:middle'>
+				</img>
 				<div class='desc'>
 					<b>Platform:</b> {{driver.capabilities[0].platform}}<br>
 					<b>OS:</b> {{driver.capabilities[0].osname}}<br>
@@ -13,38 +31,60 @@
 					
 					<br><b>Browsers: </b>
 					<div ng-repeat="capability in driver.capabilities track by $index">
-						<img ng-src="{{getBrowserImage(capability.browserName)}}" style='float:left'></img>
+						<img 
+							ng-src="{{getBrowserImage(capability.browserName)}}" 
+							style='float:left'>
+						</img>
 					</div>
 				</div>
 			</div>
 		</div>
 		
-		<h3 ng-if="isDeviceNodesConnected()">Devices</h3>
-				<div ng-click="gridToggleModal();setCurrentGrid(driver)" ng-repeat="driver in GridData.data.FreeProxies track by $index" ng-if="!isDesktop(driver.capabilities[0].platformName)" class='box' ratio-keeper>
-				<img class='logo' ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' style='vertical-align:middle'></img>
-				<div class='desc'>
-					<h4>{{driver.capabilities[0].deviceName}}</h4>
-					<b>platform name:</b> {{driver.capabilities[0].platformName}}<br>
-					<b>platform version:</b> {{driver.capabilities[0].platformVersion}}<br>
-					<b>device type:</b> {{driver.capabilities[0].rmDeviceType}}<br>
-					<b>browser:</b> {{driver.capabilities[0].browserName}}<br>
-				</div>
+		<!-- Devices -->
+		<h3 ng-if="isDeviceNodesConnected()">
+			Devices
+		</h3>
+		<div 
+			ng-if="!isDesktop(driver.capabilities[0].platformName)" 
+			ng-click="gridToggleModal();setCurrentGrid(driver)" 
+			ng-repeat="driver in GridData.data.FreeProxies track by $index" 
+			class='box' ratio-keeper>
+			<img 
+				class='logo' 
+				ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' 
+				style='vertical-align:middle'>
+			</img>
+			<div class='desc'>
+				<h4>{{driver.capabilities[0].deviceName}}</h4>
+				<b>platform name:</b> {{driver.capabilities[0].platformName}}<br>
+				<b>platform version:</b> {{driver.capabilities[0].platformVersion}}<br>
+				<b>device type:</b> {{driver.capabilities[0].rmDeviceType}}<br>
+				<b>browser:</b> {{driver.capabilities[0].browserName}}<br>
 			</div>
+		</div>
 	</div>
-	<div ui-view></div>
 	
-<modal-dialog-sysos width='100%' id='gridModalDialog' toggle='gridToggleModal()' show='gridModalShown'
-			  height='40%' style='background-color : transparent;color:white' toggle-modal="gridToggleModal()">
-	<h1 id='json-header' align='center'>Grid Registration info</h1>
-	<br>
-	<div class="container slider" style='color:black;font-size:20px;'>
-		<table align='center' style='margin-top:20px'>
-			<tr>
-				<td style='text-align:left'>
-					<pre>{{currentGridObject}}</pre>
-				</td>
-			</tr>
-		</table>
-	</div>
-</modal-dialog-sysos>
+	<!-- JSON object modal -->
+	<modal-dialog-sysos 
+		id='gridModalDialog' 
+		toggle='gridToggleModal()' 
+		show='gridModalShown'
+		width='100%' 
+		height='40%' 
+		style='background-color : transparent;color:white' 
+		toggle-modal="gridToggleModal()">
+		<h1 id='json-header' align='center'>
+			Grid Registration info
+		</h1>
+		<br>
+		<div class="container slider" style='color:black;font-size:20px;'>
+			<table align='center' style='margin-top:20px'>
+				<tr>
+					<td style='text-align:left'>
+						<pre>{{currentGridObject}}</pre>
+					</td>
+				</tr>
+			</table>s
+		</div>
+	</modal-dialog-sysos>
 </div>

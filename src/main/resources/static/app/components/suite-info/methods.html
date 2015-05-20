@@ -1,22 +1,43 @@
 <div>
     <accordion id="method-group" close-others="true">
-        <!-- repeated content -->
-        <div class='class-method-container'style="margin-top:10px" id='method_name' ng-repeat="method in CurrentSuite.currentMethods| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index" ng-class='getPanel(method.result)' ng-style="{'background-color': getBgCo(method.result)}">
-            <!-- non collapsing header -->
+        <div 
+        	id='method_name' 
+        	class='class-method-container'
+        	style="margin-top:10px" 
+        	ng-repeat="method in CurrentSuite.currentMethods| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index" 
+        	ng-class='getPanel(method.result)' 
+        	ng-style="{'background-color': getBgCo(method.result)}">
             <table width='100%'>
                 <tr>
 					<td class='checkbox-holder'>
-                    	<icon-checkbox content="method" id='checkbox{{$index}}' ></icon-checkbox>					                    
+                    	<icon-checkbox content="method" id='checkbox{{$index}}'></icon-checkbox>					                    
                     </td>
                     
                     
-                    <td id='method-{{$index}}' ng-click="getCases(method);
-                            setState('reports.cases');" ng-style="{'color' : getCo(method.result)}" class="icon-checkbox-guard">
-						<p id="method-name-{{$index}}" class="accordion-name-container text-left">{{method.name}}</p> 
-                        <p id="method-runtime-{{$index}}" class="accordion-name-container text-right">&nbsp;{{formatDecimals(method.time)}}</p>
-                        <p id="method-passfail-{{$index}}" class="accordion-name-container text-right">Skipped: {{method.stats.skipped}} Failed: {{method.stats.totFail}}</p>
+                    <td 
+                    	id='method-{{$index}}' 
+                    	ng-click="getCases(method);setState('reports.cases');" 
+                    	ng-style="{'color' : getCo(method.result)}" 
+                    	class="icon-checkbox-guard">
+						<p 
+							id="method-name-{{$index}}" 
+							class="accordion-name-container text-left">
+							{{method.name}}
+						</p> 
+                        <p 
+                        	id="method-runtime-{{$index}}" 
+                        	class="accordion-name-container text-right">
+                        	{{formatDecimals(method.time)}}
+                        </p>
+                        <p 
+                        	id="method-passfail-{{$index}}" 
+                        	class="accordion-name-container text-right"
+                        	style="margin-right:10px">
+                        	Skipped: {{method.stats.skipped}} Failed: {{method.stats.totFail}}
+                        </p>
                     </td>
                 </tr>
             </table>
+		</div>
     </accordion>
 </div>
