@@ -70,8 +70,11 @@ angular.module('webLog')
 		if(browserName === "firefox"){
 			return "assets/img/logos/console/firefox.png";
 		}
-		else{
+		else if(browserName === "chrome"){
 			return "assets/img/logos/console/chrome.png";
+		}
+		else{
+			return "assets/img/logos/console/phantomjs.png";
 		}
 	}
 	
