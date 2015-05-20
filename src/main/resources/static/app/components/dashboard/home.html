@@ -1,45 +1,18 @@
 <div ng-controller="GraphCtrl" ng-repeat="suite in CurrentSuite.allSuites track by $index">
 	<table class='table-home'>
-		<!-- Project logo -->
-		<tr>
-			<!-- div ng-controller = "SuiteInfoCtrl">
-				<td><img check-image id='section' ng-class=" {'disabled': !homeChartLoaded(suite)}" 
-						class='image-paths'
-						style='cursor: pointer' ng-src="{{Utilities.getSuiteLogo(suite.name)}}"
-						ng-click="Utilities.clearData(suite.lastTimeStamp);
-							loadMainChart(suite.id);
-	                        setState('reports.classes');
-	                        getSuiteSkeleton(suite);"
-						alt='{{suite.name}}'>
-					</img>
-					<br>
-					<br>
-				<h4 id='go_graph_{{$index}}' ng-class=" {'disabled': !homeChartLoaded(suite)}"
-					class='home-h4'
-						ng-click="Utilities.clearData(suite.lastTimeStamp);
-									loadMainChart(suite.id);
-	                                setState('reports.classes');
-	                                getSuiteSkeleton(suite);">
-									Go to Reports</h4> <br><br>
-				<h4 id='go_ss_{{$index}}' ng-class=" {'disabled': !homeChartLoaded(suite)}"
-				class='home-h4'
-						ng-click="Utilities.clearData(suite.lastTimeStamp);
-									loadMainChart(suite.id);
-	                                setState('screenshots.classes');
-	                                getSuiteSkeleton(suite);">
-	                                Go to Visualizer</h4>
-				</td>
-			</div  -->
-		</tr>
-		<!-- project logo END -->
-		<!-- project chart -->
 		<tr style='width:100%'>
-			<td colspan='3'><highchart ng-if="Charts.chartHomeConfig[suite.id] !== undefined" id="chart1" class='high-chart'
-					config="Charts.chartHomeConfig[suite.id]"></highchart></td>
+			<td colspan='3'>
+				<highchart 
+					ng-if="Charts.chartHomeConfig[suite.id] !== undefined" 
+					id="chart1" class='high-chart'
+					config="Charts.chartHomeConfig[suite.id]">
+				</highchart>
+			</td>
 		</tr>
-		<!-- project chart END -->
 	</table>
-	<!-- separator -->
-	<div ng-if="$index !== CurrentSuite.allSuites.length -1" class='row'
-		style='border: 10px solid #D4D9DD'></div>
+	<div 
+		ng-if="$index !== CurrentSuite.allSuites.length -1" 
+		class='row'
+		style='border: 10px solid #D4D9DD'>
+	</div>
 </div>

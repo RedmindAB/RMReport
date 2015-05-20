@@ -371,6 +371,7 @@ fieldset[disabled] .btn-warning2.active {
 	position: relative;
 	padding: 10px;
 	min-width:735px;
+	margin-bottom:55px;
 }
 
 .container2{
@@ -537,6 +538,11 @@ fieldset[disabled] .btn-warning2.active {
 .cases-timetorun{
 	float:right;
 	display:inline
+}
+
+.this-test-button{
+	width:120px; 
+	margin-right:10px
 }
 
 /* End */
@@ -725,6 +731,7 @@ label {
 
 .panel-group{
 	width:100%;
+	margin-bottom:0px;
 }
 
 .stack-trace{
@@ -786,6 +793,32 @@ label {
 	margin-bottom:10px;
 }
 
-glyphicon.remove-icon {
-    font-size: 1.4em;
+.validate-change{
+	border-color: rgba(237, 236, 18,.8);
+    outline: 0;
+    outline: thin dotted \9;
+    -moz-box-shadow: 0 0 8px rgba(237, 236, 18,.6);
+    box-shadow: 0 0 8px rgba(237, 236, 18,.6) !important;
+}
+
+.validate-new{
+	border-color: rgba(17, 22, 241,.8);
+    outline: 0;
+    outline: thin dotted \9;
+    -moz-box-shadow: 0 0 8px rgba(17, 22, 241,.6);
+    box-shadow: 0 0 8px rgba(17, 22, 241,.6) !important;
+}
+
+.validate-remove{
+    border-color: rgba(239, 18, 18,.8);
+    outline: 0;
+    outline: thin dotted \9;
+    -moz-box-shadow: 0 0 8px rgba(239, 18, 18,.6);
+    box-shadow: 0 0 8px rgba(239, 18, 18,.6) !important;
+}
+
+.remove-icon {
+	cursor:pointer; 
+	font-size:2.2em; 
+	color:#DC072B;
 }

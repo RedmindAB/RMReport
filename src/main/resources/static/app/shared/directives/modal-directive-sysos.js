@@ -22,7 +22,12 @@ angular.module('webLog')
     template: 	"<div class='ng-modal' ng-show='show'>" +
     				"<div class='ng-modal-overlay' ng-click='toggleModal()'></div>" +
     				"<div class='ng-modal-dialog-sysos' ng-style='dialogStyle'>" +
-    					"<div id='close' class='ng-modal-close' ng-click='hideModal()'>X</div>" +
+    					"<div " +
+    						"id='close' " +
+    						"class='ng-modal-close' " +
+    						"ng-click='hideModal()'>" +
+    						"X" +
+    					"</div>" +
     					"<div class='ng-modal-dialog-content' ng-transclude></div>" +
     				"</div>" +
     			"</div>"
