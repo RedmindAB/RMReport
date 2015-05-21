@@ -16,7 +16,7 @@ angular.module('webLog')
         scope.dialogStyle.height = "100%";
       scope.hideModal = function() {
         scope.show = false;
-        $rootScope.$broadcast("closeModal");
+        $rootScope.$broadcast("closeScreenshotModal");
       };
     },
     template: 	"<div class='ng-modal' ng-show='show'>" +
