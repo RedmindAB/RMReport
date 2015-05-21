@@ -24,6 +24,7 @@ angular.module('webLog')
 	var restURL = "/api/selenium/griddata";
 	
 	var pollController = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+		$scope.gridToggleModal();
 		if(fromState.name === 'grid'){
 			Polling.stopPolling("grid");
 		}

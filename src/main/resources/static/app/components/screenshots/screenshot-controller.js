@@ -27,7 +27,7 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	};
 	
 	$scope.$on("closeScreenshotModal", function() {
-		$scope.toggleScreenshotModal();
+		$scope.screenshotModalShown = false;
 	});
 	
 	$scope.toggleConsoleModal = function() {
@@ -35,7 +35,7 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 	};
 	
 	$scope.$on("closeConsoleModal", function() {
-		$scope.toggleConsoleModal();
+		$scope.consoleModalShown = false;
 	});
 	
 	document.addEventListener('dragstart', function (e) { 

@@ -21,7 +21,12 @@ angular.module('webLog').controller('NavCtrl', ['$scope', '$rootScope','$state',
 		}
 	}
 	
-	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+		if (fromState.name === "screenshots.methods") {
+			$rootScope.$broadcast("closeConsoleModal");
+			$rootScope.$broadcast("closeScreenshotModal");
+		}
+		
 		Utilities.searchField = '';
 		Utilities.resetSorting();
 		CurrentSuite.clearChosenClasses();
