@@ -91,34 +91,9 @@
 	</accordion>
 </div>
 
-<!-- Console print modal -->
-<modal-dialog-sysos 
-	width='100%' 
-	id='modal_dialog' 
-	toggle='toggleConsoleModal()' 
-	show='consoleModalShown'
-	height='40%' 
-	style='background-color : transparent;color:white' 
-	toggle-modal="toggleConsoleModal()">
-	<h1 id='syso-header' align='center'>
-		Console prints
-	</h1>
-	<br>
-	<div class="container slider" style='color:black;font-size:20px;'>
-		<table align='center' style='margin-top:20px'>
-			<tr>
-				<td style='text-align:left'>
-					<pre>{{ScreenshotMaster.consolePrint}}</pre>
-				</td>
-			</tr>
-		</table>
-	</div>
-</modal-dialog-sysos>
-
 <!-- Screeshot modal -->
 <modal-dialog 
-	id='modal_dialog' 
-	toggle='toggleScreenshotModal()' 
+	id='modal-screenshot-dialog' 
 	show='screenshotModalShown'
 	style='background-color : transparent;color:white' 
 	toggle-modal="toggleScreenshotModal()">
@@ -134,11 +109,11 @@
 				<li 
 					id='dot' 
 					class="dot screenshot-methods-description" 
-					ng-repeat="slide in slides">
+					ng-repeat="slide in slides track by $index">
 					<a 
 						href="#"
-						ng-class="{'active':isCurrentSlideIndex(screenshotIndex)}"
-						ng-click="setCurrentSlideIndex(screenshotIndex);">
+						ng-class="{'active':isCurrentSlideIndex($index)}"
+						ng-click="setCurrentSlideIndex($index);">
 						{{slide.description}}
 					</a>
 				</li>
@@ -170,3 +145,25 @@
 			ng-src="{{slide}}"/>
 	</div>
 </modal-dialog>
+
+<!-- Console print modal -->
+<modal-dialog 
+	id='modal-console-dialog' 
+	show='consoleModalShown'
+	style='background-color : transparent;color:white' 
+	toggle-modal="toggleConsoleModal()">
+	<h1 id='syso-header' align='center'>
+		Console prints
+	</h1>
+	<br/>
+	<div class="container slider" style='color:black;font-size:20px;'>
+		<table align='center' style='margin-top:20px'>
+			<tr>
+				<td style='text-align:left'>
+					<pre>{{ScreenshotMaster.consolePrint}}</pre>
+				</td>
+			</tr>
+		</table>
+	</div>
+</modal-dialog-sysos>
+
