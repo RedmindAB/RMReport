@@ -1,5 +1,6 @@
 package se.redmind.rmtest.db.jdbm;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
@@ -17,7 +18,7 @@ public class JDBMConnection {
 	
 	private RecordManager dbCon;
 
-	private PrimaryHashMap<String, String> messageMap;
+	private PrimaryHashMap<Integer, String> messageMap;
 	
 	
 	public JDBMConnection() {
@@ -32,7 +33,8 @@ public class JDBMConnection {
 	
 	private RecordManager openDatabase(String filename){
 		try {
-			return RecordManagerFactory.createRecordManager(filename);
+			new File(System.getProperty("user.dir")+"/messagedb/").mkdir();
+			return RecordManagerFactory.createRecordManager("messagedb/"+filename);
 		} catch (IOException e) {
 			log.error("Could not create or open JDBM connection: "+e.getMessage()); 
 			return null;
@@ -64,12 +66,26 @@ public class JDBMConnection {
 			return false;
 		}
 	}
-
-	public void save(String key, String value) {
+	
+	public int getNextIndex() {
+		return messageMap.size()+1;
+	}
+	
+	public int save(String value){
+		int key = getNextIndex();
+		return save(key,value);
+	}
+	
+	public int save(int key, String value) {
 		messageMap.put(key, value);
+		return key;
 	}
 
-	public String get(String key) {
-		return messageMap.get(key);
+	public String get(int id) {
+		return messageMap.get(id);
+	}
+	
+	public int size(){
+		return messageMap.size();
 	}
 }
