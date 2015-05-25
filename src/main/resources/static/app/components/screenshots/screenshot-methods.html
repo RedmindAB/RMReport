@@ -12,7 +12,7 @@
 		id='syso-header' 
 		class='accordion-name-container' 
 		style='cursor:pointer' 
-		ng-click='getConsolePrint();toggleModal2();'>
+		ng-click='getConsolePrint();toggleConsoleModal();'>
 		System out prints
 	</p>
 	
@@ -52,7 +52,7 @@
 								ng-repeat="case in method.testcases" 
 								ng-style="{'background-color': getBgCo(case.result)}" 
 								class='panel screenshot-td screenshot-background-top'>
-								{{case.device}}
+								{{case.device}} - {{case.browser}}
 							</td>
 						</tr>
 						<tr 
@@ -65,15 +65,18 @@
 								ng-class="isLastIndex(screenshotIndex, method.screenshotLength) ? 'screenshot-background-bot': 'screenshot-background-mid'">
 								<p 
 									style='margin-left:5px;margin-bottom:-2px' 
-									ng-if='case.screenshots[$parent.$index] !== undefined'>
+									ng-if='case.screenshots[screenshotIndex] !== undefined'>
 									{{getScreenshotOrder(case.screenshots[screenshotIndex])}}
 								</p>
+								<div ng-if="case.screenshots[screenshotIndex] !== undefined">
+									{{getCommentFromFileName(case.screenshots[screenshotIndex])}}
+								</div>
 								<img 
 									style='max-height:430px; vertical-align:top;' 
 									id='screenshot{{screenshotIndex}}-{{$index}}' 
 									ng-click='setCurrentMethod(method); 
 											setSlides(method.testcases, $index, screenshotIndex); 
-											toggleModal();' 
+											toggleScreenshotModal();'
 									width='200px' 
 									ng-src="{{getScreenshotsFromFileName(case.screenshots[screenshotIndex])}}"/>
 									
@@ -88,42 +91,17 @@
 	</accordion>
 </div>
 
-<!-- Console print modal -->
-<modal-dialog-sysos 
-	width='100%' 
-	id='modal_dialog' 
-	toggle='toggleModal2()' 
-	show='modalShown2'
-	height='40%' 
-	style='background-color : transparent;color:white' 
-	toggle-modal="toggleModal2()">
-	<h1 id='syso-header' align='center'>
-		Console prints
-	</h1>
-	<br>
-	<div class="container slider" style='color:black;font-size:20px;'>
-		<table align='center' style='margin-top:20px'>
-			<tr>
-				<td style='text-align:left'>
-					<pre>{{ScreenshotMaster.consolePrint}}</pre>
-				</td>
-			</tr>
-		</table>
-	</div>
-</modal-dialog-sysos>
-
 <!-- Screeshot modal -->
 <modal-dialog 
-	id='modal_dialog' 
-	toggle='toggleModal()' 
-	show='modalShown'
+	id='modal-screenshot-dialog' 
+	show='screenshotModalShown'
 	style='background-color : transparent;color:white' 
-	toggle-modal="toggleModal()">
+	toggle-modal="toggleScreenshotModal()">
 		<div>
 		<h1 align='center' class='white'>
 			{{currentMethod.name}}
 			<br/>
-			{{getCurrentSlideInfo()}}	
+			{{getCurrentSlideInfo()}}
 		</h1>
 		</div>
 		<div class="wrapper" align='center'>
@@ -131,7 +109,7 @@
 				<li 
 					id='dot' 
 					class="dot screenshot-methods-description" 
-					ng-repeat="slide in slides">
+					ng-repeat="slide in slides track by $index">
 					<a 
 						href="#"
 						ng-class="{'active':isCurrentSlideIndex($index)}"
@@ -167,3 +145,25 @@
 			ng-src="{{slide}}"/>
 	</div>
 </modal-dialog>
+
+<!-- Console print modal -->
+<modal-dialog 
+	id='modal-console-dialog' 
+	show='consoleModalShown'
+	style='background-color : transparent;color:white' 
+	toggle-modal="toggleConsoleModal()">
+	<h1 id='syso-header' align='center'>
+		Console prints
+	</h1>
+	<br/>
+	<div class="container slider" style='color:black;font-size:20px;'>
+		<table align='center' style='margin-top:20px'>
+			<tr>
+				<td style='text-align:left'>
+					<pre>{{ScreenshotMaster.consolePrint}}</pre>
+				</td>
+			</tr>
+		</table>
+	</div>
+</modal-dialog-sysos>
+

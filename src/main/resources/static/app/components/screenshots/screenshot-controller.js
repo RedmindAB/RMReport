@@ -1,8 +1,8 @@
 angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$rootScope', '$state', '$http', 'ScreenshotMaster', 'CurrentSuite','RestLoader', function($window ,$scope, $rootScope,$state, $http, ScreenshotMaster, CurrentSuite, RestLoader) {
 	
 	$scope.ScreenshotMaster = ScreenshotMaster;
-	$scope.modalShown = false;
-	$scope.modalShown2 = false;
+	$scope.screenshotModalShown = false;
+	$scope.consoleModalShown = false;
 	$scope.caseArraySize = [];
 	$scope.noScreenshotsExists = false;
 	
@@ -22,20 +22,20 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 		return (method.testcases.length * 232)+10;
 	}
 	
-	$scope.toggleModal = function() {
-		$scope.modalShown = !$scope.modalShown;
+	$scope.toggleScreenshotModal = function() {
+		$scope.screenshotModalShown = !$scope.screenshotModalShown;
 	};
 	
-	$scope.$on("closeModal", function() {
-		$scope.toggleModal();
+	$scope.$on("closeScreenshotModal", function() {
+		$scope.screenshotModalShown = false;
 	});
 	
-	$scope.toggleModal2 = function() {
-		$scope.modalShown2 = !$scope.modalShown2;
+	$scope.toggleConsoleModal = function() {
+		$scope.consoleModalShown = !$scope.consoleModalShown;
 	};
 	
-	$scope.$on("closeModal2", function() {
-		$scope.toggleModal2();
+	$scope.$on("closeConsoleModal", function() {
+		$scope.consoleModalShown = false;
 	});
 	
 	document.addEventListener('dragstart', function (e) { 
@@ -70,31 +70,16 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
 			return comment.slice(0,index);
 		}
 	}
-	// Ordering function for screenshots - in progress...
-	$scope.getScreenshotOrder = function(fileName){
-		var path = fileName;
-		var index = path.indexOf("-_-");
-		var order = path.split("-_-");
-		var order2 = order[0].split("-");
-		if(index === -1)
-			return "";
-		else
-			return order2[1];
-	}
 	
-//	function setCaseSizeByMethod(){
-//		var data = ScreenshotMaster.data;
-//		
-//		for (var i = 0; i < data.length; i++) {
-//			var screenshotLength = 0;
-//			for (var j = 0; j < data[i].testcases.length; j++) {
-//				if (data[i].testcases[j].screenshots.length > screenshotLength) {
-//					screenshotLength = data[i].testcases[j].screenshots.length;
-//				}
-//			}
-//			data[i].screenshotLength = screenshotLength;
-//		}
-//	}
+	$scope.getCommentFromCurrentScreenshot = function(){
+		if ($scope.slides[$scope.currentIndex] !== undefined) {
+			console.log($scope.currentIndex);
+			
+		var fileName = $scope.slides[$scope.currentIndex];
+		
+		return $scope.getCommentFromFileName(fileName);
+		}
+	}
 	
 	$scope.getFailError = function(obj){
 		var tot = obj.error + obj.failure;
@@ -120,46 +105,45 @@ angular.module('webLog').controller('ScreenshotCtrl', ['$window', '$scope', '$ro
     $scope.setSlides= function(cases, index, parentIndex){
     	var screenArray = [];
     	for (var i = 0; i < cases.length; i++) {
-			screenArray.push($scope.getScreenshotsFromFileName(cases[i].screenshots[index]));
+			screenArray.push($scope.getScreenshotsFromFileName(cases[i].screenshots[parentIndex]));
 		}
-    	
     	$scope.slides = screenArray;
-    	 $scope.setCurrentSlideIndex(parentIndex);
+    	$scope.setCurrentSlideIndex(index);
     }
     
-     $scope.getCurrentSlideInfo = function(){
-    	 if ($scope.currentMethod !== 'unknown') {
-    		 var info = $scope.currentMethod.testcases[$scope.currentIndex].device + " - " + $scope.currentMethod.testcases[$scope.currentIndex].browser;
-    	 }
-    	 return info;
-     }
+    $scope.getCurrentSlideInfo = function(){
+    	if ($scope.currentMethod !== 'unknown') {
+    		var info = $scope.currentMethod.testcases[$scope.currentIndex].device + " - " + $scope.currentMethod.testcases[$scope.currentIndex].browser;
+    	}
+    	return info;
+    }
      
-     $scope.setCurrentSlideIndex = function (index) {
-         $scope.direction = (index > $scope.currentIndex) ? 'left' : 'right';
-         $scope.currentIndex = index;
-     };
+    $scope.setCurrentSlideIndex = function (index) {
+    	$scope.direction = (index > $scope.currentIndex) ? 'left' : 'right';
+    	$scope.currentIndex = index;
+    };
 
-     $scope.isCurrentSlideIndex = function (index) {
-         return $scope.currentIndex === index;
-     };
+    $scope.isCurrentSlideIndex = function (index) {
+    	return $scope.currentIndex === index;
+    };
 
-     $scope.prevSlide = function () {
-         $scope.direction = 'left';
-         $scope.currentIndex = ($scope.currentIndex < $scope.slides.length - 1) ? ++$scope.currentIndex : 0;
-     };
+    $scope.prevSlide = function () {
+    	$scope.direction = 'left';
+    	$scope.currentIndex = ($scope.currentIndex < $scope.slides.length - 1) ? ++$scope.currentIndex : 0;
+    };
 
-     $scope.nextSlide = function () {
-         $scope.direction = 'right';
-         $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
-     };
-     
-     $scope.getConsolePrint = function(){
-    	 RestLoader.getConsolePrint();
-     }
-     
-     $scope.isLastIndex = function(index,length){
-    	 return index+1 === length;
-     }
+    $scope.nextSlide = function () {
+    	$scope.direction = 'right';
+    	$scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
+    };
+    
+    $scope.getConsolePrint = function(){
+    	RestLoader.getConsolePrint();
+    }
+    
+    $scope.isLastIndex = function(index,length){
+    	return index+1 === length;
+    }
      
 }])
 .animation('.slide-animation', function () {

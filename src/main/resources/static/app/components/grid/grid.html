@@ -65,12 +65,9 @@
 	</div>
 	
 	<!-- JSON object modal -->
-	<modal-dialog-sysos 
-		id='gridModalDialog' 
-		toggle='gridToggleModal()' 
+	<modal-dialog 
+		id='modal-grid-dialog' 
 		show='gridModalShown'
-		width='100%' 
-		height='40%' 
 		style='background-color : transparent;color:white' 
 		toggle-modal="gridToggleModal()">
 		<h1 id='json-header' align='center'>
@@ -84,7 +81,7 @@
 						<pre>{{currentGridObject}}</pre>
 					</td>
 				</tr>
-			</table>s
+			</table>
 		</div>
 	</modal-dialog-sysos>
 </div>
