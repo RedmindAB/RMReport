@@ -71,14 +71,16 @@
 								<div ng-if="case.screenshots[screenshotIndex] !== undefined">
 									{{getCommentFromFileName(case.screenshots[screenshotIndex])}}
 								</div>
+								<div class="screenshot-img-container">
 								<img 
-									style='max-height:430px; vertical-align:top;' 
+									class="screenshot"
 									id='screenshot{{screenshotIndex}}-{{$index}}' 
 									ng-click='setCurrentMethod(method); 
 											setSlides(method.testcases, $index, screenshotIndex); 
 											toggleScreenshotModal();'
 									width='200px' 
 									ng-src="{{getScreenshotsFromFileName(case.screenshots[screenshotIndex])}}"/>
+								</div>
 									
 									<br>
 									<br>
