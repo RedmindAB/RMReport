@@ -22,14 +22,14 @@ public class MessageDAO {
 	}
 	
 	public static MessageDAO getInstance(){
-		if (instance == null) {
+		if (instance == null || instance.con.isClosed()) {
 			instance = new MessageDAO();
 		}
 		return instance;
 	}
 	
 	public static MessageDAO getInstance(String filename){
-		if (instance == null) {
+		if (instance == null || instance.con.isClosed()) {
 			instance = new MessageDAO(filename);
 		}
 		return instance;
@@ -86,12 +86,15 @@ public class MessageDAO {
 
 	public void close() {
 		con.close();
-		instance = null;
 	}
 
 	public void prinContent() {
 		SortedMap<Integer, String> map = con.getMap();
 		System.out.println(map);
+	}
+	
+	public void deleteDB(){
+		con.deleteDBFiles();
 	}
 	
 }

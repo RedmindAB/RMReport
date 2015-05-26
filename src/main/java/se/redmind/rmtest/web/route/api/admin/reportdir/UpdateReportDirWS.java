@@ -23,8 +23,8 @@ public class UpdateReportDirWS extends Route {
 	 * @apiGroup Admin
 	 * @apiParamExample {json} Request-Example:
 	 * 	{
-	 * 		"old":"/old/path/to/reports",
-	 * 		"new":"/new/path/to/reports"
+	 * 		"oldPath":"/old/path/to/reports",
+	 * 		"newPath":"/new/path/to/reports"
 	 * 	}
 	 * @apiSuccess {boolean} return a boolean of success or fail.
 	 * @apiDescription set the body of the request to the path that should replace the old path.
@@ -36,7 +36,7 @@ public class UpdateReportDirWS extends Route {
 		ConfigHandler cHandler = ConfigHandler.getInstance();
 		boolean directoryExists = FileUtil.directoryExists(requestBody);
 		if (directoryExists) {
-			cHandler.updateReportPath(requestJson.get("old").getAsString(), requestJson.get("new").getAsString());
+			cHandler.updateReportPath(requestJson.get("oldPath").getAsString(), requestJson.get("newPath").getAsString());
 			return true;
 		}
 		else {

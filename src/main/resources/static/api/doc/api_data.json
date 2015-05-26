@@ -33,7 +33,7 @@
   },
   {
     "type": "put",
-    "url": "/admin/reportdir/:index",
+    "url": "/admin/reportdir/",
     "title": "",
     "parameter": {
       "fields": {
@@ -46,7 +46,14 @@
             "description": "<p>index of the report directory to change.</p> "
           }
         ]
-      }
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n\t\"oldPath\":\"/old/path/to/reports\",\n\t\"newPath\":\"/new/path/to/reports\"\n}",
+          "type": "json"
+        }
+      ]
     },
     "group": "Admin",
     "success": {
@@ -66,7 +73,7 @@
     "version": "0.0.0",
     "filename": "./src/main/java/se/redmind/rmtest/web/route/api/admin/reportdir/UpdateReportDirWS.java",
     "groupTitle": "Admin",
-    "name": "PutAdminReportdirIndex"
+    "name": "PutAdminReportdir"
   },
   {
     "type": "put",
@@ -336,7 +343,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "[\n\t{\n\t\tname: \"testGoogle\",\n\t\ttestcases: [\n\t\t\t{\n\t\t\t\tdevice: \"UNKNOWN\",\n\t\t\t\tresult: \"passed\",\n\t\t\t\tbrowser: \"chrome\",\n\t\t\t\tscreenshots: [\n\t\t\t\t\t\"se.redmind.rmtest.selenium.example.GoogleExample.testGoogle-20150313164647[OSX_UNKNOWN_UNKNOWN_chrome_UNKNOWN].png\"\n\t\t\t\t]\n\t\t\t},\n\t\t\t{\n\t\t\t\tdevice: \"UNKNOWN\",\n\t\t\t\tresult: \"passed\",\n\t\t\t\tbrowser: \"firefox\",\n\t\t\t\tscreenshots: [\n\t\t\t\t\t\"se.redmind.rmtest.selenium.example.GoogleExample.testGoogle-20150313164647[OSX_UNKNOWN_UNKNOWN_firefox_UNKNOWN].png\"\n\t\t\t\t]\n\t\t\t}\n\t\t]\n\t},\n\t{\n\t\tname: \"testGoogle2\",\n\t\ttestcases: [\n\t\t\t{\n\t\t\t\tdevice: \"UNKNOWN\",\n\t\t\t\tresult: \"passed\",\n\t\t\t\tbrowser: \"chrome\",\n\t\t\t\tscreenshots: [\n\t\t\t\t\t\"se.redmind.rmtest.selenium.example.GoogleExample.testGoogle2-20150313164647[OSX_UNKNOWN_UNKNOWN_chrome_UNKNOWN].png\"\n\t\t\t\t]\n\t\t\t},\n\t\t\t{\n\t\t\t\tdevice: \"UNKNOWN\",\n\t\t\t\tresult: \"passed\",\n\t\t\t\tbrowser: \"firefox\",\n\t\t\t\tscreenshots: [\n\t\t\t\t\t\"se.redmind.rmtest.selenium.example.GoogleExample.testGoogle2-20150313164647[OSX_UNKNOWN_UNKNOWN_firefox_UNKNOWN].png\"\n\t\t\t\t]\n\t\t\t}\n\t\t]\n\t}\n]",
+          "content": "[\n\t{\n\t\tname: \"testGoogle\",\n\t\ttestcases: [\n\t\t\t{\n\t\t\t\tdevice: \"UNKNOWN\",\n\t\t\t\tresult: \"passed\",\n\t\t\t\tbrowser: \"chrome\",\n\t\t\t\tscreenshots: [\n\t\t\t\t\t\"se.redmind.rmtest.selenium.example.GoogleExample.testGoogle-20150313164647[OSX_UNKNOWN_UNKNOWN_chrome_UNKNOWN].png\"\n\t\t\t\t]\n\t\t\t},\n\t\t\t{\n\t\t\t\tdevice: \"UNKNOWN\",\n\t\t\t\tresult: \"passed\",\n\t\t\t\tbrowser: \"firefox\",\n\t\t\t\tscreenshots: [\n\t\t\t\t\t\"se.redmind.rmtest.selenium.example.GoogleExample.testGoogle-20150313164647[OSX_UNKNOWN_UNKNOWN_firefox_UNKNOWN].png\"\n\t\t\t\t]\n\t\t\t}\n\t\t]\n\t},\n\t{\n\t\tname: \"testGoogle2\",\n\t\ttestcases: [\n\t\t\t{\n\t\t\t\tdevice: \"UNKNOWN\",\n\t\t\t\tresult: \"passed\",\n\t\t\t\tbrowser: \"chrome\",\n\t\t\t\tscreenshots: [\n\t\t\t\t\t\"se.redmind.rmtest.selenium.example.GoogleExample.testGoogle2-20150513164647[OSX_UNKNOWN_UNKNOWN_chrome_UNKNOWN].png\"\n\t\t\t\t]\n\t\t\t},\n\t\t\t{\n\t\t\t\tdevice: \"UNKNOWN\",\n\t\t\t\tresult: \"passed\",\n\t\t\t\tbrowser: \"firefox\",\n\t\t\t\tscreenshots: [\n\t\t\t\t\t\"se.redmind.rmtest.selenium.example.GoogleExample.testGoogle2-20150513164647[OSX_UNKNOWN_UNKNOWN_firefox_UNKNOWN].png\"\n\t\t\t\t]\n\t\t\t}\n\t\t]\n\t}\n]",
           "type": "json"
         }
       ]
@@ -364,7 +371,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "[\n\t{\n\t\"name\":\"Aggregation\",\n\t\"data\":[\n\t\t\t{\n\t\t\t\"timestamp\":20150313164647,\n\t\t\t\"time\":13.307,\n\t\t\t\"pass\":4,\n\t\t\t\"fail\":0,\n\t\t\t\"error\":0,\n\t\t\t\"skipped\":0\n\t\t\t},\n\t\t\t{\n\t\t\t\"timestamp\":20150313165619,\n\t\t\t\"time\":14.871,\n\t\t\t\"pass\":4,\n\t\t\t\"fail\":0,\n\t\t\t\"error\":0,\n\t\t\t\"skipped\":0\n\t\t\t},\n\t\t\t{\n\t\t\t\"timestamp\":20150316092847,\n\t\t\t\"time\":20.255000000000003,\n\t\t\t\"pass\":4,\n\t\t\t\"fail\":0,\n\t\t\t\"error\":0,\n\t\t\t\"skipped\":0\n\t\t\t}\n\t\t]\n\t}\n]",
+          "content": "[\n\t{\n\t\"name\":\"Aggregation\",\n\t\"data\":[\n\t\t\t{\n\t\t\t\"timestamp\":20150513164647,\n\t\t\t\"time\":13.307,\n\t\t\t\"pass\":4,\n\t\t\t\"fail\":0,\n\t\t\t\"error\":0,\n\t\t\t\"skipped\":0\n\t\t\t},\n\t\t\t{\n\t\t\t\"timestamp\":20150513165619,\n\t\t\t\"time\":14.871,\n\t\t\t\"pass\":4,\n\t\t\t\"fail\":0,\n\t\t\t\"error\":0,\n\t\t\t\"skipped\":0\n\t\t\t},\n\t\t\t{\n\t\t\t\"timestamp\":20150516092847,\n\t\t\t\"time\":20.255000000000003,\n\t\t\t\"pass\":4,\n\t\t\t\"fail\":0,\n\t\t\t\"error\":0,\n\t\t\t\"skipped\":0\n\t\t\t}\n\t\t]\n\t}\n]",
           "type": "json"
         }
       ]

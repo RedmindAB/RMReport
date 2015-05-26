@@ -98,8 +98,15 @@ public class ConfigHandler {
 		return new Gson().fromJson(pathsJson, String[].class);
 	}
 	
-	public void deleteReportPath(int index) {
-		configJson.getReportPaths().remove(index);
+	public void deleteReportPath(String dPath) {
+		JsonArray reportPaths = configJson.getReportPaths();
+		for (JsonElement pathElement : reportPaths) {
+			String path = pathElement.getAsString();
+			if (path.equals(dPath)) {
+				reportPaths.remove(pathElement);
+				return;
+			}
+		}
 		autoCommit();
 	}
 

@@ -39,18 +39,27 @@ public class JDBMConnection {
 	}
 	
 	private DB openDatabase(String filename){
-		new File(System.getProperty("user.dir")+"/messagedb/").mkdir();
+		File path = new File(System.getProperty("user.dir")+"/messagedb/");
+		boolean exists = path.exists();
+		if (!exists) {
+			path.mkdir();
+		}
 		return DBMaker.openFile("messagedb/"+filename).closeOnExit().make();
 	}
 	
 	public boolean dropDatabase(){
-		messageMap.clear();
+		dbCon.deleteCollection(MESSAGE_LIST_NAME);
+		messageMap = dbCon.createTreeMap(MESSAGE_LIST_NAME);
 		return commit();
 	}
 
 	public boolean commit() {
-		dbCon.commit();
-		return true;
+		try {
+			dbCon.commit();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
 	public boolean rollback(){
@@ -93,12 +102,20 @@ public class JDBMConnection {
 	}
 
 	public void close() {
-		dbCon.commit();
 		dbCon.close();
 	}
 
 
 	public SortedMap<Integer, String> getMap() {
 		return messageMap;
+	}
+	
+	public void deleteDBFiles(){
+		dbCon.deleteCollection(MESSAGE_LIST_NAME);
+	}
+
+
+	public boolean isClosed() {
+		return dbCon.isClosed();
 	}
 }

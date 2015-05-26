@@ -14,8 +14,8 @@ public class DeleteReportDir extends Route {
 	@Override
 	public Object handle(Request request, Response response) {
 		ConfigHandler cHandler = ConfigHandler.getInstance();
-		String index = request.params("index");
-		cHandler.deleteReportPath(Integer.valueOf(index));
+		String delPath = request.body();
+		cHandler.deleteReportPath(delPath);
 		return true;
 	}
 
