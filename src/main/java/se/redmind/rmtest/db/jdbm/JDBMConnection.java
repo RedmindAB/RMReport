@@ -1,13 +1,12 @@
 package se.redmind.rmtest.db.jdbm;
 
-import java.io.IOException;
+import java.io.File;
+import java.util.SortedMap;
 
+import org.apache.jdbm.DB;
+import org.apache.jdbm.DBMaker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import jdbm.PrimaryHashMap;
-import jdbm.RecordManager;
-import jdbm.RecordManagerFactory;
 
 public class JDBMConnection {
 
@@ -15,28 +14,33 @@ public class JDBMConnection {
 	
 	Logger log = LogManager.getLogger(JDBMConnection.class);
 	
-	private RecordManager dbCon;
+	private DB dbCon;
 
-	private PrimaryHashMap<String, String> messageMap;
+	private SortedMap<Integer, String> messageMap;
 	
 	
 	public JDBMConnection() {
 		dbCon = openDatabase("messageDB");
-		messageMap = dbCon.hashMap(MESSAGE_LIST_NAME);
+		messageMap = getMap(MESSAGE_LIST_NAME);
 	}
 	
+
 	public JDBMConnection(String filename){
 		dbCon = openDatabase(filename);
-		messageMap = dbCon.hashMap(MESSAGE_LIST_NAME);
+		messageMap = getMap(MESSAGE_LIST_NAME);
 	}
 	
-	private RecordManager openDatabase(String filename){
-		try {
-			return RecordManagerFactory.createRecordManager(filename);
-		} catch (IOException e) {
-			log.error("Could not create or open JDBM connection: "+e.getMessage()); 
-			return null;
+	private SortedMap<Integer, String> getMap(String messageListName) {
+		SortedMap<Integer, String> treeMap = dbCon.getTreeMap(messageListName);
+		if (treeMap == null) {
+			treeMap = dbCon.createTreeMap(messageListName);
 		}
+		return treeMap;
+	}
+	
+	private DB openDatabase(String filename){
+		new File(System.getProperty("user.dir")+"/messagedb/").mkdir();
+		return DBMaker.openFile("messagedb/"+filename).closeOnExit().make();
 	}
 	
 	public boolean dropDatabase(){
@@ -45,31 +49,56 @@ public class JDBMConnection {
 	}
 
 	public boolean commit() {
-		try {
-			dbCon.commit();
-			return true;
-		} catch (IOException e) {
-			log.error("failed to commit to JDBM:"+e.getMessage());
-			rollback();
-			return false;
-		}
+		dbCon.commit();
+		return true;
 	}
 	
 	public boolean rollback(){
+		dbCon.rollback();
+		return true;
+	}
+	
+	public int getNextIndex() {
 		try {
-			dbCon.rollback();
-			return true;
-		} catch (IOException e) {
-			log.error(e.getMessage());
-			return false;
+			if (messageMap.isEmpty()) {
+				//Bug in the API that ignores the first insert... bad apache.
+				messageMap.put(1, "Hack to make it work");
+				return 1;
+			}
+			else {
+				return (messageMap.size()+1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return messageMap.size()+1;
 		}
 	}
-
-	public void save(String key, String value) {
+	
+	public int save(String value){
+		int key = getNextIndex();
+		return save(key,value);
+	}
+	
+	public int save(int key, String value) {
 		messageMap.put(key, value);
+		return key;
 	}
 
-	public String get(String key) {
-		return messageMap.get(key);
+	public String get(int id) {
+		return messageMap.get(id);
+	}
+	
+	public int size(){
+		return messageMap.size();
+	}
+
+	public void close() {
+		dbCon.commit();
+		dbCon.close();
+	}
+
+
+	public SortedMap<Integer, String> getMap() {
+		return messageMap;
 	}
 }

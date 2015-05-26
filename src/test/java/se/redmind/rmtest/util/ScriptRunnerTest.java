@@ -14,7 +14,7 @@ public class ScriptRunnerTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
-
+	/*
 	@Test
 	public void smokeTest() {
 		ScriptRunner runner = new ScriptRunner();
@@ -22,7 +22,7 @@ public class ScriptRunnerTest {
 		result = runner.run("echo hej");
 		assertEquals("hej", result);
 	}
-	
+	*/
 	@Test
 	public void runMVN(){
 		ScriptRunner runner = new ScriptRunner();

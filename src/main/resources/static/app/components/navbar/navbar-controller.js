@@ -8,8 +8,31 @@
 	NavBarCtrl.$inject = ['$scope', '$state', '$window', 'ChartMaker', 'RestLoader', 'Utilities', 'CurrentSuite'];
 	
 	function NavBarCtrl ($scope, $state,$window, ChartMaker, RestLoader, Utilities, CurrentSuite) {
-		
+	
 		$scope.CurrentSuite = CurrentSuite;
+		
+		var myData = null;
+		var count = 0;
+		$scope.getVersion = function(){
+			$.ajax({
+			    url: "", /* https://api.github.com/repos/owner/repo/git/refs/tags */ 
+			    dataType: "json",
+			    success: function (data)
+			    {
+				        if(data !== null){
+				        	$("#result").html(data[0]["object"]["sha"]);
+				        	myData = (data[0].ref).replace("refs/tags/", '');
+				        }
+				        else
+				        	myData = "unknown";
+				        count++;
+			    },
+				error: function (data){
+					myData = "unknown";
+				}
+			});
+			return myData;
+		};
 		
 		$scope.isSmallWindowToggle = function(){
 			return $window.window.innerWidth < 900  ? 'collapse' : '';

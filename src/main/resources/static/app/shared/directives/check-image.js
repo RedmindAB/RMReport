@@ -1,5 +1,6 @@
-angular.module('webLog')
-.directive('checkImage', function($http) {
+angular
+	.module('webLog')
+	.directive('checkImage', function($http) {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
