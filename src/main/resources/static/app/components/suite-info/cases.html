@@ -38,19 +38,11 @@
             
             <!-- Message container -->
             <div ng-if="case.result === 'failure' || case.result === 'error'">
-	            <pre class="select stack-trace" ng-if="case.message !== ''">
-	            	{{case.message}}
-	            </pre>
-	            <pre class="stack-trace" ng-if="case.message === ''">
-	            	No message to display
-	            </pre>
+	            <pre class="select stack-trace" ng-if="case.message !== ''">{{case.message}}</pre>
+	            <pre class="stack-trace" ng-if="case.message === ''">No message to display</pre>
             </div>
-            <pre class="stack-trace" ng-if="case.result === 'passed'">
-            	This test passed
-            </pre>
-            <pre class="stack-trace" ng-if="case.result === 'skipped'">
-            	This test was skipped or ignored
-            </pre>
+            <pre class="stack-trace" ng-if="case.result === 'passed'">This test passed</pre>
+            <pre class="stack-trace" ng-if="case.result === 'skipped'">This test was skipped or ignored</pre>
         </accordion-group>
     </div>
 </accordion>

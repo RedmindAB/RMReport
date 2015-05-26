@@ -72,14 +72,13 @@
 									{{getCommentFromFileName(case.screenshots[screenshotIndex])}}
 								</div>
 								<div class="screenshot-img-container">
-								<img 
-									class="screenshot"
-									id='screenshot{{screenshotIndex}}-{{$index}}' 
-									ng-click='setCurrentMethod(method); 
-											setSlides(method.testcases, $index, screenshotIndex); 
-											toggleScreenshotModal();'
-									width='200px' 
-									ng-src="{{getScreenshotsFromFileName(case.screenshots[screenshotIndex])}}"/>
+									<img 
+										id='screenshot{{screenshotIndex}}-{{$index}}' 
+										ng-click='setCurrentMethod(method); 
+												setSlides(method.testcases, $index, screenshotIndex); 
+												toggleScreenshotModal();'
+										width='200px' 
+										ng-src="{{getScreenshotsFromFileName(case.screenshots[screenshotIndex])}}"/>
 								</div>
 									
 									<br>

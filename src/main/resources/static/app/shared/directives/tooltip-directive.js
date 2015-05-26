@@ -1,5 +1,11 @@
-angular.module('webLog')
-	.directive('tooltip', [function(){
+(function(){
+	'use strict';
+	
+	angular
+		.module('webLog')
+		.directive('tooltip', tooltip);
+	
+	function tooltip (){
 	    return {
 	        restrict: 'A',
 	        link: function(scope, element, attrs){
@@ -11,5 +17,6 @@ angular.module('webLog')
 	                $(element).tooltip('hide');
 	            });
 	        }
-    };
-}])
+	    };
+	};
+})();

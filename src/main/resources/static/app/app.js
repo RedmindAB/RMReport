@@ -1,4 +1,11 @@
-angular.module('webLog', ['ui.router','ui.bootstrap',"highcharts-ng", 'ngAnimate', 'ngTouch'])
+angular
+	.module('webLog', [
+			           'ui.router',
+			           'ui.bootstrap',
+			           'highcharts-ng', 
+			           'ngAnimate', 
+			           'ngTouch'
+			           ])
     .config(function($urlRouterProvider, $stateProvider){
     	
     $urlRouterProvider.otherwise("/home");
@@ -58,6 +65,7 @@ angular.module('webLog', ['ui.router','ui.bootstrap',"highcharts-ng", 'ngAnimate
 		.state('admin',{
 		    url:'/admin',
 		    templateUrl: 'app/components/admin/admin.html',
-		    controller: 'AdminCtrl'
+		    controller: 'AdminCtrl',
+		    controllerAs: 'ctrl'
 		});
     });

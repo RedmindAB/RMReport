@@ -1,5 +1,13 @@
-angular.module('webLog')
-	.factory('Utilities', ['$state', 'CurrentSuite', 'ScreenshotMaster', function($state, CurrentSuite, ScreenshotMaster){
+(function(){
+	'use strict';
+	
+	angular
+		.module('webLog')
+		.factory('Utilities', utilities);
+			
+	utilities.$inject = ['$state', 'CurrentSuite', 'ScreenshotMaster'];
+	
+	function utilities ($state, CurrentSuite, ScreenshotMaster){
 	    return { 
 	    	chosen: [],
 	    	descTimestamps: [],
@@ -31,7 +39,7 @@ angular.module('webLog')
 	    		case 'time':
 	    			this.sorting = '-time';
 	    			this.caseSorting = '-timetorun';
-
+	
 	    		default:
 	    			break;
 	    		}
@@ -108,4 +116,5 @@ angular.module('webLog')
 	        	this.breakPointChoice = 'None';
 	        }
 	    };
-	}]);
+	};
+})();

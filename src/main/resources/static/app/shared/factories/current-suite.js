@@ -1,6 +1,12 @@
-angular.module('webLog')
-.factory('CurrentSuite', function(){
-	return {
+(function(){
+	'use strict';
+	
+	angular
+		.module('webLog')
+		.factory('CurrentSuite', currentSuite);
+	
+	function currentSuite (){
+		return {
 	    	currentSuiteInfo: [],
 	    	currentSuite: [],
 	    	currentClass: [],
@@ -94,12 +100,12 @@ angular.module('webLog')
 		    sortVersionsByPlatform: function(platformName, chosenOS){
 		    	var specs = this.currentSpecObject;
 		    	var versions = [];
+		    	var chosenVersions=[];
+		    	var allVersions = [];
 		    	if (chosenOS.length === 0) {
 					versions = this.getVersionsByPlatform(platformName, chosenOS);
 					return versions;
 				} else {
-					var allVersions = [];
-					var chosenVersions=[];
 					for (var i = 0; i < specs.platforms.length; i++) {
 						if (specs.platforms[i].osname === platformName) {
 							for (var j = 0; j < specs.platforms[i].versions.length; j++) {
@@ -146,8 +152,8 @@ angular.module('webLog')
 		    sortDevicesByOsId: function(devices, osid){
 		    	var sortedDevices = [];
 		    	var platformName = '';
-		    	var platforms = this.currentSpecObject.platforms
-
+		    	var platforms = this.currentSpecObject.platforms;
+	
 		    	for (var i = 0; i < platforms.length; i++) {
 		    		if (platforms[i].chosen) {
 		    			if (this.containsOsId(osid, platforms[i].versions)) {
@@ -181,12 +187,12 @@ angular.module('webLog')
 		    sortDevicesByPlatform: function(platformName, chosenDevices){
 		    	var specs = this.currentSpecObject;
 		    	var devices = [];
+		    	var allDevices = [];
 		    	if (chosenDevices.length === 0) {
 					devices = this.getDevicesByPlatform(platformName, chosenDevices);
 					return devices;
 				} else {
-					var allDevices = [];
-					var chosenDevices=[];
+					chosenDevices=[];
 					for (var i = 0; i < specs.platforms.length; i++) {
 						if (specs.platforms[i].osname === platformName) {
 							for (var j = 0; j < specs.platforms[i].devices.length; j++) {
@@ -205,7 +211,7 @@ angular.module('webLog')
 				}
 		    },
 		    getBrowsers: function(specs, key){
-		    	browserIDs = [];
+		    	var browserIDs = [];
 		    	if (this.containsChosen(specs)) {
 			    	for (var i = 0; i < specs.length; i++) {
 			    		if (specs[i].chosen) {
@@ -386,7 +392,7 @@ angular.module('webLog')
 				
 				//add methods to send
 				if (this.currentClass.testcases) {
-					var testcases = this.currentClass.testcases
+					var testcases = this.currentClass.testcases;
 					for (var i = 0; i < testcases.length; i++) {
 						if (testcases[i].chosen) {
 							chosen.testcases.push(testcases[i].id);
@@ -505,10 +511,11 @@ angular.module('webLog')
 				if (currentSuite) {
 					for (var i = 0; i < currentSuite.length; i++) {
 						if (currentSuite[i].chosen) {
-							delete currentSuite[i].chosen
+							delete currentSuite[i].chosen;
 						}
 					}
 				}
 			}
 	    };
-	});
+	}
+})();

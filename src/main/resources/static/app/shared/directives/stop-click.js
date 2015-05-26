@@ -1,6 +1,12 @@
-angular.module('webLog')
-	.directive('stopClick', [function(){
-	    return {
+(function(){
+	'use strict';
+	
+	angular
+		.module('webLog')
+		.directive('stopClick', stopClick);
+	
+	function stopClick (){
+		return {
 	        restrict: 'A',
 	        link: function(scope, element, attr){
 	        	element.bind('click', function(e){
@@ -8,5 +14,6 @@ angular.module('webLog')
 	        		console.log('stop');
 	        	})
 	        }
-    };
-}])
+	    };
+	};
+})();
