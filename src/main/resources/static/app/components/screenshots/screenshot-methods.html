@@ -49,7 +49,8 @@
 					<table style="margin-top:5px; margin-bottom:5px;border-collapse: separate;border-spacing: 10px 0px;">
 						<tr>
 							<td 
-								ng-repeat="case in method.testcases" 
+								id="screenshot-header-{{$index}}"
+								ng-repeat="case in method.testcases track by $index" 
 								ng-style="{'background-color': getBgCo(case.result)}" 
 								class='panel screenshot-td screenshot-background-top'>
 								{{case.device}} - {{case.browser}}
