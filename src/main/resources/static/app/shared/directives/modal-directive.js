@@ -1,5 +1,10 @@
-angular.module('webLog')
-.directive('modalDialog', ['$rootScope', function($rootScope) {
+angular
+	.module('webLog')
+	.directive('modalDialog', modalDialog);
+
+modalDialog.$inject = ['$rootScope'];
+
+function modalDialog ($rootScope) {
   return {
     restrict: 'E',
     scope: {
@@ -31,4 +36,4 @@ angular.module('webLog')
     				"</div>" +
     			"</div>"
   };
-}]);
+};

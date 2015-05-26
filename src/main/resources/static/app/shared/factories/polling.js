@@ -1,5 +1,10 @@
-angular.module('webLog')
-.factory('Polling', ['$http', function($http) {
+angular
+	.module('webLog')
+	.factory('Polling', polling);
+
+polling.$inject = ['$http'];
+
+function polling ($http) {
 	var defaultPollingTime = 5000;
 	var polls = {};
 	return {
@@ -26,4 +31,4 @@ angular.module('webLog')
 			delete polls[name];
 		}
 	};
-}]);
+};

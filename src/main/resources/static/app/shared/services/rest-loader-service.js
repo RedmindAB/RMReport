@@ -1,5 +1,10 @@
-angular.module('webLog')
-.service('RestLoader', ['$http', '$state', 'CurrentSuite', 'Utilities', 'Charts', 'ScreenshotMaster', function($http, $state, CurrentSuite, Utilities, Charts, ScreenshotMaster){
+angular
+	.module('webLog')
+	.service('RestLoader', restLoader);
+
+restLoader.$inject = ['$http', '$state', 'CurrentSuite', 'Utilities', 'Charts', 'ScreenshotMaster'];
+
+function restLoader ($http, $state, CurrentSuite, Utilities, Charts, ScreenshotMaster){
 	
 	var restLoader = this;
 	
@@ -443,4 +448,4 @@ angular.module('webLog')
 		return totFail;
 	}
 	
-}]);
+};

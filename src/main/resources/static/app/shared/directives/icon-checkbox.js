@@ -1,5 +1,8 @@
-angular.module('webLog')
-.directive('iconCheckbox', function() {
+angular
+	.module('webLog')
+	.directive('iconCheckbox', IconCheckBox);
+
+function IconCheckBox () {
     return {
         restrict: 'E',
         scope: { content: '='},
@@ -17,5 +20,5 @@ angular.module('webLog')
 					"</span>",
 		controller: 'GraphCtrl'
     };
-});
+};
 

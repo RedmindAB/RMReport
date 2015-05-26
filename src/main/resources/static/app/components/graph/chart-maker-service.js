@@ -1,56 +1,64 @@
-angular.module('webLog')
-.service('ChartMaker', ['$state','RestLoader', 'CurrentSuite', 'Utilities', 'Charts', function($state, RestLoader, CurrentSuite, Utilities, Charts){
+(function(){
+	'use strict';
 	
-	var chartMaker = this;
+	angular
+		.module('webLog')
+		.service('ChartMaker', ChartMaker);
 	
-	chartMaker.loadMainChart = function(suiteID,newLine,name){
-		RestLoader.loadMainChart(suiteID, newLine, createMainChart, name);
-	}
+	ChartMaker.$inject =  ['$state', 'RestLoader', 'CurrentSuite', 'Utilities', 'Charts'];
 	
-	chartMaker.loadHomeChart = function(suite){
-		RestLoader.createHomeChartFromID(suite,createHomeChart);
-	};
-	
-	chartMaker.addCaseToGraph = function(osName, osVersion, deviceName, browserName, browserVer){
-		RestLoader.addCaseToGraph(osName, osVersion, deviceName, browserName, browserVer, createMainChart);
-	}
-	
-    chartMaker.highlightPoint = function(timestamp){
-  	   for (var i = 0; i < Charts.mainChart.series.length; i++) {
-  		   for (var j = 0; j < Charts.mainChart.series[i].data.length; j++) {
-  			   if (Charts.mainChart.xAxis.categories[j] === timestamp){
-  				   Charts.mainChart.xAxis.plotLines[0].value = j;
-  				   return;
-  			   }
-  		   }
-  	   }
-     }
-	
-	 function createMainChart(data, newLine){
+	function ChartMaker($state, RestLoader, CurrentSuite, Utilities, Charts){
+			
+		var chartMaker = this;
+			
+		chartMaker.loadMainChart = function(suiteID,newLine,name){
+			RestLoader.loadMainChart(suiteID, newLine, createMainChart, name);
+		}
+		
+		chartMaker.loadHomeChart = function(suite){
+			RestLoader.createHomeChartFromID(suite,createHomeChart);
+		};
+		
+		chartMaker.addCaseToGraph = function(osName, osVersion, deviceName, browserName, browserVer){
+			RestLoader.addCaseToGraph(osName, osVersion, deviceName, browserName, browserVer, createMainChart);
+		}
+		
+	    chartMaker.highlightPoint = function(timestamp){
+	    	for (var i = 0; i < Charts.mainChart.series.length; i++) {
+	    		for (var j = 0; j < Charts.mainChart.series[i].data.length; j++) {
+	  			   if (Charts.mainChart.xAxis.categories[j] === timestamp){
+	  				   Charts.mainChart.xAxis.plotLines[0].value = j;
+	  				   return;
+	  			   }
+	  		   }
+	    	}
+	    }
+			
+	    function createMainChart(data, newLine){
 	    	if (data.length === 0) {
 	    		alert("There is no data for that combination");
 	    		Charts.mainChart.loading = false;
-	    		return;
+				return;
 			}
-	    	CurrentSuite.currentTimeStampArray = [];
-	    	for (var index = 0; index < data[0].data.length; index++) {
+			CurrentSuite.currentTimeStampArray = [];
+			for (var index = 0; index < data[0].data.length; index++) {
 				CurrentSuite.currentTimeStampArray.push(data[0].data[index].timestamp);
 			}
-	    	
-	    	if (CurrentSuite.currentTimeStamp === '') {
-	    		CurrentSuite.currentTimeStamp = data[0].data[data[0].data.length-1].timestamp;
+			
+			if (CurrentSuite.currentTimeStamp === '') {
+				CurrentSuite.currentTimeStamp = data[0].data[data[0].data.length-1].timestamp;
 			}
-	    	Utilities.descTimestamps = reverseArray(CurrentSuite.currentTimeStampArray);
-	    	var graphDataArray = [];
-	    	for (var i = 0; i < data.length; i++) {
-	    		var graphDataObj = {
-	    				runTime: [],
-	    				totalPass: [],
-	    				totalFail: [],
-	    				passPercentage: []
-	    		};
-	    		var graphName = data[i].name;
-	    		
+			Utilities.descTimestamps = reverseArray(CurrentSuite.currentTimeStampArray);
+			var graphDataArray = [];
+			for (var i = 0; i < data.length; i++) {
+				var graphDataObj = {
+						runTime: [],
+						totalPass: [],
+						totalFail: [],
+						passPercentage: []
+				};
+				var graphName = data[i].name;
+				
 				for (var j = 0; j < data[i].data.length; j++) {
 					if (isSkipped(data[i].data[j])) {
 						graphDataObj.runTime.push(null);
@@ -67,28 +75,28 @@ angular.module('webLog')
 				graphDataObj.name = graphName;
 				graphDataArray.push(graphDataObj);
 			}
-	    	if (newLine) {
-	    		Charts.data = [];
-	    		for (var i = 0; i < graphDataArray.length; i++) {
+			if (newLine) {
+				Charts.data = [];
+				for (var i = 0; i < graphDataArray.length; i++) {
 					Charts.data.push(graphDataArray[i]);
 				}
 			} else {
 				Charts.data = graphDataArray;
 			}
-	    	
-	    	Charts.mainChart.xAxis.categories = CurrentSuite.currentTimeStampArray;
-	    	
-	    	Charts.mainChart.options.plotOptions.series.point = {
-	    			events : {
-	    				click : function(e) {
-	    					RestLoader.loadTimestamp(this.category);
-	    					chartMaker.highlightPoint(this.category);
-	    					$('#mainChart').highcharts().zoomOut();
-	    				}
-	    			}
-	    	};
-	    	
-	    	Charts.mainChart.subtitle.text = "Showing " + CurrentSuite.currentTimeStampArray.length + " results";
+			
+			Charts.mainChart.xAxis.categories = CurrentSuite.currentTimeStampArray;
+			
+			Charts.mainChart.options.plotOptions.series.point = {
+					events : {
+						click : function(e) {
+							RestLoader.loadTimestamp(this.category);
+							chartMaker.highlightPoint(this.category);
+							$('#mainChart').highcharts().zoomOut();
+						}
+					}
+			};
+			
+			Charts.mainChart.subtitle.text = "Showing " + CurrentSuite.currentTimeStampArray.length + " results";
 				
 				for (var i = 0; i < Charts.data.length; i++) {
 			    	Charts.mainChart.series.push({
@@ -107,11 +115,11 @@ angular.module('webLog')
 				Charts.mainChart.loading = false;
 				chartMaker.highlightPoint(CurrentSuite.currentTimeStamp);
 	    };
-	    
-	    chartMaker.changeChartVariant = function(input){
-	    	Utilities.graphView = input;
-	    	
-	    	switch (input) {
+		
+		chartMaker.changeChartVariant = function(input){
+			Utilities.graphView = input;
+			
+			switch (input) {
 			case "Pass/Fail":
 				passFailChart();
 				break;
@@ -129,96 +137,96 @@ angular.module('webLog')
 				passFailChart();
 				break;
 			}
-	    }
-	    
+		}
+		
 		function getSerieColor(i){
 			if (i > Utilities.colors.length -1) {
 				i = i - (Utilities.colors.length - 1);
 			}
 			return Utilities.colors[i];
 		}
-	    
-	    function passFailChart() {
-	    	var chart = Charts.mainChart;
-	    	
-	    	chart.series = [];
-	    	for (var i = 0; i < Charts.data.length; i++) {
-	    		chart.series.push({
-	    			data : Charts.data[i].passPercentage,
-	    			name : Charts.data[i].name,
-	    			color: getSerieColor(i),
-	    			type: "line"
-	    		});
+		
+		function passFailChart() {
+			var chart = Charts.mainChart;
+			
+			chart.series = [];
+			for (var i = 0; i < Charts.data.length; i++) {
+				chart.series.push({
+					data : Charts.data[i].passPercentage,
+					name : Charts.data[i].name,
+					color: getSerieColor(i),
+					type: "line"
+				});
 			}
-	    	chart.yAxis.title.text = 'Pass percentage';
-	    	chart.title.text = "Percentage of passed tests";
-	    	delete Charts.mainChart.options.tooltip.valueDecimals;
+			chart.yAxis.title.text = 'Pass percentage';
+			chart.title.text = "Percentage of passed tests";
+			delete Charts.mainChart.options.tooltip.valueDecimals;
 		}
-	    
-	    function totalFailChart() {
-	    	var chart = Charts.mainChart;
-	    	
-	    	chart.options.chart.type = "";
-	    	chart.series = [];
-	    	chart.yAxis.max = undefined;
-	    	for (var i = 0; i < Charts.data.length; i++) {
-	    		chart.series.push({
+		
+		function totalFailChart() {
+			var chart = Charts.mainChart;
+			
+			chart.options.chart.type = "";
+			chart.series = [];
+			chart.yAxis.max = undefined;
+			for (var i = 0; i < Charts.data.length; i++) {
+				chart.series.push({
 					data : Charts.data[i].totalFail,
 					name : Charts.data[i].name,
 					color: getSerieColor(1),
 					type : "column",
 					dashStyle : "Solid",
 					connectNulls : false
-	    		});
+				});
 			}
-	    	chart.yAxis.title.text = 'Failed tests';
-	    	chart.options.plotOptions.series.stacking = '';
-	    	chart.title.text = "Failed tests";
-	    	delete Charts.mainChart.options.tooltip.valueDecimals;
+			chart.yAxis.title.text = 'Failed tests';
+			chart.options.plotOptions.series.stacking = '';
+			chart.title.text = "Failed tests";
+			delete Charts.mainChart.options.tooltip.valueDecimals;
 		}
-	    
-	    function totalPassChart() {
-	    	var chart = Charts.mainChart;
-	    	
-	    	chart.options.chart.type = "";
-	    	chart.series = [];
-	    	chart.yAxis.max = undefined;
-	    	for (var i = 0; i < Charts.data.length; i++) {
-	    		chart.series.push({
+		
+		function totalPassChart() {
+			var chart = Charts.mainChart;
+			
+			chart.options.chart.type = "";
+			chart.series = [];
+			chart.yAxis.max = undefined;
+			for (var i = 0; i < Charts.data.length; i++) {
+				chart.series.push({
 					data : Charts.data[i].totalPass,
 					name : Charts.data[i].name,
 					color: getSerieColor(0),
 					type : "column",
 					dashStyle : "Solid",
 					connectNulls : false
-	    		});
+				});
 			}
-	    	chart.yAxis.title.text = 'Passed tests';
-	    	chart.options.plotOptions.series.stacking = '';
-	    	chart.title.text = "Passed tests";
-	    	delete Charts.mainChart.options.tooltip.valueDecimals;
+			chart.yAxis.title.text = 'Passed tests';
+			chart.options.plotOptions.series.stacking = '';
+			chart.title.text = "Passed tests";
+			delete Charts.mainChart.options.tooltip.valueDecimals;
 		}
-	    
-	    function runTimeChart() {
-	    	
-	    	var chart = Charts.mainChart;
-	    	chart.options.chart.type = "line";
-	    	chart.series = [];
-	    	chart.yAxis.max = undefined;
-	    	for (var i = 0; i < Charts.data.length; i++) {
-	    		chart.series.push({
-	    					data : Charts.data[i].runTime,
-	    					name : Charts.data[i].name,
-	    					color: getSerieColor(i),
-	    		});
+		
+		function runTimeChart() {
+			
+			var chart = Charts.mainChart;
+			chart.options.chart.type = "line";
+			chart.series = [];
+			chart.yAxis.max = undefined;
+			for (var i = 0; i < Charts.data.length; i++) {
+				chart.series.push({
+							data : Charts.data[i].runTime,
+							name : Charts.data[i].name,
+							color: getSerieColor(i),
+				});
 			}
-	    	
-	    	chart.yAxis.title.text = 'Seconds';
-	    	chart.options.plotOptions.series.stacking = '';
-	    	chart.title.text = "Time to run in seconds";
-	    	Charts.mainChart.options.tooltip.valueDecimals = 2;
+			
+			chart.yAxis.title.text = 'Seconds';
+			chart.options.plotOptions.series.stacking = '';
+			chart.title.text = "Time to run in seconds";
+			Charts.mainChart.options.tooltip.valueDecimals = 2;
 		}
-	
+		
 		function reverseArray(array){
 			var length = array.length;
 			var reverseArray = [];
@@ -240,22 +248,22 @@ angular.module('webLog')
 			}
 		}
 		
-	    function getPassPercentage(pass, fail, error){
-	    	var totalFail = fail + error;
-	    	var total = pass + totalFail;
-	    	var percentage = (pass/total)*100;
-	    	return percentage;
-	    }
-	    
-	    function createHomeChart(data, suite) {
-	    	var timeStamps = [];
-	    	for (var index = 0; index < data[0].data.length; index++) {
+		function getPassPercentage(pass, fail, error){
+			var totalFail = fail + error;
+			var total = pass + totalFail;
+			var percentage = (pass/total)*100;
+			return percentage;
+		}
+		
+		function createHomeChart(data, suite) {
+			var timeStamps = [];
+			for (var index = 0; index < data[0].data.length; index++) {
 				timeStamps.push(data[0].data[index].timestamp);
 			}
-	    	
-	    	suite.lastTimeStamp = timeStamps[timeStamps.length-1];
-	    	
-	        var chartHomeConfigObject = {
+			
+			suite.lastTimeStamp = timeStamps[timeStamps.length-1];
+			
+		    var chartHomeConfigObject = {
 					options : {
 						tooltip : {
 							crosshairs: true,
@@ -347,10 +355,10 @@ angular.module('webLog')
 					func : function(chart) {
 					}
 				}
-	    	
-	        chartHomeConfigObject.series[0].data = [];
-	        chartHomeConfigObject.series[1].data = [];
-	        
+			
+		    chartHomeConfigObject.series[0].data = [];
+		    chartHomeConfigObject.series[1].data = [];
+		    
 			for (var j = 0; j < data[0].data.length; j++) {
 				chartHomeConfigObject.series[0].data.push(data[0].data[j].pass);
 				chartHomeConfigObject.series[1].data.push(data[0].data[j].skipped);
@@ -359,7 +367,6 @@ angular.module('webLog')
 			chartHomeConfigObject.xAxis.categories = timeStamps;
 			Charts.chartHomeConfig[suite.id] = chartHomeConfigObject;
 			Charts.chartHomeConfig[suite.id].loading = false;
-	    };
-
-	
-}]);
+		};
+	};
+})();

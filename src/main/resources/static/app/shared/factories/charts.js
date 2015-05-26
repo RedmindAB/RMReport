@@ -1,5 +1,8 @@
-angular.module('webLog')
-.factory('Charts',function() {
+angular
+	.module('webLog')
+	.factory('Charts', charts);
+		
+function charts () {		
 
 	return {
 		// CHART DATA
@@ -79,6 +82,6 @@ angular.module('webLog')
 			subtitle: {
 				text: "lots of tests"
 			}
-		},
-	}
-});
+		}
+	};
+};

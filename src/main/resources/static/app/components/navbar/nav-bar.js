@@ -1,7 +1,10 @@
-angular.module('webLog')
-.directive('navbar',function(){
-	  return {
-		    templateUrl: 'app/components/navbar/nav-bar.html',
-		    controller:'NavBarCtrl'
-		  };
-});
+angular
+	.module('webLog')
+	.directive('navbar', navbar);
+
+function navbar (){
+  return {
+	templateUrl: 'app/components/navbar/nav-bar.html',
+	controller:'NavBarCtrl'
+  };
+};

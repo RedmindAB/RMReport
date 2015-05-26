@@ -1,5 +1,10 @@
-angular.module('webLog')
-.directive('isActive', function($http) {
+angular
+	.module('webLog')
+	.directive('isActive', isActive);
+
+isActive.$inject = ['$http'];
+
+function isActive($http) {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
@@ -9,4 +14,4 @@ angular.module('webLog')
         	}
         }
     };
-});
+};
