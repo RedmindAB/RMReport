@@ -66,19 +66,23 @@
 		
 		function saveChanges(){
 			vm.errorMessages = [];
-			addPaths();
 			changePaths();
 			removePaths();
+			addPaths();
 			loadRootConfig();
 		}
 		
 		function changePaths(){
+			var request = [];
 			for (var i = 0; i < vm.configCompare.reportPaths.length; i++) {
 				if (vm.isPathChanged(i) && !vm.isToBeRemoved(i)) {
-					var request = vm.configCompare.reportPaths[i];
-					AdminServices.changePaths(request, vm.errorMessages);
+					request.push({
+						oldPath: vm.config.reportPaths[i], 
+						newPath: vm.configCompare.reportPaths[i]
+					});
 				}
 			}
+			AdminServices.changePaths(request, vm.errorMessages);
 		}
 		
 		function addPaths(){
