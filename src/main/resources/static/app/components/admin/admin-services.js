@@ -30,36 +30,35 @@
 		function changePaths(request, errorMessages){
 			
 		    var promises = [];
-
+		    
+		    if (request.length > 0) {
 		    angular.forEach(request , function(change) {
-		    	console.log(change);
 		        var promise = $http({
 		            url   : '/api/admin/reportdir',
 		            method: 'PUT',
 		            data  : change
 		        });
-		        console.log(promise);
 		        promises.push(promise);
 
 		    });
-		    
+		    }
 		    return $q.all(promises);
-			
-			
-			
-//			return $http.put('/api/admin/reportdir/', request)
-//	   		.success(function(data, status, headers, config){
-//	   		}).error(function(data, status, headers, config){
-//		   		//errorMessages.push({index: getIndexFromError(config.url), message: "Path did not exist"});
-//	   		});
 		}
 		
 		function removePaths (request){
-			return $http.delete('/api/admin/reportdir', {data:request})
-			.success(function(data, status, headers, config){
-			}).error(function(data, status, headers, config){
-	   		console.error(data);
-			});
+			
+		    var promises = [];
+
+		    angular.forEach(request , function(change) {
+		        var promise = $http({
+		            url   : '/api/admin/reportdir',
+		            method: 'DELETE',
+		            data  : change
+		        });
+		        promises.push(promise);
+
+		    });
+		    return $q.all(promises);
 		}
 	}
 })();

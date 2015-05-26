@@ -39,13 +39,14 @@
 		}
 		
 		function removePath(index){
+			var path = vm.config.reportPaths[index];
 			if (vm.isNewPath(index)) {
 				vm.configCompare.reportPaths.splice(index,1);
 			} else {
-				if (vm.configCompare.removeList.indexOf(index) === -1) {
-					vm.configCompare.removeList.push(index);
+				if (vm.configCompare.removeList.indexOf(path) === -1) {
+					vm.configCompare.removeList.push(vm.config.reportPaths[index]);
 				} else {
-					var i = vm.configCompare.removeList.indexOf(index);
+					var i = vm.configCompare.removeList.indexOf(path);
 					vm.configCompare.removeList.splice(i, 1);
 				}
 			}
@@ -66,23 +67,23 @@
 		
 		function saveChanges(){
 			vm.errorMessages = [];
-			changePaths();
-			removePaths();
-			addPaths();
-			loadRootConfig();
+			changePaths()
+			.then(removePaths())
+			.then(addPaths())
+			.then(loadRootConfig());
 		}
 		
 		function changePaths(){
 			var request = [];
 			for (var i = 0; i < vm.configCompare.reportPaths.length; i++) {
-				if (vm.isPathChanged(i) && !vm.isToBeRemoved(i)) {
+				if (vm.isPathChanged(i) && !vm.isToBeRemoved(i) && !vm.isNewPath(i)) {
 					request.push({
 						oldPath: vm.config.reportPaths[i], 
 						newPath: vm.configCompare.reportPaths[i]
 					});
 				}
 			}
-			AdminServices.changePaths(request, vm.errorMessages);
+			return AdminServices.changePaths(request, vm.errorMessages);
 		}
 		
 		function addPaths(){
@@ -95,21 +96,22 @@
 				}
 			}
 			if (request.length > 0) {
-				AdminServices.addPaths(request, vm.errorMessages);
+				return AdminServices.addPaths(request, vm.errorMessages);
 			}
 		}
 		
 		function removePaths(){
 			var request = vm.configCompare.removeList;
-			AdminServices.removePaths(request);
+			return AdminServices.removePaths(request);
 		}
 		
 		function isToBeRemoved (index) {
-			return vm.configCompare.removeList.indexOf(index) != -1;
+			var path = vm.config.reportPaths[index];
+			return vm.configCompare.removeList.indexOf(path) != -1;
 		}
 		
 		function isPathChanged (index) {
-			return vm.configCompare.reportPaths[index] !== vm.config.reportPaths[index] || index >= vm.config.reportPaths.length;
+			return vm.configCompare.reportPaths[index] !== vm.config.reportPaths[index];
 		}
 		
 		function isNewPath (index) {
