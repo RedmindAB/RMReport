@@ -7,7 +7,7 @@ angular.module('webLog')
 	var count = 0;
 	$scope.getVersion = function(){
 		$.ajax({
-		    url: "", /* https://api.github.com/repos/owner/repo/git/refs/tags */
+		    url: "", /* https://api.github.com/repos/owner/repo/git/refs/tags */ 
 		    dataType: "json",
 		    success: function (data)
 		    {
