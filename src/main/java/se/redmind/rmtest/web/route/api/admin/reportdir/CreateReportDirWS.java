@@ -60,7 +60,15 @@ public class CreateReportDirWS extends Route {
 			enter = true;
 			boolean directoryExists = FileUtil.directoryExists(path.getAsString());
 			if (directoryExists) {
-				cHandler.saveReportPath(path.getAsString());
+				boolean saveReportPath = cHandler.saveReportPath(path.getAsString());
+				if (!saveReportPath) {
+					try {
+						response.raw().sendError(417, "You can not add duplicates.");
+						enter = false;
+					} catch (IOException e) {
+						log.error(e.getMessage());
+					}
+				}
 			}
 			else {
 				try {

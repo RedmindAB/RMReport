@@ -64,9 +64,16 @@ public class ConfigHandler {
 		}
 	}
 	
-	public void saveReportPath(String path){
+	public boolean saveReportPath(String path){
+		JsonArray reportPaths = configJson.getReportPaths();
+		for (JsonElement storedPath : reportPaths) {
+			if (path.equals(storedPath.getAsString())) {
+				return false;
+			}
+		}
 		configJson.getReportPaths().add(new JsonPrimitive(path));
 		autoCommit();
+		return true;
 	}
 
 	private void autoCommit() {
@@ -75,9 +82,14 @@ public class ConfigHandler {
 		}
 	}
 	
-	public void updateReportPath(int index, String path){
+	public void updateReportPath(String old, String newPath){
 		JsonArray reportPaths = configJson.getReportPaths();
-		reportPaths.set(index, new JsonPrimitive(path));
+		for (JsonElement jsonElement : reportPaths) {
+			if (jsonElement.getAsString().equals(old)) {
+				jsonElement = new JsonPrimitive(newPath);
+				break;
+			}
+		}
 		autoCommit();
 	}
 	
