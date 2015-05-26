@@ -57,12 +57,12 @@ public class ApiRouter {
 		
 		//added to apidocs, but no result example added.
 		get(new GetDevicesAMonthAgoWS("/api/device/notrunforamonth"));
-		put(new UpdateReportDirWS("/api/admin/reportdir/:index"));
+		put(new UpdateReportDirWS("/api/admin/reportdir"));
 		put(new ChangePortWS("/api/admin/port/:portnum"));
 		post(new CreateReportDirWS("/api/admin/reportdir"));
 		
 		//not added to apidocs
-		delete(new DeleteReportDir("/api/admin/reportdir/:index"));
+		delete(new DeleteReportDir("/api/admin/reportdir"));
 		delete(new DeleteReportDirsWS("/api/admin/reportdir"));
 		get(new GetConfigWS("/api/admin/config"));
 		get(new CheckForChangeWS("/api/long"));
