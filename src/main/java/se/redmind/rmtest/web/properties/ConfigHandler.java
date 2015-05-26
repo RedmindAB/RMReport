@@ -87,6 +87,7 @@ public class ConfigHandler {
 		for (JsonElement jsonElement : reportPaths) {
 			if (jsonElement.getAsString().equals(old)) {
 				jsonElement = new JsonPrimitive(newPath);
+				System.out.println(reportPaths);
 				break;
 			}
 		}
