@@ -7,8 +7,8 @@
 	
 	checkImage.$inject = ['$http'];
 	
-	 function checkImage ($http) {
-	    return {
+	function checkImage ($http) {
+		return {
 	        restrict: 'A',
 	        link: function(scope, element, attrs) {
 	            attrs.$observe('ngSrc', function(ngSrc) {

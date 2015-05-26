@@ -65,6 +65,7 @@ angular
 		.state('admin',{
 		    url:'/admin',
 		    templateUrl: 'app/components/admin/admin.html',
-		    controller: 'AdminCtrl'
+		    controller: 'AdminCtrl',
+		    controllerAs: 'ctrl'
 		});
     });

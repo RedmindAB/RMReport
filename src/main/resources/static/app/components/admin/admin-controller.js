@@ -5,36 +5,48 @@
 		.module('webLog')
 		.controller('AdminCtrl', AdminCtrl);
 	
-	AdminCtrl.$inject = ['$scope', '$http','$state'];
+	AdminCtrl.$inject = ['$http','$state', 'AdminServices'];
 			
-	function AdminCtrl($scope, $http, $state){
-		$scope.config = {};
-		$scope.configCompare = {}
-		$scope.newPath = '';
-		$scope.errorMessages = [];
+	function AdminCtrl($http, $state, AdminServices){
 		
+		var vm = this;
 		var requestObj = {};
+		
+		vm.config = {};
+		vm.configCompare = {};
+		vm.errorMessages = [];
+		vm.newPath = '';
+		
+		vm.addPath = addPath;
+		vm.isNewPath = isNewPath;
+		vm.isPathChanged = isPathChanged;
+		vm.isToBeRemoved = isToBeRemoved;
+		vm.readErrorMessage = readErrorMessage;
+		vm.removePath = removePath;
+		vm.saveChanges = saveChanges;
+		
 	
 		loadRootConfig();
 		
-		$scope.addPath = function(path){
+		
+		function addPath(path){
 			if (!pathExists(path)) {
-				$scope.configCompare.reportPaths.push(path);
+				vm.configCompare.reportPaths.push(path);
 			} else {
-				$scope.errorMessages.push({index: -1, message: "Path already exists"});
+				vm.errorMessages.push({index: -1, message: "Path already exists"});
 			}
-			$scope.newPath = '';
+			vm.newPath = '';
 		}
 		
-		$scope.removePath = function(index){
-			if ($scope.isNewPath(index)) {
-				$scope.configCompare.reportPaths.splice(index,1);
+		function removePath(index){
+			if (vm.isNewPath(index)) {
+				vm.configCompare.reportPaths.splice(index,1);
 			} else {
-				if ($scope.configCompare.removeList.indexOf(index) === -1) {
-					$scope.configCompare.removeList.push(index);
+				if (vm.configCompare.removeList.indexOf(index) === -1) {
+					vm.configCompare.removeList.push(index);
 				} else {
-					var i = $scope.configCompare.removeList.indexOf(index);
-					$scope.configCompare.removeList.splice(i, 1);
+					var i = vm.configCompare.removeList.indexOf(index);
+					vm.configCompare.removeList.splice(i, 1);
 				}
 			}
 		}
@@ -43,17 +55,17 @@
 			$http.get('/api/admin/config')
 			.success(function(data, status, headers, config){ 
 				if(data){
-					$scope.config = data;
-					angular.copy($scope.config,$scope.configCompare);
-					$scope.configCompare.removeList = [];
-				};
+					vm.config = data;
+					angular.copy(vm.config,vm.configCompare);
+					vm.configCompare.removeList = [];
+				}
 			}).error(function(data, status, headers, config){
 				console.error(data);
 			});
 		}
 		
-		$scope.saveChanges = function(){
-			$scope.errorMessages = [];
+		function saveChanges(){
+			vm.errorMessages = [];
 			addPaths();
 			changePaths();
 			removePaths();
@@ -61,73 +73,58 @@
 		}
 		
 		function changePaths(){
-			for (var i = 0; i < $scope.configCompare.reportPaths.length; i++) {
-				if ($scope.isPathChanged(i) && !$scope.isToBeRemoved(i)) {
-					var request = $scope.configCompare.reportPaths[i];
-					$http.put('/api/admin/reportdir/'+i, request)
-			   		.success(function(data, status, headers, config){
-			   		}).error(function(data, status, headers, config){
-				   		$scope.errorMessages.push({index: getIndexFromError(config.url), message: "Path did not exist"});
-			   		});
+			for (var i = 0; i < vm.configCompare.reportPaths.length; i++) {
+				if (vm.isPathChanged(i) && !vm.isToBeRemoved(i)) {
+					var request = vm.configCompare.reportPaths[i];
+					AdminServices.changePaths(request, vm.errorMessages);
 				}
 			}
 		}
 		
 		function addPaths(){
 			var request = [];
-			for (var i = 0; i < $scope.configCompare.reportPaths.length; i++) {
-				if ($scope.isNewPath(i)) {
-					request.push($scope.configCompare.reportPaths[i]);
-					$scope.configCompare.reportPaths.splice(i,1);
+			for (var i = 0; i < vm.configCompare.reportPaths.length; i++) {
+				if (vm.isNewPath(i)) {
+					request.push(vm.configCompare.reportPaths[i]);
+					vm.configCompare.reportPaths.splice(i,1);
 					i--;
 				}
 			}
 			if (request.length > 0) {
-				$http.post('/api/admin/reportdir', request)
-				.success(function(data, status, headers, config){
-				}).error(function(data, status, headers, config){
-					$scope.errorMessages.push({index: -1, message: "An added path was incorrect"});
-				});
-			}
-			for (var i = 0; i < request.length; i++) {
-				
+				AdminServices.addPaths(request, vm.errorMessages);
 			}
 		}
 		
 		function removePaths(){
-			var request = $scope.configCompare.removeList;
-			$http.delete('/api/admin/reportdir', {data:request})
-			.success(function(data, status, headers, config){
-			}).error(function(data, status, headers, config){
-	   		console.error(data);
-			});
+			var request = vm.configCompare.removeList;
+			AdminServices.removePaths(request);
 		}
 		
-		$scope.isToBeRemoved = function(index){
-			return $scope.configCompare.removeList.indexOf(index) != -1;
+		function isToBeRemoved (index) {
+			return vm.configCompare.removeList.indexOf(index) != -1;
 		}
 		
-		$scope.isPathChanged = function(index){
-			return $scope.configCompare.reportPaths[index] !== $scope.config.reportPaths[index] || index >= $scope.config.reportPaths.length;
+		function isPathChanged (index) {
+			return vm.configCompare.reportPaths[index] !== vm.config.reportPaths[index] || index >= vm.config.reportPaths.length;
 		}
 		
-		$scope.isNewPath = function(index){
-			return index >= $scope.config.reportPaths.length;
+		function isNewPath (index) {
+			return index >= vm.config.reportPaths.length;
 		}
 		
 		function pathExists(path){
-			for (var i = 0; i < $scope.configCompare.reportPaths.length; i++) {
-				if ($scope.configCompare.reportPaths[i] === path) {
+			for (var i = 0; i < vm.configCompare.reportPaths.length; i++) {
+				if (vm.configCompare.reportPaths[i] === path) {
 					return true;
 				}
 			}
 			return false;
 		}
 		
-		$scope.readErrorMessage = function(index){
-			for (var i = 0; i < $scope.errorMessages.length; i++) {
-				if ($scope.errorMessages[i].index === index) {
-					return $scope.errorMessages[i].message;
+		function readErrorMessage(index){
+			for (var i = 0; i < vm.errorMessages.length; i++) {
+				if (vm.errorMessages[i].index === index) {
+					return vm.errorMessages[i].message;
 				}
 			}
 		}
@@ -137,5 +134,5 @@
 			var index = parseInt(msg.substring(i+1));
 			return index;
 		}
-	};
+	}
 })();
