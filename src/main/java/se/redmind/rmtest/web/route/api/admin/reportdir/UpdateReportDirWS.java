@@ -41,7 +41,7 @@ public class UpdateReportDirWS extends Route {
 		}
 		else {
 			try {
-				response.raw().sendError(417, "Path do not exist:"+requestBody);
+				response.raw().sendError(417, FileUtil.getLastMessage()+" body: "+requestBody);
 				response.status(417);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
