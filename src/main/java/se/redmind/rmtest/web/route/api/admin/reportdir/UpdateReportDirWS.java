@@ -34,7 +34,7 @@ public class UpdateReportDirWS extends Route {
 		String requestBody = request.body();
 		JsonObject requestJson = new Gson().fromJson(requestBody, JsonObject.class);
 		ConfigHandler cHandler = ConfigHandler.getInstance();
-		boolean directoryExists = FileUtil.directoryExists(requestBody);
+		boolean directoryExists = FileUtil.directoryExists(requestJson.get("newPath").getAsString());
 		if (directoryExists) {
 			cHandler.updateReportPath(requestJson.get("oldPath").getAsString(), requestJson.get("newPath").getAsString());
 			return true;
