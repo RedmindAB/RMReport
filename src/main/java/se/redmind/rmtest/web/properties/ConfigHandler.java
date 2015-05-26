@@ -84,10 +84,11 @@ public class ConfigHandler {
 	
 	public void updateReportPath(String old, String newPath){
 		JsonArray reportPaths = configJson.getReportPaths();
-		for (JsonElement jsonElement : reportPaths) {
-			if (jsonElement.getAsString().equals(old)) {
-				jsonElement = new JsonPrimitive(newPath);
-				System.out.println(reportPaths);
+		for (int i = 0; i < reportPaths.size(); i++) {
+			if (reportPaths.get(i).getAsString().equals(old)) {
+				reportPaths.set(i, new JsonPrimitive(newPath));
+				System.out.println("new path: "+newPath+"\nold path"+old+"\n"+reportPaths);
+				autoCommit();
 				break;
 			}
 		}
