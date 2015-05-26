@@ -42,7 +42,6 @@ public class GetDriverByTestcaseDAO extends DBBridge {
 				jsonObject.add("timetorun", new JsonPrimitive(rs.getString("time")));
 				jsonObject.add("result", new JsonPrimitive(rs.getString("result")));
 				String message = getMessage(rs.getString("message"));
-				System.out.println(message);
 				jsonObject.add("message", new JsonPrimitive(message));
 				
 				array.add(jsonObject);
