@@ -1,5 +1,7 @@
 package se.redmind.rmtest.db.jdbm.message;
 
+import java.util.SortedMap;
+
 import se.redmind.rmtest.db.jdbm.JDBMConnection;
 
 public class MessageDAO {
@@ -48,16 +50,22 @@ public class MessageDAO {
 	}
 	
 	/**
-	 * Persists a String in the database
-	 * @param value - the string that should be saved into the database.
+	 * saves a String in the hashmap, needs to be commited to be persisted.
+	 * @param value - the string that should be saved into the database, null or empty values return -1
 	 * @return - returns the index of the String, -1 if an error occurs.
 	 */
 	public int save(String value){
+		if (value == null || value.isEmpty()) return -1;
 		try {
 			return con.save(value);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return -1;
 		}
+	}
+	
+	public void commit(){
+		con.commit();
 	}
 
 	public String get(int index) {
@@ -70,6 +78,20 @@ public class MessageDAO {
 	
 	public int getSize(){
 		return con.size();
+	}
+
+	public void rollback() {
+		con.rollback();
+	}
+
+	public void close() {
+		con.close();
+		instance = null;
+	}
+
+	public void prinContent() {
+		SortedMap<Integer, String> map = con.getMap();
+		System.out.println(map);
 	}
 	
 }

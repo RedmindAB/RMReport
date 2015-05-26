@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import se.redmind.rmtest.db.DBBridge;
 import se.redmind.rmtest.db.create.testcaseinserter.TestCaseInserter;
+import se.redmind.rmtest.db.jdbm.message.MessageDAO;
 import se.redmind.rmtest.db.lookup.testcase.TestcaseDbLookup;
 import se.redmind.rmtest.report.parser.Driver;
 import se.redmind.rmtest.report.parser.Report;
@@ -23,14 +24,16 @@ public class TestCaseRunInserter extends DBBridge {
 	
 	private TestCaseInserter testCaseInserter;
 	private TestcaseDbLookup readTestcaseFromDB;
+	private MessageDAO messageDAO;
 	
 	
 	private final static String INSERT_TESTCASERUN = "INSERT INTO report (suite_id, class_id, testcase_id, timestamp, result, message, os_id, browser_id, device_id, time) "
-																	+ "VALUES ({suite_id},{class_id},{testcase_id},'{timestamp}','{result}','{message}',{os_id},{browser_id},{device_id},{time})";
+																	+ "VALUES ({suite_id},{class_id},{testcase_id},'{timestamp}','{result}', '{message}',{os_id},{browser_id},{device_id},{time})";
 
 	public TestCaseRunInserter() {
 		testCaseInserter = new TestCaseInserter();
 		readTestcaseFromDB = new TestcaseDbLookup();
+		messageDAO = MessageDAO.getInstance();
 	}
 	
 	public boolean insertTestCases(Report report, int suiteID, HashMap<String, Integer> classIDs, HashMap<String,Integer> testCases, DriverValidation driverValidation){
@@ -50,7 +53,7 @@ public class TestCaseRunInserter extends DBBridge {
 				map.put("testcase_id", ""+testCases.get(testCase.getMethodName()+classID));
 				map.put("timestamp", ""+report.getTimestamp());
 				map.put("result", testCase.getResult());
-				map.put("message", testCase.getMessage());
+				map.put("message", extractMessage(testCase.getMessage()));
 				
 				String osName = driver.getOs();
 				String osVer = driver.getOsVer();
@@ -72,11 +75,13 @@ public class TestCaseRunInserter extends DBBridge {
 			}
 			long start = System.currentTimeMillis();
 			int[] executeBatch = pStatement.executeBatch();
+			messageDAO.commit();
 			return true;
 //			System.out.println(System.currentTimeMillis() - start);
 		} catch (SQLException e) {
 			try {
 				connection.rollback();
+				messageDAO.rollback();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -88,6 +93,13 @@ public class TestCaseRunInserter extends DBBridge {
 		
 	}
 	
+	private String extractMessage(String message) {
+		if (message != null && !message.isEmpty()) {
+			return String.valueOf(messageDAO.save(message));
+		}
+		return "";
+	}
+
 	public int getTestCaseID(String testCaseName, int classid){
 		int testCaseID = readTestcaseFromDB.getTestCaseID(testCaseName);
 		if (testCaseID < 0) {

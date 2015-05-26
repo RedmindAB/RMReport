@@ -9,13 +9,19 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 import se.redmind.rmtest.db.DBBridge;
+import se.redmind.rmtest.db.jdbm.message.MessageDAO;
 
 public class GetDriverByTestcaseDAO extends DBBridge {
 
+	private MessageDAO messageDAO;
+
+	public GetDriverByTestcaseDAO() {
+		messageDAO = MessageDAO.getInstance();
+	}
+	
 	public String getDriverByTestcaseId(int testCaseId, String timestamp){
 		JsonArray jsonArray  = getDriverAndMessageFromLastRun(testCaseId, timestamp);
 		return new Gson().toJson(jsonArray);
-		
 	}
 	public JsonArray getDriverAndMessageFromLastRun(int testcaseId, String timestamp){
 		String SELECT_ALL_FROM_REPORT_OS_DEVICE_BROWSER = "select testcase.testcasename, device.devicename, os.osname, os.osversion, browser.browsername, browser.browserversion, time, report.result, report.message from report inner join os on os.os_id = report.os_id inner join device on device.device_id = report.device_id inner join browser on browser.browser_id = report.browser_id inner join testcase on testcase.testcase_id = report.testcase_id where report.testcase_id = ";
@@ -35,7 +41,9 @@ public class GetDriverByTestcaseDAO extends DBBridge {
 				jsonObject.add("browserversion", new JsonPrimitive(rs.getString("browserversion")));
 				jsonObject.add("timetorun", new JsonPrimitive(rs.getString("time")));
 				jsonObject.add("result", new JsonPrimitive(rs.getString("result")));
-				jsonObject.add("message", new JsonPrimitive(rs.getString("message")));
+				String message = getMessage(rs.getString("message"));
+				System.out.println(message);
+				jsonObject.add("message", new JsonPrimitive(message));
 				
 				array.add(jsonObject);
 			}
@@ -47,4 +55,11 @@ public class GetDriverByTestcaseDAO extends DBBridge {
 		return array;
     	  	
     }
+	
+	private String getMessage(String id){
+		if (!id.isEmpty()) {
+			return messageDAO.get(Integer.valueOf(id));
+		}
+		return "";
+	}
 }
