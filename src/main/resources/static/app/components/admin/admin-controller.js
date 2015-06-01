@@ -102,7 +102,7 @@
 		
 		function removePaths(){
 			var request = vm.configCompare.removeList;
-			return AdminServices.removePaths(request);
+			return AdminServices.removePaths(request, vm.errorMessages);
 		}
 		
 		function isToBeRemoved (index) {

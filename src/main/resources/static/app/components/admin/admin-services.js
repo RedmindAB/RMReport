@@ -22,6 +22,8 @@
 		function addPaths(request, errorMessages) {
 			return $http.post('/api/admin/reportdir', request)
 			.success(function(data, status, headers, config){
+				console.log("Success!");
+				errorMessages.push({index: -1, message: "The path has successfully been added"});
 			}).error(function(data, status, headers, config){
 				errorMessages.push({index: -1, message: "An added path was incorrect"});
 			});
@@ -45,7 +47,7 @@
 		    return $q.all(promises);
 		}
 		
-		function removePaths (request){
+		function removePaths (request, errorMessages){
 			
 		    var promises = [];
 
@@ -56,7 +58,7 @@
 		            data  : change
 		        });
 		        promises.push(promise);
-
+		        errorMessages.push({index: -1, message: "The path has successfully been removed"});
 		    });
 		    return $q.all(promises);
 		}
