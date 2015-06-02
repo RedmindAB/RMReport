@@ -81,7 +81,7 @@
 					});
 				}
 			}
-			return AdminServices.changePaths(request, vm.errorMessages);
+			return AdminServices.changePaths(request);
 		}
 		
 		function addPaths(){
@@ -100,6 +100,7 @@
 		
 		function removePaths(){
 			var request = vm.configCompare.removeList;
+			return AdminServices.removePaths(request);
 		}
 		
 		function isToBeRemoved (index) {
