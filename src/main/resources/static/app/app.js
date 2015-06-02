@@ -8,13 +8,13 @@ angular
 			           ])
     .config(function($urlRouterProvider, $stateProvider){
     	
-    $urlRouterProvider.otherwise("/home");
+    $urlRouterProvider.otherwise("/dashboard");
     
     //states
     $stateProvider
-        .state('home',{
-            url: '/home',
-            templateUrl: 'app/components/dashboard/home.html',
+        .state('dashboard',{
+            url: '/dashboard',
+            templateUrl: 'app/components/dashboard/dashboard.html',
             controller: 'DashboardCtrl'
         })
         .state('reports',{
@@ -67,5 +67,10 @@ angular
 		    templateUrl: 'app/components/admin/admin.html',
 		    controller: 'AdminCtrl',
 		    controllerAs: 'ctrl'
+		})
+		.state('home',{
+		    url:'/home',
+		    templateUrl: 'app/components/overtime/home.html',
+		    controller: 'OvertimeCtrl'
 		});
     });

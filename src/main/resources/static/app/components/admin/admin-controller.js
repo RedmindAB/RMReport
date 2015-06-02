@@ -5,13 +5,13 @@
 		.module('webLog')
 		.controller('AdminCtrl', AdminCtrl);
 	
-	AdminCtrl.$inject = ['$http','$state', 'AdminServices'];
+	AdminCtrl.$inject = ['$http','$state', 'AdminServices', '$scope'];
 			
-	function AdminCtrl($http, $state, AdminServices){
+	function AdminCtrl($http, $state, AdminServices, $scope){
 		
 		var vm = this;
 		var requestObj = {};
-		
+
 		vm.config = {};
 		vm.configCompare = {};
 		vm.errorMessages = [];
@@ -25,9 +25,7 @@
 		vm.removePath = removePath;
 		vm.saveChanges = saveChanges;
 		
-	
 		loadRootConfig();
-		
 		
 		function addPath(path){
 			if (!pathExists(path)) {
@@ -102,7 +100,6 @@
 		
 		function removePaths(){
 			var request = vm.configCompare.removeList;
-			return AdminServices.removePaths(request, vm.errorMessages);
 		}
 		
 		function isToBeRemoved (index) {
