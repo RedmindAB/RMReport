@@ -1,14 +1,8 @@
 <div 
 	class="navbar navbar-default yamm" 
 	ng-controller="NavBarCtrl" 
-	style='position: fixed; z-index: 9999; width: 100%'>
+	style='position: fixed; z-index: 9999; width: 100%;'>
 	<div class="navbar-header">
-	
-		<!-- Logo -->
-		<a id='home' ng-href="#/overtime">
-			<img src='assets/img/logos/logo.png' class='home navbar-brand'/>
-		</a>
-		
 		<!-- Hamburger -->
 		<button 
 			type="button" 
@@ -26,19 +20,23 @@
 	<div id="navbar-collapse-2" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
 			<!-- Overtime -->
-			<li id='overtime' role="presentation" ng-class="{'active': isActive('home')}">
+			<li id='redmind' role="presentation" ng-class="{'active': isActive('home')}" >
+				<!-- Logo -->
 				<a 
+					id='redmind_view'
+					ng-href="#/redmind"
+					class='rm-logo-a'
 					id='overtime_view' 
-					ng-click="goToOvertimeView();" 
-					ng-style="{'color': getNavColor('overtime')}" 
+					ng-click="goToGraphView();" 
+					ng-style="{'color': getNavColor('redmind')}" 
 					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
 					data-target=".navbar-collapse"> 
-					Overtime
+					<img src='assets/img/logos/logo.png' class='rm-logo'/>
 				</a>
 			</li>
 			
 			<!-- Dashboard -->
-			<li id='dash' role="presentation" ng-class="{'active': isActive('dashboard')}">
+			<li id='dash' role="presentation" ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('dashboard')}">
 				<a 
 					id='dash_view' 
 					ng-click="goToDashboardView();" 

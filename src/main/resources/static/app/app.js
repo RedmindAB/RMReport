@@ -8,7 +8,7 @@ angular
 			           ])
     .config(function($urlRouterProvider, $stateProvider){
     	
-    $urlRouterProvider.otherwise("/dashboard");
+    $urlRouterProvider.otherwise("/home");
     
     //states
     $stateProvider
@@ -17,6 +17,11 @@ angular
             templateUrl: 'app/components/dashboard/dashboard.html',
             controller: 'DashboardCtrl'
         })
+		.state('home',{
+		    url:'/home',
+		    templateUrl: 'app/components/home/home.html',
+		    controller: 'HomeCtrl'
+		})
         .state('reports',{
 	        url:'/reports',
 	        templateUrl: 'app/components/graph/reports.html',
@@ -67,10 +72,5 @@ angular
 		    templateUrl: 'app/components/admin/admin.html',
 		    controller: 'AdminCtrl',
 		    controllerAs: 'ctrl'
-		})
-		.state('home',{
-		    url:'/home',
-		    templateUrl: 'app/components/overtime/home.html',
-		    controller: 'OvertimeCtrl'
 		});
     });

@@ -1,0 +1,18 @@
+<div ng-controller="GraphCtrl" ng-repeat="suite in CurrentSuite.allSuites track by $index">
+	<table class='table-home'>
+		<tr style='width:100%'>
+			<td colspan='3'>
+				<highchart 
+					ng-if="Charts.chartHomeConfig[suite.id] !== undefined" 
+					id="chart1" class='high-chart'
+					config="Charts.chartHomeConfig[suite.id]">
+				</highchart>
+			</td>
+		</tr>
+	</table>
+	<div 
+		ng-if="$index !== CurrentSuite.allSuites.length -1" 
+		class='row'
+		style='border: 10px solid #D4D9DD'>
+	</div>
+</div>
