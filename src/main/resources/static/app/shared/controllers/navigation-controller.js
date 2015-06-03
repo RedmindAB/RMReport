@@ -101,7 +101,7 @@
 			}
 		}
 		
-		$scope.goToOvertimeView = function(){
+		$scope.goToHomeView = function(){
 			$state.transitionTo("home");
 		}
 		

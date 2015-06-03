@@ -20,15 +20,14 @@
 	<div id="navbar-collapse-2" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
 			<!-- Overtime -->
-			<li id='redmind' role="presentation" ng-class="{'active': isActive('home')}" >
+			<li id='home' role="presentation" ng-class="{'active': isActive('home')}" >
 				<!-- Logo -->
 				<a 
-					id='redmind_view'
-					ng-href="#/redmind"
+					id='home_view'
 					class='rm-logo-a'
-					id='overtime_view' 
-					ng-click="goToGraphView();" 
-					ng-style="{'color': getNavColor('redmind')}" 
+					id='home_view' 
+					ng-click="goToHomeView();" 
+					ng-style="{'color': getNavColor('home')}" 
 					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
 					data-target=".navbar-collapse"> 
 					<img src='assets/img/logos/logo.png' class='rm-logo'/>
