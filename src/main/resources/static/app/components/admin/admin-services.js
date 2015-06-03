@@ -56,7 +56,6 @@
 		            data  : change
 		        });
 		        promises.push(promise);
-
 		    });
 		    return $q.all(promises);
 		}

@@ -5,7 +5,7 @@
 	<div class="navbar-header">
 	
 		<!-- Logo -->
-		<a id='home' ng-href="#/">
+		<a id='home' ng-href="#/overtime">
 			<img src='assets/img/logos/logo.png' class='home navbar-brand'/>
 		</a>
 		
@@ -20,17 +20,29 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-	</div>
+	</div> 
 	
 	<!-- Navigation Links -->
 	<div id="navbar-collapse-2" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
+			<!-- Overtime -->
+			<li id='overtime' role="presentation" ng-class="{'active': isActive('home')}">
+				<a 
+					id='overtime_view' 
+					ng-click="goToOvertimeView();" 
+					ng-style="{'color': getNavColor('overtime')}" 
+					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
+					data-target=".navbar-collapse"> 
+					Overtime
+				</a>
+			</li>
+			
 			<!-- Dashboard -->
-			<li id='dash' role="presentation" ng-class="{'active': isActive('home')}">
+			<li id='dash' role="presentation" ng-class="{'active': isActive('dashboard')}">
 				<a 
 					id='dash_view' 
 					ng-click="goToDashboardView();" 
-					ng-style="{'color': getNavColor('home')}" 
+					ng-style="{'color': getNavColor('dashboard')}" 
 					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
 					data-target=".navbar-collapse"> 
 					Dashboard
