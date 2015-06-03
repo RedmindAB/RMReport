@@ -43,15 +43,28 @@ public class CreateReportDirWS extends Route {
 	public Object handle(Request request, Response response) {
 		String reportdirs = request.body();
 		JsonArray dirArray = new Gson().fromJson(reportdirs, JsonArray.class);
+		if (dirArray == null) return badRequest(response, "Bad format or empty body.");
+		
 		ConfigHandler cHandler = ConfigHandler.getInstance();
 		boolean enter = false;
 		enter = handleRequest(response, dirArray, cHandler, enter);
 		if (enter) return true;
 		else {
-			response.status(417);
+			response.status(400);
 			return response;
 		}
 		
+	}
+
+
+	private Response badRequest(Response response, String string) {
+		try {
+			response.raw().sendError(400, string);
+			response.status(400);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return response;
 	}
 
 

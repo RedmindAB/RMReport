@@ -111,6 +111,17 @@ public class ConfigHandler {
 		}
 		autoCommit();
 	}
+	
+	public boolean reportPathExistInConfig(String reportDir){
+		String[] reportPaths = getReportPaths();
+		for (String string : reportPaths) {
+			if (string.equals(reportDir)) {
+				System.out.println("Path exists");
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public int getPort() {
 		return configJson.getPort();

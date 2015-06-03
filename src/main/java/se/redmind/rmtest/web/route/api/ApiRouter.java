@@ -26,6 +26,7 @@ import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteWS;
 import se.redmind.rmtest.web.route.api.suite.bytimestamp.GetSuiteByTimestampWS;
 import se.redmind.rmtest.web.route.api.suite.getsuites.GetSuitesWS;
 import se.redmind.rmtest.web.route.api.suite.syso.GetSuiteSysosWS;
+import se.redmind.rmtest.web.route.api.timestamp.TimestampWS;
 
 public class ApiRouter {
 
@@ -67,6 +68,7 @@ public class ApiRouter {
 		get(new GetConfigWS("/api/admin/config"));
 		get(new CheckForChangeWS("/api/long"));
 		get(new RunDoctorWS("/api/admin/doctor"));
+		get(new TimestampWS("/api/timestamp/:timestamp"));
 	}
 	
 	
