@@ -41,7 +41,8 @@ public class GetDriverByTestcaseDAO extends DBBridge {
 				jsonObject.add("browserversion", new JsonPrimitive(rs.getString("browserversion")));
 				jsonObject.add("timetorun", new JsonPrimitive(rs.getString("time")));
 				jsonObject.add("result", new JsonPrimitive(rs.getString("result")));
-				String message = getMessage(rs.getString("message"));
+				String dbMessageId = rs.getString("message");
+				String message = getMessage(dbMessageId);
 				jsonObject.add("message", new JsonPrimitive(message));
 				
 				array.add(jsonObject);
@@ -56,7 +57,7 @@ public class GetDriverByTestcaseDAO extends DBBridge {
     }
 	
 	private String getMessage(String id){
-		if (!id.isEmpty()) {
+		if (id != null && !id.isEmpty()) {
 			return messageDAO.get(Integer.valueOf(id));
 		}
 		return "";

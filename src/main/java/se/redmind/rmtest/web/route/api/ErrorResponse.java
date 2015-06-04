@@ -1,12 +1,8 @@
 package se.redmind.rmtest.web.route.api;
 
-import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import spark.Request;
-import spark.Response;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -40,6 +36,10 @@ public class ErrorResponse {
 			log.error(message);
 		}
 		else log.error(toString());
+	}
+	
+	public JsonObject getJson(){
+		return new Gson().fromJson(toString(), JsonObject.class);
 	}
 	
 	@Override

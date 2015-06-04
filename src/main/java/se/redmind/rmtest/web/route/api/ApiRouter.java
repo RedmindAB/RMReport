@@ -20,8 +20,10 @@ import se.redmind.rmtest.web.route.api.screenshot.structure.ScreenshotStructureD
 import se.redmind.rmtest.web.route.api.screenshot.structure.ScreenshotStructureWS;
 import se.redmind.rmtest.web.route.api.seleniumgrid.SeleniumGridDAO;
 import se.redmind.rmtest.web.route.api.seleniumgrid.SeleniumGridWS;
+import se.redmind.rmtest.web.route.api.stats.devicefail.DeviceStatsFailWS;
 import se.redmind.rmtest.web.route.api.stats.grahoptions.GetGraphOptionsWS;
 import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
+import se.redmind.rmtest.web.route.api.stats.platform.DeviceStatsPlatform;
 import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteWS;
 import se.redmind.rmtest.web.route.api.suite.bytimestamp.GetSuiteByTimestampWS;
 import se.redmind.rmtest.web.route.api.suite.getsuites.GetSuitesWS;
@@ -69,6 +71,9 @@ public class ApiRouter {
 		get(new CheckForChangeWS("/api/long"));
 		get(new RunDoctorWS("/api/admin/doctor"));
 		get(new TimestampWS("/api/timestamp/:timestamp"));
+		//api/stats/device/fail/:deviceid/:suiteid?limit=x (Return the device fails based on the last timestamps down to the limit)
+		get(new DeviceStatsFailWS("/api/stats/device/fail/:suiteid/:osname"));
+		get(new DeviceStatsPlatform("/api/stats/platform/:platformid/:suiteid"));
 	}
 	
 	
