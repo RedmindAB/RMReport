@@ -73,7 +73,7 @@ public class ApiRouter {
 		get(new TimestampWS("/api/timestamp/:timestamp"));
 		//api/stats/device/fail/:deviceid/:suiteid?limit=x (Return the device fails based on the last timestamps down to the limit)
 		get(new DeviceStatsFailWS("/api/stats/device/fail/:suiteid/:osname"));
-		get(new DeviceStatsPlatform("/api/stats/platform/:platformid/:suiteid"));
+		get(new DeviceStatsPlatform("/api/stats/platform/:suiteid"));
 	}
 	
 	

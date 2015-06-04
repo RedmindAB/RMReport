@@ -13,11 +13,10 @@ public class DeviceStatsPlatform extends RouteUtil {
 
 	@Override
 	public Object handle(Request request, Response response) {
-		String sPlatform = request.params("platform");
-		String sSuiteid = request.params("suiteid");
-		String limit = request.queryParams("limit");
-		PlatformStatsDAO platformStatsDAO = new PlatformStatsDAO();
-		return null;
+		int suiteid = extractNumber(request, "suiteid");
+		int limit = getLimit(request, 500);
+		PlatformStatsDAO platformStatsDAO = new PlatformStatsDAO(suiteid,limit);
+		return platformStatsDAO.getResult();
 	}
 	
 	
