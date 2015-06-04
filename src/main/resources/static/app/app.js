@@ -15,7 +15,8 @@ angular
         .state('dashboard',{
             url: '/dashboard',
             templateUrl: 'app/components/dashboard/dashboard.html',
-            controller: 'DashboardCtrl'
+            controller: 'DashboardCtrl',
+            controllerAs: 'ctrl'
         })
 		.state('home',{
 		    url:'/home',
