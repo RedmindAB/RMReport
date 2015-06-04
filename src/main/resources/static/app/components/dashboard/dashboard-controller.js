@@ -8,6 +8,16 @@
 	DashboardCtrl.$inject = ['$http','$state', '$scope'];
 			
 	function DashboardCtrl($http, $state, $scope){
-		$scope.platforms = ['Android', 'iOS', 'Windows', 'OSX', 'Linux'];
+		
+		var vm = this;
+		var requestObj = {};
+		
+		vm.random = random;
+		
+		vm.platforms = ['Android', 'iOS', 'Windows', 'OSX', 'Linux'];
+		
+		function random(){
+			
+		}
 	}
 })();
