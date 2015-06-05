@@ -3,7 +3,6 @@ package se.redmind.rmtest.web.route;
 import static spark.Spark.*;
 import se.redmind.rmtest.web.properties.ConfigHandler;
 import se.redmind.rmtest.web.route.api.ApiRouter;
-import se.redmind.rmtest.web.route.api.cache.AddCacheFilter;
 import spark.Request;
 import spark.Response;
 import spark.Route;

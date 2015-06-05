@@ -1,5 +1,8 @@
 package se.redmind.rmtest.web.route.api;
 
+import com.google.gson.JsonElement;
+
+import se.redmind.rmtest.web.route.api.cache.WSCache;
 import se.redmind.rmtest.web.route.api.util.timestamp.TimestampUtil;
 import spark.Request;
 import spark.Route;
@@ -41,6 +44,24 @@ public abstract class RouteUtil extends Route{
 	
 	protected long getMinTimestamp(int suiteid, int limit){
 		return TimestampUtil.getInstance().getMinTimestamp(suiteid, limit);
+	}
+	
+	protected JsonElement getCachedObject(Request request){
+		if (request.body().isEmpty()) {
+			return WSCache.getInstance().get(request.pathInfo(), request.queryString());
+		}
+		else {
+			return WSCache.getInstance().get(request.pathInfo(), request.body(), request.queryString()); 
+		}
+	}
+	
+	protected void cacheResult(Request request, JsonElement value){
+		if (request.body().isEmpty()) {
+			WSCache.getInstance().add(request.pathInfo(), request.queryString(), value);
+		}
+		else {
+			WSCache.getInstance().add(request.pathInfo(), request.body(), request.queryString(), value);
+		}
 	}
 	
 }

@@ -22,11 +22,11 @@ public class GetGraphDataDAO {
 	private int suite_id = 0;
 	private boolean error = false;
 
-	public String getGraphData(JsonArray paramsArray){
+	public JsonElement getGraphData(JsonArray paramsArray){
 		//Init the local variables, so that we know what suite_id and limit there is to this request.
 		initLocalVariables(paramsArray);
 		if (error) {
-			return checkErrors(getFirstJson(paramsArray)).toString();
+			return checkErrors(getFirstJson(paramsArray)).getJson();
 		}
 		ReadStatsFromReport reportStats = new ReadStatsFromReport();
 		GraphDataBuilder graphBuilder = new GraphDataBuilder();
@@ -49,7 +49,7 @@ public class GetGraphDataDAO {
 				resultArray.add(result);
 			}
 		}
-		return new Gson().toJson(resultArray);
+		return resultArray;
 	}
 
 	private void initLocalVariables(JsonArray paramsArray) {
