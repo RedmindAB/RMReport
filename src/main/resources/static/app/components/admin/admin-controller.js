@@ -5,9 +5,9 @@
 		.module('webLog')
 		.controller('AdminCtrl', AdminCtrl);
 	
-	AdminCtrl.$inject = ['$http','$state', 'AdminServices', '$scope'];
+	AdminCtrl.$inject = ['$http','$state', 'AdminServices'];
 			
-	function AdminCtrl($http, $state, AdminServices, $scope){
+	function AdminCtrl($http, $state, AdminServices){
 		
 		var vm = this;
 		var requestObj = {};

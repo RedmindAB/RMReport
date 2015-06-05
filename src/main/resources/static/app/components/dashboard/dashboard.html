@@ -1,8 +1,8 @@
 <highchart 
-	ng-if="Charts.chartHomeConfig[CurrentSuite.currentSuiteInfo.id] !== undefined" 
+	ng-if="ctrl.Charts.chartHomeConfig[CurrentSuite.currentSuiteInfo.id] !== undefined" 
 	id="chart1" class='high-chart'
-	config="Charts.chartHomeConfig[CurrentSuite.currentSuiteInfo.id]">
+	config="ctrl.Charts.chartHomeConfig[CurrentSuite.currentSuiteInfo.id]">
 </highchart>
-<message-list>hej</message-list>
-<div ng-controller='GraphCtrl'>
-</div>
+<message-list></message-list>
+<div>
+<input type='button' ng-click='ctrl.runGetDevices()'></input>

@@ -5,19 +5,40 @@
 		.module('webLog')
 		.controller('DashboardCtrl', DashboardCtrl);
 	
-	DashboardCtrl.$inject = ['$http','$state', '$scope'];
+	DashboardCtrl.$inject = ['$scope', '$http','$state', 'DashboardServices', 'Charts', 'CurrentSuite', 'DeviceData'];
 			
-	function DashboardCtrl($http, $state, $scope){
+	function DashboardCtrl($scope, $http, $state, DashboardServices, Charts, CurrentSuite, DeviceData){
 		
 		var vm = this;
 		var requestObj = {};
 		
-		vm.random = random;
+		vm.platforms = ['android', 'ios', 'windows', 'osx', 'linux'];
+		vm.myData = [];
+		vm.devices = [];
+		vm.DeviceData = DeviceData;
 		
-		vm.platforms = ['Android', 'iOS', 'Windows', 'OSX', 'Linux'];
+		vm.DashboardServices = DashboardServices;
+		vm.Charts = Charts;
+		vm.getDevices = getDevices;
+		vm.runGetDevices = runGetDevices;
 		
-		function random(){
-			
+		runGetDevices();
+		
+		function runGetDevices(){
+			getDevices(2);
+		}
+		
+		function getDevices(suiteid) {
+			DashboardServices.getDevices(suiteid).then(function(request){
+				console.log(request);
+				console.log(DeviceData.devices);
+			});
+		}
+		
+		function getPlatforms(suiteid, platform) {
+			vm.platforms = DashboardServices.getPlatforms(suiteid, platform).then(function(request){
+				console.log(request);
+			});
 		}
 	}
 })();
