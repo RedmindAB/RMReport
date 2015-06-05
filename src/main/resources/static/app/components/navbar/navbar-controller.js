@@ -5,14 +5,19 @@
 		.module('webLog')
 		.controller('NavBarCtrl', NavBarCtrl);
 		
-	NavBarCtrl.$inject = ['$scope', '$state', '$window', 'ChartMaker', 'RestLoader', 'Utilities', 'CurrentSuite'];
+	NavBarCtrl.$inject = ['$scope', '$state', '$window', 'ChartMaker', 'RestLoader', 'Utilities', 'CurrentSuite', 'DashboardServices'];
 	
-	function NavBarCtrl ($scope, $state,$window, ChartMaker, RestLoader, Utilities, CurrentSuite) {
+	function NavBarCtrl ($scope, $state,$window, ChartMaker, RestLoader, Utilities, CurrentSuite, DashboardServices) {
 	
 		$scope.CurrentSuite = CurrentSuite;
 		
 		var myData = null;
 		var count = 0;
+		
+		$scope.loadDashboardDevices = function(){
+			DashboardServices.getDevices(3);
+		};
+		
 		$scope.getVersion = function(){
 			$.ajax({
 			    url: "", /* https://api.github.com/repos/owner/repo/git/refs/tags */ 
