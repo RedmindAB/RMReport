@@ -35,6 +35,7 @@
 	    };
 			
 	    function createMainChart(data, newLine){
+	    	console.log(data);
 	    	if (data.length === 0) {
 	    		alert("There is no data for that combination");
 	    		Charts.mainChart.loading = false;

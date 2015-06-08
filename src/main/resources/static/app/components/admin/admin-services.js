@@ -12,11 +12,13 @@
 		var add = addPaths;
 		var change = changePaths;
 		var remove = removePaths;
+		var loadRoot = loadRootConfig;
 		
 		return {
 			addPaths: add,
 			changePaths: change,
-			removePaths: remove
+			removePaths: remove,
+			loadRootConfig: loadRoot
 		};
 		
 		function addPaths(request, addErrorMessage, addMessage) {
@@ -29,6 +31,13 @@
 		        });;
 			
 			return promise;
+		}
+		
+		function loadRootConfig(){
+			return $http({
+	            url   : '/api/admin/config',
+	            method: 'GET'
+	        });
 		}
 		
 		function changePaths(request, addErrorMessage){
@@ -62,7 +71,7 @@
 		            data  : change
 		        }). error(function(data, status, headers, config){
 		        	addErrorMessage(config, "remove");
-		        });;
+		        });
 		        promises.push(promise);
 		    });
 		    return $q.all(promises);

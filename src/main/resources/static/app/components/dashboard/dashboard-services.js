@@ -46,7 +46,6 @@
 	            url   : '/api/stats/device/fail/ ' + key.suiteid + '/' + key.platform,
 	            method: 'GET'
 	        });
-			return promise;
 		}
 	}
 })();
