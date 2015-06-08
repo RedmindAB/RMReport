@@ -22,7 +22,7 @@
 	        newContent: function(){
 	        	document.getElementById('button_reload').className = 'btn btn-primary';
 	        },
-	        chartVariants: ["Pass/Fail", "Total Pass", "Total Fail", "Run Time"],
+	        chartVariants: ["Pass/Fail", "Total Pass", "Total Fail", "Total Skipped", "Run Time"],
 	        breakPoints: ["None", "Browser", "Version", "Device", "Platform"],
 	        breakPointChoice: "None",
 	        setBreakPoint: function(choice){

@@ -167,7 +167,7 @@
 				
 			case "delete":
 				vm.errorMessages.push({
-					message: "Could not remove path:\n" + config.data.oldPath + "\nTo:\n" + config.data.newPath
+					message: "Could not remove path:\n" + config.data[0]
 				});
 				break;
 

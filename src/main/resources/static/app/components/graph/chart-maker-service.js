@@ -32,7 +32,7 @@
 	  			   }
 	  		   }
 	    	}
-	    }
+	    };
 			
 	    function createMainChart(data, newLine){
 	    	if (data.length === 0) {
@@ -41,8 +41,8 @@
 				return;
 			}
 			CurrentSuite.currentTimeStampArray = [];
-			for (var index = 0; index < data[0].data.length; index++) {
-				CurrentSuite.currentTimeStampArray.push(data[0].data[index].timestamp);
+			for (var i = 0, stampLength = data[0].data.length; i < stampLength; i++) {
+				CurrentSuite.currentTimeStampArray.push(data[0].data[i].timestamp);
 			}
 			
 			if (CurrentSuite.currentTimeStamp === '') {
@@ -50,16 +50,16 @@
 			}
 			Utilities.descTimestamps = reverseArray(CurrentSuite.currentTimeStampArray);
 			var graphDataArray = [];
-			for (var i = 0; i < data.length; i++) {
+			for (var i = 0, dataLength = data.length; i < dataLength; i++) {
 				var graphDataObj = {
 						runTime: [],
 						totalPass: [],
 						totalFail: [],
+						totalSkipped: [],
 						passPercentage: []
 				};
 				var graphName = data[i].name;
-				
-				for (var j = 0; j < data[i].data.length; j++) {
+				for (var j = 0, innderLength = data[i].data.length ; j < innderLength; j++) {
 					if (isSkipped(data[i].data[j])) {
 						graphDataObj.runTime.push(null);
 						graphDataObj.totalPass.push(null);
@@ -69,6 +69,7 @@
 						graphDataObj.runTime.push(data[i].data[j].time);
 						graphDataObj.totalPass.push(data[i].data[j].pass);
 						graphDataObj.totalFail.push(data[i].data[j].fail + data[i].data[j].error);
+						graphDataObj.totalSkipped.push(data[i].data[j].skipped);
 						graphDataObj.passPercentage.push(Math.round(getPassPercentage(data[i].data[j].pass, data[i].data[j].fail, data[i].data[j].error)));
 					}
 				}
@@ -77,7 +78,7 @@
 			}
 			if (newLine) {
 				Charts.data = [];
-				for (var i = 0; i < graphDataArray.length; i++) {
+				for (i = 0; i < graphDataArray.length; i++) {
 					Charts.data.push(graphDataArray[i]);
 				}
 			} else {
@@ -98,7 +99,7 @@
 			
 			Charts.mainChart.subtitle.text = "Showing " + CurrentSuite.currentTimeStampArray.length + " results";
 				
-				for (var i = 0; i < Charts.data.length; i++) {
+				for (var i = 0, chartsLength = Charts.data.length; i < chartsLength; i++) {
 			    	Charts.mainChart.series.push({
 						data : Charts.data[i].passPercentage,
 						name : Charts.data[i].name,
@@ -114,7 +115,7 @@
 				chartMaker.changeChartVariant(Utilities.graphView);
 				Charts.mainChart.loading = false;
 				chartMaker.highlightPoint(CurrentSuite.currentTimeStamp);
-	    };
+	    }
 		
 		chartMaker.changeChartVariant = function(input){
 			Utilities.graphView = input;
@@ -132,12 +133,15 @@
 			case "Total Fail":
 				totalFailChart();
 				break;
+			case "Total Skipped":
+				totalSkippedChart();
+				break;
 			default:
-				Utilities.graphView = "Pass/Fail"
+				Utilities.graphView = "Pass/Fail";
 				passFailChart();
 				break;
 			}
-		}
+		};
 		
 		function getSerieColor(i){
 			if (i > Utilities.colors.length -1) {
@@ -155,7 +159,7 @@
 					data : Charts.data[i].passPercentage,
 					name : Charts.data[i].name,
 					color: getSerieColor(i),
-					type: "scatter"
+					type: "line"
 				});
 			}
 			chart.yAxis.title.text = 'Pass percentage';
@@ -173,7 +177,7 @@
 				chart.series.push({
 					data : Charts.data[i].totalFail,
 					name : Charts.data[i].name,
-					color: getSerieColor(1),
+					color: getSerieColor(i+1),
 					type : "column",
 					dashStyle : "Solid",
 					connectNulls : false
@@ -195,7 +199,7 @@
 				chart.series.push({
 					data : Charts.data[i].totalPass,
 					name : Charts.data[i].name,
-					color: getSerieColor(0),
+					color: getSerieColor(i),
 					type : "column",
 					dashStyle : "Solid",
 					connectNulls : false
@@ -204,6 +208,28 @@
 			chart.yAxis.title.text = 'Passed tests';
 			chart.options.plotOptions.series.stacking = '';
 			chart.title.text = "Passed tests";
+			delete Charts.mainChart.options.tooltip.valueDecimals;
+		}
+		
+		function totalSkippedChart() {
+			var chart = Charts.mainChart;
+			
+			chart.options.chart.type = "";
+			chart.series = [];
+			chart.yAxis.max = undefined;
+			for (var i = 0; i < Charts.data.length; i++) {
+				chart.series.push({
+					data : Charts.data[i].totalSkipped,
+					name : Charts.data[i].name,
+					color: getSerieColor(i),
+					type : "column",
+					dashStyle : "Solid",
+					connectNulls : false
+				});
+			}
+			chart.yAxis.title.text = 'Skipped tests';
+			chart.options.plotOptions.series.stacking = '';
+			chart.title.text = "Skipped tests";
 			delete Charts.mainChart.options.tooltip.valueDecimals;
 		}
 		
@@ -229,11 +255,11 @@
 		
 		function reverseArray(array){
 			var length = array.length;
-			var reverseArray = [];
+			var reverse = [];
 			for (var i = length-1; i >= 0; i--) {
-				reverseArray.push(array[i]);
+				reverse.push(array[i]);
 			}
-			return reverseArray;
+			return reverse;
 		}
 		
 		function isSkipped(dataObj){
@@ -362,7 +388,7 @@
 					},
 					func : function(chart) {
 					}
-				}
+				};
 		    
 //		    chartHomeConfigObject.options.tooltip.formatter = function(){
 //		    	
@@ -388,6 +414,6 @@
 			chartHomeConfigObject.xAxis.categories = timeStamps;
 			Charts.chartHomeConfig[suite.id] = chartHomeConfigObject;
 			Charts.chartHomeConfig[suite.id].loading = false;
-		};
-	};
+		}
+	}
 })();
