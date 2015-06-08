@@ -30,6 +30,12 @@
 			<div class="container container-fluid ui-view-margin">
 				<div ui-view></div>
 			</div>
+
+			<div id='version' class='version' role="presentation" ng-cloak>
+				<a id='version-a'>
+				Version: {{getVersion()}}
+				</a>
+			</div>
 		</div>
 	</div>
 	<!-- /container -->

@@ -9,6 +9,7 @@
 	
 	function StyleCtrl ($scope, $state, Utilities){
 		
+		var myData = null;
 		$scope.Utilities = Utilities;
 		
 	    $scope.getCurrentState= function(state){
@@ -133,5 +134,26 @@
 	    	
 	    	return path;
 	    }
+	    
+		$scope.getVersion = function(){
+			$.ajax({
+			    url: "", /* https://api.github.com/repos/owner/repo/git/refs/tags */ 
+			    dataType: "json",
+			    success: function (data)
+			    {
+				        if(data !== null){
+				        	$("#result").html(data[0]["object"]["sha"]);
+				        	myData = (data[0].ref).replace("refs/tags/", '');
+				        }
+				        else
+				        	myData = "unknown";
+				        count++;
+			    },
+				error: function (data){
+					myData = "unknown";
+				}
+			});
+			return myData;
+		};
 	};
 })();
