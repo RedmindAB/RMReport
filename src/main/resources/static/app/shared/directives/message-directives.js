@@ -11,6 +11,7 @@ angular.module('webLog')
 		      		"<div id='errorMessageDiv' class='modal-body'>" +
 		      			"<div ng-repeat='platform in ctrl.DeviceData.devices'>"+
 		      			"<div ng-repeat='device in platform'>Total Tests: {{device.total}}<br>Total Fail: {{device.totalFail}}</div></div>" + 
+		      			"<div ng-if='!ctrl.DeviceData.devices.length'><span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Loading...</div>" +
 		      		"</div>" + 
 		      	"</div>" +
 		      "</div>" +

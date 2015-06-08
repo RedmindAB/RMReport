@@ -13,7 +13,7 @@
 			
 		chartMaker.loadMainChart = function(suiteID,newLine,name){
 			RestLoader.loadMainChart(suiteID, newLine, createMainChart, name);
-		}
+		};
 		
 		chartMaker.loadHomeChart = function(suite){
 			RestLoader.createHomeChartFromID(suite,createHomeChart);
@@ -21,7 +21,7 @@
 		
 		chartMaker.addCaseToGraph = function(osName, osVersion, deviceName, browserName, browserVer){
 			RestLoader.addCaseToGraph(osName, osVersion, deviceName, browserName, browserVer, createMainChart);
-		}
+		};
 		
 	    chartMaker.highlightPoint = function(timestamp){
 	    	for (var i = 0; i < Charts.mainChart.series.length; i++) {
@@ -155,7 +155,7 @@
 					data : Charts.data[i].passPercentage,
 					name : Charts.data[i].name,
 					color: getSerieColor(i),
-					type: "line"
+					type: "scatter"
 				});
 			}
 			chart.yAxis.title.text = 'Pass percentage';
@@ -256,6 +256,7 @@
 		}
 		
 		function createHomeChart(data, suite) {
+			
 			var timeStamps = [];
 			for (var index = 0; index < data[0].data.length; index++) {
 				timeStamps.push(data[0].data[index].timestamp);
@@ -269,9 +270,16 @@
 							crosshairs: true,
 				            shared: true,
 				            useHTML: true,
-				            headerFormat: '<small>{point.key}</small><table>',
-				            pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
-				            '<td style="text-align: right"><b>{point.y}</b></td></tr>',
+//				            formatter: function(){},
+				            headerFormat: '<small><strong>{point.key}</strong></small><table>',
+				            pointFormat: '<tr>' + 
+				            				'<td style="color: {series.color}">'+
+				            					'{series.name}:'+
+				            				'</td>' +
+				            				'<td style="text-align: right">'+
+				            					'<b>{point.y}</b>'+
+				            				'</td>'+
+				            			'</tr>',
 				            footerFormat: '</table>',
 						},
 						chart : {
@@ -355,7 +363,20 @@
 					func : function(chart) {
 					}
 				}
-			
+		    
+//		    chartHomeConfigObject.options.tooltip.formatter = function(){
+//		    	
+//	        	var tooltip = "";
+//	        	var length = chartHomeConfigObject.series.length;
+//	        	
+//	        	
+//	        	for(var i = 0; i < length; i++){
+//	        		tooltip += "test "
+//	        	}
+//	        	
+//	        	return tooltip;
+//		    }
+		    
 		    chartHomeConfigObject.series[0].data = [];
 		    chartHomeConfigObject.series[1].data = [];
 		    

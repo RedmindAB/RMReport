@@ -12,7 +12,7 @@
 		var vm = this;
 		var requestObj = {};
 		
-		vm.platforms = ['android', 'ios', 'windows', 'osx', 'linux'];
+		vm.platforms = ['Android', 'iOS', 'Windows', 'OSX', 'Linux'];
 		vm.myData = [];
 		vm.devices = [];
 		vm.DeviceData = DeviceData;
@@ -25,7 +25,12 @@
 		runGetDevices();
 		
 		function runGetDevices(){
-			getDevices(2);
+			getDevices(CurrentSuite.currentSuiteInfo.id);
+		}
+		
+		function orderDevices(){
+			var myObj = getDevices(CurrentSuite.currentSuiteInfo.id);
+			console.log("myObj: " + myObj);
 		}
 		
 		function getDevices(suiteid) {
