@@ -13,7 +13,7 @@
 			
 		chartMaker.loadMainChart = function(suiteID,newLine,name){
 			RestLoader.loadMainChart(suiteID, newLine, createMainChart, name);
-		}
+		};
 		
 		chartMaker.loadHomeChart = function(suite){
 			RestLoader.createHomeChartFromID(suite,createHomeChart);
@@ -21,7 +21,7 @@
 		
 		chartMaker.addCaseToGraph = function(osName, osVersion, deviceName, browserName, browserVer){
 			RestLoader.addCaseToGraph(osName, osVersion, deviceName, browserName, browserVer, createMainChart);
-		}
+		};
 		
 	    chartMaker.highlightPoint = function(timestamp){
 	    	for (var i = 0; i < Charts.mainChart.series.length; i++) {
@@ -155,7 +155,7 @@
 					data : Charts.data[i].passPercentage,
 					name : Charts.data[i].name,
 					color: getSerieColor(i),
-					type: "line"
+					type: "scatter"
 				});
 			}
 			chart.yAxis.title.text = 'Pass percentage';
@@ -270,8 +270,14 @@
 				            shared: true,
 				            useHTML: true,
 				            headerFormat: '<small>{point.key}</small><table>',
-				            pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
-				            '<td style="text-align: right"><b>{point.y}</b></td></tr>',
+				            pointFormat: '<tr>' + 
+				            				'<td style="color: {series.color}">'+
+				            					'{series.name}:'+
+				            				'</td>' +
+				            				'<td style="text-align: right">'+
+				            					'<b>{point.y}</b>'+
+				            				'</td>'+
+				            			'</tr>',
 				            footerFormat: '</table>',
 						},
 						chart : {

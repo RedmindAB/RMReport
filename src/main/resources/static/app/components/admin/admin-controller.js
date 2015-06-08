@@ -16,6 +16,7 @@
 		vm.configCompare = {};
 		vm.errorMessages = [];
 		vm.newPath = '';
+		vm.errorModalShown = false;
 		
 		vm.addPath = addPath;
 		vm.isNewPath = isNewPath;
@@ -24,10 +25,15 @@
 		vm.readErrorMessage = readErrorMessage;
 		vm.removePath = removePath;
 		vm.saveChanges = saveChanges;
+		vm.toggleErrorModal = toggleErrorModal;
 		
 	
 		loadRootConfig();
 		
+		function toggleErrorModal() {
+			vm.errorModalShown = !vm.errorModalShown;
+			console.log(vm.errorModalShown);
+		};
 		
 		function addPath(path){
 			if (!pathExists(path)) {
@@ -68,9 +74,19 @@
 		function saveChanges(){
 			vm.errorMessages = [];
 			changePaths()
-			.then(removePaths())
-			.then(addPaths())
-			.then(loadRootConfig());
+			.finally(function(){
+				return removePaths();
+			})
+			.finally(function(){
+				return addPaths();
+			})
+			.finally(function(){
+				loadRootConfig();
+				console.log(vm.errorMessages.length);
+				if (vm.errorMessages.length > 0) {
+					vm.toggleErrorModal();
+				}
+			});
 		}
 		
 		function changePaths(){
@@ -83,7 +99,7 @@
 					});
 				}
 			}
-			return AdminServices.changePaths(request, vm.errorMessages);
+			return AdminServices.changePaths(request, addErrorMessage);
 		}
 		
 		function addPaths(){
@@ -96,7 +112,7 @@
 				}
 			}
 			if (request.length > 0) {
-				return AdminServices.addPaths(request, vm.errorMessages);
+				return AdminServices.addPaths(request, addErrorMessage);
 			}
 		}
 		
@@ -133,6 +149,51 @@
 					return vm.errorMessages[i].message;
 				}
 			}
+		}
+		
+		function addErrorMessage(config, errorType){
+			
+			switch (errorType) {
+			case "change":
+				vm.errorMessages.push({
+					message: "Could not change path:\n" + config.data.oldPath + "\nTo:\n" + config.data.newPath
+				});
+				break;
+				
+			case "create":
+				vm.errorMessages.push({
+					message: "Could not create path:\n" + config.data[0]
+				});
+				break;
+				
+			case "delete":
+				vm.errorMessages.push({
+					message: "Could not remove path:\n" + config.data.oldPath + "\nTo:\n" + config.data.newPath
+				});
+				break;
+
+			default:
+				break;
+			}
+			
+		}
+		
+		function getIndexFromPath(path){
+			var index;
+			for (var i = 0; i < vm.config.reportPaths.length; i++) {
+				if (vm.config.reportPaths[i] === path) {
+					return i;
+				}
+			}
+		}
+		
+		function getOldPath(path){
+			var startIndex = "\"oldPath\":";
+			var endIndex = ",\"newPath\":";
+			var oldPath = path.split(startIndex)[1];
+			oldPath = oldPath.substring(0, oldPath.indexOf(endIndex));
+			oldPath = oldPath.substring(1, oldPath.length - 1);
+			return oldPath;
 		}
 		
 		function getIndexFromError(msg){

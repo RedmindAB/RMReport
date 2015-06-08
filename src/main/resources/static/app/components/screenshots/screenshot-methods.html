@@ -47,13 +47,13 @@
 	            	style="width:{{getMethodContentWidth(method)}}px;" 
 	            	class="screenshot-view">
 					<table style="margin-top:5px; margin-bottom:5px;border-collapse: separate;border-spacing: 10px 0px;">
-						<tr>
+						<tr class="normal-padding-td">
 							<td 
 								id="screenshot-header-{{$index}}"
 								ng-repeat="case in method.testcases track by $index" 
 								ng-style="{'background-color': getBgCo(case.result)}" 
 								class='panel screenshot-td screenshot-background-top'>
-								{{case.device}} - {{case.browser}}
+								<h4>{{case.device}} - {{case.browser}}</h4>
 							</td>
 						</tr>
 						<tr 
