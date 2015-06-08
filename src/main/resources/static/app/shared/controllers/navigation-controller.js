@@ -83,7 +83,7 @@
 		}
 		
 		$scope.goToDashboardView = function(){
-			$state.transitionTo("home");
+			$state.transitionTo("dashboard");
 		}
 		
 		$scope.goToGridView = function(){
@@ -99,6 +99,10 @@
 			else{
 				$state.transitionTo('reports.classes');
 			}
+		}
+		
+		$scope.goToHomeView = function(){
+			$state.transitionTo("home");
 		}
 		
 		$scope.goToScreenshotView = function(){

@@ -1,14 +1,8 @@
 <div 
 	class="navbar navbar-default yamm" 
 	ng-controller="NavBarCtrl" 
-	style='position: fixed; z-index: 9999; width: 100%'>
+	style='position: fixed; z-index: 9999; width: 100%;'>
 	<div class="navbar-header">
-	
-		<!-- Logo -->
-		<a id='home' ng-href="#/">
-			<img src='assets/img/logos/logo.png' class='home navbar-brand'/>
-		</a>
-		
 		<!-- Hamburger -->
 		<button 
 			type="button" 
@@ -20,17 +14,32 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-	</div>
+	</div> 
 	
 	<!-- Navigation Links -->
 	<div id="navbar-collapse-2" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
+			<!-- Overtime -->
+			<li id='home' role="presentation" ng-class="{'active': isActive('home')}" >
+				<!-- Logo -->
+				<a 
+					id='home_view'
+					class='rm-logo-a'
+					id='home_view' 
+					ng-click="goToHomeView();" 
+					ng-style="{'color': getNavColor('home')}" 
+					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
+					data-target=".navbar-collapse"> 
+					<img src='assets/img/logos/logo.png' class='rm-logo'/>
+				</a>
+			</li>
+			
 			<!-- Dashboard -->
-			<li id='dash' role="presentation" ng-class="{'active': isActive('home')}">
+			<li id='dash' role="presentation" ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('dashboard')}">
 				<a 
 					id='dash_view' 
-					ng-click="goToDashboardView();" 
-					ng-style="{'color': getNavColor('home')}" 
+					ng-click="goToDashboardView()" 
+					ng-style="{'color': getNavColor('dashboard')}" 
 					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
 					data-target=".navbar-collapse"> 
 					Dashboard
@@ -41,7 +50,7 @@
 			<li id='reports' class='reports' role="presentation" ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('reports')}" ng-class="">
 				<a 
 					id='reports_view' 
-					ng-click="goToGraphView()" 
+					ng-click="goToGraphView();ctrl.runGetDevices()" 
 					ng-style="{'color': getNavColor('reports')}" 
 					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
 					data-target=".navbar-collapse"> 
@@ -105,7 +114,7 @@
 							id='{{suite.name}}' 
 							ng-click="Utilities.clearData(suite.lastTimeStamp); 
 									loadMainChart(suite.id, 'true', 'Aggregation'); 
-									getSuiteSkeleton(suite)"
+									getSuiteSkeleton(suite);loadDashboardDevices()"
 							class="hidden-xs">
 							{{suite.name}}
 						</a>
@@ -114,7 +123,7 @@
 							class="visible-xs" 
 							ng-click="Utilities.clearData(suite.lastTimeStamp); 
 									loadMainChart(suite.id, 'true', 'Aggregation'); 
-									getSuiteSkeleton(suite)" 
+									getSuiteSkeleton(suite);loadDashboardDevices()" 
 							data-toggle="collapse" 
 							data-target=".navbar-collapse">
 							{{suite.name}}

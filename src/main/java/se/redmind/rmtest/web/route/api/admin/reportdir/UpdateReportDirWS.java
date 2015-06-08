@@ -35,7 +35,17 @@ public class UpdateReportDirWS extends Route {
 		JsonObject requestJson = new Gson().fromJson(requestBody, JsonObject.class);
 		ConfigHandler cHandler = ConfigHandler.getInstance();
 		boolean directoryExists = FileUtil.directoryExists(requestJson.get("newPath").getAsString());
-		if (directoryExists) {
+		if (cHandler.reportPathExistInConfig(requestJson.get("newPath").getAsString())) {
+			System.out.println("path exists in config: "+requestJson.get("newPath").toString());
+			try {
+				response.raw().sendError(417, "Path already exists in the config. body: "+requestBody);
+				response.status(417);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return response;
+		}
+		else if (directoryExists) {
 			cHandler.updateReportPath(requestJson.get("oldPath").getAsString(), requestJson.get("newPath").getAsString());
 			return true;
 		}
@@ -44,7 +54,6 @@ public class UpdateReportDirWS extends Route {
 				response.raw().sendError(417, FileUtil.getLastMessage()+" body: "+requestBody);
 				response.status(417);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return response;

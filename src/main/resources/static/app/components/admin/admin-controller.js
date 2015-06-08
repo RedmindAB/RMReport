@@ -11,7 +11,7 @@
 		
 		var vm = this;
 		var requestObj = {};
-		
+
 		vm.config = {};
 		vm.configCompare = {};
 		vm.errorMessages = [];
@@ -27,14 +27,13 @@
 		vm.saveChanges = saveChanges;
 		vm.toggleErrorModal = toggleErrorModal;
 		
-	
 		loadRootConfig();
 		
 		function toggleErrorModal() {
 			vm.errorModalShown = !vm.errorModalShown;
 			console.log(vm.errorModalShown);
 		};
-		
+
 		function addPath(path){
 			if (!pathExists(path)) {
 				vm.configCompare.reportPaths.push(path);

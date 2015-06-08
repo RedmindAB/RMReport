@@ -1,42 +1,49 @@
-(function(){
+(function () {
 	'use strict';
-	
+
 	angular
 		.module('webLog')
-		.controller('DashboardCtrl', DashboardCtrl)
-	    	
-	DashboardCtrl.$inject = ['$scope', '$http', '$state', 'CurrentSuite','RestLoader', 'ChartMaker', 'Charts'];
+		.controller('DashboardCtrl', DashboardCtrl);
 	
-	function DashboardCtrl($scope, $http, $state, CurrentSuite, RestLoader, ChartMaker, Charts){
+	DashboardCtrl.$inject = ['$scope', '$http','$state', 'DashboardServices', 'Charts', 'CurrentSuite', 'DeviceData'];
+			
+	function DashboardCtrl($scope, $http, $state, DashboardServices, Charts, CurrentSuite, DeviceData){
 		
-		$scope.Charts = Charts;
-		$scope.CurrentSuite = CurrentSuite;
+		var vm = this;
+		var requestObj = {};
 		
-	    $scope.homeChartLoaded = function(suite){
-	    	return Charts.chartHomeConfig[suite.id] 
-	    	!== undefined && Charts.chartHomeConfig[suite.id].loading 
-	    	=== false && suite.lastTimeStamp 
-	    	!== undefined;
-	    }
+		vm.platforms = ['Android', 'iOS', 'Windows', 'OSX', 'Linux'];
+		vm.myData = [];
+		vm.devices = [];
+		vm.DeviceData = DeviceData;
 		
-	    $scope.getSuiteSkeleton = function(suite){
-	    	RestLoader.getSuiteSkeleton(suite);
-	    }
-	    
-	    function createHomeChartFromID(suite){
-	    	ChartMaker.loadHomeChart(suite, Charts.chartHomeConfig);
-	    }
-	    
-	    $http.get('/api/suite/getsuites')
-	    .success(function(data, status, headers, config){ 
-	    	if(data){
-	    		CurrentSuite.allSuites = data;
-	    		for (var i = 0; i < CurrentSuite.allSuites.length; i++) {
-	    			createHomeChartFromID(CurrentSuite.allSuites[i]);
-				}
-	    	};
-	    }).error(function(data, status, headers, config){
-	    	console.error(data);
-	    });
-	};
+		vm.DashboardServices = DashboardServices;
+		vm.Charts = Charts;
+		vm.getDevices = getDevices;
+		vm.runGetDevices = runGetDevices;
+		
+		runGetDevices();
+		
+		function runGetDevices(){
+			getDevices(CurrentSuite.currentSuiteInfo.id);
+		}
+		
+		function orderDevices(){
+			var myObj = getDevices(CurrentSuite.currentSuiteInfo.id);
+			console.log("myObj: " + myObj);
+		}
+		
+		function getDevices(suiteid) {
+			DashboardServices.getDevices(suiteid).then(function(request){
+				console.log(request);
+				console.log(DeviceData.devices);
+			});
+		}
+		
+		function getPlatforms(suiteid, platform) {
+			vm.platforms = DashboardServices.getPlatforms(suiteid, platform).then(function(request){
+				console.log(request);
+			});
+		}
+	}
 })();

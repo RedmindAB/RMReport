@@ -12,11 +12,17 @@ angular
     
     //states
     $stateProvider
-        .state('home',{
-            url: '/home',
-            templateUrl: 'app/components/dashboard/home.html',
-            controller: 'DashboardCtrl'
+        .state('dashboard',{
+            url: '/dashboard',
+            templateUrl: 'app/components/dashboard/dashboard.html',
+            controller: 'DashboardCtrl',
+            controllerAs: 'ctrl'
         })
+		.state('home',{
+		    url:'/home',
+		    templateUrl: 'app/components/home/home.html',
+		    controller: 'HomeCtrl'
+		})
         .state('reports',{
 	        url:'/reports',
 	        templateUrl: 'app/components/graph/reports.html',

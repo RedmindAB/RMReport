@@ -64,7 +64,6 @@
 		        	addErrorMessage(config, "remove");
 		        });;
 		        promises.push(promise);
-
 		    });
 		    return $q.all(promises);
 		}
