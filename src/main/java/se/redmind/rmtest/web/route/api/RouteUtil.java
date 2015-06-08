@@ -42,6 +42,21 @@ public abstract class RouteUtil extends Route{
 		}
 	}
 	
+	protected int extractQueryParam(Request request, String key, int defaulValue){
+		String queryParams = extractParam(request, key);
+		try {
+			int number = Integer.parseInt(queryParams);
+			return number;
+		} catch (Exception e) {
+			return defaulValue;
+		}
+	}
+
+	private String extractParam(Request request, String key) {
+		String queryParams = request.queryParams(key);
+		return queryParams;
+	}
+	
 	protected long getMinTimestamp(int suiteid, int limit){
 		return TimestampUtil.getInstance().getMinTimestamp(suiteid, limit);
 	}
