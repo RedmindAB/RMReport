@@ -32,7 +32,7 @@
 		function toggleErrorModal() {
 			vm.errorModalShown = !vm.errorModalShown;
 			console.log(vm.errorModalShown);
-		};
+		}
 
 		function addPath(path){
 			if (!pathExists(path)) {
@@ -58,15 +58,13 @@
 		}
 		
 		function loadRootConfig(){
-			$http.get('/api/admin/config')
-			.success(function(data, status, headers, config){ 
-				if(data){
-					vm.config = data;
-					angular.copy(vm.config,vm.configCompare);
-					vm.configCompare.removeList = [];
-				}
-			}).error(function(data, status, headers, config){
-				console.error(data);
+			
+			AdminServices.loadRootConfig()
+			.then(function(data){
+				console.log(data);
+				vm.config = data.data;
+				angular.copy(vm.config,vm.configCompare);
+				vm.configCompare.removeList = [];
 			});
 		}
 		
