@@ -256,6 +256,7 @@
 		}
 		
 		function createHomeChart(data, suite) {
+			
 			var timeStamps = [];
 			for (var index = 0; index < data[0].data.length; index++) {
 				timeStamps.push(data[0].data[index].timestamp);
@@ -269,7 +270,8 @@
 							crosshairs: true,
 				            shared: true,
 				            useHTML: true,
-				            headerFormat: '<small>{point.key}</small><table>',
+//				            formatter: function(){},
+				            headerFormat: '<small><strong>{point.key}</strong></small><table>',
 				            pointFormat: '<tr>' + 
 				            				'<td style="color: {series.color}">'+
 				            					'{series.name}:'+
@@ -361,7 +363,20 @@
 					func : function(chart) {
 					}
 				}
-			
+		    
+//		    chartHomeConfigObject.options.tooltip.formatter = function(){
+//		    	
+//	        	var tooltip = "";
+//	        	var length = chartHomeConfigObject.series.length;
+//	        	
+//	        	
+//	        	for(var i = 0; i < length; i++){
+//	        		tooltip += "test "
+//	        	}
+//	        	
+//	        	return tooltip;
+//		    }
+		    
 		    chartHomeConfigObject.series[0].data = [];
 		    chartHomeConfigObject.series[1].data = [];
 		    
