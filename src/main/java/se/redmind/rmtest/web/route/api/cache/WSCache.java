@@ -40,7 +40,7 @@ public class WSCache {
 	 */
 	public void add(String path, String queryParams, JsonElement value){
 		if (path == null || value == null) {
-			throw new NullPointerException();
+			throw new NullPointerException("Path: "+path+" value: "+value);
 		}
 		cacheMap.put(path+queryParams, new WSCacheContainer(value));
 	}
