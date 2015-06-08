@@ -40,7 +40,7 @@ public class MethodFailWS extends CachedRoute {
 	 */
 	@Override
 	public JsonElement handleRequest(Response response, Request request) {
-		int suiteid = extractNumber(request, "suiteid");
+		int suiteid = extractInt(request, "suiteid");
 		int limit = getLimit(request, 150);
 		long minTimestamp = TimestampUtil.getInstance().getMinTimestamp(suiteid, limit);
 		int maxResult = extractQueryParam(request, "maxres", 5);

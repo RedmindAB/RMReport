@@ -32,7 +32,7 @@ public class DeviceStatsFailWS extends CachedRoute {
 
 	@Override
 	public JsonElement handleRequest(Response response, Request request) {
-		int suiteid = extractNumber(request, "suiteid");
+		int suiteid = extractInt(request, "suiteid");
 		String os_name = request.params("osname");
 		int limit = getLimit(request, 500);
 		if (fail) {
