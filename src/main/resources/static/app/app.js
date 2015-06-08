@@ -4,7 +4,8 @@ angular
 			           'ui.bootstrap',
 			           'highcharts-ng', 
 			           'ngAnimate', 
-			           'ngTouch'
+			           'ngTouch',
+			           'ncy-angular-breadcrumb'
 			           ])
     .config(function($urlRouterProvider, $stateProvider){
     	
@@ -26,17 +27,27 @@ angular
         .state('reports',{
 	        url:'/reports',
 	        templateUrl: 'app/components/graph/reports.html',
-	        controller: 'GraphCtrl'
+	        controller: 'GraphCtrl',
+	        ncyBreadcrumb: {
+	        	skip:true
+	          }
         })
         .state('reports.classes',{
 	        url:'/classes',
 	        templateUrl: 'app/components/suite-info/classes.html',
-	        controller: 'SuiteInfoCtrl'
+	        controller: 'SuiteInfoCtrl',
+	        ncyBreadcrumb: {
+	            label: 'Classes'
+	          }
         })
         .state('reports.methods',{
 	        url:'/methods',
 	        templateUrl: 'app/components/suite-info/methods.html',
-	        controller: 'SuiteInfoCtrl'
+	        controller: 'SuiteInfoCtrl',
+	        ncyBreadcrumb: {
+	        	parent:'reports.classes',
+        	    label: 'Methods'
+        	  }
         })
         .state('reports.drivers',{
 	        url:'/drivers',
@@ -46,22 +57,36 @@ angular
 	    .state('reports.cases',{
 	        url:'/cases',
 	        templateUrl: 'app/components/suite-info/cases.html',
-	        controller: 'SuiteInfoCtrl'
+	        controller: 'SuiteInfoCtrl',
+        	ncyBreadcrumb: {
+        		parent: 'reports.methods',
+        	    label: 'Cases'
+        	  }
 	    })
 	    .state('screenshots',{
 	        url:'/screenshots',
 	        templateUrl: 'app/components/screenshots/screen-shots.html',
-	        controller: 'ScreenshotCtrl'
+	        controller: 'ScreenshotCtrl',
+	        ncyBreadcrumb: {
+	        	skip:true
+        	  }
 	    })
 	    .state('screenshots.classes',{
 	        url:'/classes',
 	        templateUrl: 'app/components/screenshots/screenshot-classes.html',
-	        controller: ''
+	        controller: '',
+	        ncyBreadcrumb: {
+        	    label: 'Classes'
+        	  }
 	    })
 	    .state('screenshots.methods',{
 	        url:'/methods',
 	        templateUrl: 'app/components/screenshots/screenshot-methods.html',
-	        controller: ''
+	        controller: '',
+	        ncyBreadcrumb: {
+	        	parent:'screenshots.classes',
+        	    label: 'Methods'
+        	  }
 	    })
 	    .state('grid',{
 	        url:'/grid',
