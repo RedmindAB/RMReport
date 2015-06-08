@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import se.redmind.rmtest.util.StringKeyValueParser;
+import se.redmind.rmtest.web.route.api.cache.WSCache;
 
 public abstract class DBBridge {
 
@@ -133,6 +134,7 @@ public abstract class DBBridge {
 	
 	public static void updateLastUpdated(){
 		lastUpdated = new Date();
+		WSCache.getInstance().clear();
 	}
 	
 	public static Date getLastUpdated(){

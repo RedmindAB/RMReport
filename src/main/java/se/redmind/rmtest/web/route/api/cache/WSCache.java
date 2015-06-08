@@ -87,7 +87,9 @@ public class WSCache {
 	 * Clears the cache, use this if the database have changed.
 	 */
 	public void clear(){
-		cacheMap.clear();
+		if (!cacheMap.isEmpty()) {
+			cacheMap.clear();
+		}
 	}
 	
 }
