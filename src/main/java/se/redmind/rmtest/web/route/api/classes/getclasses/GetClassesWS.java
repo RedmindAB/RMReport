@@ -1,10 +1,13 @@
 package se.redmind.rmtest.web.route.api.classes.getclasses;
 
+import com.google.gson.JsonElement;
+
+import se.redmind.rmtest.web.route.api.CachedRoute;
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class GetClassesWS extends Route {
+public class GetClassesWS extends CachedRoute {
 
 	public GetClassesWS(String path) {
 		super(path);
@@ -26,7 +29,7 @@ public class GetClassesWS extends Route {
 	 *]
 	 */
 	@Override
-	public Object handle(Request request, Response response) {
+	public JsonElement handleRequest(Response response, Request request) {
 		int suiteid = Integer.valueOf(request.queryParams("suiteid"));
 		return new GetClassesDAO().getClasses(suiteid);
 	}
