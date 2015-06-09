@@ -12,37 +12,29 @@
 		var vm = this;
 		var requestObj = {};
 		
-		vm.platforms = ['Android', 'iOS', 'Windows', 'OSX', 'Linux'];
 		vm.myData = [];
 		vm.devices = [];
 		vm.DeviceData = DeviceData;
-		
+		vm.existingPlatforms = [];
+	    
 		vm.DashboardServices = DashboardServices;
 		vm.Charts = Charts;
 		vm.getDevices = getDevices;
-		vm.runGetDevices = runGetDevices;
 		
-		runGetDevices();
-		
-		function runGetDevices(){
-			getDevices(CurrentSuite.currentSuiteInfo.id);
-		}
+		getPlatforms(CurrentSuite.currentSuiteInfo.id);
 		
 		function orderDevices(){
 			var myObj = getDevices(CurrentSuite.currentSuiteInfo.id);
-			console.log("myObj: " + myObj);
 		}
 		
 		function getDevices(suiteid) {
 			DashboardServices.getDevices(suiteid).then(function(request){
-				console.log(request);
-				console.log(DeviceData.devices);
 			});
 		}
 		
-		function getPlatforms(suiteid, platform) {
-			vm.platforms = DashboardServices.getPlatforms(suiteid, platform).then(function(request){
-				console.log(request);
+		function getPlatforms(suiteid) {
+			DashboardServices.getPlatforms(suiteid).then(function(request){
+				getDevices(suiteid);
 			});
 		}
 	}

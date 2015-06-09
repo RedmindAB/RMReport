@@ -22,7 +22,10 @@ angular
 		.state('home',{
 		    url:'/home',
 		    templateUrl: 'app/components/home/home.html',
-		    controller: 'HomeCtrl'
+		    controller: 'HomeCtrl',
+	        ncyBreadcrumb: {
+	            label: 'Home'
+	          }
 		})
         .state('reports',{
 	        url:'/reports',
@@ -37,6 +40,7 @@ angular
 	        templateUrl: 'app/components/suite-info/classes.html',
 	        controller: 'SuiteInfoCtrl',
 	        ncyBreadcrumb: {
+	        	parent:'home',
 	            label: 'Classes'
 	          }
         })
@@ -76,6 +80,7 @@ angular
 	        templateUrl: 'app/components/screenshots/screenshot-classes.html',
 	        controller: '',
 	        ncyBreadcrumb: {
+	        	parent:'home',
         	    label: 'Classes'
         	  }
 	    })
