@@ -24,8 +24,8 @@
 		};
 		
 	    chartMaker.highlightPoint = function(timestamp){
-	    	for (var i = 0; i < Charts.mainChart.series.length; i++) {
-	    		for (var j = 0; j < Charts.mainChart.series[i].data.length; j++) {
+	    	for (var i = 0, seriesLength = Charts.mainChart.series.length; i < seriesLength; i++) {
+	    		for (var j = 0, dataLength = Charts.mainChart.series[i].data.length; j < dataLength; j++) {
 	  			   if (Charts.mainChart.xAxis.categories[j] === timestamp){
 	  				   Charts.mainChart.xAxis.plotLines[0].value = j;
 	  				   return;
@@ -50,6 +50,7 @@
 			}
 			Utilities.descTimestamps = reverseArray(CurrentSuite.currentTimeStampArray);
 			var graphDataArray = [];
+			var dataObj = [];
 			for (var i = 0, dataLength = data.length; i < dataLength; i++) {
 				var graphDataObj = {
 						runTime: [],
@@ -66,11 +67,12 @@
 						graphDataObj.totalFail.push(null);
 						graphDataObj.passPercentage.push(null);
 					} else {
-						graphDataObj.runTime.push(data[i].data[j].time);
-						graphDataObj.totalPass.push(data[i].data[j].pass);
-						graphDataObj.totalFail.push(data[i].data[j].fail + data[i].data[j].error);
-						graphDataObj.totalSkipped.push(data[i].data[j].skipped);
-						graphDataObj.passPercentage.push(Math.round(getPassPercentage(data[i].data[j].pass, data[i].data[j].fail, data[i].data[j].error)));
+						dataObj = data[i].data[j];
+						graphDataObj.runTime.push(dataObj.time);
+						graphDataObj.totalPass.push(dataObj.pass);
+						graphDataObj.totalFail.push(dataObj.fail + dataObj.error);
+						graphDataObj.totalSkipped.push(dataObj.skipped);
+						graphDataObj.passPercentage.push(Math.round(getPassPercentage(dataObj.pass, dataObj.fail, dataObj.error)));
 					}
 				}
 				graphDataObj.name = graphName;
@@ -99,22 +101,22 @@
 			
 			Charts.mainChart.subtitle.text = "Showing " + CurrentSuite.currentTimeStampArray.length + " results";
 				
-				for (var i = 0, chartsLength = Charts.data.length; i < chartsLength; i++) {
-			    	Charts.mainChart.series.push({
-						data : Charts.data[i].passPercentage,
-						name : Charts.data[i].name,
-					});
-				}
-				if(CurrentSuite.currentTimeStampArray.length <= 50){
-					Charts.mainChart.xAxis.tickInterval = 0.4;
-				} else if(CurrentSuite.currentTimeStampArray.length > 50 && CurrentSuite.currentTimeStampArray.length <= 100){
-		        	Charts.mainChart.xAxis.tickInterval = 2;
-		    	} else{
-		    		Charts.mainChart.xAxis.tickInterval = 5;
-		    	}
-				chartMaker.changeChartVariant(Utilities.graphView);
-				Charts.mainChart.loading = false;
-				chartMaker.highlightPoint(CurrentSuite.currentTimeStamp);
+			for (var i = 0, chartsLength = Charts.data.length; i < chartsLength; i++) {
+		    	Charts.mainChart.series.push({
+					data : Charts.data[i].passPercentage,
+					name : Charts.data[i].name,
+				});
+			}
+			if(CurrentSuite.currentTimeStampArray.length <= 50){
+				Charts.mainChart.xAxis.tickInterval = 0.4;
+			} else if(CurrentSuite.currentTimeStampArray.length > 50 && CurrentSuite.currentTimeStampArray.length <= 100){
+	        	Charts.mainChart.xAxis.tickInterval = 2;
+	    	} else{
+	    		Charts.mainChart.xAxis.tickInterval = 5;
+	    	}
+			chartMaker.changeChartVariant(Utilities.graphView);
+			Charts.mainChart.loading = false;
+			chartMaker.highlightPoint(CurrentSuite.currentTimeStamp);
 	    }
 		
 		chartMaker.changeChartVariant = function(input){
@@ -124,18 +126,23 @@
 			case "Pass/Fail":
 				passFailChart();
 				break;
+				
 			case "Run Time":
 				runTimeChart();
 				break;
+				
 			case "Total Pass":
 				totalPassChart();
 				break;
+				
 			case "Total Fail":
 				totalFailChart();
 				break;
+				
 			case "Total Skipped":
 				totalSkippedChart();
 				break;
+				
 			default:
 				Utilities.graphView = "Pass/Fail";
 				passFailChart();
@@ -154,7 +161,7 @@
 			var chart = Charts.mainChart;
 			
 			chart.series = [];
-			for (var i = 0; i < Charts.data.length; i++) {
+			for (var i = 0, dataLength = Charts.data.length; i < dataLength; i++) {
 				chart.series.push({
 					data : Charts.data[i].passPercentage,
 					name : Charts.data[i].name,
@@ -173,7 +180,7 @@
 			chart.options.chart.type = "";
 			chart.series = [];
 			chart.yAxis.max = undefined;
-			for (var i = 0; i < Charts.data.length; i++) {
+			for (var i = 0, dataLength = Charts.data.length; i < dataLength; i++) {
 				chart.series.push({
 					data : Charts.data[i].totalFail,
 					name : Charts.data[i].name,
@@ -195,7 +202,7 @@
 			chart.options.chart.type = "";
 			chart.series = [];
 			chart.yAxis.max = undefined;
-			for (var i = 0; i < Charts.data.length; i++) {
+			for (var i = 0, dataLength = Charts.data.length; i < dataLength; i++) {
 				chart.series.push({
 					data : Charts.data[i].totalPass,
 					name : Charts.data[i].name,
@@ -217,7 +224,7 @@
 			chart.options.chart.type = "";
 			chart.series = [];
 			chart.yAxis.max = undefined;
-			for (var i = 0; i < Charts.data.length; i++) {
+			for (var i = 0, dataLength = Charts.data.length; i < dataLength; i++) {
 				chart.series.push({
 					data : Charts.data[i].totalSkipped,
 					name : Charts.data[i].name,
@@ -239,7 +246,7 @@
 			chart.options.chart.type = "line";
 			chart.series = [];
 			chart.yAxis.max = undefined;
-			for (var i = 0; i < Charts.data.length; i++) {
+			for (var i = 0, dataLength = Charts.data.length; i < dataLength; i++) {
 				chart.series.push({
 							data : Charts.data[i].runTime,
 							name : Charts.data[i].name,
@@ -284,8 +291,9 @@
 		function createHomeChart(data, suite) {
 			
 			var timeStamps = [];
-			for (var index = 0; index < data[0].data.length; index++) {
-				timeStamps.push(data[0].data[index].timestamp);
+			var timestampObj = data[0].data;
+			for (var index = 0, timeLength = data[0].data.length; index < timeLength; index++) {
+				timeStamps.push(timestampObj[index].timestamp);
 			}
 			
 			suite.lastTimeStamp = timeStamps[timeStamps.length-1];
@@ -406,10 +414,15 @@
 		    chartHomeConfigObject.series[0].data = [];
 		    chartHomeConfigObject.series[1].data = [];
 		    
+		    var passData = chartHomeConfigObject.series[0].data;
+		    var skipData = chartHomeConfigObject.series[1].data;
+		    var failData = chartHomeConfigObject.series[2].data;
+		    var dataKeeper = {};
 			for (var j = 0; j < data[0].data.length; j++) {
-				chartHomeConfigObject.series[0].data.push(data[0].data[j].pass);
-				chartHomeConfigObject.series[1].data.push(data[0].data[j].skipped);
-				chartHomeConfigObject.series[2].data.push(data[0].data[j].fail + data[0].data[j].error);
+				dataKeeper = data[0].data[j];
+				passData.push(dataKeeper.pass);
+				skipData.push(dataKeeper.skipped);
+				failData.push(dataKeeper.fail + dataKeeper.error);
 			}
 			chartHomeConfigObject.xAxis.categories = timeStamps;
 			Charts.chartHomeConfig[suite.id] = chartHomeConfigObject;
