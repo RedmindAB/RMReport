@@ -8,7 +8,8 @@
 	function DeviceData () {
 		return {
 			platforms:['android', 'ios', 'windows', 'osx', 'linux'],
-			devices:[]
+			devices:[],
+			existingPlatforms:[]
 		};
 	};
 })();

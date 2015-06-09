@@ -14,8 +14,10 @@
 		var myData = null;
 		var count = 0;
 		
-		$scope.loadDashboardDevices = function(){
-			DashboardServices.getDevices(3);
+		$scope.loadDashboardPlatformsAndDevices = function(){
+			DashboardServices.getPlatforms(CurrentSuite.currentSuiteInfo.id, "android").then(function(){
+				DashboardServices.getDevices(CurrentSuite.currentSuiteInfo.id);
+			});
 		};
 		
 		$scope.getVersion = function(){
