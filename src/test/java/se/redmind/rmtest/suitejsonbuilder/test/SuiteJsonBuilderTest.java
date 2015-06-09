@@ -9,12 +9,7 @@ import static org.mockito.Mockito.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.Mockito;
-
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
-
 import se.redmind.rmtest.web.route.api.suite.SuiteJsonBuilder;
 
 public class SuiteJsonBuilderTest {

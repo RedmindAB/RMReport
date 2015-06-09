@@ -1,11 +1,11 @@
 package se.redmind.rmtest.web.route.api;
 
-import com.google.gson.JsonElement;
-
 import se.redmind.rmtest.web.route.api.cache.WSCache;
 import se.redmind.rmtest.web.route.api.util.timestamp.TimestampUtil;
 import spark.Request;
 import spark.Route;
+
+import com.google.gson.JsonElement;
 
 public abstract class RouteUtil extends Route{
 

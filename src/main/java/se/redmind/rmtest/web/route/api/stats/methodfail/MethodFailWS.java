@@ -1,13 +1,12 @@
 package se.redmind.rmtest.web.route.api.stats.methodfail;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-
 import se.redmind.rmtest.web.route.api.CachedRoute;
 import se.redmind.rmtest.web.route.api.util.timestamp.TimestampUtil;
 import spark.Request;
 import spark.Response;
-import spark.Route;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 
 public class MethodFailWS extends CachedRoute {
 

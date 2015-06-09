@@ -7,13 +7,12 @@ import java.util.HashMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import se.redmind.rmtest.db.DBBridge;
+import se.redmind.rmtest.web.route.api.util.timestamp.TimestampUtil;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-
-import se.redmind.rmtest.db.DBBridge;
-import se.redmind.rmtest.web.route.api.ErrorResponse;
-import se.redmind.rmtest.web.route.api.util.timestamp.TimestampUtil;
 
 public class DeviceStatusFailDAO extends DBBridge{
 	

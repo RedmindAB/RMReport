@@ -30,6 +30,7 @@ public class TestHome {
 						 testHome = line.split("=")[1];
 					 }
 				 }
+				 br.close();
 			 } catch (FileNotFoundException e) {
 				 // TODO Auto-generated catch block
 				 e.printStackTrace();

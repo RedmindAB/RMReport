@@ -1,10 +1,10 @@
 package se.redmind.rmtest.web.route.api;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-
 import spark.Request;
 import spark.Response;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 
 public abstract class CachedRoute extends RouteUtil{
 	

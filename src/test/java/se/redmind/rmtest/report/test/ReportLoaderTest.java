@@ -9,10 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import se.redmind.rmtest.report.parser.Report;
-import se.redmind.rmtest.report.parser.ReportXMLParser;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
-import se.redmind.rmtest.report.reportvalidation.ReportValidator;
 
 public class ReportLoaderTest {
 	

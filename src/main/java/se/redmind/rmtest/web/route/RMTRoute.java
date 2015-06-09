@@ -1,6 +1,8 @@
 package se.redmind.rmtest.web.route;
 
-import static spark.Spark.*;
+import static spark.Spark.get;
+import static spark.Spark.setPort;
+import static spark.Spark.staticFileLocation;
 import se.redmind.rmtest.web.properties.ConfigHandler;
 import se.redmind.rmtest.web.route.api.ApiRouter;
 import spark.Request;

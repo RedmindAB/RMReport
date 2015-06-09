@@ -1,21 +1,19 @@
 package se.redmind.rmtest.web.route.api.admin.reportdir;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.LinkOption;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 
 import se.redmind.rmtest.util.FileUtil;
 import se.redmind.rmtest.web.properties.ConfigHandler;
 import spark.Request;
 import spark.Response;
 import spark.Route;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 
 public class CreateReportDirWS extends Route {
 

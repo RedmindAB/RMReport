@@ -12,7 +12,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
-import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
 import se.redmind.rmtest.web.route.api.suite.getsuites.GetSuitesWS;
 import se.redmind.rmtest.ws.testsuite.WSSetupHelper;
 import spark.Request;

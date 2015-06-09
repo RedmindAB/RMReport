@@ -1,11 +1,13 @@
 package se.redmind.rmtest.filewatcher;
 
+import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.WatchService;
 
-import static java.nio.file.StandardWatchEventKinds.*;
 import se.redmind.rmtest.web.properties.ConfigHandler;
 
 public class FileWatcher {

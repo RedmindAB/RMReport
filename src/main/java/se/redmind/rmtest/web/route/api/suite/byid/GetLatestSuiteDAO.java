@@ -3,11 +3,11 @@ package se.redmind.rmtest.web.route.api.suite.byid;
 import java.sql.ResultSet;
 import java.util.HashMap;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-
 import se.redmind.rmtest.db.DBBridge;
 import se.redmind.rmtest.web.route.api.suite.SuiteJsonBuilder;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 public class GetLatestSuiteDAO extends DBBridge{
 

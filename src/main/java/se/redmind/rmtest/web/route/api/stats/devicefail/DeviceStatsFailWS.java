@@ -2,16 +2,14 @@ package se.redmind.rmtest.web.route.api.stats.devicefail;
 
 import java.io.IOException;
 
-import com.google.gson.Gson;
+import se.redmind.rmtest.web.route.api.CachedRoute;
+import spark.Request;
+import spark.Response;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 
-import se.redmind.rmtest.web.route.api.CachedRoute;
-import se.redmind.rmtest.web.route.api.RouteUtil;
-import spark.Request;
-import spark.Response;
-import spark.Route;
-
+@SuppressWarnings("unused")
 public class DeviceStatsFailWS extends CachedRoute {
 
 	private boolean fail;
