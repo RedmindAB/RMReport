@@ -160,6 +160,7 @@
 				break;
 				
 			case "create":
+				var messages = getCreateError(config.data);
 				vm.errorMessages.push({
 					message: "Could not create path:\n" + config.data[0]
 				});
@@ -199,6 +200,13 @@
 			var i = msg.lastIndexOf("/");
 			var index = parseInt(msg.substring(i+1));
 			return index;
+		}
+		
+		function getCreateError(data){
+			
+			var errorPaths = [];
+			
+			
 		}
 	}
 })();

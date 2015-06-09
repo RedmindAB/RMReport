@@ -21,12 +21,13 @@
 			loadRootConfig: loadRoot
 		};
 		
-		function addPaths(request, addErrorMessage, addMessage) {
+		function addPaths(request, addErrorMessage) {
 			var promise = $http({
 					url   : '/api/admin/reportdir',
 		            method: 'POST',
 		            data  : request
 		        }). error(function(data, status, headers, config){
+		        	console.log(data);
 		        	addErrorMessage(config, "create");
 		        });
 			
