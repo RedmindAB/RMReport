@@ -19,7 +19,7 @@ public abstract class RouteUtil extends Route{
 		this.fail = false;
 	}
 
-	protected int extractNumber(Request req, String paramValue){
+	protected int extractInt(Request req, String paramValue){
 		try {
 			return Integer.parseInt(req.params(paramValue));
 		} catch (Exception e) {
@@ -27,6 +27,16 @@ public abstract class RouteUtil extends Route{
 			errorMessage+=paramValue+" cannot be "+req.params(paramValue)+", must be an int\n";
 		}
 		return -1;
+	}
+	
+	protected long extractLong(Request req, String paramValue){
+		try {
+			return Long.parseLong(req.params(paramValue));
+		} catch (Exception e) {
+			this.fail = true;
+			errorMessage+=paramValue+" cannot be "+req.params(paramValue)+", must be a long\n";
+		}
+		return -1L;
 	}
 	
 	protected int getLimit(Request request, int defaultLimit){

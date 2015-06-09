@@ -22,6 +22,7 @@ import se.redmind.rmtest.web.route.api.seleniumgrid.SeleniumGridDAO;
 import se.redmind.rmtest.web.route.api.seleniumgrid.SeleniumGridWS;
 import se.redmind.rmtest.web.route.api.stats.devicefail.DeviceStatsFailWS;
 import se.redmind.rmtest.web.route.api.stats.grahoptions.GetGraphOptionsWS;
+import se.redmind.rmtest.web.route.api.stats.graph.tooltip.GraphTooltipWS;
 import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
 import se.redmind.rmtest.web.route.api.stats.methodfail.MethodFailWS;
 import se.redmind.rmtest.web.route.api.stats.platform.DeviceStatsPlatform;
@@ -76,6 +77,7 @@ public class ApiRouter {
 		get(new DeviceStatsFailWS("/api/stats/device/fail/:suiteid/:osname"));
 		get(new DeviceStatsPlatform("/api/stats/platform/:suiteid"));
 		get(new MethodFailWS("/api/stats/methodfail/:suiteid"));
+		get(new GraphTooltipWS("/api/stats/devicerange/:suiteid/:timestamp"));
 	}
 	
 	

@@ -13,7 +13,7 @@ public class DeviceStatsPlatform extends RouteUtil {
 
 	@Override
 	public Object handle(Request request, Response response) {
-		int suiteid = extractNumber(request, "suiteid");
+		int suiteid = extractInt(request, "suiteid");
 		int limit = getLimit(request, 500);
 		PlatformStatsDAO platformStatsDAO = new PlatformStatsDAO(suiteid,limit);
 		return platformStatsDAO.getResult();
