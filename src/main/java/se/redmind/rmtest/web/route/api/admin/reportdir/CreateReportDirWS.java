@@ -20,12 +20,9 @@ public class CreateReportDirWS extends Route {
 
 	Logger log = LogManager.getLogger(CreateReportDirWS.class);
 	private JsonArray errorArray;
-	private boolean error;
 	
 	public CreateReportDirWS(String path) {
 		super(path);
-		errorArray = new JsonArray();
-		this.error = false;
 	}
 
 	
@@ -44,23 +41,24 @@ public class CreateReportDirWS extends Route {
 	 */
 	@Override
 	public Object handle(Request request, Response response) {
+		errorArray = new JsonArray();
 		String reportdirs = request.body();
 		JsonArray dirArray = new Gson().fromJson(reportdirs, JsonArray.class);
 		if (dirArray == null) return badRequest(response, "Bad format or empty body.");
 		
 		ConfigHandler cHandler = ConfigHandler.getInstance();
-		boolean error = handleRequest(response, dirArray, cHandler);
+		boolean error = handleRequest(dirArray, cHandler);
 		if (!error) return true;
 		else {
-			return error(response);
+			response = error(response);
+			return new Gson().toJson(errorArray);
 		}
 		
 	}
 
 
 	private Response error(Response response) {
-		response.header("Content-Type", "application/json; charset=UTF-8");
-		response.body(new Gson().toJson(errorArray));
+		response.header("Content-Type", "text/json; charset=UTF-8");
 		response.status(400);
 		return response;
 	}
@@ -77,23 +75,23 @@ public class CreateReportDirWS extends Route {
 	}
 
 
-	private boolean handleRequest(Response response, JsonArray dirArray, ConfigHandler cHandler) {
+	private boolean handleRequest(JsonArray dirArray, ConfigHandler cHandler) {
+		boolean error = false;
 		for (JsonElement path : dirArray) {
 			boolean directoryExists = FileUtil.directoryExists(path.getAsString());
 			if (directoryExists) {
 				boolean saveReportPath = cHandler.saveReportPath(path.getAsString());
 				if (!saveReportPath) {
 					appendError("You can not add duplicates: ", path.getAsString());
-					this.error = true;
+					error = true;
 				}
 			}
 			else {
 				appendError("path did not exist: ", path.getAsString());
-				this.error = true;
-				break;
+				error = true;
 			}
 		}
-		return this.error;
+		return error;
 	}
 
 
