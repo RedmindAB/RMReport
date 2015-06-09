@@ -1,6 +1,10 @@
 package se.redmind.rmtest.web.route.api;
 
-import static spark.Spark.*;
+import static spark.Spark.after;
+import static spark.Spark.delete;
+import static spark.Spark.get;
+import static spark.Spark.post;
+import static spark.Spark.put;
 import se.redmind.rmtest.web.route.api.admin.config.GetConfigWS;
 import se.redmind.rmtest.web.route.api.admin.doctor.RunDoctorWS;
 import se.redmind.rmtest.web.route.api.admin.port.ChangePortWS;
@@ -16,9 +20,7 @@ import se.redmind.rmtest.web.route.api.filter.ApiBeforeFilter;
 import se.redmind.rmtest.web.route.api.longpoll.change.CheckForChangeWS;
 import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
 import se.redmind.rmtest.web.route.api.screenshot.byfilename.ScreenshotByFilenameWS;
-import se.redmind.rmtest.web.route.api.screenshot.structure.ScreenshotStructureDAO;
 import se.redmind.rmtest.web.route.api.screenshot.structure.ScreenshotStructureWS;
-import se.redmind.rmtest.web.route.api.seleniumgrid.SeleniumGridDAO;
 import se.redmind.rmtest.web.route.api.seleniumgrid.SeleniumGridWS;
 import se.redmind.rmtest.web.route.api.stats.devicefail.DeviceStatsFailWS;
 import se.redmind.rmtest.web.route.api.stats.grahoptions.GetGraphOptionsWS;

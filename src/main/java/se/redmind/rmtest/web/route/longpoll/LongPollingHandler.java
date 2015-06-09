@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import se.redmind.rmtest.db.DBCon;
 import spark.Request;
 import spark.Response;
 

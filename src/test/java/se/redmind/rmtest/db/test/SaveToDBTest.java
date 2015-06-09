@@ -10,7 +10,6 @@ import se.redmind.rmtest.report.test.ReportLoaderTest;
 
 import java.io.File;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 /**
  * Created by johan on 15-01-27.

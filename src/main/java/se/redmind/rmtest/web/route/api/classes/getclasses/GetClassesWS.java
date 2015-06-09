@@ -1,11 +1,10 @@
 package se.redmind.rmtest.web.route.api.classes.getclasses;
 
-import com.google.gson.JsonElement;
-
 import se.redmind.rmtest.web.route.api.CachedRoute;
 import spark.Request;
 import spark.Response;
-import spark.Route;
+
+import com.google.gson.JsonElement;
 
 public class GetClassesWS extends CachedRoute {
 

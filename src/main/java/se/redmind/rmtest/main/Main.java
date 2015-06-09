@@ -1,16 +1,16 @@
 package se.redmind.rmtest.main;
 
+import java.sql.SQLException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.InMemoryDBHandler;
 import se.redmind.rmtest.filewatcher.FileWatcher;
 import se.redmind.rmtest.report.init.ReportInit;
 import se.redmind.rmtest.web.properties.ConfigHandler;
 import se.redmind.rmtest.web.route.RMTRoute;
-
-import java.sql.SQLException;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 
 public class Main {

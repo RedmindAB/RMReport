@@ -2,9 +2,7 @@ package se.redmind.rmtest.report.init;
 
 import java.io.File;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -48,7 +46,6 @@ public class ReportInit {
 		System.out.println("Checking "+reportPath);
 		System.out.println("Found "+reportFiles.size()+" reports");
 		Connection connection = DBCon.getDbInstance().getConnection();
-		Iterator<File> reportIterator = reportFiles.iterator();
 		try {
 			connection.setAutoCommit(false);
 			System.out.println(estimator.getTopMeter());

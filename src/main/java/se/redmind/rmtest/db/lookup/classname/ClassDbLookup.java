@@ -1,12 +1,9 @@
 package se.redmind.rmtest.db.lookup.classname;
 
-import se.redmind.rmtest.db.DBBridge;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+
+import se.redmind.rmtest.db.DBBridge;
 
 /**
  * Created by johan on 15-01-29.

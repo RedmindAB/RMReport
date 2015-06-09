@@ -52,7 +52,7 @@ public class StringKeyValueParser {
         while (matcher.find()) {
         	
         	// strip { and } from string and get value from map 
-            String replacement = (String) map.get(matcher.group(1));
+            String replacement = map.get(matcher.group(1));
             
             // if value doesn't exist, set it to be the expected token
             if (replacement == null) {

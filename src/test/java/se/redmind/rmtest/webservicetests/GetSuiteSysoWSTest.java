@@ -2,7 +2,6 @@ package se.redmind.rmtest.webservicetests;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -10,13 +9,6 @@ import static org.mockito.Mockito.*;
 
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
-import se.redmind.rmtest.web.route.api.classes.passfail.PassFailClassWS;
-import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
-import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
 import se.redmind.rmtest.web.route.api.suite.syso.GetSuiteSysosWS;
 import se.redmind.rmtest.ws.testsuite.WSSetupHelper;
 import spark.Request;

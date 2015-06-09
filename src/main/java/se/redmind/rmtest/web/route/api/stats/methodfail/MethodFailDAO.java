@@ -4,9 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-import com.google.gson.JsonArray;
-
 import se.redmind.rmtest.db.DBBridge;
+
+import com.google.gson.JsonArray;
 
 public class MethodFailDAO extends DBBridge{
 	

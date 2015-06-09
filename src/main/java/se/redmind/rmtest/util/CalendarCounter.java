@@ -1,6 +1,7 @@
 package se.redmind.rmtest.util;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -19,7 +20,7 @@ public class CalendarCounter {
 		return sdf.format(cal.getTime());
 	}
 	public String getDateOneMonthAgoAsString(){
-		cal.add(cal.MONTH, -1);
+		cal.add(Calendar.MONTH, -1);
 		return sdf.format(cal.getTime());
 	}
 

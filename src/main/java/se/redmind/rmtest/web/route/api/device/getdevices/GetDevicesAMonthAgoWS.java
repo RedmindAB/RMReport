@@ -1,6 +1,5 @@
 package se.redmind.rmtest.web.route.api.device.getdevices;
 
-import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseDAO;
 import spark.Request;
 import spark.Response;
 import spark.Route;

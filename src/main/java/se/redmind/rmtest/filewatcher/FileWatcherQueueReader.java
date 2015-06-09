@@ -1,5 +1,7 @@
 package se.redmind.rmtest.filewatcher;
 
+import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -14,7 +16,6 @@ import org.apache.logging.log4j.Logger;
 import se.redmind.rmtest.db.InMemoryDBHandler;
 import se.redmind.rmtest.report.reportvalidation.ReportValidator;
 import se.redmind.rmtest.report.sysout.ReportSystemOutPrintFile;
-import static java.nio.file.StandardWatchEventKinds.*;
 
 public class FileWatcherQueueReader implements Runnable {
 

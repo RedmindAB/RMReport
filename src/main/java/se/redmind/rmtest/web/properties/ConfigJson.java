@@ -33,6 +33,7 @@ public class ConfigJson {
 		this.port = port;
 	}
 
+	@Override
 	public ConfigJson clone(){
 		ConfigJson backup = new ConfigJson();
 		backup.setGridQueryServletURL(this.gridQueryServletURL);

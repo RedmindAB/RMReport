@@ -2,18 +2,16 @@ package se.redmind.rmtest.web.route.api.stats.graphdata;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 
 import se.redmind.rmtest.web.route.api.CachedRoute;
 import spark.Request;
 import spark.Response;
-import spark.Route;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 
 public class GetGraphDataWS extends CachedRoute {
 
@@ -90,7 +88,7 @@ public class GetGraphDataWS extends CachedRoute {
 	@Override
 	public JsonElement handleRequest(Response response, Request request) {
 		try {
-			String data = (String) request.body();
+			String data = request.body();
 			if (logEnable) log(request, data);
 			JsonArray json = new Gson().fromJson(data, JsonArray.class);
 			JsonElement res = new GetGraphDataDAO().getGraphData(json);

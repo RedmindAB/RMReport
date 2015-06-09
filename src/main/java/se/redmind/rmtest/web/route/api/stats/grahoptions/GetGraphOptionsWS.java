@@ -1,8 +1,5 @@
 package se.redmind.rmtest.web.route.api.stats.grahoptions;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
 import spark.Request;
 import spark.Response;
 import spark.Route;

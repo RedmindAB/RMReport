@@ -2,16 +2,14 @@ package se.redmind.rmtest.web.route.api.admin.reportdir;
 
 import java.io.IOException;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
 import se.redmind.rmtest.web.properties.ConfigHandler;
-import se.redmind.rmtest.web.properties.ConfigJson;
 import spark.Request;
 import spark.Response;
 import spark.Route;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 
 public class DeleteReportDirsWS extends Route {
 
