@@ -32,7 +32,7 @@
 		var restURL = "/api/selenium/griddata";
 		
 		var pollController = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-			$scope.gridToggleModal();
+			$scope.gridModalShown = false;
 			if(fromState.name === 'grid'){
 				Polling.stopPolling("grid");
 			}

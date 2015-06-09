@@ -23,11 +23,8 @@
 		    
 		    if (DeviceData.platforms.length > 0) {
 			    angular.forEach(DeviceData.platforms, function(key) {
-			    	console.log(key);
-			    	console.log(suiteid);
 					var promise = $http.get('/api/stats/device/fail/' + suiteid + '/' + key)
 					.success(function(data, status, headers, config){ 
-						console.log(data);
 					}).error(function(data, status, headers, config){
 						console.error(data);
 					});
