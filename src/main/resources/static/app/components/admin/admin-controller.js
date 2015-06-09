@@ -35,12 +35,14 @@
 		}
 
 		function addPath(path){
-			if (!pathExists(path)) {
-				vm.configCompare.reportPaths.push(path);
-			} else {
-				vm.errorMessages.push({index: -1, message: "Path already exists"});
+			if(path.length > 0){
+				if (!pathExists(path)) {
+					vm.configCompare.reportPaths.push(path);
+				} else {
+					vm.errorMessages.push({index: -1, message: "Path already exists"});
+				}
+				vm.newPath = '';
 			}
-			vm.newPath = '';
 		}
 		
 		function removePath(index){
