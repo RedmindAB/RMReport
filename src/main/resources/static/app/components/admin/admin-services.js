@@ -27,6 +27,7 @@
 		            method: 'POST',
 		            data  : request
 		        }). error(function(data, status, headers, config){
+		        	console.log(data);
 		        	addErrorMessage(config, "create");
 		        });
 			
