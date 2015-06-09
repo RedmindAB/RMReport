@@ -1,0 +1,33 @@
+<div id='messages'>
+	<div align='center'><h4>Most failing devices on each platform in suite: {{CurrentSuite.currentSuiteInfo.name}}</h4><br></div>
+	<div align='center' ng-if='ctrl.DeviceData.existingPlatforms.length'><h4>Total Platforms:&nbsp;{{ctrl.DeviceData.existingPlatforms.length}}</h4></div>
+	<div ng-if='!ctrl.DeviceData.existingPlatforms.length' align='center'><h4><span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Loading Platforms...</h4></div>
+	<div class='modal-dialog' style='width:100%;height:100%;margin-left: 10px;overflow:scroll' align='center'>
+		<div class='modal-content' ng-repeat='platform in ctrl.DeviceData.existingPlatforms track by $index' style='display:inline-block;margin: 10px 10px 20px 0px;float:left'>
+	    	<div id='errorMessageDiv' class='modal-header' style="text-transform: UPPERCASE">{{platform}}</div> 
+			    <div id='errorMessageDiv' class='modal-body'>
+	      			<div ng-repeat='platform in ctrl.DeviceData.devices[$index]'>
+				    		<table style='float:left;margin-bottom:20px'>
+			      				<tr>
+		      						<td><b>Device Name:</b>&nbsp;</td> 
+		      						<td>{{platform.devicename}}</td>
+			      				</tr> 
+			      				<tr>
+		      						<td><b>Total Tests:</b>&nbsp;</td>
+				      				<td>{{platform.total}}</td>
+		      					</tr> 
+			      				<tr>
+	      							<td><b>Total Failed:</b>&nbsp;</td> 
+	      							<td>{{platform.totalFail}}</td>
+		      					</tr> 
+	      						<tr>
+	  								<td><b>Fail Percentage:</b>&nbsp;</td>
+	  								<td>{{((platform.totalFail / platform.total) * 100) | number:2}}%</td>
+	  							</tr> 
+	  						</table>
+					</div>
+      			<div ng-if='!ctrl.DeviceData.devices.length'><span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Loading Devices...</div>
+     		</div> 
+ 		</div>
+	</div>
+</div>

@@ -114,7 +114,7 @@
 							id='{{suite.name}}' 
 							ng-click="Utilities.clearData(suite.lastTimeStamp); 
 									loadMainChart(suite.id, 'true', 'Aggregation'); 
-									getSuiteSkeleton(suite);loadDashboardDevices()"
+									getSuiteSkeleton(suite);loadDashboardPlatformsAndDevices()"
 							class="hidden-xs">
 							{{suite.name}}
 						</a>
@@ -123,7 +123,7 @@
 							class="visible-xs" 
 							ng-click="Utilities.clearData(suite.lastTimeStamp); 
 									loadMainChart(suite.id, 'true', 'Aggregation'); 
-									getSuiteSkeleton(suite);loadDashboardDevices()" 
+									getSuiteSkeleton(suite);loadDashboardPlatformsAndDevices()" 
 							data-toggle="collapse" 
 							data-target=".navbar-collapse">
 							{{suite.name}}

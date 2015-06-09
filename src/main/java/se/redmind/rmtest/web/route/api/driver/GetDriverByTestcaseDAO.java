@@ -58,7 +58,11 @@ public class GetDriverByTestcaseDAO extends DBBridge {
 	
 	private String getMessage(String id){
 		if (id != null && !id.isEmpty()) {
-			return messageDAO.get(Integer.valueOf(id));
+			String message = messageDAO.get(Integer.valueOf(id));
+			if (message == null) {
+				return "";
+			}
+			return message;
 		}
 		return "";
 	}
