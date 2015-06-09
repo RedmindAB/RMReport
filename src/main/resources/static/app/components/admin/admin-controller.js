@@ -31,7 +31,6 @@
 		
 		function toggleErrorModal() {
 			vm.errorModalShown = !vm.errorModalShown;
-			console.log(vm.errorModalShown);
 		}
 
 		function addPath(path){
@@ -63,7 +62,6 @@
 			
 			AdminServices.loadRootConfig()
 			.then(function(data){
-				console.log(data);
 				vm.config = data.data;
 				angular.copy(vm.config,vm.configCompare);
 				vm.configCompare.removeList = [];
@@ -81,7 +79,6 @@
 			})
 			.finally(function(){
 				loadRootConfig();
-				console.log(vm.errorMessages.length);
 				if (vm.errorMessages.length > 0) {
 					vm.toggleErrorModal();
 				}
@@ -160,9 +157,11 @@
 				break;
 				
 			case "create":
-				vm.errorMessages.push({
-					message: "Could not create path:\n" + config.data[0]
-				});
+				for(var i = 0; i < config.length; i++){
+					vm.errorMessages.push({
+						message: config[i]
+					});
+				}
 				break;
 				
 			case "delete":

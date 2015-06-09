@@ -14,10 +14,12 @@ import spark.Route;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
 
 public class CreateReportDirWS extends Route {
 
 	Logger log = LogManager.getLogger(CreateReportDirWS.class);
+	private JsonArray errorArray;
 	
 	public CreateReportDirWS(String path) {
 		super(path);
@@ -39,19 +41,26 @@ public class CreateReportDirWS extends Route {
 	 */
 	@Override
 	public Object handle(Request request, Response response) {
+		errorArray = new JsonArray();
 		String reportdirs = request.body();
 		JsonArray dirArray = new Gson().fromJson(reportdirs, JsonArray.class);
 		if (dirArray == null) return badRequest(response, "Bad format or empty body.");
 		
 		ConfigHandler cHandler = ConfigHandler.getInstance();
-		boolean enter = false;
-		enter = handleRequest(response, dirArray, cHandler, enter);
-		if (enter) return true;
+		boolean error = handleRequest(dirArray, cHandler);
+		if (!error) return true;
 		else {
-			response.status(400);
-			return response;
+			response = error(response);
+			return new Gson().toJson(errorArray);
 		}
 		
+	}
+
+
+	private Response error(Response response) {
+		response.header("Content-Type", "text/json; charset=UTF-8");
+		response.status(400);
+		return response;
 	}
 
 
@@ -66,33 +75,28 @@ public class CreateReportDirWS extends Route {
 	}
 
 
-	private boolean handleRequest(Response response, JsonArray dirArray, ConfigHandler cHandler, boolean enter) {
+	private boolean handleRequest(JsonArray dirArray, ConfigHandler cHandler) {
+		boolean error = false;
 		for (JsonElement path : dirArray) {
-			enter = true;
 			boolean directoryExists = FileUtil.directoryExists(path.getAsString());
 			if (directoryExists) {
 				boolean saveReportPath = cHandler.saveReportPath(path.getAsString());
 				if (!saveReportPath) {
-					try {
-						response.raw().sendError(417, "You can not add duplicates.");
-						enter = false;
-					} catch (IOException e) {
-						log.error(e.getMessage());
-					}
+					appendError("You can not add duplicates: ", path.getAsString());
+					error = true;
 				}
 			}
 			else {
-				try {
-					response.raw().sendError(417, "path did not exist: "+path.getAsString());
-				} catch (IOException e) {
-					log.error(e.getMessage());
-				}
-				enter = false;
-				response.status(417);
-				break;
+				appendError("path did not exist: ", path.getAsString());
+				error = true;
 			}
 		}
-		return enter;
+		return error;
+	}
+
+
+	private void appendError(String errorType, String path) {
+		errorArray.add(new JsonPrimitive(errorType+path));
 	}
 
 }
