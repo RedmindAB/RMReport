@@ -4,8 +4,15 @@ html * {
     outline: 0 !important;
 }
 
+html{
+	height:100%;
+}
+
 body{
 	background-color: #D4D9DD;
+	position:relative;
+	height:100%;
+	min-height:100%;
 }
 
 .ui-view-margin{
@@ -153,6 +160,15 @@ h3 {
 
 .navbar-nav .dropdown:hover .dropdown-menu > li > a:hover, .dropdown:hover .dropdown-menu > li > a:focus{
     background-color: #EDEDED;
+}
+
+#navbar-collapse-2{
+	padding:0px;
+}
+
+#navbar-project{
+	float:right;
+	margin-right: 100px;
 }
 
 /* End */
@@ -870,6 +886,10 @@ label {
 	margin-bottom:10px;
 }
 
+.admin-error-msg{
+	margin-bottom:10px;
+}
+
 .validate-change{
 	border-color: rgba(237, 236, 18,.8);
     outline: 0;
@@ -899,3 +919,36 @@ label {
 	font-size:2.2em; 
 	color:#DC072B;
 }
+
+/* Other */
+
+.breadcrumb{
+	padding: 0px;
+	margin: 0px;
+	display:inline;
+	background-color: transparent;
+}
+
+.breadcrumb span, a{
+	color:inherit;
+}
+
+.breadcrumb span{
+	font-weight:bold;
+}
+
+#version{
+	position:relative;
+	background-color:transparent;
+	margin-left:10px;
+	color:#999999;
+	text-align: center;
+	bottom:0;
+}
+
+
+
+
+
+
+

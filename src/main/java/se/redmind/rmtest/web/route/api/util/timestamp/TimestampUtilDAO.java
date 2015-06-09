@@ -11,7 +11,6 @@ public class TimestampUtilDAO extends DBBridge{
 	private static String minTimestampSQL = "SELECT MIN(timestamp) AS timestamp FROM (SELECT DISTINCT timestamp FROM report WHERE report.suite_id = {suiteid} LIMIT {limit})";
 	
 	public TimestampUtilDAO() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public long getMinTimestamp(int suiteid, int limit) {

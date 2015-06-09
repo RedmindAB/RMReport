@@ -5,17 +5,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 import se.redmind.rmtest.util.StringKeyValueParser;
+import se.redmind.rmtest.web.route.api.cache.WSCache;
 
 public abstract class DBBridge {
 
 	protected Connection connection;
 	protected StringKeyValueParser stringParser;
+	private static Date lastUpdated;
 	
 	public DBBridge() {
 		connection = DBCon.getDbInstance().getConnection();
 		this.stringParser = new StringKeyValueParser();
+		if (lastUpdated == null) {
+			lastUpdated = new Date();
+		}
 	}
 	
 	protected PreparedStatement prepareStatement(String sql){
@@ -40,6 +46,7 @@ public abstract class DBBridge {
 		try {
 			Statement statement = connection.createStatement();
 			result = statement.executeUpdate(sql);
+			updateLastUpdated();
 		} catch (SQLException e) {
 			return false;
 		}
@@ -54,6 +61,7 @@ public abstract class DBBridge {
 	protected synchronized void insertToDB(Statement statement){
 		try {
 			statement.executeBatch();
+			updateLastUpdated();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,6 +75,7 @@ public abstract class DBBridge {
 	protected synchronized void insertToDB(PreparedStatement preparedStatement){
 		try {
 			preparedStatement.executeBatch();
+			updateLastUpdated();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -121,4 +130,14 @@ public abstract class DBBridge {
 		}
 		return connection;
 	}
+	
+	public static void updateLastUpdated(){
+		lastUpdated = new Date();
+		WSCache.getInstance().clear();
+	}
+	
+	public static Date getLastUpdated(){
+		return lastUpdated;
+	}
+	
 }

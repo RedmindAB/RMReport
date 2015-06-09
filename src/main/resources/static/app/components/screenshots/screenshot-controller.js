@@ -17,19 +17,19 @@
 		
 		$scope.noScreenShotsExists = function(){
 			return ScreenshotMaster.data.screenshotsExists !== undefined && ScreenshotMaster.data.screenshotsExists === false;
-		}
+		};
 		
 		$scope.makeArray = function (number) {
 			return new Array(number);
-		}
+		};
 		
 		$scope.containsScreenshots = function(method){
 			return method.screenshotLength > 0;
-		}
+		};
 		
 		$scope.getMethodContentWidth = function(method){
 			return (method.testcases.length * 232)+10;
-		}
+		};
 		
 		$scope.toggleScreenshotModal = function() {
 			$scope.screenshotModalShown = !$scope.screenshotModalShown;
@@ -53,20 +53,20 @@
 		
 		$scope.loadScreenshotsFromClass = function(classObj){
 			RestLoader.loadScreenshotsFromClass(classObj);
-		}
+		};
 		
 		$scope.getScreenshotsFromFileName = function(fileName, caseObj){
 			if (!fileName) {
 				return 'assets/img/screenshots/no-screenshot.png';
 			}
 			return '/api/screenshot/byfilename?timestamp='+ScreenshotMaster.currentTimestamp+'&filename='+fileName;
-		}
+		};
 		
 		$scope.getScreenshotsFromTimestamp = function(){
 			if ($state.$current.name === 'screenshots.methods') {
-				RestLoader.loadScreenshotsFromClass(CurrentSuite.currentClass)
+				RestLoader.loadScreenshotsFromClass(CurrentSuite.currentClass);
 			}
-		}
+		};
 		
 		$scope.getCommentFromFileName = function(fileName){
 			var path = fileName;
@@ -75,10 +75,10 @@
 			if (index === -1) {
 				return undefined;
 			} else {
-				var comment = path.substring()
+				var comment = path.substring();
 				return comment.slice(0,index);
 			}
-		}
+		};
 		
 		$scope.getCommentFromCurrentScreenshot = function(){
 			if ($scope.slides[$scope.currentIndex] !== undefined) {
@@ -88,16 +88,16 @@
 			
 			return $scope.getCommentFromFileName(fileName);
 			}
-		}
+		};
 		
 		$scope.getFailError = function(obj){
 			var tot = obj.error + obj.failure;
 			return tot;
-		}
+		};
 		
 		$scope.getNumber = function(num) {
 		    return new Array(num);   
-		}
+		};
 		
 		
 		//slider specifics
@@ -109,7 +109,7 @@
 	    	
 	    $scope.setCurrentMethod = function(method){
 	    	$scope.currentMethod = method;
-	    }
+	    };
 	    
 	    $scope.setSlides= function(cases, index, parentIndex){
 	    	var screenArray = [];
@@ -118,14 +118,15 @@
 			}
 	    	$scope.slides = screenArray;
 	    	$scope.setCurrentSlideIndex(index);
-	    }
+	    };
 	    
 	    $scope.getCurrentSlideInfo = function(){
+	    	var info = '';
 	    	if ($scope.currentMethod !== 'unknown') {
-	    		var info = $scope.currentMethod.testcases[$scope.currentIndex].device + " - " + $scope.currentMethod.testcases[$scope.currentIndex].browser;
+	    		 info = $scope.currentMethod.testcases[$scope.currentIndex].device + " - " + $scope.currentMethod.testcases[$scope.currentIndex].browser;
 	    	}
 	    	return info;
-	    }
+	    };
 	     
 	    $scope.setCurrentSlideIndex = function (index) {
 	    	$scope.direction = (index > $scope.currentIndex) ? 'left' : 'right';
@@ -148,11 +149,11 @@
 	    
 	    $scope.getConsolePrint = function(){
 	    	RestLoader.getConsolePrint();
-	    }
+	    };
 	    
 	    $scope.isLastIndex = function(index,length){
 	    	return index+1 === length;
-	    }
+	    };
 	     
 	}
 })();

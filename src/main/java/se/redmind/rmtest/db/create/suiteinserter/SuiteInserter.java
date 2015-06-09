@@ -3,7 +3,6 @@ package se.redmind.rmtest.db.create.suiteinserter;
 import java.util.HashMap;
 
 import se.redmind.rmtest.db.DBBridge;
-import se.redmind.rmtest.util.StringKeyValueParser;
 
 public class SuiteInserter extends DBBridge {
 

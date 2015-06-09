@@ -1,12 +1,12 @@
 package se.redmind.rmtest.web.route.api.admin.config;
 
-import com.google.gson.Gson;
-
 import se.redmind.rmtest.web.properties.ConfigHandler;
 import se.redmind.rmtest.web.properties.ConfigJson;
 import spark.Request;
 import spark.Response;
 import spark.Route;
+
+import com.google.gson.Gson;
 
 public class GetConfigWS extends Route {
 

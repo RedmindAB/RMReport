@@ -13,7 +13,7 @@
 			
 		chartMaker.loadMainChart = function(suiteID,newLine,name){
 			RestLoader.loadMainChart(suiteID, newLine, createMainChart, name);
-		}
+		};
 		
 		chartMaker.loadHomeChart = function(suite){
 			RestLoader.createHomeChartFromID(suite,createHomeChart);
@@ -21,18 +21,18 @@
 		
 		chartMaker.addCaseToGraph = function(osName, osVersion, deviceName, browserName, browserVer){
 			RestLoader.addCaseToGraph(osName, osVersion, deviceName, browserName, browserVer, createMainChart);
-		}
+		};
 		
 	    chartMaker.highlightPoint = function(timestamp){
-	    	for (var i = 0; i < Charts.mainChart.series.length; i++) {
-	    		for (var j = 0; j < Charts.mainChart.series[i].data.length; j++) {
+	    	for (var i = 0, seriesLength = Charts.mainChart.series.length; i < seriesLength; i++) {
+	    		for (var j = 0, dataLength = Charts.mainChart.series[i].data.length; j < dataLength; j++) {
 	  			   if (Charts.mainChart.xAxis.categories[j] === timestamp){
 	  				   Charts.mainChart.xAxis.plotLines[0].value = j;
 	  				   return;
 	  			   }
 	  		   }
 	    	}
-	    }
+	    };
 			
 	    function createMainChart(data, newLine){
 	    	if (data.length === 0) {
@@ -41,8 +41,8 @@
 				return;
 			}
 			CurrentSuite.currentTimeStampArray = [];
-			for (var index = 0; index < data[0].data.length; index++) {
-				CurrentSuite.currentTimeStampArray.push(data[0].data[index].timestamp);
+			for (var i = 0, stampLength = data[0].data.length; i < stampLength; i++) {
+				CurrentSuite.currentTimeStampArray.push(data[0].data[i].timestamp);
 			}
 			
 			if (CurrentSuite.currentTimeStamp === '') {
@@ -50,26 +50,29 @@
 			}
 			Utilities.descTimestamps = reverseArray(CurrentSuite.currentTimeStampArray);
 			var graphDataArray = [];
-			for (var i = 0; i < data.length; i++) {
+			var dataObj = [];
+			for (var i = 0, dataLength = data.length; i < dataLength; i++) {
 				var graphDataObj = {
 						runTime: [],
 						totalPass: [],
 						totalFail: [],
+						totalSkipped: [],
 						passPercentage: []
 				};
 				var graphName = data[i].name;
-				
-				for (var j = 0; j < data[i].data.length; j++) {
+				for (var j = 0, innderLength = data[i].data.length ; j < innderLength; j++) {
 					if (isSkipped(data[i].data[j])) {
 						graphDataObj.runTime.push(null);
 						graphDataObj.totalPass.push(null);
 						graphDataObj.totalFail.push(null);
 						graphDataObj.passPercentage.push(null);
 					} else {
-						graphDataObj.runTime.push(data[i].data[j].time);
-						graphDataObj.totalPass.push(data[i].data[j].pass);
-						graphDataObj.totalFail.push(data[i].data[j].fail + data[i].data[j].error);
-						graphDataObj.passPercentage.push(Math.round(getPassPercentage(data[i].data[j].pass, data[i].data[j].fail, data[i].data[j].error)));
+						dataObj = data[i].data[j];
+						graphDataObj.runTime.push(dataObj.time);
+						graphDataObj.totalPass.push(dataObj.pass);
+						graphDataObj.totalFail.push(dataObj.fail + dataObj.error);
+						graphDataObj.totalSkipped.push(dataObj.skipped);
+						graphDataObj.passPercentage.push(Math.round(getPassPercentage(dataObj.pass, dataObj.fail, dataObj.error)));
 					}
 				}
 				graphDataObj.name = graphName;
@@ -77,7 +80,7 @@
 			}
 			if (newLine) {
 				Charts.data = [];
-				for (var i = 0; i < graphDataArray.length; i++) {
+				for (i = 0; i < graphDataArray.length; i++) {
 					Charts.data.push(graphDataArray[i]);
 				}
 			} else {
@@ -98,23 +101,23 @@
 			
 			Charts.mainChart.subtitle.text = "Showing " + CurrentSuite.currentTimeStampArray.length + " results";
 				
-				for (var i = 0; i < Charts.data.length; i++) {
-			    	Charts.mainChart.series.push({
-						data : Charts.data[i].passPercentage,
-						name : Charts.data[i].name,
-					});
-				}
-				if(CurrentSuite.currentTimeStampArray.length <= 50){
-					Charts.mainChart.xAxis.tickInterval = 0.4;
-				} else if(CurrentSuite.currentTimeStampArray.length > 50 && CurrentSuite.currentTimeStampArray.length <= 100){
-		        	Charts.mainChart.xAxis.tickInterval = 2;
-		    	} else{
-		    		Charts.mainChart.xAxis.tickInterval = 5;
-		    	}
-				chartMaker.changeChartVariant(Utilities.graphView);
-				Charts.mainChart.loading = false;
-				chartMaker.highlightPoint(CurrentSuite.currentTimeStamp);
-	    };
+			for (var i = 0, chartsLength = Charts.data.length; i < chartsLength; i++) {
+		    	Charts.mainChart.series.push({
+					data : Charts.data[i].passPercentage,
+					name : Charts.data[i].name,
+				});
+			}
+			if(CurrentSuite.currentTimeStampArray.length <= 50){
+				Charts.mainChart.xAxis.tickInterval = 0.4;
+			} else if(CurrentSuite.currentTimeStampArray.length > 50 && CurrentSuite.currentTimeStampArray.length <= 100){
+	        	Charts.mainChart.xAxis.tickInterval = 2;
+	    	} else{
+	    		Charts.mainChart.xAxis.tickInterval = 5;
+	    	}
+			chartMaker.changeChartVariant(Utilities.graphView);
+			Charts.mainChart.loading = false;
+			chartMaker.highlightPoint(CurrentSuite.currentTimeStamp);
+	    }
 		
 		chartMaker.changeChartVariant = function(input){
 			Utilities.graphView = input;
@@ -123,21 +126,29 @@
 			case "Pass/Fail":
 				passFailChart();
 				break;
+				
 			case "Run Time":
 				runTimeChart();
 				break;
+				
 			case "Total Pass":
 				totalPassChart();
 				break;
+				
 			case "Total Fail":
 				totalFailChart();
 				break;
+				
+			case "Total Skipped":
+				totalSkippedChart();
+				break;
+				
 			default:
-				Utilities.graphView = "Pass/Fail"
+				Utilities.graphView = "Pass/Fail";
 				passFailChart();
 				break;
 			}
-		}
+		};
 		
 		function getSerieColor(i){
 			if (i > Utilities.colors.length -1) {
@@ -150,7 +161,7 @@
 			var chart = Charts.mainChart;
 			
 			chart.series = [];
-			for (var i = 0; i < Charts.data.length; i++) {
+			for (var i = 0, dataLength = Charts.data.length; i < dataLength; i++) {
 				chart.series.push({
 					data : Charts.data[i].passPercentage,
 					name : Charts.data[i].name,
@@ -169,11 +180,11 @@
 			chart.options.chart.type = "";
 			chart.series = [];
 			chart.yAxis.max = undefined;
-			for (var i = 0; i < Charts.data.length; i++) {
+			for (var i = 0, dataLength = Charts.data.length; i < dataLength; i++) {
 				chart.series.push({
 					data : Charts.data[i].totalFail,
 					name : Charts.data[i].name,
-					color: getSerieColor(1),
+					color: getSerieColor(i+1),
 					type : "column",
 					dashStyle : "Solid",
 					connectNulls : false
@@ -191,11 +202,11 @@
 			chart.options.chart.type = "";
 			chart.series = [];
 			chart.yAxis.max = undefined;
-			for (var i = 0; i < Charts.data.length; i++) {
+			for (var i = 0, dataLength = Charts.data.length; i < dataLength; i++) {
 				chart.series.push({
 					data : Charts.data[i].totalPass,
 					name : Charts.data[i].name,
-					color: getSerieColor(0),
+					color: getSerieColor(i),
 					type : "column",
 					dashStyle : "Solid",
 					connectNulls : false
@@ -207,13 +218,35 @@
 			delete Charts.mainChart.options.tooltip.valueDecimals;
 		}
 		
+		function totalSkippedChart() {
+			var chart = Charts.mainChart;
+			
+			chart.options.chart.type = "";
+			chart.series = [];
+			chart.yAxis.max = undefined;
+			for (var i = 0, dataLength = Charts.data.length; i < dataLength; i++) {
+				chart.series.push({
+					data : Charts.data[i].totalSkipped,
+					name : Charts.data[i].name,
+					color: getSerieColor(i),
+					type : "column",
+					dashStyle : "Solid",
+					connectNulls : false
+				});
+			}
+			chart.yAxis.title.text = 'Skipped tests';
+			chart.options.plotOptions.series.stacking = '';
+			chart.title.text = "Skipped tests";
+			delete Charts.mainChart.options.tooltip.valueDecimals;
+		}
+		
 		function runTimeChart() {
 			
 			var chart = Charts.mainChart;
 			chart.options.chart.type = "line";
 			chart.series = [];
 			chart.yAxis.max = undefined;
-			for (var i = 0; i < Charts.data.length; i++) {
+			for (var i = 0, dataLength = Charts.data.length; i < dataLength; i++) {
 				chart.series.push({
 							data : Charts.data[i].runTime,
 							name : Charts.data[i].name,
@@ -229,11 +262,11 @@
 		
 		function reverseArray(array){
 			var length = array.length;
-			var reverseArray = [];
+			var reverse = [];
 			for (var i = length-1; i >= 0; i--) {
-				reverseArray.push(array[i]);
+				reverse.push(array[i]);
 			}
-			return reverseArray;
+			return reverse;
 		}
 		
 		function isSkipped(dataObj){
@@ -256,9 +289,11 @@
 		}
 		
 		function createHomeChart(data, suite) {
+			
 			var timeStamps = [];
-			for (var index = 0; index < data[0].data.length; index++) {
-				timeStamps.push(data[0].data[index].timestamp);
+			var timestampObj = data[0].data;
+			for (var index = 0, timeLength = data[0].data.length; index < timeLength; index++) {
+				timeStamps.push(timestampObj[index].timestamp);
 			}
 			
 			suite.lastTimeStamp = timeStamps[timeStamps.length-1];
@@ -269,9 +304,16 @@
 							crosshairs: true,
 				            shared: true,
 				            useHTML: true,
-				            headerFormat: '<small>{point.key}</small><table>',
-				            pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
-				            '<td style="text-align: right"><b>{point.y}</b></td></tr>',
+//				            formatter: function(){},
+				            headerFormat: '<small><strong>{point.key}</strong></small><table>',
+				            pointFormat: '<tr>' + 
+				            				'<td style="color: {series.color}">'+
+				            					'{series.name}:'+
+				            				'</td>' +
+				            				'<td style="text-align: right">'+
+				            					'<b>{point.y}</b>'+
+				            				'</td>'+
+				            			'</tr>',
 				            footerFormat: '</table>',
 						},
 						chart : {
@@ -354,19 +396,37 @@
 					},
 					func : function(chart) {
 					}
-				}
-			
+				};
+		    
+//		    chartHomeConfigObject.options.tooltip.formatter = function(){
+//		    	
+//	        	var tooltip = "";
+//	        	var length = chartHomeConfigObject.series.length;
+//	        	
+//	        	
+//	        	for(var i = 0; i < length; i++){
+//	        		tooltip += "test "
+//	        	}
+//	        	
+//	        	return tooltip;
+//		    }
+		    
 		    chartHomeConfigObject.series[0].data = [];
 		    chartHomeConfigObject.series[1].data = [];
 		    
+		    var passData = chartHomeConfigObject.series[0].data;
+		    var skipData = chartHomeConfigObject.series[1].data;
+		    var failData = chartHomeConfigObject.series[2].data;
+		    var dataKeeper = {};
 			for (var j = 0; j < data[0].data.length; j++) {
-				chartHomeConfigObject.series[0].data.push(data[0].data[j].pass);
-				chartHomeConfigObject.series[1].data.push(data[0].data[j].skipped);
-				chartHomeConfigObject.series[2].data.push(data[0].data[j].fail + data[0].data[j].error);
+				dataKeeper = data[0].data[j];
+				passData.push(dataKeeper.pass);
+				skipData.push(dataKeeper.skipped);
+				failData.push(dataKeeper.fail + dataKeeper.error);
 			}
 			chartHomeConfigObject.xAxis.categories = timeStamps;
 			Charts.chartHomeConfig[suite.id] = chartHomeConfigObject;
 			Charts.chartHomeConfig[suite.id].loading = false;
-		};
-	};
+		}
+	}
 })();

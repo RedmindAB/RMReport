@@ -9,25 +9,26 @@
 	
 	function StyleCtrl ($scope, $state, Utilities){
 		
+		var myData = null;
 		$scope.Utilities = Utilities;
 		
 	    $scope.getCurrentState= function(state){
 	    	return $state.includes(state);
-	    }
+	    };
 	    
 	    $scope.stopPropagation = function($event){
 	    	$event.stopPropagation();
-	    }
+	    };
 	    
 	    $scope.setActive = function(){
 	    	$event.stopPropagation();
-	    }
+	    };
 	    
 	    $scope.removePackagePath = function(classPath){
 	    	var lastDot = classPath.lastIndexOf(".");
 	    	var className = classPath.substring(lastDot+1);
 	    	return className;
-	    }
+	    };
 	    
 	    $scope.showClassLink = function(page){
 	    	switch (page) {
@@ -36,25 +37,23 @@
 				$scope.getCurrentState('reports.methods') || 
 				$scope.getCurrentState('reports.drivers') || 
 				$scope.getCurrentState('reports.cases');
-				break;
+				
 			case "methods":
 				return $scope.getCurrentState('reports.methods')  || 
 				$scope.getCurrentState('reports.drivers') || 
 				$scope.getCurrentState('reports.cases');
-				break;
+				
 			case "drivers":
 				return $scope.getCurrentState('reports.drivers') || 
 				$scope.getCurrentState('reports.cases');
-				break;
+				
 			case "cases":
 				return $scope.getCurrentState('reports.cases');
-				break;
 
 			default:
 				return false;
-				break;
 			}
-	    }
+	    };
 	    
 	    $scope.getButton = function(result){
 	    	if(result === "failure" || result === "error")
@@ -63,7 +62,7 @@
 	    		return 'btn btn-warning2';
 	    	else
 	    		return 'btn btn-success2';
-	    }
+	    };
 	    
 	    $scope.getPanel = function(result){
 	    	if(result === "failure" || result === "error")
@@ -85,7 +84,7 @@
 	    
 	    $scope.getBorder = function(){
 	    	return '#A94442';
-	    }
+	    };
 	    
 	    $scope.getBgCo = function(result){
 	    	if(result === "failure" || result === "error")
@@ -107,11 +106,11 @@
 	    $scope.formatDecimals = function(numberWithWayToManyDecimals){
 	    	var numberWithDecentAmountOfDecimals = numberWithWayToManyDecimals.toFixed(2);
 	    	return numberWithDecentAmountOfDecimals;
-	    }
+	    };
 	    
 	    $scope.checkPassed = function(passed){
 	    	return passed === "passed";
-	    }
+	    };
 	    
 	    $scope.showButton = false;
 	    $scope.toggleButton = function() {
@@ -124,7 +123,7 @@
 			} else {
 				return '#5F5E5D';
 			}
-	    }
+	    };
 	    
 	    $scope.getLogo = function(suiteName){
 	    	var path = 'img/suites/' + suiteName + '.png';
@@ -132,6 +131,27 @@
 	    	
 	    	
 	    	return path;
-	    }
-	};
+	    };
+	    
+		$scope.getVersion = function(){
+			$.ajax({
+			    url: "", /* https://api.github.com/repos/owner/repo/git/refs/tags */ 
+			    dataType: "json",
+			    success: function (data)
+			    {
+				        if(data !== null){
+				        	$("#result").html(data[0]["object"]["sha"]);
+				        	myData = (data[0].ref).replace("refs/tags/", '');
+				        }
+				        else
+				        	myData = "unknown";
+				        count++;
+			    },
+				error: function (data){
+					myData = "unknown";
+				}
+			});
+			return myData;
+		};
+	}
 })();

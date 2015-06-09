@@ -3,6 +3,7 @@ package se.redmind.rmtest.db.lookup.os;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+
 import se.redmind.rmtest.db.DBBridge;
 
 public class OsDbLookup extends DBBridge {

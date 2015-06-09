@@ -1,6 +1,10 @@
 package se.redmind.rmtest.web.route.api;
 
-import static spark.Spark.*;
+import static spark.Spark.after;
+import static spark.Spark.delete;
+import static spark.Spark.get;
+import static spark.Spark.post;
+import static spark.Spark.put;
 import se.redmind.rmtest.web.route.api.admin.config.GetConfigWS;
 import se.redmind.rmtest.web.route.api.admin.doctor.RunDoctorWS;
 import se.redmind.rmtest.web.route.api.admin.port.ChangePortWS;
@@ -16,13 +20,13 @@ import se.redmind.rmtest.web.route.api.filter.ApiBeforeFilter;
 import se.redmind.rmtest.web.route.api.longpoll.change.CheckForChangeWS;
 import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
 import se.redmind.rmtest.web.route.api.screenshot.byfilename.ScreenshotByFilenameWS;
-import se.redmind.rmtest.web.route.api.screenshot.structure.ScreenshotStructureDAO;
 import se.redmind.rmtest.web.route.api.screenshot.structure.ScreenshotStructureWS;
-import se.redmind.rmtest.web.route.api.seleniumgrid.SeleniumGridDAO;
 import se.redmind.rmtest.web.route.api.seleniumgrid.SeleniumGridWS;
 import se.redmind.rmtest.web.route.api.stats.devicefail.DeviceStatsFailWS;
 import se.redmind.rmtest.web.route.api.stats.grahoptions.GetGraphOptionsWS;
+import se.redmind.rmtest.web.route.api.stats.graph.tooltip.GraphTooltipWS;
 import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
+import se.redmind.rmtest.web.route.api.stats.methodfail.MethodFailWS;
 import se.redmind.rmtest.web.route.api.stats.platform.DeviceStatsPlatform;
 import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteWS;
 import se.redmind.rmtest.web.route.api.suite.bytimestamp.GetSuiteByTimestampWS;
@@ -74,6 +78,8 @@ public class ApiRouter {
 		//api/stats/device/fail/:deviceid/:suiteid?limit=x (Return the device fails based on the last timestamps down to the limit)
 		get(new DeviceStatsFailWS("/api/stats/device/fail/:suiteid/:osname"));
 		get(new DeviceStatsPlatform("/api/stats/platform/:suiteid"));
+		get(new MethodFailWS("/api/stats/methodfail/:suiteid"));
+		get(new GraphTooltipWS("/api/stats/devicerange/:suiteid/:timestamp"));
 	}
 	
 	

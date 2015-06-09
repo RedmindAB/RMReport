@@ -23,5 +23,5 @@
 						"</span>",
 			controller: 'GraphCtrl'
 	    };
-	};
+	}
 })();

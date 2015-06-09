@@ -8,7 +8,6 @@ import java.util.List;
 
 import se.redmind.rmtest.db.DBBridge;
 
-
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

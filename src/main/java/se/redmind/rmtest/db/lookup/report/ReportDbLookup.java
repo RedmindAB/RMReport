@@ -2,27 +2,13 @@ package se.redmind.rmtest.db.lookup.report;
 
 
 
-import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 
 import se.redmind.rmtest.db.DBBridge;
-import se.redmind.rmtest.util.CalendarCounter;
 
 /**
  * Created by johan on 15-01-26.

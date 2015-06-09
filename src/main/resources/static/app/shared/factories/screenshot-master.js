@@ -12,5 +12,5 @@
 			currentTimestamp: undefined,
 			previousView: undefined
 		};
-	};
+	}
 })();

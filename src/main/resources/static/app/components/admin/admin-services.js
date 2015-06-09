@@ -12,22 +12,35 @@
 		var add = addPaths;
 		var change = changePaths;
 		var remove = removePaths;
+		var loadRoot = loadRootConfig;
 		
 		return {
 			addPaths: add,
 			changePaths: change,
-			removePaths: remove
+			removePaths: remove,
+			loadRootConfig: loadRoot
 		};
 		
-		function addPaths(request, errorMessages) {
-			return $http.post('/api/admin/reportdir', request)
-			.success(function(data, status, headers, config){
-			}).error(function(data, status, headers, config){
-				errorMessages.push({index: -1, message: "An added path was incorrect"});
-			});
+		function addPaths(request, addErrorMessage, addMessage) {
+			var promise = $http({
+					url   : '/api/admin/reportdir',
+		            method: 'POST',
+		            data  : request
+		        }). error(function(data, status, headers, config){
+		        	addErrorMessage(config, "create");
+		        });
+			
+			return promise;
 		}
 		
-		function changePaths(request, errorMessages){
+		function loadRootConfig(){
+			return $http({
+	            url   : '/api/admin/config',
+	            method: 'GET'
+	        });
+		}
+		
+		function changePaths(request, addErrorMessage){
 			
 		    var promises = [];
 		    
@@ -37,6 +50,8 @@
 		            url   : '/api/admin/reportdir',
 		            method: 'PUT',
 		            data  : change
+		        }). error(function(data, status, headers, config){
+		        	addErrorMessage(config, "change");
 		        });
 		        promises.push(promise);
 
@@ -45,7 +60,7 @@
 		    return $q.all(promises);
 		}
 		
-		function removePaths (request){
+		function removePaths (request,addErrorMessage){
 			
 		    var promises = [];
 
@@ -54,6 +69,8 @@
 		            url   : '/api/admin/reportdir',
 		            method: 'DELETE',
 		            data  : change
+		        }). error(function(data, status, headers, config){
+		        	addErrorMessage(config, "remove");
 		        });
 		        promises.push(promise);
 		    });

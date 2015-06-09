@@ -5,7 +5,6 @@ import java.sql.Statement;
 import java.util.HashMap;
 
 import se.redmind.rmtest.db.DBBridge;
-import se.redmind.rmtest.util.StringKeyValueParser;
 
 public class TestCaseInserter extends DBBridge {
 

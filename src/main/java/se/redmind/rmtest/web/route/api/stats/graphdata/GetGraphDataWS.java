@@ -2,18 +2,18 @@ package se.redmind.rmtest.web.route.api.stats.graphdata;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-
+import se.redmind.rmtest.web.route.api.CachedRoute;
 import spark.Request;
 import spark.Response;
-import spark.Route;
 
-public class GetGraphDataWS extends Route {
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+
+public class GetGraphDataWS extends CachedRoute {
 
 	Logger log = LogManager.getLogger(GetGraphDataWS.class);
 	private boolean logEnable;
@@ -86,19 +86,19 @@ public class GetGraphDataWS extends Route {
 	 *]
 	 */
 	@Override
-	public Object handle(Request request, Response response) {
+	public JsonElement handleRequest(Response response, Request request) {
 		try {
-			String data = (String) request.body();
+			String data = request.body();
 			if (logEnable) log(request, data);
 			JsonArray json = new Gson().fromJson(data, JsonArray.class);
-			String res = new GetGraphDataDAO().getGraphData(json);
+			JsonElement res = new GetGraphDataDAO().getGraphData(json);
 			return res;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return e.getMessage();
 		}
+		return null;
 	}
-
+	
 	private void log(Request request, String body) {
 		HttpServletRequest rawRequest = request.raw();
 		String contextPath = request.pathInfo();
@@ -111,5 +111,7 @@ public class GetGraphDataWS extends Route {
 	public void setLoggingEnabled(boolean active){
 		this.logEnable = active;
 	}
+
+	
 	
 }

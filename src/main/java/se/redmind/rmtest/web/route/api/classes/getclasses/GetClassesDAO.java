@@ -7,18 +7,15 @@ import java.util.HashMap;
 import java.util.List;
 
 import se.redmind.rmtest.db.DBBridge;
-import se.redmind.rmtest.db.lookup.classname.ClassDbLookup;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 
 public class GetClassesDAO extends DBBridge {
 
 	
-	public String getClasses(int suiteid){
+	public JsonArray getClasses(int suiteid){
 		JsonArray array = new JsonArray();
 		List<HashMap<String, Object>> allClassNames = getAllClassNames(suiteid);
 		for (HashMap<String, Object> hashMap : allClassNames) {
@@ -29,7 +26,7 @@ public class GetClassesDAO extends DBBridge {
 			classObject.add("name", new JsonPrimitive(name));
 			array.add(classObject);
 		}
-		return new Gson().toJson(array);
+		return array;
 	}
 	
 	public List<HashMap<String, Object>> getAllClassNames(int suiteID){

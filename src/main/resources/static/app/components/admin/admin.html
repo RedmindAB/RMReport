@@ -1,7 +1,7 @@
 <div>
 	<p style="font-size:2em">Paths to projects</p>
 	<div ng-repeat="path in ctrl.configCompare.reportPaths track by $index" class="row admin-input">
-		<div class="col-md-4">
+		<div class="col-md-5">
 			<input 
 				type="text" id="existing-project-path"
 				class="form-control tool-tip uneditable-input"
@@ -22,10 +22,9 @@
 				title="Tag for removal">
 			</span>
 		</div>
-		<h4>{{ctrl.readErrorMessage($index)}}</h4>
 	</div>
 	<div class="row admin-input">
-		<div class="col-md-4">
+		<div class="col-md-5">
 			<input 
 				type="text" id="new-project-path"
 				class="form-control tool-tip"
@@ -34,13 +33,13 @@
 				title="Enter complete path to new project reports folder">
 			</input>
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-1">
 			<button 
 				id='add-project'
 				class='btn btn-default tool-tip'
 				ng-click="ctrl.addPath(ctrl.newPath)"
 				title="Tag for adding">
-				Add project
+				Add
 			</button>
 		</div>
 		<h4>{{ctrl.readErrorMessage(-1)}}</h4>
@@ -56,3 +55,19 @@
 		</div>
 		</div>
 </div>
+
+<modal-dialog 
+	id='modal-error-dialog' 
+	show='ctrl.errorModalShown'
+	style='background-color : transparent;color:white' 
+	toggle-modal="ctrl.toggleErrorModal()">
+	<h1 id='syso-header' align='center'>
+		Error messages
+	</h1>
+	<br/>
+	<div class="container slider" style='color:black;font-size:20px;'>
+		<div ng-repeat="message in ctrl.errorMessages">
+			<pre class="admin-error-msg">{{message.message}}</pre>
+		</div>
+	</div>
+</modal-dialog-sysos>

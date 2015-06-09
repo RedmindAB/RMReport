@@ -11,5 +11,5 @@
 			devices:[],
 			existingPlatforms:[]
 		};
-	};
+	}
 })();

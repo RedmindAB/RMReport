@@ -254,20 +254,21 @@
 				//the rest
 					//if chosen patforms are found, only add the chosen
 					if (this.containsChosen(specs)) {
-						for (var i = 0; i < specs.length; i++) {
+						for (var i = 0, specLength = specs.length; i < specLength; i++) {
 							if (specs[i].chosen) {
 					    		if (child != 'none') {
 					    			//if chosen childs are found only add the chosen
-					    			if (this.containsChosen(specs[i][child])) {
-							    		for (var j = 0; j < specs[i][child].length; j++) {
-							    			if (specs[i][child][j].chosen) {
-							    				dataArray.push(specs[i][child][j][key]);
+					    			var specChild = specs[i][child];
+					    			if (this.containsChosen(specChild)) {
+							    		for (var j = 0, childLength = specChild.length; j < childLength; j++) {
+							    			if (specChild[j].chosen) {
+							    				dataArray.push(specChild[j][key]);
 											}
 										}
 					    			} else {
 					    				//if NO chosen childs found adding all
-				    					for (var j = 0; j < specs[i][child].length; j++) {
-				    						dataArray.push(specs[i][child][j][key]);
+				    					for (var j = 0, childLength = specChild.length; j < childLength; j++) {
+				    						dataArray.push(specChild[j][key]);
 				    					}
 					    			}
 					    			//if no child is specified adding osName
@@ -278,19 +279,20 @@
 						}
 						//if NO chosen platforms are found adding all
 					} else {
-				    	for (var i = 0; i < specs.length; i++) {
+				    	for (var i = 0, specLength = specs.length; i < specLength; i++) {
 				    		if (child != 'none') {
+				    			var specChild = specs[i][child];
 				    			//if chosen child found adding chosen
-				    			if (this.containsChosen(specs[i][child])) {
-						    		for (var j = 0; j < specs[i][child].length; j++) {
-						    			if (specs[i][child][j].chosen) {
-						    				dataArray.push(specs[i][child][j][key]);
+				    			if (this.containsChosen(specChild)) {
+						    		for (var j = 0, childLength = specChild.length; j < childLength; j++) {
+						    			if (specChild[j].chosen) {
+						    				dataArray.push(specChild[j][key]);
 										}
 									}
 				    			} else {
 				    				//if NO chosen child found adding all
-			    					for (var j = 0; j < specs[i][child].length; j++) {
-			    						dataArray.push(specs[i][child][j][key]);
+			    					for (var j = 0, childLength = specChild.length; j < childLength; j++) {
+			    						dataArray.push(specChild[j][key]);
 			    					}
 				    			}
 				    			//if no child is specified adding osName

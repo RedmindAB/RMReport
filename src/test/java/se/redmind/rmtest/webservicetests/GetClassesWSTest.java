@@ -21,6 +21,8 @@ public class GetClassesWSTest extends WSSetupHelper{
 		Request request = mock(Request.class);
 		Response response = mock(Response.class);
 		when(request.queryParams("suiteid")).thenReturn("1");
+		when(request.body()).thenReturn("");
+		when(request.pathInfo()).thenReturn("awdawd");
 		
 		GetClassesWS ws = new GetClassesWS("");
 		

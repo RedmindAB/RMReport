@@ -421,6 +421,45 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/stats/methodfail/:suiteid",
+    "title": "",
+    "name": "methodfail",
+    "group": "Stats",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "limit",
+            "description": "<p>limit the amount of timestamps from the latest.</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "maxres",
+            "description": "<p>limits the amount of results returned.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n\tclassname: \"se.redmind.rmtest.selenium.example.RandomClass9\",\n\ttestcaseName: \"random2\",\n\ttotal: 1736,\n\tfail: 247,\n\tratioFail: 14.228110599078342\n\t},\n\t{\n\tclassname: \"se.redmind.rmtest.selenium.example.RandomClass2\",\n\ttestcaseName: \"random1\",\n\ttotal: 1736,\n\tfail: 244,\n\tratioFail: 14.055299539170507\n},",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./src/main/java/se/redmind/rmtest/web/route/api/stats/methodfail/MethodFailWS.java",
+    "groupTitle": "Stats"
+  },
+  {
+    "type": "get",
     "url": "/suite/getsuites",
     "title": "",
     "name": "GetSuites",

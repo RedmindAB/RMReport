@@ -24,7 +24,7 @@
 
 		    if (DeviceData.platforms.length > 0) {
 			    angular.forEach(DeviceData.existingPlatforms, function(key) {
-					var promise = $http.get('/api/stats/device/fail/' + suiteid + '/' + key + '?limit=500')
+					var promise = $http.get('/api/stats/device/fail/' + suiteid + '/' + key)
 					.success(function(data, status, headers, config){ 
 					}).error(function(data, status, headers, config){
 					});
@@ -42,7 +42,7 @@
 			var promises = [];
 			DeviceData.existingPlatforms = [];
 			for (var i = 0; i < DeviceData.platforms.length; i++) {
-				var promise = $http.get('/api/stats/device/fail/' + suiteid + '/' + DeviceData.platforms[i] + '?limit=500')
+				var promise = $http.get('/api/stats/device/fail/' + suiteid + '/' + DeviceData.platforms[i])
 				.success(function(data, status, headers, config){ 
 				}).error(function(data, status, headers, config){
 				});

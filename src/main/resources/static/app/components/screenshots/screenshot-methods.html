@@ -1,12 +1,10 @@
-	<!-- project logo -->
 <div class="screenshot-nav-container">
-	<div class="screenshot-nav-left">
-		<h4 id='go_to_classes' class="screenshot-nav" ng-click="setState('screenshots.classes')">Choose another class</h4>
-	</div>
-	<div class="screenshot-nav-center">
-		<h4 class="screenshot-nav">{{removePackagePath(CurrentSuite.currentClass.name)}}</h4>
-	</div>
+	<!-- Current possition -->
+		<h4 class="screenshot-nav">
+			{{removePackagePath(CurrentSuite.currentClass.name)}}
+		</h4>
 </div>
+
 <div>
 	<p 
 		id='syso-header' 
@@ -47,13 +45,13 @@
 	            	style="width:{{getMethodContentWidth(method)}}px;" 
 	            	class="screenshot-view">
 					<table style="margin-top:5px; margin-bottom:5px;border-collapse: separate;border-spacing: 10px 0px;">
-						<tr>
+						<tr class="normal-padding-td">
 							<td 
 								id="screenshot-header-{{$index}}"
 								ng-repeat="case in method.testcases track by $index" 
 								ng-style="{'background-color': getBgCo(case.result)}" 
 								class='panel screenshot-td screenshot-background-top'>
-								{{case.device}} - {{case.browser}}
+								<h4>{{case.device}} - {{case.browser}}</h4>
 							</td>
 						</tr>
 						<tr 

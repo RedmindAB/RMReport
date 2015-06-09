@@ -10,7 +10,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import se.redmind.rmtest.db.DBCon;
-import se.redmind.rmtest.report.init.ReportInit;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
 import se.redmind.rmtest.report.reportloader.ReportLoader;

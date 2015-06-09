@@ -3,16 +3,12 @@ package se.redmind.rmtest.report.test;
 import static org.junit.Assert.*;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-
-import com.google.gson.JsonArray;
 
 import se.redmind.rmtest.report.parser.Driver;
 import se.redmind.rmtest.report.parser.Report;

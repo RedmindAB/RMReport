@@ -1,7 +1,6 @@
 package se.redmind.rmtest.web.route.api.stats.graphdata;
 
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,13 +9,12 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import se.redmind.rmtest.db.DBBridge;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-
-import se.redmind.rmtest.db.DBBridge;
-import se.redmind.rmtest.db.lookup.report.ReportDbLookup;
 
 public class ReadStatsFromReport extends DBBridge{
 

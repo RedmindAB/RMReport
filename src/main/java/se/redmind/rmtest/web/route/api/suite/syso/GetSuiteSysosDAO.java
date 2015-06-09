@@ -12,7 +12,7 @@ public class GetSuiteSysosDAO {
 	private static String BASEDIR = ReportSystemOutPrintFile.BASEDIR;
 	
 	public GetSuiteSysosDAO(String basedir) {
-		this.BASEDIR = basedir;
+		GetSuiteSysosDAO.BASEDIR = basedir;
 	}
 	
 	public GetSuiteSysosDAO() {

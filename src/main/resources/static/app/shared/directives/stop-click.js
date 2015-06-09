@@ -12,8 +12,8 @@
 	        	element.bind('click', function(e){
 	        		e.stopPropagation();
 	        		console.log('stop');
-	        	})
+	        	});
 	        }
 	    };
-	};
+	}
 })();

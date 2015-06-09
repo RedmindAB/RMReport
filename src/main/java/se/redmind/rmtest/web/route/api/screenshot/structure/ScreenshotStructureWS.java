@@ -1,11 +1,11 @@
 package se.redmind.rmtest.web.route.api.screenshot.structure;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-
 import spark.Request;
 import spark.Response;
 import spark.Route;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 public class ScreenshotStructureWS extends Route {
 
