@@ -58,7 +58,7 @@ public class CreateReportDirWS extends Route {
 	}
 
 
-	private Object error(Response response) {
+	private Response error(Response response) {
 		response.header("Content-Type", "application/json; charset=UTF-8");
 		response.body(new Gson().toJson(errorArray));
 		response.status(400);
