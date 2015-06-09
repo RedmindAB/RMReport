@@ -12,15 +12,15 @@
 		
 		$scope.getSuiteSkeleton= function(suite){
 			RestLoader.getSuiteSkeleton(suite);
-		}
+		};
 		
 		$scope.getSuiteSkeletonByTimestamp = function(timestamp){
 			RestLoader.loadTimestamp(timestamp);
-		}
+		};
 		
 		$scope.getCases = function(method){
 			RestLoader.getCases(method);
-		}
+		};
 		
 		//stores chosen class info and clears chosen for other classes
 		//when going into a class
@@ -29,6 +29,6 @@
 			CurrentSuite.currentClass = classObj;
 			CurrentSuite.currentMethods = CurrentSuite.currentClass.testcases;
 			RestLoader.getPassFailTotByMethod(CurrentSuite.currentTimeStamp, classObj, CurrentSuite.currentMethods);
-		}
-	};
+		};
+	}
 })();

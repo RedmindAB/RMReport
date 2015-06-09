@@ -27,7 +27,7 @@
 		
 		$scope.setCurrentGrid = function(grid){
 			$scope.currentGridObject = JSON.stringify(grid,null,4);
-		}
+		};
 		
 		var restURL = "/api/selenium/griddata";
 		
@@ -50,30 +50,25 @@
 			switch (os) {
 			case "MAC":
 				return "assets/img/logos/console/apple_mac.png";
-				break;
 	
 			case "PC":
 				return "assets/img/logos/console/windows.png";
-				break;
 	
 			case "ANDROID":
 				return "assets/img/logos/console/android.png";
-				break;
 				
 			case "IOS":
 				return "assets/img/logos/console/apple_device.png";
-				break;
 				
 	
 			default:
 				return "";
-				break;
 			}
-		}
+		};
 		
 		$scope.isDesktop = function(platformName){
 			return platformName === undefined;
-		}
+		};
 		
 		$scope.getBrowserImage = function(browserName){
 			if(browserName === "firefox"){
@@ -85,10 +80,10 @@
 			else{
 				return "assets/img/logos/console/phantomjs.png";
 			}
-		}
+		};
 		
 		$scope.noNodesConnected = function(){
-			if(GridData.data.FreeProxies != undefined){
+			if(GridData.data.FreeProxies !== undefined){
 				if(GridData.data.FreeProxies.length === 0 && GridData.data.BusyProxies.length === 0){
 					return true;
 				}
@@ -99,39 +94,41 @@
 			else{
 				return false;
 			}
-		}
+		};
 		
 		$scope.isHubConnected = function(){
-			if(GridData.data.error != undefined){
+			if(GridData.data.error !== undefined){
 				return true;
 			}
 			else{
 				return false;
 			}
-		}
+		};
 		
 		$scope.isDesktopNodesConnected = function(){
 			if(GridData.data.FreeProxies){
 			var proxies = GridData.data.FreeProxies;
 				for(var i = 0; i < proxies.length; i++){
-					if(proxies[i].capabilities[0].platform === "MAC" || proxies[i].capabilities[0].platform === "PC" && proxies[i].capabilities[0].platformName == undefined){
+					if(proxies[i].capabilities[0].platform === "MAC" ||
+							proxies[i].capabilities[0].platform === "PC" &&
+							proxies[i].capabilities[0].platformName === undefined){
 						return true;
 					}
 				}
 			}
 			return false;
-		}
+		};
 		
 		$scope.isDeviceNodesConnected = function(){
 			if(GridData.data.FreeProxies){
 			var proxies = GridData.data.FreeProxies;
 				for(var i = 0; i < proxies.length; i++){
-					if(proxies[i].capabilities[0].platformName != undefined){
+					if(proxies[i].capabilities[0].platformName !== undefined){
 						return true;
 					}
 				}
 			}
 			return false;
-		}
-	};
+		};
+	}
 })();

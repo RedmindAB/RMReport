@@ -28,7 +28,7 @@
 		            data  : request
 		        }). error(function(data, status, headers, config){
 		        	addErrorMessage(config, "create");
-		        });;
+		        });
 			
 			return promise;
 		}

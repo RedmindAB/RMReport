@@ -16,5 +16,5 @@ angular.module('webLog')
 		      	"</div>" +
 		      "</div>" +
 	      "</div>"
-      }
+      };
     });

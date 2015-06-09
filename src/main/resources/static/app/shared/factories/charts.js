@@ -10,6 +10,72 @@
 		return {
 			// CHART DATA
 			data : [],
+			homeChartBlueprint: {
+				options : {
+					chart : {
+						type : "areaspline",
+						backgroundColor : '#ecf0f1'
+					},
+			        legend: {
+			            itemHoverStyle: {
+			                color: '#FF0000'
+			            },
+			            layout: 'vertical',
+			            align: 'right',
+			            verticalAlign: 'middle',
+			            borderWidth: 0
+			        },
+				},
+				title:{
+					text: "Suite name"
+					},
+				subtitle:{
+					text: "Last 50 test runs"
+				},
+				series : [ {
+					data : [],
+					id : "pass",
+					name : "Passed",
+					type : "column",
+					color : "green",
+					dashStyle : "Solid",
+					connectNulls : false
+				},{
+					data : [],
+					id : "skip",
+					name : "Skipped",
+					type : "column",
+					color : "#EEDB00",
+					dashStyle : "Solid",
+					connectNulls : false
+				},{
+					data : [],
+					id : "fail",
+					name : "Failed",
+					type : "column",
+					color : '#DD072B',
+					dashStyle : "Solid",
+					connectNulls : false
+				} ],
+				xAxis : {
+					tickInterval: 0.9,
+					labels : {
+						rotation : 45
+					}
+				},	
+				yAxis : {
+					title : {
+						text : 'Number of tests'
+					},
+				},
+				useHighStocks : false,
+				loading:true,
+				size : {
+					height : 400
+				},
+				func : function(chart) {
+				}
+			},
 			// HOME PAGE CHART
 			chartHomeConfig: [],
 		
@@ -87,5 +153,5 @@
 				}
 			}
 		};
-	};
+	}
 })();

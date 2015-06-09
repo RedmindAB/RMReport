@@ -20,11 +20,11 @@
 					    		if (dataObj !== data) {
 					    			func(data);
 								}
-					    	};
+					    	}
 					    }).error(function(data, status, headers, config){
 					    	console.error(data);
 					    });
-					}
+					};
 					poller();
 					polls[name] = setInterval(poller, pollingTime || defaultPollingTime);
 				}
@@ -34,5 +34,5 @@
 				delete polls[name];
 			}
 		};
-	};
+	}
 })();

@@ -10,5 +10,5 @@
 			platforms:['android', 'ios', 'windows', 'osx', 'linux'],
 			devices:[]
 		};
-	};
+	}
 })();
