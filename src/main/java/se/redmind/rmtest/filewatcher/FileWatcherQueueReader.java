@@ -20,7 +20,7 @@ import se.redmind.rmtest.report.sysout.ReportSystemOutPrintFile;
 public class FileWatcherQueueReader implements Runnable {
 
 	private Logger log = LogManager.getLogger(FileWatcherQueueReader.class);
-	
+
 	private WatchService watchService;
 	private String path;
 
@@ -32,72 +32,83 @@ public class FileWatcherQueueReader implements Runnable {
 	@SuppressWarnings({ "rawtypes" })
 	@Override
 	public void run() {
+		// get the first event before looping
+		WatchKey key = null;
 		try {
-			// get the first event before looping
-			WatchKey key = watchService.take();
-			while (key != null) {
-				// we have a polled event, now we traverse it and
-				// receive all the states from it
-				boolean updatedReports = false;
-				for (WatchEvent event : key.pollEvents()) {
-					String filename = event.context().toString();
-					boolean isXmlFile = filename.toLowerCase().endsWith(".xml");
-					int _try = 0;
-					while (!isCompletelyWritten(path, filename) || _try == 10) {
-						log.info("File is not done, waiting for 50ms");
-						Thread.sleep(50);
-						_try++;
-					}
-					if (event.kind().equals(ENTRY_CREATE) && isXmlFile) {
-						System.out.println(filename);
-						ReportValidator reportValidator = new ReportValidator(
-								filename, path);
-						boolean reportExists = reportValidator.reportExists();
-						boolean validFilename = reportValidator.isValidFilename();
-						if (!reportExists && validFilename) {
-							log.info("found new report!");
-							reportValidator.saveReport();
-							ReportSystemOutPrintFile sysoFile = new ReportSystemOutPrintFile(reportValidator);
-							sysoFile.copyReportOutputFile();
-							updatedReports = true;
-						}
-						else log.info(filename+" is not a valid report");
-					}
-				}
-				if (updatedReports) {
-					new InMemoryDBHandler("RMTest").updateInMemoryDB();
-				}
-				key.reset();
-				key = watchService.take();
-			}
+			key = watchService.take();
 		} catch (InterruptedException e) {
-			log.error("something went wrong: restarting filewatcher!");
-			run();
+		}
+		while (key != null) {
+			// we have a polled event, now we traverse it and
+			// receive all the states from it
+			boolean updatedReports = false;
+			for (WatchEvent event : key.pollEvents()) {
+				String filename = event.context().toString();
+				boolean isXmlFile = filename.toLowerCase().endsWith(".xml");
+				int _try = 0;
+				while (!isCompletelyWritten(path, filename) || _try == 10) {
+					log.info("File is not done, waiting for 50ms");
+					try {
+						Thread.sleep(50);
+					} catch (InterruptedException e) {
+						_try++;
+						continue;
+					}
+					_try++;
+				}
+				if (event.kind().equals(ENTRY_CREATE) && isXmlFile) {
+					System.out.println(filename);
+					ReportValidator reportValidator = new ReportValidator(
+							filename, path);
+					boolean reportExists = reportValidator.reportExists();
+					boolean validFilename = reportValidator.isValidFilename();
+					if (!reportExists && validFilename) {
+						log.info("found new report!");
+						boolean saveReport = reportValidator.saveReport();
+						log.info("saved report: "+filename+" "+saveReport);
+						ReportSystemOutPrintFile sysoFile = new ReportSystemOutPrintFile(
+								reportValidator);
+						sysoFile.copyReportOutputFile();
+						updatedReports = true;
+					} else
+						log.info(filename + " is not a valid report");
+				}
+			}
+			if (updatedReports) {
+				log.info("Updating in memory DB");
+				new InMemoryDBHandler("RMTest").updateInMemoryDB();
+			}
+			key.reset();
+			try {
+				key = watchService.take();
+			} catch (InterruptedException e) {
+				continue;
+			}
 		}
 		log.info("Stopping file watcher thread");
 	}
-	
+
 	private boolean isCompletelyWritten(String path, String filename) {
 		File dir = new File(path);
 		path = dir.getAbsolutePath();
-		File file = new File(path+filename);
-	    RandomAccessFile stream = null;
-	    try {
-	        stream = new RandomAccessFile(path+filename, "rw");
-	        return true;
-	    } catch (Exception e) {
-	    	log.error(e.getMessage());
-	    } finally {
-	        if (stream != null) {
-	            try {
-	                stream.close();
-	                Files.deleteIfExists(file.toPath());
-	            } catch (IOException e) {
-	            	log.error(e.getMessage());
-	            }
-	        }
-	    }
-	    return false;
+		File file = new File(path + filename);
+		RandomAccessFile stream = null;
+		try {
+			stream = new RandomAccessFile(path + filename, "rw");
+			return true;
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		} finally {
+			if (stream != null) {
+				try {
+					stream.close();
+					Files.deleteIfExists(file.toPath());
+				} catch (IOException e) {
+					log.error(e.getMessage());
+				}
+			}
+		}
+		return false;
 	}
 
 }
