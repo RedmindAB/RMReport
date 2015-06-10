@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import se.redmind.rmtest.db.InMemoryDBHandler;
 import se.redmind.rmtest.report.reportvalidation.ReportValidator;
 import se.redmind.rmtest.report.sysout.ReportSystemOutPrintFile;
+import se.redmind.rmtest.web.route.api.cache.WSCache;
 
 public class FileWatcherQueueReader implements Runnable {
 
@@ -77,6 +78,8 @@ public class FileWatcherQueueReader implements Runnable {
 			if (updatedReports) {
 				log.info("Updating in memory DB");
 				new InMemoryDBHandler("RMTest").updateInMemoryDB();
+				log.info("Clearing WebService cache");
+				WSCache.getInstance().clear();
 			}
 			key.reset();
 			try {
