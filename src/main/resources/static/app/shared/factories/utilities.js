@@ -9,6 +9,13 @@
 	
 	function utilities ($state, CurrentSuite, ScreenshotMaster){
 	    return { 
+	    	// Dashboard
+	    	dashboardSections: ['Most Failing Devices', 'Devices of this timestamp', 'Most Failing Classes'],
+	    	currentSection: 'Most Failing Devices',
+	        setDashboardSection: function(value){
+	        	this.currentSection = value;
+	        },
+	    	// Reports
 	    	chosen: [],
 	    	descTimestamps: [],
 	    	searchField: '',
