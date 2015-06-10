@@ -57,7 +57,7 @@ public class ReadStatsFromReport extends DBBridge{
 	public HashMap<Long, JsonObject> getGraphDataAsHashMap(JsonObject params, long minTimestamp){
 		//Build the MegaQuery from Mordor. (One dose not simply ask the database for data) 
 		String sql = getQueryFromJsonObject(params, minTimestamp);
-		log.debug("SQL: {}", sql);
+//		log.debug("SQL: {}", sql);
 		int reslimit = params.get("reslimit").getAsInt();
 		ResultSet rs = readFromDB(sql, reslimit);
 		return extractGraphData(rs);

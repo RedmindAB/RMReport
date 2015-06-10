@@ -89,7 +89,7 @@ public class GetGraphDataWS extends CachedRoute {
 	public JsonElement handleRequest(Response response, Request request) {
 		try {
 			String data = request.body();
-			if (logEnable) log(request, data);
+//			if (logEnable) log(request, data);
 			JsonArray json = new Gson().fromJson(data, JsonArray.class);
 			JsonElement res = new GetGraphDataDAO().getGraphData(json);
 			return res;
