@@ -44,9 +44,6 @@ public class ApiRouter {
 	
 	private void init(){
 		
-		//API-filters
-		after(new ApiBeforeFilter());
-		
 		//added to apidoc
 		get(new GetSuitesWS("/api/suite/getsuites"));
 		get(new GetLatestSuiteWS("/api/suite/latestbyid"));
