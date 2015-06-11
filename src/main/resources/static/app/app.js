@@ -26,6 +26,7 @@ angular
 		    url:'/home',
 		    templateUrl: 'app/components/home/home.html',
 		    controller: 'HomeCtrl',
+		    controllerAs: 'ctrl'
 		})
         .state('reports',{
 	        url:'/reports',
