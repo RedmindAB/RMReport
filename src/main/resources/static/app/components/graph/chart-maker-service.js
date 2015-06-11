@@ -342,6 +342,8 @@
 						    backgroundColor: 'none',
 				            useHTML: true,
 				            followPointer: true,
+				            hideDelay: 3,
+				            showDelay: 0,
 				            formatter: function(){
 				            	var points = this;
 				            	var test = $http({
