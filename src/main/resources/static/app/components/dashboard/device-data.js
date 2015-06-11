@@ -11,12 +11,7 @@
 			devices:[],
 			existingPlatforms:[],
 			classes:[],
-			className:[],
-			calulcatePercent:function(platform) {
-				console.log(platform)
-				console.log(platform.totalFail / platform.total);
-		        return platform.totalFail / platform.total;
-		    }
+			deviceRange: [],
 		};
 	}
 })();
