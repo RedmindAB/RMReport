@@ -334,7 +334,6 @@
 										"<b>"+Math.round(points[i].percentage)+"%</b>"+
 									"</td>"+
 								"</tr>";
-				
 			}
 			tooltip += "</table><br>";
 			return tooltip;
@@ -409,9 +408,10 @@
 								point: {
 									events: {
 										click: function(e){
+											console.log(this.index);
 											Utilities.clearData();
 											CurrentSuite.currentSuiteInfo = suite;
-											RestLoader.loadTimestamp(this.category, true);
+											RestLoader.loadTimestamp(CurrentSuite.timestampRaw[suite.id][this.index], true);
 											chartMaker.loadMainChart(suite.id, true);
 											$state.transitionTo('reports.classes');
 										}
