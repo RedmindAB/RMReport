@@ -8,7 +8,7 @@
 			type="button" 
 			data-toggle="collapse" 
 			data-target="#navbar-collapse-2" 
-			class="navbar-toggle" 
+			class="navbar-toggle"
 			style='float: left'>
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
@@ -105,7 +105,7 @@
 					data-toggle="dropdown" 
 					class="dropdown-toggle" 
 					style='color: inherit;'>
-					{{chooseProject()}}
+					{{ctrl.chooseProject()}}
 					<b class="caret"></b>
 				</a>
 				<ul id='dropdown-project' class="dropdown-menu scrollable-menu">
@@ -113,10 +113,10 @@
 						<a 
 							id='{{suite.name}}' 
 							ng-click="Utilities.clearData(suite.lastTimeStamp); 
-									loadMainChart(suite.id, 'true', 'Aggregation'); 
-									getSuiteSkeleton(suite);
-									loadDashboardPlatformsAndDevices();
-									checkPosition();"
+									ctrl.loadMainChart(suite.id, 'true', 'Aggregation'); 
+									ctrl.getSuiteSkeleton(suite);
+									ctrl.loadDashboardPlatformsAndDevices();
+									ctrl.checkPosition();"
 							class="hidden-xs">
 							{{suite.name}}
 						</a>
@@ -124,10 +124,10 @@
 							id='{{suite.name}}' 
 							class="visible-xs" 
 							ng-click="Utilities.clearData(suite.lastTimeStamp); 
-									loadMainChart(suite.id, 'true', 'Aggregation'); 
-									getSuiteSkeleton(suite);
-									loadDashboardPlatformsAndDevices();
-									checkPosition();" 
+									ctrl.loadMainChart(suite.id, 'true', 'Aggregation'); 
+									ctrl.getSuiteSkeleton(suite);
+									ctrl.loadDashboardPlatformsAndDevices();
+									ctrl.checkPosition();" 
 							data-toggle="collapse" 
 							data-target=".navbar-collapse">
 							{{suite.name}}
@@ -150,10 +150,10 @@
 					<li style='width: 100%' ng-repeat="timestamp in Utilities.descTimestamps track by $index">
 						<a 
 							id='{{timestamp}}' 
-							ng-click="getSuiteSkeletonByTimestamp(timestamp); 
-									highlightPoint(timestamp);
-									getScreenshotsFromTimestamp(timestamp);
-									loadDashboardDeviceRange();">
+							ng-click="ctrl.getSuiteSkeletonByTimestamp(timestamp); 
+									ctrl.highlightPoint(timestamp);
+									ctrl.getScreenshotsFromTimestamp(timestamp);
+									ctrl.loadDashboardDeviceRange();">
 							{{Utilities.makeTimestampReadable(timestamp)}}
 						</a>
 					</li>

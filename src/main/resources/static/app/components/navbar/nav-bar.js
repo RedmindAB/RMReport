@@ -8,7 +8,8 @@
 	function navbar (){
 	  return {
 		templateUrl: 'app/components/navbar/nav-bar.html',
-		controller:'NavBarCtrl'
+		controller:'NavBarCtrl',
+		controllerAs: 'ctrl'
 	  };
 	}
 })();
