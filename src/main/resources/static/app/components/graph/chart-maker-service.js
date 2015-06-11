@@ -316,8 +316,7 @@
 		}
 		
 		function getTooltipPercentageString(points){
-			console.log(points);
-			var tooltip ="<div class='tooltipContainer'><strong style='display:block'>"+Utilities.makeTimestampReadable(points[0].point.category)+"</strong><br><table class='tooltipTable'>";
+			var tooltip ="<div class='tooltipContainer'><strong style='display:block'>"+points[0].point.category+"</strong><br><table class='tooltipTable'>";
 			tooltip += "<tr>"+
 						    "<th>Status</th>" +
 						    "<th>Amt</th>" +
@@ -343,12 +342,13 @@
 		
 		function createHomeChart(data, suite) {
 			
-			var timeStamps = [];
+			var timeStamps = [], timestampsRaw = [];
 			var timestampObj = data[0].data;
 			for (var index = 0, timeLength = data[0].data.length; index < timeLength; index++) {
-				timeStamps.push(timestampObj[index].timestamp);
+				timeStamps.push(Utilities.makeTimestampReadable(timestampObj[index].timestamp));
+				timestampsRaw.push(timestampObj[index].timestamp);
 			}
-			
+			CurrentSuite.timestampRaw[suite.id] = timestampsRaw;
 			suite.lastTimeStamp = timeStamps[timeStamps.length-1];
 			
 		    var chartHomeConfigObject = {
@@ -366,14 +366,14 @@
 				            showDelay: 0,
 				            positioner: function(boxWidth, boxHeight, point) {
 				                return {
-				                    x: point.plotX - 75,
+				                    x: point.plotX - 100,
 				                    y: point.plotY - point.plotY/2
 				                };
 				            },
 				            formatter: function(){
 				            	var points = this;
 				            	var test = $http({
-						            url   : '/api/stats/devicerange/'+suite.id+'/'+points.x,
+						            url   : '/api/stats/devicerange/'+suite.id+'/'+CurrentSuite.timestampRaw[suite.id][points.points[0].point.index],
 						            method: 'GET',
 						            cache: true,
 						        }).success(function(dataObj, status, headers, config){
