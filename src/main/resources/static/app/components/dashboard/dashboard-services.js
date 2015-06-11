@@ -9,15 +9,16 @@
 	
 	function DashboardServices ($http, $q, DeviceData, CurrentSuite) {
 
-		var devices = getDevices;
 		var existingPlatforms = getPlatforms;
+		var devices = getDevices;
 		var classes = getClasses;
+		var deviceRange = getDeviceRange;
 		
 		return {
-			getClasses: classes,
 			getPlatforms: existingPlatforms,
-			getDevices: devices
-			
+			getDevices: devices,
+			getClasses: classes,
+			getDeviceRange
 		};
 		
 		function getDevices(suiteid){
@@ -63,7 +64,7 @@
 			var promises = [];
 			DeviceData.className = [];
 			DeviceData.classes = [];
-			var promise = $http.get('/api/stats/methodfail/' + suiteid)
+			var promise = $http.get('/api/stats/methodfail/' + suiteid + "?limit=50")
 			.success(function(data, status, headers, config){ 
 			}).error(function(data, status, headers, config){
 			});
@@ -74,7 +75,7 @@
 					for (var i = 0; i < requestLength; i++) {
 						DeviceData.classes.push(request[i].data);
 					}
-
+					/* Split className to get only className without src path --> Not currently used. Using suite name from CurrentSuite instead.
 		    		var obj = DeviceData.classes[0];
 		    		
 		    		var objArray = $.map(obj, function(value, index) {
@@ -86,8 +87,32 @@
 			    	var className = array[array.length-1];
 			    	DeviceData.className.push(className);
 			    	return className;
+			    	
+			    	*/
 				}
 		    });
+		}
+		
+		function getDeviceRange(suiteid, timestamp){
+			var promises = [];
+			DeviceData.deviceRange = [];
+			var promise = $http.get('/api/stats/devicerange/' + suiteid + '/' + timestamp)
+			.success(function(data, status, headers, config){ 
+			}).error(function(data, status, headers, config){
+			});
+			promises.push(promise);
+			return $q.all(promises).then(function(request){
+				console.log(request);
+				var requestLength = request.length;
+				if(requestLength > 0){
+					for (var i = 0; i < requestLength; i++) {
+						console.log(request[i].data);
+						DeviceData.deviceRange.push(request[i].data);
+					}
+
+				}
+		    });
+			
 		}
 	}
 })();

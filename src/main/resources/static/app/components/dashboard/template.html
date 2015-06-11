@@ -1,7 +1,8 @@
 <div id='messages'>
-	<div class="table-responsive" style='width:50%;display:inline;float:left;width:47%'>  
-	<div align='center'><h4>Most failing devices on each platform in suite:<br><br>{{CurrentSuite.currentSuiteInfo.name}}</h4><br></div>
-    <div class="modal-dialog" style='width:90%'>
+
+	<div class="table-responsive" style='width:50%;display:inline;float:left'>  
+	<div align='center'><h4>Most failing devices on each platform in suite:<br><br>{{CurrentSuite.currentSuiteInfo.name}}</h4></div>
+    <div class="modal-dialog" style='width:95%'>
 		<div class="modal-content">
 			<div class='modal-header'>
 			 		<div ng-repeat='platform in ctrl.DeviceData.existingPlatforms track by $index'><h4 align='center'>Total <span style='text-transform: uppercase'>{{ctrl.DeviceData.platforms[$index]}}</span> Devices:&nbsp;{{ctrl.DeviceData.devices[$index].length}}</h4>
@@ -30,13 +31,14 @@
 		</div>
 	</div>
 	</div>
-	<div class="table-responsive" style='width:50%;display:inline;float:right;width:47%'>
-	<div align='center'><h4>Most failing classes in suite:<br><br>{{CurrentSuite.currentSuiteInfo.name}}</h4><br></div>
-	<div class="modal-dialog" style='width:90%'>
+	
+	<div class="table-responsive" style='width:50%;display:inline;float:right'>
+	<div align='center'><h4>Most failing classes in suite:<br><br>{{CurrentSuite.currentSuiteInfo.name}}</h4></div>
+	<div class="modal-dialog" style='width:95%'>
 		<div class="modal-content">
 			<div class='modal-header'>
 				<div ng-repeat='class in ctrl.DeviceData.classes[0] | limitTo: 1'>
-		  			<div ng-if='ctrl.DeviceData.classes.length'><h4 align='center'>Total Test Cases in class {{ctrl.DeviceData.className[0]}}:&nbsp;{{ctrl.DeviceData.classes[0].length}}</h4></div>
+		  			<div ng-if='ctrl.DeviceData.classes.length'><h4 align='center'>Total Test Cases in suite {{CurrentSuite.currentSuiteInfo.name}}:&nbsp;{{ctrl.DeviceData.classes[0].length}}</h4></div>
 		  		</div>      
 		  		<table class="table">
 		   			<thead>
@@ -62,4 +64,33 @@
 		</div>
 	</div>
 	</div>
+
+	<div class="table-responsive" style='width:50%;display:inline;float:left'>
+	<div align='center'><h4>Devices in this timestamp: {{CurrentSuite.currentSuiteInfo.lastTimeStamp}}</h4></div>
+	<div class="modal-dialog" style='width:95%'>
+		<div class="modal-content">
+			<div class='modal-header'>
+		  		<div ng-repeat='device in ctrl.DeviceData.deviceRange track by $index'>
+			  		<table class="table">
+			   			<thead>
+			     			<tr>
+			        			<th>#</th>
+			        			<th>Device Name</th>
+			        			<th>OS Name</th>
+			      			</tr>
+			    		</thead>
+						<tbody>
+			      			<tr ng-repeat='device in ctrl.DeviceData.deviceRange[$index]'>
+								<td>{{$index+1}}</td>
+								<td>{{device.devicename}}</td>
+								<td>{{device.osname}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	
 </div>

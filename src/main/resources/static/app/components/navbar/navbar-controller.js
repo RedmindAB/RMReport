@@ -17,10 +17,14 @@
 			DashboardServices.getPlatforms(CurrentSuite.currentSuiteInfo.id, "android").then(function(){
 				DashboardServices.getDevices(CurrentSuite.currentSuiteInfo.id).then(function(){
 					DashboardServices.getClasses(CurrentSuite.currentSuiteInfo.id);	
-					
 				});
 			});
+			$scope.loadDashboardDeviceRange();
 		};
+		
+		$scope.loadDashboardDeviceRange = function(){
+			DashboardServices.getDeviceRange(CurrentSuite.currentSuiteInfo.id, CurrentSuite.currentSuiteInfo.lastTimeStamp);
+		}
 		
 		$scope.isSmallWindowToggle = function(){
 			return $window.window.innerWidth < 900  ? 'collapse' : '';

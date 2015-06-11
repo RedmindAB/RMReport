@@ -11,6 +11,8 @@
 		
 		var vm = this;
 		var requestObj = {};
+		var suiteid = CurrentSuite.currentSuiteInfo.id;
+		var timestamp = CurrentSuite.currentSuiteInfo.lastTimeStamp;
 		
 		vm.myData = [];
 		vm.devices = [];
@@ -23,15 +25,20 @@
 		vm.getDevices = getDevices;
 		vm.getClasses = vm.getClasses;
 		
-		getPlatforms(CurrentSuite.currentSuiteInfo.id);
-		getClasses(CurrentSuite.currentSuiteInfo.id);
+		getPlatforms(suiteid);
+		getClasses(suiteid);
+		getDeviceRange(suiteid, timestamp);
+		
+		function getDeviceRange(suiteid, timestamp){
+			DashboardServices.getDeviceRange(suiteid, timestamp);
+		}
 		
 		function getClasses(suiteid){
 			DashboardServices.getClasses(suiteid);
 		}
 		
 		function orderDevices(){
-			var myObj = getDevices(CurrentSuite.currentSuiteInfo.id);
+			var myObj = getDevices(suiteid);
 		}
 		
 		function getDevices(suiteid) {
