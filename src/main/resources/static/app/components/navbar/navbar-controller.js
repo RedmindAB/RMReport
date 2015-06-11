@@ -72,9 +72,7 @@
 	    };
 	    
 	    $scope.checkPosition = function(){
-	    	console.log("hm");
 	    	if($state.$current.name === "home"){
-	    		console.log("HEJ");
 	    		$state.transitionTo("dashboard");
 	    	}
 	    }

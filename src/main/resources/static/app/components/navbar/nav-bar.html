@@ -143,7 +143,7 @@
 					data-toggle="dropdown" 
 					class="dropdown-toggle" 
 					style='color: inherit;'>
-					{{CurrentSuite.currentTimeStamp}}
+					{{Utilities.makeTimestampReadable(CurrentSuite.currentTimeStamp)}}
 					<b class="caret"></b>
 				</a>
 				<ul id='dropdown-timestamp' class="dropdown-menu scrollable-menu">
@@ -152,8 +152,9 @@
 							id='{{timestamp}}' 
 							ng-click="getSuiteSkeletonByTimestamp(timestamp); 
 									highlightPoint(timestamp);
-									getScreenshotsFromTimestamp();loadDashboardDeviceRange();">
-							{{timestamp}}
+									getScreenshotsFromTimestamp(timestamp);
+									loadDashboardDeviceRange();">
+							{{Utilities.makeTimestampReadable(timestamp)}}
 						</a>
 					</li>
 				</ul>
