@@ -312,7 +312,7 @@
 										points[i].series.name +
 									"</td>"+
 									"<td style='text-align: right'>"+
-										"<b>"+Math.round(points[i].percentage)+"</b>"+
+										"<b>"+Math.round(points[i].percentage)+" %</b>"+
 									"</td>"+
 								"</tr>";
 				
