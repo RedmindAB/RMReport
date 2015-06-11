@@ -27,20 +27,14 @@
 
 		    if (DeviceData.platforms.length > 0) {
 			    angular.forEach(DeviceData.existingPlatforms, function(key) {
-			    	console.log(DeviceData.existingPlatforms);
 					var promise = $http.get('/api/stats/device/fail/' + suiteid + '/' + key + "?limit=50")
 					.success(function(data, status, headers, config){ 
-						console.log("success");
-						console.log(data);
 					}).error(function(data, status, headers, config){
-						console.log("error");
-						console.log(data);
 					});
 					promises.push(promise);
 			    });
 		    return $q.all(promises).then(function(request){
 		    	for (var i = 0; i < request.length; i++) {
-		    		console.log(request);
 					DeviceData.devices.push(request[i].data);
 				}
 		    });
@@ -51,22 +45,15 @@
 			var promises = [];
 			DeviceData.existingPlatforms = [];
 			for (var i = 0; i < DeviceData.platforms.length; i++) {
-				console.log(DeviceData.platforms[i]);
 				var promise = $http.get('/api/stats/device/fail/' + suiteid + '/' + DeviceData.platforms[i] + "?limit=50")
 				.success(function(data, status, headers, config){ 
-					console.log("MEGA SUCCESS");
-					console.log(data);
 				}).error(function(data, status, headers, config){
-					console.log("MEGA ERROR");
-					console.log(data);
 				});
 				promises.push(promise);
 			}
 			return $q.all(promises).then(function(request){
-				console.log(request);
 				for (var i = 0; i < request.length; i++) {
 					if(request[i].data.length > 0){
-						console.log(DeviceData.platforms[i]);
 						DeviceData.existingPlatforms.push(DeviceData.platforms[i]);
 					}
 				}
@@ -115,11 +102,9 @@
 			});
 			promises.push(promise);
 			return $q.all(promises).then(function(request){
-				console.log(request);
 				var requestLength = request.length;
 				if(requestLength > 0){
 					for (var i = 0; i < requestLength; i++) {
-						console.log(request[i].data);
 						DeviceData.deviceRange.push(request[i].data);
 					}
 
