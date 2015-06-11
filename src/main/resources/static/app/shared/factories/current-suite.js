@@ -19,6 +19,7 @@
 	    	currentDriverRuns: [],
 			currentTimeStamp: '',
 			currentTimeStampArray: [],
+			timestampRaw:{},
 			currentSpecObject: [],
 			newLine: false,
 			lastRunSize: 50,

@@ -23,7 +23,6 @@ public class GraphTooltipDAO extends DBBridge{
 	public JsonArray getResult(){
 		JsonArray array = new JsonArray();
 		String sql = stringParser.getString(this.sql, map);
-		System.out.println(sql);
 		ResultSet rs = readFromDB(sql);
 		try {
 			while (rs.next()) {

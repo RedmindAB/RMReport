@@ -5,50 +5,51 @@
 		.module('webLog')
 		.controller('NavBarCtrl', NavBarCtrl);
 		
-	NavBarCtrl.$inject = ['$scope', '$state', '$window', 'ChartMaker', 'RestLoader', 'Utilities', 'CurrentSuite', 'DashboardServices'];
+	NavBarCtrl.$inject = ['$state', '$window', 'ChartMaker', 'RestLoader', 'Utilities', 'CurrentSuite', 'DashboardServices'];
 	
-	function NavBarCtrl ($scope, $state,$window, ChartMaker, RestLoader, Utilities, CurrentSuite, DashboardServices) {
+	function NavBarCtrl ($state,$window, ChartMaker, RestLoader, Utilities, CurrentSuite, DashboardServices) {
 	
-		$scope.CurrentSuite = CurrentSuite;
-		
+		var vm = this;
 		var count = 0;
+		vm.CurrentSuite = CurrentSuite;
 		
-		$scope.loadDashboardPlatformsAndDevices = function(){
+		
+		vm.loadDashboardPlatformsAndDevices = function(){
 			DashboardServices.getPlatforms(CurrentSuite.currentSuiteInfo.id, "android").then(function(){
 				DashboardServices.getDevices(CurrentSuite.currentSuiteInfo.id).then(function(){
 					DashboardServices.getClasses(CurrentSuite.currentSuiteInfo.id);	
 				});
 			});
-			$scope.loadDashboardDeviceRange();
+			vm.loadDashboardDeviceRange();
 		};
 		
-		$scope.loadDashboardDeviceRange = function(){
+		vm.loadDashboardDeviceRange = function(){
 			DashboardServices.getDeviceRange(CurrentSuite.currentSuiteInfo.id, CurrentSuite.currentSuiteInfo.lastTimeStamp);
-		}
+		};
 		
-		$scope.isSmallWindowToggle = function(){
+		vm.isSmallWindowToggle = function(){
 			return $window.window.innerWidth < 900  ? 'collapse' : '';
 		};
 		
-		$scope.isSmallWindowTarget = function(){
+		vm.isSmallWindowTarget = function(){
 			return $window.width < 900  ? '.navbar-collapse' : '';
 		};
 		
-	    $scope.highlightPoint = function(timestamp){
-	    	ChartMaker.highlightPoint(timestamp);
+	    vm.highlightPoint = function(timestamp){
+	    	ChartMaker.highlightPoint(Utilities.getIndexByTimestamp(timestamp));
 	    };
 	    
-		$scope.getSuiteSkeletonByTimestamp = function(timestamp){
+		vm.getSuiteSkeletonByTimestamp = function(timestamp){
 			RestLoader.loadTimestamp(timestamp);
 		};
 		
-		$scope.getScreenshotsFromTimestamp = function(){
+		vm.getScreenshotsFromTimestamp = function(){
 			if ($state.$current.name === 'screenshots.methods') {
 				RestLoader.loadScreenshotsFromClass(CurrentSuite.currentClass);
 			}
 		};
 		
-		$scope.getSuiteSkeleton= function(suite){
+		vm.getSuiteSkeleton= function(suite){
 			RestLoader.getSuiteSkeleton(suite);
 			if ($state.includes("reports")) {
 				$state.transitionTo("reports.classes");
@@ -58,11 +59,11 @@
 			}
 		};
 		
-	    $scope.loadMainChart = function(suiteID, newLine, name){
+	    vm.loadMainChart = function(suiteID, newLine, name){
 	    	ChartMaker.loadMainChart(suiteID,newLine, name);
 	    };
 		
-	    $scope.chooseProject = function(){
+	    vm.chooseProject = function(){
 	    	if(CurrentSuite.currentSuiteInfo.name === undefined){
 	    		return 'Choose Project';
 	    	}
@@ -70,5 +71,11 @@
 	    		return CurrentSuite.currentSuiteInfo.name;
 	    	}
 	    };
+	    
+	    vm.checkPosition = function(){
+	    	if($state.$current.name === "home"){
+	    		$state.transitionTo("dashboard");
+	    	}
+	    }
 	}
 })();
