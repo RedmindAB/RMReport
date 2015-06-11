@@ -35,7 +35,7 @@
 		};
 		
 	    $scope.highlightPoint = function(timestamp){
-	    	ChartMaker.highlightPoint(timestamp);
+	    	ChartMaker.highlightPoint(Utilities.getIndexByTimestamp(timestamp));
 	    };
 	    
 		$scope.getSuiteSkeletonByTimestamp = function(timestamp){

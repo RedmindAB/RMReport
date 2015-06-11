@@ -23,15 +23,8 @@
 			RestLoader.addCaseToGraph(osName, osVersion, deviceName, browserName, browserVer, createMainChart);
 		};
 		
-	    chartMaker.highlightPoint = function(timestamp){
-	    	for (var i = 0, seriesLength = Charts.mainChart.series.length; i < seriesLength; i++) {
-	    		for (var j = 0, dataLength = Charts.mainChart.series[i].data.length; j < dataLength; j++) {
-	  			   if (Charts.mainChart.xAxis.categories[j] === timestamp){
-	  				   Charts.mainChart.xAxis.plotLines[0].value = j;
-	  				   return;
-	  			   }
-	  		   }
-	    	}
+	    chartMaker.highlightPoint = function(index){
+	    	Charts.mainChart.xAxis.plotLines[0].value = index;
 	    };
 			
 	    function createMainChart(data, newLine){
@@ -42,9 +35,13 @@
 			}
 			CurrentSuite.currentTimeStampArray = [];
 			var firstDataObj = data[0];
+			var prettifiedArray = [];
 			for (var i = 0, stampLength = data[0].data.length; i < stampLength; i++) {
 				CurrentSuite.currentTimeStampArray.push(firstDataObj.data[i].timestamp);
+				prettifiedArray.push(Utilities.makeTimestampReadable(firstDataObj.data[i].timestamp));
 			}
+			
+			CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id] = CurrentSuite.currentTimeStampArray;
 			
 			if (CurrentSuite.currentTimeStamp === '') {
 				CurrentSuite.currentTimeStamp = data[0].data[data[0].data.length-1].timestamp;
@@ -88,13 +85,13 @@
 				Charts.data = graphDataArray;
 			}
 			
-			Charts.mainChart.xAxis.categories = CurrentSuite.currentTimeStampArray;
+			Charts.mainChart.xAxis.categories = prettifiedArray;
 			
 			Charts.mainChart.options.plotOptions.series.point = {
 					events : {
 						click : function(e) {
-							RestLoader.loadTimestamp(this.category);
-							chartMaker.highlightPoint(this.category);
+							RestLoader.loadTimestamp(CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][this.index], true);
+							chartMaker.highlightPoint(this.index);
 							$('#mainChart').highcharts().zoomOut();
 						}
 					}
@@ -117,7 +114,7 @@
 	    	}
 			chartMaker.changeChartVariant(Utilities.graphView);
 			Charts.mainChart.loading = false;
-			chartMaker.highlightPoint(CurrentSuite.currentTimeStamp);
+			chartMaker.highlightPoint(Utilities.getIndexByTimestamp(CurrentSuite.currentTimeStamp));
 	    }
 		
 		chartMaker.changeChartVariant = function(input){
@@ -408,7 +405,6 @@
 								point: {
 									events: {
 										click: function(e){
-											console.log(this.index);
 											Utilities.clearData();
 											CurrentSuite.currentSuiteInfo = suite;
 											RestLoader.loadTimestamp(CurrentSuite.timestampRaw[suite.id][this.index], true);

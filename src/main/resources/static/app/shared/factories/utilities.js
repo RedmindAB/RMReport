@@ -28,6 +28,10 @@
 	        caseSorting: ['result','osname', 'devicename', 'osversion', 'browsername'],
 	        colors: ['#2ecc71', '#e74c3c', '#3498db', '#8e44ad', '#2c3e50', '#f1c40f', '#7f8c8d', '#e67e22', '#c0392b', '#1abc9c', '#9b59b6', '#34495e', '#16a085', '#f39c12', '#27ae60', '#d35400'],
 	        breakPointChoice: "None",
+		    getIndexByTimestamp: function(timestamp){
+		    	var rawArray = CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id];
+		    	return rawArray.indexOf(timestamp);
+		    },
 			makeTimestampReadable: function(timestamp){
 				var stringStamp = timestamp.toString();
 				return stringStamp.substring(0,4)+ "-" +
