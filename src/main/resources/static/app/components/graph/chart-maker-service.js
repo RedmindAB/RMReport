@@ -41,8 +41,9 @@
 				return;
 			}
 			CurrentSuite.currentTimeStampArray = [];
+			var firstDataObj = data[0];
 			for (var i = 0, stampLength = data[0].data.length; i < stampLength; i++) {
-				CurrentSuite.currentTimeStampArray.push(data[0].data[i].timestamp);
+				CurrentSuite.currentTimeStampArray.push(firstDataObj.data[i].timestamp);
 			}
 			
 			if (CurrentSuite.currentTimeStamp === '') {
@@ -304,15 +305,34 @@
 			return deviceKeeper;
 		}
 		
+		function makeTimestampReadable(timestamp){
+			var stringStamp = timestamp.toString();
+			var readable = stringStamp.substring(0,4)+ "-" +
+							stringStamp.substring(4,6)+"-" +
+							stringStamp.substring(6,8)+" " +
+							stringStamp.substring(8,10)+":" +
+							stringStamp.substring(10,12)+"";
+			return readable;
+		}
+		
 		function getTooltipPercentageString(points){
-			var tooltip ="<div class='tooltipContainer'><small><strong>"+points[0].point.category+"</strong></small><table>";
+			console.log(points);
+			var tooltip ="<div class='tooltipContainer'><strong style='display:block'>"+Utilities.makeTimestampReadable(points[0].point.category)+"</strong><br><table class='tooltipTable'>";
+			tooltip += "<tr>"+
+						    "<th>Status</th>" +
+						    "<th>Amt</th>" +
+						    "<th>Pct</th>" +
+						  "</tr>";
 			for(var i = 0; i < points.length; i++){
-				tooltip += "<tr>" +
+				tooltip +=		"<tr>" +
 									"<td style='color: "+points[i].series.color+"'>"+
 										points[i].series.name +
 									"</td>"+
 									"<td style='text-align: right'>"+
-										"<b>"+Math.round(points[i].percentage)+" %</b>"+
+										"<b>"+Math.round(points[i].y)+"</b>"+
+									"</td>"+
+									"<td style='text-align: right'>"+
+										"<b>"+Math.round(points[i].percentage)+"%</b>"+
 									"</td>"+
 								"</tr>";
 				
