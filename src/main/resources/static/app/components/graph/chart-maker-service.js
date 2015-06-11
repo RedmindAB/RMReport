@@ -364,6 +364,12 @@
 				            followPointer: true,
 				            hideDelay: 3,
 				            showDelay: 0,
+				            positioner: function(boxWidth, boxHeight, point) {
+				                return {
+				                    x: point.plotX - 75,
+				                    y: point.plotY - point.plotY/2
+				                };
+				            },
 				            formatter: function(){
 				            	var points = this;
 				            	var test = $http({
