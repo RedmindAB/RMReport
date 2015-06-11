@@ -335,7 +335,7 @@
 									"</td>"+
 								"</tr>";
 			}
-			tooltip += "</table><br>";
+			tooltip += "</table>";
 			return tooltip;
 		}
 		
@@ -382,11 +382,11 @@
 						        	
 						        	tooltip += "<div>";
 						        	for(var platform in deviceObj){
+						        		tooltip += "<br>";
 						        		tooltip += "<b>"+platform+"</b><br>";
 						        		for(var i = 0; i < deviceObj[platform].devices.length; i++){
 						        			tooltip += deviceObj[platform].devices[i]+"<br>";
 						        		}
-						        		tooltip += "<br>";
 						        	}
 						        	
 						        	tooltip +="</div></div>";
