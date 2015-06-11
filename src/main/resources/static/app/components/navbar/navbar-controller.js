@@ -15,7 +15,10 @@
 		
 		$scope.loadDashboardPlatformsAndDevices = function(){
 			DashboardServices.getPlatforms(CurrentSuite.currentSuiteInfo.id, "android").then(function(){
-				DashboardServices.getDevices(CurrentSuite.currentSuiteInfo.id);
+				DashboardServices.getDevices(CurrentSuite.currentSuiteInfo.id).then(function(){
+					DashboardServices.getClasses(CurrentSuite.currentSuiteInfo.id);	
+					
+				});
 			});
 		};
 		

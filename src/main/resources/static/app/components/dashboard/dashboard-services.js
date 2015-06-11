@@ -5,14 +5,16 @@
 		.module('webLog')
 		.factory('DashboardServices', DashboardServices);
 	
-	DashboardServices.$inject = ['$http', '$q', 'DeviceData'];
+	DashboardServices.$inject = ['$http', '$q', 'DeviceData', 'CurrentSuite'];
 	
-	function DashboardServices ($http, $q, DeviceData) {
+	function DashboardServices ($http, $q, DeviceData, CurrentSuite) {
 
 		var devices = getDevices;
 		var existingPlatforms = getPlatforms;
+		var classes = getClasses;
 		
 		return {
+			getClasses: classes,
 			getPlatforms: existingPlatforms,
 			getDevices: devices
 			
@@ -53,6 +55,37 @@
 					if(request[i].data.length > 0){
 						DeviceData.existingPlatforms.push(DeviceData.platforms[i]);
 					}
+				}
+		    });
+		}
+		
+		function getClasses(suiteid) {
+			var promises = [];
+			DeviceData.className = [];
+			DeviceData.classes = [];
+			var promise = $http.get('/api/stats/methodfail/' + suiteid)
+			.success(function(data, status, headers, config){ 
+			}).error(function(data, status, headers, config){
+			});
+			promises.push(promise);
+			return $q.all(promises).then(function(request){
+				var requestLength = request.length;
+				if(requestLength > 0){
+					for (var i = 0; i < requestLength; i++) {
+						DeviceData.classes.push(request[i].data);
+					}
+
+		    		var obj = DeviceData.classes[0];
+		    		
+		    		var objArray = $.map(obj, function(value, index) {
+		    		    return [value];
+		    		});
+		    		
+			    	var array = objArray[0].classname.split('.');
+			    	var arrayLength = array.length;
+			    	var className = array[array.length-1];
+			    	DeviceData.className.push(className);
+			    	return className;
 				}
 		    });
 		}

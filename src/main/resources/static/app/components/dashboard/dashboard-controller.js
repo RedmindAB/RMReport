@@ -16,12 +16,19 @@
 		vm.devices = [];
 		vm.DeviceData = DeviceData;
 		vm.existingPlatforms = [];
+		vm.className = [];
 	    
 		vm.DashboardServices = DashboardServices;
 		vm.Charts = Charts;
 		vm.getDevices = getDevices;
+		vm.getClasses = vm.getClasses;
 		
 		getPlatforms(CurrentSuite.currentSuiteInfo.id);
+		getClasses(CurrentSuite.currentSuiteInfo.id);
+		
+		function getClasses(suiteid){
+			DashboardServices.getClasses(suiteid);
+		}
 		
 		function orderDevices(){
 			var myObj = getDevices(CurrentSuite.currentSuiteInfo.id);
