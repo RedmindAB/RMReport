@@ -40,6 +40,7 @@ angular
 	        url:'/classes',
 	        templateUrl: 'app/components/suite-info/classes.html',
 	        controller: 'SuiteInfoCtrl',
+	        controllerAs: 'ctrl',
 	        ncyBreadcrumb: {
 	        	parent:'dashboard',
 	            label: 'Classes'
@@ -49,6 +50,7 @@ angular
 	        url:'/methods',
 	        templateUrl: 'app/components/suite-info/methods.html',
 	        controller: 'SuiteInfoCtrl',
+	        controllerAs: 'ctrl',
 	        ncyBreadcrumb: {
 	        	parent:'reports.classes',
         	    label: 'Methods'
@@ -63,6 +65,7 @@ angular
 	        url:'/cases',
 	        templateUrl: 'app/components/suite-info/cases.html',
 	        controller: 'SuiteInfoCtrl',
+	        controllerAs: 'ctrl',
         	ncyBreadcrumb: {
         		parent: 'reports.methods',
         	    label: 'Cases'
