@@ -5,9 +5,9 @@
 		.module('webLog')
 		.service('ChartMaker', ChartMaker);
 	
-	ChartMaker.$inject =  ['$state', 'RestLoader', 'CurrentSuite', 'Utilities', 'Charts'];
+	ChartMaker.$inject =  ['$http','$state', 'RestLoader', 'CurrentSuite', 'Utilities', 'Charts'];
 	
-	function ChartMaker($state, RestLoader, CurrentSuite, Utilities, Charts){
+	function ChartMaker($http,$state, RestLoader, CurrentSuite, Utilities, Charts){
 			
 		var chartMaker = this;
 			
@@ -288,6 +288,39 @@
 			return percentage;
 		}
 		
+		function getTooltipDeviceList(list){
+			var deviceKeeper = {};
+			var listItem;
+			
+			for(var i = 0; i < list.length; i++){
+				listItem = list[i];
+				if (deviceKeeper[listItem.osname] === undefined) {
+					deviceKeeper[listItem.osname] = {devices:[]};
+					deviceKeeper[listItem.osname].devices.push(listItem.devicename);
+				} else {
+					deviceKeeper[listItem.osname].devices.push(listItem.devicename);
+				}
+			}
+			return deviceKeeper;
+		}
+		
+		function getTooltipPercentageString(points){
+			var tooltip ="<div class='tooltipContainer'><small><strong>"+points[0].point.category+"</strong></small><table>";
+			for(var i = 0; i < points.length; i++){
+				tooltip += "<tr>" +
+									"<td style='color: "+points[i].series.color+"'>"+
+										points[i].series.name +
+									"</td>"+
+									"<td style='text-align: right'>"+
+										"<b>"+Math.round(points[i].percentage)+"</b>"+
+									"</td>"+
+								"</tr>";
+				
+			}
+			tooltip += "</table><br>";
+			return tooltip;
+		}
+		
 		function createHomeChart(data, suite) {
 			
 			var timeStamps = [];
@@ -301,20 +334,41 @@
 		    var chartHomeConfigObject = {
 					options : {
 						tooltip : {
-							crosshairs: true,
-				            shared: true,
+						    shared: true,
+						    borderRadius: 0,
+						    borderWidth: 0,
+						    shadow: false,
+						    enabled: true,
+						    backgroundColor: 'none',
 				            useHTML: true,
-//				            formatter: function(){},
-				            headerFormat: '<small><strong>{point.key}</strong></small><table>',
-				            pointFormat: '<tr>' + 
-				            				'<td style="color: {series.color}">'+
-				            					'{series.name}:'+
-				            				'</td>' +
-				            				'<td style="text-align: right">'+
-				            					'<b>{point.y}</b>'+
-				            				'</td>'+
-				            			'</tr>',
-				            footerFormat: '</table>',
+				            followPointer: true,
+				            formatter: function(){
+				            	var points = this;
+				            	var test = $http({
+						            url   : '/api/stats/devicerange/'+suite.id+'/'+points.x,
+						            method: 'GET',
+						            cache: true,
+						        }).success(function(dataObj, status, headers, config){
+						        	var tooltip = getTooltipPercentageString(points.points);
+						        	
+						        	var deviceObj = getTooltipDeviceList(dataObj);
+						        	
+						        	tooltip += "<div>";
+						        	for(var platform in deviceObj){
+						        		tooltip += "<b>"+platform+"</b><br>";
+						        		for(var i = 0; i < deviceObj[platform].devices.length; i++){
+						        			tooltip += deviceObj[platform].devices[i]+"<br>";
+						        		}
+						        		tooltip += "<br>";
+						        	}
+						        	
+						        	tooltip +="</div></div>";
+						        	points.points[0].series.chart.tooltip.label.textSetter(tooltip);
+						        }).error(function(data, status, headers, config){
+						        	addErrorMessage(config, "change");
+						        });
+				            	return "loading..";
+				            },
 						},
 						chart : {
 							type : "areaspline",
@@ -397,19 +451,6 @@
 					func : function(chart) {
 					}
 				};
-		    
-//		    chartHomeConfigObject.options.tooltip.formatter = function(){
-//		    	
-//	        	var tooltip = "";
-//	        	var length = chartHomeConfigObject.series.length;
-//	        	
-//	        	
-//	        	for(var i = 0; i < length; i++){
-//	        		tooltip += "test "
-//	        	}
-//	        	
-//	        	return tooltip;
-//		    }
 		    
 		    chartHomeConfigObject.series[0].data = [];
 		    chartHomeConfigObject.series[1].data = [];

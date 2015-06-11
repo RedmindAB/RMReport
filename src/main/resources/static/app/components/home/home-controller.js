@@ -22,6 +22,13 @@
 	    	RestLoader.getSuiteSkeleton(suite);
 	    };
 	    
+	    $scope.setZIndex = function(index){
+	    	var length = CurrentSuite.allSuites.length;
+	    	var reverse = index-length;
+	    	var zIndex = Math.abs(reverse);
+	    	return zIndex;
+	    }
+	    
 	    function createHomeChartFromID(suite){
 	    	ChartMaker.loadHomeChart(suite, Charts.chartHomeConfig);
 	    }
@@ -31,7 +38,6 @@
 	    		Charts.chartHomeConfig[suites[i].id] = Charts.homeChartBlueprint;
 	    	}
 	   	}
-	    
 	    
 	    $http.get('/api/suite/getsuites')
 	    .success(function(data, status, headers, config){ 
