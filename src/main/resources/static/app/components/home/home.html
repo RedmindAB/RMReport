@@ -2,9 +2,11 @@
 	<table class='table-home'>
 		<tr style='width:100%'>
 			<td colspan='3'>
-				<highchart 
+				<highchart
+					class="super-chart-container"
+					style="z-index:{{setZIndex($index)}}!important"
 					ng-if="Charts.chartHomeConfig[suite.id] !== undefined" 
-					id="chart1" class='high-chart'
+					id="chart{{$index}}" class='high-chart'
 					config="Charts.chartHomeConfig[suite.id]">
 				</highchart>
 			</td>
