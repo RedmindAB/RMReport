@@ -111,9 +111,6 @@
 				}
 		    });
 		}
-		
-		function getRunsAgo {
-			
-		}
+
 	}
 })();
