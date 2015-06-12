@@ -64,7 +64,7 @@
 			var promises = [];
 			DeviceData.className = [];
 			DeviceData.classes = [];
-			var promise = $http.get('/api/stats/methodfail/' + suiteid + "?limit=50?resmax=10")
+			var promise = $http.get('/api/stats/methodfail/' + suiteid + "?limit=50" + "?resmax=10")
 			.success(function(data, status, headers, config){ 
 			}).error(function(data, status, headers, config){
 			});
@@ -111,6 +111,5 @@
 				}
 		    });
 		}
-
 	}
 })();
