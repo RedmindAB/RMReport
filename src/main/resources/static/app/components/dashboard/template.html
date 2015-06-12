@@ -1,8 +1,7 @@
 <div id='messages'>
 
 	<div style='width:50%;display:inline;float:left;overflow: auto;'>  
-    <div class="modal-dialog" style='width:98%'>
-		<div class="modal-content">
+		<div class="modal-content" style='color:black' ng-style="{'background-color':ctrl.DeviceData.modalColors[0]}">
 			<div class='modal-header'>
 			 		<div ng-repeat='platform in ctrl.DeviceData.existingPlatforms track by $index'>
 			 			<h4 align='center'>Total
@@ -35,11 +34,9 @@
 			</div>
 		</div>
 	</div>
-	</div>
 	
 	<div style='width:50%;display:inline;float:right;overflow: auto;'>
-	<div class="modal-dialog" style='width:98%'>
-		<div class="modal-content">
+		<div class="modal-content" style='color:black' ng-style="{'background-color':ctrl.DeviceData.modalColors[1]}">
 			<div class='modal-header'>
 				<div ng-repeat='class in ctrl.DeviceData.classes[0] | limitTo: 1'>
 		  			<div ng-if='ctrl.DeviceData.classes.length'>
@@ -68,11 +65,9 @@
 		</div>
 	</div>
 	</div>
-	</div>
 
 	<div style='width:50%;top:0px;display:inline;float:left;overflow: auto;'>
-	<div class="modal-dialog" style='width:98%'>
-		<div class="modal-content">
+		<div class="modal-content" style='color:black' ng-style="{'background-color':ctrl.DeviceData.modalColors[2]}">
 			<div class='modal-header'>
 		  		<div ng-repeat='device in ctrl.DeviceData.deviceRange track by $index'>
 			  		<table class="table">
@@ -97,7 +92,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 	
 </div>
