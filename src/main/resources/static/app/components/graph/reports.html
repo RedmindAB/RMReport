@@ -65,10 +65,10 @@
 		</ul>
 	</div>
 
-	<!-- ctrl.remove a graphline -->
+	<!-- remove a graphline -->
 	<div class='btn-group' align='center'>
 		<h5 style='margin-bottom: 0px'>
-			Choose a line to ctrl.remove
+			Choose a line to remove
 		</h5>
 		<button 
 			id='button_break'
@@ -76,13 +76,13 @@
 			style='width: 150px; margin: 1px' 
 			class="btn btn-default dropdown-toggle" 
 			type="button"
-			id="ctrl.remove_graph_line" 
+			id="remove_graph_line" 
 			data-toggle="dropdown">
 			<span class="glyphicon glyphicon-trash"></span>
 		</button>
 		<ul class="dropdown-menu" role="menu">
 			<li 
-				id='ctrl.remove-{{serie.name}}' 
+				id='remove-{{serie.name}}' 
 				ng-repeat='serie in Charts.mainChart.series'
 				ng-click='ctrl.remove(serie)'>
 				<a style='cursor: pointer'> 
