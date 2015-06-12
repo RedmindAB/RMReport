@@ -52,6 +52,7 @@
 		});
 		
 		$scope.loadScreenshotsFromClass = function(classObj){
+			CurrentSuite.currentClass = classObj;
 			RestLoader.loadScreenshotsFromClass(classObj);
 		};
 		
@@ -63,6 +64,7 @@
 		};
 		
 		$scope.getScreenshotsFromTimestamp = function(timestamp){
+			console.log("get screenshot from time " + timestamp);
 			if ($state.$current.name === 'screenshots.methods') {
 				RestLoader.loadScreenshotsFromClass(CurrentSuite.currentClass, timestamp);
 			}

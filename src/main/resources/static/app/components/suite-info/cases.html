@@ -12,7 +12,7 @@
 	                	id="case-thistest-{{$index}}" 
 	                	class="this-test-button"
 	                	ng-class='getButton(case.result)' 
-	                	ng-click="addCaseToGraph(case.osname, case.osversion, case.devicename, case.browsername, case.browserversion); 
+	                	ng-click="ctrl.addCaseToGraph(case.osname, case.osversion, case.devicename, case.browsername, case.browserversion); 
 	                			$event.preventDefault(); 
 	                			$event.stopPropagation();">
 	                	This test only

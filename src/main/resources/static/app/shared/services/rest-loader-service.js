@@ -99,18 +99,6 @@
 	    	});
 	    };
 		
-	    rl.getMainGraphData = function(suiteID){
-	    	$scope.requestObject =  $scope.getGraphDataObject(suiteID);
-	    	var requestArray = [];
-	    	requestArray.push($scope.getGraphDataObject(suiteID));
-	    	$http.post('/api/stats/graphdata', requestArray)
-	    	.success(function(data, status, headers, config){ 
-	    		$scope.currentGraphData = data;
-	    	}).error(function(data, status, headers, config){
-	    		console.error(data);
-	    	});
-	    };
-	    
 	    rl.createHomeChartFromID = function(suite, createHomeChart) {
 	    	var requestObject= [];
 	    	requestObject.push({
