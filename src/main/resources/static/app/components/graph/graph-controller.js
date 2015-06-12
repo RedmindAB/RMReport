@@ -68,7 +68,12 @@
 	    	}
 	    }
 	    
-	    //checks if trashcan list contains more than one
+	    /*
+	     * Checks if Charts.mainChart.series consists of
+	     * more than one item. returns true if only one remains.
+	     * 
+	     * @return {Boolean} true if list size = 1
+	     */
 	    function trashcanEmpty() {
 	    	if (Charts.mainChart.series.length < 2) {
 	    		return true;
@@ -78,17 +83,26 @@
 	    	}
 		}
 		
-		//remove object from data Array from trashcan
+	    /*
+	     * Removes the passed in item from the charts data object,
+	     * iterates through Charts.data object and removes item from the array,
+	     * iterates through active queries and removes it from that array.
+	     * 
+	     * @param {Object} Data object to remove from chart, data array, query array.
+	     */
 	    function remove(item) { 
 			var index = Charts.mainChart.series.indexOf(item);
 			Charts.mainChart.series.splice(index, 1);  
-	 		for (var i = 0; i < Charts.data.length; i++) {
+			
+			var i = 0;
+			
+	 		for (i = 0; i < Charts.data.length; i++) {
 				if (Charts.data[i].name === item.name) {
 					Charts.data.splice(i, 1);
 				}
 			}
 	 		var queries = CurrentSuite.activeQueries;
-	 		for (var i = 0; i < queries.length; i++) {
+	 		for (i = 0; i < queries.length; i++) {
 	 			for (var j = 0; j < queries[i].length; j++) {
 	 				if (queries[i][j].name === item.name) {
 	 					queries[i].splice(j,1);
@@ -97,6 +111,15 @@
 			}
 		}
 		
+	    /*
+	     * Calculates percentage of param passed against
+	     * fail and error combined.
+	     * 
+	     * @param {Integer} passed tests
+	     * @param {Integer} failed tests
+	     * @param {integer} tests with error
+	     * @return {integer} percentage of passed
+	     */
 	    function getPassPercentage(pass, fail, error){
 	    	var totalFail = fail + error;
 	    	var total = pass + totalFail;
@@ -104,6 +127,12 @@
 	    	return percentage;
 	    }
 	    
+	    /*
+	     * Repaints the main chart to display the data passed
+	     * in, must be one from the Utilities.chartVariants array.
+	     * 
+	     * @param{String} chart variant to display
+	     */
 	    function changeChartVariant(input){
 	    	ChartMaker.changeChartVariant(input);
 	    }
