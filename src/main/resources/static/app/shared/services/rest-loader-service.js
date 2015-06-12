@@ -45,7 +45,7 @@
 						timestamp = suite.lastTimeStamp;
 					} else {
 						timestamp = CurrentSuite.currentTimeStamp;
-						CurrentSuite.currentTimeStamp = suite.lastTimeStamp;
+						CurrentSuite.currentTimeStamp = CurrentSuite.timestampRaw[suite.id][CurrentSuite.timestampRaw[suite.id].length-1];
 					}
 		    		getPassFailTotByClass(timestamp, CurrentSuite.currentSuite);
 		    	}

@@ -102,17 +102,14 @@
 			});
 			promises.push(promise);
 			return $q.all(promises).then(function(request){
-				console.log(request);
 				var requestLength = request.length;
 				if(requestLength > 0){
 					for (var i = 0; i < requestLength; i++) {
-						console.log(request[i].data);
 						DeviceData.deviceRange.push(request[i].data);
 					}
 
 				}
 		    });
-			
 		}
 	}
 })();

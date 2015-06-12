@@ -4,7 +4,7 @@
         	id='class-name' 
         	class='class-method-container' 
         	style="margin-top:10px" 
-        	ng-repeat="class in CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index "
+        	ng-repeat="class in ctrl.CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index "
             ng-class='getPanel(class.result)' 
             ng-style="{'background-color': getBgCo(class.result)}">
             <table width='100%'>
@@ -14,7 +14,7 @@
                     </td>
                     <td 
                     	id='class-{{$index}}' 
-                    	ng-click="getMethods(class); setState('reports.methods');" 
+                    	ng-click="ctrl.getMethods(class); setState('reports.methods');" 
                     	ng-style="{'color' : getCo(class.result)}" 
                     	class="icon-checkbox-guard">
                         <p 

@@ -4,8 +4,19 @@ html * {
     outline: 0 !important;
 }
 
+.modal-content{
+    -webkit-box-shadow: 0 5px 15px rgba(0,0,0,0);
+    -moz-box-shadow: 0 5px 15px rgba(0,0,0,0);
+    -o-box-shadow: 0 5px 15px rgba(0,0,0,0);
+    box-shadow: 0 5px 15px rgba(0,0,0,0);
+}
+
 html{
 	height:100%;
+}
+
+.modal-content{
+	margin:10px 10px 10px 10px;
 }
 
 body{
@@ -954,9 +965,13 @@ label {
 .tooltipContainer{
     position: relative;
     z-index: 50;
-    border: 2px solid rgb(0, 108, 169);
+    border: 2px solid rgb(192, 192, 192);
     border-radius: 5px;
     background-color:rgba(255, 255, 255, 0.95);
     padding: 5px;
     font-size: 9pt;
+}
+
+.tooltipTable td:not(:last-child), th:not(:last-child){
+	padding-right: 10px;
 }

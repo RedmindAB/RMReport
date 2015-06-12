@@ -5,50 +5,54 @@
 		.module('webLog')
 		.controller('NavBarCtrl', NavBarCtrl);
 		
-	NavBarCtrl.$inject = ['$scope', '$state', '$window', 'ChartMaker', 'RestLoader', 'Utilities', 'CurrentSuite', 'DashboardServices'];
+	NavBarCtrl.$inject = ['$state', '$window', 'ChartMaker', 'RestLoader', 'Utilities', 'CurrentSuite', 'DashboardServices'];
 	
-	function NavBarCtrl ($scope, $state,$window, ChartMaker, RestLoader, Utilities, CurrentSuite, DashboardServices) {
+	function NavBarCtrl ($state,$window, ChartMaker, RestLoader, Utilities, CurrentSuite, DashboardServices) {
 	
-		$scope.CurrentSuite = CurrentSuite;
+		var vm = this;
 		
 		var count = 0;
 		
-		$scope.loadDashboardPlatformsAndDevices = function(){
-			DashboardServices.getPlatforms(CurrentSuite.currentSuiteInfo.id, "android").then(function(){
-				DashboardServices.getDevices(CurrentSuite.currentSuiteInfo.id).then(function(){
-					DashboardServices.getClasses(CurrentSuite.currentSuiteInfo.id);	
-				});
-			});
-			$scope.loadDashboardDeviceRange();
-		};
+		vm.CurrentSuite = CurrentSuite;
 		
-		$scope.loadDashboardDeviceRange = function(){
-			DashboardServices.getDeviceRange(CurrentSuite.currentSuiteInfo.id, CurrentSuite.currentSuiteInfo.lastTimeStamp);
+		vm.checkPosition					= checkPosition;
+		vm.chooseProject					= chooseProject;
+		vm.getScreenshotsFromTimestamp		= getScreenshotsFromTimestamp;
+		vm.getSuiteSkeletonByTimestamp		= getSuiteSkeletonByTimestamp;
+		vm.getSuiteSkeleton					= getSuiteSkeleton;
+		vm.highlightPoint					= highlightPoint;
+		vm.isSmallWindowToggle 				= isSmallWindowToggle;
+		vm.isSmallWindowTarget				= isSmallWindowTarget;
+		vm.loadDashboardPlatformsAndDevices = loadDashboardPlatformsAndDevices;
+		vm.loadDashboardDeviceRange 		= loadDashboardDeviceRange;
+		vm.loadMainChart					= loadMainChart;
+		
+	    function chooseProject(){
+	    	if(CurrentSuite.currentSuiteInfo.name === undefined){
+	    		return 'Choose Project';
+	    	}
+	    	else{
+	    		return CurrentSuite.currentSuiteInfo.name;
+	    	}
+	    }
+	    
+	    function checkPosition(){
+	    	if($state.$current.name === "home"){
+	    		$state.transitionTo("dashboard");
+	    	}
+	    }
+		
+		function getSuiteSkeletonByTimestamp(timestamp){
+			RestLoader.loadTimestamp(timestamp);
 		}
 		
-		$scope.isSmallWindowToggle = function(){
-			return $window.window.innerWidth < 900  ? 'collapse' : '';
-		};
-		
-		$scope.isSmallWindowTarget = function(){
-			return $window.width < 900  ? '.navbar-collapse' : '';
-		};
-		
-	    $scope.highlightPoint = function(timestamp){
-	    	ChartMaker.highlightPoint(timestamp);
-	    };
-	    
-		$scope.getSuiteSkeletonByTimestamp = function(timestamp){
-			RestLoader.loadTimestamp(timestamp);
-		};
-		
-		$scope.getScreenshotsFromTimestamp = function(){
+		function getScreenshotsFromTimestamp(){
 			if ($state.$current.name === 'screenshots.methods') {
 				RestLoader.loadScreenshotsFromClass(CurrentSuite.currentClass);
 			}
-		};
+		}
 		
-		$scope.getSuiteSkeleton= function(suite){
+		function getSuiteSkeleton(suite){
 			RestLoader.getSuiteSkeleton(suite);
 			if ($state.includes("reports")) {
 				$state.transitionTo("reports.classes");
@@ -56,19 +60,35 @@
 				$state.transitionTo("screenshots.classes");
 			} else {
 			}
-		};
+		}
+	    
+	    function highlightPoint(timestamp){
+	    	ChartMaker.highlightPoint(Utilities.getIndexByTimestamp(timestamp));
+	    }
 		
-	    $scope.loadMainChart = function(suiteID, newLine, name){
+		function isSmallWindowToggle(){
+			return $window.window.innerWidth < 900  ? 'collapse' : '';
+		}
+		
+		function isSmallWindowTarget(){
+			return $window.width < 900  ? '.navbar-collapse' : '';
+		}
+	    
+		function loadDashboardPlatformsAndDevices(){
+			DashboardServices.getPlatforms(CurrentSuite.currentSuiteInfo.id, "android").then(function(){
+				DashboardServices.getDevices(CurrentSuite.currentSuiteInfo.id).then(function(){
+					DashboardServices.getClasses(CurrentSuite.currentSuiteInfo.id);	
+				});
+			});
+			loadDashboardDeviceRange();
+		}
+		
+		function loadDashboardDeviceRange(){
+			DashboardServices.getDeviceRange(CurrentSuite.currentSuiteInfo.id, CurrentSuite.currentSuiteInfo.lastTimeStamp);
+		}
+		
+	    function loadMainChart(suiteID, newLine, name){
 	    	ChartMaker.loadMainChart(suiteID,newLine, name);
-	    };
-		
-	    $scope.chooseProject = function(){
-	    	if(CurrentSuite.currentSuiteInfo.name === undefined){
-	    		return 'Choose Project';
-	    	}
-	    	else{
-	    		return CurrentSuite.currentSuiteInfo.name;
-	    	}
-	    };
+	    }
 	}
 })();

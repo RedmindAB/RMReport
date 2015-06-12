@@ -62,9 +62,9 @@
 			return '/api/screenshot/byfilename?timestamp='+ScreenshotMaster.currentTimestamp+'&filename='+fileName;
 		};
 		
-		$scope.getScreenshotsFromTimestamp = function(){
+		$scope.getScreenshotsFromTimestamp = function(timestamp){
 			if ($state.$current.name === 'screenshots.methods') {
-				RestLoader.loadScreenshotsFromClass(CurrentSuite.currentClass);
+				RestLoader.loadScreenshotsFromClass(CurrentSuite.currentClass, timestamp);
 			}
 		};
 		

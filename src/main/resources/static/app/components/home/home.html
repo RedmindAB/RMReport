@@ -1,19 +1,19 @@
-<div ng-controller="GraphCtrl" ng-repeat="suite in CurrentSuite.allSuites track by $index">
+<div ng-repeat="suite in ctrl.CurrentSuite.allSuites track by $index">
 	<table class='table-home'>
 		<tr style='width:100%'>
 			<td colspan='3'>
 				<highchart
 					class="super-chart-container"
 					style="z-index:{{setZIndex($index)}}!important"
-					ng-if="Charts.chartHomeConfig[suite.id] !== undefined" 
+					ng-if="ctrl.Charts.chartHomeConfig[suite.id] !== undefined" 
 					id="chart{{$index}}" class='high-chart'
-					config="Charts.chartHomeConfig[suite.id]">
+					config="ctrl.Charts.chartHomeConfig[suite.id]">
 				</highchart>
 			</td>
 		</tr>
 	</table>
 	<div 
-		ng-if="$index !== CurrentSuite.allSuites.length -1" 
+		ng-if="$index !== ctrl.CurrentSuite.allSuites.length -1" 
 		class='row'
 		style='border: 10px solid #D4D9DD'>
 	</div>

@@ -17,15 +17,16 @@ angular
             url: '/dashboard',
             templateUrl: 'app/components/dashboard/dashboard.html',
             controller: 'DashboardCtrl',
-            controllerAs: 'ctrl'
+            controllerAs: 'ctrl',
+	        ncyBreadcrumb: {
+	            label: 'Home'
+	          }
         })
 		.state('home',{
 		    url:'/home',
 		    templateUrl: 'app/components/home/home.html',
 		    controller: 'HomeCtrl',
-	        ncyBreadcrumb: {
-	            label: 'Home'
-	          }
+		    controllerAs: 'ctrl'
 		})
         .state('reports',{
 	        url:'/reports',
@@ -39,8 +40,9 @@ angular
 	        url:'/classes',
 	        templateUrl: 'app/components/suite-info/classes.html',
 	        controller: 'SuiteInfoCtrl',
+	        controllerAs: 'ctrl',
 	        ncyBreadcrumb: {
-	        	parent:'home',
+	        	parent:'dashboard',
 	            label: 'Classes'
 	          }
         })
@@ -48,6 +50,7 @@ angular
 	        url:'/methods',
 	        templateUrl: 'app/components/suite-info/methods.html',
 	        controller: 'SuiteInfoCtrl',
+	        controllerAs: 'ctrl',
 	        ncyBreadcrumb: {
 	        	parent:'reports.classes',
         	    label: 'Methods'
@@ -62,6 +65,7 @@ angular
 	        url:'/cases',
 	        templateUrl: 'app/components/suite-info/cases.html',
 	        controller: 'SuiteInfoCtrl',
+	        controllerAs: 'ctrl',
         	ncyBreadcrumb: {
         		parent: 'reports.methods',
         	    label: 'Cases'
@@ -80,7 +84,7 @@ angular
 	        templateUrl: 'app/components/screenshots/screenshot-classes.html',
 	        controller: '',
 	        ncyBreadcrumb: {
-	        	parent:'home',
+	        	parent:'dashboard',
         	    label: 'Classes'
         	  }
 	    })

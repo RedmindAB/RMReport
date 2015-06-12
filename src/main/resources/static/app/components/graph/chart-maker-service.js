@@ -23,15 +23,8 @@
 			RestLoader.addCaseToGraph(osName, osVersion, deviceName, browserName, browserVer, createMainChart);
 		};
 		
-	    chartMaker.highlightPoint = function(timestamp){
-	    	for (var i = 0, seriesLength = Charts.mainChart.series.length; i < seriesLength; i++) {
-	    		for (var j = 0, dataLength = Charts.mainChart.series[i].data.length; j < dataLength; j++) {
-	  			   if (Charts.mainChart.xAxis.categories[j] === timestamp){
-	  				   Charts.mainChart.xAxis.plotLines[0].value = j;
-	  				   return;
-	  			   }
-	  		   }
-	    	}
+	    chartMaker.highlightPoint = function(index){
+	    	Charts.mainChart.xAxis.plotLines[0].value = index;
 	    };
 			
 	    function createMainChart(data, newLine){
@@ -41,9 +34,14 @@
 				return;
 			}
 			CurrentSuite.currentTimeStampArray = [];
+			var firstDataObj = data[0];
+			var prettifiedArray = [];
 			for (var i = 0, stampLength = data[0].data.length; i < stampLength; i++) {
-				CurrentSuite.currentTimeStampArray.push(data[0].data[i].timestamp);
+				CurrentSuite.currentTimeStampArray.push(firstDataObj.data[i].timestamp);
+				prettifiedArray.push(Utilities.makeTimestampReadable(firstDataObj.data[i].timestamp));
 			}
+			
+			CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id] = CurrentSuite.currentTimeStampArray;
 			
 			if (CurrentSuite.currentTimeStamp === '') {
 				CurrentSuite.currentTimeStamp = data[0].data[data[0].data.length-1].timestamp;
@@ -87,13 +85,13 @@
 				Charts.data = graphDataArray;
 			}
 			
-			Charts.mainChart.xAxis.categories = CurrentSuite.currentTimeStampArray;
+			Charts.mainChart.xAxis.categories = prettifiedArray;
 			
 			Charts.mainChart.options.plotOptions.series.point = {
 					events : {
 						click : function(e) {
-							RestLoader.loadTimestamp(this.category);
-							chartMaker.highlightPoint(this.category);
+							RestLoader.loadTimestamp(CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][this.index], true);
+							chartMaker.highlightPoint(this.index);
 							$('#mainChart').highcharts().zoomOut();
 						}
 					}
@@ -116,7 +114,7 @@
 	    	}
 			chartMaker.changeChartVariant(Utilities.graphView);
 			Charts.mainChart.loading = false;
-			chartMaker.highlightPoint(CurrentSuite.currentTimeStamp);
+			chartMaker.highlightPoint(Utilities.getIndexByTimestamp(CurrentSuite.currentTimeStamp));
 	    }
 		
 		chartMaker.changeChartVariant = function(input){
@@ -304,31 +302,49 @@
 			return deviceKeeper;
 		}
 		
+		function makeTimestampReadable(timestamp){
+			var stringStamp = timestamp.toString();
+			var readable = stringStamp.substring(0,4)+ "-" +
+							stringStamp.substring(4,6)+"-" +
+							stringStamp.substring(6,8)+" " +
+							stringStamp.substring(8,10)+":" +
+							stringStamp.substring(10,12)+"";
+			return readable;
+		}
+		
 		function getTooltipPercentageString(points){
-			var tooltip ="<div class='tooltipContainer'><small><strong>"+points[0].point.category+"</strong></small><table>";
+			var tooltip ="<div class='tooltipContainer'><strong style='display:block'>"+points[0].point.category+"</strong><br><table class='tooltipTable'>";
+			tooltip += "<tr>"+
+						    "<th>Status</th>" +
+						    "<th>Amt</th>" +
+						    "<th>Pct</th>" +
+						  "</tr>";
 			for(var i = 0; i < points.length; i++){
-				tooltip += "<tr>" +
+				tooltip +=		"<tr>" +
 									"<td style='color: "+points[i].series.color+"'>"+
 										points[i].series.name +
 									"</td>"+
 									"<td style='text-align: right'>"+
-										"<b>"+Math.round(points[i].percentage)+" %</b>"+
+										"<b>"+Math.round(points[i].y)+"</b>"+
+									"</td>"+
+									"<td style='text-align: right'>"+
+										"<b>"+Math.round(points[i].percentage)+"%</b>"+
 									"</td>"+
 								"</tr>";
-				
 			}
-			tooltip += "</table><br>";
+			tooltip += "</table>";
 			return tooltip;
 		}
 		
 		function createHomeChart(data, suite) {
 			
-			var timeStamps = [];
+			var timeStamps = [], timestampsRaw = [];
 			var timestampObj = data[0].data;
 			for (var index = 0, timeLength = data[0].data.length; index < timeLength; index++) {
-				timeStamps.push(timestampObj[index].timestamp);
+				timeStamps.push(Utilities.makeTimestampReadable(timestampObj[index].timestamp));
+				timestampsRaw.push(timestampObj[index].timestamp);
 			}
-			
+			CurrentSuite.timestampRaw[suite.id] = timestampsRaw;
 			suite.lastTimeStamp = timeStamps[timeStamps.length-1];
 			
 		    var chartHomeConfigObject = {
@@ -344,10 +360,16 @@
 				            followPointer: true,
 				            hideDelay: 3,
 				            showDelay: 0,
+				            positioner: function(boxWidth, boxHeight, point) {
+				                return {
+				                    x: point.plotX - 100,
+				                    y: point.plotY - point.plotY/2
+				                };
+				            },
 				            formatter: function(){
 				            	var points = this;
 				            	var test = $http({
-						            url   : '/api/stats/devicerange/'+suite.id+'/'+points.x,
+						            url   : '/api/stats/devicerange/'+suite.id+'/'+CurrentSuite.timestampRaw[suite.id][points.points[0].point.index],
 						            method: 'GET',
 						            cache: true,
 						        }).success(function(dataObj, status, headers, config){
@@ -357,11 +379,11 @@
 						        	
 						        	tooltip += "<div>";
 						        	for(var platform in deviceObj){
+						        		tooltip += "<br>";
 						        		tooltip += "<b>"+platform+"</b><br>";
 						        		for(var i = 0; i < deviceObj[platform].devices.length; i++){
 						        			tooltip += deviceObj[platform].devices[i]+"<br>";
 						        		}
-						        		tooltip += "<br>";
 						        	}
 						        	
 						        	tooltip +="</div></div>";
@@ -385,7 +407,7 @@
 										click: function(e){
 											Utilities.clearData();
 											CurrentSuite.currentSuiteInfo = suite;
-											RestLoader.loadTimestamp(this.category, true);
+											RestLoader.loadTimestamp(CurrentSuite.timestampRaw[suite.id][this.index], true);
 											chartMaker.loadMainChart(suite.id, true);
 											$state.transitionTo('reports.classes');
 										}
