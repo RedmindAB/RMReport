@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 import com.google.gson.JsonArray;
@@ -15,13 +16,16 @@ public class MethodFailJsonBuilder {
 	private static final String RATIO_FAIL = "ratioFail";
 	private final String TOTAL = "total", FAIL = "fail";
 	private HashMap<String, JsonObject> jsonMap;
+	private HashSet<String> maxTimestampsMethodClassKeys;
 	
-	public MethodFailJsonBuilder() {
+	public MethodFailJsonBuilder(HashSet<String> maxTimestampsMethodClassKeys2) {
+		this.maxTimestampsMethodClassKeys = maxTimestampsMethodClassKeys2;
 		jsonMap = new HashMap<String, JsonObject>();
 	}
 	
 	public void addTestCase(String testcaseName, String classname, String result){
 		JsonObject json = getJson(testcaseName, classname);
+		if (json == null) return; 
 		addResult(json, result);
 	}
 
@@ -45,6 +49,9 @@ public class MethodFailJsonBuilder {
 
 	private JsonObject getJson(String testcaseName, String classname) {
 		String key = classname+testcaseName;
+		if (!maxTimestampsMethodClassKeys.contains(key)) {
+			return null;
+		}
 		JsonObject json = jsonMap.get(key);
 		if (json == null) {
 			//Creates new Json if it dose not exist with defaul values.
