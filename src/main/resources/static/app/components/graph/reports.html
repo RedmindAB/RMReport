@@ -65,26 +65,26 @@
 		</ul>
 	</div>
 
-	<!-- Remove a graphline -->
+	<!-- ctrl.remove a graphline -->
 	<div class='btn-group' align='center'>
 		<h5 style='margin-bottom: 0px'>
-			Choose a line to remove
+			Choose a line to ctrl.remove
 		</h5>
 		<button 
 			id='button_break'
-			ng-disabled="trashcanEmpty()"
+			ng-disabled="ctrl.trashcanEmpty()"
 			style='width: 150px; margin: 1px' 
 			class="btn btn-default dropdown-toggle" 
 			type="button"
-			id="remove_graph_line" 
+			id="ctrl.remove_graph_line" 
 			data-toggle="dropdown">
 			<span class="glyphicon glyphicon-trash"></span>
 		</button>
 		<ul class="dropdown-menu" role="menu">
 			<li 
-				id='remove-{{serie.name}}' 
+				id='ctrl.remove-{{serie.name}}' 
 				ng-repeat='serie in Charts.mainChart.series'
-				ng-click='remove(serie)'>
+				ng-click='ctrl.remove(serie)'>
 				<a style='cursor: pointer'> 
 					<span
 						class='glyphicon glyphicon-trash' 
@@ -102,7 +102,7 @@
 			id='button_reload'
 			class="btn btn-default" 
 			ng-disabled='Charts.mainChart.loading'
-			ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, false); checkQuestions()"
+			ng-click="ctrl.loadMainChart(CurrentSuite.currentSuiteInfo.id, false); checkQuestions()"
 			style="width: 175px;float:right; margin-top:10px"
 			onClick="document.getElementById('button_reload').className = 'btn btn-default'">
 			Clear graph and reload
@@ -113,7 +113,7 @@
 		<button 
 			id='add_graph_line' 
 			ng-disabled='Charts.mainChart.loading'
-			ng-click="loadMainChart(CurrentSuite.currentSuiteInfo.id, true)"
+			ng-click="ctrl.loadMainChart(CurrentSuite.currentSuiteInfo.id, true)"
 			class="btn btn-default"
 			type="button"
 			style="width: 175px;float:right; margin-top:10px">
@@ -144,7 +144,7 @@
 					<a 
 						id="display-{{variant}}" 
 						style='cursor: pointer' 
-						ng-click="changeChartVariant(variant)"> 
+						ng-click="ctrl.changeChartVariant(variant)"> 
 						{{variant}} 
 					</a>
 				</li>
@@ -217,7 +217,7 @@
 								<icon-checkbox content="browser"></icon-checkbox>
 								<div 
 									id="browser-{{browser.browsername}}" 
-									ng-click='setChosen(browser); Utilities.newContent()'
+									ng-click='ctrl.setChosen(browser); Utilities.newContent()'
 									class='reports-cursor-inline browser-name'>
 									{{browser.browsername}}
 								</div> 
@@ -244,9 +244,9 @@
 											<td 
 												id="spec-{{platform.osname}}" 
 												class="platform-name platform-{{platform.chosen}} icon-checkbox-guard" 
-												ng-click="Utilities.newContent();togglePlatformChosen(platform)">
+												ng-click="Utilities.newContent();ctrl.togglePlatformChosen(platform)">
 												<p 
-													ng-click="Utilities.newContent();togglePlatformChosen(platform)"
+													ng-click="Utilities.newContent();ctrl.togglePlatformChosen(platform)"
 													class="accordion-name-container text-left">
 													{{platform.osname}}
 												</p>
@@ -270,7 +270,7 @@
 												<icon-checkbox content="device"></icon-checkbox>
 												<div 
 													id="device-{{device.devicename}}" 
-													ng-click='setChosen(device); Utilities.newContent()'
+													ng-click='ctrl.setChosen(device); Utilities.newContent()'
 													class='reports-cursor-inline device-name'>
 													{{device.devicename}}
 												</div>
@@ -294,7 +294,7 @@
 												<icon-checkbox content="version"></icon-checkbox>
 												<div 
 													id="version-{{version.osver}}" 
-													ng-click='setChosen(version); Utilities.newContent()'
+													ng-click='ctrl.setChosen(version); Utilities.newContent()'
 													class='reports-cursor-inline version-name'>
 													{{version.osver}}
 												</div>

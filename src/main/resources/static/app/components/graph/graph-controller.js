@@ -5,63 +5,81 @@
 		.module('webLog')
 		.controller('GraphCtrl', GraphCtrl);
 	
-	GraphCtrl.$inject = ['$scope','$http', '$state', '$q', 'Charts', 'CurrentSuite', 'Utilities', 'RestLoader', 'ChartMaker'];
+	GraphCtrl.$inject = ['$http', '$state', '$q', 'Charts', 'CurrentSuite', 'Utilities', 'RestLoader', 'ChartMaker'];
 			
-	function GraphCtrl($scope, $http, $state, $q, Charts, CurrentSuite, Utilities, RestLoader, ChartMaker){
-		$scope.Charts = Charts;
-	    $scope.chartMainConfig = {};
-	    $scope.descTimestamps = [];
-	    $scope.CurrentSuite = CurrentSuite;
-	    
-	    $scope.newContent = function(){
-	    	Utilities.newContent();
-	    };
-	    
-	    $scope.highlightPoint = function(timestamp){
-	    	ChartMaker.highlightPoint(timestamp);
-	    };
-	    
-	    $scope.getMainGraphData = function(suiteID){
-	    	RestLoader.getMainGraphData(suiteID);
-	    };
+	function GraphCtrl($http, $state, $q, Charts, CurrentSuite, Utilities, RestLoader, ChartMaker){
 		
-	    $scope.addCaseToGraph = function(osName, osVersion, deviceName, browserName, browserVer){
-	    	ChartMaker.addCaseToGraph(osName, osVersion, deviceName, browserName, browserVer);
-	    };
-	
-	    $scope.loadMainChart = function(suiteID, newLine){
-	    	ChartMaker.loadMainChart(suiteID,newLine);
-	    };
+		var vm = this;
+		
+		vm.Charts = Charts;
+		vm.CurrentSuite = CurrentSuite;
+		
+	    vm.chartMainConfig = {};
+	    vm.descTimestamps = [];
 	    
-	    $scope.togglePlatformChosen = function(platform){
+	    
+	    vm.loadMainChart		= loadMainChart;
+	    vm.togglePlatformChosen = togglePlatformChosen;
+	    vm.setChosen 			= setChosen;
+	    vm.trashcanEmpty 		= trashcanEmpty;
+	    vm.remove 				= remove;
+	    vm.changeChartVariant 	= changeChartVariant;
+	    
+		
+	    /*
+	     * Tells ChartMaker to pass the necessary parameters
+	     * to a RESTful call to generate new data for
+	     * the graph.
+	     * 
+	     * @param {Integer} id for suite to load data from.
+	     * @param {Booelean} pass in true to add line to graph
+	     * 					 or false to wipe graph and load new data.
+	     */
+	    function loadMainChart(suiteID, newLine){
+	    	ChartMaker.loadMainChart(suiteID,newLine);
+	    }
+	    
+	    /*
+	     * Toggles given platforms choosen variable between
+	     * true and false.
+	     * 
+	     * @param {Object} platform object tho toggle var in.
+	     */
+	    function togglePlatformChosen(platform){
 	    	if (platform.chosen !== undefined){
 	    		if (platform.chosen === true) {
 					CurrentSuite.clearPlatformChosen(platform);
 				}
 	    	}
-	    };
+	    }
 	    
-	    $scope.setChosen = function(value){
+	    /*
+	     * If given object has a chosen value defined it
+	     * deletes it, otherwise creates it and sets it to true.
+	     * 
+	     * @param {Object} Object to manipulate
+	     */
+	    function setChosen(value){
 	    	if(value.chosen){
 	    		delete value.chosen;
 	    	}
 	    	else{
 	    		value.chosen = true;
 	    	}
-	    };
+	    }
 	    
 	    //checks if trashcan list contains more than one
-	    $scope.trashcanEmpty = function() {
+	    function trashcanEmpty() {
 	    	if (Charts.mainChart.series.length < 2) {
 	    		return true;
 	    	}
 	    	else {
 	    		return false;
 	    	}
-		};
+		}
 		
 		//remove object from data Array from trashcan
-		$scope.remove = function(item) { 
+	    function remove(item) { 
 			var index = Charts.mainChart.series.indexOf(item);
 			Charts.mainChart.series.splice(index, 1);  
 	 		for (var i = 0; i < Charts.data.length; i++) {
@@ -77,7 +95,7 @@
 	 				}
 				}
 			}
-		};
+		}
 		
 	    function getPassPercentage(pass, fail, error){
 	    	var totalFail = fail + error;
@@ -86,8 +104,8 @@
 	    	return percentage;
 	    }
 	    
-	    $scope.changeChartVariant = function(input){
+	    function changeChartVariant(input){
 	    	ChartMaker.changeChartVariant(input);
-	    };
+	    }
 	}
 })();

@@ -5,9 +5,9 @@
 		.module('webLog')
 		.controller('StyleCtrl', StyleCtrl);
 			
-	StyleCtrl.$inject = ['$scope', '$state', 'Utilities'];
+	StyleCtrl.$inject = ['$scope', '$state', 'Utilities', 'CurrentSuite'];
 	
-	function StyleCtrl ($scope, $state, Utilities){
+	function StyleCtrl ($scope, $state, Utilities, CurrentSuite){
 		
 		var myData = null;
 		$scope.Utilities = Utilities;
