@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
@@ -23,27 +25,37 @@ public class MethodFailJsonBuilder {
 		jsonMap = new HashMap<String, JsonObject>();
 	}
 	
-	public void addTestCase(String testcaseName, String classname, String result){
+	public void addTestCase(String testcaseName, String classname, String result, long timestamp){
 		JsonObject json = getJson(testcaseName, classname);
 		if (json == null) return; 
-		addResult(json, result);
+		addResult(json, result, timestamp);
 	}
 
-	private void addResult(JsonObject json, String result) {
+	private void addResult(JsonObject json, String result, long timestamp) {
 		Integer totalRes = json.get(TOTAL).getAsInt();
 		json.add(TOTAL, new JsonPrimitive(totalRes+1));
-		addFailure(json, result);
+		boolean failure = addFailure(json, result);
+		if (failure) {
+			addTimestamp(json, timestamp);
+		}
 	}
 
-	private void addFailure(JsonObject json, String result) {
+	private void addTimestamp(JsonObject json, long timestamp) {
+		JsonElement jsonElement = json.get("lastfail");
+		if (jsonElement instanceof JsonNull || jsonElement.getAsLong() < timestamp) {
+			json.add("lastfail", new JsonPrimitive(timestamp));
+		}
+	}
+
+	private boolean addFailure(JsonObject json, String result) {
 		switch (result) {
 		case "failure":
 		case "error":
 			Integer fails = json.get(FAIL).getAsInt();
 			json.add(FAIL, new JsonPrimitive(fails+1));
-			break;
+			return true;
 		default:
-			break;
+			return false;
 		}
 	}
 
@@ -60,6 +72,7 @@ public class MethodFailJsonBuilder {
 			nJson.addProperty("testcaseName", testcaseName);
 			nJson.addProperty(TOTAL, 0);
 			nJson.addProperty(FAIL, 0);
+			nJson.add("lastfail", JsonNull.INSTANCE);
 			json = nJson;
 			jsonMap.put(key, nJson);
 		}
