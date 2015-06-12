@@ -32,10 +32,11 @@ public class MethodFailDAO extends DBBridge{
 		MethodFailJsonBuilder builder = new MethodFailJsonBuilder(maxTimestampsMethodClassKeys);
 		try {
 			while (rs.next()) {
+				long timestamp = rs.getLong("timestamp");
 				String classname = rs.getString("classname");
 				String testcaseName = rs.getString("testcasename");
 				String result = rs.getString("result");
-				builder.addTestCase(testcaseName, classname, result);
+				builder.addTestCase(testcaseName, classname, result, timestamp);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
