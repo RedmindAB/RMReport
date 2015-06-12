@@ -321,15 +321,11 @@
 	
 	<!-- Sorting functions -->
 	<div id="class-method-option-container">
-	
 		<!-- Pass/fail sorting -->
-		<div id="class-method-option-left" class='btn-group' align='center'>
-			<h5 style='margin-bottom: 0px'>
-				Order by
-			</h5>
+		<div id="class-method-option-left" class='btn-group' style='margin-top:25px'>
+			<!-- Clear checkboxes -->
 			<button 
 				id='order_by_fail_pass'
-				style='width: 100px' 
 				class='btn btn-default dropdown-toggle'
 				ng-click="Utilities.setSorting('pass/fail'); reverse = !reverse">
 				Fail/Pass
@@ -351,22 +347,15 @@
 		</div>
 		
 		<!-- Run time sorting -->
-		<div 
-			id="class-method-option-right"
-			class='btn-group' 
-			align='center' 
-			style='float: right'>
-			<h5 style='margin-bottom: 0px'>
-				Order by
-			</h5>
+		<div id="class-method-option-right" class='btn-group' style='margin-top:25px'>
 			<button 
-				id='order_by_runtime'
-				style='width: 100px' 
+				id='order_by_fail_pass'
 				class='btn btn-default dropdown-toggle'
 				ng-click="Utilities.setSorting('time'); reverse = !reverse">
 				Run time
 			</button>
 		</div>
+		
 	</div>
 	
 	<!-- Suite info view -->
