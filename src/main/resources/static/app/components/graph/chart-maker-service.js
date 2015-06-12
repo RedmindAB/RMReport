@@ -9,25 +9,29 @@
 	
 	function ChartMaker($http,$state, RestLoader, CurrentSuite, Utilities, Charts){
 			
-		var chartMaker = this;
+		var vm = this;
 			
-		chartMaker.loadMainChart = function(suiteID,newLine,name){
+		vm.loadMainChart = function(suiteID,newLine,name){
 			RestLoader.loadMainChart(suiteID, newLine, createMainChart, name);
 		};
 		
-		chartMaker.loadHomeChart = function(suite){
+		vm.loadHomeChart = function(suite){
 			RestLoader.createHomeChartFromID(suite,createHomeChart);
 		};
 		
-		chartMaker.addCaseToGraph = function(osName, osVersion, deviceName, browserName, browserVer){
+		vm.addCaseToGraph = function(osName, osVersion, deviceName, browserName, browserVer){
 			RestLoader.addCaseToGraph(osName, osVersion, deviceName, browserName, browserVer, createMainChart);
 		};
 		
-	    chartMaker.highlightPoint = function(index){
+	    vm.highlightPoint = function(index){
 	    	Charts.mainChart.xAxis.plotLines[0].value = index;
 	    };
 			
 	    function createMainChart(data, newLine){
+	    	
+	    	var i = 0;
+	    	var j = 0;
+	    	
 	    	if (data.length === 0) {
 	    		alert("There is no data for that combination");
 	    		Charts.mainChart.loading = false;
@@ -36,7 +40,9 @@
 			CurrentSuite.currentTimeStampArray = [];
 			var firstDataObj = data[0];
 			var prettifiedArray = [];
-			for (var i = 0, stampLength = data[0].data.length; i < stampLength; i++) {
+			
+			var stampLength = data[0].data.length;
+			for (i = 0; i < stampLength; i++) {
 				CurrentSuite.currentTimeStampArray.push(firstDataObj.data[i].timestamp);
 				prettifiedArray.push(Utilities.makeTimestampReadable(firstDataObj.data[i].timestamp));
 			}
@@ -49,7 +55,9 @@
 			Utilities.descTimestamps = reverseArray(CurrentSuite.currentTimeStampArray);
 			var graphDataArray = [];
 			var dataObj = [];
-			for (var i = 0, dataLength = data.length; i < dataLength; i++) {
+			
+			var dataLength = data.length;
+			for (i = 0; i < dataLength; i++) {
 				var graphDataObj = {
 						runTime: [],
 						totalPass: [],
@@ -57,8 +65,10 @@
 						totalSkipped: [],
 						passPercentage: []
 				};
+				
 				var graphName = data[i].name;
-				for (var j = 0, innderLength = data[i].data.length ; j < innderLength; j++) {
+				var innderLength = data[i].data.length;
+				for (j = 0; j < innderLength; j++) {
 					if (isSkipped(data[i].data[j])) {
 						graphDataObj.runTime.push(null);
 						graphDataObj.totalPass.push(null);
@@ -91,7 +101,7 @@
 					events : {
 						click : function(e) {
 							RestLoader.loadTimestamp(CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][this.index], true);
-							chartMaker.highlightPoint(this.index);
+							vm.highlightPoint(this.index);
 							$('#mainChart').highcharts().zoomOut();
 						}
 					}
@@ -99,7 +109,8 @@
 			
 			Charts.mainChart.subtitle.text = "Showing " + CurrentSuite.currentTimeStampArray.length + " results";
 				
-			for (var i = 0, chartsLength = Charts.data.length; i < chartsLength; i++) {
+			var chartsLength = Charts.data.length;
+			for (i = 0; i < chartsLength; i++) {
 		    	Charts.mainChart.series.push({
 					data : Charts.data[i].passPercentage,
 					name : Charts.data[i].name,
@@ -112,12 +123,12 @@
 	    	} else{
 	    		Charts.mainChart.xAxis.tickInterval = 5;
 	    	}
-			chartMaker.changeChartVariant(Utilities.graphView);
+			vm.changeChartVariant(Utilities.graphView);
 			Charts.mainChart.loading = false;
-			chartMaker.highlightPoint(Utilities.getIndexByTimestamp(CurrentSuite.currentTimeStamp));
+			vm.highlightPoint(Utilities.getIndexByTimestamp(CurrentSuite.currentTimeStamp));
 	    }
 		
-		chartMaker.changeChartVariant = function(input){
+		vm.changeChartVariant = function(input){
 			Utilities.graphView = input;
 			
 			switch (input) {
@@ -408,7 +419,7 @@
 											Utilities.clearData();
 											CurrentSuite.currentSuiteInfo = suite;
 											RestLoader.loadTimestamp(CurrentSuite.timestampRaw[suite.id][this.index], true);
-											chartMaker.loadMainChart(suite.id, true);
+											vm.loadMainChart(suite.id, true);
 											$state.transitionTo('reports.classes');
 										}
 									}
