@@ -48,7 +48,7 @@ public class MethodFailDAO extends DBBridge{
 
 	private HashSet<String> getMaxTimestampsMethodClassKeys(int suiteid){
 		HashSet<String> keySet = new HashSet<String>();
-		String sql = "SELECT DISTINCT testcase.testcasename, class.classname FROM report INNER JOIN testcase ON (report.testcase_id = testcase.testcase_id) INNER JOIN class ON report.class_id = class.class_id WHERE report.suite_id = "+suiteid+" AND report.timestamp >= (SELECT MAX(timestamp) FROM report);";
+		String sql = "SELECT DISTINCT testcase.testcasename, class.classname FROM report INNER JOIN testcase ON (report.testcase_id = testcase.testcase_id) INNER JOIN class ON report.class_id = class.class_id WHERE report.suite_id = "+suiteid+" AND report.timestamp >= (SELECT MAX(timestamp) FROM report WHERE report.suite_id = "+suiteid+");";
 		ResultSet rs = readFromDB(sql);
 		try {
 			while (rs.next()) {
