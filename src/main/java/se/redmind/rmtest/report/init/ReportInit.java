@@ -98,9 +98,9 @@ public class ReportInit {
 
 	private void printBrokenReports() {
 		if (brokenReports.size() > 0) {
-			System.err.println("Broken reports: "+brokenReports.size());
+			log.info("Broken reports: "+brokenReports.size());
 			for (String reportname : brokenReports) {
-				System.err.println(reportname);
+				log.info(reportname);
 			}
 		}
 		else System.out.println("No broken reports");
