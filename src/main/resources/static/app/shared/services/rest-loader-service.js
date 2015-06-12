@@ -145,11 +145,15 @@
 		
 	    rl.loadMainChart = function(suiteID, newLine, createMainChart,name) {
 		   	Charts.mainChart.loading = 'Generating impressivly relevant statistics...';
+		   	
 		   	var activeQueries = [];
+		   	
+		   	var i = 0;
+		   	
 	 	   if (!newLine) {
 			   CurrentSuite.activeQueries = [];
 		   } else {
-			   for (var i = 0; i < CurrentSuite.activeQueries.length; i++) {
+			   for (i = 0; i < CurrentSuite.activeQueries.length; i++) {
 					   for (var j = 0; j < CurrentSuite.activeQueries[i].length; j++) {
 						   if (CurrentSuite.activeQueries[i][j].reslimit > Utilities.getResLimit() || CurrentSuite.activeQueries[i][j].reslimit < Utilities.getResLimit()) {
 							   CurrentSuite.activeQueries[i][j].reslimit = Utilities.getResLimit();
@@ -161,17 +165,17 @@
 		   }
 	 	   
 		   var requestObject = getGraphDataObject(suiteID,name);
-		   	for (var i = 0; i < activeQueries.length; i++) {
+		   	for (i = 0; i < activeQueries.length; i++) {
 				requestObject.push(activeQueries[i]);
-			}
-		   CurrentSuite.lastRunSize = Utilities.getResLimit();
-		   $http.post('/api/stats/graphdata', requestObject)
-		   .success(function(data, status, headers, config){
-			   createMainChart(data,newLine);
-		   }).error(function(data, status, headers, config){
-			   console.error(data);
-		   });
-	   };
+		   	}
+		   	CurrentSuite.lastRunSize = Utilities.getResLimit();
+		   	$http.post('/api/stats/graphdata', requestObject)
+		   	.success(function(data, status, headers, config){
+		   		createMainChart(data,newLine);
+		   	}).error(function(data, status, headers, config){
+		   		console.error(data);
+		   	});
+	    };
 	   
 		rl.loadScreenshotsFromClass = function(classObj){
 			

@@ -76,7 +76,7 @@
 	    	},
 	    	getResLimit: function() {
 	    		var reslimit = this.resultAmount;
-	    		if (!(isNaN(reslimit)) && !(reslimit === "")) {
+	    		if (!(isNaN(reslimit)) && reslimit !== "") {
 	    			reslimit = parseInt(reslimit);
 	    		} else {
 	    			reslimit = 50;
