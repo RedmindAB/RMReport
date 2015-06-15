@@ -52,7 +52,7 @@
 			    		</thead>
 						<tbody>
 			      			<tr ng-repeat='class in ctrl.DeviceData.classes[0] | orderBy: "-ratioFail"'>
-								<td>{{$index+1}}</td>
+								<td class='table-td-hash-width'>{{$index+1}}</td>
 								<td>{{class.testcaseName}}</td>
 								<td>{{class.total}}</td>
 								<td>{{class.fail}}</td>
