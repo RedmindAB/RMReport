@@ -27,11 +27,6 @@
 		
 		getPlatforms(suiteid);
 		getClasses(suiteid);
-		getDeviceRange(suiteid, timestamp);
-		
-		function getDeviceRange(suiteid, timestamp){
-			DashboardServices.getDeviceRange(suiteid, timestamp);
-		}
 		
 		function getClasses(suiteid){
 			DashboardServices.getClasses(suiteid);
