@@ -5,20 +5,18 @@
 		.module('webLog')
 		.factory('DashboardServices', DashboardServices);
 	
-	DashboardServices.$inject = ['$http', '$q', 'DeviceData', 'CurrentSuite'];
+	DashboardServices.$inject = ['$http', '$q', 'DeviceData', 'CurrentSuite', 'Utilities'];
 	
-	function DashboardServices ($http, $q, DeviceData, CurrentSuite) {
+	function DashboardServices ($http, $q, DeviceData, CurrentSuite, Utilities) {
 
 		var existingPlatforms = getPlatforms;
 		var devices = getDevices;
 		var classes = getClasses;
-		var deviceRange = getDeviceRange;
 		
 		return {
 			getPlatforms: existingPlatforms,
 			getDevices: devices,
-			getClasses: classes,
-			getDeviceRange: deviceRange
+			getClasses: classes
 		};
 		
 		function getDevices(suiteid){
@@ -64,6 +62,8 @@
 			var promises = [];
 			DeviceData.className = [];
 			DeviceData.classes = [];
+			DeviceData.lastFail = [];
+			
 			var promise = $http.get('/api/stats/methodfail/' + suiteid + "?limit=50" + "&maxres=10")
 			.success(function(data, status, headers, config){ 
 			}).error(function(data, status, headers, config){
@@ -75,6 +75,14 @@
 					for (var i = 0; i < requestLength; i++) {
 						DeviceData.classes.push(request[i].data);
 					}
+					for (var a = 0; a < request[0].data.length; a++) {
+						for (var b = 0; b < Utilities.descTimestamps.length; b++) {
+							if(request[0].data[a].lastfail === Utilities.descTimestamps[b]){
+								DeviceData.lastFail.push(b);
+							}
+						}
+					}
+					
 					/* Split className to get only className without src path --> Not currently used. Using suite name from CurrentSuite instead.
 		    		var obj = DeviceData.classes[0];
 		    		
@@ -89,25 +97,6 @@
 			    	return className;
 			    	
 			    	*/
-				}
-		    });
-		}
-		
-		function getDeviceRange(suiteid, timestamp){
-			var promises = [];
-			DeviceData.deviceRange = [];
-			var promise = $http.get('/api/stats/devicerange/' + suiteid + '/' + timestamp)
-			.success(function(data, status, headers, config){ 
-			}).error(function(data, status, headers, config){
-			});
-			promises.push(promise);
-			return $q.all(promises).then(function(request){
-				var requestLength = request.length;
-				if(requestLength > 0){
-					for (var i = 0; i < requestLength; i++) {
-						DeviceData.deviceRange.push(request[i].data);
-					}
-
 				}
 		    });
 		}

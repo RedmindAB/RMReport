@@ -1,7 +1,7 @@
 <div id='messages'>
 
 	<div style='width:50%;display:inline;float:left;overflow: auto;'>  
-		<div class="modal-content" style='color:black' ng-style="{'background-color':ctrl.DeviceData.modalColors[0]}">
+		<div class="modal-content" ng-style="{'background-color':ctrl.DeviceData.modalColors[0]}">
 			<div class='modal-header'>
 			 		<div ng-repeat='platform in ctrl.DeviceData.existingPlatforms track by $index'>
 			 			<h4 align='center'>Total
@@ -10,7 +10,7 @@
 			 				</span>
 			 				Devices:&nbsp;{{ctrl.DeviceData.devices[$index].length}}
 			 			</h4>
-				 		<table class="table">
+				 		<table class="table table-dash">
 				  			<thead>
 				    			<tr>
 				       			<th>#</th>
@@ -36,12 +36,12 @@
 	</div>
 	
 	<div style='width:50%;display:inline;float:right;overflow: auto;'>
-		<div class="modal-content" style='color:black;border: 1 solid black' ng-style="{'background-color':ctrl.DeviceData.modalColors[1]}">
+		<div class="modal-content" ng-style="{'background-color':ctrl.DeviceData.modalColors[1]}">
 			<div class='modal-header'>
 				<div ng-repeat='class in ctrl.DeviceData.classes[0] | limitTo: 1'>
 		  			<div ng-if='ctrl.DeviceData.classes.length'>
 		  		</div>      
-		  		<table class="table">
+		  		<table class="table table-dash">
 		   			<thead>
 		     			<tr>
 		        			<th>#</th>
@@ -49,6 +49,7 @@
 		        			<th>Total Tests</th>
 		        			<th>Total Failed</th>
 		        			<th>Fail Percentage</th>
+		        			<th>Last Failure</th>
 		      			</tr>
 		    		</thead>
 					<tbody>
@@ -58,6 +59,7 @@
 							<td>{{class.total}}</td>
 							<td>{{class.fail}}</td>
 							<td>{{class.ratioFail | number:2}}%</td>
+							<td>{{ctrl.DeviceData.lastFail[$index]}} runs ago</td>
 						</tr>
 					</tbody>
 				</table>
@@ -65,33 +67,4 @@
 		</div>
 	</div>
 	</div>
-
-	<div style='width:50%;top:0px;display:inline;float:left;overflow: auto;'>
-		<div class="modal-content" style='color:black' ng-style="{'background-color':ctrl.DeviceData.modalColors[2]}">
-			<div class='modal-header'>
-		  		<div ng-repeat='device in ctrl.DeviceData.deviceRange track by $index'>
-			  		<table class="table">
-			   			<thead>
-			   				<tr>
-			   					<th colspan='3'><h4>Devices in timestamp: {{Utilities.makeTimestampReadable(CurrentSuite.currentTimeStamp)}}</h4></th>
-			   				</tr>
-			     			<tr>
-			        			<th>#</th>
-			        			<th>Device Name</th>
-			        			<th>OS Name</th>
-			      			</tr>
-			    		</thead>
-						<tbody>
-			      			<tr ng-repeat='device in ctrl.DeviceData.deviceRange[$index]'>
-								<td>{{$index+1}}</td>
-								<td>{{device.devicename}}</td>
-								<td>{{device.osname}}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-	
 </div>
