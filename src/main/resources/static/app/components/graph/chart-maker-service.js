@@ -335,10 +335,10 @@
 									"<td style='color: "+points[i].series.color+"'>"+
 										points[i].series.name +
 									"</td>"+
-									"<td style='text-align: right'>"+
+									"<td>"+
 										"<b>"+Math.round(points[i].y)+"</b>"+
 									"</td>"+
-									"<td style='text-align: right'>"+
+									"<td>"+
 										"<b>"+Math.round(points[i].percentage)+"%</b>"+
 									"</td>"+
 								"</tr>";
