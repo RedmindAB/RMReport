@@ -416,10 +416,15 @@
 								point: {
 									events: {
 										click: function(e){
+											var backupSuite = CurrentSuite.currentSuiteInfo;
 											Utilities.clearData();
-											CurrentSuite.currentSuiteInfo = suite;
-											RestLoader.loadTimestamp(CurrentSuite.timestampRaw[suite.id][this.index], true);
-											vm.loadMainChart(suite.id, true);
+											if($state.$current.name === "home"){
+												CurrentSuite.currentSuiteInfo = suite;
+											} else {
+												CurrentSuite.currentSuiteInfo = backupSuite;
+											}
+											RestLoader.loadTimestamp(CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][this.index], true);
+											vm.loadMainChart(CurrentSuite.currentSuiteInfo.id, true);
 											$state.transitionTo('reports.classes');
 										}
 									}
