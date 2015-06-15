@@ -8,7 +8,6 @@ import java.util.HashSet;
 import se.redmind.rmtest.db.DBBridge;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonPrimitive;
 
 public class MethodFailDAO extends DBBridge{
 	
