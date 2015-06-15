@@ -108,5 +108,11 @@ angular
 		    templateUrl: 'app/components/admin/admin.html',
 		    controller: 'AdminCtrl',
 		    controllerAs: 'ctrl'
+		})
+		.state('live-tests',{
+		    url:'/live-tests',
+		    templateUrl: 'app/components/live-tests/live-tests.html',
+		    controller: 'LiveTestsCtrl',
+		    controllerAs: 'ctrl'
 		});
     });
