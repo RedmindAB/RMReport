@@ -16,7 +16,7 @@
 		return {
 			getPlatforms: existingPlatforms,
 			getDevices: devices,
-			getClasses: classes,
+			getClasses: classes
 		};
 		
 		function getDevices(suiteid){
@@ -63,6 +63,7 @@
 			DeviceData.className = [];
 			DeviceData.classes = [];
 			DeviceData.lastFail = [];
+			
 			var promise = $http.get('/api/stats/methodfail/' + suiteid + "?limit=50" + "&maxres=10")
 			.success(function(data, status, headers, config){ 
 			}).error(function(data, status, headers, config){

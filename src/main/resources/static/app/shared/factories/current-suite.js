@@ -40,15 +40,19 @@
 		    	return false;
 		    },
 		    clearPlatformChosen: function(platform){
+		    	
+		    	var i = 0;
+		    	var j = 0;
+		    	
 		    	var platforms = this.currentSpecObject.platforms;
-		    	for (var i = 0; i < platforms.length; i++) {
+		    	for (i = 0; i < platforms.length; i++) {
 					if (platforms[i].osname === platform.osname) {
-						for (var j = 0; j < platforms[i].versions.length; j++) {
+						for (j = 0; j < platforms[i].versions.length; j++) {
 							if (platforms[i].versions[j].chosen) {
 								delete platforms[i].versions[j].chosen;
 							}
 						}
-						for (var j = 0; j < platforms[i].devices.length; j++) {
+						for (j = 0; j < platforms[i].devices.length; j++) {
 							if (platforms[i].devices[j].chosen) {
 								delete platforms[i].devices[j].chosen;
 							}
@@ -154,11 +158,14 @@
 		    	var sortedDevices = [];
 		    	var platformName = '';
 		    	var platforms = this.currentSpecObject.platforms;
+		    	
+		    	var i = 0;
+		    	var j = 0;
 	
-		    	for (var i = 0; i < platforms.length; i++) {
+		    	for (i = 0; i < platforms.length; i++) {
 		    		if (platforms[i].chosen) {
 		    			if (this.containsOsId(osid, platforms[i].versions)) {
-							for (var j = 0; j < platforms[i].devices.length; j++) {
+							for (j = 0; j < platforms[i].devices.length; j++) {
 								for (var k = 0; k < devices.length; k++) {
 									if (devices[k] === platforms[i].devices[j].deviceid) {
 										sortedDevices.push(platforms[i].devices[j].deviceid);
@@ -166,7 +173,7 @@
 								}
 							}
 							if (sortedDevices.length === 0) {
-								for (var j = 0; j < platforms[i].devices.length; j++) {
+								for (j = 0; j < platforms[i].devices.length; j++) {
 									sortedDevices.push(platforms[i].devices[j].deviceid);
 								}
 							}
@@ -212,15 +219,18 @@
 				}
 		    },
 		    getBrowsers: function(specs, key){
+		    	
+		    	var i = 0;
+		    	
 		    	var browserIDs = [];
 		    	if (this.containsChosen(specs)) {
-			    	for (var i = 0; i < specs.length; i++) {
+			    	for (i = 0; i < specs.length; i++) {
 			    		if (specs[i].chosen) {
 			    			browserIDs.push(specs[i][key]);
 						}
 					}
 		    	} else {
-		    		for (var i = 0; i < specs.length; i++) {
+		    		for (i = 0; i < specs.length; i++) {
 						browserIDs.push(specs[i][key]);
 					}
 		    	}
@@ -247,6 +257,12 @@
 		    	var dataArray = [];
 		    	var chosenBaseArray = [];
 		    	
+		    	var i = 0;
+		    	var j = 0;
+		    	var childLenght;
+		    	var specLength;
+		    	var specChild;
+		    	
 		    	//browsers
 		    	if (base == 'browsers') {
 					dataArray = this.getBrowsers(specs, key);
@@ -255,20 +271,23 @@
 				//the rest
 					//if chosen patforms are found, only add the chosen
 					if (this.containsChosen(specs)) {
-						for (var i = 0, specLength = specs.length; i < specLength; i++) {
+						specLength = specs.length;
+						for (i = 0; i < specLength; i++) {
 							if (specs[i].chosen) {
 					    		if (child != 'none') {
 					    			//if chosen childs are found only add the chosen
-					    			var specChild = specs[i][child];
+					    			specChild = specs[i][child];
 					    			if (this.containsChosen(specChild)) {
-							    		for (var j = 0, childLength = specChild.length; j < childLength; j++) {
+					    				childLength = specChild.length;
+							    		for (j = 0; j < childLength; j++) {
 							    			if (specChild[j].chosen) {
 							    				dataArray.push(specChild[j][key]);
 											}
 										}
 					    			} else {
 					    				//if NO chosen childs found adding all
-				    					for (var j = 0, childLength = specChild.length; j < childLength; j++) {
+					    				childLength = specChild.length;
+				    					for (j = 0; j < childLength; j++) {
 				    						dataArray.push(specChild[j][key]);
 				    					}
 					    			}
@@ -280,19 +299,22 @@
 						}
 						//if NO chosen platforms are found adding all
 					} else {
-				    	for (var i = 0, specLength = specs.length; i < specLength; i++) {
+						specLength = specs.length;
+				    	for (i = 0; i < specLength; i++) {
 				    		if (child != 'none') {
-				    			var specChild = specs[i][child];
+				    			specChild = specs[i][child];
 				    			//if chosen child found adding chosen
 				    			if (this.containsChosen(specChild)) {
-						    		for (var j = 0, childLength = specChild.length; j < childLength; j++) {
+				    				childLength = specChild.length;
+						    		for (j = 0; j < childLength; j++) {
 						    			if (specChild[j].chosen) {
 						    				dataArray.push(specChild[j][key]);
 										}
 									}
 				    			} else {
 				    				//if NO chosen child found adding all
-			    					for (var j = 0, childLength = specChild.length; j < childLength; j++) {
+				    				var childLength = specChild.length;
+			    					for (j = 0; j < childLength; j++) {
 			    						dataArray.push(specChild[j][key]);
 			    					}
 				    			}
@@ -333,11 +355,15 @@
 						testcases: [],
 						platforms:[]
 				};
+				
+				var i = 0;
+				var j = 0;
+				
 				if (platforms) {
 					//add version to send
-						for (var i = 0; i < platforms.length; i++) {
+						for (i = 0; i < platforms.length; i++) {
 							var versions = platforms[i].versions;
-							for (var j = 0; j < versions.length; j++) {
+							for (j = 0; j < versions.length; j++) {
 								if (versions[j].chosen) {
 									chosen.os.push(versions[j].osid);
 								}
@@ -345,9 +371,9 @@
 						}
 					
 					//add devices to send
-						for (var i = 0; i < platforms.length; i++) {
+						for (i = 0; i < platforms.length; i++) {
 							var devices= platforms[i].devices;
-							for (var j = 0; j < devices.length; j++) {
+							for (j = 0; j < devices.length; j++) {
 								if (devices[j].chosen) {
 									chosen.devices.push(devices[j].deviceid);
 								}
@@ -355,11 +381,11 @@
 						}
 					
 					//add platform to send
-						for (var i = 0; i < platforms.length; i++) {
+						for (i = 0; i < platforms.length; i++) {
 							if (platforms[i].chosen) {
 								var osids = [];
 								if (this.containsChosen(platforms[i].versions)) {
-									for (var j = 0; j < platforms[i].versions.length; j++) {
+									for (j = 0; j < platforms[i].versions.length; j++) {
 										if (chosen.os.indexOf(platforms[i].versions[j].osid) == -1) {
 											if (platforms[i].versions[j].chosen) {
 												chosen.os.push(platforms[i].versions[j].osid);
@@ -367,7 +393,7 @@
 										}
 									}
 								} else {
-									for (var j = 0; j < platforms[i].versions.length; j++) {
+									for (j = 0; j < platforms[i].versions.length; j++) {
 										chosen.os.push(platforms[i].versions[j].osid);
 									}
 								}
@@ -376,7 +402,7 @@
 						}
 					
 					//add browsers to send
-						for (var i = 0; i < browsers.length; i++) {
+						for (i = 0; i < browsers.length; i++) {
 							if (browsers[i].chosen) {
 								chosen.browsers.push(browsers[i].browserid);
 							}
@@ -386,7 +412,7 @@
 				//add classes to send
 				if (this.currentSuite) {
 					var classes = this.currentSuite;
-					for (var i = 0; i < classes.length; i++) {
+					for (i = 0; i < classes.length; i++) {
 						if (classes[i].chosen) {
 							chosen.classes.push(classes[i].id);
 						}
@@ -396,7 +422,7 @@
 				//add methods to send
 				if (this.currentClass.testcases) {
 					var testcases = this.currentClass.testcases;
-					for (var i = 0; i < testcases.length; i++) {
+					for (i = 0; i < testcases.length; i++) {
 						if (testcases[i].chosen) {
 							chosen.testcases.push(testcases[i].id);
 						}
@@ -405,33 +431,27 @@
 				return chosen;
 			},
 			clearOtherChosen: function(item){
+				var classes = this.currentSuite;
+				var methods = this.currentClass.testcases;
+				
+				var i = 0;
+				
 				//remove classes checkbox
-				var currentSuite = this.currentSuite;
-				
-				if (currentSuite) {
-					for (var i = 0; i < currentSuite.length; i++) {
-						if (currentSuite[i].chosen && currentSuite[i] != item) {
-							delete currentSuite[i].chosen;
+				if (classes) {
+					var suiteLength = classes.length;
+					for (i = 0; i < suiteLength; i++) {
+						if (classes[i].chosen && classes[i] != item) {
+							delete classes[i].chosen;
 						}
 					}
 				}
 				
-				var currentClass = this.currentClass;
 				//remove method checkbox
-				if (currentClass.testcases) {
-					for (var i = 0; i < currentClass.testcases.length; i++) {
-						if (currentClass.testcases[i].chosen && currentClass.testcases[i] != item) {
-							delete currentClass.testcases[i].chosen;
-						}
-					}
-				}
-				
-				var currentDrivers = this.currentDrivers;
-				//remove driver checkbox
-				if (currentDrivers) {
-					for (var i = 0; i < currentDrivers.length; i++) {
-						if (currentDrivers[i].chosen && currentDrivers[i] != item) {
-							delete currentDrivers[i].chosen;
+				if (methods) {
+					var classLength = methods.length;
+					for (i = 0; i < classLength; i++) {
+						if (methods[i].chosen && methods[i] != item) {
+							delete methods[i].chosen;
 						}
 					}
 				}

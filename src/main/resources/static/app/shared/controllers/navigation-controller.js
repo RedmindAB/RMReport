@@ -144,29 +144,27 @@
 		};
 	    
 		$scope.clearChosen = function(){
+			
+			var i = 0;
+			var classes = CurrentSuite.currentSuite;
+			var methods = CurrentSuite.currentClass.testcases;
+			
 			//remove classes checkbox
-			if (CurrentSuite.currentSuite) {
-				for (var i = 0; i < CurrentSuite.currentSuite.length; i++) {
-					if (CurrentSuite.currentSuite[i].chosen) {
-						delete CurrentSuite.currentSuite[i].chosen;
+			if (classes) {
+				var classesLength = classes.length;
+				for (i = 0; i < classesLength.length; i++) {
+					if (classes[i].chosen) {
+						delete classes[i].chosen;
 					}
 				}
 			}
 			
 			//remove method checkbox
-			if (CurrentSuite.currentClass.testcases) {
-				for (var i = 0; i < CurrentSuite.currentClass.testcases.length; i++) {
-					if (CurrentSuite.currentClass.testcases[i].chosen) {
-						delete CurrentSuite.currentClass.testcases[i].chosen;
-					}
-				}
-			}
-			
-			//remove driver checkbox
-			if (CurrentSuite.currentDrivers) {
-				for (var i = 0; i < CurrentSuite.currentDrivers.length; i++) {
-					if (CurrentSuite.currentDrivers[i].chosen) {
-						delete CurrentSuite.currentDrivers[i].chosen;
+			if (methods) {
+				var methodsLength = methods.length;
+				for (i = 0; i < methodsLength; i++) {
+					if (methods[i].chosen) {
+						delete methods[i].chosen;
 					}
 				}
 			}
