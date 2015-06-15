@@ -24,7 +24,6 @@
 		vm.isSmallWindowToggle 				= isSmallWindowToggle;
 		vm.isSmallWindowTarget				= isSmallWindowTarget;
 		vm.loadDashboardPlatformsAndDevices = loadDashboardPlatformsAndDevices;
-		vm.loadDashboardDeviceRange 		= loadDashboardDeviceRange;
 		vm.loadMainChart					= loadMainChart;
 		
 	    function chooseProject(){
@@ -80,11 +79,6 @@
 					DashboardServices.getClasses(CurrentSuite.currentSuiteInfo.id);	
 				});
 			});
-			loadDashboardDeviceRange();
-		}
-		
-		function loadDashboardDeviceRange(){
-			DashboardServices.getDeviceRange(CurrentSuite.currentSuiteInfo.id, CurrentSuite.currentSuiteInfo.lastTimeStamp);
 		}
 		
 	    function loadMainChart(suiteID, newLine, name){
