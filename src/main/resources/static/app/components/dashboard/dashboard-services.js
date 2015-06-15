@@ -18,6 +18,7 @@
 			getPlatforms: existingPlatforms,
 			getDevices: devices,
 			getClasses: classes,
+			getDeviceRange: deviceRange
 		};
 		
 		function getDevices(suiteid){
