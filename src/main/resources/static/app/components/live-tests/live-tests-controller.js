@@ -14,7 +14,7 @@
 	
 		vm.mockedPassedTests = ['test_chooseAnotherClass', 'test_Specifications_PlatformVersion', 'test_changeRunLimit_500', 'test_Specifications_CheckDeviceGetPlatform', 'test_ClickOnSuiteLink', 'test_ClearCheckBoxesVersion', 'test_Specifications_Version', 'test_gridGetJson', 'test_Specifications_VersionPlatform', 'test_RunTime'];
 		vm.mockedNewTests = ['test_openSysos', 'test_opencloseSyso', 'test_chooseAnotherClass', 'test_chooseTimestamp', 'test_changeProject', 'test_isThumbnailPresent', 'test_isScreenShotPresent', 'test_isScreenShotSwitched', 'test_goToAdmin', 'test_goToDashboard'];
-		vm.statistics = ['6.74', '144', '65', '0'];
+		vm.mockedStatistics = ['6.74', '144', '65', '0'];
 	
 		runProgressBar();
 		
