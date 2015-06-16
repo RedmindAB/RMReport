@@ -24,7 +24,6 @@
 		vm.isSmallWindowToggle 				= isSmallWindowToggle;
 		vm.isSmallWindowTarget				= isSmallWindowTarget;
 		vm.loadDashboardPlatformsAndDevices = loadDashboardPlatformsAndDevices;
-		vm.loadDashboardDeviceRange 		= loadDashboardDeviceRange;
 		vm.loadMainChart					= loadMainChart;
 		
 	    function chooseProject(){
@@ -75,16 +74,10 @@
 		}
 	    
 		function loadDashboardPlatformsAndDevices(){
-			DashboardServices.getPlatforms(CurrentSuite.currentSuiteInfo.id, "android").then(function(){
-				DashboardServices.getDevices(CurrentSuite.currentSuiteInfo.id).then(function(){
-					DashboardServices.getClasses(CurrentSuite.currentSuiteInfo.id);	
-				});
+			DashboardServices.getPlatforms(CurrentSuite.currentSuiteInfo.id, "android")
+			.then(function(){
+				DashboardServices.getClasses(CurrentSuite.currentSuiteInfo.id);	
 			});
-			loadDashboardDeviceRange();
-		}
-		
-		function loadDashboardDeviceRange(){
-			DashboardServices.getDeviceRange(CurrentSuite.currentSuiteInfo.id, CurrentSuite.currentSuiteInfo.lastTimeStamp);
 		}
 		
 	    function loadMainChart(suiteID, newLine, name){
