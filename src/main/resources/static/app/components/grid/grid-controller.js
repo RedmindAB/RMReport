@@ -9,30 +9,36 @@
 	
 	function GridCtrl ($scope, $rootScope ,$http, Polling, GridData){
 		
-		$scope.GridData = GridData;
-		$scope.mockData ={
-				FreeProxies:[]
-		};
-		$scope.currentGridObject = {};
-		
-		$scope.gridModalShown = false;
-		
-		$scope.gridToggleModal = function() {
-			$scope.gridModalShown = !$scope.gridModalShown;
-		};
-		
-		$scope.$on("closeModal", function() {
-			$scope.gridToggleModal();
-		});
-		
-		$scope.setCurrentGrid = function(grid){
-			$scope.currentGridObject = JSON.stringify(grid,null,4);
-		};
+		var vm = this;
 		
 		var restURL = "/api/selenium/griddata";
 		
+		vm.GridData = GridData;
+		
+		vm.currentGridObject = {};
+		
+		vm.gridModalShown = false;
+		
+		
+		vm.gridToggleModal = gridToggleModal;
+		vm.setCurrentGrid = setCurrentGrid;
+		vm.getOSLogo = getOSLogo;
+		vm.isDesktop = isDesktop;
+		vm.getBrowserImage = getBrowserImage;
+		vm.noNodesConnected = noNodesConnected;
+		vm.isHubConnected = isHubConnected;
+		vm.isDesktopNodesConnected = isDesktopNodesConnected;
+		vm.isDeviceNodesConnected = isDeviceNodesConnected;
+		
+		
+		Polling.startPolling('grid', restURL, GridData, setData);
+		
+		$scope.$on("closeModal", function() {
+			gridToggleModal();
+		});
+		
 		var pollController = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-			$scope.gridModalShown = false;
+			vm.gridModalShown = false;
 			if(fromState.name === 'grid'){
 				Polling.stopPolling("grid");
 			}
@@ -40,13 +46,20 @@
 			
 		});
 		
+		function gridToggleModal() {
+			vm.gridModalShown = !vm.gridModalShown;
+		}
+		
+		
+		function setCurrentGrid(grid){
+			vm.currentGridObject = JSON.stringify(grid,null,4);
+		}
+		
 		function setData(obj){
 			GridData.data = obj;
 		}
 		
-		Polling.startPolling('grid', restURL, GridData, setData);
-		
-		$scope.getOSLogo = function(os){
+		function getOSLogo(os){
 			switch (os) {
 			case "MAC":
 				return "assets/img/logos/console/apple_mac.png";
@@ -64,13 +77,13 @@
 			default:
 				return "";
 			}
-		};
+		}
 		
-		$scope.isDesktop = function(platformName){
+		function isDesktop(platformName){
 			return platformName === undefined;
-		};
+		}
 		
-		$scope.getBrowserImage = function(browserName){
+		function getBrowserImage(browserName){
 			if(browserName === "firefox"){
 				return "assets/img/logos/console/firefox.png";
 			}
@@ -80,9 +93,9 @@
 			else{
 				return "assets/img/logos/console/phantomjs.png";
 			}
-		};
+		}
 		
-		$scope.noNodesConnected = function(){
+		function noNodesConnected(){
 			if(GridData.data.FreeProxies !== undefined){
 				if(GridData.data.FreeProxies.length === 0 && GridData.data.BusyProxies.length === 0){
 					return true;
@@ -94,18 +107,18 @@
 			else{
 				return false;
 			}
-		};
+		}
 		
-		$scope.isHubConnected = function(){
+		function isHubConnected(){
 			if(GridData.data.error !== undefined){
 				return true;
 			}
 			else{
 				return false;
 			}
-		};
+		}
 		
-		$scope.isDesktopNodesConnected = function(){
+		function isDesktopNodesConnected(){
 			if(GridData.data.FreeProxies){
 			var proxies = GridData.data.FreeProxies;
 				for(var i = 0; i < proxies.length; i++){
@@ -117,9 +130,9 @@
 				}
 			}
 			return false;
-		};
+		}
 		
-		$scope.isDeviceNodesConnected = function(){
+		function isDeviceNodesConnected(){
 			if(GridData.data.FreeProxies){
 			var proxies = GridData.data.FreeProxies;
 				for(var i = 0; i < proxies.length; i++){
@@ -129,6 +142,6 @@
 				}
 			}
 			return false;
-		};
+		}
 	}
 })();
