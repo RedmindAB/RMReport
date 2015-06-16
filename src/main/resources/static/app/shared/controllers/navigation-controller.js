@@ -6,9 +6,9 @@
 		.controller('NavCtrl', NavCtrl);
 		
 			
-	NavCtrl.$inject = ['$scope', '$rootScope', '$state', '$location', 'CurrentSuite', 'Charts', 'Utilities', 'ScreenshotMaster', 'RestLoader'];
+	NavCtrl.$inject = ['$scope', '$state', '$location', 'CurrentSuite', 'Charts', 'Utilities', 'ScreenshotMaster', 'RestLoader'];
 	
-	function NavCtrl ($scope, $rootScope, $state, $location, CurrentSuite, Charts, Utilities, ScreenshotMaster, RestLoader){
+	function NavCtrl ($scope, $state, $location, CurrentSuite, Charts, Utilities, ScreenshotMaster, RestLoader){
 		
 		$scope.CurrentSuite = CurrentSuite;
 		$scope.Charts = Charts;
@@ -31,24 +31,10 @@
 			}
 		};
 		
-		$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-			if (fromState.name === "screenshots.methods") {
-				$rootScope.$broadcast("closeConsoleModal");
-				$rootScope.$broadcast("closeScreenshotModal");
-			}
-			
-			Utilities.searchField = '';
-			Utilities.resetSorting();
-			CurrentSuite.clearChosenClasses();
-			CurrentSuite.clearChosenMethods();
-		});
-		
 		function collapseNavbar(){
 			var myEl = angular.element(document.querySelector('#navbar-collapse-2'));
 			myEl.removeClass('in'); 
 		}
-		
-		
 		
 		$scope.getPosition = function(){
 			switch ($state.$current.name) {
@@ -67,6 +53,7 @@
 			switch ($state.$current.name) {
 			case 'reports.classes':
 				$scope.setState('home');
+				console.log("wtf");
 				break;
 			case 'reports.methods':
 				$scope.setState('reports.classes');
@@ -105,6 +92,7 @@
 		$scope.goToScreenshotView = function(){
 			ScreenshotMaster.previousView = $state.$current.name;
 				if (CurrentSuite.currentSuite.length === 0) {
+					console.log("am I here...?");
 					$state.transitionTo('home');
 				} else {
 					if (CurrentSuite.currentClass.length === 0 || $state.$current.name === 'reports.classes') {
@@ -169,12 +157,5 @@
 				}
 			}
 		};
-		
-		var resetWebApp = function(){
-			if (CurrentSuite.currentSuite.length === 0) {
-				$location.path("/");
-			}
-		};
-		resetWebApp();
 	}
 })();
