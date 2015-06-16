@@ -57,7 +57,10 @@
 								<td>{{class.total}}</td>
 								<td>{{class.fail}}</td>
 								<td>{{class.ratioFail | number:2}}%</td>
-								<td>{{ctrl.DeviceData.lastFail[$index]}} runs ago</td>
+								<td>
+									<div ng-if='ctrl.DeviceData.lastFail[$index] === 0'>This run</div>
+									<div ng-if='ctrl.DeviceData.lastFail[$index] !== 0'>{{ctrl.DeviceData.lastFail[$index]}} runs ago</div>
+								</td>
 							</tr>
 						</tbody>
 					</table>
