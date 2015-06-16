@@ -18,8 +18,8 @@
 	<link rel="stylesheet" href="assets/css/slider.css">
 	<link rel="shortcut icon" href="assets/img/logos/favicon.ico">
 </head>
-<body>
-	<div ng-controller="StyleCtrl">
+<body ng-controller="GlobalCtrl">
+	<div ng-controller="StyleCtrl as style">
 		<div ng-controller="NavCtrl">
 			<div class='triangle-overlay'>
 				<img src='assets/img/logos/triangle.png'>
@@ -50,6 +50,7 @@
 	<script src="assets/libs/TweenMax.min.js"></script>
 	<script src="assets/libs/angular-breadcrumb.min.js"></script>
 	<script src="app/app.js"></script>
+	<script src="app/shared/controllers/global-controller.js"></script>
 	<script src="app/shared/factories/current-suite.js"></script>
 	<script src="app/shared/factories/screenshot-master.js"></script>
 	<script src="app/shared/factories/charts.js"></script>

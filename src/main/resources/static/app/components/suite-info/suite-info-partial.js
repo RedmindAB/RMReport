@@ -18,8 +18,8 @@
 					        	"class='class-method-container'" +
 					        	"style='margin-top:10px'" + 
 					        	"ng-repeat='object in iterationObject| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index'" +
-					            "ng-class='getPanel(class.result)'" +
-					            "ng-style='{'background-color': getBgCo(class.result)}'>" +
+					            "ng-class='style.getPanel(class.result)'" +
+					            "ng-style='{'background-color': style.getBgCo(class.result)}'>" +
 					            "<table width='100%'>" +
 					                "<tr>" +
 					                    "<td class='checkbox-holder'>" +
@@ -28,7 +28,7 @@
 					                    "<td " +
 					                    	"id='class-{{$index}}'"+ 
 					                    	"ng-click='ctrl.getMethods(object); setState(toState);'" +
-					                    	"ng-style='{'color' : getCo(object.result)}'" +
+					                    	"ng-style='{'color' : style.getColor(object.result)}'" +
 					                    	"class='icon-checkbox-guard'>" +
 					                        "<p "+
 					                        	"id='class-name-{{$index}}'" +
@@ -38,7 +38,7 @@
 					                        "<p " +
 					                        	"id='class-runtime-{{$index}}'" +
 					                        	"class='accordion-name-container text-right'>" +
-					                        	"{{formatDecimals(object.time)}}" +
+					                        	"{{style.formatDecimals(object.time)}}" +
 					                        "</p>" +
 					                        "<p " +
 					                        	"id='class-passfail-{{$index}}'" +

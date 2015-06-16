@@ -106,7 +106,7 @@ public class ConfigHandler {
 			String path = pathElement.getAsString();
 			if (path.equals(dPath)) {
 				reportPaths.remove(pathElement);
-				return;
+				break;
 			}
 		}
 		autoCommit();
