@@ -12,7 +12,7 @@
 			existingPlatforms:[],
 			classes:[],
 			deviceRange: [],
-			modalColors: ['#87AFC7', '#8BB381', '#92C7C7', '#786D5F', '#48B3DF', '#ECA4A9'],
+			modalColors: ['#FBF5E6', '#F6F9ED' ,'#FFFFF2', '#EBECE4', '#EEF3E2', '#FDFDF0'],
 			lastFail: [],
 		};
 	}
