@@ -14,19 +14,19 @@
 			ng-controller="SuiteInfoCtrl"
 			ng-repeat="class in CurrentSuite.currentSuite| orderBy:['result','-stats.totFail','name'] track by $index "
 			ng-click="getMethods(class); loadScreenshotsFromClass(class); setState('screenshots.methods')"
-			ng-class='getPanel(class.result)'
-			ng-style="{'background-color': getBgCo(class.result)}">
+			ng-class='style.getPanel(class.result)'
+			ng-style="{'background-color': style.getBgCo(class.result)}">
 			<div id="class-{{$index}}" style="display: inline-block; width: 100%">
 				<h4 
 					id='get_methods' 
 					class="accordion-name-container text-left"
-					ng-style="{'color' : getCo(class.result)}">
+					ng-style="{'color' : style.getColor(class.result)}">
 					{{class.name}}
 				</h4>
 				<h4 
 					id='get_methods' 
 					class="accordion-name-container text-right"
-					ng-style="{'color' : getCo(class.result)}">
+					ng-style="{'color' : style.getColor(class.result)}">
 					Skipped: {{class.stats.skipped}} Failed: {{class.stats.totFail}}
 				</h4>
 			</div>

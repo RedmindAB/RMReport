@@ -27,7 +27,7 @@
 					class='rm-logo-a'
 					id='home_view' 
 					ng-click="goToHomeView();" 
-					ng-style="{'color': getNavColor('home')}" 
+					ng-style="{'color': style.getNavColor('home')}" 
 					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
 					data-target=".navbar-collapse"> 
 					<img src='assets/img/logos/logo.png' class='rm-logo'/>
@@ -39,7 +39,7 @@
 				<a 
 					id='dash_view' 
 					ng-click="goToDashboardView()" 
-					ng-style="{'color': getNavColor('dashboard')}" 
+					ng-style="{'color': style.getNavColor('dashboard')}" 
 					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
 					data-target=".navbar-collapse"> 
 					Dashboard
@@ -51,7 +51,7 @@
 				<a 
 					id='reports_view' 
 					ng-click="goToGraphView();ctrl.runGetDevices()" 
-					ng-style="{'color': getNavColor('reports')}" 
+					ng-style="{'color': style.getNavColor('reports')}" 
 					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
 					data-target=".navbar-collapse"> 
 					Reports
@@ -63,7 +63,7 @@
 				<a 
 					id='visual_view' 
 					ng-click="goToScreenshotView()" 
-					ng-style="{'color': getNavColor('screenshots')}" 
+					ng-style="{'color': style.getNavColor('screenshots')}" 
 					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
 					data-target=".navbar-collapse">
 					Visualizer
@@ -75,7 +75,7 @@
 				<a 
 					id='grid_view' 
 					ng-click="goToGridView()" 
-					ng-style="{'color': getNavColor('grid')}" 
+					ng-style="{'color': style.getNavColor('grid')}" 
 					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
 					data-target=".navbar-collapse"> 
 					Grid
@@ -87,7 +87,7 @@
 				<a 
 					id='admin_view' 
 					ng-click="setState('admin');" 
-					ng-style="{'color': getNavColor('admin')}" 
+					ng-style="{'color': style.getNavColor('admin')}" 
 					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
 					data-target=".navbar-collapse"> 
 					Admin
@@ -99,7 +99,7 @@
 				<a 
 					id='live-tests_view' 
 					ng-click="setState('live-tests');" 
-					ng-style="{'color': getNavColor('live-tests')}" 
+					ng-style="{'color': style.getNavColor('live-tests')}" 
 					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
 					data-target=".navbar-collapse"> 
 					Live Tests

@@ -5,8 +5,8 @@
         	class='class-method-container'
         	style="margin-top:10px" 
         	ng-repeat="method in CurrentSuite.currentMethods| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index" 
-        	ng-class='getPanel(method.result)' 
-        	ng-style="{'background-color': getBgCo(method.result)}">
+        	ng-class='style.getPanel(method.result)' 
+        	ng-style="{'background-color': style.getBgCo(method.result)}">
             <table width='100%'>
                 <tr>
 					<td class='checkbox-holder'>
@@ -15,7 +15,7 @@
                     <td 
                     	id='method-{{$index}}' 
                     	ng-click="ctrl.getCases(method);setState('reports.cases');" 
-                    	ng-style="{'color' : getCo(method.result)}" 
+                    	ng-style="{'color' : style.getColor(method.result)}" 
                     	class="icon-checkbox-guard">
 						<p 
 							id="method-name-{{$index}}" 
@@ -25,7 +25,7 @@
                         <p 
                         	id="method-runtime-{{$index}}" 
                         	class="accordion-name-container text-right">
-                        	{{formatDecimals(method.time)}}
+                        	{{style.formatDecimals(method.time)}}
                         </p>
                         <p 
                         	id="method-passfail-{{$index}}" 

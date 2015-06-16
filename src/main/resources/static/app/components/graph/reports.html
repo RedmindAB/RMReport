@@ -9,18 +9,18 @@
 						id="navigation-classes"
 						ng-click="setState('reports.classes')" 
 						class="navTextStuff"
-						ng-show="showClassLink('classes')">
+						ng-show="style.showClassLink('classes')">
 						{{CurrentSuite.currentSuiteInfo.name}}&nbsp;
 					</div>
 					<div style='word-break: break-all' id="navigation-methods"
 						ng-click="setState('reports.methods')" class="navTextStuff"
-						ng-show="showClassLink('methods')">
+						ng-show="style.showClassLink('methods')">
 						&#10140; {{CurrentSuite.currentClass.name}}&nbsp;
 						</p>
 					</div>
 					<div style='word-break: break-all' id="navigation-drivers"
 						ng-click="setState('reports.cases')" class="navTextStuff"
-						ng-show="showClassLink('cases')">
+						ng-show="style.showClassLink('cases')">
 						&#10140; {{CurrentSuite.currentMethod.name}}&nbsp;
 						</p>
 					</div>
@@ -196,7 +196,7 @@
 					<div 
 						id="specifications" 
 						class="accordion-toggle" 
-						ng-click='toggleButton()'>
+						ng-click='style.toggleButton()'>
 						Specifications
 						<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
 					</div>
