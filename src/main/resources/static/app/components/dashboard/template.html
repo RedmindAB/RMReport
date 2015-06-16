@@ -1,5 +1,4 @@
 <div id='messages'>
-
 	<div style='width:50%;display:inline;float:left;overflow: auto;'>  
 		<div class="modal-content" ng-style="{'background-color':ctrl.DeviceData.modalColors[0]}">
 			<div class='modal-header'>
@@ -39,32 +38,31 @@
 		<div class="modal-content" ng-style="{'background-color':ctrl.DeviceData.modalColors[1]}">
 			<div class='modal-header'>
 				<div ng-repeat='class in ctrl.DeviceData.classes[0] | limitTo: 1'>
-		  			<div ng-if='ctrl.DeviceData.classes.length'>
-		  		</div>      
-		  		<table class="table table-dash">
-		   			<thead>
-		     			<tr>
-		        			<th>#</th>
-		        			<th>Test Case Name</th>
-		        			<th>Total Tests</th>
-		        			<th>Total Failed</th>
-		        			<th>Fail Percentage</th>
-		        			<th>Last Failure</th>
-		      			</tr>
-		    		</thead>
-					<tbody>
-		      			<tr ng-repeat='class in ctrl.DeviceData.classes[0] | orderBy: "-ratioFail"'>
-							<td>{{$index+1}}</td>
-							<td>{{class.testcaseName}}</td>
-							<td>{{class.total}}</td>
-							<td>{{class.fail}}</td>
-							<td>{{class.ratioFail | number:2}}%</td>
-							<td>{{ctrl.DeviceData.lastFail[$index]}} runs ago</td>
-						</tr>
-					</tbody>
-				</table>
+		  			<div ng-if='ctrl.DeviceData.classes.length'></div>      
+			  		<table class="table table-dash">
+			   			<thead>
+			     			<tr>
+			        			<th>#</th>
+			        			<th>Test Case Name</th>
+			        			<th>Total Tests</th>
+			        			<th>Total Failed</th>
+			        			<th>Fail Percentage</th>
+			        			<th>Last Failure</th>
+			      			</tr>
+			    		</thead>
+						<tbody>
+			      			<tr ng-repeat='class in ctrl.DeviceData.classes[0] | orderBy: "-ratioFail"'>
+								<td class='table-td-hash-width'>{{$index+1}}</td>
+								<td>{{class.testcaseName}}</td>
+								<td>{{class.total}}</td>
+								<td>{{class.fail}}</td>
+								<td>{{class.ratioFail | number:2}}%</td>
+								<td>{{ctrl.DeviceData.lastFail[$index]}} runs ago</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 </div>

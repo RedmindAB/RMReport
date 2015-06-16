@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html ng-app="webLog">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Yet another megamenu for Bootstrap 3">
+	<meta name="author" content="@geedmo">
+	<title>Redmind Reports</title>
+	<!-- Bootstrap and demo CSS -->
+	<link href="assets/navbar/demo/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="assets/navbar/demo/components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="assets/navbar/demo/css/demo.css" rel="stylesheet">
+	<!-- Yamm styles-->
+	<link rel="stylesheet" href="/app/components/live-tests/live-tests-style.css">
+	<link href="assets/navbar/yamm/yamm.css" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/modal.css">
+	<link rel="stylesheet" href="assets/css/slider.css">
+	<link rel="shortcut icon" href="assets/img/logos/favicon.ico">
+</head>
+<body>
+	<div>
+		<p>
+			<h4  class='black' style='display:inline;float:left'>RMReport Suite - 2014-06-15</h4>
+			<h4  style='display:inline;float:right'>Elapsed Time: 1.30 seconds</h4>
+		</p>
+	</div><br><br>
+	
+	<div class="progress progressbar-margin-top">
+	   	<div class="progress-bar" id='pb' style="float: left; width: 0%" data-percentage="100"></div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-6">
+			<div class="modal-content  alert">
+				<div class='modal-header'>
+		 			<h4 align='center'>Running Tests</h4>
+		 		</div>
+		 		<div class='modal-body'>
+			 		<div>
+				 		<table class="table">
+				  			<thead>
+				    			<tr>
+				       				<th>#</th>
+				       				<th>Test Name</th>
+				     			</tr>
+					   		</thead>
+							<tbody>
+				     			<tr ng-repeat='test in ctrl.mockedNewTests'>
+									<td>{{$index+1}}</td>
+									<td>{{test}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="modal-content alert alert-success">
+				<div class='modal-header'>
+			 		<h4 align='center'>Passed Tests</h4>
+			 	</div>
+			 	<div class='modal-body'>
+			 		<div>
+				 		<table class="table">
+				  			<thead>
+				    			<tr>
+				       				<th>#</th>
+				       				<th>Test Name</th>
+				     			</tr>
+					   		</thead>
+							<tbody>
+				     			<tr ng-repeat='test in ctrl.mockedPassedTests'>
+									<td>{{$index+1}}</td>
+									<td>{{test}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class='row'>
+		<div class="col-md-6">
+			<div class="modal-content">
+				<div class='modal-header'>
+			 		<h4 align='center'>Suite Statistics</h4>
+			 	</div>
+			 	<div class='modal-body'>
+			 		<div>
+				 		<table class="table table-dash">
+				  			<thead>
+				    			<tr>
+				       				<th>Average Time</th>
+				       				<th>Passed Tests</th>
+				       				<th>Failed Tests</th>
+				       				<th>Skipped Tests</th>
+				     			</tr>
+					   		</thead>
+							<tbody>
+				     			<tr>
+			     					<td ng-repeat='stats in ctrl.mockedStatistics'>{{stats}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

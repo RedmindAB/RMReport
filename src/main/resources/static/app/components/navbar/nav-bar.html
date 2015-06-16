@@ -93,6 +93,18 @@
 					Admin
 				</a>
 			</li>
+			
+			<!-- Live Tests -->
+			<li id='admin' class='admin' role="presentation" ng-class="{'active': isActive('live-tests')}">
+				<a 
+					id='live-tests_view' 
+					ng-click="setState('live-tests');" 
+					ng-style="{'color': getNavColor('live-tests')}" 
+					ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
+					data-target=".navbar-collapse"> 
+					Live Tests
+				</a>
+			</li>
 		</ul>
 		
 		<!-- Dropdowns -->
