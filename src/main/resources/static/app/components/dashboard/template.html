@@ -1,5 +1,5 @@
 <div id='messages'>
-	<div style='width:50%;display:inline;float:left;overflow: auto;'>  
+	<div class='modal-container'>  
 		<div class="modal-content" ng-style="{'background-color':ctrl.DeviceData.modalColors[0]}">
 			<div class='modal-header'>
 			 		<div ng-repeat='platform in ctrl.DeviceData.existingPlatforms track by $index'>
@@ -34,7 +34,7 @@
 		</div>
 	</div>
 	
-	<div style='width:50%;display:inline;float:right;overflow: auto;'>
+	<div class='modal-container'>
 		<div class="modal-content" ng-style="{'background-color':ctrl.DeviceData.modalColors[1]}">
 			<div class='modal-header'>
 				<div ng-repeat='class in ctrl.DeviceData.classes[0] | limitTo: 1'>

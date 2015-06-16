@@ -1,41 +1,49 @@
-<div>
-    <accordion id="class-group" close-others="true">
-        <div 
-        	id='class-name' 
-        	class='class-method-container' 
-        	style="margin-top:10px" 
-        	ng-repeat="class in ctrl.CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index "
-            ng-class='getPanel(class.result)' 
-            ng-style="{'background-color': getBgCo(class.result)}">
-            <table width='100%'>
-                <tr>
-                    <td class="checkbox-holder">
-                        <icon-checkbox content="class" id='checkbox{{$index}}' ></icon-checkbox>					                    
-                    </td>
-                    <td 
-                    	id='class-{{$index}}' 
-                    	ng-click="ctrl.getMethods(class); setState('reports.methods');" 
-                    	ng-style="{'color' : getCo(class.result)}" 
-                    	class="icon-checkbox-guard">
-                        <p 
-                        	id="class-name-{{$index}}" 
-                        	class="accordion-name-container text-left">
-                        	{{class.name}}
-                        </p>
-                        <p 
-                        	id="class-runtime-{{$index}}" 
-                        	class="accordion-name-container text-right">
-                        	{{formatDecimals(class.time)}}
-                        </p>
-                        <p 
-                        	id="class-passfail-{{$index}}"
-                        	class="accordion-name-container text-right"
-                        	style="margin-right:10px">
-                        	Skipped: {{class.stats.skipped}} Failed: {{class.stats.totFail}}
-                        </p>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </accordion>
-</div>
+<!DOCTYPE html>
+<html ng-app="webLog">
+<head>
+	<link href="app/components/suite-info/suite-info-style.css" rel="stylesheet">
+</head>
+<body>
+	<div>
+	    <accordion id="class-group" close-others="true">
+	        <div 
+	        	id='class-name' 
+	        	class='class-method-container' 
+	        	style="margin-top:10px" 
+	        	ng-repeat="class in ctrl.CurrentSuite.currentSuite| filter: Utilities.searchField | orderBy:Utilities.sorting:reverse track by $index "
+	            ng-class='getPanel(class.result)' 
+	            ng-style="{'background-color': getBgCo(class.result)}">
+	            <table width='100%'>
+	                <tr>
+	                    <td class="checkbox-holder">
+	                        <icon-checkbox content="class" id='checkbox{{$index}}' ></icon-checkbox>					                    
+	                    </td>
+	                    <td 
+	                    	id='class-{{$index}}' 
+	                    	ng-click="ctrl.getMethods(class); setState('reports.methods');" 
+	                    	ng-style="{'color' : getCo(class.result)}" 
+	                    	class="icon-checkbox-guard">
+	                        <p 
+	                        	id="class-name-{{$index}}" 
+	                        	class="accordion-name-container text-left">
+	                        	{{class.name}}
+	                        </p>
+	                        <p 
+	                        	id="class-runtime-{{$index}}" 
+	                        	class="accordion-name-container text-right">
+	                        	{{formatDecimals(class.time)}}
+	                        </p>
+	                        <p 
+	                        	id="class-passfail-{{$index}}"
+	                        	class="accordion-name-container text-right"
+	                        	style="margin-right:10px">
+	                        	Skipped: {{class.stats.skipped}} Failed: {{class.stats.totFail}}
+	                        </p>
+	                    </td>
+	                </tr>
+	            </table>
+	        </div>
+	    </accordion>
+	</div>
+</body>
+</html>
