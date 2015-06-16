@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html ng-app="webLog">
+<head>
+	<link href="app/components/suite-info/suite-info-style.css" rel="stylesheet">
+</head>
+<body>
 <accordion id="case-group" close-others="true">
     <div ng-repeat="case in CurrentSuite.currentCases| filter: Utilities.searchField | orderBy:Utilities.caseSorting:reverse track by $index">
         <accordion-group 
@@ -46,3 +52,5 @@
         </accordion-group>
     </div>
 </accordion>
+</body>
+</html>

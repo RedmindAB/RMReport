@@ -1,9 +1,14 @@
-<div class="screenshot-nav-container">
+<html ng-app="webLog">
+<head>
+	<link href="app/components/screenshots/screenshots-style.css" rel="stylesheet">
+</head>
+<body>
+	<div class="screenshot-nav-container">
 	<!-- Current possition -->
-		<h4 class="screenshot-nav">
-			{{CurrentSuite.currentSuiteInfo.name}}
-		</h4>
-</div>
+	<h4 class="screenshot-nav">
+		{{CurrentSuite.currentSuiteInfo.name}}
+	</h4>
+	</div>
 
 <suite-info-partial 
 	iteration-object="CurrentSuite.currentSuite" 
@@ -12,3 +17,5 @@
 	load-function="ctrl.getMethods"
 	load-function-two="loadScreenshotsFromClass">
 </suite-info-partial>
+</body>
+</html>

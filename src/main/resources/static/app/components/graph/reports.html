@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html ng-app="webLog">
+<head>
+	<link rel="stylesheet" href="/app/components/graph/reports-style.css">
+</head>
+<body>
 <div ng-controller="GraphCtrl">
 
  <!-- Bread crumbs -->
@@ -322,7 +328,7 @@
 	<!-- Sorting functions -->
 	<div id="class-method-option-container">
 		<!-- Pass/fail sorting -->
-		<div id="class-method-option-left" class='btn-group' style='margin-top:25px'>
+		<div id="class-method-option-left" class='btn-group'>
 			<!-- Clear checkboxes -->
 			<button 
 				id='order_by_fail_pass'
@@ -347,7 +353,7 @@
 		</div>
 		
 		<!-- Run time sorting -->
-		<div id="class-method-option-right" class='btn-group' style='margin-top:25px'>
+		<div id="class-method-option-right" class='btn-group'>
 			<button 
 				id='order_by_fail_pass'
 				class='btn btn-default dropdown-toggle'

@@ -1,38 +1,67 @@
+/* Redmind triangle */
+
+.triangle-overlay {
+	display: block;
+	position: fixed;
+	z-index: 10000;
+	top: 0px;
+	right: 0px;
+	width: 105px;
+	height: 172px;
+}
+
+/* Navbar logo */
+
+.logo{
+	top:0px;
+    width:175px;
+    height:100%;
+	display:block;
+	opacity:0.1;
+	position:absolute;
+}
+
+.rm-logo{
+	height:25px;
+}
+
+.rm-logo-a{
+	height:50px;
+}
+
+/* Site containers */
+
+.container{
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	background-color: #ecf0f1;
+	position: relative;
+	padding: 10px;
+	min-width:735px;
+	margin-bottom:55px;
+}
+
+.container2{
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	position: relative;
+	right:0px;
+	margin-bottom:-20px;
+	min-width:735px;
+}
+
 /* General Styling*/
 
 html * {
     outline: 0 !important;
 }
 
-/* Table styling for Dashboard page */
-.table-dash{
-	word-wrap: break-word;
-}
-
-.table td{
-	max-width:30px;
-}
-
-.table-td-hash-width{
-	width:50px;
-	min-width:50px;
-}
-
-.modal-content{
-	color:black;
-	border: 1 solid black;
-    -webkit-box-shadow: 0 5px 15px rgba(0,0,0,0);
-    -moz-box-shadow: 0 5px 15px rgba(0,0,0,0);
-    -o-box-shadow: 0 5px 15px rgba(0,0,0,0);
-    box-shadow: 0 5px 15px rgba(0,0,0,0);
-}
-
 html{
 	height:100%;
-}
-
-.modal-content{
-	margin:5px 5px 5px 5px;
 }
 
 body{
@@ -44,12 +73,6 @@ body{
 
 .ui-view-margin{
 	top:72px;
-}
-
-.table_screenhots{
-	vertical-align:top;
-	border-collapse:separate;
-	border-spacing: 20px 0px;
 }
 
 .navheader{
@@ -82,125 +105,263 @@ h3 {
 	color:'red';
 }
 
-/* End */
+.myAccordion.ui-state-hover, .myAccordion.ui-state-focus {text-decoration:none;}
 
-/* Dashboard loading animation*/ 
+/* Style to restrict users from selecting text */
 
-.glyphicon-refresh-animate {
-    -animation: spin .7s infinite linear;
-    -webkit-animation: spin2 .7s infinite linear;
+.ui-state-focus { outline: none; }
+.ui-accordion-header {outline: none;}
+.ui-state-focus{
+    outline: none;
+}
+.noselect {
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-@-webkit-keyframes spin2 {
-    from { -webkit-transform: rotate(0deg);}
-    to { -webkit-transform: rotate(360deg);}
+/* Style to unrestrict users from selecting text */
+
+.select {
+	-webkit-touch-callout: text;
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
-@keyframes spin {
-    from { transform: scale(1) rotate(0deg);}
-    to { transform: scale(1) rotate(360deg);}
+/* Adds the function to scroll inside the dropdown menus*/
+
+.scrollable-menu {
+	height: auto;
+	max-height: 200px;
+	overflow-x: hidden;
 }
 
-/* End */
+/* Navigation Menu Style */
 
-/* Grid Console Style */
-
-.box {
-    border-radius: 4px;
-    padding: 20px;
-    width: 2175px;
-    height: 150px;
-    margin:0px 10px 10px 0px;
-    display:inline-block;
-    position:relative;
-    background-color: #D4D9DD;
-}
-.logo{
-	top:0px;
-    width:175px;
-    height:100%;
-	display:block;
-	opacity:0.1;
-	position:absolute;
+.navTextStuff {
+	float: left;
+	cursor: pointer;
 }
 
-.rm-logo{
-	height:25px;
+/* Checkbox style */
+
+.mycheckbox 
+{ 
+    float: left;
+    margin-top:10px;
+    background: url('http://www.gravatar.com/avatar/a2614a382fe86e0f69c1beb27182a63b?s=32&d=identicon&r=PG'); 
 }
 
-.rm-logo-a{
-	height:50px;
+.mycheckbox:checked 
+{ 
+    background: url('http://www.gravatar.com/avatar/330084e6f83101ec352f5f156b56508e?s=32&d=identicon&r=PG'); 
 }
 
-.desc{
-	float:left;
+/* Style for cases.html*/
+
+.cases-timetorun{
+	float:right;
+	display:inline
 }
 
-/* End */
+.this-test-button{
+	width:120px; 
+	margin-right:10px
+}
 
-/* Style for Bootstrap navbar pointer and hover */
+/* Style for classes.html */
 
-.navbar{
+.icon-checkbox-guard{
+	padding-left:10px;
+}
+
+.class-method-container{
+	height:100%;
+	margin-top:10px;
+	padding-left:10px;
+	padding-right:10px;
 	cursor:pointer;
+	word-wrap: break-all;
 }
 
-@media (max-width: 900px) {
-    .navbar-header {
-        float: none;
-    }
-    .navbar-left,.navbar-right {
-        float: none !important;
-    }
-    .navbar-toggle {
-        display: block;
-    }
-    .navbar-collapse {
-        border-top: 1px solid transparent;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-    .navbar-fixed-top {
-		top: 0;
-		border-width: 0 0 1px;
-	}
-    .navbar-collapse.collapse {
-        display: none!important;
-    }
-    .navbar-nav {
-        float: none!important;
-		margin-top: 7.5px;
-	}
-	.navbar-nav>li {
-        float: none;
-    }
-    .navbar-nav>li>a {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-    .collapse.in{
-  		display:block !important;
-	}
+.classes-input{
+	float:left;
+	margin-bottom:5px;
+	margin-left:10px;
 }
 
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    background-color: #EDEDED;
+/* Styling for methods.html*/
+
+.methods-input{
+	float:left;
+	margin-bottom:5px;
+	margin-left:5px;
 }
 
-.navbar-nav .dropdown:hover .dropdown-menu > li > a:hover, .dropdown:hover .dropdown-menu > li > a:focus{
-    background-color: #EDEDED;
+/* Specifications style */
+
+.icon-check{
+	margin-right:10px;
 }
 
-#navbar-collapse-2{
+.browser-name{
+	margin-right:10px;
+}
+
+.device-name{
+	margin-right:10px;
+}
+
+.version-name{
+	margin-right:10px;
+}
+
+.specs-clear-button{
+	width: 150px;
+	vertical-align:bottom;
+	margin-bottom:1px;
+}
+
+.accordion-toggle{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+.specs-heading{
 	padding:0px;
 }
 
-#navbar-project{
-	float:right;
-	margin-right: 100px;
+.spec-option-header{
+	margin-left:10px;
+	margin-right:10px;
 }
 
-/* End */
+.row-break{
+	border:10px solid #D4D9DD;
+	margin-top:10px;
+	margin-bottom:10px;
+}
 
-/* Style for custom bootstrap buttons */
+/* Reports style*/
+
+.option-headline{
+	margin:0px;
+	margin-left:10px;
+}
+
+.option-item{
+	padding-right:10px;
+}
+
+.option-browser{
+	padding-top:5px;
+}
+
+.reports-cursor-inline{
+	display:inline-block;
+	cursor:pointer;
+}
+
+.reports-input{
+	margin-top:14px;
+	margin-left:5px;
+}
+
+.reports-input-filter{
+	width:150px;
+	display:inline;
+}
+
+.reports-h4{
+	cursor:pointer;
+	text-align:center;
+}
+
+.reports-h5{
+	margin-bottom:0px;
+	margin-top:0px;
+}
+
+.reports-filter{
+	margin-top:15px;
+	word-break:break-all;
+	valign:bottom;
+}
+
+/* Other */
+
+.breadcrumb{
+	padding: 0px;
+	margin: 0px;
+	display:inline;
+	background-color: transparent;
+}
+
+.breadcrumb span, a{
+	color:inherit;
+}
+
+.breadcrumb span{
+	font-weight:bold;
+}
+
+.specs-container{
+	margin-top:10px;
+}
+
+.accordion-name-container{
+	margin-top:10px;
+	margin-bottom:10px;
+	font-size: 18px;
+	font-weight:normal;
+}
+
+.navbar-nav.navbar-right:last-child {
+    margin-right: 80px;
+}
+
+.panel-group{
+	width:100%;
+	margin-bottom:0px;
+}
+
+.stack-trace{
+	margin:0px;
+}
+
+.grid-h3{
+	margin:0px;
+	margin-bottom:10px;
+}
+
+.highcharts-container {
+    overflow: visible !important;
+    z-index: inherit !important;
+}
+
+.tooltipContainer{
+    position: relative;
+    z-index: 50;
+    border: 2px solid rgb(192, 192, 192);
+    border-radius: 5px;
+    background-color:rgba(255, 255, 255, 0.95);
+    padding: 5px;
+    font-size: 9pt;
+}
+
+.tooltipTable td:not(:last-child), th:not(:last-child){
+	padding-right: 10px;
+}
+
+/* BOOTSTRAP */
+
+/* Custom Bootstrap Buttons */
 
 #button_clear{
 	padding:0px;
@@ -360,8 +521,6 @@ fieldset[disabled] .btn-warning2.active {
 	background-color: #7A6337; 
 }
 
-/* End */
-
 /* Bootstrap solution to get the buttons corners rounded */
 
 .btn-group > .btn:first-of-type {
@@ -383,50 +542,13 @@ fieldset[disabled] .btn-warning2.active {
 	border-bottom-right-radius: 4px;
 }
 
-/* End */
+/* Bootstrap menu */
 
-.myAccordion.ui-state-hover, .myAccordion.ui-state-focus {text-decoration:none;}
-
-/* Style to restrict users from selecting text*/
-.ui-state-focus { outline: none; }
-.ui-accordion-header {outline: none;}
-.ui-state-focus{
-    outline: none;
-}
-.noselect {
-	-webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* End */
-
-/* Style to unrestrict users from selecting text */
-
-.select {
-	-webkit-touch-callout: text;
-    -webkit-user-select: text;
-    -khtml-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
-}
-
-/* End */
-
-/* Redmind triangle */
-
-.triangle-overlay {
-	display: block;
-	position: fixed;
-	z-index: 10000;
-	top: 0px;
-	right: 0px;
-	width: 105px;
-	height: 172px;
+.disabled {
+   pointer-events: none;
+   cursor: default;
+  
+  opacity:0.5
 }
 
 /* End */
@@ -444,21 +566,15 @@ fieldset[disabled] .btn-warning2.active {
 	min-width:750px;
 	margin-bottom:55px;
 }
-
-.container2{
-	border-bottom-right-radius: 3px;
-	border-bottom-left-radius: 3px;
-	border-top-right-radius: 3px;
-	border-top-left-radius: 3px;
-	position: relative;
-	right:0px;
-	margin-bottom:-20px;
-	min-width:735px;
+.enable {
+    opacity:1
 }
 
-/* End */
-
-/* Bootstrap menu */
+.home{
+	position:responsive;
+	float:left;
+	width:150px;
+}
 
 .icon-bar{
 	background-color: white;
@@ -469,525 +585,4 @@ fieldset[disabled] .btn-warning2.active {
     color: #666666;
     margin-bottom:0px;
     margin-left:5px;
-}
-
-.version{
-	cursor:default;
-}
-
-#version-a{
-	background-color: transparent;
-	color: inherit;
-}
-
-/* End */
-
-/* Style for image-path at home.html*/
-
-.image-paths{
-	height:30px;
-	width: 200x;
-	position: relative;
-	float: left;
-}
-
-.home-h4{
-	cursor:pointer;
-	display:inline;
-	margin-top:10px;
-	margin-left: 5px;
-	text-decoration: none;
-}
-
-.table-home{
-	width: 100%;
-}
-
-/* End */
-
-/* Adds the function to scroll inside the dropdown menus*/
-
-.scrollable-menu {
-	height: auto;
-	max-height: 200px;
-	overflow-x: hidden;
-}
-
-/* End */
-
-/* Navigation Menu Style */
-
-.navTextStuff {
-	float: left;
-	cursor: pointer;
-}
-
-/* End */
-
-/* Checkbox style */
-
-.mycheckbox 
-{ 
-    float: left;
-    margin-top:10px;
-    background: url('http://www.gravatar.com/avatar/a2614a382fe86e0f69c1beb27182a63b?s=32&d=identicon&r=PG'); 
-}
-
-.mycheckbox:checked 
-{ 
-    background: url('http://www.gravatar.com/avatar/330084e6f83101ec352f5f156b56508e?s=32&d=identicon&r=PG'); 
-}
-
-/* End */
-
-/* Style for reports.html */
-
-.highcharts-legend-item{
-	cursor:pointer;
-}
-
-.reports-cursor-inline{
-	display:inline-block;
-	cursor:pointer;
-}
-
-.reports-input{
-	margin-top:14px;
-	margin-left:5px;
-}
-
-.reports-input-filter{
-	width:150px;
-	display:inline;
-}
-
-.reports-h4{
-	cursor:pointer;
-	text-align:center;
-}
-
-.reports-h5{
-	margin-bottom:0px;
-	margin-top:0px;
-}
-
-.reports-filter{
-	margin-top:15px;
-	word-break:break-all;
-	valign:bottom;
-}
-
-/* End */
-
-
-/* Style for screenshot-methods.html */
-
-.screenshot-methods-table{
-	display:inline-block;
-	padding:10px;
-	margin:5px;
-}
-
-.screenshot-methods-description{
-	top: 0px;
-	display:inline-block;
-}
-
-.slide-img{
-	width: 800px;
-}
-
-.view{
-	margin-left: 10px;
-	font-size: 20px;
-	position:responsive;
-	float:left;
-	margin-top:15px;
-	margin-bottom:0px;
-}
-
-.no-screenshot{
-	margin-left:10px; 
-	margin-top:10px;
-}
-
-.screenshot-td{
-	margin-left:5px; 
-	margin-right:5px
-}
-
-/* End */
-
-/* Style for cases.html*/
-
-.cases-timetorun{
-	float:right;
-	display:inline
-}
-
-.this-test-button{
-	width:120px; 
-	margin-right:10px
-}
-
-/* End */
-
-/* Style for home.html */
-
-.disabled {
-   pointer-events: none;
-   cursor: default;
-  
-  opacity:0.5
-}
-.enable {
-  
-    opacity:1
-  
-}
-
-.home{
-	position:responsive;
-	float:left;
-	width:150px;
-}
-
-/* End */
-
-/* Style for classes.html */
-
-.icon-checkbox-guard{
-	padding-left:10px;
-}
-
-.class-method-container{
-	height:100%;
-	margin-top:10px;
-	padding-left:10px;
-	padding-right:10px;
-	cursor:pointer;
-	word-wrap: break-all;
-}
-
-.classes-input{
-	float:left;
-	margin-bottom:5px;
-	margin-left:10px;
-}
-
-/* End */
-
-/* Styling for methods.html*/
-
-.methods-input{
-	float:left;
-	margin-bottom:5px;
-	margin-left:5px;
-}
-
-/* End */
-
-/* Aligns checkboxes in classes and methods accordion vertically. */
-
-input {
-    width: 13px;
-    height: 13px;
-    padding: 0;
-    margin:0;
-    vertical-align: top;
-    position: relative;
-    *top: 1px;
-    *overflow: hidden;
-}
-label {
-    display: block;
-    padding: 0;
-    padding-left: 15px;
-    text-indent: -15px;
-    border: 0px solid;
-    margin-left: 5px;
-    vertical-align: top;
-}
-
-/* End */
-
-/* Specifications style */
-.icon-check{
-	margin-right:10px;
-}
-
-.browser-name{
-	margin-right:10px;
-}
-
-.device-name{
-	margin-right:10px;
-}
-
-.version-name{
-	margin-right:10px;
-}
-
-.specs-clear-button{
-	width: 150px;
-	vertical-align:bottom;
-	margin-bottom:1px;
-}
-
-.accordion-toggle{
-	padding-top:10px;
-	padding-bottom:10px;
-}
-
-.specs-heading{
-	padding:0px;
-}
-
-.spec-option-header{
-	margin-left:10px;
-	margin-right:10px;
-}
-
-.option-headline{
-	margin:0px;
-	margin-left:10px;
-}
-
-.option-item{
-	padding-right:10px;
-}
-
-.option-browser{
-	padding-top:5px;
-}
-
-.row-break{
-	border:10px solid #D4D9DD;
-	margin-top:10px;
-	margin-bottom:10px;
-}
-	
-/* End */
-
-.specs-container{
-	margin-top:10px;
-}
-
-/*screenshot style*/
-
-.screenshot-img-container{
-	max-width: 200px;
-	vertical-align:top;
-	max-height: 270px;
-	overflow: auto;
-}
-
-.screenshot-container{
-	height: 100%;
-	cursor: pointer;
-	word-break: break-all;
-	margin: 0px;
-	margin-top:10px;
-	padding-bottom:10px;
-	padding-right:10px;
-	padding-left:10px;
-}
-
-.screenshot-view{
- padding:5px;
-}
-
-.screenshot-class-display{
-	margin-top:10px;
-	padding-left:10px;
-	padding-right:10px;
-	cursor:pointer;
-}
-
-.screenshot-nav{
-	cursor:pointer;
-	margin-top:0px;
-	margin-bottom:0px;
-}
-
-.accordion-name-container{
-	margin-top:10px;
-	margin-bottom:10px;
-	font-size: 18px;
-	font-weight:normal;
-}
-
-.navbar-nav.navbar-right:last-child {
-    margin-right: 80px;
-}
-
-.panel-group{
-	width:100%;
-	margin-bottom:0px;
-}
-
-.stack-trace{
-	margin:0px;
-}
-
-.screenshot-nav-container{
-	width:100%;
-    text-align:center;
-}
-
-.screenshot-nav-left{
-	float:left;
-    bottom:10px;
-}
-
-.screenshot-nav-center{
-	-webkit-transform: translate(-50%, 0); 
-	display: inline-block;
-    margin:0 auto;
-}
-
-.screenshot-nav-right {
-    float:right;
-    bottom: 10px;
-}
-
-#class-method-option-container {
-    width:100%;
-    text-align:center;
-    min-width:505px;
-}
-
-#class-method-option-left {
-    float:left;
-    bottom:10px;
-}
-
-#class-method-option-center {
-    display: inline-block;
-    margin:0 auto;
-}
-
-#class-method-option-right {
-    float:right;
-    bottom: 10px;
-}
-
-.grid-h3{
-	margin:0px;
-	margin-bottom:10px;
-}
-
-.screenshot-background-top{
-	padding-top: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-top-left-radius: 4px !important;
-	border-top-right-radius: 4px !important;
-	border-bottom-left-radius: 0px !important;
-	border-bottom-right-radius: 0px !important;
-}
-
-.screenshot-background-mid{
-	padding-top: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-bottom-left-radius: 0px !important; 
-	border-bottom-right-radius: 0px !important;
-	border-top-left-radius: 0px !important; 
-	border-top-right-radius: 0px !important;
-}
-
-.screenshot-background-bot{
-	padding:10px;
-	border-top-left-radius: 0px !important;
-	border-top-right-radius: 0px !important;
-	border-bottom-left-radius: 4px !important;
-	border-bottom-right-radius: 4px !important;
-}
-
-/* End */
-
-/* Admin*/
-
-.admin-input{
-	margin-bottom:10px;
-}
-
-.admin-error-msg{
-	margin-bottom:10px;
-}
-
-.validate-change{
-	border-color: rgba(237, 236, 18,.8);
-    outline: 0;
-    outline: thin dotted \9;
-    -moz-box-shadow: 0 0 8px rgba(237, 236, 18,.6);
-    box-shadow: 0 0 8px rgba(237, 236, 18,.6) !important;
-}
-
-.validate-new{
-	border-color: rgba(17, 22, 241,.8);
-    outline: 0;
-    outline: thin dotted \9;
-    -moz-box-shadow: 0 0 8px rgba(17, 22, 241,.6);
-    box-shadow: 0 0 8px rgba(17, 22, 241,.6) !important;
-}
-
-.validate-remove{
-    border-color: rgba(239, 18, 18,.8);
-    outline: 0;
-    outline: thin dotted \9;
-    -moz-box-shadow: 0 0 8px rgba(239, 18, 18,.6);
-    box-shadow: 0 0 8px rgba(239, 18, 18,.6) !important;
-}
-
-.remove-icon {
-	cursor:pointer; 
-	font-size:2.2em; 
-	color:#DC072B;
-}
-
-/* Other */
-
-.breadcrumb{
-	padding: 0px;
-	margin: 0px;
-	display:inline;
-	background-color: transparent;
-}
-
-.breadcrumb span, a{
-	color:inherit;
-}
-
-.breadcrumb span{
-	font-weight:bold;
-}
-
-#version{
-	position:relative;
-	background-color:transparent;
-	margin-left:10px;
-	color:#999999;
-	text-align: center;
-	bottom:0;
-}
-
-.highcharts-container {
-    overflow: visible !important;
-    z-index: inherit !important;
-}
-
-.tooltipContainer{
-    position: relative;
-    z-index: 50;
-    border: 2px solid rgb(192, 192, 192);
-    border-radius: 5px;
-    background-color:rgba(255, 255, 255, 0.95);
-    padding: 5px;
-    font-size: 9pt;
-}
-
-.tooltipTable td:not(:last-child), th:not(:last-child){
-	padding-right: 10px;
 }
