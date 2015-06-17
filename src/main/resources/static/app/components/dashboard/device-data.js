@@ -7,7 +7,7 @@
 	
 	function DeviceData () {
 		return {
-			platforms:['android', 'ios', 'windows', 'osx', 'linux'],
+			platforms:['android', 'ios', 'windows', 'osx', 'ubuntu'],
 			devices:[],
 			existingPlatforms:[],
 			classes:[],
