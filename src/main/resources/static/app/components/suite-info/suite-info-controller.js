@@ -5,19 +5,22 @@
 		.module('webLog')
 		.controller('SuiteInfoCtrl', SuiteInfoCtrl);
 		
-	SuiteInfoCtrl.$inject = ['$http','CurrentSuite', 'RestLoader', 'ChartMaker'];
+	SuiteInfoCtrl.$inject = ['$http','CurrentSuite', 'RestLoader', 'ChartMaker', 'Utilities'];
 	
-	function SuiteInfoCtrl ($http, CurrentSuite, RestLoader, ChartMaker){
+	function SuiteInfoCtrl ($http, CurrentSuite, RestLoader, ChartMaker, Utilities){
 		
 		var vm = this;
 		
 		vm.CurrentSuite = CurrentSuite;
+		vm.Utilities = Utilities;
+		
 		
 		vm.addCaseToGraph				= addCaseToGraph;
 		vm.getCases 					= getCases;
 		vm.getMethods 					= getMethods;
 		vm.getSuiteSkeleton 			= getSuiteSkeleton;
 		vm.getSuiteSkeletonByTimestamp 	= getSuiteSkeletonByTimestamp;
+		
 		
 	    function addCaseToGraph(osName, osVersion, deviceName, browserName, browserVer){
 	    	ChartMaker.addCaseToGraph(osName, osVersion, deviceName, browserName, browserVer);

@@ -1,0 +1,82 @@
+<div ng-controller="NavCtrl">
+    <accordion id="{{type}}-group" close-others="true">
+          <table 
+          	width='100%'
+          	id='{{type}}-name' 
+      		class='suite-info-partial-table' 
+      		ng-controller="StyleCtrl as style">
+          	<tr>
+          		<th>
+          			<!-- holder for checkbox -->
+          		</th>
+          		<th class="table-left" style="padding-left:10px">
+          			Name
+          		</th>
+          		<th class="table-right">
+          			Passed
+          		</th>
+				<th class="table-right">
+          			Skipped
+          		</th>
+				<th class="table-right">
+          			Failed
+          		</th>
+				<th class="table-right">
+          			Runtime
+          		</th>
+          	</tr>
+			<tr 
+	           	ng-style="{'color' : style.getColor(object.result)}"
+	           	ng-repeat="object in iterationObject| filter: ctrl.Utilities.searchField | orderBy:ctrl.Utilities.sorting:reverse track by $index "
+	           	class="suite-partial-name-container">
+	            <td 
+	            	class="checkbox-holder table-left" 
+	            	style="color:#333333; padding-left: 10px;" 
+	            	ng-style="{'background-color': style.getBgCo(object.result), 'border-color':style.getBorderColor(object.result)}">
+	                <icon-checkbox content="object" id='checkbox{{$index}}'></icon-checkbox>					                    
+	            </td>
+				<td 
+					ng-click="loadFunction(object); setState(toState);loadFunctionTwo(object);"
+                  	id='{{type}}-{{$index}}' 
+                  	class="icon-checkbox-guard table-left table-content-name"
+                  	ng-style="{'background-color': style.getBgCo(object.result),'border-color':style.getBorderColor(object.result)}">
+					<p id="{{type}}-name-{{$index}}">
+	                  	{{object.name}}
+					</p>
+				</td>
+				<td 
+					class="table-right"
+					ng-style="{'background-color': style.getBgCo(object.result),'border-color':style.getBorderColor(object.result)}"
+					ng-click="loadFunction(object); setState(toState);loadFunctionTwo(object);">
+					<p id="{{type}}-passfail-{{$index}}">
+	                   	{{object.stats.passed}}
+					</p>
+				</td>
+				<td 
+					class="table-right" 
+					ng-style="{'background-color': style.getBgCo(object.result),'border-color':style.getBorderColor(object.result)}"
+					ng-click="loadFunction(object); setState(toState);loadFunctionTwo(object);">
+					<p id="{{type}}-passfail-{{$index}}">
+	                   	{{object.stats.skipped}}
+					</p>
+				</td>
+				<td 
+					class="table-right" 
+					ng-style="{'background-color': style.getBgCo(object.result),'border-color':style.getBorderColor(object.result)}"
+					ng-click="loadFunction(object); setState(toState);loadFunctionTwo(object);">
+					<p id="{{type}}-passfail-{{$index}}">
+	                   	{{object.stats.totFail}}
+					</p>
+				</td>
+				<td 
+					class="table-right" 
+					ng-style="{'background-color': style.getBgCo(object.result),'border-color':style.getBorderColor(object.result)}"
+					ng-click="loadFunction(object); setState(toState);loadFunctionTwo(object);">
+					<p id="{{type}}-runtime-{{$index}}">
+	                   	{{style.formatDecimals(object.time)}}
+					</p>
+				</td>
+              </tr>
+          </table>
+    </accordion>
+</div>

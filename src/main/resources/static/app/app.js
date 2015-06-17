@@ -101,7 +101,8 @@ angular
 	    .state('grid',{
 	        url:'/grid',
 	        templateUrl: 'app/components/grid/grid.html',
-	        controller: ''
+	        controller: 'GridCtrl',
+	        controllerAs: 'ctrl'
 	    })
 		.state('admin',{
 		    url:'/admin',

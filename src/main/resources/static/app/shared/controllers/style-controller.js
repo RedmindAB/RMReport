@@ -5,9 +5,9 @@
 		.module('webLog')
 		.controller('StyleCtrl', StyleCtrl);
 			
-	StyleCtrl.$inject = ['$scope', '$state'];
+	StyleCtrl.$inject = ['$state'];
 	
-	function StyleCtrl ($scope, $state){
+	function StyleCtrl ($state){
 		
 		var vm = this;
 		
@@ -17,6 +17,7 @@
 		vm.stopPropagation 		= stopPropagation;
 		vm.removePackagePath 	= removePackagePath;
 		vm.showClassLink 		= showClassLink;
+		vm.getBorderColor 		= getBorderColor;
 		vm.getButton 			= getButton;
 		vm.getPanel 			= getPanel;
 		vm.getBgCo 				= getBgCo;
@@ -35,9 +36,11 @@
 	    }
 	    
 	    function removePackagePath(classPath){
-	    	var lastDot = classPath.lastIndexOf(".");
-	    	var className = classPath.substring(lastDot+1);
-	    	return className;
+	    	if(classPath.length > 0){
+		    	var lastDot = classPath.lastIndexOf(".");
+		    	var className = classPath.substring(lastDot+1);
+		    	return className;
+	    	}
 	    }
 	    
 	    function showClassLink(page){
@@ -66,39 +69,63 @@
 	    }
 	    
 	    function getButton(result){
-	    	if(result === "failure" || result === "error")
+	    	if(result === "failure" || result === "error"){
 	    		return 'btn btn-failure2';
-	    	else if(result === "skipped")
+	    	}
+	    	else if(result === "skipped"){
 	    		return 'btn btn-warning2';
-	    	else
+	    	}
+	    	else{
 	    		return 'btn btn-success2';
+	    	}
 	    }
 	    
 	    function getPanel(result){
-	    	if(result === "failure" || result === "error")
+	    	if(result === "failure" || result === "error"){
 	    		return 'panel panel-danger bg-danger';
-	    	else if(result === "skipped")
+	    	}
+	    	else if(result === "skipped"){
 	    		return 'panel panel-warning bg-success warning';
-	    	else
+	    	}
+	    	else{
 	    		return 'panel panel-success bg-success success';
+	    	}
 	    }
 	    
 	    function getBgCo(result){
-	    	if(result === "failure" || result === "error")
+	    	if(result === "failure" || result === "error"){
 	    		return '#F2DEDE';
-	    	else if(result === "skipped")
+	    	}
+	    	else if(result === "skipped"){
 	    		return '#FEF7E4';
-	    	else
+	    	}
+	    	else{
 	    		return '#DFF0D8';
+	    	}
 	    }
 	    
 	    function getColor(result){
-	    	if(result === "failure" || result === "error")
+	    	if(result === "failure" || result === "error"){
 	    		return '#A94442';
-	    	else if(result === "skipped")
+	    	}
+	    	else if(result === "skipped"){
 	    		return '#8D6E3F';
-	    	else
+	    	}
+	    	else{
 	    		return '#3C763D';
+	    	}
+	    }
+	    
+	    function getBorderColor(result){
+	    	if(result === "failure" || result === "error"){
+	    		return '#ebccd1';
+	    	}
+	    	else if(result === "skipped"){
+	    		return '#faebcc';
+	    	}
+	    	else{
+	    		return '#d6e9c6';
+	    	}
 	    }
 	    
 	    function formatDecimals(numberWithWayToManyDecimals){

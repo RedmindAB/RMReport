@@ -356,7 +356,7 @@
 				timestampsRaw.push(timestampObj[index].timestamp);
 			}
 			CurrentSuite.timestampRaw[suite.id] = timestampsRaw;
-			suite.lastTimeStamp = timeStamps[timeStamps.length-1];
+			suite.lastTimeStamp = timestampsRaw[timestampsRaw.length-1];
 			
 		    var chartHomeConfigObject = {
 					options : {
