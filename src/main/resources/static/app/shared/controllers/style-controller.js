@@ -36,9 +36,11 @@
 	    }
 	    
 	    function removePackagePath(classPath){
-	    	var lastDot = classPath.lastIndexOf(".");
-	    	var className = classPath.substring(lastDot+1);
-	    	return className;
+	    	if(classPath.length > 0){
+		    	var lastDot = classPath.lastIndexOf(".");
+		    	var className = classPath.substring(lastDot+1);
+		    	return className;
+	    	}
 	    }
 	    
 	    function showClassLink(page){
