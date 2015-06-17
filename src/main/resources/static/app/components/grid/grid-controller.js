@@ -20,15 +20,15 @@
 		vm.gridModalShown = false;
 		
 		
-		vm.gridToggleModal = gridToggleModal;
-		vm.setCurrentGrid = setCurrentGrid;
-		vm.getOSLogo = getOSLogo;
-		vm.isDesktop = isDesktop;
-		vm.getBrowserImage = getBrowserImage;
-		vm.noNodesConnected = noNodesConnected;
-		vm.isHubConnected = isHubConnected;
-		vm.isDesktopNodesConnected = isDesktopNodesConnected;
-		vm.isDeviceNodesConnected = isDeviceNodesConnected;
+		vm.gridToggleModal 			= gridToggleModal;
+		vm.setCurrentGrid 			= setCurrentGrid;
+		vm.getOSLogo 				= getOSLogo;
+		vm.isDesktop 				= isDesktop;
+		vm.getBrowserImage 			= getBrowserImage;
+		vm.noNodesConnected 		= noNodesConnected;
+		vm.isHubConnected 			= isHubConnected;
+		vm.isDesktopNodesConnected 	= isDesktopNodesConnected;
+		vm.isDeviceNodesConnected 	= isDeviceNodesConnected;
 		
 		
 		Polling.startPolling('grid', restURL, GridData, setData);
