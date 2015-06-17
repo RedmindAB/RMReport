@@ -53,7 +53,6 @@
 			switch ($state.$current.name) {
 			case 'reports.classes':
 				$scope.setState('home');
-				console.log("wtf");
 				break;
 			case 'reports.methods':
 				$scope.setState('reports.classes');

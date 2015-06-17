@@ -1,19 +1,22 @@
-<div class="screenshot-nav-container">
-	<!-- Current possition -->
-		<h4 class="screenshot-nav">
+<div class="screenshot-nav-container screenshot-center-container">
+	<div class="screenshot-center-left">
+		<p 
+			id='syso-header' 
+			style='cursor:pointer;' 
+			ng-click='getConsolePrint();toggleConsoleModal();'>
+			Console prints
+		</p>
+	</div>
+	<div class="screenshot-center-center">
+		<h4 style="display:inline">
 			{{style.removePackagePath(CurrentSuite.currentClass.name)}}
 		</h4>
+	</div>
+	<div class="screenshot-center-right">
+	</div>
 </div>
 
 <div>
-	<p 
-		id='syso-header' 
-		class='accordion-name-container' 
-		style='cursor:pointer' 
-		ng-click='getConsolePrint();toggleConsoleModal();'>
-		System out prints
-	</p>
-	
 	<h1 ng-if="noScreenShotsExists()">
 		No screenshots taken in this build
 	</h1>

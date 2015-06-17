@@ -7,6 +7,10 @@
 	margin-bottom: -10px;
 }
 
+.suite-info-partial-table th:not(:first-child) span{
+	cursor:pointer;
+}
+
 .suite-partial-name-container{
 	font-size: 18px;
 	font-weight:normal;
@@ -57,5 +61,10 @@
 
 .table-right{
 	text-align: right;
+}
+
+.keep-space [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate){
+	display: inline !important;
+    visibility: hidden;
 }
 
