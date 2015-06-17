@@ -33,6 +33,6 @@
 			if (CurrentSuite.currentSuite.length === 0) {
 				$location.path("/");
 			}
-		};
+		}
 	}
 })();

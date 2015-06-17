@@ -8,32 +8,32 @@
 <div class="accordion-center-container">
 	<div class="accordion-center-left">
 		<div class="accordion-quarter">
-			<span ng-click="ctrl.sortBy('Pass / Fail')">Pass / Fail</span>
+			<span name="pass-fail" ng-click="ctrl.sortBy('Pass / Fail')">Pass / Fail</span>
 			<span ng-show="ctrl.sorting === 'Pass / Fail'" ng-click="ctrl.sortBy('Pass / Fail')" class="keep-space">
    				<span ng-class="ctrl.reverseSorting ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:12px"></span>
    			</span>
 		</div>
 		<div class="accordion-quarter">
-			<span ng-click="ctrl.sortBy('Platform')">Platform</span>
+			<span name="platform" ng-click="ctrl.sortBy('Platform')">Platform</span>
 			<span ng-show="ctrl.sorting === 'Platform'" ng-click="ctrl.sortBy('Platform')" class="keep-space">
 				<span ng-class="ctrl.reverseSorting ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:12px"></span>
    			</span>
 		</div>
 		<div class="accordion-quarter">
-			<span ng-click="ctrl.sortBy('Device')">Device</span>
+			<span name="device" ng-click="ctrl.sortBy('Device')">Device</span>
 			<span ng-show="ctrl.sorting === 'Device'" ng-click="ctrl.sortBy('Device')" class="keep-space">
 				<span ng-class="ctrl.reverseSorting ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:12px"></span>
    			</span>
 		</div>
 		<div class="accordion-quarter">
-			<span ng-click="ctrl.sortBy('Browser')">Browser</span>
+			<span name="browser" ng-click="ctrl.sortBy('Browser')">Browser</span>
 			<span ng-show="ctrl.sorting === 'Browser'" ng-click="ctrl.sortBy('Browser')" class="keep-space">
 				<span ng-class="ctrl.reverseSorting ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:12px"></span>
    			</span>
 		</div>
 	</div>
 	<div class="accordion-center-right">
-			<span ng-click="ctrl.sortBy('Runtime')">Runtime</span>
+			<span name="runtime" ng-click="ctrl.sortBy('Runtime')">Runtime</span>
 			<span ng-show="ctrl.sorting === 'Runtime'" ng-click="ctrl.sortBy('Runtime')" class="keep-space">
 				<span ng-class="ctrl.reverseSorting ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:12px"></span>
    			</span>

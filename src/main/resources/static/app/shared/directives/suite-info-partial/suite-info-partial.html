@@ -10,31 +10,31 @@
           			<!-- holder for checkbox -->
           		</th>
           		<th class="table-left" style="padding-left:10px">
-          			<span ng-click="sortBy('name')">Name</span>
+          			<span name="name" ng-click="sortBy('name')">Name</span>
           			<span ng-show="predicate === 'name'" ng-click="sortBy('name')" class="keep-space">
           				<span ng-class="reverseSort ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:12px"></span>
           			</span>
           		</th>
           		<th class="table-right">
-          			<span ng-click="sortBy('stats.passed')">Passed</span>
+          			<span name="passed" ng-click="sortBy('stats.passed')">Passed</span>
           			<span ng-show="predicate === 'stats.passed'" ng-click="sortBy('stats.passed')" class="keep-space">
           				<span ng-class="reverseSort ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:12px"></span>
           			</span>
           		</th>
 				<th class="table-right">
-          			<span ng-click="sortBy('stats.skipped')">Skipped</span>
+          			<span name="skipped" ng-click="sortBy('stats.skipped')">Skipped</span>
           			<span ng-show="predicate === 'stats.skipped'" ng-click="sortBy('stats.skipped')" class="keep-space">
           				<span ng-class="reverseSort ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:12px"></span>
           			</span>
           		</th>
 				<th class="table-right">
-          			<span ng-click="sortBy('stats.totFail')">Failed</span>
+          			<span name="failed" ng-click="sortBy('stats.totFail')">Failed</span>
           			<span ng-show="predicate === 'stats.totFail'" ng-click="sortBy('stats.totFail')" class="keep-space">
           				<span ng-class="reverseSort ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:12px"></span>
           			</span>
           		</th>
 				<th class="table-right">
-          			<span ng-click="sortBy('time')">Runtime</span>
+          			<span name="runtime" ng-click="sortBy('time')">Runtime</span>
           			<span ng-show="predicate === 'time'" ng-click="sortBy('time')" class="keep-space">
           				<span ng-class="reverseSort ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:12px"></span>
           			</span>
