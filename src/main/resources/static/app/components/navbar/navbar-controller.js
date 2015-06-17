@@ -77,6 +77,7 @@
 			DashboardServices.getPlatforms(CurrentSuite.currentSuiteInfo.id, "android")
 			.then(function(){
 				DashboardServices.getClasses(CurrentSuite.currentSuiteInfo.id);	
+				DashboardServices.getDevices(CurrentSuite.currentSuiteInfo.id);
 			});
 		}
 		
