@@ -9,7 +9,7 @@
           		<th>
           			<!-- holder for checkbox -->
           		</th>
-          		<th class="table-left" style="padding-left:10px">
+          		<th class="table-left">
           			<span name="name" ng-click="sortBy('name')">Name</span>
           			<span ng-show="predicate === 'name'" ng-click="sortBy('name')" class="keep-space">
           				<span ng-class="reverseSort ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:12px"></span>
@@ -54,7 +54,7 @@
 					<td 
 						ng-click="loadFunction(object); setState(toState);loadFunctionTwo(object);"
 	                  	id='{{type}}-{{$index}}' 
-	                  	class="icon-checkbox-guard table-left table-content-name"
+	                  	class="table-left table-content-name"
 	                  	ng-style="{'background-color': style.getBgCo(object.result),'border-color':style.getBorderColor(object.result)}">
 						<p id="{{type}}-name-{{$index}}">
 		                  	{{object.name}}
