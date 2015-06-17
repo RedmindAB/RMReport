@@ -1,11 +1,11 @@
 <div class="screenshot-nav-container screenshot-center-container">
 	<div class="screenshot-center-left">
-		<p 
+		<span 
 			id='syso-header' 
 			style='cursor:pointer;' 
 			ng-click='getConsolePrint();toggleConsoleModal();'>
 			Console prints
-		</p>
+		</span>
 	</div>
 	<div class="screenshot-center-center">
 		<h4 style="display:inline">
@@ -17,9 +17,9 @@
 </div>
 
 <div>
-	<h1 ng-if="noScreenShotsExists()">
+	<h3 ng-if="noScreenShotsExists()" style="text-align:center">
 		No screenshots taken in this build
-	</h1>
+	</h3>
 
 	<accordion close-others="false">
 	    <div 
