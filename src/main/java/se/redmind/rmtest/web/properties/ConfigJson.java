@@ -10,6 +10,7 @@ public class ConfigJson {
 	private String gridQueryServletURL;
 	private int port;
 	private JsonArray reportPaths;
+	private int livePort;
 	
 	public String getGridQueryServletURL() {
 		return gridQueryServletURL;
@@ -32,7 +33,15 @@ public class ConfigJson {
 	public void setPort(int port) {
 		this.port = port;
 	}
-
+	
+	public int getLivePort() {
+		return livePort;
+	}
+	
+	public void setLivePort(int livePort) {
+		this.livePort = livePort;
+	}
+	
 	@Override
 	public ConfigJson clone(){
 		ConfigJson backup = new ConfigJson();

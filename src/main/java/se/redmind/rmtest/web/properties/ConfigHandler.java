@@ -59,6 +59,7 @@ public class ConfigHandler {
 			conf.setGridQueryServletURL("http://localhost:4444/grid/admin/GridQueryServlet");
 			conf.setPort(4567);
 			conf.setReportPaths(new JsonArray());
+			conf.setLivePort(12345);
 			configDAO.save(conf);
 			this.configJson = conf;
 		}
@@ -152,5 +153,8 @@ public class ConfigHandler {
 		autoCommit();
 	}
 
+	public int getLiveStreamPort() {
+		return configJson.getLivePort();
+	}
 
 }
