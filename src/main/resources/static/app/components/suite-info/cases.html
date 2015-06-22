@@ -1,9 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="webLog">
+<head>
+	<link href="app/components/suite-info/suite-info-style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="accordion-center-container">
+	<div class="accordion-center-left">
+		<div class="accordion-quarter">
+			<span name="pass-fail" ng-click="ctrl.sortBy('Pass / Fail')">Pass / Fail</span>
+			<span ng-show="ctrl.sorting === 'Pass / Fail'" ng-click="ctrl.sortBy('Pass / Fail')" class="keep-space">
+   				<span ng-class="ctrl.reverseSorting ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:12px"></span>
+   			</span>
+		</div>
+		<div class="accordion-quarter">
+			<span name="platform" ng-click="ctrl.sortBy('Platform')">Platform</span>
+			<span ng-show="ctrl.sorting === 'Platform'" ng-click="ctrl.sortBy('Platform')" class="keep-space">
+				<span ng-class="ctrl.reverseSorting ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:12px"></span>
+   			</span>
+		</div>
+		<div class="accordion-quarter">
+			<span name="device" ng-click="ctrl.sortBy('Device')">Device</span>
+			<span ng-show="ctrl.sorting === 'Device'" ng-click="ctrl.sortBy('Device')" class="keep-space">
+				<span ng-class="ctrl.reverseSorting ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:12px"></span>
+   			</span>
+		</div>
+		<div class="accordion-quarter">
+			<span name="browser" ng-click="ctrl.sortBy('Browser')">Browser</span>
+			<span ng-show="ctrl.sorting === 'Browser'" ng-click="ctrl.sortBy('Browser')" class="keep-space">
+				<span ng-class="ctrl.reverseSorting ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:12px"></span>
+   			</span>
+		</div>
+	</div>
+	<div class="accordion-center-right">
+			<span name="runtime" ng-click="ctrl.sortBy('Runtime')">Runtime</span>
+			<span ng-show="ctrl.sorting === 'Runtime'" ng-click="ctrl.sortBy('Runtime')" class="keep-space">
+				<span ng-class="ctrl.reverseSorting ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:12px"></span>
+   			</span>
+	</div>
+</div>
+
 <accordion id="case-group" close-others="true">
-    <div ng-repeat="case in CurrentSuite.currentCases| filter: Utilities.searchField | orderBy:Utilities.caseSorting:reverse track by $index">
+    <div ng-repeat="case in CurrentSuite.currentCases| filter: Utilities.searchField | orderBy:ctrl.getOrder():ctrl.reverseSorting track by $index">
         <accordion-group 
         	style='margin-top:10px' 
-        	ng-class='getPanel(case.result)' 
-        	ng-style="{'background-color': getBgCo(case.result)}">
+        	ng-class='style.getPanel(case.result)' 
+        	ng-style="{'background-color': style.getBgCo(case.result)}">
             <accordion-heading id='case_name'>
 	            <div id="case-{{$index}}" class="accordion-toggle">
 	            
@@ -11,7 +53,7 @@
 	                <button 
 	                	id="case-thistest-{{$index}}" 
 	                	class="this-test-button"
-	                	ng-class='getButton(case.result)' 
+	                	ng-class='style.getButton(case.result)' 
 	                	ng-click="ctrl.addCaseToGraph(case.osname, case.osversion, case.devicename, case.browsername, case.browserversion); 
 	                			$event.preventDefault(); 
 	                			$event.stopPropagation();">
@@ -23,7 +65,7 @@
 	                	id="case-name-{{$index}}" 
 	                	style='display:inline' 
 	                	class='accordion-name-container'>
-	                    {{case.osname}} - {{case.devicename}} -	{{case.osversion}} - {{case.browsername}} {{case.timestamp}} {{case.result}}
+	                    {{case.osname}} - {{case.devicename}} -	{{case.osversion}} - {{case.browsername}} {{case.result}}
 	                </div>
 	                
 	                <!-- Run time -->
@@ -46,3 +88,5 @@
         </accordion-group>
     </div>
 </accordion>
+</body>
+</html>

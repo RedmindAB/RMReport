@@ -5,153 +5,144 @@
 		.module('webLog')
 		.controller('StyleCtrl', StyleCtrl);
 			
-	StyleCtrl.$inject = ['$scope', '$state', 'Utilities', 'CurrentSuite'];
+	StyleCtrl.$inject = ['$state'];
 	
-	function StyleCtrl ($scope, $state, Utilities, CurrentSuite){
+	function StyleCtrl ($state){
+		
+		var vm = this;
 		
 		var myData = null;
-		$scope.Utilities = Utilities;
+		var showButton = false;
 		
-	    $scope.getCurrentState= function(state){
+		vm.stopPropagation 		= stopPropagation;
+		vm.removePackagePath 	= removePackagePath;
+		vm.showClassLink 		= showClassLink;
+		vm.getBorderColor 		= getBorderColor;
+		vm.getButton 			= getButton;
+		vm.getPanel 			= getPanel;
+		vm.getBgCo 				= getBgCo;
+		vm.getColor 			= getColor;
+		vm.formatDecimals 		= formatDecimals;
+		vm.toggleButton			= toggleButton;
+		vm.getNavColor 			= getNavColor;
+		
+		
+	    function getCurrentState(state){
 	    	return $state.includes(state);
-	    };
+	    }
 	    
-	    $scope.stopPropagation = function($event){
+	    function stopPropagation($event){
 	    	$event.stopPropagation();
-	    };
+	    }
 	    
-	    $scope.setActive = function(){
-	    	$event.stopPropagation();
-	    };
+	    function removePackagePath(classPath){
+	    	if(classPath.length > 0){
+		    	var lastDot = classPath.lastIndexOf(".");
+		    	var className = classPath.substring(lastDot+1);
+		    	return className;
+	    	}
+	    }
 	    
-	    $scope.removePackagePath = function(classPath){
-	    	var lastDot = classPath.lastIndexOf(".");
-	    	var className = classPath.substring(lastDot+1);
-	    	return className;
-	    };
-	    
-	    $scope.showClassLink = function(page){
+	    function showClassLink(page){
 	    	switch (page) {
 			case "classes":
-				return $scope.getCurrentState('reports.classes') || 
-				$scope.getCurrentState('reports.methods') || 
-				$scope.getCurrentState('reports.drivers') || 
-				$scope.getCurrentState('reports.cases');
+				return getCurrentState('reports.classes') || 
+				getCurrentState('reports.methods') || 
+				getCurrentState('reports.drivers') || 
+				getCurrentState('reports.cases');
 				
 			case "methods":
-				return $scope.getCurrentState('reports.methods')  || 
-				$scope.getCurrentState('reports.drivers') || 
-				$scope.getCurrentState('reports.cases');
+				return getCurrentState('reports.methods')  || 
+				getCurrentState('reports.drivers') || 
+				getCurrentState('reports.cases');
 				
 			case "drivers":
-				return $scope.getCurrentState('reports.drivers') || 
-				$scope.getCurrentState('reports.cases');
+				return getCurrentState('reports.drivers') || 
+				getCurrentState('reports.cases');
 				
 			case "cases":
-				return $scope.getCurrentState('reports.cases');
+				return getCurrentState('reports.cases');
 
 			default:
 				return false;
 			}
-	    };
+	    }
 	    
-	    $scope.getButton = function(result){
-	    	if(result === "failure" || result === "error")
+	    function getButton(result){
+	    	if(result === "failure" || result === "error"){
 	    		return 'btn btn-failure2';
-	    	else if(result === "skipped")
+	    	}
+	    	else if(result === "skipped"){
 	    		return 'btn btn-warning2';
-	    	else
+	    	}
+	    	else{
 	    		return 'btn btn-success2';
-	    };
+	    	}
+	    }
 	    
-	    $scope.getPanel = function(result){
-	    	if(result === "failure" || result === "error")
+	    function getPanel(result){
+	    	if(result === "failure" || result === "error"){
 	    		return 'panel panel-danger bg-danger';
-	    	else if(result === "skipped")
+	    	}
+	    	else if(result === "skipped"){
 	    		return 'panel panel-warning bg-success warning';
-	    	else
+	    	}
+	    	else{
 	    		return 'panel panel-success bg-success success';
-	    };
+	    	}
+	    }
 	    
-	    $scope.getBG = function(result){
-	    	if(result === "failure" || result === "error")
-	    		return 'bg-danger';
-	    	else if(result === "skipped")
-	    		return 'bg-warning';
-	    	else
-	    		return 'bg-success';
-	    };
-	    
-	    $scope.getBorder = function(){
-	    	return '#A94442';
-	    };
-	    
-	    $scope.getBgCo = function(result){
-	    	if(result === "failure" || result === "error")
+	    function getBgCo(result){
+	    	if(result === "failure" || result === "error"){
 	    		return '#F2DEDE';
-	    	else if(result === "skipped")
+	    	}
+	    	else if(result === "skipped"){
 	    		return '#FEF7E4';
-	    	else
+	    	}
+	    	else{
 	    		return '#DFF0D8';
-	    };
-	    $scope.getCo = function(result){
-	    	if(result === "failure" || result === "error")
-	    		return '#A94442';
-	    	else if(result === "skipped")
-	    		return '#8D6E3F';
-	    	else
-	    		return '#3C763D';
-	    };
+	    	}
+	    }
 	    
-	    $scope.formatDecimals = function(numberWithWayToManyDecimals){
+	    function getColor(result){
+	    	if(result === "failure" || result === "error"){
+	    		return '#A94442';
+	    	}
+	    	else if(result === "skipped"){
+	    		return '#8D6E3F';
+	    	}
+	    	else{
+	    		return '#3C763D';
+	    	}
+	    }
+	    
+	    function getBorderColor(result){
+	    	if(result === "failure" || result === "error"){
+	    		return '#ebccd1';
+	    	}
+	    	else if(result === "skipped"){
+	    		return '#faebcc';
+	    	}
+	    	else{
+	    		return '#d6e9c6';
+	    	}
+	    }
+	    
+	    function formatDecimals(numberWithWayToManyDecimals){
 	    	var numberWithDecentAmountOfDecimals = numberWithWayToManyDecimals.toFixed(2);
 	    	return numberWithDecentAmountOfDecimals;
-	    };
+	    }
 	    
-	    $scope.checkPassed = function(passed){
-	    	return passed === "passed";
-	    };
+	    function toggleButton() {
+	        showButton = !showButton;
+	    }
 	    
-	    $scope.showButton = false;
-	    $scope.toggleButton = function() {
-	        $scope.showButton = !$scope.showButton;
-	    };
-	    
-	    $scope.getNavColor = function(state){
+	    function getNavColor(state){
 	    	if ($state.includes(state)) {
 	    		return '#DC062A';
 			} else {
 				return '#5F5E5D';
 			}
-	    };
-	    
-	    $scope.getLogo = function(suiteName){
-	    	var path = 'img/suites/' + suiteName + '.png';
-	    	
-	    	
-	    	
-	    	return path;
-	    };
-	    
-		$scope.getVersion = function(){
-			$.ajax({
-			    url: "", /* https://api.github.com/repos/owner/repo/git/refs/tags */ 
-			    dataType: "json",
-			    success: function (data)
-			    {
-				        if(data !== null){
-				        	$("#result").html(data[0]["object"]["sha"]);
-				        	myData = (data[0].ref).replace("refs/tags/", '');
-				        }
-				        else
-				        	myData = "unknown";
-				        count++;
-			    },
-				error: function (data){
-					myData = "unknown";
-				}
-			});
-			return myData;
-		};
+	    }
 	}
 })();

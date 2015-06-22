@@ -1,35 +1,21 @@
-<div class="screenshot-nav-container">
+<html ng-app="webLog">
+<head>
+	<link href="app/components/screenshots/screenshots-style.css" rel="stylesheet">
+</head>
+<body>
+	<div class="screenshot-nav-container">
 	<!-- Current possition -->
-		<h4 class="screenshot-nav">
+		<h4 class="screenshot-nav" style="margin-bottom:-10px">
 			{{CurrentSuite.currentSuiteInfo.name}}
 		</h4>
-</div>
+	</div>
 
-<!-- Classes -->
-<div id='class_container'>
-	<accordion close-others="true">
-		<div 
-			id='class_name'
-			class="screenshot-class-display class_name_{{$index}}"
-			ng-controller="SuiteInfoCtrl"
-			ng-repeat="class in CurrentSuite.currentSuite| orderBy:['result','-stats.totFail','name'] track by $index "
-			ng-click="getMethods(class); loadScreenshotsFromClass(class); setState('screenshots.methods')"
-			ng-class='getPanel(class.result)'
-			ng-style="{'background-color': getBgCo(class.result)}">
-			<div id="class-{{$index}}" style="display: inline-block; width: 100%">
-				<h4 
-					id='get_methods' 
-					class="accordion-name-container text-left"
-					ng-style="{'color' : getCo(class.result)}">
-					{{class.name}}
-				</h4>
-				<h4 
-					id='get_methods' 
-					class="accordion-name-container text-right"
-					ng-style="{'color' : getCo(class.result)}">
-					Skipped: {{class.stats.skipped}} Failed: {{class.stats.totFail}}
-				</h4>
-			</div>
-		</div>
-	</accordion>
-</div>
+<suite-info-partial 
+	iteration-object="CurrentSuite.currentSuite" 
+	to-state="'screenshots.methods'" 
+	type="'class'"
+	load-function="ctrl.getMethods"
+	load-function-two="loadScreenshotsFromClass">
+</suite-info-partial>
+</body>
+</html>

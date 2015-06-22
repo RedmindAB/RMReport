@@ -1,40 +1,43 @@
-<div class="screenshot-nav-container">
-	<!-- Current possition -->
-		<h4 class="screenshot-nav">
-			{{removePackagePath(CurrentSuite.currentClass.name)}}
+<div class="screenshot-nav-container screenshot-center-container">
+	<div class="screenshot-center-left">
+		<span 
+			id='syso-header' 
+			style='cursor:pointer;' 
+			ng-click='getConsolePrint();toggleConsoleModal();'>
+			Console prints
+		</span>
+	</div>
+	<div class="screenshot-center-center">
+		<h4 style="display:inline">
+			{{style.removePackagePath(CurrentSuite.currentClass.name)}}
 		</h4>
+	</div>
+	<div class="screenshot-center-right">
+	</div>
 </div>
 
 <div>
-	<p 
-		id='syso-header' 
-		class='accordion-name-container' 
-		style='cursor:pointer' 
-		ng-click='getConsolePrint();toggleConsoleModal();'>
-		System out prints
-	</p>
-	
-	<h1 ng-if="noScreenShotsExists()">
+	<h3 ng-if="noScreenShotsExists()" style="text-align:center">
 		No screenshots taken in this build
-	</h1>
+	</h3>
 
 	<accordion close-others="false">
 	    <div 
 	    	ng-if="containsScreenshots(method)" 
 	    	class='noselect' 
 	    	ng-repeat="method in ScreenshotMaster.data | orderBy:['-stats.totFail','result','name']">
-	        <accordion-group style="margin-top:10px;padding:0px;" ng-class='getPanel(method.result)' >
+	        <accordion-group style="margin-top:10px;padding:0px;" ng-class='style.getPanel(method.result)' >
 	            <accordion-heading>
 					<div id='method-{{$index}}' class="accordion-toggle" style="display:inline-block;width:100%">
 						<p 
 							class="accordion-name-container text-left" 
 							style="margin:0px" 
-							ng-style="{'color' : getCo(method.result)}">
+							ng-style="{'color' : style.getColor(method.result)}">
 							{{method.name}}&nbsp;&nbsp;Screenshots: {{method.screenshotLength}}
 						</p>
 						<p 
 							class="accordion-name-container text-right" 
-							style="margin:0px" ng-style="{'color' : getCo(method.result)}">
+							style="margin:0px" ng-style="{'color' : style.getColor(method.result)}">
 							&nbsp;Skipped: {{method.skipped}} Failed: {{method.stats.totFail}}
 						</p>
           				</div>
@@ -49,7 +52,7 @@
 							<td 
 								id="screenshot-header-{{$index}}"
 								ng-repeat="case in method.testcases track by $index" 
-								ng-style="{'background-color': getBgCo(case.result)}" 
+								ng-style="{'background-color': style.getBgCo(case.result)}" 
 								class='panel screenshot-td screenshot-background-top'>
 								<h4>{{case.device}} - {{case.browser}}</h4>
 							</td>
@@ -60,7 +63,7 @@
 							<td 
 								ng-repeat="case in method.testcases" 
 								style="vertical-align:top;" 
-								ng-style="{'background-color': getBgCo(case.result)}" 
+								ng-style="{'background-color': style.getBgCo(case.result)}" 
 								ng-class="isLastIndex(screenshotIndex, method.screenshotLength) ? 'screenshot-background-bot': 'screenshot-background-mid'">
 								<p 
 									style='margin-left:5px;margin-bottom:-2px' 
@@ -166,4 +169,3 @@
 		</table>
 	</div>
 </modal-dialog-sysos>
-

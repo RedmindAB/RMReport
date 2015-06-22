@@ -1,27 +1,33 @@
-<div ng-controller="GridCtrl">
+<!DOCTYPE html>
+<html ng-app="webLog">
+<head>
+	<link rel="stylesheet" href="/app/components/grid/grid-style.css">
+</head>
+<body>
+<div>
 	<div>
 		<div class='desktop'>
 			<!-- Status texts -->
-			<h4 ng-if="isHubConnected()">
+			<h4 ng-if="ctrl.isHubConnected()">
 				Selenium hub is not running
 			</h4>
-			<h4 ng-if="noNodesConnected()">
+			<h4 ng-if="ctrl.noNodesConnected()">
 				No nodes connected
 			</h4>
-			<h3 ng-if="isDesktopNodesConnected()" class="grid-h3">
+			<h3 ng-if="ctrl.isDesktopNodesConnected()" class="grid-h3">
 				Desktops
 			</h3>
 			
 			<!-- Desktops -->
 			<div 
-				ng-click="gridToggleModal();setCurrentGrid(driver)" 
-				ng-repeat="driver in GridData.data.FreeProxies track by $index" 
-				ng-if="isDesktop(driver.capabilities[0].platformName)" 
+				ng-click="ctrl.gridToggleModal();ctrl.setCurrentGrid(driver)" 
+				ng-repeat="driver in ctrl.GridData.data.FreeProxies track by $index" 
+				ng-if="ctrl.isDesktop(driver.capabilities[0].platformName)" 
 				class='box' 
 				ratio-keeper>
 				<img 
 					class='logo' 
-					ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' 
+					ng-src='{{ctrl.getOSLogo(driver.capabilities[0].platform)}}' 
 					style='vertical-align:middle'>
 				</img>
 				<div class='desc'>
@@ -32,7 +38,7 @@
 					<br><b>Browsers: </b>
 					<div ng-repeat="capability in driver.capabilities track by $index">
 						<img 
-							ng-src="{{getBrowserImage(capability.browserName)}}" 
+							ng-src="{{ctrl.getBrowserImage(capability.browserName)}}" 
 							style='float:left'>
 						</img>
 					</div>
@@ -41,17 +47,17 @@
 		</div>
 		
 		<!-- Devices -->
-		<h3 ng-if="isDeviceNodesConnected()">
+		<h3 ng-if="ctrl.isDeviceNodesConnected()">
 			Devices
 		</h3>
 		<div 
-			ng-if="!isDesktop(driver.capabilities[0].platformName)" 
-			ng-click="gridToggleModal();setCurrentGrid(driver)" 
-			ng-repeat="driver in GridData.data.FreeProxies track by $index" 
+			ng-if="!ctrl.isDesktop(driver.capabilities[0].platformName)" 
+			ng-click="ctrl.gridToggleModal();ctrl.setCurrentGrid(driver)" 
+			ng-repeat="driver in ctrl.GridData.data.FreeProxies track by $index" 
 			class='box' ratio-keeper>
 			<img 
 				class='logo' 
-				ng-src='{{getOSLogo(driver.capabilities[0].platform)}}' 
+				ng-src='{{ctrl.getOSLogo(driver.capabilities[0].platform)}}' 
 				style='vertical-align:middle'>
 			</img>
 			<div class='desc'>
@@ -67,9 +73,9 @@
 	<!-- JSON object modal -->
 	<modal-dialog 
 		id='modal-grid-dialog' 
-		show='gridModalShown'
+		show='ctrl.gridModalShown'
 		style='background-color : transparent;color:white' 
-		toggle-modal="gridToggleModal()">
+		toggle-modal="ctrl.gridToggleModal()">
 		<h1 id='json-header' align='center'>
 			Grid Registration info
 		</h1>
@@ -78,7 +84,7 @@
 			<table align='center' style='margin-top:20px'>
 				<tr>
 					<td style='text-align:left'>
-						<pre>{{currentGridObject}}</pre>
+						<pre>{{ctrl.currentGridObject}}</pre>
 					</td>
 				</tr>
 			</table>

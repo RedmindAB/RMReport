@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html ng-app="webLog">
+<head>
+	<link rel="stylesheet" href="/app/components/graph/reports-style.css">
+</head>
+<body>
 <div ng-controller="GraphCtrl">
 
  <!-- Bread crumbs -->
@@ -9,18 +15,18 @@
 						id="navigation-classes"
 						ng-click="setState('reports.classes')" 
 						class="navTextStuff"
-						ng-show="showClassLink('classes')">
+						ng-show="style.showClassLink('classes')">
 						{{CurrentSuite.currentSuiteInfo.name}}&nbsp;
 					</div>
 					<div style='word-break: break-all' id="navigation-methods"
 						ng-click="setState('reports.methods')" class="navTextStuff"
-						ng-show="showClassLink('methods')">
+						ng-show="style.showClassLink('methods')">
 						&#10140; {{CurrentSuite.currentClass.name}}&nbsp;
 						</p>
 					</div>
 					<div style='word-break: break-all' id="navigation-drivers"
 						ng-click="setState('reports.cases')" class="navTextStuff"
-						ng-show="showClassLink('cases')">
+						ng-show="style.showClassLink('cases')">
 						&#10140; {{CurrentSuite.currentMethod.name}}&nbsp;
 						</p>
 					</div>
@@ -196,7 +202,7 @@
 					<div 
 						id="specifications" 
 						class="accordion-toggle" 
-						ng-click='toggleButton()'>
+						ng-click='style.toggleButton()'>
 						Specifications
 						<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
 					</div>
@@ -311,53 +317,29 @@
 		</accordion>
 	</div>
 
-	<!-- Line break -->
 	<div class='row row-break'></div>
-	<div ncy-breadcrumb class="breadcrumb"></div>
-	<!-- Suite position title -->
-	<h4 id="suite-position" class='reports-h4' ng-click="subNavLinks();">
-		{{getPosition()}}
-	</h4>
-	
-	<!-- Sorting functions -->
-	<div id="class-method-option-container">
-		<!-- Pass/fail sorting -->
-		<div id="class-method-option-left" class='btn-group' style='margin-top:25px'>
-			<!-- Clear checkboxes -->
-			<button 
-				id='order_by_fail_pass'
-				class='btn btn-default dropdown-toggle'
-				ng-click="Utilities.setSorting('pass/fail'); reverse = !reverse">
-				Fail/Pass
-			</button>
-		</div>
 		
-		<!-- Filter field -->
-		<div id="class-method-option-center">
+	<div class="suite-info-center-container">
+		<div class="suite-info-center-left">
+			<div ncy-breadcrumb class="breadcrumb"></div>
+		</div>
+		<div class="suite-info-center-center">
+			<h4 id="suite-position" class='reports-h4' ng-click="subNavLinks();" style="display:inline; text-align:center">
+				{{style.removePackagePath(getPosition())}}
+			</h4>
+		</div>
+		<div id="class-method-option-center" class="suite-info-center-right">
 			<div class='btn-group'>
 				<input 
 					id="filter-field"
 					type="text" 
-					style="width:175px"
+					style="width:175px;margin:0px"
 					class="reports-filter form-control tool-tip reports-filter-input"
 					ng-model='Utilities.searchField' 
 					placeholder="Filter"
 					title="Write something to filter on"/>
 			</div>
 		</div>
-		
-		<!-- Run time sorting -->
-		<div id="class-method-option-right" class='btn-group' style='margin-top:25px'>
-			<button 
-				id='order_by_fail_pass'
-				class='btn btn-default dropdown-toggle'
-				ng-click="Utilities.setSorting('time'); reverse = !reverse">
-				Run time
-			</button>
-		</div>
-		
 	</div>
-	
-	<!-- Suite info view -->
 	<div ui-view></div>
 </div>

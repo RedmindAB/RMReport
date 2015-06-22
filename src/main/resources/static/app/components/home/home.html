@@ -1,20 +1,28 @@
-<div ng-repeat="suite in ctrl.CurrentSuite.allSuites track by $index">
-	<table class='table-home'>
-		<tr style='width:100%'>
-			<td colspan='3'>
-				<highchart
-					class="super-chart-container"
-					style="z-index:{{setZIndex($index)}}!important"
-					ng-if="ctrl.Charts.chartHomeConfig[suite.id] !== undefined" 
-					id="chart{{$index}}" class='high-chart'
-					config="ctrl.Charts.chartHomeConfig[suite.id]">
-				</highchart>
-			</td>
-		</tr>
-	</table>
-	<div 
-		ng-if="$index !== ctrl.CurrentSuite.allSuites.length -1" 
-		class='row'
-		style='border: 10px solid #D4D9DD'>
+<!DOCTYPE html>
+<html ng-app="webLog">
+<head>
+	<link rel="stylesheet" href="/app/components/home/home-style.css">
+</head>
+<body>
+	<div ng-repeat="suite in ctrl.CurrentSuite.allSuites track by $index">
+		<table class='table-home'>
+			<tr style='width:100%'>
+				<td colspan='3'>
+					<highchart
+						class="super-chart-container"
+						style="z-index:{{setZIndex($index)}}!important"
+						ng-if="ctrl.Charts.chartHomeConfig[suite.id] !== undefined" 
+						id="chart{{$index}}" class='high-chart'
+						config="ctrl.Charts.chartHomeConfig[suite.id]">
+					</highchart>
+				</td>
+			</tr>
+		</table>
+		<div 
+			ng-if="$index !== ctrl.CurrentSuite.allSuites.length -1" 
+			class='row'
+			style='border: 10px solid #D4D9DD'>
+		</div>
 	</div>
-</div>
+</body>
+</html>

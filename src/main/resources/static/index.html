@@ -13,13 +13,15 @@
 	<link href="assets/navbar/demo/css/demo.css" rel="stylesheet">
 	<!-- Yamm styles-->
 	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/bootstrap-custom.css">
 	<link href="assets/navbar/yamm/yamm.css" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/modal.css">
 	<link rel="stylesheet" href="assets/css/slider.css">
 	<link rel="shortcut icon" href="assets/img/logos/favicon.ico">
+	<link rel="stylesheet" href="app/shared/directives/suite-info-partial/suite-info-partial-style.css">
 </head>
-<body>
-	<div ng-controller="StyleCtrl">
+<body ng-controller="GlobalCtrl">
+	<div ng-controller="StyleCtrl as style">
 		<div ng-controller="NavCtrl">
 			<div class='triangle-overlay'>
 				<img src='assets/img/logos/triangle.png'>
@@ -50,6 +52,7 @@
 	<script src="assets/libs/TweenMax.min.js"></script>
 	<script src="assets/libs/angular-breadcrumb.min.js"></script>
 	<script src="app/app.js"></script>
+	<script src="app/shared/controllers/global-controller.js"></script>
 	<script src="app/shared/factories/current-suite.js"></script>
 	<script src="app/shared/factories/screenshot-master.js"></script>
 	<script src="app/shared/factories/charts.js"></script>
@@ -58,6 +61,7 @@
 	<script src="app/shared/controllers/style-controller.js"></script>
 	<script src="app/shared/controllers/navigation-controller.js"></script>
 	<script src="app/shared/services/rest-loader-service.js"></script>
+	<script src="app/shared/directives/suite-info-partial/suite-info-partial.js"></script>
 	<script src="app/shared/directives/tooltip-directive.js"></script>
 	<script src="app/shared/directives/stop-click.js"></script>
 	<script src="app/shared/directives/modal-directive.js"></script>

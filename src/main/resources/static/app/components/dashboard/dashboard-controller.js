@@ -25,7 +25,6 @@
 		vm.getDevices = getDevices;
 		vm.getClasses = vm.getClasses;
 		
-		getPlatforms(suiteid);
 		getClasses(suiteid);
 		
 		function getClasses(suiteid){

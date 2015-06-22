@@ -9,9 +9,9 @@
 	
 	function restLoader ($http, $state, CurrentSuite, Utilities, Charts, ScreenshotMaster){
 		
-		var rl = this;
+		var vm = this;
 		
-		rl.getConsolePrint = function(){
+		vm.getConsolePrint = function(){
 		    $http.get('api/suite/syso?suiteid=' + CurrentSuite.currentSuiteInfo.id + '&timestamp=' + CurrentSuite.currentTimeStamp)
 		    .success(function(data, status, headers, config){ 
 		    	ScreenshotMaster.consolePrint = data;
@@ -32,7 +32,7 @@
 			}
 		}
 		
-		rl.getSuiteSkeleton = function(suite){
+		vm.getSuiteSkeleton = function(suite){
 			CurrentSuite.currentSuiteInfo = suite;
 		    $http.get('/api/suite/latestbyid?suiteid=' + suite.id)
 		    .success(function(data, status, headers, config){ 
@@ -54,7 +54,7 @@
 		    });
 		};
 		
-		rl.getSuiteSkeletonByTimestamp = function(timestamp, firstLoad){
+		vm.getSuiteSkeletonByTimestamp = function(timestamp, firstLoad){
 		    $http.get("/api/suite/bytimestamp?suiteid="+ CurrentSuite.currentSuiteInfo.id + "&timestamp="+timestamp)
 		    .success(function(data, status, headers, config){ 
 		    	if(data){
@@ -64,10 +64,10 @@
 		    		if (CurrentSuite.currentClass !== undefined) {
 		    			CurrentSuite.currentMethods = CurrentSuite.getMethodsByClassId(CurrentSuite.currentClass.id);
 		    			if (CurrentSuite.currentMethods !== undefined) {
-		    				rl.getPassFailTotByMethod(timestamp, CurrentSuite.currentClass, CurrentSuite.currentMethods);
+		    				vm.getPassFailTotByMethod(timestamp, CurrentSuite.currentClass, CurrentSuite.currentMethods);
 						}
 		    			if ($state.current.name === "reports.cases") {
-		    				rl.getCases(CurrentSuite.currentMethod);
+		    				vm.getCases(CurrentSuite.currentMethod);
 						}
 					}
 		    		if (firstLoad) {
@@ -79,7 +79,7 @@
 		    });
 		};
 		
-	    rl.addCaseToGraph = function(osName, osVersion, deviceName, browserName, browserVer, createMainChart){
+	    vm.addCaseToGraph = function(osName, osVersion, deviceName, browserName, browserVer, createMainChart){
 	    	var dataRequest = {};
 			dataRequest.suiteid = [CurrentSuite.currentSuiteInfo.id];
 			dataRequest.reslimit = Utilities.getResLimit();
@@ -99,7 +99,7 @@
 	    	});
 	    };
 		
-	    rl.createHomeChartFromID = function(suite, createHomeChart) {
+	    vm.createHomeChartFromID = function(suite, createHomeChart) {
 	    	var requestObject= [];
 	    	requestObject.push({
 	    			name:"homeChart",
@@ -119,7 +119,7 @@
 	    	});
 		};
 		
-		rl.getPassFailByMethod = function(timestamp, classObj, method){
+		vm.getPassFailByMethod = function(timestamp, classObj, method){
 			$http.get('/api/class/passfail?timestamp=' + timestamp + '&classid='+classObj.id+'&testcaseid='+method.id)
 			.success(function(data, status, headers, config){ 
 				if(data){
@@ -131,7 +131,7 @@
 			});
 		};
 	    
-		rl.getCases = function(method){
+		vm.getCases = function(method){
 			CurrentSuite.currentMethod = method;
 		    $http.get('/api/driver/bytestcase?id='+CurrentSuite.currentMethod.id+'&timestamp='+CurrentSuite.currentTimeStamp)
 		    .success(function(data, status, headers, config){ 
@@ -143,7 +143,7 @@
 		    });
 		};
 		
-	    rl.loadMainChart = function(suiteID, newLine, createMainChart,name) {
+	    vm.loadMainChart = function(suiteID, newLine, createMainChart,name) {
 		   	Charts.mainChart.loading = 'Generating impressivly relevant statistics...';
 		   	
 		   	var activeQueries = [];
@@ -177,13 +177,13 @@
 		   	});
 	    };
 	   
-		rl.loadScreenshotsFromClass = function(classObj){
+		vm.loadScreenshotsFromClass = function(classObj){
 			
 		    $http.get('/api/screenshot/structure?timestamp='+CurrentSuite.currentTimeStamp+'&classid='+classObj.id)
 		    .success(function(data, status, headers, config){ 
 		    	if(data){
 		    		ScreenshotMaster.data = data;
-		    		rl.getPassFailTotByMethod(CurrentSuite.currentTimeStamp, classObj, ScreenshotMaster.data);
+		    		vm.getPassFailTotByMethod(CurrentSuite.currentTimeStamp, classObj, ScreenshotMaster.data);
 		    		ScreenshotMaster.currentClass = CurrentSuite.currentClass.id;
 		    		ScreenshotMaster.currentTimestamp = CurrentSuite.currentTimeStamp;
 		    		setCaseSizeByMethod();
@@ -193,8 +193,8 @@
 		    });
 		};
 		
-		rl.loadTimestamp = function(timestamp, firstLoad){
-			rl.getSuiteSkeletonByTimestamp(timestamp, firstLoad);
+		vm.loadTimestamp = function(timestamp, firstLoad){
+			vm.getSuiteSkeletonByTimestamp(timestamp, firstLoad);
 			CurrentSuite.currentTimeStamp = timestamp;
 		};
 		
@@ -403,26 +403,39 @@
 	   
 		function getPassFailTotByClass(timestamp, classObj){
 			for (var i = 0; i < classObj.length; i++) {
-				rl.getPassFailByClass(timestamp, classObj[i]);
+				vm.getPassFailByClass(timestamp, classObj[i]);
 			}
 		}
 		
-		rl.getPassFailByClass = function(timestamp, classObj){
+		vm.getPassFailByClass = function(timestamp, classObj){
+			var stats = {
+					passed:		0,
+					failure: 	0,
+					skipped: 	0,
+					total:		0,
+					totFail:	0
+			}
 			$http.get('/api/class/passfail?timestamp=' + timestamp + '&classid='+classObj.id)
 			.success(function(data, status, headers, config){ 
 				if(data){
-					classObj.stats = data;
-					classObj.stats.totFail = getTotFail(data);
+					stats.passed = parseInt(data.passed);
+					stats.failure = parseInt(data.failure);
+					stats.error = parseInt(data.error)
+					stats.skipped = parseInt(data.skipped);
+					stats.total = parseInt(data.total)
+					stats.totFail = getTotFail(data);
+					
+					classObj.stats = stats;
 				}
 			}).error(function(data, status, headers, config){
 				console.error(data);
 			});
 		};
 		
-		rl.getPassFailTotByMethod = function(timestamp, classObj, methodArray){
+		vm.getPassFailTotByMethod = function(timestamp, classObj, methodArray){
 			var methods = methodArray;
 			for (var i = 0; i < methods.length; i++) {
-				rl.getPassFailByMethod(timestamp, classObj, methods[i]);
+				vm.getPassFailByMethod(timestamp, classObj, methods[i]);
 			}
 		};
 		
