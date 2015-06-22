@@ -11,7 +11,6 @@
 	        link: function(scope, element, attr){
 	        	element.bind('click', function(e){
 	        		e.stopPropagation();
-	        		console.log('stop');
 	        	});
 	        }
 	    };

@@ -13,9 +13,7 @@
 		$scope.CurrentSuite = CurrentSuite;
 		$scope.Utilities = Utilities;
 		
-		this.resetWebApp = resetWebApp;
-		
-		this.resetWebApp();
+		resetWebApp();
 		
 		$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
 			if (fromState.name === "screenshots.methods") {
@@ -30,7 +28,7 @@
 		});
 		
 		function resetWebApp(){
-			if (CurrentSuite.currentSuite.length === 0) {
+			if (CurrentSuite.currentSuiteInfo.length === 0) {
 				$location.path("/");
 			}
 		}

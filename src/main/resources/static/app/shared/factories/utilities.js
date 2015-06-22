@@ -36,11 +36,12 @@
 		    },
 			makeTimestampReadable: function(timestamp){
 				var stringStamp = timestamp.toString();
-				return stringStamp.substring(0,4)+ "-" +
-								stringStamp.substring(4,6)+"-" +
-								stringStamp.substring(6,8)+" " +
-								stringStamp.substring(8,10)+":" +
-								stringStamp.substring(10,12);
+				var readableStamp = stringStamp.substring(0,4)+ "-" +
+									stringStamp.substring(4,6)+"-" +
+									stringStamp.substring(6,8)+" " +
+									stringStamp.substring(8,10)+":" +
+									stringStamp.substring(10,12);
+				return readableStamp;
 			},
 	        setBreakPoint: function(choice){
 	        	this.breakPointChoice = choice;
@@ -104,9 +105,8 @@
 	    			return 'Aggregation';
 	    		}
 	    	},
-	        clearData: function(timestamp){
+	        clearData: function(){
 	        	CurrentSuite.currentClass = [];
-	        	CurrentSuite.currentTimeStamp = timestamp;
 	        	
 	        	ScreenshotMaster.data = [];
 	        	ScreenshotMaster.currentClass = undefined;

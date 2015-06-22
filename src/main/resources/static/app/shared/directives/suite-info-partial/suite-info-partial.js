@@ -7,8 +7,7 @@
 	
 	function SuiteInfoPartial () {
 	    return {
-	        restrict: 'E',
-	        controller: 'SuiteInfoCtrl',
+	        controller: 'GlobalCtrl',
 	        controllerAs: 'ctrl',
 	        scope: { 
 	        	iterationObject: '=iterationObject',

@@ -73,17 +73,6 @@
 			$state.transitionTo("grid");
 		};
 		
-		$scope.goToGraphView = function(){
-			if ($state.current.name === 'screenshots.classes') {
-				$state.transitionTo('reports.classes');
-			} else if ($state.current.name === 'screenshots.methods'){
-				$state.transitionTo('reports.methods');
-			}
-			else{
-				$state.transitionTo('reports.classes');
-			}
-		};
-		
 		$scope.goToHomeView = function(){
 			$state.transitionTo("home");
 		};
@@ -91,7 +80,6 @@
 		$scope.goToScreenshotView = function(){
 			ScreenshotMaster.previousView = $state.$current.name;
 				if (CurrentSuite.currentSuite.length === 0) {
-					console.log("am I here...?");
 					$state.transitionTo('home');
 				} else {
 					if (CurrentSuite.currentClass.length === 0 || $state.$current.name === 'reports.classes') {

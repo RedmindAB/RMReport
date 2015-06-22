@@ -5,9 +5,9 @@
 		.module('webLog')
 		.controller('HomeCtrl', HomeCtrl);
 	    	
-	HomeCtrl.$inject = ['$http', '$state', 'CurrentSuite','RestLoader', 'ChartMaker', 'Charts'];
+	HomeCtrl.$inject = ['$http', 'CurrentSuite','RestLoader', 'ChartMaker', 'Charts'];
 	
-	function HomeCtrl($http, $state, CurrentSuite, RestLoader, ChartMaker, Charts){
+	function HomeCtrl($http, CurrentSuite, RestLoader, ChartMaker, Charts){
 		
 		var vm = this;
 		
