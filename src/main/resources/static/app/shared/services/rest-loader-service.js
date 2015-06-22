@@ -81,7 +81,7 @@
 			dataRequest.browsers = [CurrentSuite.getBrowserIdByname(browserName, browserVer)];
 			dataRequest.classes = [CurrentSuite.currentClass.id];
 			dataRequest.testcases = [CurrentSuite.currentMethod.id];
-			dataRequest.name = osName+"-"+osVersion+"-"+deviceName+"-"+browserName+"-"+browserVer;
+			dataRequest.name = osName+"-"+osVersion+"-"+deviceName+"-"+browserName;
 			
 			var requestObj = [dataRequest];
 	    	$http.post('/api/stats/graphdata', requestObj)

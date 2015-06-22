@@ -379,12 +379,26 @@
 				            },
 				            formatter: function(){
 				            	var points = this;
-				            	var test = $http({
-						            url   : '/api/stats/devicerange/'+suite.id+'/'+CurrentSuite.timestampRaw[suite.id][points.points[0].point.index],
-						            method: 'GET',
-						            cache: true,
-						        }).success(function(dataObj, status, headers, config){
-						        	var tooltip = getTooltipPercentageString(points.points);
+				            	var test;
+				            	var tooltip;
+				            	
+				            	if ($state.current.name === 'home') {
+				            		test = $http({
+							            url   : '/api/stats/devicerange/'+suite.id+'/'+CurrentSuite.timestampRaw[suite.id][points.points[0].point.index],
+							            method: 'GET',
+							            cache: true,
+							        })
+								} else {
+									test = $http({
+							            url   : '/api/stats/devicerange/'+CurrentSuite.currentSuiteInfo.id+'/'+CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][points.points[0].point.index],
+							            method: 'GET',
+							            cache: true,
+							        })
+								}
+				            	
+				            	tooltip = getTooltipPercentageString(points.points);
+				            	
+				            	test.success(function(dataObj, status, headers, config){
 						        	
 						        	var deviceObj = getTooltipDeviceList(dataObj);
 						        	
@@ -402,7 +416,7 @@
 						        }).error(function(data, status, headers, config){
 						        	addErrorMessage(config, "change");
 						        });
-				            	return "loading..";
+				            	return tooltip+'<br><b>Loading Devices...</b></div></div>';
 				            },
 						},
 						chart : {
