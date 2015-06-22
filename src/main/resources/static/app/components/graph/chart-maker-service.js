@@ -52,7 +52,7 @@
 			if (CurrentSuite.currentTimeStamp === '') {
 				CurrentSuite.currentTimeStamp = data[0].data[data[0].data.length-1].timestamp;
 			}
-			Utilities.descTimestamps = reverseArray(CurrentSuite.currentTimeStampArray);
+			Utilities.descTimestamps = reverseArray(CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id]);
 			var graphDataArray = [];
 			var dataObj = [];
 			
@@ -425,6 +425,7 @@
 											}
 											RestLoader.loadTimestamp(CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][this.index], true);
 											vm.loadMainChart(CurrentSuite.currentSuiteInfo.id, true);
+											CurrentSuite.currentTimeStamp = CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][this.index];
 											$state.transitionTo('reports.classes');
 										}
 									}

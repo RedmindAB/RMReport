@@ -11,14 +11,28 @@
 		
 		var vm = this;
 		
-		vm.getConsolePrint = function(){
+		
+		vm.getConsolePrint 				= getConsolePrint;
+		vm.getSuiteSkeletonByTimestamp 	= getSuiteSkeletonByTimestamp;
+		vm.addCaseToGraph 				= addCaseToGraph;
+		vm.createHomeChartFromID 		= createHomeChartFromID;
+		vm.getPassFailByMethod 			= getPassFailByMethod;
+		vm.getCases 					= getCases;
+		vm.loadMainChart 				= loadMainChart;
+		vm.loadScreenshotsFromClass 	= loadScreenshotsFromClass;
+		vm.loadTimestamp 				= loadTimestamp;
+		vm.getPassFailByClass 			= getPassFailByClass;
+		vm.getPassFailTotByMethod 		= getPassFailTotByMethod;
+		
+		
+		function getConsolePrint(){
 		    $http.get('api/suite/syso?suiteid=' + CurrentSuite.currentSuiteInfo.id + '&timestamp=' + CurrentSuite.currentTimeStamp)
 		    .success(function(data, status, headers, config){ 
 		    	ScreenshotMaster.consolePrint = data;
 		    }).error(function(data, status, headers, config){
 		    	console.error(data);
 		    });
-		};
+		}
 		
 		function setClassResult(classes){
 			for (var i = 0; i < classes.length; i++) {
@@ -32,30 +46,9 @@
 			}
 		}
 		
-		vm.getSuiteSkeleton = function(suite){
-			CurrentSuite.currentSuiteInfo = suite;
-		    $http.get('/api/suite/latestbyid?suiteid=' + suite.id)
-		    .success(function(data, status, headers, config){ 
-		    	if(data){
-		    		getSpecsInfo(suite.id);
-		    		CurrentSuite.currentSuite = data;
-		    		setClassResult(CurrentSuite.currentSuite);
-		    		var timestamp;
-		    		if (CurrentSuite.currentTimeStamp === '') {
-						timestamp = suite.lastTimeStamp;
-					} else {
-						timestamp = CurrentSuite.currentTimeStamp;
-						CurrentSuite.currentTimeStamp = CurrentSuite.timestampRaw[suite.id][CurrentSuite.timestampRaw[suite.id].length-1];
-					}
-		    		getPassFailTotByClass(timestamp, CurrentSuite.currentSuite);
-		    	}
-		    }).error(function(data, status, headers, config){
-		    	console.error(data);
-		    });
-		};
-		
-		vm.getSuiteSkeletonByTimestamp = function(timestamp, firstLoad){
-		    $http.get("/api/suite/bytimestamp?suiteid="+ CurrentSuite.currentSuiteInfo.id + "&timestamp="+timestamp)
+		function getSuiteSkeletonByTimestamp(timestamp, firstLoad, suiteID){
+			var id = suiteID !== undefined ? suiteID : CurrentSuite.currentSuiteInfo.id;
+		    $http.get("/api/suite/bytimestamp?suiteid="+ id + "&timestamp="+timestamp)
 		    .success(function(data, status, headers, config){ 
 		    	if(data){
 		    		CurrentSuite.currentSuite = data;
@@ -71,15 +64,15 @@
 						}
 					}
 		    		if (firstLoad) {
-		    			getSpecsInfo(CurrentSuite.currentSuiteInfo.id);
+		    			getSpecsInfo(id);
 					}
 		    	}
 		    }).error(function(data, status, headers, config){
 		    	console.error(data);
 		    });
-		};
+		}
 		
-	    vm.addCaseToGraph = function(osName, osVersion, deviceName, browserName, browserVer, createMainChart){
+	    function addCaseToGraph(osName, osVersion, deviceName, browserName, browserVer, createMainChart){
 	    	var dataRequest = {};
 			dataRequest.suiteid = [CurrentSuite.currentSuiteInfo.id];
 			dataRequest.reslimit = Utilities.getResLimit();
@@ -97,9 +90,9 @@
 	    	}).error(function(data, status, headers, config){
 	    		console.error(data);
 	    	});
-	    };
+	    }
 		
-	    vm.createHomeChartFromID = function(suite, createHomeChart) {
+	    function createHomeChartFromID(suite, createHomeChart) {
 	    	var requestObject= [];
 	    	requestObject.push({
 	    			name:"homeChart",
@@ -117,9 +110,9 @@
 	    	}).error(function(data, status, headers, config){
 	    		console.error(data);
 	    	});
-		};
+		}
 		
-		vm.getPassFailByMethod = function(timestamp, classObj, method){
+		function getPassFailByMethod(timestamp, classObj, method){
 			$http.get('/api/class/passfail?timestamp=' + timestamp + '&classid='+classObj.id+'&testcaseid='+method.id)
 			.success(function(data, status, headers, config){ 
 				if(data){
@@ -129,10 +122,9 @@
 			}).error(function(data, status, headers, config){
 				console.error(data);
 			});
-		};
+		}
 	    
-		vm.getCases = function(method){
-			CurrentSuite.currentMethod = method;
+		function getCases(){
 		    $http.get('/api/driver/bytestcase?id='+CurrentSuite.currentMethod.id+'&timestamp='+CurrentSuite.currentTimeStamp)
 		    .success(function(data, status, headers, config){ 
 		    	if(data){
@@ -141,9 +133,9 @@
 		    }).error(function(data, status, headers, config){
 		    	console.error(data);
 		    });
-		};
+		}
 		
-	    vm.loadMainChart = function(suiteID, newLine, createMainChart,name) {
+	    function loadMainChart(suiteID, newLine, createMainChart,name) {
 		   	Charts.mainChart.loading = 'Generating impressivly relevant statistics...';
 		   	
 		   	var activeQueries = [];
@@ -175,9 +167,9 @@
 		   	}).error(function(data, status, headers, config){
 		   		console.error(data);
 		   	});
-	    };
+	    }
 	   
-		vm.loadScreenshotsFromClass = function(classObj){
+		function loadScreenshotsFromClass(classObj){
 			
 		    $http.get('/api/screenshot/structure?timestamp='+CurrentSuite.currentTimeStamp+'&classid='+classObj.id)
 		    .success(function(data, status, headers, config){ 
@@ -191,12 +183,12 @@
 		    }).error(function(data, status, headers, config){
 		    	console.error(data);
 		    });
-		};
+		}
 		
-		vm.loadTimestamp = function(timestamp, firstLoad){
+		function loadTimestamp(timestamp, firstLoad){
 			vm.getSuiteSkeletonByTimestamp(timestamp, firstLoad);
 			CurrentSuite.currentTimeStamp = timestamp;
-		};
+		}
 		
 		function setCaseSizeByMethod(){
 			var data = ScreenshotMaster.data;
@@ -407,22 +399,23 @@
 			}
 		}
 		
-		vm.getPassFailByClass = function(timestamp, classObj){
+		function getPassFailByClass(timestamp, classObj){
 			var stats = {
 					passed:		0,
 					failure: 	0,
 					skipped: 	0,
 					total:		0,
 					totFail:	0
-			}
+			};
+			
 			$http.get('/api/class/passfail?timestamp=' + timestamp + '&classid='+classObj.id)
 			.success(function(data, status, headers, config){ 
 				if(data){
 					stats.passed = parseInt(data.passed);
 					stats.failure = parseInt(data.failure);
-					stats.error = parseInt(data.error)
+					stats.error = parseInt(data.error);
 					stats.skipped = parseInt(data.skipped);
-					stats.total = parseInt(data.total)
+					stats.total = parseInt(data.total);
 					stats.totFail = getTotFail(data);
 					
 					classObj.stats = stats;
@@ -430,14 +423,14 @@
 			}).error(function(data, status, headers, config){
 				console.error(data);
 			});
-		};
+		}
 		
-		vm.getPassFailTotByMethod = function(timestamp, classObj, methodArray){
+		function getPassFailTotByMethod(timestamp, classObj, methodArray){
 			var methods = methodArray;
 			for (var i = 0; i < methods.length; i++) {
 				vm.getPassFailByMethod(timestamp, classObj, methods[i]);
 			}
-		};
+		}
 		
 		function getSpecsInfo(suiteID){
 			var reslimit = Utilities.getResLimit();

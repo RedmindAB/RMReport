@@ -40,7 +40,7 @@ angular
         .state('reports.classes',{
 	        url:'/classes',
 	        templateUrl: 'app/components/suite-info/classes.html',
-	        controller: 'SuiteInfoCtrl',
+	        controller: 'SuiteClassCtrl',
 	        controllerAs: 'ctrl',
 	        ncyBreadcrumb: {
 	        	parent:'dashboard',
@@ -50,22 +50,17 @@ angular
         .state('reports.methods',{
 	        url:'/methods',
 	        templateUrl: 'app/components/suite-info/methods.html',
-	        controller: 'SuiteInfoCtrl',
+	        controller: 'SuiteMethodCtrl',
 	        controllerAs: 'ctrl',
 	        ncyBreadcrumb: {
 	        	parent:'reports.classes',
         	    label: 'Methods'
         	  }
         })
-        .state('reports.drivers',{
-	        url:'/drivers',
-	        templateUrl: 'app/components/suite-info/drivers.html',
-	        controller: 'SuiteInfoCtrl'
-        })
 	    .state('reports.cases',{
 	        url:'/cases',
 	        templateUrl: 'app/components/suite-info/cases.html',
-	        controller: 'SuiteInfoCtrl',
+	        controller: 'SuiteCaseCtrl',
 	        controllerAs: 'ctrl',
         	ncyBreadcrumb: {
         		parent: 'reports.methods',
@@ -75,7 +70,6 @@ angular
 	    .state('screenshots',{
 	        url:'/screenshots',
 	        templateUrl: 'app/components/screenshots/screen-shots.html',
-	        controller: 'ScreenshotCtrl',
 	        ncyBreadcrumb: {
 	        	skip:true
         	  }
@@ -83,7 +77,8 @@ angular
 	    .state('screenshots.classes',{
 	        url:'/classes',
 	        templateUrl: 'app/components/screenshots/screenshot-classes.html',
-	        controller: '',
+	        controller: 'ScreenshotClassCtrl',
+	        controllerAs: 'ctrl',
 	        ncyBreadcrumb: {
 	        	parent:'dashboard',
         	    label: 'Classes'
@@ -92,7 +87,8 @@ angular
 	    .state('screenshots.methods',{
 	        url:'/methods',
 	        templateUrl: 'app/components/screenshots/screenshot-methods.html',
-	        controller: '',
+	        controller: 'ScreenshotMethodCtrl',
+	        controllerAs: 'ctrl',
 	        ncyBreadcrumb: {
 	        	parent:'screenshots.classes',
         	    label: 'Methods'

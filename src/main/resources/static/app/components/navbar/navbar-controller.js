@@ -20,6 +20,7 @@
 		vm.getScreenshotsFromTimestamp		= getScreenshotsFromTimestamp;
 		vm.getSuiteSkeletonByTimestamp		= getSuiteSkeletonByTimestamp;
 		vm.getSuiteSkeleton					= getSuiteSkeleton;
+		vm.goToGraphView					= goToGraphView;
 		vm.highlightPoint					= highlightPoint;
 		vm.isSmallWindowToggle 				= isSmallWindowToggle;
 		vm.isSmallWindowTarget				= isSmallWindowTarget;
@@ -45,6 +46,17 @@
 			RestLoader.loadTimestamp(timestamp);
 		}
 		
+		function goToGraphView(){
+			if ($state.current.name === 'screenshots.classes') {
+				$state.transitionTo('reports.classes');
+			} else if ($state.current.name === 'screenshots.methods'){
+				$state.transitionTo('reports.methods');
+			}
+			else{
+				$state.transitionTo('reports.classes');
+			}
+		}
+		
 		function getScreenshotsFromTimestamp(){
 			if ($state.$current.name === 'screenshots.methods') {
 				RestLoader.loadScreenshotsFromClass(CurrentSuite.currentClass);
@@ -52,7 +64,9 @@
 		}
 		
 		function getSuiteSkeleton(suite){
-			RestLoader.getSuiteSkeleton(suite);
+			CurrentSuite.currentSuiteInfo = suite;
+			CurrentSuite.currentTimeStamp = suite.lastTimeStamp;
+			RestLoader.getSuiteSkeletonByTimestamp(suite.lastTimeStamp, true, suite.id);
 			if ($state.includes("reports")) {
 				$state.transitionTo("reports.classes");
 			} else if($state.includes("screenshots")){
@@ -81,8 +95,8 @@
 			});
 		}
 		
-	    function loadMainChart(suiteID, newLine, name){
-	    	ChartMaker.loadMainChart(suiteID,newLine, name);
+	    function loadMainChart(suiteID, name){
+	    	ChartMaker.loadMainChart(suiteID, true, name);
 	    }
 	}
 })();

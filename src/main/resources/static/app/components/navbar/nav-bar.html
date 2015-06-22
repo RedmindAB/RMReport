@@ -53,7 +53,7 @@
 				<li id='reports' class='reports' role="presentation" ng-class="{'disabled': !isNavActive('reports', 'screenshots'),'active': isActive('reports')}" ng-class="">
 					<a 
 						id='reports_view' 
-						ng-click="goToGraphView();ctrl.runGetDevices()" 
+						ng-click="ctrl.goToGraphView();ctrl.runGetDevices()" 
 						ng-style="{'color': style.getNavColor('reports')}" 
 						ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
 						data-target=".navbar-collapse"> 
@@ -116,19 +116,19 @@
 				<!-- Choose project -->
 				<li class="dropdown" style='cursor: pointer;'>
 					<a 
-						id='choose_project' 
-						data-toggle="dropdown" 
-						class="dropdown-toggle" 
+						id='choose_project'
+						data-toggle="dropdown"
+						class="dropdown-toggle"
 						style='color: inherit;'>
 						{{ctrl.chooseProject()}}
 						<b class="caret"></b>
 					</a>
 					<ul id='dropdown-project' class="dropdown-menu scrollable-menu">
 						<li style='width: 100%' ng-repeat='suite in CurrentSuite.allSuites track by $index'>
-							<a 
-								id='{{suite.name}}' 
-								ng-click="Utilities.clearData(suite.lastTimeStamp); 
-										ctrl.loadMainChart(suite.id, 'true', 'Aggregation'); 
+							<a
+								id='{{suite.name}}'
+								ng-click="Utilities.clearData(suite.lastTimeStamp);
+										ctrl.loadMainChart(suite.id, 'Aggregation');
 										ctrl.getSuiteSkeleton(suite);
 										ctrl.loadDashboardPlatformsAndDevices();
 										ctrl.checkPosition();"
@@ -136,13 +136,13 @@
 								{{suite.name}}
 							</a>
 							<a 
-								id='{{suite.name}}' 
-								class="visible-xs" 
-								ng-click="Utilities.clearData(suite.lastTimeStamp); 
-										ctrl.loadMainChart(suite.id, 'true', 'Aggregation'); 
+								id='{{suite.name}}'
+								class="visible-xs"
+								ng-click="Utilities.clearData(suite.lastTimeStamp);
+										ctrl.loadMainChart(suite.id, 'Aggregation');
 										ctrl.getSuiteSkeleton(suite);
 										ctrl.loadDashboardPlatformsAndDevices();
-										ctrl.checkPosition();" 
+										ctrl.checkPosition();"
 								data-toggle="collapse" 
 								data-target=".navbar-collapse">
 								{{suite.name}}
@@ -158,7 +158,7 @@
 						data-toggle="dropdown" 
 						class="dropdown-toggle" 
 						style='color: inherit;'>
-						{{Utilities.makeTimestampReadable(CurrentSuite.currentTimeStamp)}}
+						{{Utilities.makeTimestampReadable(CurrentSuite.currentTimeStamp)}} 
 						<b class="caret"></b>
 					</a>
 					<ul id='dropdown-timestamp' class="dropdown-menu scrollable-menu">

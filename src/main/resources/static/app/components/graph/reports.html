@@ -6,35 +6,6 @@
 <body>
 <div ng-controller="GraphCtrl">
 
- <!-- Bread crumbs -->
-		<table style="font-size:18px">
-			<tr>
-				<td>
-					<div 
-						style='word-wrap: break-all' 
-						id="navigation-classes"
-						ng-click="setState('reports.classes')" 
-						class="navTextStuff"
-						ng-show="style.showClassLink('classes')">
-						{{CurrentSuite.currentSuiteInfo.name}}&nbsp;
-					</div>
-					<div style='word-break: break-all' id="navigation-methods"
-						ng-click="setState('reports.methods')" class="navTextStuff"
-						ng-show="style.showClassLink('methods')">
-						&#10140; {{CurrentSuite.currentClass.name}}&nbsp;
-						</p>
-					</div>
-					<div style='word-break: break-all' id="navigation-drivers"
-						ng-click="setState('reports.cases')" class="navTextStuff"
-						ng-show="style.showClassLink('cases')">
-						&#10140; {{CurrentSuite.currentMethod.name}}&nbsp;
-						</p>
-					</div>
-				</td>
-			</tr>
-		</table>
-	<br> <br>
-	
 	<!-- Chart -->
 	<highchart 
 		style='position:responsive;float:left;width:100%'
