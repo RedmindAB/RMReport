@@ -53,13 +53,17 @@ public class LiveStreamContainer {
 		suite.finishTest(id, test);
 	}
 	
-	public List<JsonObject> getTestRuns(){
+	public List<TestRun> getTestRuns(){
 		Set<String> keySet = streamMap.keySet();
-		List<JsonObject> array = new ArrayList<JsonObject>();
+		List<TestRun> array = new ArrayList<TestRun>();
 		for (String key : keySet) {
-			array.add(streamMap.get(key).getSuite());
+			array.add(streamMap.get(key));
 		}
 		return array;
+	}
+	
+	public TestRun getTestrunFromUUID(String UUID){
+		return streamMap.get(UUID);
 	}
 
 	public void startTest(String UUID, String testID) {

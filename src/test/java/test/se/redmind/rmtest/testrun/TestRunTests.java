@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -72,8 +73,8 @@ public class TestRunTests {
 		assertEquals("running", actual);
 		
 		//Gets the history and checks if its running
-		List<JsonObject> history = testRun.getHistory(0);
-		JsonObject testHistory = history.get(0);
+		JsonArray history = testRun.getHistory(0);
+		JsonObject testHistory = history.get(0).getAsJsonObject();
 		String type = testHistory.get("type").getAsString();
 		assertEquals("running", type);
 	}
