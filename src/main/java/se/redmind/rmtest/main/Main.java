@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.InMemoryDBHandler;
 import se.redmind.rmtest.filewatcher.FileWatcher;
+import se.redmind.rmtest.liveteststream.LiveStreamInit;
 import se.redmind.rmtest.report.init.ReportInit;
 import se.redmind.rmtest.web.properties.ConfigHandler;
 import se.redmind.rmtest.web.route.RMTRoute;
@@ -41,6 +42,7 @@ public class Main {
 		
 		//start the webserver.
 		int port = setupPort(args);
+		new LiveStreamInit(ConfigHandler.getInstance().getLiveStreamPort()).init();
 		new RMTRoute(port);
 	}
 
