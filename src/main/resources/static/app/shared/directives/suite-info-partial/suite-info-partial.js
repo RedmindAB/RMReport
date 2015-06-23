@@ -10,11 +10,13 @@
 	        controller: 'GlobalCtrl',
 	        controllerAs: 'ctrl',
 	        scope: { 
-	        	iterationObject: '=iterationObject',
-	        	loadFunction: '=loadFunction',
-	        	loadFunctionTwo: '=loadFunctionTwo',
-	        	toState: '=toState', 
-	        	type: '=type'
+	        	iterationObject: '=',
+	        	loadFunction: '=',
+	        	loadFunctionTwo: '=',
+	        	toState: '=', 
+	        	type: '=',
+	        	showCheckBox: '=',
+	        	hideOn: '='
 	        },
 	        link: function(scope, element, attrs) {
 	            scope.predicate = 'stats.totFail';
