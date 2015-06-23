@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 public class TestRun {
@@ -59,12 +60,17 @@ public class TestRun {
 		historyObj.addProperty("type", type);
 		historyObj.add("data", test);
 		history.put(this.historyID, historyObj);
+		setLastChangeToSuite(historyID);
 	}
 	
-	public List<JsonObject> getHistory(int fromIndex){
+	public void setLastChangeToSuite(int lastChange){
+		suite.addProperty("lastChangeId", lastChange);
+	}
+	
+	public JsonArray getHistory(int fromIndex){
 		SortedMap<Integer, JsonObject> tailMap = history.tailMap(fromIndex);
 		Set<Entry<Integer, JsonObject>> entrySet = tailMap.entrySet();
-		List<JsonObject> results = new ArrayList<JsonObject>();
+		JsonArray results = new JsonArray();
 		for (Entry<Integer, JsonObject> entry : entrySet) {
 			JsonObject test = entry.getValue();
 			test.addProperty("historyid", entry.getKey());
@@ -72,9 +78,14 @@ public class TestRun {
 		}
 		return results;
 	}
-
+	
 	public String getUUID() {
 		return UUID;
+	}
+
+	public void finishSuite() {
+		setStatus("finished");
+		addToHistory(new JsonObject(), "suiteFinish");
 	}
 
 }

@@ -240,6 +240,71 @@
   },
   {
     "type": "get",
+    "url": "/live/:UUID/:lastChangeID",
+    "title": "",
+    "name": "getLastChange",
+    "group": "Live",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Json",
+            "optional": false,
+            "field": "json",
+            "description": "<p>returns a sorted list with the test results thats newer than the last change</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "./src/main/java/se/redmind/rmtest/web/route/api/live/change/LiveSuiteChange.java",
+    "groupTitle": "Live"
+  },
+  {
+    "type": "get",
+    "url": "/live",
+    "title": "",
+    "name": "getLiveRuns",
+    "group": "Live",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Reponse:",
+          "content": "[\n\t{\n\tsuite: \"test.java.se.redmind.rmtest.selenium.example.GoogleTestsRMR\",\n\ttimestamp: \"20150622162733\",\n\tUUID: \"23d2a51b-0129-4a83-83c9-99c3d87743fe\",\n\tlastUpdated: 1434983273305,\n\tstatus: \"finished\"\n\t}\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./src/main/java/se/redmind/rmtest/web/route/api/live/testrunlist/TestRunListWS.java",
+    "groupTitle": "Live"
+  },
+  {
+    "type": "get",
+    "url": "/live/:UUID",
+    "title": "",
+    "name": "getSuiteRun",
+    "group": "Live",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "json",
+            "optional": false,
+            "field": "returns",
+            "description": "<p>a suite, with current status etc and tests with current results.</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "./src/main/java/se/redmind/rmtest/web/route/api/live/suite/LiveSuiteDataWS.java",
+    "groupTitle": "Live"
+  },
+  {
+    "type": "get",
     "url": "/method/getmethods",
     "title": "",
     "name": "Get_Methods",

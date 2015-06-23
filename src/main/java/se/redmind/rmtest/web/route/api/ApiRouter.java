@@ -17,6 +17,9 @@ import se.redmind.rmtest.web.route.api.classes.passfail.PassFailClassWS;
 import se.redmind.rmtest.web.route.api.device.getdevices.GetDevicesAMonthAgoWS;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseWS;
 import se.redmind.rmtest.web.route.api.filter.ApiBeforeFilter;
+import se.redmind.rmtest.web.route.api.live.change.LiveSuiteChange;
+import se.redmind.rmtest.web.route.api.live.suite.LiveSuiteDataWS;
+import se.redmind.rmtest.web.route.api.live.testrunlist.TestRunListWS;
 import se.redmind.rmtest.web.route.api.longpoll.change.CheckForChangeWS;
 import se.redmind.rmtest.web.route.api.method.getmethods.GetMethodsWS;
 import se.redmind.rmtest.web.route.api.screenshot.byfilename.ScreenshotByFilenameWS;
@@ -77,6 +80,9 @@ public class ApiRouter {
 		get(new DeviceStatsPlatform("/api/stats/platform/:suiteid"));
 		get(new MethodFailWS("/api/stats/methodfail/:suiteid"));
 		get(new GraphTooltipWS("/api/stats/devicerange/:suiteid/:timestamp"));
+		get(new TestRunListWS("/api/live"));
+		get(new LiveSuiteDataWS("/api/live/:UUID"));
+		get(new LiveSuiteChange("/api/live/:UUID/:lastchange"));
 	}
 	
 	
