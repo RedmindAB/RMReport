@@ -1,9 +1,7 @@
 package se.redmind.rmtest.web.route.api.live.change;
 
-import java.util.List;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 
 import se.redmind.rmtest.liveteststream.LiveStreamContainer;
 import se.redmind.rmtest.liveteststream.TestRun;

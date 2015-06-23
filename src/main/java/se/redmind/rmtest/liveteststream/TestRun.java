@@ -83,4 +83,9 @@ public class TestRun {
 		return UUID;
 	}
 
+	public void finishSuite() {
+		setStatus("finished");
+		addToHistory(new JsonObject(), "suiteFinish");
+	}
+
 }
