@@ -1,106 +1,156 @@
 package se.redmind.rmtest.report.parser;
 
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonPrimitive;
 
-public class Report{
+public abstract class Report<E> {
 	
-	private Logger log = LogManager.getLogger(Report.class);
+	Logger log = LogManager.getLogger(Report.class);
 	
-	private String 
-	TESTCASES = "testcases",
-	SIMPLE_REPORT = "simpleReport",
-	NAME = "name",
-	TESTS = "tests",
-	SUITE_NAME = "suiteName",
-	ERRORS = "errors",
-	SKIPPED = "skipped",
-	FAILURES = "failures",
-	TIME = "time",
-	PASSED = "passed",
-	PROPERTY = "property",
-	PROPERTIES = "properties",
-	READ_NAME = "readName",
-	TESTCASE = "testcase",
-	DRIVERS = "drivers",
-	VALUE = "value";
-
-	private int tests, errors, skipped, failures;
-	private double time;
+	private E fullReport;
+	
+	private String name;
+	private String suite_name;
 	private long timestamp;
-	private String name, suite_name;
-//	private JsonObject jsonObject;
-	private Element file;
-	private boolean simpleReport;
-	private List<ReportTestCase> testCaseArray;
-	private List<String> presentTestClasses;
-
+	private int tests;
+	private int errors;
+	private int skipped;
+	private int failures;
+	private double time;
 	private boolean passed;
+	private boolean simpleReport;
 
 	private HashSet<String> driverSet;
 
-	public Report(Element element) {
+	private List<String> presentTestClasses;
+
+	private List<ReportTestCase> testCaseArray;
+	
+	public Report(E fullReport) {
 		this.simpleReport = false;
-		this.file = element;
+		this.fullReport = fullReport;
 		this.testCaseArray = new ArrayList<ReportTestCase>();
 		this.presentTestClasses = new ArrayList<String>();
-		generateReportFromElement(element);
+		generateReportFromElement(fullReport);
 	}
 	
-	public Report(Element element, boolean simpleReport) {
+ 	public Report(E fullReport, boolean simpleReport) {
 		this.simpleReport = simpleReport;
-		this.file = element;
+		this.fullReport = fullReport;
 		this.testCaseArray = new ArrayList<ReportTestCase>();
 		this.presentTestClasses = new ArrayList<String>();
-		generateReportFromElement(element);
+		generateReportFromElement(fullReport);
 	}
 
-	private boolean generateReportFromElement(Element element) {
-		String name = element.getAttribute(NAME);
+	/**
+	 * 
+	 * @param reportElement
+	 * @return - the amount of tests in this suite;
+	 */
+	protected abstract int tests(E fullReport); 
+	
+	/**
+	 * 
+	 * @param reportElement
+	 * @return - the amount of errors in this suite;
+	 */
+	protected abstract int errors(E fullReport);
+	
+	/**
+	 * 
+	 * @param reportElement
+	 * @return - the amount of failures in this suite.
+	 */
+	protected abstract int failures(E fullReport);
+	
+	/**
+	 * 
+	 * @param fullReport
+	 * @return - return the total amount of skipped tests in the element.
+	 */
+	protected abstract int skipped(E fullReport);
+	
+	/**
+	 * In this method u need to extract the timestamp from the report, and make sure that the timestamp have the format YYYYMMDDhhmmss
+	 * @param fullReport
+	 * @return - the timestamp of the suite.
+	 */
+	protected abstract long extractTimestamp(E fullReport, String name);
+	
+	/**
+	 * this method should return the suite name without any extra shit around it. so if the suite is "a.package.with.test.SuiteName" you only want to get the "SuiteName"
+	 * @param fullReport
+	 * @param name
+	 * @return - the naked suite name.
+	 */
+	protected abstract String extractSuiteName(E fullReport, String name);
+	
+	/**
+	 * Gets the name of the 
+	 * @param fullReport
+	 * @return - 
+	 */
+	protected abstract String getName(E fullReport);
+	
+	/**
+	 * 
+	 * @param element
+	 * @return - should return the total time of the testrun.
+	 */
+	protected abstract double getTime(E element);
+	
+	/**
+	 * Should return an array with test cases only. not the full report.
+	 * @param fullReport
+	 * @return - array of test cases.
+	 */
+	protected abstract List<E> getTestCases(E fullReport);
+	
+	/**
+	 * 
+	 * @param testcase
+	 * @return - Extract and build the testcase here.
+	 */
+	protected abstract ReportTestCase<?> extractTestCase(E testcase);
+	
+	
+	/**
+	 * 
+	 * @param fullReport - the full representation of the report.
+	 * @param name - the name of the report
+	 * @return - the package name of the report.
+	 */
+	protected abstract String extractSuitePackage(E fullReport, String name);
+	
+	@SuppressWarnings("rawtypes")
+	private boolean generateReportFromElement(E fullReport) {
+		String name = getName(fullReport);
 		this.name = name;
-		this.suite_name = extractSuiteName(name);
-		this.timestamp = extractTimestamp(name);
+		this.suite_name = extractSuiteName(fullReport, name);
+		this.timestamp = extractTimestamp(fullReport, name);
 		
-		String testString = element.getAttribute(TESTS);
-		int tests = Integer.valueOf(testString);
-		this.tests = tests;
-
-		String errorString = element.getAttribute(ERRORS);
-		int errors = Integer.valueOf(errorString);
-		this.errors = errors;
-
-		String skippString = element.getAttribute(SKIPPED);
-		int skipped = Integer.valueOf(skippString);
-		this.skipped = skipped;
-		
-		String failString = element.getAttribute(FAILURES);
-		int failures = Integer.valueOf(failString);
-		this.failures = failures;
-		
-		String timeString = element.getAttribute(TIME);
-		double time = Double.valueOf(timeString.replace(",",""));
-		this.time = time;
-		
-		passed = isTestPassed(errors, failures);
+		this.tests = tests(fullReport);
+		this.errors = errors(fullReport);
+		this.skipped = skipped(fullReport);
+		this.failures = failures(fullReport);
+		this.time = getTime(fullReport);
+		this.passed = isTestPassed(errors, failures);
 
 		if (!simpleReport) {
-			NodeList testCaseNodes = element.getElementsByTagName(TESTCASE);
+			List<E> testCaseNodes = getTestCases(fullReport);
 			driverSet = new HashSet<String>();
-			for (int i = 0; i < testCaseNodes.getLength(); i++) {
-				Element testCase = (Element) testCaseNodes.item(i);
-				ReportTestCase test = new ReportTestCase(testCase, extractSuitePackage(name));
+			int i = 0;
+			for (E e : testCaseNodes) {
+				ReportTestCase test = extractTestCase(e);
 				if (test.isBroken()) {
-					log.warn("Broken testcase: "+i+" case text: "+testCaseNodes.item(i).getTextContent());
+					log.warn("Broken testcase: "+i+" case text: "+test.getMethodName()+test.getDriverName());
 					return false;
 				}
 				if (test.isSuiteTestCase()) continue;
@@ -113,6 +163,7 @@ public class Report{
 				if (!getPresentTestClasses().contains(testClass)) {
 					getPresentTestClasses().add(testClass);
 				}
+				i++;
 			}
 			JsonArray drivers = new JsonArray();
 			for (String driver : driverSet) {
@@ -122,40 +173,16 @@ public class Report{
 		return true;
 	}
 	
-	public boolean convertToFullReport(){
-		if (simpleReport) {
-			simpleReport = false;
-			return generateReportFromElement(this.file);
-		}
-		return true;
-	}
-	
-	public String removePunctuations(String string, String replacement){
-		return string.replace(".", replacement);
-		
-	}
-	
-	public String extractSuitePackage(String name){
-		int end = name.lastIndexOf("(");
-		return name.substring(0, end);
-	}
-	
-	public String extractSuiteName(String name){
-		int start = name.lastIndexOf(".");
-		int end = name.lastIndexOf("(");
-		return name.substring(start+1, end);
-	}
-	
-	public long extractTimestamp(String name){
-		int start = name.lastIndexOf("(");
-		int end = name.lastIndexOf(")");
-		String timestampString = name.substring(start+1, end);
-		long timestamp = Long.valueOf(timestampString.replaceAll("-", ""));
-		return timestamp;
-	}
-	
 	public boolean isTestPassed(int errors, int failures){
 		return errors == 0 && failures == 0;
+	}
+	
+	public List<String> getPresentTestClasses() {
+		return presentTestClasses;
+	}
+	
+	public List<ReportTestCase> getTestCaseArray(){
+		return testCaseArray;
 	}
 	
 	public boolean isSimpleReport(){
@@ -194,17 +221,16 @@ public class Report{
 		return this.failures;
 	}
 
-	
 	public HashSet<String> getDrivers(){
 		return this.driverSet;
 	}
 	
-	public List<ReportTestCase> getTestCaseArray(){
-		return testCaseArray;
+	public boolean convertToFullReport(){
+		if (simpleReport) {
+			simpleReport = false;
+			return generateReportFromElement(this.fullReport);
+		}
+		return true;
 	}
 	
-	public List<String> getPresentTestClasses() {
-		return presentTestClasses;
-	}
-
 }

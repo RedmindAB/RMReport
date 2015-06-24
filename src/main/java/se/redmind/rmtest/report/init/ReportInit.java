@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.lookup.report.ReportExist;
-import se.redmind.rmtest.report.parser.Report;
+import se.redmind.rmtest.report.parser.XMLReport;
 import se.redmind.rmtest.report.reporthandler.ReportHandler;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
 import se.redmind.rmtest.report.reportvalidation.ReportValidator;
@@ -77,7 +77,7 @@ public class ReportInit {
 
 	private void insertReports(File file) throws Exception{
 			ReportValidator reportValidator = getReportValidator(file);
-			Report report = reportValidator.getReport();
+			XMLReport report = reportValidator.getReport();
 			boolean existsInDB = reportExist.reportExists(report.getTimestamp(), report.getSuiteName());
 			if (!existsInDB) {
 				boolean saveReport = reportValidator.saveReport();

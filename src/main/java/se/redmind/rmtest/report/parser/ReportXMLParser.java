@@ -49,9 +49,9 @@ public class ReportXMLParser {
 	 * @param file - the report xml-file.
 	 * @return - Report-object representing the report XML-file.
 	 */
-	public Report getReportFromFile(File file){
+	public XMLReport getReportFromFile(File file){
 		Element report = (Element) getNodeList(file, "testsuite").item(0);
-		return new Report(report);
+		return new XMLReport(report);
 	}
 	
 	/**
@@ -59,8 +59,8 @@ public class ReportXMLParser {
 	 * @param file - the file that should be converted into a object.
 	 * @return - Report object containing the most basic information about the object.
 	 */
-	public Report getSimpleReportFromFile(File file){
+	public XMLReport getSimpleReportFromFile(File file){
 		Element report = (Element) getNodeList(file, TESTSUITE_TAG).item(0);
-		return new Report(report, true);
+		return new XMLReport(report, true);
 	}
 }

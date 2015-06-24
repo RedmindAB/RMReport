@@ -18,8 +18,9 @@ import se.redmind.rmtest.db.lookup.classname.ClassDbLookup;
 import se.redmind.rmtest.db.lookup.report.ReportDbLookup;
 import se.redmind.rmtest.db.lookup.suite.SuiteDbLookup;
 import se.redmind.rmtest.db.lookup.testcase.TestcaseDbLookup;
-import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
+import se.redmind.rmtest.report.parser.XMLReport;
+import se.redmind.rmtest.report.parser.XMLReportTestCase;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
 
@@ -33,7 +34,7 @@ public class ReportValidator {
 	private ReportXMLParser parser;
 	private Connection connection;
 	private String filename;
-	private Report report;
+	private XMLReport report;
 	private File reportFile;
 	private ClassInserter classInserter;
 	private SuiteInserter suiteInserter;
@@ -160,7 +161,7 @@ public class ReportValidator {
 		return classInserter;
 	}
 	
-	private HashMap<String,Integer> getTestCases(Report report, HashMap<String, Integer> classIDs){
+	private HashMap<String,Integer> getTestCases(XMLReport report, HashMap<String, Integer> classIDs){
 		TestcaseDbLookup readTestcaseFromDB = new TestcaseDbLookup();
 		//get testcases from db.
 		HashMap<String, Integer> allFromTestcaseConcat = readTestcaseFromDB.getAllFromTestcaseConcat();
@@ -205,7 +206,7 @@ public class ReportValidator {
 		return this.reportFile;
 	}
 	
-	public Report getReport(){
+	public XMLReport getReport(){
 		return report;
 	}
 	

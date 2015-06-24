@@ -11,8 +11,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import se.redmind.rmtest.report.parser.Driver;
-import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
+import se.redmind.rmtest.report.parser.XMLReport;
+import se.redmind.rmtest.report.parser.XMLReportTestCase;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
 
@@ -42,7 +43,7 @@ public class ReportXMLParserTest {
 		NodeList list = parser.getNodeList(file, "testcase");
 		for (int i = 0; i < list.getLength(); i++) {
 			Element element = (Element) list.item(i);
-			ReportTestCase testCase = new ReportTestCase(element, "hej");
+			XMLReportTestCase testCase = new XMLReportTestCase(element, "hej");
 			boolean testNameIsNotEmpty = testCase.getName().length() > 0;
 			assertTrue(testNameIsNotEmpty);
 		}
@@ -50,7 +51,7 @@ public class ReportXMLParserTest {
 	
 	@Test
 	public void createReportObject(){
-		Report report = parser.getReportFromFile(file);
+		XMLReport report = parser.getReportFromFile(file);
 		assertEquals("test.java.se.redmind.rmtest.selenium.example.MockedTestSuite(20150101-080000)", report.getName());
 		List<ReportTestCase> caseList = report.getTestCaseArray();
 		assertEquals(64, caseList.size());
@@ -58,7 +59,7 @@ public class ReportXMLParserTest {
 	
 	@Test
 	public void convertSimpleReportToFullReport(){
-		Report report = parser.getSimpleReportFromFile(file);
+		XMLReport report = parser.getSimpleReportFromFile(file);
 		assertTrue(report.isSimpleReport());
 		report.convertToFullReport();
 		assertFalse(report.isSimpleReport());
@@ -67,14 +68,14 @@ public class ReportXMLParserTest {
 	
 	@Test
 	public void convertPropName(){
-		Report report = parser.getSimpleReportFromFile(file);
+		XMLReport report = parser.getSimpleReportFromFile(file);
 		String convertedString = report.removePunctuations("dot.dot.dot", "");
 		assertEquals("dotdotdot", convertedString);
 	}
 	
 	@Test
 	public void containsTestClasses(){
-		Report report = parser.getReportFromFile(file);
+		XMLReport report = parser.getReportFromFile(file);
 		List<String> classes = report.getPresentTestClasses();
 		assertEquals(2, classes.size());
 		assertTrue(classes.contains("se.redmind.rmtest.selenium.example.RandomClass0"));
@@ -83,7 +84,7 @@ public class ReportXMLParserTest {
 
 	@Test
 	public void getTestCaseDriverValues(){
-		Report report = parser.getReportFromFile(file);
+		XMLReport report = parser.getReportFromFile(file);
 		List<ReportTestCase> testCaseArray = report.getTestCaseArray();
 		
 		Driver driver = testCaseArray.get(0).getDriver();
@@ -102,7 +103,7 @@ public class ReportXMLParserTest {
 	
 	@Test
 	public void checkForSkippedTests(){
-		Report report = parser.getReportFromFile(file);
+		XMLReport report = parser.getReportFromFile(file);
 		List<ReportTestCase> testCaseArray = report.getTestCaseArray();
 		int skipped = 0;
 		for (ReportTestCase reportTestCase : testCaseArray) {
@@ -115,9 +116,80 @@ public class ReportXMLParserTest {
 	
 	@Test
 	public void getSuiteName(){
-		Report report = parser.getReportFromFile(file);
+		XMLReport report = parser.getReportFromFile(file);
 		String suiteName = report.getSuiteName();
 		assertEquals("MockedTestSuite", suiteName);
 		
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@Test
+	public void checkFailures(){
+		XMLReport report = parser.getReportFromFile(file);
+		List<ReportTestCase> testCaseArray = report.getTestCaseArray();
+		int failCount = 0;
+		for (ReportTestCase reportTestCase : testCaseArray) {
+			String result = reportTestCase.getResult();
+			if (result.equals("failure")) {
+				failCount++;
+			}
+		}
+		assertEquals(24, failCount);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@Test
+	public void checkErrors(){
+		XMLReport report = parser.getReportFromFile(file);
+		List<ReportTestCase> testCaseArray = report.getTestCaseArray();
+		int errorCount = 0;
+		for (ReportTestCase reportTestCase : testCaseArray) {
+			String result = reportTestCase.getResult();
+			if (result.equals("error")) {
+				errorCount++;
+			}
+		}
+		assertEquals(4, errorCount);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@Test
+	public void checkPassed(){
+		XMLReport report = parser.getReportFromFile(file);
+		List<ReportTestCase> testCaseArray = report.getTestCaseArray();
+		int passedCount = 0;
+		for (ReportTestCase reportTestCase : testCaseArray) {
+			String result = reportTestCase.getResult();
+			if (result.equals("passed")) {
+				passedCount++;
+			}
+		}
+		assertEquals(36, passedCount);
+	}
+	
+	@Test
+	public void checkRunTime(){
+		XMLReport report = parser.getReportFromFile(file);
+		List<ReportTestCase> testCaseArray = report.getTestCaseArray();
+		for (ReportTestCase reportTestCase : testCaseArray) {
+			Driver driver = reportTestCase.getDriver();
+			String device = driver.getDevice();
+			switch (device) {
+			case "Nexus 6":
+				assertEquals(2.0, reportTestCase.getTime(), 0.0);
+				break;
+			case "iPhone 6":
+				assertEquals(2.5, reportTestCase.getTime(), 0.0);
+				break;
+			case "HTC ONE":
+				assertEquals(1.0, reportTestCase.getTime(), 0.0);
+				break;
+			case "UNKNOWN":
+				assertEquals(3.0, reportTestCase.getTime(), 0.0);
+				break;
+			default:
+				break;
+			}
+		}
 	}
 }
