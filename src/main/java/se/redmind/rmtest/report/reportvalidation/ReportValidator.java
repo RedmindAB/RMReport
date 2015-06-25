@@ -77,7 +77,7 @@ public class ReportValidator {
 	
 	private void loadReport(){
 		this.reportFile = loader.getXMLReportByFileName(filename);
-		this.report = parser.getSimpleReportFromFile(reportFile);
+		this.report = (XMLReport) parser.getSimpleReportFromFile(reportFile).build();
 	}
 	
 	public boolean reportExists(){
