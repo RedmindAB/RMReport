@@ -5,16 +5,64 @@
 		.module('webLog')
 		.factory('LiveTestsServices', LiveTestsServices);
 	
-	LiveTestsServices.$inject = ['$http', '$q', 'CurrentSuite', 'Utilities'];
+	LiveTestsServices.$inject = ['$http', '$q', 'LiveData' ,'CurrentSuite', 'Utilities'];
 	
-	function LiveTestsServices ($http, $q, CurrentSuite, Utilities) {
+	function LiveTestsServices ($http, $q, LiveData, CurrentSuite, Utilities) {
 
 		
 		var progressBar = runProgressBar;
+		var liveSuite = getLiveSuite;
+		var liveTests = getLiveTests;
+		var liveHistory = getLiveHistory;
 		
 		return {
-			runProgressBar: progressBar
+			runProgressBar: progressBar,
+			getLiveSuite: liveSuite,
+			getLiveTests: liveTests,
+			getLiveHistory: liveHistory
 		};
+		
+		function getLiveSuite(){
+		    var promises = [];
+
+			var promise = $http.get('/api/live')
+			.success(function(data, status, headers, config){ 
+			}).error(function(data, status, headers, config){
+			});
+			promises.push(promise);
+		    return $q.all(promises);
+		}
+		
+		function ObjectLength( object ) {
+		    var length = 0;
+		    for( var key in object ) {
+		        if( object.hasOwnProperty(key) ) {
+		            ++length;
+		        }
+		    }
+		    return length;
+		};
+		
+		function getLiveTests(uuid){
+			
+		}
+		
+		function getLiveHistory(uuid){
+		    var promises = [];
+
+			var promise = $http.get('/api/live/' + uuid)
+			.success(function(data, status, headers, config){ 
+			}).error(function(data, status, headers, config){
+			});
+			promises.push(promise);
+		    return $q.all(promises).then(function(request){
+		    	console.log(request[0].data);
+		    		for (var i = 1; i <= ObjectLength(request[0].data.tests); i++) {
+			    		LiveData.tests.push(request[0].data.tests[i]);
+			    		console.log(request[0].data.tests[i]);
+					}
+		    });
+		}
 		
 		function runProgressBar(){
 			setTimeout(function(){

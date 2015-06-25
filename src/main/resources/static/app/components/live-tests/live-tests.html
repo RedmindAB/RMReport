@@ -4,93 +4,98 @@
 	<link rel="stylesheet" href="/app/components/live-tests/live-tests-style.css">
 </head>
 <body>
-	<div>
-		<p>
-			<h4  class='black' style='display:inline;float:left'>RMReport Suite - 2014-06-15</h4>
-			<h4  style='display:inline;float:right'>Elapsed Time: 1.30 seconds</h4>
-		</p>
-	</div><br><br>
-	
-	<div class="progress progressbar-margin-top">
-	   	<div class="progress-bar" id='pb' style="float: left; width: 0%" data-percentage="100"></div>
-	</div>
-	
-	<div class="row">
-		<div class="col-md-6">
-			<div class="modal-content  alert">
-				<div class='modal-header'>
-		 			<h4 align='center'>Running Tests</h4>
-		 		</div>
-		 		<div class='modal-body'>
-			 		<div>
-				 		<table class="table">
-				  			<thead>
-				    			<tr>
-				       				<th>#</th>
-				       				<th>Test Name</th>
-				     			</tr>
-					   		</thead>
-							<tbody>
-				     			<tr ng-repeat='test in ctrl.mockedNewTests'>
-									<td>{{$index+1}}</td>
-									<td>{{test}}</td>
-								</tr>
-							</tbody>
-						</table>
+	<div ng-repeat='obj in ctrl.LiveData.testData | limitTo: 1	'>
+		<div >
+			Object: {{obj}}
+			<div>
+				<p>
+					<h4  class='black' style='display:inline;float:left'>{{Utilities.makeSuiteReadable(obj[0].data[0].suite)}} - {{Utilities.makeTimestampReadable(obj[0].data[0].timestamp)}}</h4>
+					<h4  style='display:inline;float:right'>Elapsed Time: {{counter}} seconds</h4>
+				</p>
+			</div><br><br>
+			
+			<div class="progress progressbar-margin-top">
+			   	<div class="progress-bar" id='pb' style="float: left; width: 0%" data-percentage="100"></div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-6">
+					<div class="modal-content  alert">
+						<div class='modal-header'>
+				 			<h4 align='center'>Running Tests</h4>
+				 		</div>
+				 		<div class='modal-body'>
+					 		<div>
+						 		<table class="table">
+						  			<thead>
+						    			<tr>
+						       				<th>#</th>
+						       				<th>Test Name</th>
+						     			</tr>
+							   		</thead>
+									<tbody>
+						     			<tr ng-repeat="(key, value) in ctrl.LiveData.tests | filter: {status:'running'} track by $index">
+											<td>{{key}}</td>
+											<td>{{value.method}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="modal-content alert alert-success">
+						<div class='modal-header'>
+					 		<h4 align='center'>Passed Tests</h4>
+					 	</div>
+					 	<div class='modal-body'>
+					 		<div>
+						 		<table class="table">
+						  			<thead>
+						    			<tr>
+						       				<th>#</th>
+						       				<th>Test Name</th>
+						     			</tr>
+							   		</thead>
+									<tbody>
+						     			<tr ng-repeat="(key, value) in ctrl.LiveData.tests | filter: {status:'done'} track by $index">
+											<td>{{key}}</td>
+											<td>{{value.method}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="modal-content alert alert-success">
-				<div class='modal-header'>
-			 		<h4 align='center'>Passed Tests</h4>
-			 	</div>
-			 	<div class='modal-body'>
-			 		<div>
-				 		<table class="table">
-				  			<thead>
-				    			<tr>
-				       				<th>#</th>
-				       				<th>Test Name</th>
-				     			</tr>
-					   		</thead>
-							<tbody>
-				     			<tr ng-repeat='test in ctrl.mockedPassedTests'>
-									<td>{{$index+1}}</td>
-									<td>{{test}}</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class='row'>
-		<div class="col-md-6">
-			<div class="modal-content">
-				<div class='modal-header'>
-			 		<h4 align='center'>Suite Statistics</h4>
-			 	</div>
-			 	<div class='modal-body'>
-			 		<div>
-				 		<table class="table table-dash">
-				  			<thead>
-				    			<tr>
-				       				<th>Average Time</th>
-				       				<th>Passed Tests</th>
-				       				<th>Failed Tests</th>
-				       				<th>Skipped Tests</th>
-				     			</tr>
-					   		</thead>
-							<tbody>
-				     			<tr>
-			     					<td ng-repeat='stats in ctrl.mockedStatistics'>{{stats}}</td>
-								</tr>
-							</tbody>
-						</table>
+			
+			<div class='row'>
+				<div class="col-md-6">
+					<div class="modal-content">
+						<div class='modal-header'>
+					 		<h4 align='center'>Suite Statistics</h4>
+					 	</div>
+					 	<div class='modal-body'>
+					 		<div>
+						 		<table class="table table-dash">
+						  			<thead>
+						    			<tr>
+						       				<th>Average Time</th>
+						       				<th>Passed Tests</th>
+						       				<th>Failed Tests</th>
+						       				<th>Skipped Tests</th>
+						     			</tr>
+							   		</thead>
+									<tbody>
+						     			<tr>
+					     					<td ng-repeat='stats in ctrl.mockedStatistics'>{{stats}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
