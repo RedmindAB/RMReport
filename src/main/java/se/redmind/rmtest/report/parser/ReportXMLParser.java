@@ -12,6 +12,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import se.redmind.rmtest.report.parser.xml.XMLReport;
+
 public class ReportXMLParser {
 
 	public static final String TESTSUITE_TAG = "testsuite";

@@ -29,16 +29,21 @@ public abstract class ReportTestCase<E> {
 	private String name, classname, message, driverName;
 	private double time;
 	private boolean passed;
-	private Driver driverParser;
+	private Driver driver;
 	private String suite_name;
 	private boolean suiteIsTestcase;
+	private E element;
 	
 	public ReportTestCase(E element, String suite_name) {
 		passed = false;
 		this.suite_name = suite_name;
-		generateTestCaseFromElement(element);
+		this.element = element;
 	}
 	
+	public ReportTestCase() {
+		// TODO Auto-generated constructor stub
+	}
+
 	protected abstract String getTestcaseName(E testcase);
 	
 	protected abstract String getClassname(E testcase);
@@ -48,6 +53,11 @@ public abstract class ReportTestCase<E> {
 	protected abstract String getErrorMessage(E testcase);
 	
 	protected abstract double getRunTime(E testcase);
+	
+	public ReportTestCase<E> build(){
+		generateTestCaseFromElement(element);
+		return this;
+	}
 	
 	private void generateTestCaseFromElement(E testcase){
 		name = getTestcaseName(testcase);
@@ -62,9 +72,9 @@ public abstract class ReportTestCase<E> {
 			return;
 		}
 		
-		String driverName = checkDriverName(name);
-		this.driverName = driverName;
-		this.driverParser = new Driver(driverName);
+		
+		this.driverName = checkDriverName(name); 
+		this.driver = new Driver(driverName);
 		
 		
 		String elementClassname = getClassname(testcase);
@@ -114,9 +124,9 @@ public abstract class ReportTestCase<E> {
 
 	public String checkDriverName(String name){
 		if (name.contains("[")) {
-		int start = name.lastIndexOf("[");
-		int end = name.lastIndexOf("]");
-		return name.substring(start+1, end);
+			int start = name.lastIndexOf("[");
+			int end = name.lastIndexOf("]");
+			return name.substring(start+1, end);
 		}
 		return name;
 	}
@@ -180,7 +190,11 @@ public abstract class ReportTestCase<E> {
 	}
 	
 	public Driver getDriver(){
-		return this.driverParser;
+		return this.driver;
+	}
+	
+	public void setDriver(Driver driver){
+		this.driver = driver;
 	}
 	
 	public String getMessage() {
@@ -197,6 +211,34 @@ public abstract class ReportTestCase<E> {
 	
 	public boolean isSuiteTestCase(){
 		return suiteIsTestcase;
+	}
+
+	public ResultType getResultType() {
+		return resultType;
+	}
+
+	public void setResultType(ResultType resultType) {
+		this.resultType = resultType;
+	}
+
+	public String getClassname() {
+		return classname;
+	}
+
+	public void setClassname(String classname) {
+		this.classname = classname;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public void setTime(double time) {
+		this.time = time;
 	}
 	
 }

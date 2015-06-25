@@ -1,6 +1,7 @@
 package se.redmind.rmtest.report.parser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -38,7 +39,6 @@ public abstract class Report<E> {
 		this.fullReport = fullReport;
 		this.testCaseArray = new ArrayList<ReportTestCase>();
 		this.presentTestClasses = new ArrayList<String>();
-		generateReportFromElement(fullReport);
 	}
 	
  	public Report(E fullReport, boolean simpleReport) {
@@ -46,8 +46,18 @@ public abstract class Report<E> {
 		this.fullReport = fullReport;
 		this.testCaseArray = new ArrayList<ReportTestCase>();
 		this.presentTestClasses = new ArrayList<String>();
-		generateReportFromElement(fullReport);
 	}
+ 	
+ 	/**
+ 	 * This constructor is used if you want to set the report up yourself
+ 	 */
+ 	public Report(){}
+ 	
+ 	
+ 	public Report<E> build(){
+ 		generateReportFromElement(fullReport);
+ 		return this;
+ 	}
 
 	/**
 	 * 
@@ -231,6 +241,54 @@ public abstract class Report<E> {
 			return generateReportFromElement(this.fullReport);
 		}
 		return true;
+	}
+
+	public String getSuite_name() {
+		return suite_name;
+	}
+
+	public void setSuite_name(String suite_name) {
+		this.suite_name = suite_name;
+	}
+
+	public boolean isPassed() {
+		return passed;
+	}
+
+	public void setPassed(boolean passed) {
+		this.passed = passed;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setTimestamp(long timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public void setTests(int tests) {
+		this.tests = tests;
+	}
+
+	public void setErrors(int errors) {
+		this.errors = errors;
+	}
+
+	public void setSkipped(int skipped) {
+		this.skipped = skipped;
+	}
+
+	public void setFailures(int failures) {
+		this.failures = failures;
+	}
+
+	public void setTime(double time) {
+		this.time = time;
+	}
+
+	public void setTestCaseArray(List<ReportTestCase> testCaseArray) {
+		this.testCaseArray = testCaseArray;
 	}
 	
 }

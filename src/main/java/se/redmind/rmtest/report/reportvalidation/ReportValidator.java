@@ -19,9 +19,9 @@ import se.redmind.rmtest.db.lookup.report.ReportDbLookup;
 import se.redmind.rmtest.db.lookup.suite.SuiteDbLookup;
 import se.redmind.rmtest.db.lookup.testcase.TestcaseDbLookup;
 import se.redmind.rmtest.report.parser.ReportTestCase;
-import se.redmind.rmtest.report.parser.XMLReport;
-import se.redmind.rmtest.report.parser.XMLReportTestCase;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
+import se.redmind.rmtest.report.parser.xml.XMLReport;
+import se.redmind.rmtest.report.parser.xml.XMLReportTestCase;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
 
 public class ReportValidator {

@@ -1,4 +1,4 @@
-package se.redmind.rmtest.report.parser;
+package se.redmind.rmtest.report.parser.xml;
 
 
 import java.util.ArrayList;
@@ -10,6 +10,9 @@ import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import se.redmind.rmtest.report.parser.Report;
+import se.redmind.rmtest.report.parser.ReportTestCase;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonPrimitive;
@@ -125,7 +128,7 @@ public class XMLReport extends Report<Element>{
 
 	@Override
 	protected ReportTestCase extractTestCase(Element testcase) {
-		return new XMLReportTestCase(testcase, extractSuitePackage(null,getName()));
+		return new XMLReportTestCase(testcase, extractSuitePackage(null,getName())).build();
 	}
 
 	@Override

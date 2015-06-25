@@ -10,6 +10,10 @@ public class Driver {
 		handleDriver();
 	}
 
+	public Driver() {
+		this.driver = null;
+	}
+
 	private void handleDriver(){
 		String[] sliced = getSlized();
 		if (sliced.length > 1) {
@@ -70,4 +74,30 @@ public class Driver {
 	public boolean isBroken(){
 		return broken;
 	}
+
+	public String getDriver() {
+		return driver;
+	}
+
+	public void setOs(String os) {
+		this.os = os;
+	}
+
+	public void setOsVer(String osVer) {
+		this.osVer = osVer;
+	}
+
+	public void setDevice(String device) {
+		this.device = device;
+	}
+
+	public void setBrowser(String browser) {
+		this.browser = browser;
+	}
+
+	public void setBrowserVer(String browserVer) {
+		this.browserVer = browserVer;
+	}
+	
+	
 }
