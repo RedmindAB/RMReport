@@ -64,7 +64,7 @@ public class TestRun {
 	}
 	
 	public void setLastChangeToSuite(int lastChange){
-		suite.addProperty("lastChangeId", lastChange);
+		suite.addProperty("historyid", lastChange);
 	}
 	
 	public JsonArray getHistory(int fromIndex){
