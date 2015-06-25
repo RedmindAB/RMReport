@@ -51,6 +51,7 @@ public class TestRun {
 	}
 
 	public JsonObject getSuite() {
+		suite.addProperty("historyid", historyID);
 		return suite;
 	}
 	
