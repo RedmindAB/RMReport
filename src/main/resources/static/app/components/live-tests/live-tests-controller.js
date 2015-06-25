@@ -19,11 +19,18 @@
 
 		runProgressBar();
 		updateInterval();
+		getLiveTests();
 		
 		function updateInterval(){
 		        var progress = setInterval(function() {
 		        	getLiveSuite();
 		        }, 1000);
+		}
+		
+		function getLiveTests(){
+			LiveTestsServices.getLiveSuite().then(function(request){
+				LiveTestsServices.getLiveTests(request[0].data[0].UUID);
+			});
 		}
 		
 		function getLiveSuite(){

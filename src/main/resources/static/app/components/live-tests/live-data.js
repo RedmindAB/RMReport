@@ -8,7 +8,8 @@
 	function LiveData () {
 		return {
 			testData:[],
-			tests:[]
+			tests:[],
+			historyid:0
 		};
 	}
 })();

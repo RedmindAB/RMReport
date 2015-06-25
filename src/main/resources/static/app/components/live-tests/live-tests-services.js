@@ -44,23 +44,34 @@
 		};
 		
 		function getLiveTests(uuid){
-			
+			 var promises = [];
+
+				var promise = $http.get('/api/live/' + uuid)
+				.success(function(data, status, headers, config){ 
+				}).error(function(data, status, headers, config){
+				});
+				promises.push(promise);
+			    return $q.all(promises).then(function(request){
+			    	LiveData.tests = request[0].data.tests;
+			    	LiveData.historyid = 0;
+			    });
 		}
 		
 		function getLiveHistory(uuid){
 		    var promises = [];
 
-			var promise = $http.get('/api/live/' + uuid)
+			var promise = $http.get('/api/live/' + uuid + '/' + LiveData.historyid)
 			.success(function(data, status, headers, config){ 
 			}).error(function(data, status, headers, config){
 			});
 			promises.push(promise);
 		    return $q.all(promises).then(function(request){
 		    	console.log(request[0].data);
-		    		for (var i = 1; i <= ObjectLength(request[0].data.tests); i++) {
-			    		LiveData.tests.push(request[0].data.tests[i]);
-			    		console.log(request[0].data.tests[i]);
-					}
+		    	for (var i = 0; i < request[0].data[i].data.length; i++) {
+		    		var id = request[0].data[i].data.id;
+		    		LiveData.tests[id] = request[0].data[i].data;
+		    		LiveData.historyid = request[0].data[i].data.historyid;
+				}	
 		    });
 		}
 		
