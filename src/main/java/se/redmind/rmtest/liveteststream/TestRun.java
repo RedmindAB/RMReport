@@ -51,6 +51,7 @@ public class TestRun {
 	}
 
 	public JsonObject getSuite() {
+		suite.addProperty("historyid", historyID);
 		return suite;
 	}
 	
@@ -81,6 +82,11 @@ public class TestRun {
 	
 	public String getUUID() {
 		return UUID;
+	}
+
+	public void finishSuite() {
+		setStatus("finished");
+		addToHistory(new JsonObject(), "suiteFinish");
 	}
 
 }

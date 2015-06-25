@@ -42,7 +42,7 @@ public class LiveStreamContainer {
 	public void finishSuite(String UUID){
 		log.info("Suite finished: "+UUID);
 		TestRun suite = streamMap.get(UUID);
-		suite.setStatus("finished");
+		suite.finishSuite();
 	}
 	
 	public void addTestResult(String UUID, JsonObject test){
