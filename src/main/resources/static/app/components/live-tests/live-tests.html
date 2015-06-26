@@ -6,7 +6,6 @@
 <body>
 	<div ng-repeat='obj in ctrl.LiveData.testData | limitTo: 1	'>
 		<div >
-			Object: {{obj}}
 			<div>
 				<p>
 					<h4  class='black' style='display:inline;float:left'>{{Utilities.makeSuiteReadable(obj[0].data[0].suite)}} - {{Utilities.makeTimestampReadable(obj[0].data[0].timestamp)}}</h4>
@@ -34,7 +33,7 @@
 						     			</tr>
 							   		</thead>
 									<tbody>
-						     			<tr ng-repeat="(key, value) in ctrl.LiveData.tests | filter: {status:'running'} track by $index">
+						     			<tr ng-repeat="(key, value) in ctrl.LiveData.tests | filter: {value.status:'running'} track by $index">
 											<td>{{key}}</td>
 											<td>{{value.method}}</td>
 										</tr>
@@ -59,7 +58,7 @@
 						     			</tr>
 							   		</thead>
 									<tbody>
-						     			<tr ng-repeat="(key, value) in ctrl.LiveData.tests | filter: {status:'done'} track by $index">
+									<tr ng-repeat="(key, value) in ctrl.LiveData.tests | filter: {value.status:'done'} track by $index">
 											<td>{{key}}</td>
 											<td>{{value.method}}</td>
 										</tr>
