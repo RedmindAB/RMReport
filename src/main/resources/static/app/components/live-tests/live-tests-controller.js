@@ -17,7 +17,6 @@
 		vm.mockedStatistics = ['6.74', '144', '65', '0'];
 		vm.LiveData = LiveData;
 
-		runProgressBar();
 		updateInterval();
 		getLiveTests();
 		
@@ -35,19 +34,22 @@
 		
 		function getLiveSuite(){
 			LiveTestsServices.getLiveSuite().then(function(request){
-				console.log(request);
+				console.log(request[0]);
 		    	LiveData.testData.push(request);
 		    	for (var i = 0; i < request[0].data.length; i++) {
 					if(request[0].data[i].status === 'running')
+						console.log("Running is true");
 						LiveTestsServices.getLiveHistory(request[0].data[i].UUID);
+				}
+		    	
+		    	// Progress bar update
+		    	console.log(request[0].data[0].status);
+				console.log(request[0]);
+				if(request[0].data[0].status === 'finished'){
+					LiveData.percentage = "100%";
 				}
 			});
 		}
-		
-		function runProgressBar(){
-			LiveTestsServices.runProgressBar();
-		}
-		
 		
 	    $scope.counter = 0;
 	    $scope.onTimeout = function(){

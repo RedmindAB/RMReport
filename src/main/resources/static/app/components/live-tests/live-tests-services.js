@@ -54,6 +54,22 @@
 			    return $q.all(promises).then(function(request){
 			    	LiveData.tests = request[0].data.tests;
 			    	LiveData.historyid = 0;
+			    	
+			    	// Progress bar update
+					console.log(request[0].data.totalTests);
+					var amountOfTests = request[0].data.totalTests;
+					var amountDone = 0;
+					for (var i = 0; i < request[0].data.totalTests; i++) {
+						if(request[0].data.tests[i].status === 'done'){
+							amountDone += 1;
+							console.log("amountDone: " + amountDone);
+						}
+					}
+					LiveData.currentPercentage = (amountOfTests / amountDone) * 100 + "%";
+					console.log("currentPercentage: " + LiveData.currentPercentage)
+					/*if(request[0].data[0].status !== 'finished'){
+						LiveData.percentage = "100%";
+					}*/
 			    });
 		}
 		
