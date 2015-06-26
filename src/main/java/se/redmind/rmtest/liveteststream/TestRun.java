@@ -101,7 +101,7 @@ public class TestRun {
 		Gson gson = new Gson();
 		JsonObject historyObj = new JsonObject();
 		historyObj.addProperty("type", type);
-		historyObj.add("data", new JsonPrimitive(gson.toJson(test)));
+		historyObj.add("data", gson.fromJson(test, JsonObject.class));
 		history.put(this.historyID, historyObj);
 		setLastChangeToSuite(historyID);
 	}
@@ -117,7 +117,6 @@ public class TestRun {
 		Gson gson = new Gson();
 		for (Entry<Integer, JsonObject> entry : entrySet) {
 			JsonObject test = entry.getValue();
-			test.add("data", gson.fromJson(test.get("data").getAsString(), JsonObject.class));
 			test.addProperty("historyid", entry.getKey());
 			results.add(test);
 		}
