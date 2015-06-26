@@ -33,9 +33,9 @@
 						     			</tr>
 							   		</thead>
 									<tbody>
-						     			<tr ng-repeat="(key, value) in ctrl.LiveData.tests | filter: {value.status:'running'} track by $index">
+						     			<tr ng-repeat="(key, value) in ctrl.LiveData.tests | filter: {status:'sa'} track by $index">
 											<td>{{key}}</td>
-											<td>{{value.method}}</td>
+											<td>{{value.status}}</td>
 										</tr>
 									</tbody>
 								</table>
@@ -58,7 +58,7 @@
 						     			</tr>
 							   		</thead>
 									<tbody>
-									<tr ng-repeat="(key, value) in ctrl.LiveData.tests | filter: {value.status:'done'} track by $index">
+									<tr ng-repeat="(key, value) in ctrl.LiveData.tests | filter: {status:'done'} track by $index">
 											<td>{{key}}</td>
 											<td>{{value.method}}</td>
 										</tr>
