@@ -8,6 +8,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public class TestRun {
@@ -32,22 +33,41 @@ public class TestRun {
 		suite.addProperty("lastUpdated", System.currentTimeMillis());
 	}
 
-	public JsonObject getTests() {
-		return suite.get("tests").getAsJsonObject();
+	public JsonArray getTests() {
+		return suite.get("tests").getAsJsonArray();
 	}
 	
 	public void startTest(String testID) {
-		JsonObject tests = suite.get("tests").getAsJsonObject();
-		JsonObject test = tests.get(testID).getAsJsonObject();
+		JsonArray tests = suite.get("tests").getAsJsonArray();
+		JsonObject test = null;
+		for (JsonElement jsonElement : tests) {
+			 test = jsonElement.getAsJsonObject();
+			if (test.get("id").getAsString().equals(testID)){
+				break;
+			}
+		}
 		test.addProperty("status", "running");
 		addToHistory(test, "running");
 	}
 	
 	public void finishTest(String id, JsonObject test){
-		JsonObject tests = suite.get("tests").getAsJsonObject();
 		test.addProperty("status", "done");
-		tests.add(id, test);
 		addToHistory(test, "done");
+	}
+	
+	public JsonObject getTestCase(String id){
+		JsonArray tests = suite.get("tests").getAsJsonArray();
+		JsonObject test = tests.get(Integer.valueOf(id)-1).getAsJsonObject();
+		if (test.get("id").getAsString().equals(id)){
+			return test;
+		}
+		else {
+			for (JsonElement jsonElement : tests) {
+				test = jsonElement.getAsJsonObject();
+				if (test.get("id").getAsString().equals(id)) return test;
+			}
+		}
+		return null;
 	}
 
 	public JsonObject getSuite() {
