@@ -70,6 +70,7 @@
 		    	for (var i = 0; i < request[0].data[i].data.length; i++) {
 		    		var id = request[0].data[i].data.id;
 		    		LiveData.tests[id] = request[0].data[i].data;
+		    		console.log("is running?");
 		    		LiveData.historyid = request[0].data[i].data.historyid;
 				}	
 		    });
