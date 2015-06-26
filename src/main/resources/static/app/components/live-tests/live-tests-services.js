@@ -52,6 +52,7 @@
 				});
 				promises.push(promise);
 			    return $q.all(promises).then(function(request){
+			    	LiveData.testData = request[0].data;
 			    	LiveData.tests = request[0].data.tests;
 			    	LiveData.historyid = 0;
 			    	
@@ -76,21 +77,32 @@
 		function getLiveHistory(uuid){
 		    var promises = [];
 
-			var promise = $http.get('/api/live/' + uuid + '/' + LiveData.historyid)
-			.success(function(data, status, headers, config){ 
-			}).error(function(data, status, headers, config){
-			});
-			promises.push(promise);
-		    return $q.all(promises).then(function(request){
-		    	console.log(request[0].data);
-		    	for (var i = 0; i < request[0].data[i].data.length; i++) {
-		    		var id = request[0].data[i].data.id;
-		    		LiveData.tests[id] = request[0].data[i].data;
-		    		console.log("is running?");
-		    		LiveData.historyid = request[0].data[i].data.historyid;
-				}	
-		    });
+		    console.log(uuid);
+		    console.log(LiveData);
+		    
+			$http.get('/api/live/' + uuid + '/' + LiveData.historyid)
+			.then(complete)
+			.catch(error);
+			
+			function complete(request){
+				var i;
+				console.log(request);
+		    	for (i = 0; i < request.data.length; i++) {
+		    		var id = request.data[i].data.id;
+		    		LiveData.tests[id-1] = request.data[i].data;
+				}
+
+		    	LiveData.historyid = request.data.pop().historyid;
+			}
+			
+			function error(error){
+				console.error(error);
+			}
 		}
+		
+		
+		
+		
 		
 		function runProgressBar(){
 			setTimeout(function(){

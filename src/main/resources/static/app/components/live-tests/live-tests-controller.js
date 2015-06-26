@@ -17,38 +17,34 @@
 		vm.mockedStatistics = ['6.74', '144', '65', '0'];
 		vm.LiveData = LiveData;
 
-		updateInterval();
 		getLiveTests();
+		updateInterval();
 		
 		function updateInterval(){
 		        var progress = setInterval(function() {
-		        	getLiveSuite();
+		        	if(LiveData.uuid.length > 0){
+		        		getLiveSuite();
+		        	}
+		        	else{
+		        		getLiveTests();
+		        	}
 		        }, 1000);
 		}
 		
 		function getLiveTests(){
 			LiveTestsServices.getLiveSuite().then(function(request){
-				LiveTestsServices.getLiveTests(request[0].data[0].UUID);
+				for (var i = 0; i < request[0].data.length; i++) {
+					if(request[0].data[i].status === 'running'){
+						LiveTestsServices.getLiveTests(request[0].data[i].UUID);
+						LiveData.uuid = request[0].data[i].UUID;
+					}
+				}
+				
 			});
 		}
 		
 		function getLiveSuite(){
-			LiveTestsServices.getLiveSuite().then(function(request){
-				console.log(request[0]);
-		    	LiveData.testData.push(request);
-		    	for (var i = 0; i < request[0].data.length; i++) {
-					if(request[0].data[i].status === 'running')
-						console.log("Running is true");
-						LiveTestsServices.getLiveHistory(request[0].data[i].UUID);
-				}
-		    	
-		    	// Progress bar update
-		    	console.log(request[0].data[0].status);
-				console.log(request[0]);
-				if(request[0].data[0].status === 'finished'){
-					LiveData.percentage = "100%";
-				}
-			});
+			LiveTestsServices.getLiveHistory(LiveData.uuid);
 		}
 		
 	    $scope.counter = 0;
