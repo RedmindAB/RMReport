@@ -7,9 +7,11 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 
 public class TestRun {
 	
@@ -50,9 +52,29 @@ public class TestRun {
 		addToHistory(test, "running");
 	}
 	
-	public void finishTest(String id, JsonObject test){
+	public void finishTest(String id){
+		JsonObject test = getTestCase(id);
 		test.addProperty("status", "done");
 		addToHistory(test, "done");
+		setTestCase(id, test);
+	}
+	
+	public void setTestCase(String id, JsonObject test){
+		JsonArray tests = suite.get("tests").getAsJsonArray();
+		int index = Integer.valueOf(id)-1;
+		JsonObject rTest = tests.get(index).getAsJsonObject();
+		if (rTest.get("id").equals(id)){
+			tests.set(index, test);
+		}
+		else {
+			for (int i = 0; i < tests.size(); i++) {
+				rTest = tests.get(i).getAsJsonObject();
+				if (rTest.get("id").equals(id)){
+					tests.set(i, rTest);
+					break;
+				}
+			}
+		}
 	}
 	
 	public JsonObject getTestCase(String id){
@@ -76,9 +98,10 @@ public class TestRun {
 	
 	private void addToHistory(JsonObject test, String type){
 		this.historyID++;
+		Gson gson = new Gson();
 		JsonObject historyObj = new JsonObject();
 		historyObj.addProperty("type", type);
-		historyObj.add("data", test);
+		historyObj.add("data", new JsonPrimitive(gson.toJson(test)));
 		history.put(this.historyID, historyObj);
 		setLastChangeToSuite(historyID);
 	}
@@ -91,8 +114,10 @@ public class TestRun {
 		SortedMap<Integer, JsonObject> tailMap = history.tailMap(fromIndex);
 		Set<Entry<Integer, JsonObject>> entrySet = tailMap.entrySet();
 		JsonArray results = new JsonArray();
+		Gson gson = new Gson();
 		for (Entry<Integer, JsonObject> entry : entrySet) {
 			JsonObject test = entry.getValue();
+			test.add("data", gson.fromJson(test.get("data").getAsString(), JsonObject.class));
 			test.addProperty("historyid", entry.getKey());
 			results.add(test);
 		}

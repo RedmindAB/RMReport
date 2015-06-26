@@ -77,5 +77,10 @@ public class TestRunTests {
 		JsonObject testHistory = history.get(0).getAsJsonObject();
 		String type = testHistory.get("type").getAsString();
 		assertEquals("running", type);
+		
+		testRun.finishTest("1");
+		JsonObject testCase = testRun.getTestCase("1");
+		assertEquals("done", testCase.get("status").getAsString());
 	}
+	
 }
