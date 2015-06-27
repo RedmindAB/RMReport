@@ -9,7 +9,10 @@
 		return {
 			testData:[],
 			tests:[],
-			historyid:0
+			historyid:0,
+			percentage:"0%",
+			currentPercentage: "0%",
+			uuid:""
 		};
 	}
 })();

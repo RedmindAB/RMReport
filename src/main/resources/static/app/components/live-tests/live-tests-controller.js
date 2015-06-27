@@ -17,37 +17,35 @@
 		vm.mockedStatistics = ['6.74', '144', '65', '0'];
 		vm.LiveData = LiveData;
 
-		runProgressBar();
-		updateInterval();
 		getLiveTests();
+		updateInterval();
 		
 		function updateInterval(){
 		        var progress = setInterval(function() {
-		        	getLiveSuite();
+		        	if(LiveData.uuid.length > 0){
+		        		getLiveSuite();
+		        	}
+		        	else{
+		        		getLiveTests();
+		        	}
 		        }, 1000);
 		}
 		
 		function getLiveTests(){
 			LiveTestsServices.getLiveSuite().then(function(request){
-				LiveTestsServices.getLiveTests(request[0].data[0].UUID);
+				for (var i = 0; i < request[0].data.length; i++) {
+					if(request[0].data[i].status === 'running'){
+						LiveTestsServices.getLiveTests(request[0].data[i].UUID);
+						LiveData.uuid = request[0].data[i].UUID;
+					}
+				}
+				
 			});
 		}
 		
 		function getLiveSuite(){
-			LiveTestsServices.getLiveSuite().then(function(request){
-				console.log(request);
-		    	LiveData.testData.push(request);
-		    	for (var i = 0; i < request[0].data.length; i++) {
-					if(request[0].data[i].status === 'running')
-						LiveTestsServices.getLiveHistory(request[0].data[i].UUID);
-				}
-			});
+			LiveTestsServices.getLiveHistory(LiveData.uuid);
 		}
-		
-		function runProgressBar(){
-			LiveTestsServices.runProgressBar();
-		}
-		
 		
 	    $scope.counter = 0;
 	    $scope.onTimeout = function(){
