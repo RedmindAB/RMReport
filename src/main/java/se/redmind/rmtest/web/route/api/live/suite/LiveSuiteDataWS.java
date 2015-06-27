@@ -1,6 +1,5 @@
 package se.redmind.rmtest.web.route.api.live.suite;
 
-import org.objenesis.instantiator.basic.NewInstanceInstantiator;
 
 import se.redmind.rmtest.liveteststream.LiveStreamContainer;
 import spark.Request;
