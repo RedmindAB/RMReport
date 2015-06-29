@@ -4,7 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Element;
 
-public class ReportTestCase{
+
+public abstract class ReportTestCase<E> {
 	
 	Logger log = LogManager.getLogger(ReportTestCase.class);
 
@@ -22,25 +23,44 @@ public class ReportTestCase{
 	
 	private boolean broken;
 							
-	private enum ResultType {PASSED, ERROR, FAILURE, SKIPPED};
+	public static enum ResultType {PASSED, ERROR, FAILURE, SKIPPED};
 	private ResultType resultType;
 	
 	private String name, classname, message, driverName;
 	private double time;
 	private boolean passed;
-	private Driver driverParser;
+	private Driver driver;
 	private String suite_name;
-
 	private boolean suiteIsTestcase;
+	private E element;
 	
-	public ReportTestCase(Element element, String suite_name) {
+	public ReportTestCase(E element, String suite_name) {
 		passed = false;
 		this.suite_name = suite_name;
-		generateTestCaseFromElement(element);
+		this.element = element;
 	}
 	
-	private void generateTestCaseFromElement(Element element){
-		name = element.getAttribute(NAME);
+	public ReportTestCase() {
+		// TODO Auto-generated constructor stub
+	}
+
+	protected abstract String getTestcaseName(E testcase);
+	
+	protected abstract String getClassname(E testcase);
+	
+	protected abstract ResultType getResult(E testcase);
+	
+	protected abstract String getErrorMessage(E testcase);
+	
+	protected abstract double getRunTime(E testcase);
+	
+	public ReportTestCase<E> build(){
+		generateTestCaseFromElement(element);
+		return this;
+	}
+	
+	private void generateTestCaseFromElement(E testcase){
+		name = getTestcaseName(testcase);
 		broken = checkIfBroken();
 		if (broken) {
 			boolean testCaseNameSameAsSuiteName = isTestCaseNameSameAsSuiteName(name);
@@ -52,34 +72,27 @@ public class ReportTestCase{
 			return;
 		}
 		
-		String driverName = checkDriverName(name);
-		this.driverName = driverName;
-		this.driverParser = new Driver(driverName);
+		
+		this.driverName = checkDriverName(name); 
+		this.driver = new Driver(driverName);
 		
 		
-		String elementClassname = element.getAttribute("classname");
+		String elementClassname = getClassname(testcase);
 		classname = getTestClassName(elementClassname);
 		
-		Element errorElement = (Element) element.getElementsByTagName(ERROR).item(0);
+		setResult(testcase);
 		
-		Element failureElement = (Element) element.getElementsByTagName(FAILURE).item(0);
-		Element skippedElement = (Element) element.getElementsByTagName(SKIPPED).item(0);
-		if (errorElement != null) {
-			String message = errorElement.getTextContent();
-			String type = errorElement.getAttribute(TYPE);
+		if (this.resultType == ResultType.ERROR) {
+			String message = getErrorMessage(testcase);
 			message = removeAllIlligalChars(message);
 			this.message = message;
-			this.resultType = ResultType.ERROR;
 		}
-		else if(failureElement != null){
-			String message = failureElement.getTextContent();
-			String type = failureElement.getAttribute(TYPE);
+		else if(this.resultType == ResultType.FAILURE){
+			String message = getErrorMessage(testcase);
 			message = removeAllIlligalChars(message);
 			this.message = message;
-			this.resultType = ResultType.FAILURE;
 		}
-		else if (skippedElement != null){
-			this.resultType = ResultType.SKIPPED;
+		else if (this.resultType == ResultType.SKIPPED){
 			this.message = "";
 		}
 		else {
@@ -89,9 +102,12 @@ public class ReportTestCase{
 		}
 		
 		
-		String timeValue = element.getAttribute(TIME);
-		double time = Double.parseDouble(timeValue);
+		double time = getRunTime(testcase);
 		this.time = time;
+	}
+	
+	private void setResult(E testcase) {
+		this.resultType = getResult(testcase);
 	}
 
 	private boolean checkIfBroken() {
@@ -108,9 +124,9 @@ public class ReportTestCase{
 
 	public String checkDriverName(String name){
 		if (name.contains("[")) {
-		int start = name.lastIndexOf("[");
-		int end = name.lastIndexOf("]");
-		return name.substring(start+1, end);
+			int start = name.lastIndexOf("[");
+			int end = name.lastIndexOf("]");
+			return name.substring(start+1, end);
 		}
 		return name;
 	}
@@ -174,7 +190,11 @@ public class ReportTestCase{
 	}
 	
 	public Driver getDriver(){
-		return this.driverParser;
+		return this.driver;
+	}
+	
+	public void setDriver(Driver driver){
+		this.driver = driver;
 	}
 	
 	public String getMessage() {
@@ -192,4 +212,33 @@ public class ReportTestCase{
 	public boolean isSuiteTestCase(){
 		return suiteIsTestcase;
 	}
+
+	public ResultType getResultType() {
+		return resultType;
+	}
+
+	public void setResultType(ResultType resultType) {
+		this.resultType = resultType;
+	}
+
+	public String getClassname() {
+		return classname;
+	}
+
+	public void setClassname(String classname) {
+		this.classname = classname;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public void setTime(double time) {
+		this.time = time;
+	}
+	
 }

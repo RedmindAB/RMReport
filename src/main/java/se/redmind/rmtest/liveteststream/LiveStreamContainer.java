@@ -50,7 +50,7 @@ public class LiveStreamContainer {
 		TestRun suite = streamMap.get(UUID);
 		suite.updateTime();
 		String id = test.get("id").getAsString();
-		suite.finishTest(id, test);
+		suite.finishTest(id);
 	}
 	
 	public List<TestRun> getTestRuns(){

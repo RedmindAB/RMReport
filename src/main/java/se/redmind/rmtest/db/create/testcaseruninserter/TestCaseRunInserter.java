@@ -13,8 +13,9 @@ import se.redmind.rmtest.db.create.testcaseinserter.TestCaseInserter;
 import se.redmind.rmtest.db.jdbm.message.MessageDAO;
 import se.redmind.rmtest.db.lookup.testcase.TestcaseDbLookup;
 import se.redmind.rmtest.report.parser.Driver;
-import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
+import se.redmind.rmtest.report.parser.xml.XMLReport;
+import se.redmind.rmtest.report.parser.xml.XMLReportTestCase;
 import se.redmind.rmtest.report.reportvalidation.DriverValidation;
 import se.redmind.rmtest.util.StringKeyValueParser;
 
@@ -36,7 +37,7 @@ public class TestCaseRunInserter extends DBBridge {
 		messageDAO = MessageDAO.getInstance();
 	}
 	
-	public boolean insertTestCases(Report report, int suiteID, HashMap<String, Integer> classIDs, HashMap<String,Integer> testCases, DriverValidation driverValidation){
+	public boolean insertTestCases(XMLReport report, int suiteID, HashMap<String, Integer> classIDs, HashMap<String,Integer> testCases, DriverValidation driverValidation){
 		String sql = "";
 		try {
 			Statement pStatement = connection.createStatement();

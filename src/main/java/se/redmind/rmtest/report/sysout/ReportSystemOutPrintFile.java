@@ -8,7 +8,7 @@ import java.nio.file.StandardCopyOption;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import se.redmind.rmtest.report.parser.Report;
+import se.redmind.rmtest.report.parser.xml.XMLReport;
 import se.redmind.rmtest.report.reportvalidation.ReportValidator;
 
 public class ReportSystemOutPrintFile {
@@ -19,7 +19,7 @@ public class ReportSystemOutPrintFile {
 	private ReportValidator reportValidator;
 	private File reportFile;
 	private File sysOutputFile;
-	private Report report;
+	private XMLReport report;
 	
 	public ReportSystemOutPrintFile(ReportValidator reportValidator) {
 		this.reportValidator = reportValidator;

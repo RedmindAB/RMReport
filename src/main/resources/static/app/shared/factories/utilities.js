@@ -30,9 +30,32 @@
 	        breakPointChoice: "None",
 	        sorting: ['-stats.totFail','result','name'],
 	        suitePartailSorting: 'name',
+			
+			getSize: function(obj) {
+			    var size = 0, key;
+			    for (key in obj) {
+			        if (obj.hasOwnProperty(key)) size++;
+			    }
+			    return size;
+			},
+			makeArray: function(number) {
+				return new Array(number);
+			},
 		    getIndexByTimestamp: function(timestamp){
 		    	var rawArray = CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id];
 		    	return rawArray.indexOf(timestamp);
+		    },
+		    makeSuiteReadable: function(suiteName){
+				var obj = [suiteName];
+				
+				var objArray = $.map(obj, function(value, index) {
+				    return [value];
+				});
+				
+		    	var array = objArray[0].split('.');
+		    	var arrayLength = array.length;
+		    	var suite = array[array.length-1];
+		    	return suite;
 		    },
 			makeTimestampReadable: function(timestamp){
 				var stringStamp = timestamp.toString();

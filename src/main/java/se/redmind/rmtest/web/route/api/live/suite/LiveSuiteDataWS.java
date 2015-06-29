@@ -1,5 +1,7 @@
 package se.redmind.rmtest.web.route.api.live.suite;
 
+import org.objenesis.instantiator.basic.NewInstanceInstantiator;
+
 import se.redmind.rmtest.liveteststream.LiveStreamContainer;
 import spark.Request;
 import spark.Response;
@@ -24,7 +26,11 @@ public class LiveSuiteDataWS extends Route {
 	public Object handle(Request request, Response response) {
 		LiveStreamContainer lsContainer = LiveStreamContainer.instance();
 		String UUID = request.params("UUID");
-		return lsContainer.getTestrunFromUUID(UUID).getSuite();
+		try {
+			return lsContainer.getTestrunFromUUID(UUID).getSuite();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 }

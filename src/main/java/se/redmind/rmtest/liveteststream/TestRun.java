@@ -7,8 +7,11 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 
 public class TestRun {
 	
@@ -32,22 +35,61 @@ public class TestRun {
 		suite.addProperty("lastUpdated", System.currentTimeMillis());
 	}
 
-	public JsonObject getTests() {
-		return suite.get("tests").getAsJsonObject();
+	public JsonArray getTests() {
+		return suite.get("tests").getAsJsonArray();
 	}
 	
 	public void startTest(String testID) {
-		JsonObject tests = suite.get("tests").getAsJsonObject();
-		JsonObject test = tests.get(testID).getAsJsonObject();
+		JsonArray tests = suite.get("tests").getAsJsonArray();
+		JsonObject test = null;
+		for (JsonElement jsonElement : tests) {
+			 test = jsonElement.getAsJsonObject();
+			if (test.get("id").getAsString().equals(testID)){
+				break;
+			}
+		}
 		test.addProperty("status", "running");
 		addToHistory(test, "running");
 	}
 	
-	public void finishTest(String id, JsonObject test){
-		JsonObject tests = suite.get("tests").getAsJsonObject();
+	public void finishTest(String id){
+		JsonObject test = getTestCase(id);
 		test.addProperty("status", "done");
-		tests.add(id, test);
 		addToHistory(test, "done");
+		setTestCase(id, test);
+	}
+	
+	public void setTestCase(String id, JsonObject test){
+		JsonArray tests = suite.get("tests").getAsJsonArray();
+		int index = Integer.valueOf(id)-1;
+		JsonObject rTest = tests.get(index).getAsJsonObject();
+		if (rTest.get("id").equals(id)){
+			tests.set(index, test);
+		}
+		else {
+			for (int i = 0; i < tests.size(); i++) {
+				rTest = tests.get(i).getAsJsonObject();
+				if (rTest.get("id").equals(id)){
+					tests.set(i, rTest);
+					break;
+				}
+			}
+		}
+	}
+	
+	public JsonObject getTestCase(String id){
+		JsonArray tests = suite.get("tests").getAsJsonArray();
+		JsonObject test = tests.get(Integer.valueOf(id)-1).getAsJsonObject();
+		if (test.get("id").getAsString().equals(id)){
+			return test;
+		}
+		else {
+			for (JsonElement jsonElement : tests) {
+				test = jsonElement.getAsJsonObject();
+				if (test.get("id").getAsString().equals(id)) return test;
+			}
+		}
+		return null;
 	}
 
 	public JsonObject getSuite() {
@@ -56,21 +98,23 @@ public class TestRun {
 	
 	private void addToHistory(JsonObject test, String type){
 		this.historyID++;
+		Gson gson = new Gson();
 		JsonObject historyObj = new JsonObject();
 		historyObj.addProperty("type", type);
-		historyObj.add("data", test);
+		historyObj.add("data", gson.fromJson(test, JsonObject.class));
 		history.put(this.historyID, historyObj);
 		setLastChangeToSuite(historyID);
 	}
 	
 	public void setLastChangeToSuite(int lastChange){
-		suite.addProperty("lastChangeId", lastChange);
+		suite.addProperty("historyid", lastChange);
 	}
 	
 	public JsonArray getHistory(int fromIndex){
 		SortedMap<Integer, JsonObject> tailMap = history.tailMap(fromIndex);
 		Set<Entry<Integer, JsonObject>> entrySet = tailMap.entrySet();
 		JsonArray results = new JsonArray();
+		Gson gson = new Gson();
 		for (Entry<Integer, JsonObject> entry : entrySet) {
 			JsonObject test = entry.getValue();
 			test.addProperty("historyid", entry.getKey());

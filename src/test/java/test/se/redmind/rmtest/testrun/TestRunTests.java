@@ -27,9 +27,9 @@ public class TestRunTests {
 		suite.addProperty("suite", "suiteclass");
 		suite.addProperty("totalTests", 4);
 		suite.addProperty("timestamp", "20150622104141");
-		JsonObject tests = new JsonObject();
+		JsonArray tests = new JsonArray();
 		for (int i = 0; i < 4; i++) {
-			tests.add(""+i, getTestCase(""+i));
+			tests.add(getTestCase(""+(i+1)));
 		}
 		suite.add("tests", tests);
 		return suite;
@@ -53,6 +53,7 @@ public class TestRunTests {
 	@Before
 	public void before(){
 		this.testRun = new TestRun("123123", getSuite());
+		System.out.println(testRun.getSuite());
 	}
 
 	@Test
@@ -67,8 +68,7 @@ public class TestRunTests {
 		testRun.startTest("1");
 		
 		//Gets the testcase and checks if it is running
-		JsonObject tests = testRun.getTests();
-		JsonObject test = tests.get("1").getAsJsonObject();
+		JsonObject test = testRun.getTestCase("1");
 		String actual = test.get("status").getAsString();
 		assertEquals("running", actual);
 		
@@ -77,5 +77,10 @@ public class TestRunTests {
 		JsonObject testHistory = history.get(0).getAsJsonObject();
 		String type = testHistory.get("type").getAsString();
 		assertEquals("running", type);
+		
+		testRun.finishTest("1");
+		JsonObject testCase = testRun.getTestCase("1");
+		assertEquals("done", testCase.get("status").getAsString());
 	}
+	
 }
