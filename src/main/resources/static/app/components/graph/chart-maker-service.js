@@ -5,27 +5,36 @@
 		.module('webLog')
 		.service('ChartMaker', ChartMaker);
 	
-	ChartMaker.$inject =  ['$http','$state', 'RestLoader', 'CurrentSuite', 'Utilities', 'Charts'];
+	ChartMaker.$inject =  ['$http','$state', 'RestLoader', 'CurrentSuite', 'Utilities', 'Charts','SuiteInfoHandler'];
 	
-	function ChartMaker($http,$state, RestLoader, CurrentSuite, Utilities, Charts){
+	function ChartMaker($http,$state, RestLoader, CurrentSuite, Utilities, Charts, SuiteInfoHandler){
 			
 		var vm = this;
+		
+		
+		vm.loadMainChart 		= loadMainChart;
+		vm.loadHomeChart 		= loadHomeChart;
+		vm.addCaseToGraph 		= addCaseToGraph;
+		vm.highlightPoint 		= highlightPoint;
+		vm.changeChartVariant 	= changeChartVariant;
+		
 			
-		vm.loadMainChart = function(suiteID,newLine,name){
+		function loadMainChart(suiteID,newLine,name){
 			RestLoader.loadMainChart(suiteID, newLine, createMainChart, name);
-		};
+			SuiteInfoHandler.setUpSpecs();
+		}
 		
-		vm.loadHomeChart = function(suite){
+		function loadHomeChart(suite){
 			RestLoader.createHomeChartFromID(suite,createHomeChart);
-		};
+		}
 		
-		vm.addCaseToGraph = function(osName, osVersion, deviceName, browserName, browserVer){
+		function addCaseToGraph(osName, osVersion, deviceName, browserName, browserVer){
 			RestLoader.addCaseToGraph(osName, osVersion, deviceName, browserName, browserVer, createMainChart);
-		};
+		}
 		
-	    vm.highlightPoint = function(index){
+	    function highlightPoint(index){
 	    	Charts.mainChart.xAxis.plotLines[0].value = index;
-	    };
+	    }
 			
 	    function createMainChart(data, newLine){
 	    	
@@ -37,20 +46,20 @@
 	    		Charts.mainChart.loading = false;
 				return;
 			}
-			CurrentSuite.currentTimeStampArray = [];
+			CurrentSuite.currentTimestampArray = [];
+			
 			var firstDataObj = data[0];
 			var prettifiedArray = [];
 			
 			var stampLength = data[0].data.length;
 			for (i = 0; i < stampLength; i++) {
-				CurrentSuite.currentTimeStampArray.push(firstDataObj.data[i].timestamp);
+				CurrentSuite.currentTimestampArray.push(firstDataObj.data[i].timestamp);
 				prettifiedArray.push(Utilities.makeTimestampReadable(firstDataObj.data[i].timestamp));
 			}
+			CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id] = CurrentSuite.currentTimestampArray;
 			
-			CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id] = CurrentSuite.currentTimeStampArray;
-			
-			if (CurrentSuite.currentTimeStamp === '') {
-				CurrentSuite.currentTimeStamp = data[0].data[data[0].data.length-1].timestamp;
+			if (CurrentSuite.currentTimestamp === '') {
+				CurrentSuite.currentTimestamp = data[0].data[data[0].data.length-1].timestamp;
 			}
 			Utilities.descTimestamps = reverseArray(CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id]);
 			var graphDataArray = [];
@@ -100,14 +109,14 @@
 			Charts.mainChart.options.plotOptions.series.point = {
 					events : {
 						click : function(e) {
-							RestLoader.loadTimestamp(CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][this.index], true);
+							SuiteInfoHandler.loadTimestamp(CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][this.index], true);
 							vm.highlightPoint(this.index);
 							$('#mainChart').highcharts().zoomOut();
 						}
 					}
 			};
 			
-			Charts.mainChart.subtitle.text = "Showing " + CurrentSuite.currentTimeStampArray.length + " results";
+			Charts.mainChart.subtitle.text = "Showing " + CurrentSuite.currentTimestampArray.length + " results";
 				
 			var chartsLength = Charts.data.length;
 			for (i = 0; i < chartsLength; i++) {
@@ -116,19 +125,19 @@
 					name : Charts.data[i].name,
 				});
 			}
-			if(CurrentSuite.currentTimeStampArray.length <= 50){
+			if(CurrentSuite.currentTimestampArray.length <= 50){
 				Charts.mainChart.xAxis.tickInterval = 0.4;
-			} else if(CurrentSuite.currentTimeStampArray.length > 50 && CurrentSuite.currentTimeStampArray.length <= 100){
+			} else if(CurrentSuite.currentTimestampArray.length > 50 && CurrentSuite.currentTimestampArray.length <= 100){
 	        	Charts.mainChart.xAxis.tickInterval = 2;
 	    	} else{
 	    		Charts.mainChart.xAxis.tickInterval = 5;
 	    	}
 			vm.changeChartVariant(Utilities.graphView);
 			Charts.mainChart.loading = false;
-			vm.highlightPoint(Utilities.getIndexByTimestamp(CurrentSuite.currentTimeStamp));
+			vm.highlightPoint(Utilities.getIndexByTimestamp(CurrentSuite.currentTimestamp));
 	    }
 		
-		vm.changeChartVariant = function(input){
+		function changeChartVariant(input){
 			Utilities.graphView = input;
 			
 			switch (input) {
@@ -349,14 +358,14 @@
 		
 		function createHomeChart(data, suite) {
 			
-			var timeStamps = [], timestampsRaw = [];
+			var timestamps = [], timestampsRaw = [];
 			var timestampObj = data[0].data;
 			for (var index = 0, timeLength = data[0].data.length; index < timeLength; index++) {
-				timeStamps.push(Utilities.makeTimestampReadable(timestampObj[index].timestamp));
+				timestamps.push(Utilities.makeTimestampReadable(timestampObj[index].timestamp));
 				timestampsRaw.push(timestampObj[index].timestamp);
 			}
 			CurrentSuite.timestampRaw[suite.id] = timestampsRaw;
-			suite.lastTimeStamp = timestampsRaw[timestampsRaw.length-1];
+			suite.lastTimestamp = timestampsRaw[timestampsRaw.length-1];
 			
 		    var chartHomeConfigObject = {
 					options : {
@@ -387,13 +396,13 @@
 							            url   : '/api/stats/devicerange/'+suite.id+'/'+CurrentSuite.timestampRaw[suite.id][points.points[0].point.index],
 							            method: 'GET',
 							            cache: true,
-							        })
+							        });
 								} else {
 									test = $http({
 							            url   : '/api/stats/devicerange/'+CurrentSuite.currentSuiteInfo.id+'/'+CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][points.points[0].point.index],
 							            method: 'GET',
 							            cache: true,
-							        })
+							        });
 								}
 				            	
 				            	tooltip = getTooltipPercentageString(points.points);
@@ -437,9 +446,8 @@
 											} else {
 												CurrentSuite.currentSuiteInfo = backupSuite;
 											}
-											RestLoader.loadTimestamp(CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][this.index], true);
+											CurrentSuite.currentTimestamp = CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][this.index];
 											vm.loadMainChart(CurrentSuite.currentSuiteInfo.id, true);
-											CurrentSuite.currentTimeStamp = CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][this.index];
 											$state.transitionTo('reports.classes');
 										}
 									}
@@ -520,7 +528,7 @@
 				skipData.push(dataKeeper.skipped);
 				failData.push(dataKeeper.fail + dataKeeper.error);
 			}
-			chartHomeConfigObject.xAxis.categories = timeStamps;
+			chartHomeConfigObject.xAxis.categories = timestamps;
 			Charts.chartHomeConfig[suite.id] = chartHomeConfigObject;
 			Charts.chartHomeConfig[suite.id].loading = false;
 		}

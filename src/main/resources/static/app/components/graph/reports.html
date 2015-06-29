@@ -10,7 +10,7 @@
 	<highchart 
 		style='position:responsive;float:left;width:100%'
 		id="mainChart" 
-		config="Charts.mainChart">
+		config="ctrl.Charts.mainChart">
 	</highchart>
 	
 	<!-- Amount dropdown -->
@@ -60,7 +60,7 @@
 		<ul class="dropdown-menu" role="menu">
 			<li 
 				id='remove-{{serie.name}}' 
-				ng-repeat='serie in Charts.mainChart.series'
+				ng-repeat='serie in ctrl.Charts.mainChart.series'
 				ng-click='ctrl.remove(serie)'>
 				<a style='cursor: pointer'> 
 					<span
@@ -295,8 +295,8 @@
 			<div ncy-breadcrumb class="breadcrumb"></div>
 		</div>
 		<div class="suite-info-center-center">
-			<h4 id="suite-position" class='reports-h4' ng-click="subNavLinks();" style="display:inline; text-align:center">
-				{{style.removePackagePath(getPosition())}}
+			<h4 id="suite-position" class='reports-h4' ng-click="NavCtrl.subNavLinks();" style="display:inline; text-align:center">
+				{{style.removePackagePath(NavCtrl.getPosition())}}
 			</h4>
 		</div>
 		<div id="class-method-option-center" class="suite-info-center-right">

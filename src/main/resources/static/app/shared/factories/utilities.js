@@ -20,7 +20,7 @@
 	    	descTimestamps: [],
 	    	searchField: '',
 	    	resultAmount: '50',
-	    	timeStamps: '',
+	    	timestamps: '',
 	    	graphView: 'Pass/Fail',
 	    	runValues: ["10", "20", "50", "100", "500"],
 	        chartVariants: ["Pass/Fail", "Total Pass", "Total Fail", "Total Skipped", "Run Time"],
@@ -121,17 +121,16 @@
 	        	CurrentSuite.currentDriverRuns = [];
 	        	CurrentSuite.currentMethod = [];
 	        	CurrentSuite.currentMethods = [];
-	        	CurrentSuite.currentSpecObject = [];
 	        	CurrentSuite.currentSuite = [];
 	        	CurrentSuite.currentSuiteInfo = [];
-	        	CurrentSuite.currentTimeStamp = '';
-	        	CurrentSuite.currentTimeStampArray = [];
+	        	CurrentSuite.currentTimestamp = '';
+	        	CurrentSuite.currentTimestampArray = [];
 	        	CurrentSuite.lastRunSize = 50;
 	        	CurrentSuite.newLine = false;
 	        	CurrentSuite.currentSpecObject = [];
 	        	this.searchField = '';
 	        	this.resultAmount = '50';
-	        	this.timeStamps = '';
+	        	this.timestamps = '';
 	        	this.graphView = 'Pass/Fail';
 	        	this.breakPointChoice = 'None';
 	        }

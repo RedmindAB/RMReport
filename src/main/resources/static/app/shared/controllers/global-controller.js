@@ -28,7 +28,7 @@
 		});
 		
 		function resetWebApp(){
-			if (CurrentSuite.currentSuiteInfo.length === 0) {
+			if (CurrentSuite.currentSuiteInfo.length <= 0) {
 				$location.path("/");
 			}
 		}

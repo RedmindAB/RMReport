@@ -4,5 +4,5 @@ angular.module('webLog')
         restrict: 'E',
         scope: false,
         templateUrl: '/app/components/dashboard/template.html'
-     }
+     };
     });

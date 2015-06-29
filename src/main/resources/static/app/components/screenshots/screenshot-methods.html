@@ -27,7 +27,7 @@
 	    	ng-if="ctrl.containsScreenshots(method)" 
 	    	class='noselect' 
 	    	ng-repeat="method in ctrl.ScreenshotMaster.data | orderBy:['-stats.totFail','result','name']">
-	        <accordion-group style="margin-top:10px;padding:0px;" ng-class='style.getPanel(method.result)' >
+	        <accordion-group style="margin-top:10px;padding:0px;background-color:#F8F8F8" ng-class='style.getPanel(method.result)' >
 	            <accordion-heading>
 					<div id='method-{{$index}}' class="accordion-toggle" style="display:inline-block;width:100%">
 						<p 

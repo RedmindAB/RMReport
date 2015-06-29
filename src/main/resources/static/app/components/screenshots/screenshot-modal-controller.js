@@ -5,9 +5,9 @@
 		.module('webLog')
 		.controller('ScreenshotModalCtrl', ScreenshotModalCtrl);
 		
-	ScreenshotModalCtrl.$inject = ['RestLoader', 'ScreenshotMaster'];
+	ScreenshotModalCtrl.$inject = ['ScreenshotMaster', 'ScreenshotServices', 'CurrentSuite'];
 	
-	function ScreenshotModalCtrl (RestLoader, ScreenshotMaster) {
+	function ScreenshotModalCtrl (ScreenshotMaster, ScreenshotServices, CurrentSuite) {
 		
 		var vm = this;
 		
@@ -27,11 +27,17 @@
 		vm.nextSlide 				= nextSlide;
 		vm.isLastIndex 				= isLastIndex;
 		
-		getConsolePrint();
+		
+		init();
+		
 		
 		document.addEventListener('dragstart', function (e) { 
 			e.preventDefault(); 
 		});
+		
+		function init(){
+			loadConsolePrints();
+		}
 
 	    function setCurrentMethod(method){
 	    	vm.currentMethod = method;
@@ -73,9 +79,12 @@
 	    	vm.currentIndex = (vm.currentIndex > 0) ? --vm.currentIndex : vm.slides.length - 1;
 	    }
 	    
-	    function getConsolePrint(){
-	    	RestLoader.getConsolePrint();
-	    }
+		function loadConsolePrints(){
+			return ScreenshotServices.getConsolePrints(CurrentSuite.currentSuiteInfo.id, CurrentSuite.currentTimestamp)
+				.then(function(data){
+					ScreenshotMaster.consolePrint = data;
+				});
+		}
 	    
 	    function isLastIndex(index,length){
 	    	return index+1 === length;

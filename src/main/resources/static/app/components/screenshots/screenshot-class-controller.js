@@ -5,21 +5,18 @@
 		.module('webLog')
 		.controller('ScreenshotClassCtrl', ScreenshotClassCtrl);
 	
-	ScreenshotClassCtrl.$inject = ['CurrentSuite', 'RestLoader','ScreenshotMaster'];
+	ScreenshotClassCtrl.$inject = ['CurrentSuite', 'RestLoader','ScreenshotMaster', 'SuiteInfoHandler'];
 	
-	function ScreenshotClassCtrl(CurrentSuite, RestLoader, ScreenshotMaster){
+	function ScreenshotClassCtrl(CurrentSuite, RestLoader, ScreenshotMaster, SuiteInfoHandler){
 		
 		var vm = this;
 		
 		vm.setCurrentClass = setCurrentClass;
+		getSuiteSkeletonByTimestamp(CurrentSuite.currentTimestamp);
 		
-		getSuiteSkeletonByTimestamp(CurrentSuite.currentTimeStamp);
-		
-		console.log(ScreenshotMaster);
-		
-		function getSuiteSkeletonByTimestamp(timestampVal){
-			var timestamp = timestampVal !== undefined ? timestampVal : CurrentSuite.currentSuiteInfo.lastTimeStamp;
-			RestLoader.loadTimestamp(timestamp);
+		function getSuiteSkeletonByTimestamp(timestamp){
+//			var timestamp = timestampVal !== undefined ? timestampVal : CurrentSuite.currentSuiteInfo.lastTimetamp;
+			SuiteInfoHandler.loadTimestamp(timestamp);
 		}
 		
 		function setCurrentClass(classObj){
