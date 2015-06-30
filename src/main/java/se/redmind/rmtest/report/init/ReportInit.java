@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.lookup.report.ReportExist;
+import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.xml.XMLReport;
 import se.redmind.rmtest.report.reporthandler.ReportHandler;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
@@ -55,6 +56,7 @@ public class ReportInit {
 				try {
 					insertReports(file);
 				} catch (Exception e) {
+					e.printStackTrace();
 					continue;
 				}
 			}
@@ -77,8 +79,9 @@ public class ReportInit {
 
 	private void insertReports(File file) throws Exception{
 			ReportValidator reportValidator = getReportValidator(file);
-			XMLReport report = reportValidator.getReport();
+			Report report = reportValidator.getReport();
 			boolean existsInDB = reportExist.reportExists(report.getTimestamp(), report.getSuiteName());
+			
 			if (!existsInDB) {
 				boolean saveReport = reportValidator.saveReport();
 				if (!saveReport) {
@@ -98,6 +101,7 @@ public class ReportInit {
 
 	private void printBrokenReports() {
 		if (brokenReports.size() > 0) {
+			System.out.println(brokenReports.size()+" broken reports, see more in the log file \"rmr.log\" in the /logs directory");
 			log.info("Broken reports: "+brokenReports.size());
 			for (String reportname : brokenReports) {
 				log.info(reportname);

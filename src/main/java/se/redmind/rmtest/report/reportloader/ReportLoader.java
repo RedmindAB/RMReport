@@ -50,7 +50,7 @@ public class ReportLoader {
 		else return new File(reportFolderPath);
 	}
 	
-	public File getXMLReportByFileName(String fileName){
+	public File getReportByFileName(String fileName){
 		return findOneFile(getReportFolderAsFile(), fileName);
 	}
 	
@@ -60,6 +60,10 @@ public class ReportLoader {
 	 */
 	public ArrayList<File> getXMLReports(){
 		return getFilesFromFolder(getReportFolderAsFile(), ".xml");
+	}
+	
+	public ArrayList<File> getJsonReports(){
+		return getFilesFromFolder(getReportFolderAsFile(), ".json");
 	}
 	
 	/**

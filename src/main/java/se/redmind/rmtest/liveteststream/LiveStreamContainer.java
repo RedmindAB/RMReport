@@ -32,6 +32,8 @@ public class LiveStreamContainer {
 	public void addSuite(String uUID, JsonObject suiteJson) {
 		log.info("Adding suite: "+uUID);
 		if (!streamMap.contains(uUID)) {
+			//TODO: if you want to show more than the latest running suite u need to remove the streamMap.clear() and handle the amount of testruns that are saved.
+			streamMap.clear();
 			TestRun testRun = new TestRun(uUID, suiteJson);
 			testRun.setStatus("running");
 			testRun.updateTime();
@@ -61,6 +63,7 @@ public class LiveStreamContainer {
 		}
 		return array;
 	}
+	
 	
 	public TestRun getTestrunFromUUID(String UUID){
 		return streamMap.get(UUID);

@@ -85,7 +85,7 @@ public class JsonReportParserTest{
 				tests++;
 			}
 		}
-		assertEquals(1, tests);
+		assertEquals(2, tests);
 	}
 
 	@Test
@@ -95,11 +95,11 @@ public class JsonReportParserTest{
 		int tests=0;
 		for (ReportTestCase reportTestCase : testCaseArray) {
 			String result = reportTestCase.getResult();
-			if (result.equals("error")) {
+			if (result.equals("failure")) {
 				tests++;
 			}
 		}
-		assertEquals(1, tests);
+		assertEquals(2, tests);
 	}
 
 	@Test
@@ -120,7 +120,7 @@ public class JsonReportParserTest{
 	public void checkRunTime() {
 		JsonReport report = getReport();
 		double time = report.getTime();
-		assertEquals(19.09, time, 0.0);
+		assertEquals(17.558, time, 0.0);
 	}
 	
 	@Test
@@ -129,7 +129,7 @@ public class JsonReportParserTest{
 		List<ReportTestCase> testCaseArray = report.getTestCaseArray();
 		for (ReportTestCase reportTestCase : testCaseArray) {
 			double time = reportTestCase.getTime();
-			assertTrue(time+ "is not bigger than 0", time > 0);
+			assertTrue(time+ " is not bigger than 0", time >= 0);
 		}
 	}
 	

@@ -6,6 +6,8 @@ import com.google.gson.JsonObject;
 
 public class JsonReportTestCase extends ReportTestCase<JsonObject> {
 
+	private String methodName;
+
 	public JsonReportTestCase(JsonObject element, String suite_name) {
 		super(element, suite_name);
 	}
@@ -16,12 +18,16 @@ public class JsonReportTestCase extends ReportTestCase<JsonObject> {
 
 	@Override
 	protected String getTestcaseName(JsonObject testcase) {
-		return testcase.get("method").getAsString();
+		System.out.println(testcase);
+		methodName = testcase.get("method").getAsString();
+		return methodName;
 	}
 
 	@Override
 	protected String getClassname(JsonObject testcase) {
-		return testcase.get("testclass").getAsString();
+		String classname = testcase.get("testclass").getAsString();
+		System.out.println(classname);
+		return classname;
 	}
 
 	@Override
@@ -51,4 +57,9 @@ public class JsonReportTestCase extends ReportTestCase<JsonObject> {
 		return 0;
 	}
 
+	@Override
+	public String getMethodName() {
+		return getName();
+	}
+	
 }

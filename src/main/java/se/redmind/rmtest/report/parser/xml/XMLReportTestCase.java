@@ -60,5 +60,15 @@ public class XMLReportTestCase extends ReportTestCase<Element>{
 	private boolean isElementType(Element testcase, String type){
 		return (Element) testcase.getElementsByTagName(type).item(0) != null;
 	}
+
+	@Override
+	public String getMethodName() {
+		int end = name.indexOf("[");
+		if (end > 0) {
+			String res = name.substring(0, end);
+			return res;
+		}
+		return null;
+	}
 	
 }

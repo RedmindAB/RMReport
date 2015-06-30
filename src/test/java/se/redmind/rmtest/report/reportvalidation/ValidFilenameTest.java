@@ -22,7 +22,7 @@ public class ValidFilenameTest {
 	@BeforeClass
 	public static void beforeClass(){
 		loader = getReportLoader();
-		file = loader.getXMLReportByFileName(specificReportFileName);
+		file = loader.getReportByFileName(specificReportFileName);
 		val = new ReportValidator(file, loader);
 	}
 

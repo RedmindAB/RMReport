@@ -1,5 +1,12 @@
 package se.redmind.rmtest.report.parser.json;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
@@ -9,6 +16,8 @@ import se.redmind.rmtest.report.parser.Driver;
 import se.redmind.rmtest.report.parser.ReportTestCase;
 import se.redmind.rmtest.report.parser.ReportTestCase.ResultType;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -20,6 +29,20 @@ public class JsonReportBuilder {
 		this.reportJson = reportJson;
 	}
 	
+	public JsonReportBuilder(File reportFile) {
+		this.reportJson = getReportJsonFromFile(reportFile);
+	}
+
+	private JsonObject getReportJsonFromFile(File reportFile) {
+		try {
+			String reportString = new String(Files.readAllBytes(reportFile.toPath()));
+			return new Gson().fromJson(reportString, JsonObject.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public JsonReport build(){
 		JsonReport report = new JsonReport();
 		//Set up suite variables.
@@ -33,11 +56,10 @@ public class JsonReportBuilder {
 	}
 	
 	private List<ReportTestCase> getTestcases() {
-		JsonObject tests = reportJson.get("tests").getAsJsonObject();
-		Set<Entry<String, JsonElement>> entrySet = tests.entrySet();
+		JsonArray tests = reportJson.get("tests").getAsJsonArray();
 		List<ReportTestCase> results = new ArrayList<ReportTestCase>();
-		for (Entry<String, JsonElement> entry : entrySet) {
-			JsonObject test = entry.getValue().getAsJsonObject();
+		for (JsonElement entry : tests) {
+			JsonObject test = entry.getAsJsonObject();
 			JsonReportTestCase testCase = new JsonReportTestCase();
 			testCase.setTime(test.get("runTime").getAsDouble());
 			testCase.setMessage(getTestMessage(test));
@@ -78,7 +100,7 @@ public class JsonReportBuilder {
 
 	private String getTestMessage(JsonObject test) {
 		try {
-			String message = test.get("message").getAsString();
+			String message = test.get("failureMessage").getAsString();
 			return message;
 		} catch (Exception e) {
 			return "";

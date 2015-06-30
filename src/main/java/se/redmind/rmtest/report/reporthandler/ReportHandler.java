@@ -1,6 +1,7 @@
 package se.redmind.rmtest.report.reporthandler;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import se.redmind.rmtest.report.parser.ReportXMLParser;
@@ -19,7 +20,9 @@ public class ReportHandler {
 	}
 	
 	public List<File> getReportFiles(){
-		return loader.getXMLReports();
+		ArrayList<File> reports = loader.getXMLReports();
+		reports.addAll(loader.getJsonReports());
+		return reports;
 	}
 	
 //	public JsonArray getReportList(){

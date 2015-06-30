@@ -57,7 +57,7 @@ public class ReportLoaderTest {
 	
 	@Test
 	public void getSpecificXMLReport(){
-		File file = loader.getXMLReportByFileName(specificReportFileName);
+		File file = loader.getReportByFileName(specificReportFileName);
 		assertEquals(specificReportFileName, file.getName());
 	}
 	

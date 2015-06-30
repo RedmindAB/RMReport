@@ -15,7 +15,7 @@ public abstract class Report<E> {
 	
 	Logger log = LogManager.getLogger(Report.class);
 	
-	private E fullReport;
+	protected E fullReport;
 	
 	private String name;
 	private String suite_name;
@@ -169,7 +169,7 @@ public abstract class Report<E> {
 				if (!driverSet.contains(driver)) {
 					driverSet.add(driver);
 				}
-				String testClass = test.getClassName();
+				String testClass = test.getClassname();
 				if (!getPresentTestClasses().contains(testClass)) {
 					getPresentTestClasses().add(testClass);
 				}

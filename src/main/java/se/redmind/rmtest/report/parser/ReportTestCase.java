@@ -26,13 +26,13 @@ public abstract class ReportTestCase<E> {
 	public static enum ResultType {PASSED, ERROR, FAILURE, SKIPPED};
 	private ResultType resultType;
 	
-	private String name, classname, message, driverName;
+	protected String name, classname, message, driverName;
 	private double time;
 	private boolean passed;
 	private Driver driver;
 	private String suite_name;
 	private boolean suiteIsTestcase;
-	private E element;
+	protected E element;
 	
 	public ReportTestCase(E element, String suite_name) {
 		passed = false;
@@ -131,14 +131,7 @@ public abstract class ReportTestCase<E> {
 		return name;
 	}
 	
-	public String getMethodName(){
-		int end = name.indexOf("[");
-		if (end > 0) {
-			String res = name.substring(0, end);
-			return res;
-		}
-		return null;
-	}
+	public abstract String getMethodName();
 	
 	private boolean isTestCaseNameSameAsSuiteName(String methodName){
 		suiteIsTestcase = methodName.equals(suite_name);
@@ -175,12 +168,6 @@ public abstract class ReportTestCase<E> {
 		return name;
 	}
 	
-
-	public String getClassName() {
-		return classname;
-	}
-
-
 	public double getTime() {
 		return this.time;
 	}

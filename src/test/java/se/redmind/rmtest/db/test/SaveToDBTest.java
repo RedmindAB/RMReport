@@ -27,7 +27,7 @@ public class SaveToDBTest {
     public static void beforeClass(){
         loader = new ReportLoader(ReportLoaderTest.path, false);
         parser = new ReportXMLParser();
-        file = loader.getXMLReportByFileName(testFileName);
+        file = loader.getReportByFileName(testFileName);
     }
 
     @Test

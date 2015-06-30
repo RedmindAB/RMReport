@@ -29,7 +29,7 @@ public class ReportXMLParserTest {
 		loader = new ReportLoader(ReportLoaderTest.path, false);
 		parser = new ReportXMLParser();
 		testFileName = ReportLoaderTest.specificReportFileName;  
-		file = loader.getXMLReportByFileName(testFileName);
+		file = loader.getReportByFileName(testFileName);
 	}
 	
 	@Test

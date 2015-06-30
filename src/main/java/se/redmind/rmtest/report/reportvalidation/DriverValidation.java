@@ -12,6 +12,7 @@ import se.redmind.rmtest.db.lookup.browser.BrowserDdLookup;
 import se.redmind.rmtest.db.lookup.device.DeviceDdLookup;
 import se.redmind.rmtest.db.lookup.os.OsDbLookup;
 import se.redmind.rmtest.report.parser.Driver;
+import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
 import se.redmind.rmtest.report.parser.xml.XMLReport;
 import se.redmind.rmtest.report.parser.xml.XMLReportTestCase;
@@ -23,7 +24,7 @@ public class DriverValidation {
 	private HashMap<String, Integer> browserMap;
 	private HashMap<String, Integer> deviceMap;
 	
-	public DriverValidation(XMLReport report) {
+	public DriverValidation(Report report) {
 		driverArray = new ArrayList<Driver>();
 		fillDriverArray(report);
 		osMap = getOSMap();
@@ -31,7 +32,7 @@ public class DriverValidation {
 		deviceMap = getDeviceMap();
 	}
 	
-	private void fillDriverArray(XMLReport report){
+	private void fillDriverArray(Report report){
 		List<ReportTestCase> testCaseArray = report.getTestCaseArray();
 		HashSet<String> osNames = new HashSet<String>();
 		for (ReportTestCase reportTestCase : testCaseArray) {

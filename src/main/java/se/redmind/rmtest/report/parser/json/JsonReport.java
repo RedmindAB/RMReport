@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -87,5 +88,15 @@ public class JsonReport extends Report<JsonObject> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	@Override
+	public List<String> getPresentTestClasses() {
+		List<ReportTestCase> testCaseArray = getTestCaseArray();
+		List<String> classnames = new ArrayList<String>();
+		for (ReportTestCase reportTestCase : testCaseArray) {
+			String classname = reportTestCase.getClassname();
+			if (!classnames.contains(classname)) classnames.add(classname);
+		}
+		return classnames;
+	}
 }

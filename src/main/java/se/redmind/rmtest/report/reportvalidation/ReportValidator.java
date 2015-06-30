@@ -18,8 +18,11 @@ import se.redmind.rmtest.db.lookup.classname.ClassDbLookup;
 import se.redmind.rmtest.db.lookup.report.ReportDbLookup;
 import se.redmind.rmtest.db.lookup.suite.SuiteDbLookup;
 import se.redmind.rmtest.db.lookup.testcase.TestcaseDbLookup;
+import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
 import se.redmind.rmtest.report.parser.ReportXMLParser;
+import se.redmind.rmtest.report.parser.json.JsonReport;
+import se.redmind.rmtest.report.parser.json.JsonReportBuilder;
 import se.redmind.rmtest.report.parser.xml.XMLReport;
 import se.redmind.rmtest.report.parser.xml.XMLReportTestCase;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
@@ -34,7 +37,7 @@ public class ReportValidator {
 	private ReportXMLParser parser;
 	private Connection connection;
 	private String filename;
-	private XMLReport report;
+	private Report report;
 	private File reportFile;
 	private ClassInserter classInserter;
 	private SuiteInserter suiteInserter;
@@ -76,8 +79,13 @@ public class ReportValidator {
 	}
 	
 	private void loadReport(){
-		this.reportFile = loader.getXMLReportByFileName(filename);
-		this.report = (XMLReport) parser.getSimpleReportFromFile(reportFile).build();
+		this.reportFile = loader.getReportByFileName(filename);
+		if (this.reportFile.getAbsolutePath().endsWith("xml")){
+			this.report = (XMLReport) parser.getSimpleReportFromFile(reportFile).build();
+		}
+		else if (this.reportFile.getAbsolutePath().endsWith("json")){
+			this.report = (JsonReport) new JsonReportBuilder(this.reportFile).build();
+		}
 	}
 	
 	public boolean reportExists(){
@@ -87,7 +95,7 @@ public class ReportValidator {
 	
 	public boolean saveReport(){
 		if (!isValidFilename()) {
-			log.warn(reportFile.getName()+"is not a valid report file");
+			log.warn(reportFile.getName()+" is not a valid report file");
 			return false;
 		}
 		boolean convertToFullReport = report.convertToFullReport();
@@ -161,7 +169,7 @@ public class ReportValidator {
 		return classInserter;
 	}
 	
-	private HashMap<String,Integer> getTestCases(XMLReport report, HashMap<String, Integer> classIDs){
+	private HashMap<String,Integer> getTestCases(Report report, HashMap<String, Integer> classIDs){
 		TestcaseDbLookup readTestcaseFromDB = new TestcaseDbLookup();
 		//get testcases from db.
 		HashMap<String, Integer> allFromTestcaseConcat = readTestcaseFromDB.getAllFromTestcaseConcat();
@@ -169,7 +177,7 @@ public class ReportValidator {
 		//get testcases from report
 		List<ReportTestCase> testCaseArray = report.getTestCaseArray();
 		for (ReportTestCase testCase : testCaseArray) {
-			Integer classID = classIDs.get(testCase.getClassName());
+			Integer classID = classIDs.get(testCase.getClassname());
 			String methodName = testCase.getMethodName();
 			String searchKey = methodName+classID;
 			if (addedTestCases.contains(searchKey)) {
@@ -199,14 +207,14 @@ public class ReportValidator {
 	 * @return - boolean
 	 */
 	public boolean isValidFilename(String filename){
-		return filename.matches("(TEST-)+([.a-zA-Z])+(-)+([0-9]{8}-[0-9]{6})+(.xml)");
+		return filename.matches("(TEST-)+([.a-zA-Z])+(-)+([0-9]{8}-[0-9]{6})+(.xml)") || filename.endsWith(".json");
 	}
 	
 	public File getReportFile(){
 		return this.reportFile;
 	}
 	
-	public XMLReport getReport(){
+	public Report getReport(){
 		return report;
 	}
 	
