@@ -5,27 +5,28 @@
 		.module('webLog')
 		.controller('SuiteClassCtrl', SuiteClassCtrl);
 		
-	SuiteClassCtrl.$inject = ['CurrentSuite', 'RestLoader'];
+	SuiteClassCtrl.$inject = ['$scope', 'CurrentSuite', 'RestLoader', 'SuiteInfoHandler'];
 	
-	function SuiteClassCtrl (CurrentSuite, RestLoader){
+	function SuiteClassCtrl ($scope, CurrentSuite, RestLoader, SuiteInfoHandler){
 		
 		var vm = this;
 		
 		vm.CurrentSuite = CurrentSuite;
-		
 
+		
 		vm.getSuiteSkeletonByTimestamp 	= getSuiteSkeletonByTimestamp;
 		vm.setCurrentClass 				= setCurrentClass;
 		
-		getSuiteSkeletonByTimestamp(CurrentSuite.currentTimeStamp);
+		
+		getSuiteSkeletonByTimestamp(CurrentSuite.currentTimestamp);
 		
 		function setCurrentClass(classObj){
 			CurrentSuite.currentClass = classObj;
 		}
 		
-		function getSuiteSkeletonByTimestamp(timestampVal){
-			var timestamp = timestampVal !== undefined ? timestampVal : CurrentSuite.currentSuiteInfo.lastTimeStamp;
-			RestLoader.loadTimestamp(timestamp);
+		function getSuiteSkeletonByTimestamp(timestamp){
+//			var timestamp = timestampVal !== undefined ? timestampVal : CurrentSuite.currentSuiteInfo.lastTimestamp;
+			SuiteInfoHandler.loadTimestamp(timestamp);
 		}
 	}
 })();

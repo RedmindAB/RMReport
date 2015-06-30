@@ -41,7 +41,7 @@
 	    function homeChartLoaded(suite){
 	    	return Charts.chartHomeConfig[suite.id] !== undefined && 
 	    	Charts.chartHomeConfig[suite.id].loading === false && 
-	    	suite.lastTimeStamp !== undefined;
+	    	suite.lastTimestamp !== undefined;
 	    }
 		
 	    /*

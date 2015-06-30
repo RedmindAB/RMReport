@@ -33,6 +33,7 @@ angular
 	        templateUrl: 'app/components/graph/reports.html',
 	        controller: 'GraphCtrl',
 	        controllerAs: 'ctrl',
+	        cache: false,
 	        ncyBreadcrumb: {
 	        	skip:true
 	          }

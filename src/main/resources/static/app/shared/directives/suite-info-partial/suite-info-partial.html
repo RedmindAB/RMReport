@@ -1,4 +1,4 @@
-<div ng-controller="NavCtrl">
+<div ng-controller="NavCtrl as NavCtrl">
     <accordion id="{{type}}-group" close-others="true">
 		<table 
 			width='100%'
@@ -41,7 +41,7 @@
           		</th>
           	</thead>
 			<tbody>
-				<tr 
+				<tr ng-if="!hideIf(object)"
 		           	ng-repeat="object in iterationObject| filter: ctrl.Utilities.searchField | orderBy:predicate:reverseSort track by $index "
 		           	ng-style="{'color' : style.getColor(object.result)}"
 		           	class="suite-partial-name-container">
@@ -52,7 +52,7 @@
 		                <icon-checkbox content="object" id='checkbox{{$index}}'></icon-checkbox>					                    
 		            </td>
 					<td 
-						ng-click="loadFunction(object); setState(toState);loadFunctionTwo(object);"
+						ng-click="loadFunction(object); NavCtrl.setState(toState);loadFunctionTwo(object);"
 	                  	id='{{type}}-{{$index}}' 
 	                  	class="table-content-name"
 	                  	ng-style="{'background-color': style.getBgCo(object.result),'border-color':style.getBorderColor(object.result)}">
@@ -62,28 +62,28 @@
 					</td>
 					<td 
 						ng-style="{'background-color': style.getBgCo(object.result),'border-color':style.getBorderColor(object.result)}"
-						ng-click="loadFunction(object); setState(toState);loadFunctionTwo(object);">
+						ng-click="loadFunction(object); NavCtrl.setState(toState);loadFunctionTwo(object);">
 						<p id="{{type}}-passfail-{{$index}}">
 		                   	{{object.stats.passed}}
 						</p>
 					</td>
 					<td 
 						ng-style="{'background-color': style.getBgCo(object.result),'border-color':style.getBorderColor(object.result)}"
-						ng-click="loadFunction(object); setState(toState);loadFunctionTwo(object);">
+						ng-click="loadFunction(object); NavCtrl.setState(toState);loadFunctionTwo(object);">
 						<p id="{{type}}-passfail-{{$index}}">
 		                   	{{object.stats.skipped}}
 						</p>
 					</td>
 					<td 
 						ng-style="{'background-color': style.getBgCo(object.result),'border-color':style.getBorderColor(object.result)}"
-						ng-click="loadFunction(object); setState(toState);loadFunctionTwo(object);">
+						ng-click="loadFunction(object); NavCtrl.setState(toState);loadFunctionTwo(object);">
 						<p id="{{type}}-passfail-{{$index}}">
 		                   	{{object.stats.totFail}}
 						</p>
 					</td>
 					<td
 						ng-style="{'background-color': style.getBgCo(object.result),'border-color':style.getBorderColor(object.result)}"
-						ng-click="loadFunction(object); setState(toState);loadFunctionTwo(object);">
+						ng-click="loadFunction(object); NavCtrl.setState(toState);loadFunctionTwo(object);">
 						<p id="{{type}}-runtime-{{$index}}">
 		                   	{{style.formatDecimals(object.time)}}
 						</p>

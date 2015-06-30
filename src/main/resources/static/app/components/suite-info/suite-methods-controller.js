@@ -5,9 +5,9 @@
 	.module('webLog')
 	.controller('SuiteMethodCtrl', SuiteMethodCtrl);
 	
-	SuiteMethodCtrl.$inject = ['CurrentSuite','RestLoader'];
+	SuiteMethodCtrl.$inject = ['CurrentSuite','RestLoader', 'SuiteInfoHandler'];
 	
-	function SuiteMethodCtrl(CurrentSuite, RestLoader){
+	function SuiteMethodCtrl(CurrentSuite, RestLoader, SuiteInfoHandler){
 		
 		var vm = this;
 		
@@ -17,10 +17,11 @@
 		
 		getMethods();
 		
+		
 		function getMethods(){
 			CurrentSuite.clearOtherChosen(CurrentSuite.currentClass);
 			CurrentSuite.currentMethods = CurrentSuite.currentClass.testcases;
-			RestLoader.getPassFailTotByMethod(CurrentSuite.currentTimeStamp, CurrentSuite.currentClass, CurrentSuite.currentMethods);
+			SuiteInfoHandler.setPassFailAllMethods(CurrentSuite.currentTimestamp, CurrentSuite.currentClass, CurrentSuite.currentMethods);
 		}
 		
 		function setCurrentMethod(method){

@@ -5,9 +5,9 @@
 		.module('webLog')
 		.controller('ScreenshotMethodCtrl', ScreenshotMethodCtrl);
 	
-	ScreenshotMethodCtrl.$inject = ['$scope','ScreenshotMaster','RestLoader', 'CurrentSuite'];
+	ScreenshotMethodCtrl.$inject = ['$scope','ScreenshotMaster','RestLoader', 'CurrentSuite', 'ScreenshotServices', 'SuiteInfoHandler'];
 	
-	function ScreenshotMethodCtrl($scope, ScreenshotMaster, RestLoader, CurrentSuite){
+	function ScreenshotMethodCtrl($scope, ScreenshotMaster, RestLoader, CurrentSuite, ScreenshotServices, SuiteInfoHandler){
 		
 		var vm = this;
 		
@@ -27,7 +27,8 @@
 		vm.getCommentFromFileName 		= getCommentFromFileName;
 		
 		
-		loadScreenshotsFromClass();
+		init();
+		
 		
 		$scope.$on("closeScreenshotModal", function() {
 			vm.screenshotModalShown = false;
@@ -37,8 +38,15 @@
 			vm.consoleModalShown = false;
 		});
 		
-		function loadScreenshotsFromClass(){
-			RestLoader.loadScreenshotsFromClass(CurrentSuite.currentClass);
+		function init(){
+			ScreenshotServices.loadScreenshotsFromClass(CurrentSuite.currentClass.id, CurrentSuite.currentTimestamp)
+			.then(function(data){
+	    		ScreenshotMaster.data = data;
+	    		SuiteInfoHandler.setPassFailAllMethods(CurrentSuite.currentTimestamp, CurrentSuite.currentClass, ScreenshotMaster.data);
+	    		ScreenshotMaster.currentClass = CurrentSuite.currentClass.id;
+	    		ScreenshotMaster.currentTimestamp = CurrentSuite.currentTimestamp;
+	    		setCaseSizeByMethod();
+			});
 		}
 		
 		function noScreenshotsExists(){
@@ -83,5 +91,24 @@
 			}
 		}
 		
+		function setCaseSizeByMethod(){
+			var data = ScreenshotMaster.data;
+			
+			for (var i = 0; i < data.length; i++) {
+				var screenshotLength = 0;
+				for (var j = 0; j < data[i].testcases.length; j++) {
+					if (data[i].testcases[j].screenshots.length > screenshotLength) {
+						screenshotLength = data[i].testcases[j].screenshots.length;
+					}
+				}
+				data[i].screenshotLength = screenshotLength;
+				if (data[i].screenshotLength > 0) {
+					data.screenshotsExists = true;
+				}
+			}
+			if (data.screenshotsExists === undefined) {
+				data.screenshotsExists = false;
+			}
+		}
 	}
 })();

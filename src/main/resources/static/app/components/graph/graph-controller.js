@@ -5,9 +5,9 @@
 		.module('webLog')
 		.controller('GraphCtrl', GraphCtrl);
 	
-	GraphCtrl.$inject = ['$http', '$state', '$q', 'Charts', 'CurrentSuite', 'Utilities', 'RestLoader', 'ChartMaker'];
+	GraphCtrl.$inject = ['Charts', 'CurrentSuite', 'ChartMaker'];
 			
-	function GraphCtrl($http, $state, $q, Charts, CurrentSuite, Utilities, RestLoader, ChartMaker){
+	function GraphCtrl(Charts, CurrentSuite, ChartMaker){
 		
 		var vm = this;
 		
@@ -25,7 +25,7 @@
 	    vm.remove 				= remove;
 	    vm.changeChartVariant 	= changeChartVariant;
 	    
-		
+	    
 	    /*
 	     * Tells ChartMaker to pass the necessary parameters
 	     * to a RESTful call to generate new data for

@@ -12,7 +12,7 @@
 		var vm = this;
 		var requestObj = {};
 		var suiteid = CurrentSuite.currentSuiteInfo.id;
-		var timestamp = CurrentSuite.currentSuiteInfo.lastTimeStamp;
+		var timestamp = CurrentSuite.currentSuiteInfo.lastTimestamp;
 		
 		vm.myData = [];
 		vm.devices = [];
