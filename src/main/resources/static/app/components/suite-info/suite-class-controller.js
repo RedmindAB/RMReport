@@ -18,14 +18,18 @@
 		vm.setCurrentClass 				= setCurrentClass;
 		
 		
-		getSuiteSkeletonByTimestamp(CurrentSuite.currentTimestamp);
+		init();
+		
+		function init(){
+			console.log("class");
+			getSuiteSkeletonByTimestamp(CurrentSuite.currentTimestamp);
+		}
 		
 		function setCurrentClass(classObj){
 			CurrentSuite.currentClass = classObj;
 		}
 		
 		function getSuiteSkeletonByTimestamp(timestamp){
-//			var timestamp = timestampVal !== undefined ? timestampVal : CurrentSuite.currentSuiteInfo.lastTimestamp;
 			SuiteInfoHandler.loadTimestamp(timestamp);
 		}
 	}

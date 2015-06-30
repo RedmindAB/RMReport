@@ -9,16 +9,11 @@
 	
 	function AdminServices ($http, $q) {
 		
-		var add = addPaths;
-		var change = changePaths;
-		var remove = removePaths;
-		var loadRoot = loadRootConfig;
-		
 		return {
-			addPaths: add,
-			changePaths: change,
-			removePaths: remove,
-			loadRootConfig: loadRoot
+			addPaths: 		addPaths,
+			changePaths:	changePaths,
+			loadRootConfig: loadRootConfig,
+			removePaths: 	removePaths
 		};
 		
 		function addPaths(request, addErrorMessage) {
@@ -31,13 +26,6 @@
 		        });
 			
 			return promise;
-		}
-		
-		function loadRootConfig(){
-			return $http({
-	            url   : '/api/admin/config',
-	            method: 'GET'
-	        });
 		}
 		
 		function changePaths(request, addErrorMessage){
@@ -58,6 +46,13 @@
 		    });
 		    }
 		    return $q.all(promises);
+		}
+		
+		function loadRootConfig(){
+			return $http({
+	            url   : '/api/admin/config',
+	            method: 'GET'
+	        });
 		}
 		
 		function removePaths (request,addErrorMessage){

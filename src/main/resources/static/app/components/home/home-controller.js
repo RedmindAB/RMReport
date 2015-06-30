@@ -18,8 +18,14 @@
 		vm.homeChartLoaded 	= homeChartLoaded;
 		vm.setZIndex 		= setZIndex;
 		
-		// Generates charts on each instantiation of this controller.
-		loadAll();
+		
+		init();
+		
+		
+		//setup function for controller.
+		function init(){
+			loadAll();	
+		}
 		
 		/*
 		 * Sends a RESTful call via RestLoader to get

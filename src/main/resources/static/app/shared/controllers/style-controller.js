@@ -36,7 +36,7 @@
 	    }
 	    
 	    function removePackagePath(classPath){
-	    	if(classPath.length > 0){
+	    	if(classPath !== undefined){
 		    	var lastDot = classPath.lastIndexOf(".");
 		    	var className = classPath.substring(lastDot+1);
 		    	return className;

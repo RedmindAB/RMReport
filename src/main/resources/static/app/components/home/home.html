@@ -4,6 +4,8 @@
 	<link rel="stylesheet" href="/app/components/home/home-style.css">
 </head>
 <body>
+	
+	<!-- all charts -->
 	<div ng-repeat="suite in ctrl.CurrentSuite.allSuites track by $index">
 		<table class='table-home'>
 			<tr style='width:100%'>
@@ -18,6 +20,8 @@
 				</td>
 			</tr>
 		</table>
+		
+		<!-- grey row between each chart -->
 		<div 
 			ng-if="$index !== ctrl.CurrentSuite.allSuites.length -1" 
 			class='row'

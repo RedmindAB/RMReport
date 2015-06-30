@@ -5,34 +5,47 @@
 		.module('webLog')
 		.controller('DashboardCtrl', DashboardCtrl);
 	
-	DashboardCtrl.$inject = ['$scope', '$http','$state', 'DashboardServices', 'Charts', 'CurrentSuite', 'DeviceData'];
+	DashboardCtrl.$inject = ['DashboardServices', 'Charts', 'CurrentSuite', 'DeviceData'];
 			
-	function DashboardCtrl($scope, $http, $state, DashboardServices, Charts, CurrentSuite, DeviceData){
+	function DashboardCtrl(DashboardServices, Charts, CurrentSuite, DeviceData){
 		
 		var vm = this;
-		var requestObj = {};
-		var suiteid = CurrentSuite.currentSuiteInfo.id;
-		var timestamp = CurrentSuite.currentSuiteInfo.lastTimestamp;
+
+		vm.myData 				= [];
+		vm.devices 				= [];
+		vm.existingPlatforms 	= [];
+		vm.className			= [];
 		
-		vm.myData = [];
-		vm.devices = [];
-		vm.DeviceData = DeviceData;
-		vm.existingPlatforms = [];
-		vm.className = [];
+		vm.Charts 				= Charts;
+		vm.DeviceData 			= DeviceData;
+		vm.DashboardServices 	= DashboardServices;
 	    
-		vm.DashboardServices = DashboardServices;
-		vm.Charts = Charts;
-		vm.getDevices = getDevices;
-		vm.getClasses = vm.getClasses;
 		
-		getClasses(suiteid);
+		vm.getDevices 			= getDevices;
+		vm.getClasses 			= vm.getClasses;
+		vm.getPlatforms 		= getPlatforms;
 		
-		function getClasses(suiteid){
-			DashboardServices.getClasses(suiteid);
+		
+		init();
+		
+		
+		/*
+		 * Setup method for the controller.
+		 * Everything needed to fetch data
+		 * should be run in here.
+		 */
+		function init(){
+			getClasses(CurrentSuite.currentSuiteInfo.id);
+			getPlatforms(CurrentSuite.currentSuiteInfo.id)
 		}
 		
-		function orderDevices(){
-			var myObj = getDevices(suiteid);
+		/*
+		 * get class statistics based
+		 * on suite id and sets it to
+		 * @param {Integer} suite id
+		 */
+		function getClasses(suiteid){
+			DashboardServices.getClasses(suiteid);
 		}
 		
 		function getDevices(suiteid) {
