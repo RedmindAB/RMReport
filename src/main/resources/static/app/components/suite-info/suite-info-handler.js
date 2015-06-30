@@ -123,12 +123,14 @@
 					failure: 0,
 					passed: 0,
 					total: 0,
+					skipped: 0,
 			};
 			
 			stats.error = parseInt(methodStats.error);
 			stats.failure = parseInt(methodStats.failure);
 			stats.passed = parseInt(methodStats.passed);
 			stats.total = parseInt(methodStats.total);
+			stats.skipped = parseInt(methodStats.skipped);
 			
 			return stats;
 		}

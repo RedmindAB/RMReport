@@ -121,7 +121,7 @@
 		function getMethodsByClassId(id) {
 			for (var i = 0; i < this.currentSuite.length; i++) {
 				if (this.currentSuite[i].id === id) {
-					return this.currentSuite[i].testcases;
+ 					return this.currentSuite[i].testcases;
 				}
 			}
 		 }
