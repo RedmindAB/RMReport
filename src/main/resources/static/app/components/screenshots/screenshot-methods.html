@@ -26,7 +26,7 @@
 	    <div 
 	    	ng-if="ctrl.containsScreenshots(method)" 
 	    	class='noselect' 
-	    	ng-repeat="method in ctrl.ScreenshotMaster.data | orderBy:['-stats.totFail','result','name']">
+	    	ng-repeat="method in ctrl.ScreenshotMaster.data | orderBy:['-stats.totFail','result','name'] track by $index">
 	        <accordion-group style="margin-top:10px;padding:0px;background-color:#F8F8F8" ng-class='style.getPanel(method.result)' >
 	            <accordion-heading>
 					<div id='method-{{$index}}' class="accordion-toggle" style="display:inline-block;width:100%">
@@ -142,7 +142,7 @@
 		<div class="container slider">
 			<img 
 				onmousedown="event.preventDefault" 
-				ng-repeat="slide in ModalCtrl.slides"
+				ng-repeat="slide in ModalCtrl.slides track by $index"
 				class="slide slide-animation nonDraggableImage slide-img table-m"
 				ng-swipe-right="ModalCtrl.nextSlide()" 
 				ng-swipe-left="ModalCtrl.prevSlide()"
