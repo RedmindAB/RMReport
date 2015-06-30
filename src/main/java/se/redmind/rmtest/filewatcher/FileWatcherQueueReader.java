@@ -45,7 +45,7 @@ public class FileWatcherQueueReader implements Runnable {
 			boolean updatedReports = false;
 			for (WatchEvent event : key.pollEvents()) {
 				String filename = event.context().toString();
-				boolean isXmlFile = filename.toLowerCase().endsWith(".xml") || filename.toLowerCase().endsWith(".json");
+				boolean isValidFile = filename.toLowerCase().endsWith(".xml") || filename.toLowerCase().endsWith(".json");
 				int _try = 0;
 				while (!isCompletelyWritten(path, filename) || _try == 10) {
 					log.info("File is not done, waiting for 50ms");
@@ -57,7 +57,7 @@ public class FileWatcherQueueReader implements Runnable {
 					}
 					_try++;
 				}
-				if (event.kind().equals(ENTRY_CREATE) && isXmlFile) {
+				if (event.kind().equals(ENTRY_CREATE) && isValidFile) {
 					System.out.println(filename);
 					ReportValidator reportValidator = new ReportValidator(
 							filename, path);
