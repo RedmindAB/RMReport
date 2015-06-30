@@ -20,6 +20,7 @@ public class TestRun {
 	private String UUID;
 	private TreeMap<Integer, JsonObject> history;
 	private int historyID = 0;
+	private int finishID = 0;
 	
 	public TestRun(String UUID, JsonObject suite) {
 		this.UUID = UUID;
@@ -52,9 +53,12 @@ public class TestRun {
 		addToHistory(test, "running");
 	}
 	
-	public void finishTest(String id){
+	public void finishTest(String id, JsonObject finishedTest){
 		JsonObject test = getTestCase(id);
 		test.addProperty("status", "done");
+		test.addProperty("result", finishedTest.get("result").getAsString());
+		test.addProperty("runTime", finishedTest.get("runTime").getAsDouble());
+		test.addProperty("finishID", finishID++);
 		addToHistory(test, "done");
 		setTestCase(id, test);
 	}
@@ -77,6 +81,12 @@ public class TestRun {
 		}
 	}
 	
+	
+	/**
+	 * 
+	 * @param id - the ID of the testcase as a string
+	 * @return - JsonObject representing a testcase
+	 */
 	public JsonObject getTestCase(String id){
 		JsonArray tests = suite.get("tests").getAsJsonArray();
 		JsonObject test = tests.get(Integer.valueOf(id)-1).getAsJsonObject();
@@ -111,14 +121,17 @@ public class TestRun {
 	}
 	
 	public JsonArray getHistory(int fromIndex){
-		SortedMap<Integer, JsonObject> tailMap = history.tailMap(fromIndex);
-		Set<Entry<Integer, JsonObject>> entrySet = tailMap.entrySet();
 		JsonArray results = new JsonArray();
-		Gson gson = new Gson();
-		for (Entry<Integer, JsonObject> entry : entrySet) {
-			JsonObject test = entry.getValue();
-			test.addProperty("historyid", entry.getKey());
-			results.add(test);
+		try {
+			SortedMap<Integer, JsonObject> tailMap = history.tailMap(fromIndex);
+			Set<Entry<Integer, JsonObject>> entrySet = tailMap.entrySet();
+			Gson gson = new Gson();
+			for (Entry<Integer, JsonObject> entry : entrySet) {
+				JsonObject test = entry.getValue();
+				test.addProperty("historyid", entry.getKey());
+				results.add(test);
+		}
+		} catch (Exception e) {
 		}
 		return results;
 	}

@@ -77,10 +77,12 @@ public class TestRunTests {
 		JsonObject testHistory = history.get(0).getAsJsonObject();
 		String type = testHistory.get("type").getAsString();
 		assertEquals("running", type);
-		
-		testRun.finishTest("1");
+		test.addProperty("result", "passed");
+		test.addProperty("runTime", 2.5);
+		testRun.finishTest("1", test);
 		JsonObject testCase = testRun.getTestCase("1");
 		assertEquals("done", testCase.get("status").getAsString());
+		assertEquals("passed", testCase.get("result").getAsString());
 	}
 	
 }

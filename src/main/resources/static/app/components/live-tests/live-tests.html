@@ -4,106 +4,57 @@
 	<link rel="stylesheet" href="/app/components/live-tests/live-tests-style.css">
 </head>
 <body>
-
-				<div ng-repeat='obj in ctrl.LiveData.testData | limitTo: 1	'>
-					<div >
-						<div ng-if='ctrl.LiveData.testData.length > 0'>
-							<p>
-								<h4  class='black' style='display:inline;float:left'>{{Utilities.makeSuiteReadable(obj[0].data[0].suite)}} - {{Utilities.makeTimestampReadable(obj[0].data[0].timestamp)}}</h4>
-								<h4  style='display:inline;float:right'>Elapsed Time: {{counter}} seconds</h4>
-							</p>
-						</div><br><br>
-					</div>
-				</div>
+	<h2 ng-if="!ctrl.LiveData.suite">No Tests running at the moment</h2>
+	<div ng-if="ctrl.LiveData.suite.suite.length > 0">
+		<h2 class="testheader-left">{{style.removePackagePath(ctrl.LiveData.suite.suite)}} - {{Utilities.makeTimestampReadable(ctrl.LiveData.suite.timestamp)}}</h2>
+		<div style="float: left; width:300px;"></div>
+		<h3 class="testheader-right">{{ctrl.getTotalDone()}}/{{ctrl.LiveData.suite.totalTests}}</h3>
+	</div>
+	<div class="clearfix"></div>
 	
-			<div class="progress">
-			  <div class="progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;" ng-style="{'width':ctrl.LiveData.percentage}">
-			  	{{ctrl.LiveData.percentage}}
-			  </div>
-			</div>
-			
-			<div class="row">
-				<div class="col-md-6">
-					<div class="modal-content  alert">
-						<div class='modal-header'>
-				 			<h4 align='center'>Running Tests</h4>
-				 		</div>
-				 		<div class='modal-body'>
-					 		<div>
-						 		<table class="table">
-						  			<thead>
-						    			<tr>
-						       				<th>#</th>
-						       				<th>Test Name</th>
-						     			</tr>
-							   		</thead>
-									<tbody>
-						     			<tr ng-repeat="test in ctrl.LiveData.tests | filter: {status:'running'} track by $index">
-											<td>{{$index}}</td>
-											<td>{{test.method}}</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="modal-content alert alert-success">
-						<div class='modal-header'>
-					 		<h4 align='center'>Passed Tests</h4>
-					 	</div>
-					 	<div class='modal-body'>
-					 		<div>
-						 		<table class="table">
-						  			<thead>
-						    			<tr>
-						       				<th>#</th>
-						       				<th>Test Name</th>
-						     			</tr>
-							   		</thead>
-									<tbody>
-									<tr ng-repeat="test in ctrl.LiveData.tests | filter: {status:'done'} track by $index">
-											<td>{{$index}}</td>
-											<td>{{test.method}}</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class='row'>
-				<div class="col-md-6">
-					<div class="modal-content">
-						<div class='modal-header'>
-					 		<h4 align='center'>Suite Statistics</h4>
-					 	</div>
-					 	<div class='modal-body'>
-					 		<div>
-						 		<table class="table table-dash">
-						  			<thead>
-						    			<tr>
-						       				<th>Average Time</th>
-						       				<th>Passed Tests</th>
-						       				<th>Failed Tests</th>
-						       				<th>Skipped Tests</th>
-						     			</tr>
-							   		</thead>
-									<tbody>
-						     			<tr>
-					     					<td ng-repeat='stats in ctrl.mockedStatistics'>{{stats}}</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+	<!-- Progress bar -->
+	<div class="progress" ng-class="{'active': ctrl.LiveData.uuid.length > 0}">
+		<div class="progress-bar progress-bar-danger" 
+			ng-style="{'width':ctrl.getPercentage('failure')}"
+			ng-class="{'progress-bar-striped': ctrl.LiveData.uuid.length > 0}">
+	  	</div>
+	  	<div class="progress-bar progress-bar-warning" 
+	  		ng-style="{'width':ctrl.getPercentage('skipped')}"
+	  		ng-class="{'progress-bar-striped': ctrl.LiveData.uuid.length > 0}">
+	 	</div>
+		<div class="progress-bar progress-bar-success"
+		ng-style="{'width':ctrl.getPercentage('passed')}"
+		ng-class="{'progress-bar-striped': ctrl.LiveData.uuid.length > 0}">
 		</div>
 	</div>
+	
+	<!-- Test table -->
+	<div class="livetest-table-container modal-body">
+		<table class="table">
+			<thead>
+				<th>id</th>
+				<th>test</th>
+				<th>device</th>
+				<th>browser</th>
+				<th>status</th>
+				<th>result</th>
+				<th>run time (seconds)</th>
+			</thead>
+				<tbody>
+					<tr ng-repeat="test in ctrl.LiveData.tests" 
+						ng-class="ctrl.setRowColor(test)">
+					 	<td>{{test.id}}</td>
+						<td>{{test.method}}</td>
+						<td>{{test.deviceInfo.device}}</td>
+						<td>{{test.deviceInfo.browser}}</td>
+						<td>{{test.status}}</td>
+						<td>{{test.result}}</td>
+						<td>{{test.runTime}}</td>
+					</tr>
+				</tbody>
+		</table>
+		
+	</div>
+			
 </body>
 </html>

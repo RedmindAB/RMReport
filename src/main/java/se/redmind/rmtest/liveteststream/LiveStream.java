@@ -70,6 +70,9 @@ public class LiveStream implements Runnable {
 			String testID = extractRequest(request);
 			LiveStreamContainer.instance().startTest(UUID, testID);
 		}
+		else if (request.startsWith("ignore@")){
+			LiveStreamContainer.instance().addTestResult(UUID, gson.fromJson(extractRequest(request), JsonObject.class));
+		}
 	}
 
 	private void handleSuite(String suite) {

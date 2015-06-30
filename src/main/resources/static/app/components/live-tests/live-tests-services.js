@@ -52,12 +52,12 @@
 				});
 				promises.push(promise);
 			    return $q.all(promises).then(function(request){
-			    	LiveData.testData = request[0].data;
-			    	LiveData.tests = request[0].data.tests;
+			    	var data = request[0].data;
+			    	LiveData.suite = data;
+			    	LiveData.tests = data.tests;
 			    	LiveData.historyid = 0;
 			    	
 			    	// Progress bar update
-					console.log(request[0].data.totalTests);
 					var amountOfTests = request[0].data.totalTests;
 					var amountDone = 0;
 					for (var i = 0; i < request[0].data.totalTests; i++) {
@@ -67,7 +67,6 @@
 						}
 					}
 					LiveData.currentPercentage = (amountOfTests / amountDone) * 100 + "%";
-					console.log("currentPercentage: " + LiveData.currentPercentage)
 					/*if(request[0].data[0].status !== 'finished'){
 						LiveData.percentage = "100%";
 					}*/
@@ -77,8 +76,6 @@
 		function getLiveHistory(uuid){
 		    var promises = [];
 
-		    console.log(uuid);
-		    console.log(LiveData);
 		    
 			$http.get('/api/live/' + uuid + '/' + LiveData.historyid)
 			.then(complete)
@@ -86,12 +83,13 @@
 			
 			function complete(request){
 				var i;
-				console.log(request);
 		    	for (i = 0; i < request.data.length; i++) {
 		    		var id = request.data[i].data.id;
 		    		LiveData.tests[id-1] = request.data[i].data;
 				}
-
+		    	if (request.data.pop().type == "suiteFinish") {
+					LiveData.uuid = "";
+				}
 		    	LiveData.historyid = request.data.pop().historyid;
 			}
 			
