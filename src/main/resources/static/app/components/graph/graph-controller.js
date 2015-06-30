@@ -26,6 +26,12 @@
 	    vm.changeChartVariant 	= changeChartVariant;
 	    
 	    
+	    init();
+	    
+	    function init(){
+	    	loadMainChart(CurrentSuite.currentSuiteInfo.id, false);
+	    }
+	    
 	    /*
 	     * Tells ChartMaker to pass the necessary parameters
 	     * to a RESTful call to generate new data for

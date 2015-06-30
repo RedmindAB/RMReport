@@ -18,7 +18,12 @@
 		vm.setCurrentClass 				= setCurrentClass;
 		
 		
-		getSuiteSkeletonByTimestamp(CurrentSuite.currentTimestamp);
+		init();
+		
+		function init(){
+			console.log("class");
+			getSuiteSkeletonByTimestamp(CurrentSuite.currentTimestamp);
+		}
 		
 		function setCurrentClass(classObj){
 			CurrentSuite.currentClass = classObj;

@@ -4,7 +4,7 @@
 	<link rel="stylesheet" href="/app/components/graph/reports-style.css">
 </head>
 <body>
-<div ng-controller="GraphCtrl">
+<div>
 
 	<!-- Chart -->
 	<highchart 
@@ -288,17 +288,25 @@
 		</accordion>
 	</div>
 
+	<!-- grey separation row -->
 	<div class='row row-break'></div>
 		
+	<!-- container for breadcrumbs, filter field and position -->
 	<div class="suite-info-center-container">
+	
+		<!-- breadcrumbs -->
 		<div class="suite-info-center-left">
 			<div ncy-breadcrumb class="breadcrumb"></div>
 		</div>
+		
+		<!-- position name of suite/class/method -->
 		<div class="suite-info-center-center">
 			<h4 id="suite-position" class='reports-h4' ng-click="NavCtrl.subNavLinks();" style="display:inline; text-align:center">
 				{{style.removePackagePath(NavCtrl.getPosition())}}
 			</h4>
 		</div>
+		
+		<!-- filter field -->
 		<div id="class-method-option-center" class="suite-info-center-right">
 			<div class='btn-group'>
 				<input 
@@ -312,5 +320,7 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- view to show classes.html, methods.html, cases.html -->
 	<div ui-view></div>
 </div>

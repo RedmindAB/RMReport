@@ -16,27 +16,32 @@
 		vm.GridData = GridData;
 		
 		vm.currentGridObject = {};
-		
 		vm.gridModalShown = false;
 		
 		
 		vm.gridToggleModal 			= gridToggleModal;
-		vm.setCurrentGrid 			= setCurrentGrid;
+		vm.getBrowserImage 			= getBrowserImage;
 		vm.getOSLogo 				= getOSLogo;
 		vm.isDesktop 				= isDesktop;
-		vm.getBrowserImage 			= getBrowserImage;
-		vm.noNodesConnected 		= noNodesConnected;
 		vm.isHubConnected 			= isHubConnected;
 		vm.isDesktopNodesConnected 	= isDesktopNodesConnected;
 		vm.isDeviceNodesConnected 	= isDeviceNodesConnected;
+		vm.noNodesConnected 		= noNodesConnected;
+		vm.setCurrentGrid 			= setCurrentGrid;
 		
 		
-		Polling.startPolling('grid', restURL, GridData, setData);
+		init();
+		
 		
 		$scope.$on("closeModal", function() {
 			gridToggleModal();
 		});
 		
+		/*
+		 * starts the polling for selenium grid info
+		 * when changes state TO grid and stops it when
+		 * changing state FROM grid.
+		 */
 		var pollController = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
 			vm.gridModalShown = false;
 			if(fromState.name === 'grid'){
@@ -46,19 +51,21 @@
 			
 		});
 		
-		function gridToggleModal() {
-			vm.gridModalShown = !vm.gridModalShown;
+		/*
+		 * init method, run all function to get
+		 * data to prepare the state in here.
+		 */
+		function init(){
+			Polling.startPolling('grid', restURL, GridData, setData);
 		}
 		
-		
-		function setCurrentGrid(grid){
-			vm.currentGridObject = JSON.stringify(grid,null,4);
-		}
-		
-		function setData(obj){
-			GridData.data = obj;
-		}
-		
+		/*
+		 * returns a logo to use as background for OS
+		 * in the grid view.
+		 * 
+		 * @param {String} os name as displayed in switch statement.
+		 * @return {String} url to image.
+		 */
 		function getOSLogo(os){
 			switch (os) {
 			case "MAC":
@@ -79,10 +86,13 @@
 			}
 		}
 		
-		function isDesktop(platformName){
-			return platformName === undefined;
-		}
-		
+		/*
+		 * returns a logo to use as an image for
+		 * browsers in grid view.
+		 * 
+		 * @param {String} browser name as displayed in if statement.
+		 * @return {String} url to image.
+		 */
 		function getBrowserImage(browserName){
 			if(browserName === "firefox"){
 				return "assets/img/logos/console/firefox.png";
@@ -95,20 +105,30 @@
 			}
 		}
 		
-		function noNodesConnected(){
-			if(GridData.data.FreeProxies !== undefined){
-				if(GridData.data.FreeProxies.length === 0 && GridData.data.BusyProxies.length === 0){
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
-			else{
-				return false;
-			}
+		//toggles the modal with JSON file
+		function gridToggleModal() {
+			vm.gridModalShown = !vm.gridModalShown;
 		}
 		
+		/*
+		 * checks the value passed in is undefined
+		 * to see if the object contains it. used
+		 * to check if it is a desktop.
+		 * 
+		 * @param {Value} value in an object
+		 * @return {Boolean} returns true if value is undefined.
+		 */
+		function isDesktop(platformName){
+			return platformName === undefined;
+		}
+		
+		/*
+		 * checks if GridData.data.error is not undefined.
+		 * If it isn't undefined we are live and are
+		 * getting data from the grid.
+		 * 
+		 * @return {Boolean} returns true if connection is found.
+		 */
 		function isHubConnected(){
 			if(GridData.data.error !== undefined){
 				return true;
@@ -118,6 +138,14 @@
 			}
 		}
 		
+		/*
+		 * Checks if any desktop are connected by
+		 * iterating through all objects in GridData.data.FreeProxies
+		 * and looks for either MAC or PC as a value in the platform var.
+		 * Stops when one is found and determines atleast one is connected.
+		 * 
+		 * @return {Boolean} true if one MAC or PC is found.
+		 */
 		function isDesktopNodesConnected(){
 			if(GridData.data.FreeProxies){
 			var proxies = GridData.data.FreeProxies;
@@ -132,6 +160,14 @@
 			return false;
 		}
 		
+		/*
+		 * Checks if any devices are connected by
+		 * iterating through all objects in GridData.data.FreeProxies
+		 * and looks for an undefined value in platformName since
+		 * it would only be defined in a desktop.
+		 * 
+		 * @return {Boolean} true if one platformName === undefined id found.
+		 */
 		function isDeviceNodesConnected(){
 			if(GridData.data.FreeProxies){
 			var proxies = GridData.data.FreeProxies;
@@ -143,5 +179,48 @@
 			}
 			return false;
 		}
+		
+		/*
+		 * Checks if GridData.data.FreeProxies and
+		 * GridData.data.BusyProxies are empty to see if
+		 * anything is connected at all.
+		 * 
+		 * @param {Boolean} returns true if nothing is connected.
+		 */
+		function noNodesConnected(){
+			if(GridData.data.FreeProxies !== undefined){
+				if(GridData.data.FreeProxies.length === 0 && GridData.data.BusyProxies.length === 0){
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else{
+				return false;
+			}
+		}
+		
+		/*
+		 * Converts the JSON element grid to an object
+		 * and stores it in vm.currentGridObject.
+		 * 
+		 * @param {JSON} a json object to save.
+		 */
+		function setCurrentGrid(grid){
+			vm.currentGridObject = JSON.stringify(grid,null,4);
+		}
+		
+		/*
+		 * saves an object into GridData.data
+		 * to use for displaying the grid.
+		 * 
+		 * @param {Object}
+		 */
+		function setData(obj){
+			GridData.data = obj;
+		}
+		
+
 	}
 })();

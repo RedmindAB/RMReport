@@ -447,7 +447,6 @@
 												CurrentSuite.currentSuiteInfo = backupSuite;
 											}
 											CurrentSuite.currentTimestamp = CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][this.index];
-											vm.loadMainChart(CurrentSuite.currentSuiteInfo.id, true);
 											$state.transitionTo('reports.classes');
 										}
 									}

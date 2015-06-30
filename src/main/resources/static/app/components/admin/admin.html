@@ -6,6 +6,8 @@
 <body>
 <div>
 	<p style="font-size:2em">Paths to projects</p>
+	
+	<!-- Fields with existing paths -->
 	<div ng-repeat="path in ctrl.configCompare.reportPaths track by $index" class="row admin-input">
 		<div class="col-md-5">
 			<input 
@@ -20,6 +22,8 @@
 				title="Existing project path">
 			</input>
 		</div>
+		
+		<!-- remove cross -->
 		<div class="col-md-1" style="width:auto">
 			<span
 				id="remove-path"
@@ -29,6 +33,8 @@
 			</span>
 		</div>
 	</div>
+	
+	<!-- add field -->
 	<div class="row admin-input">
 		<div class="col-md-5">
 			<input 
@@ -39,6 +45,8 @@
 				title="Enter complete path to new project reports folder">
 			</input>
 		</div>
+		
+		<!-- add button -->
 		<div class="col-md-1">
 			<button 
 				id='add-project'
@@ -50,7 +58,9 @@
 		</div>
 		<h4>{{ctrl.readErrorMessage(-1)}}</h4>
 	</div>
-		<div class="row">
+	
+	<!-- save button -->
+	<div class="row">
 		<div class="col-md-2">
 			<button 
 				id='save-changes'
@@ -59,9 +69,10 @@
 				Save changes
 			</button>
 		</div>
-		</div>
+	</div>
 </div>
 
+<!-- Error message modal -->
 <modal-dialog 
 	id='modal-error-dialog' 
 	show='ctrl.errorModalShown'
@@ -76,4 +87,4 @@
 			<pre class="admin-error-msg">{{message.message}}</pre>
 		</div>
 	</div>
-</modal-dialog-sysos>
+</modal-dialog>
