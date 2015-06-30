@@ -13,7 +13,8 @@
 			setUpSuiteSkeleton: 	setUpSuiteSkeleton,
 			loadTimestamp: 			loadTimestamp,
 			setPassFailAllMethods: 	setPassFailAllMethods,
-			setUpSpecs:				setUpSpecs
+			setUpSpecs:				setUpSpecs,
+			methodStatsToInt:		methodStatsToInt
 		};
 		
 		function setUpSpecs(){
@@ -90,7 +91,7 @@
 			function setStats(i){
 				SuiteInfoServices.getPassFailByMethod(timestamp, classObj.id, methods[i].id)
 				.then(function(data){
-					methods[i].stats = data;
+					methods[i].stats = methodStatsToInt(data);
 					methods[i].stats.totFail = getTotFail(data);
 				});
 			}
@@ -114,6 +115,22 @@
 		function getTotFail(passFailData){
 			var totFail = parseInt(passFailData.error) + parseInt(passFailData.failure);
 			return totFail;
+		}
+		
+		function methodStatsToInt(methodStats){
+			var stats = {
+					error: 0,
+					failure: 0,
+					passed: 0,
+					total: 0,
+			};
+			
+			stats.error = parseInt(methodStats.error);
+			stats.failure = parseInt(methodStats.failure);
+			stats.passed = parseInt(methodStats.passed);
+			stats.total = parseInt(methodStats.total);
+			
+			return stats;
 		}
 		
 	}

@@ -25,7 +25,6 @@
 		}
 		
 		function getSuiteSkeletonByTimestamp(timestamp){
-//			var timestamp = timestampVal !== undefined ? timestampVal : CurrentSuite.currentSuiteInfo.lastTimestamp;
 			SuiteInfoHandler.loadTimestamp(timestamp);
 		}
 	}
