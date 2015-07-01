@@ -21,7 +21,6 @@
 		init();
 		
 		function init(){
-			console.log("class");
 			getSuiteSkeletonByTimestamp(CurrentSuite.currentTimestamp);
 		}
 		
