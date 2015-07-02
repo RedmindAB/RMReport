@@ -24,16 +24,16 @@
 		$rootScope.$on('restoreState', service.restoreState);
 		
 		function getStorage(){
-			return angular.fromJson($window.sessionStorage.CurrentSuite);
+			return JSON.parse($window.localStorage.getItem('CurrentSuite'));
 		}
 		
 		function saveState(){
-			$window.sessionStorage.CurrentSuite = angular.toJson(vm.CurrentSuite);
+			$window.localStorage.setItem('CurrentSuite', JSON.stringify(vm.CurrentSuite));
 		}
 		
 		function restoreState(){
 			var checkSuite = getStorage();
-			if (checkSuite !== undefined && checkSuite !== "null") {
+			if (checkSuite !== undefined && checkSuite !== null) {
 				for(var prop in checkSuite){
 					CurrentSuite[prop] = checkSuite[prop];
 				}
