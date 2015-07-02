@@ -5,9 +5,9 @@
 		.module('webLog')
 		.service('RestLoader', restLoader);
 	
-	restLoader.$inject = ['$http', '$state', 'CurrentSuite', 'Utilities', 'Charts', 'ScreenshotMaster'];
+	restLoader.$inject = ['$http', '$state', 'CurrentSuite', 'Utilities', 'Charts', 'ScreenshotMaster','SuiteHandler'];
 	
-	function restLoader ($http, $state, CurrentSuite, Utilities, Charts, ScreenshotMaster){
+	function restLoader ($http, $state, CurrentSuite, Utilities, Charts, ScreenshotMaster, SuiteHandler){
 		
 		var vm = this;
 		
@@ -22,9 +22,9 @@
 	    	var dataRequest = {};
 			dataRequest.suiteid = [CurrentSuite.currentSuiteInfo.id];
 			dataRequest.reslimit = Utilities.getResLimit();
-			dataRequest.os = [CurrentSuite.getOsIdByVersion(osName,osVersion)];
-			dataRequest.devices = [CurrentSuite.getDeviceIdByName(deviceName)];
-			dataRequest.browsers = [CurrentSuite.getBrowserIdByname(browserName, browserVer)];
+			dataRequest.os = [SuiteHandler.getOsIdByVersion(osName,osVersion)];
+			dataRequest.devices = [SuiteHandler.getDeviceIdByName(deviceName)];
+			dataRequest.browsers = [SuiteHandler.getBrowserIdByName(browserName, browserVer)];
 			dataRequest.classes = [CurrentSuite.currentClass.id];
 			dataRequest.testcases = [CurrentSuite.currentMethod.id];
 			dataRequest.name = osName+"-"+osVersion+"-"+deviceName+"-"+browserName;
@@ -109,10 +109,10 @@
 		    	
 			switch ($state.$current.name) {
 			case 'reports.methods':
-				CurrentSuite.setChosenForCurrent(CurrentSuite.currentClass.id);
+				SuiteHandler.setChosenForCurrent(CurrentSuite.currentClass.id);
 				break;
 			case 'reports.cases':
-				CurrentSuite.setChosenForCurrent(CurrentSuite.currentClass.id, CurrentSuite.currentMethod.id);
+				SuiteHandler.setChosenForCurrent(CurrentSuite.currentClass.id, CurrentSuite.currentMethod.id);
 				break;
 			default:
 				break;
@@ -151,7 +151,7 @@
 		    
 		function getAllDataAsOne(suiteID, name) {
 			var graphArray = [];
-			var chosen = CurrentSuite.getChosen();
+			var chosen = SuiteHandler.getChosen();
 			var dataRequest = {};
 			if (name) {
 				dataRequest.name = name;
@@ -175,17 +175,17 @@
 		
 		function splitDataOnDevice(suiteID, name) {
 			var graphArray = [];
-			var chosen = CurrentSuite.getChosen();
+			var chosen = SuiteHandler.getChosen();
 			var addedUnknown = false;
 			
-			chosen.devices = CurrentSuite.getDataFromSpecs('platforms','devices', 'deviceid');
+			chosen.devices = SuiteHandler.getDataFromSpecs('platforms','devices', 'deviceid');
 			
 			for (var i = 0; i < chosen.devices.length; i++) {
 				var dataRequest = {};
 				if (name) {
 					dataRequest.name = name;
 				} else {
-					dataRequest.name = CurrentSuite.getDeviceByID(chosen.devices[i]);
+					dataRequest.name = SuiteHandler.getDeviceByID(chosen.devices[i]);
 				}
 				dataRequest.suiteid = suiteID;
 				dataRequest.reslimit = Utilities.getResLimit();
@@ -203,9 +203,9 @@
 		    
 		function splitDataOnBrowser(suiteID, name) {
 			var graphArray = [];
-			var chosen = CurrentSuite.getChosen();
+			var chosen = SuiteHandler.getChosen();
 			
-			chosen.browsers = CurrentSuite.getDataFromSpecs('browsers', 'none', 'browserid');
+			chosen.browsers = SuiteHandler.getDataFromSpecs('browsers', 'none', 'browserid');
 			
 			for (var i = 0; i < chosen.browsers.length; i++) {
 				var dataRequest = {};
@@ -222,7 +222,7 @@
 				if (name) {
 					dataRequest.name = name;
 				} else {
-					dataRequest.name = CurrentSuite.getBrowserByID(dataRequest.browsers[0]).browsername + " v." + CurrentSuite.getBrowserByID(dataRequest.browsers[0]).browserver;
+					dataRequest.name = SuiteHandler.getBrowserByID(dataRequest.browsers[0]).browsername + " v." + SuiteHandler.getBrowserByID(dataRequest.browsers[0]).browserver;
 				}
 				
 				graphArray.push(dataRequest);
@@ -232,22 +232,22 @@
 			
 		function splitDataOnVersion(suiteID, name) {
 			var graphArray = [];
-			var chosen = CurrentSuite.getChosen();
+			var chosen = SuiteHandler.getChosen();
 			
-			chosen.os = CurrentSuite.getDataFromSpecs('platforms','versions', 'osid');
+			chosen.os = SuiteHandler.getDataFromSpecs('platforms','versions', 'osid');
 			
 			for (var i = 0; i < chosen.os.length; i++) {
 				var dataRequest = {};
 				if (name) {
 					dataRequest.name = name;
 				} else {
-					dataRequest.name = CurrentSuite.getVersionNameByID(chosen.os[i]);
+					dataRequest.name = SuiteHandler.getVersionNameByID(chosen.os[i]);
 				}
 				dataRequest.suiteid = suiteID;
 				dataRequest.reslimit = Utilities.getResLimit();
 				
 				dataRequest.os = [chosen.os[i]];
-				dataRequest.devices = CurrentSuite.sortDevicesByOsId(chosen.devices, chosen.os[i]);
+				dataRequest.devices = SuiteHandler.sortDevicesByOsId(chosen.devices, chosen.os[i]);
 				dataRequest.browsers = chosen.browsers;
 				dataRequest.classes = chosen.classes;
 				dataRequest.testcases = chosen.testcases;
@@ -259,9 +259,9 @@
 		
 		function splitDataOnPlatform(suiteID, name) {
 			var graphArray = [];
-			var chosen = CurrentSuite.getChosen();
+			var chosen = SuiteHandler.getChosen();
 			
-			chosen.platforms = CurrentSuite.getDataFromSpecs('platforms','none','osname');
+			chosen.platforms = SuiteHandler.getDataFromSpecs('platforms','none','osname');
 			
 			for (var i = 0; i < chosen.platforms.length; i++) {
 				var dataRequest = {};
@@ -269,8 +269,8 @@
 				dataRequest.suiteid = suiteID;
 				dataRequest.reslimit = Utilities.getResLimit();
 				
-				dataRequest.os = CurrentSuite.sortVersionsByPlatform(chosen.platforms[i], chosen.os);
-				dataRequest.devices = CurrentSuite.sortDevicesByPlatform(chosen.platforms[i],chosen.devices);
+				dataRequest.os = SuiteHandler.sortVersionsByPlatform(chosen.platforms[i], chosen.os);
+				dataRequest.devices = SuiteHandler.sortDevicesByPlatform(chosen.platforms[i],chosen.devices);
 				
 				dataRequest.browsers = chosen.browsers;
 				dataRequest.classes = chosen.classes;

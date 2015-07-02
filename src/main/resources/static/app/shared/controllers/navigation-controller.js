@@ -6,9 +6,9 @@
 		.controller('NavCtrl', NavCtrl);
 		
 			
-	NavCtrl.$inject = ['$state', 'CurrentSuite'];
+	NavCtrl.$inject = ['$state', 'CurrentSuite','SuiteHandler'];
 	
-	function NavCtrl ($state, CurrentSuite){
+	function NavCtrl ($state, CurrentSuite, SuiteHandler){
 		
 		var vm = this;
 
@@ -53,8 +53,8 @@
 		}
 		
 		function setState(newState){
-			CurrentSuite.clearChosenClasses();
-			CurrentSuite.clearChosenMethods();
+			SuiteHandler.clearChosenClasses();
+			SuiteHandler.clearChosenMethods();
 			$state.transitionTo(newState);
 		}
 	}

@@ -7,6 +7,9 @@ angular
 			           'ngTouch',
 			           'ncy-angular-breadcrumb'
 			           ])
+    .run(function(CurrentSuite, LocalStorage, $rootScope){
+    	$rootScope.$broadcast("restoreState");
+    })
     .config(function($urlRouterProvider, $stateProvider){
     	
     $urlRouterProvider.otherwise("/home");

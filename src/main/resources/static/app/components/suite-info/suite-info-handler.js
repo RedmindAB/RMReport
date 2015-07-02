@@ -5,9 +5,9 @@
 		.module('webLog')
 		.factory('SuiteInfoHandler', SuiteInfoHandler);
 	
-	SuiteInfoHandler.$inject = ['SuiteInfoServices','CurrentSuite','Utilities'];
+	SuiteInfoHandler.$inject = ['SuiteInfoServices','CurrentSuite','Utilities','SuiteHandler'];
 	
-	function SuiteInfoHandler(SuiteInfoServices, CurrentSuite, Utilities){
+	function SuiteInfoHandler(SuiteInfoServices, CurrentSuite, Utilities, SuiteHandler){
 		
 		return {
 			setUpSuiteSkeleton: 	setUpSuiteSkeleton,
@@ -20,7 +20,7 @@
 		function setUpSpecs(){
 			SuiteInfoServices.getSpecsInfo(CurrentSuite.currentSuiteInfo.id, Utilities.getResLimit())
 			.then(function(data){
-				CurrentSuite.setUpSpecObject(data);
+				SuiteHandler.setUpSpecObject(data);
 			});
 		}
 		
@@ -33,7 +33,7 @@
 	    		setResult(CurrentSuite.currentSuite);
 	    		setPassFailAllClasses(timestamp, CurrentSuite.currentSuite);
 	    		if (CurrentSuite.currentClass !== undefined) {
-	    			CurrentSuite.currentMethods = CurrentSuite.getMethodsByClassId(CurrentSuite.currentClass.id);
+	    			CurrentSuite.currentMethods = SuiteHandler.getMethodsByClassId(CurrentSuite.currentClass.id);
 	    			if (CurrentSuite.currentMethods !== undefined) {
 	    				setPassFailAllMethods(timestamp, CurrentSuite.currentClass, CurrentSuite.currentMethods);
 					}
