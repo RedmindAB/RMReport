@@ -57,7 +57,7 @@
 	    		console.error(data);
 	    	});
 		}
-		
+
 		function getCases(){
 		    $http.get('/api/driver/bytestcase?id='+CurrentSuite.currentMethod.id+'&timestamp='+CurrentSuite.currentTimestamp)
 		    .success(function(data, status, headers, config){ 

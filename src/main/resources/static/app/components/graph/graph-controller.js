@@ -30,7 +30,6 @@
 	    init();
 	    
 	    function init(){
-	    	console.log(CurrentSuite);
 	    	loadMainChart(CurrentSuite.currentSuiteInfo.id, false);
 	    }
 	    

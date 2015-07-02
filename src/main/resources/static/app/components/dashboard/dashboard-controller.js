@@ -5,9 +5,9 @@
 		.module('webLog')
 		.controller('DashboardCtrl', DashboardCtrl);
 	
-	DashboardCtrl.$inject = ['DashboardServices', 'Charts', 'CurrentSuite', 'DeviceData'];
+	DashboardCtrl.$inject = ['DashboardServices', 'Charts', 'CurrentSuite', 'DeviceData','ChartMaker'];
 			
-	function DashboardCtrl(DashboardServices, Charts, CurrentSuite, DeviceData){
+	function DashboardCtrl(DashboardServices, Charts, CurrentSuite, DeviceData, ChartMaker){
 		
 		var vm = this;
 
@@ -35,6 +35,7 @@
 		 * should be run in here.
 		 */
 		function init(){
+			ChartMaker.loadHomeChart(CurrentSuite.currentSuiteInfo, Charts.chartHomeConfig);
 			getClasses(CurrentSuite.currentSuiteInfo.id);
 			getPlatforms(CurrentSuite.currentSuiteInfo.id)
 		}
