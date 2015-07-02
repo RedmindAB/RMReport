@@ -20,7 +20,6 @@
 			    .catch(getConsoleFailed);
 		    
 		    function getConsoleComplete(response){
-		    	console.log(response.data);
 		    	return response.data;
 		    }
 		    
