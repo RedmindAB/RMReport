@@ -56,8 +56,6 @@
 			}
 			reloadOnSuiteChange();
 			checkPosition();
-			console.log("nav controller");
-			console.log(CurrentSuite);
 	    }
 		
 	    /*
