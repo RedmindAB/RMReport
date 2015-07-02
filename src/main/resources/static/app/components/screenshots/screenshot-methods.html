@@ -53,7 +53,7 @@
 							<td 
 								id="screenshot-header-{{$index}}"
 								ng-repeat="case in method.testcases track by $index" 
-								ng-style="{'background-color': style.getBgCo(case.result)}" 
+								ng-style="{'background-color': style.getBgCo(case.result), 'color' : style.getColor(case.result)}" 
 								class='panel screenshot-td screenshot-background-top'>
 								<h4>{{case.device}} - {{case.browser}}</h4>
 							</td>
