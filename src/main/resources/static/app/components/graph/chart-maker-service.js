@@ -177,14 +177,15 @@
 		
 		function passFailChart() {
 			var chart = Charts.mainChart;
+			var currentGraphType = Utilities.getCurrentGraphType();
 			
 			chart.series = [];
 			for (var i = 0, dataLength = Charts.data.length; i < dataLength; i++) {
 				chart.series.push({
 					data : Charts.data[i].passPercentage,
 					name : Charts.data[i].name,
-					color: getSerieColor(i),
-					type: "line"
+					color: getSerieColor(i+2),
+					type: Utilities.getCurrentGraphType()
 				});
 			}
 			chart.yAxis.title.text = 'Pass percentage';
@@ -203,7 +204,7 @@
 					data : Charts.data[i].totalFail,
 					name : Charts.data[i].name,
 					color: getSerieColor(i+1),
-					type : "column",
+					type : Utilities.getCurrentGraphType(),
 					dashStyle : "Solid",
 					connectNulls : false
 				});
@@ -225,7 +226,7 @@
 					data : Charts.data[i].totalPass,
 					name : Charts.data[i].name,
 					color: getSerieColor(i),
-					type : "column",
+					type : Utilities.getCurrentGraphType(),
 					dashStyle : "Solid",
 					connectNulls : false
 				});
@@ -246,8 +247,8 @@
 				chart.series.push({
 					data : Charts.data[i].totalSkipped,
 					name : Charts.data[i].name,
-					color: getSerieColor(i),
-					type : "column",
+					color: getSerieColor(i+5),
+					type : Utilities.getCurrentGraphType(),
 					dashStyle : "Solid",
 					connectNulls : false
 				});
@@ -261,14 +262,14 @@
 		function runTimeChart() {
 			
 			var chart = Charts.mainChart;
-			chart.options.chart.type = "line";
+			chart.options.chart.type = Utilities.getCurrentGraphType();
 			chart.series = [];
 			chart.yAxis.max = undefined;
 			for (var i = 0, dataLength = Charts.data.length; i < dataLength; i++) {
 				chart.series.push({
 							data : Charts.data[i].runTime,
 							name : Charts.data[i].name,
-							color: getSerieColor(i),
+							color: getSerieColor(i+3),
 				});
 			}
 			

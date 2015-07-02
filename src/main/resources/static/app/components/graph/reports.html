@@ -31,11 +31,11 @@
 			{{Utilities.resultAmount}}
 			<span class="caret"></span>
 		</button>
-		<ul class="dropdown-menu scrollable-menu" id='suite_runs_drop'>
+		<ul class="dropdown-menu scrollable-menu" id='suite_runs_drop' style="cursor:pointer">
 			<li ng-repeat="run in Utilities.runValues">
 				<a
 					id='run-amount-{{run}}'
-					ng-click="Utilities.setResultAmount(run); Utilities.newContent()">
+					ng-click="Utilities.setResultAmount(run)">
 					{{run}} 
 				</a>
 			</li>
@@ -68,6 +68,34 @@
 						aria-hidden='true'>
 					</span>
 					&nbsp;{{serie.name}}
+				</a>
+			</li>
+		</ul>
+	</div>
+	
+	<!-- Choose graph type -->
+	<div class="btn-group" style='margin: 1px' align='center'>
+		<h5 
+			style='margin-bottom: 0px'>
+			Choose graph type
+		</h5>
+		<button 
+			style='width: 150px'
+			name="graph-type" 
+			class="btn btn-default dropdown-toggle" 
+			type="button"
+			data-toggle="dropdown"
+			aria-expanded="true" 
+			title="Choose graph type to display">
+			{{Utilities.currentGraphType}}
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu scrollable-menu" id='suite_runs_drop' style="cursor:pointer">
+			<li ng-repeat="type in Utilities.graphTypes">
+				<a
+					id='run-amount-{{run}}'
+					ng-click="Utilities.setGraphType(type)">
+					{{type}} 
 				</a>
 			</li>
 		</ul>
@@ -147,7 +175,7 @@
 				<li 
 					id='breakpoint-{{breakPoint}}'
 					ng-repeat="breakPoint in Utilities.breakPoints"
-					ng-click='Utilities.setBreakPoint(breakPoint); Utilities.newContent()'>
+					ng-click='Utilities.setBreakPoint(breakPoint)'>
 					<a style='cursor: pointer'> 
 						{{breakPoint}} 
 					</a>
@@ -159,7 +187,7 @@
 		<button 
 			id="clear-button" 
 			class="btn btn-default specs-clear-button"
-			ng-click="ctrl.SuiteHandler.clearAllChosen(); Utilities.newContent();">
+			ng-click="ctrl.SuiteHandler.clearAllChosen()">
 			Clear all checkboxes
 		</button>
 	</div>
@@ -211,7 +239,7 @@
 									is-open='platform.chosen'
 									class="spec-option-header platform-header" 
 									style="margin-bottom:10px">
-									<accordion-heading id='reports_name' ng-click='Utilities.newContent()'>
+									<accordion-heading id='reports_name'>
 									<table width='100%'>
 										<tr>
 											<td class="checkbox-holder">
