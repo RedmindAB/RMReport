@@ -137,11 +137,7 @@
 								<a 
 									id='{{suite.name}}'
 									class="visible-xs"
-									ng-click="Utilities.clearData(suite.lastTimestamp);
-											ctrl.loadMainChart(suite.id, 'Aggregation');
-											ctrl.getSuiteSkeleton(suite);
-											ctrl.loadDashboardPlatformsAndDevices();
-											ctrl.checkPosition();"
+									ng-click="ctrl.changeSuite(suite)"
 									data-toggle="collapse" 
 									data-target=".navbar-collapse">
 									{{suite.name}}

@@ -5,9 +5,9 @@
 		.module('webLog')
 		.factory('Utilities', utilities);
 			
-	utilities.$inject = ['$state', 'CurrentSuite', 'ScreenshotMaster'];
+	utilities.$inject = ['$state', 'CurrentSuite', 'ScreenshotMaster', 'Charts'];
 	
-	function utilities ($state, CurrentSuite, ScreenshotMaster){
+	function utilities ($state, CurrentSuite, ScreenshotMaster, Charts){
 	    return { 
 	    	currentSection: 'Most Failing Devices',
 	    	searchField: 			'',
@@ -25,6 +25,10 @@
 	        colors: 				['#2ecc71', '#e74c3c', '#3498db', '#8e44ad', '#2c3e50', '#f1c40f', '#7f8c8d', '#e67e22', '#c0392b', '#1abc9c', '#9b59b6', '#34495e', '#16a085', '#f39c12', '#27ae60', '#d35400'],
 	        sorting: 				['-stats.totFail','result','name'],
 	        dashboardSections: 		['Most Failing Devices', 'Devices of this timestamp', 'Most Failing Classes'],
+	        graphTypes:				['Line','Area','Column'],
+	        currentGraphType:		'Line',
+	        setGraphType:			setGraphType,
+	        getCurrentGraphType:	getCurrentGraphType,
 	        setDashboardSection: 	setDashboardSection,
 			getSize: 				getSize,
 			makeArray: 				makeArray,
@@ -41,6 +45,35 @@
 			getCurrentPosName:		getCurrentPosName,
 			clearData: 				clearData,
 	    };
+	    
+	    function getCurrentGraphType(){
+	    	
+	    	switch (this.currentGraphType) {
+			case "Line":
+				return 'line';
+			case "Area":
+				return 'area';
+			case "Column":
+				return 'column';
+
+			default:
+				break;
+			}
+	    	
+	    }
+	    
+	    function setGraphType(newVal){
+	    	var series, seriesLength;
+	    	this.currentGraphType = newVal;
+	    	
+	    	series = Charts.mainChart.series;
+	    	seriesLength = Charts.mainChart.series.length;
+	    	
+	    	for(var i = 0; i < seriesLength; i++){
+	    		series[i].type=this.getCurrentGraphType();
+	    	}
+	    	
+	    }
 	    
         function setDashboardSection (value){
         	this.currentSection = value;

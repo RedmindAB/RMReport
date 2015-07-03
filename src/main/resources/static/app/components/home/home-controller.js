@@ -5,9 +5,9 @@
 		.module('webLog')
 		.controller('HomeCtrl', HomeCtrl);
 	    	
-	HomeCtrl.$inject = ['$http', 'CurrentSuite','RestLoader', 'ChartMaker', 'Charts'];
+	HomeCtrl.$inject = ['CurrentSuite','RestLoader', 'ChartMaker', 'Charts', 'HomeServices'];
 	
-	function HomeCtrl($http, CurrentSuite, RestLoader, ChartMaker, Charts){
+	function HomeCtrl(CurrentSuite, RestLoader, ChartMaker, Charts, HomeServices){
 		
 		var vm = this;
 		
@@ -95,18 +95,15 @@
 	     * and finally generates proper chart data.
 	     */
 	    function loadAll(){
-	    	$http.get('/api/suite/getsuites')
-	    	.success(function(data, status, headers, config){ 
-	    		if(data){
-	    			CurrentSuite.allSuites = data;
-	    			setUpBlueprints(CurrentSuite.allSuites);
-	    			for (var i = 0; i < CurrentSuite.allSuites.length; i++) {
-	    				createHomeChartFromID(CurrentSuite.allSuites[i]);
-	    			}
-	    		}
-	    	}).error(function(data, status, headers, config){
-	    		console.error(data);
-	    	});
+	    	
+	    	HomeServices.loadAllSuites()
+	    	.then(function(data){
+    			CurrentSuite.allSuites = data;
+    			setUpBlueprints(CurrentSuite.allSuites);
+    			for (var i = 0; i < CurrentSuite.allSuites.length; i++) {
+    				createHomeChartFromID(CurrentSuite.allSuites[i]);
+    			}
+	    	})
 	    }
 	    
 	}

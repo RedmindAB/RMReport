@@ -6,9 +6,9 @@
 		.controller('GlobalCtrl', GlobalCtrl);
 		
 			
-	GlobalCtrl.$inject = ['$scope', '$rootScope', '$location', 'CurrentSuite', 'Utilities'];
+	GlobalCtrl.$inject = ['$scope', '$rootScope', '$location', 'CurrentSuite', 'Utilities','LocalStorage','SuiteHandler'];
 	
-	function GlobalCtrl ($scope, $rootScope, $location,CurrentSuite, Utilities){
+	function GlobalCtrl ($scope, $rootScope, $location,CurrentSuite, Utilities, LocalStorage, SuiteHandler){
 		
 		$scope.CurrentSuite = CurrentSuite;
 		$scope.Utilities = Utilities;
@@ -21,16 +21,23 @@
 				$rootScope.$broadcast("closeScreenshotModal");
 			}
 			
+			$rootScope.$broadcast('saveState');
+			
 			Utilities.searchField = '';
 			Utilities.resetSorting();
-			CurrentSuite.clearChosenClasses();
-			CurrentSuite.clearChosenMethods();
+			SuiteHandler.clearChosenClasses();
+			SuiteHandler.clearChosenMethods();
 		});
 		
 		function resetWebApp(){
-			if (CurrentSuite.currentSuiteInfo.length <= 0) {
-				$location.path("/");
-			}
+//			console.log("hmm");
+//			console.log(CurrentSuite);
+//			var checkSuite = LocalStorage.getStorage();
+//			console.log(checkSuite);
+//			if (checkSuite !== undefined && checkSuite !== "null") {
+//				$rootScope.$broadcast('restoreState');
+//			}
+//			console.log(CurrentSuite);
 		}
 	}
 })();

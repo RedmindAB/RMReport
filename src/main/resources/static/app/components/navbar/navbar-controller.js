@@ -50,6 +50,10 @@
 	    	Utilities.clearData();
 			CurrentSuite.currentSuiteInfo = suite;
 			CurrentSuite.currentTimestamp = suite.lastTimestamp;
+			getSuiteSkeletonByTimestamp(suite.lastTimestamp);
+			if (!$state.includes('reports')) {
+				ChartMaker.loadMainChart(suite.id, false);
+			}
 			reloadOnSuiteChange();
 			checkPosition();
 	    }

@@ -5,14 +5,15 @@
 		.module('webLog')
 		.controller('GraphCtrl', GraphCtrl);
 	
-	GraphCtrl.$inject = ['Charts', 'CurrentSuite', 'ChartMaker'];
+	GraphCtrl.$inject = ['Charts', 'CurrentSuite', 'ChartMaker','SuiteHandler'];
 			
-	function GraphCtrl(Charts, CurrentSuite, ChartMaker){
+	function GraphCtrl(Charts, CurrentSuite, ChartMaker, SuiteHandler){
 		
 		var vm = this;
 		
 		vm.Charts = Charts;
 		vm.CurrentSuite = CurrentSuite;
+		vm.SuiteHandler = SuiteHandler;
 		
 	    vm.chartMainConfig = {};
 	    vm.descTimestamps = [];
@@ -54,7 +55,7 @@
 	    function togglePlatformChosen(platform){
 	    	if (platform.chosen !== undefined){
 	    		if (platform.chosen === true) {
-					CurrentSuite.clearPlatformChosen(platform);
+	    			SuiteHandler.clearPlatformChosen(platform);
 				}
 	    	}
 	    }

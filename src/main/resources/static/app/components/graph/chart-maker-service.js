@@ -177,14 +177,15 @@
 		
 		function passFailChart() {
 			var chart = Charts.mainChart;
+			var currentGraphType = Utilities.getCurrentGraphType();
 			
 			chart.series = [];
 			for (var i = 0, dataLength = Charts.data.length; i < dataLength; i++) {
 				chart.series.push({
 					data : Charts.data[i].passPercentage,
 					name : Charts.data[i].name,
-					color: getSerieColor(i),
-					type: "line"
+					color: getSerieColor(i+2),
+					type: Utilities.getCurrentGraphType()
 				});
 			}
 			chart.yAxis.title.text = 'Pass percentage';
@@ -203,7 +204,7 @@
 					data : Charts.data[i].totalFail,
 					name : Charts.data[i].name,
 					color: getSerieColor(i+1),
-					type : "column",
+					type : Utilities.getCurrentGraphType(),
 					dashStyle : "Solid",
 					connectNulls : false
 				});
@@ -225,7 +226,7 @@
 					data : Charts.data[i].totalPass,
 					name : Charts.data[i].name,
 					color: getSerieColor(i),
-					type : "column",
+					type : Utilities.getCurrentGraphType(),
 					dashStyle : "Solid",
 					connectNulls : false
 				});
@@ -246,8 +247,8 @@
 				chart.series.push({
 					data : Charts.data[i].totalSkipped,
 					name : Charts.data[i].name,
-					color: getSerieColor(i),
-					type : "column",
+					color: getSerieColor(i+5),
+					type : Utilities.getCurrentGraphType(),
 					dashStyle : "Solid",
 					connectNulls : false
 				});
@@ -261,14 +262,14 @@
 		function runTimeChart() {
 			
 			var chart = Charts.mainChart;
-			chart.options.chart.type = "line";
+			chart.options.chart.type = Utilities.getCurrentGraphType();
 			chart.series = [];
 			chart.yAxis.max = undefined;
 			for (var i = 0, dataLength = Charts.data.length; i < dataLength; i++) {
 				chart.series.push({
 							data : Charts.data[i].runTime,
 							name : Charts.data[i].name,
-							color: getSerieColor(i),
+							color: getSerieColor(i+3),
 				});
 			}
 			
@@ -306,56 +307,6 @@
 			return percentage;
 		}
 		
-		function getTooltipDeviceList(list){
-			var deviceKeeper = {};
-			var listItem;
-			
-			for(var i = 0; i < list.length; i++){
-				listItem = list[i];
-				if (deviceKeeper[listItem.osname] === undefined) {
-					deviceKeeper[listItem.osname] = {devices:[]};
-					deviceKeeper[listItem.osname].devices.push(listItem.devicename);
-				} else {
-					deviceKeeper[listItem.osname].devices.push(listItem.devicename);
-				}
-			}
-			return deviceKeeper;
-		}
-		
-		function makeTimestampReadable(timestamp){
-			var stringStamp = timestamp.toString();
-			var readable = stringStamp.substring(0,4)+ "-" +
-							stringStamp.substring(4,6)+"-" +
-							stringStamp.substring(6,8)+" " +
-							stringStamp.substring(8,10)+":" +
-							stringStamp.substring(10,12)+"";
-			return readable;
-		}
-		
-		function getTooltipPercentageString(points){
-			var tooltip ="<div class='tooltipContainer'><strong style='display:block'>"+points[0].point.category+"</strong><br><table class='tooltipTable'>";
-			tooltip += "<tr>"+
-						    "<th>Status</th>" +
-						    "<th>Amt</th>" +
-						    "<th>Pct</th>" +
-						  "</tr>";
-			for(var i = 0; i < points.length; i++){
-				tooltip +=		"<tr>" +
-									"<td style='color: "+points[i].series.color+"'>"+
-										points[i].series.name +
-									"</td>"+
-									"<td>"+
-										"<b>"+Math.round(points[i].y)+"</b>"+
-									"</td>"+
-									"<td>"+
-										"<b>"+Math.round(points[i].percentage)+"%</b>"+
-									"</td>"+
-								"</tr>";
-			}
-			tooltip += "</table>";
-			return tooltip;
-		}
-		
 		function createHomeChart(data, suite) {
 			
 			var timestamps = [], timestampsRaw = [];
@@ -382,7 +333,7 @@
 				            showDelay: 0,
 				            positioner: function(boxWidth, boxHeight, point) {
 				                return {
-				                    x: point.plotX - 100,
+				                    x: point.plotX + 100,
 				                    y: point.plotY - point.plotY/2
 				                };
 				            },
@@ -405,11 +356,11 @@
 							        });
 								}
 				            	
-				            	tooltip = getTooltipPercentageString(points.points);
+				            	tooltip = Charts.getTooltipPercentageString(points.points);
 				            	
 				            	test.success(function(dataObj, status, headers, config){
 						        	
-						        	var deviceObj = getTooltipDeviceList(dataObj);
+						        	var deviceObj = Charts.getTooltipDeviceList(dataObj);
 						        	
 						        	tooltip += "<div>";
 						        	for(var platform in deviceObj){

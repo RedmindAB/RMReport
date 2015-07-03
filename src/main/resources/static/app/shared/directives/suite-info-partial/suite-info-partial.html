@@ -46,10 +46,10 @@
 		           	ng-style="{'color' : style.getColor(object.result)}"
 		           	class="suite-partial-name-container">
 		            <td 
-		            	class="checkbox-holder" 
-		            	style="color:#333333; padding-left: 10px;" 
+		            	class="checkbox-holder checkbox-icon" 
+		            	style="color:inherit;" 
 		            	ng-style="{'background-color': style.getBgCo(object.result), 'border-color':style.getBorderColor(object.result)}">
-		                <icon-checkbox content="object" id='checkbox{{$index}}'></icon-checkbox>					                    
+		                <icon-checkbox content="object" id='checkbox{{$index}}' ng-if="showCheckBox"></icon-checkbox>
 		            </td>
 					<td 
 						ng-click="loadFunction(object); NavCtrl.setState(toState);loadFunctionTwo(object);"
