@@ -6,13 +6,22 @@
 		.factory('LiveData', LiveData);
 	
 	function LiveData () {
-		return {
-			testData:[],
-			tests:[],
-			historyid:0,
-			percentage:"0%",
-			currentPercentage: "0%",
-			uuid:""
+		var service = {
+				testData:[],
+				tests:[],
+				historyid:0,
+				percentage:"0%",
+				currentPercentage: "0%",
+				uuid:"",
+				timeKeeper:{},
+				getRunTime: getRunTime
 		};
+		
+		function getRunTime(id){
+			return timeKeeper[id];
+		}
+		
+		return service;
+		
 	}
 })();

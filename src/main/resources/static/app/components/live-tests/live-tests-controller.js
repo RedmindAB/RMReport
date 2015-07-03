@@ -5,9 +5,9 @@
 		.module('webLog')
 		.controller('LiveTestsCtrl', LiveTestsCtrl);
 	
-	LiveTestsCtrl.$inject = ['$scope', '$http','$state', 'LiveTestsServices', 'CurrentSuite', 'LiveData', '$timeout'];
+	LiveTestsCtrl.$inject = ['$scope', '$http','$state', 'LiveTestsServices', 'CurrentSuite', 'LiveData', '$timeout', '$interval'];
 			
-	function LiveTestsCtrl($scope, $http, $state, LiveTestsServices, CurrentSuite, LiveData, $timeout){
+	function LiveTestsCtrl($scope, $http, $state, LiveTestsServices, CurrentSuite, LiveData, $timeout, $interval){
 		
 		var vm = this;
 		var requestObj = {};
@@ -19,12 +19,16 @@
 		vm.setRowColor 			= setRowColor;
 		vm.getPercentage 		= getPercentage;
 		vm.getTotalDone			= getTotalDone;
-
+		vm.getTestRunTime		= getTestRunTime;
+		vm.tempShit=0;
+		
+		var timer;
+		
 		getLiveTests();
 		updateInterval();
 		
 		function updateInterval(){
-		        var progress = setInterval(function() {
+		        var progress = $interval(function() {
 		        	if(LiveData.uuid.length > 0){
 		        		getLiveSuite();
 		        	}
@@ -40,6 +44,7 @@
 					if(request[0].data[i].status === 'running'){
 						LiveTestsServices.getLiveTests(request[0].data[i].UUID);
 						LiveData.uuid = request[0].data[i].UUID;
+						startTimer();
 					}
 				}
 				
@@ -102,5 +107,27 @@
 			}
 	    	return totalDone;
 	    }
+	    
+	    function stopTimer(){
+	    	$interval.cancel(timer);
+	    	timer = undefined;
+	    }
+	    
+	    function startTimer(){
+		    timer = $interval(function(){
+		    	var tests = LiveData.tests;
+		    	for (var i = 0; i < tests.length; i++) {
+		    		getTestRunTime(tests[i]);
+				}
+		    }, 200);
+	    }
+	    
+	    
+	    function getTestRunTime(test){
+	    	if(test.status == 'running'){
+	    		test.runTime = '~ ' + ((new Date().getTime() - test.startTime) / 1000).toFixed(1);
+	    	}
+	    }
+	    
 	}
 })();
