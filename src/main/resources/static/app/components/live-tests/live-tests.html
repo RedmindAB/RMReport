@@ -41,7 +41,7 @@
 				<th>run time (seconds)</th>
 			</thead>
 				<tbody>
-					<tr ng-repeat="test in ctrl.LiveData.tests" 
+					<tr ng-repeat="test in ctrl.LiveData.tests | orderBy:'startID':true track by $index" 
 						ng-class="ctrl.setRowColor(test)">
 					 	<td>{{test.id}}</td>
 						<td>{{test.method}}</td>
