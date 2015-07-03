@@ -91,9 +91,9 @@
 			<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu scrollable-menu" id='suite_runs_drop' style="cursor:pointer">
-			<li ng-repeat="type in Utilities.graphTypes">
+			<li ng-repeat="type in Utilities.graphTypes track by $index">
 				<a
-					id='run-amount-{{run}}'
+					id='type-{{type}}'
 					ng-click="Utilities.setGraphType(type)">
 					{{type}} 
 				</a>
