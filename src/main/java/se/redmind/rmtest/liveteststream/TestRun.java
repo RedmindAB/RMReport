@@ -1,7 +1,5 @@
 package se.redmind.rmtest.liveteststream;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.SortedMap;
@@ -11,7 +9,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 
 public class TestRun {
 	
@@ -21,6 +18,7 @@ public class TestRun {
 	private TreeMap<Integer, JsonObject> history;
 	private int historyID = 0;
 	private int finishID = 0;
+	private int startID = 0;
 	
 	public TestRun(String UUID, JsonObject suite) {
 		this.UUID = UUID;
@@ -50,6 +48,7 @@ public class TestRun {
 			}
 		}
 		test.addProperty("status", "running");
+		test.addProperty("startID", startID++);
 		addToHistory(test, "running");
 	}
 	
