@@ -99,4 +99,5 @@ public class JsonReport extends Report<JsonObject> {
 		}
 		return classnames;
 	}
+	
 }
