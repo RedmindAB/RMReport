@@ -72,7 +72,8 @@ public class TestCaseRunInserter extends DBBridge {
 				sql = parser.getString(map);
 				pStatement.addBatch(sql);
 				} catch (Exception e) {
-					log.error("Could not insert testcase: "+e.getMessage());
+					log.error("Could not insert testcase: "+testCase.getMethodName());
+					e.printStackTrace();
 					return false;
 				}
 			}

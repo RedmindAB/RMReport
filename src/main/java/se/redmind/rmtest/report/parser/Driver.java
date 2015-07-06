@@ -2,7 +2,7 @@ package se.redmind.rmtest.report.parser;
 
 public class Driver {
 
-	private final String driver;
+	private String driver;
 	private String os, osVer, device, browser, browserVer;
 	private boolean broken;
 	public Driver(String driver) {
@@ -99,5 +99,7 @@ public class Driver {
 		this.browserVer = browserVer;
 	}
 	
-	
+	public void setFullName(String fullname){
+		this.driver = fullname;
+	}
 }

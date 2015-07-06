@@ -80,7 +80,17 @@ public class JsonReportBuilder {
 		driver.setOsVer(deviceInfo.get("osver").getAsString());
 		driver.setBrowser(deviceInfo.get("browser").getAsString());
 		driver.setBrowserVer(deviceInfo.get("browserVer").getAsString());
+		setDriverFullName(driver);
 		return driver;
+	}
+	
+	private void setDriverFullName(Driver driver){
+		String os = driver.getOs();
+		String osVer = driver.getOsVer();
+		String device = driver.getDevice();
+		String browser = driver.getBrowser();
+		String browserVer = driver.getBrowserVer();
+		driver.setFullName(os+"_"+osVer+"_"+device+"_"+browser+"_"+browserVer);
 	}
 
 	private ResultType getTestResult(JsonObject test) {

@@ -109,7 +109,6 @@ public class DriverValidation {
 			String osNameAndVer = driver.getBrowser()+driver.getBrowserVer();
 			//if the driver dose not exists in the db and is not added yet, add it to the batch
 			if (!osIds.containsKey(osNameAndVer) && !addedOS.contains(osNameAndVer)) {
-//				System.out.println(osNameAndVer);
 				browserInserter.addBrowserToBatch(driver.getBrowser(), driver.getBrowserVer());
 				addedOS.add(osNameAndVer);
 				addedNew = true;
