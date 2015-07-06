@@ -39,29 +39,67 @@
 				setUpSpecObject:			setUpSpecObject
 		};
 		
+		/*
+		 * Bad practice sollution to specs object.
+		 * Specs objects gets overwritten on every chart
+		 * load so this is a temporary sollution where it
+		 * iterates through the former specs object
+		 * and checks which are chosen, if it finds
+		 * any it applies the same chosen to the new
+		 * object.
+		 */
 		function setUpSpecObject(newSpecs){
-			var i, 
+			var i,
+				j,
+				currentSpecObject,
 				platforms, 
-				platformLength, 
+				platformLength,
+				platform,
 				browsers, 
-				browserLength;
+				browserLength,
+				versions,
+				versionLength,
+				devices,
+				deviceLength;
 			
-			var setChosenPlatformByName = setChosenPlatformByName;
+			currentSpecObject = CurrentSuite.currentSpecObject;
 			
-			if(CurrentSuite.currentSpecObject.length !== 0){
+			if(currentSpecObject.length !== 0){
 			
-				browserLength = CurrentSuite.currentSpecObject.browsers.length;
-				platformLength = CurrentSuite.currentSpecObject.platforms.length;
+				browsers = currentSpecObject.browsers;
+				browserLength = currentSpecObject.browsers.length;
+				
+				platformLength = currentSpecObject.platforms.length;
 				
 				for(i = 0; i < browserLength; i++){
-					if(CurrentSuite.currentSpecObject.browsers[i].chosen === true){
-						setChosenBrowserById(CurrentSuite.currentSpecObject.browsers[i].browserid, newSpecs);
+					if(browsers[i].chosen === true){
+						setChosenBrowserById(browsers[i].browserid, newSpecs);
 					}
 				}
 				
 				for(i = 0; i < platformLength; i++){
 					if(CurrentSuite.currentSpecObject.platforms[i].chosen){
-						setChosenPlatformByname(CurrentSuite.currentSpecObject.platforms[i].osname, newSpecs);
+						
+						platform = CurrentSuite.currentSpecObject.platforms[i];
+						
+						versions = platform.versions;
+						versionLength = platform.versions.length;
+						
+						devices = platform.devices;
+						deviceLength = platform.devices.length;
+						
+						setChosenPlatformByname(platform.osname, newSpecs);
+						
+						for(j = 0; j < versionLength; j++ ){
+							if(versions[j].chosen === true){
+								setChosenVersionById(platform.osname, versions[j].osid, newSpecs);
+							}
+						}
+						for(j = 0; j < deviceLength; j++){
+							if(devices[j].chosen === true){
+								setChosenDeviceById(platform.osname, devices[j].deviceid ,newSpecs);
+							}
+						}
 					}
 				}
 			}
@@ -96,6 +134,62 @@
 					if(platforms[i].osname === osname){
 						platforms[i].chosen = true;
 						return;
+					}
+				}
+			}
+			
+			function setChosenVersionById(osname, osid, newSpecs){
+				var i,
+					j,
+					platforms,
+					platformsLength,
+					versions,
+					versionLength;
+				
+				platforms = newSpecs.platforms;
+				platformLength = platforms.length;
+				
+				for(i = 0; i < platformLength; i++){
+					if(platforms[i].osname === osname){
+						console.log(platforms[i].osname);
+						versions = platforms[i].versions;
+						versionLength = versions.length;
+						
+						for(j = 0; j < versionLength; j++){
+							if (versions[j].osid === osid) {
+								versions[j].chosen = true;
+								console.log(versions[j]);
+								return;
+							}
+						}
+					}
+				}
+			}
+			
+			function setChosenDeviceById(osname, deviceid, newSpecs){
+				var i,
+					j,
+					platforms,
+					platformsLength,
+					devices,
+					deviceLength;
+			
+				platforms = newSpecs.platforms;
+				platformLength = platforms.length;
+				
+				for(i = 0; i < platformLength; i++){
+					if(platforms[i].osname === osname){
+						console.log(platforms[i].osname);
+						devices = platforms[i].devices;
+						deviceLength = devices.length;
+						
+						for(j = 0; j < deviceLength; j++){
+							if (devices[j].deviceid === deviceid) {
+								devices[j].chosen = true;
+								console.log(devices[j]);
+								return;
+							}
+						}
 					}
 				}
 			}
