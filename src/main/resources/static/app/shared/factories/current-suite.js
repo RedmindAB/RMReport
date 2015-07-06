@@ -10,6 +10,7 @@
 	function CurrentSuite ($rootScope){
 		
 		var service = {
+				descTimestamps:				[],
 		    	currentSuiteInfo: 			[],
 		    	currentSuite: 				[],
 		    	currentClass: 				[],

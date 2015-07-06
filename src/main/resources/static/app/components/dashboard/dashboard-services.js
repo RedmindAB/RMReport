@@ -76,8 +76,8 @@
 						DeviceData.classes.push(request[i].data);
 					}
 					for (var a = 0; a < request[0].data.length; a++) {
-						for (var b = 0; b < Utilities.descTimestamps.length; b++) {
-							if(request[0].data[a].lastfail === Utilities.descTimestamps[b]){
+						for (var b = 0; b < CurrentSuite.descTimestamps.length; b++) {
+							if(request[0].data[a].lastfail === CurrentSuite.descTimestamps[b]){
 								DeviceData.lastFail.push(b);
 							}
 						}

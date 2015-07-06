@@ -157,7 +157,7 @@
 							<b class="caret"></b>
 						</a>
 						<ul id='dropdown-timestamp' class="dropdown-menu scrollable-menu">
-							<li style='width: 100%' ng-repeat="timestamp in Utilities.descTimestamps track by $index">
+							<li style='width: 100%' ng-repeat="timestamp in CurrentSuite.descTimestamps track by $index">
 								<a 
 									id='{{timestamp}}' 
 									ng-click="ctrl.getSuiteSkeletonByTimestamp(timestamp); 

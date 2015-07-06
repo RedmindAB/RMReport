@@ -17,7 +17,6 @@
 	        breakPointChoice: 		"None",
 	        suitePartailSorting: 	'name',
 	        chosen: 				[],
-	        descTimestamps: 		[],
 	        runValues: 				["10", "20", "50", "100", "500"],
 	        chartVariants: 			["Pass/Fail", "Total Pass", "Total Fail", "Total Skipped", "Run Time"],
 	        breakPoints: 			["None", "Browser", "Version", "Device", "Platform"],

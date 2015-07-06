@@ -55,7 +55,7 @@
 			if (CurrentSuite.currentTimestamp === '') {
 				CurrentSuite.currentTimestamp = data[0].data[data[0].data.length-1].timestamp;
 			}
-			Utilities.descTimestamps = reverseArray(CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id]);
+			CurrentSuite.descTimestamps = reverseArray(CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id]);
 			var graphDataArray = [];
 			var dataObj = [];
 			
