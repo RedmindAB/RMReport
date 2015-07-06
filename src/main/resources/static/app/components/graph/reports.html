@@ -10,7 +10,7 @@
 	<highchart 
 		style='position:responsive;float:left;width:100%'
 		id="mainChart" 
-		config="ctrl.Charts.mainChart">
+		config="ctrl.Charts.mainChartConfig">
 	</highchart>
 	
 	<!-- Amount dropdown -->
@@ -60,7 +60,7 @@
 		<ul class="dropdown-menu" role="menu">
 			<li 
 				id='remove-{{serie.name}}' 
-				ng-repeat='serie in ctrl.Charts.mainChart.series'
+				ng-repeat='serie in ctrl.Charts.mainChartConfig.series'
 				ng-click='ctrl.remove(serie)'>
 				<a style='cursor: pointer'> 
 					<span
@@ -106,7 +106,7 @@
 		<button 
 			id='button_reload'
 			class="btn btn-default" 
-			ng-disabled='Charts.mainChart.loading'
+			ng-disabled='Charts.mainChartConfig.loading'
 			ng-click="ctrl.loadMainChart(CurrentSuite.currentSuiteInfo.id, false); checkQuestions()"
 			style="width: 175px;float:right; margin-top:10px"
 			onClick="document.getElementById('button_reload').className = 'btn btn-default'">
@@ -117,7 +117,7 @@
 		
 		<button 
 			id='add_graph_line' 
-			ng-disabled='Charts.mainChart.loading'
+			ng-disabled='Charts.mainChartConfig.loading'
 			ng-click="ctrl.loadMainChart(CurrentSuite.currentSuiteInfo.id, true)"
 			class="btn btn-default"
 			type="button"

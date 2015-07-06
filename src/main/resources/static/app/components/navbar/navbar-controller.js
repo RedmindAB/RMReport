@@ -5,9 +5,9 @@
 		.module('webLog')
 		.controller('NavBarCtrl', NavBarCtrl);
 		
-	NavBarCtrl.$inject = ['$state', '$window', 'ChartMaker', 'RestLoader', 'Utilities', 'CurrentSuite', 'DashboardServices', 'SuiteInfoHandler', 'ScreenshotMaster'];
+	NavBarCtrl.$inject = ['$state', '$window', 'ChartMaker', 'RestLoader', 'Utilities', 'CurrentSuite', 'DashboardServices', 'SuiteInfoHandler', 'ScreenshotMaster', 'Charts'];
 	
-	function NavBarCtrl ($state,$window, ChartMaker, RestLoader, Utilities, CurrentSuite, DashboardServices, SuiteInfoHandler, ScreenshotMaster) {
+	function NavBarCtrl ($state,$window, ChartMaker, RestLoader, Utilities, CurrentSuite, DashboardServices, SuiteInfoHandler, ScreenshotMaster, Charts) {
 	
 		var vm = this;
 		
@@ -135,9 +135,9 @@
 		
 		
 	    function highlightPoint(timestamp){
-	    	ChartMaker.highlightPoint(Utilities.getIndexByTimestamp(timestamp));
+	    	Charts.highlightPoint(Utilities.getIndexByTimestamp(timestamp));
 	    }
-		
+	    
 		/*
 		 * Checks if passed in state is the current state
 		 * viewed.

@@ -73,7 +73,7 @@
 	    	
 	    	var i, activeQueries, requestObject;
 	    	
-		   	Charts.mainChart.loading = 'Generating impressivly relevant statistics...';
+		   	Charts.mainChartConfig.loading = 'Generating impressivly relevant statistics...';
 		   	activeQueries = [];
 		   	i = 0;
 		   	

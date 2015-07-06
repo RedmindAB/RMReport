@@ -82,7 +82,7 @@
 	     * @return {Boolean} true if list size = 1
 	     */
 	    function trashcanEmpty() {
-	    	if (Charts.mainChart.series.length < 2) {
+	    	if (Charts.mainChartConfig.series.length < 2) {
 	    		return true;
 	    	}
 	    	else {
@@ -98,8 +98,8 @@
 	     * @param {Object} Data object to remove from chart, data array, query array.
 	     */
 	    function remove(item) { 
-			var index = Charts.mainChart.series.indexOf(item);
-			Charts.mainChart.series.splice(index, 1);  
+			var index = Charts.mainChartConfig.series.indexOf(item);
+			Charts.mainChartConfig.series.splice(index, 1);  
 			
 			var i = 0;
 			

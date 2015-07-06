@@ -66,8 +66,8 @@
 	    	var series, seriesLength;
 	    	this.currentGraphType = newVal;
 	    	
-	    	series = Charts.mainChart.series;
-	    	seriesLength = Charts.mainChart.series.length;
+	    	series = Charts.mainChartConfig.series;
+	    	seriesLength = Charts.mainChartConfig.series.length;
 	    	
 	    	for(var i = 0; i < seriesLength; i++){
 	    		series[i].type=this.getCurrentGraphType();

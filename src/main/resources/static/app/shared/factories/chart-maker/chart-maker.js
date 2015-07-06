@@ -5,17 +5,15 @@
 		.module('webLog')
 		.service('ChartMaker', ChartMaker);
 	
-	ChartMaker.$inject =  ['$http','$state', 'RestLoader', 'CurrentSuite', 'Utilities', 'Charts','SuiteInfoHandler'];
+	ChartMaker.$inject =  ['$http','$state', 'RestLoader', 'CurrentSuite', 'Utilities', 'Charts', 'ChartService', 'SuiteInfoHandler'];
 	
-	function ChartMaker($http,$state, RestLoader, CurrentSuite, Utilities, Charts, SuiteInfoHandler){
+	function ChartMaker($http, $state, RestLoader, CurrentSuite, Utilities, Charts, ChartService, SuiteInfoHandler){
 			
 		var vm = this;
-		
 		
 		vm.loadMainChart 		= loadMainChart;
 		vm.loadHomeChart 		= loadHomeChart;
 		vm.addCaseToGraph 		= addCaseToGraph;
-		vm.highlightPoint 		= highlightPoint;
 		vm.changeChartVariant 	= changeChartVariant;
 		
 			
@@ -32,10 +30,6 @@
 			RestLoader.addCaseToGraph(osName, osVersion, deviceName, browserName, browserVer, createMainChart);
 		}
 		
-	    function highlightPoint(index){
-	    	Charts.mainChart.xAxis.plotLines[0].value = index;
-	    }
-			
 	    function createMainChart(data, newLine){
 	    	
 	    	var i = 0;
@@ -43,7 +37,7 @@
 	    	
 	    	if (data.length === 0) {
 	    		alert("There is no data for that combination");
-	    		Charts.mainChart.loading = false;
+	    		Charts.mainChartConfig.loading = false;
 				return;
 			}
 			CurrentSuite.currentTimestampArray = [];
@@ -104,37 +98,46 @@
 				Charts.data = graphDataArray;
 			}
 			
-			Charts.mainChart.xAxis.categories = prettifiedArray;
+			Charts.mainChartConfig.xAxis.categories = prettifiedArray;
 			
-			Charts.mainChart.options.plotOptions.series.point = {
-					events : {
-						click : function(e) {
-							SuiteInfoHandler.loadTimestamp(CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][this.index], true);
-							vm.highlightPoint(this.index);
-							$('#mainChart').highcharts().zoomOut();
+			Charts.mainChartConfig.options.plotOptions = {
+				series: {
+					cursor : 'pointer',
+					point: {
+						events: {
+							click : function(){
+								SuiteInfoHandler.loadTimestamp(CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][this.index], true);
+								Charts.highlightPoint(this.index);
+								$('#mainChart').highcharts().zoomOut();
+							}
 						}
+					},
+					marker : {
+						enabled: false,
+						lineWidth : 1,
 					}
+				}
 			};
 			
-			Charts.mainChart.subtitle.text = "Showing " + CurrentSuite.currentTimestampArray.length + " results";
+			Charts.mainChartConfig.subtitle.text = "Showing " + CurrentSuite.currentTimestampArray.length + " results";
 				
 			var chartsLength = Charts.data.length;
 			for (i = 0; i < chartsLength; i++) {
-		    	Charts.mainChart.series.push({
+		    	Charts.mainChartConfig.series.push({
 					data : Charts.data[i].passPercentage,
 					name : Charts.data[i].name,
 				});
 			}
 			if(CurrentSuite.currentTimestampArray.length <= 50){
-				Charts.mainChart.xAxis.tickInterval = 0.4;
+				Charts.mainChartConfig.xAxis.tickInterval = 0.4;
 			} else if(CurrentSuite.currentTimestampArray.length > 50 && CurrentSuite.currentTimestampArray.length <= 100){
-	        	Charts.mainChart.xAxis.tickInterval = 2;
+	        	Charts.mainChartConfig.xAxis.tickInterval = 2;
 	    	} else{
-	    		Charts.mainChart.xAxis.tickInterval = 5;
+	    		Charts.mainChartConfig.xAxis.tickInterval = 5;
 	    	}
-			vm.changeChartVariant(Utilities.graphView);
-			Charts.mainChart.loading = false;
-			vm.highlightPoint(Utilities.getIndexByTimestamp(CurrentSuite.currentTimestamp));
+			changeChartVariant(Utilities.graphView);
+			Charts.mainChartConfig.loading = false;
+			Charts.highlightPoint(Utilities.getIndexByTimestamp(CurrentSuite.currentTimestamp));
 	    }
 		
 		function changeChartVariant(input){
@@ -166,7 +169,7 @@
 				passFailChart();
 				break;
 			}
-		};
+		}
 		
 		function getSerieColor(i){
 			if (i > Utilities.colors.length -1) {
@@ -176,7 +179,7 @@
 		}
 		
 		function passFailChart() {
-			var chart = Charts.mainChart;
+			var chart = Charts.mainChartConfig;
 			var currentGraphType = Utilities.getCurrentGraphType();
 			
 			chart.series = [];
@@ -190,11 +193,10 @@
 			}
 			chart.yAxis.title.text = 'Pass percentage';
 			chart.title.text = "Percentage of passed tests";
-			delete Charts.mainChart.options.tooltip.valueDecimals;
 		}
 		
 		function totalFailChart() {
-			var chart = Charts.mainChart;
+			var chart = Charts.mainChartConfig;
 			
 			chart.options.chart.type = "";
 			chart.series = [];
@@ -210,13 +212,11 @@
 				});
 			}
 			chart.yAxis.title.text = 'Failed tests';
-			chart.options.plotOptions.series.stacking = '';
 			chart.title.text = "Failed tests";
-			delete Charts.mainChart.options.tooltip.valueDecimals;
 		}
 		
 		function totalPassChart() {
-			var chart = Charts.mainChart;
+			var chart = Charts.mainChartConfig;
 			
 			chart.options.chart.type = "";
 			chart.series = [];
@@ -232,13 +232,11 @@
 				});
 			}
 			chart.yAxis.title.text = 'Passed tests';
-			chart.options.plotOptions.series.stacking = '';
 			chart.title.text = "Passed tests";
-			delete Charts.mainChart.options.tooltip.valueDecimals;
 		}
 		
 		function totalSkippedChart() {
-			var chart = Charts.mainChart;
+			var chart = Charts.mainChartConfig;
 			
 			chart.options.chart.type = "";
 			chart.series = [];
@@ -254,14 +252,12 @@
 				});
 			}
 			chart.yAxis.title.text = 'Skipped tests';
-			chart.options.plotOptions.series.stacking = '';
 			chart.title.text = "Skipped tests";
-			delete Charts.mainChart.options.tooltip.valueDecimals;
 		}
 		
 		function runTimeChart() {
 			
-			var chart = Charts.mainChart;
+			var chart = Charts.mainChartConfig;
 			chart.options.chart.type = Utilities.getCurrentGraphType();
 			chart.series = [];
 			chart.yAxis.max = undefined;
@@ -274,9 +270,7 @@
 			}
 			
 			chart.yAxis.title.text = 'Seconds';
-			chart.options.plotOptions.series.stacking = '';
 			chart.title.text = "Time to run in seconds";
-			Charts.mainChart.options.tooltip.valueDecimals = 2;
 		}
 		
 		function reverseArray(array){
@@ -338,29 +332,23 @@
 				                };
 				            },
 				            formatter: function(){
-				            	var points = this;
-				            	var test;
-				            	var tooltip;
+				            	var tooltip, 
+				            		timestamp, 
+				            		currentTimestamp,
+				            		thisSuiteTimestamp, 
+				            		currentId;
 				            	
-				            	if ($state.current.name === 'home') {
-				            		test = $http({
-							            url   : '/api/stats/devicerange/'+suite.id+'/'+CurrentSuite.timestampRaw[suite.id][points.points[0].point.index],
-							            method: 'GET',
-							            cache: true,
-							        });
-								} else {
-									test = $http({
-							            url   : '/api/stats/devicerange/'+CurrentSuite.currentSuiteInfo.id+'/'+CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][points.points[0].point.index],
-							            method: 'GET',
-							            cache: true,
-							        });
-								}
+				            	timestamp = this;
+				            	currentTimestamp = CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][timestamp.points[0].point.index];
+				            	thisSuiteTimestamp = CurrentSuite.timestampRaw[suite.id][timestamp.points[0].point.index];
+				            	currentId = CurrentSuite.currentSuiteInfo.id;
 				            	
-				            	tooltip = Charts.getTooltipPercentageString(points.points);
+				            	tooltip = Charts.getTooltipPercentageString(timestamp.points);
 				            	
-				            	test.success(function(dataObj, status, headers, config){
-						        	
-						        	var deviceObj = Charts.getTooltipDeviceList(dataObj);
+				            	var data = $state.current.name === 'home' ? ChartService.getTooltipData(suite.id, thisSuiteTimestamp) : ChartService.getTooltipData(currentId, currentTimestamp);
+				            	
+				            	data.then(function(dataObj){
+				            		var deviceObj = Charts.getTooltipDeviceList(dataObj);
 						        	
 						        	tooltip += "<div>";
 						        	for(var platform in deviceObj){
@@ -372,10 +360,8 @@
 						        	}
 						        	
 						        	tooltip +="</div></div>";
-						        	points.points[0].series.chart.tooltip.label.textSetter(tooltip);
-						        }).error(function(data, status, headers, config){
-						        	addErrorMessage(config, "change");
-						        });
+						        	timestamp.points[0].series.chart.tooltip.label.textSetter(tooltip);
+				            	});
 				            	return tooltip+'<br><b>Loading Devices...</b></div></div>';
 				            },
 						},

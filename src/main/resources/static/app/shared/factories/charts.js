@@ -5,14 +5,15 @@
 		.module('webLog')
 		.factory('Charts', Charts);
 			
-	Charts.$inject = ['$http','CurrentSuite'];
+	Charts.$inject = ['$http','CurrentSuite','ChartService'];
 	
-	function Charts ($http, CurrentSuite) {		
+	function Charts ($http, CurrentSuite, ChartService) {		
 	
 		var service = {
 				// CHART DATA
 				getTooltipPercentageString: getTooltipPercentageString,
 				getTooltipDeviceList: getTooltipDeviceList,
+				highlightPoint: highlightPoint,
 				
 				data : [],
 				homeChartBlueprint: {
@@ -85,7 +86,7 @@
 				chartHomeConfig: [],
 			
 				// MAIN PAGE CHART NORM
-				mainChart : {
+				mainChartConfig : {
 					options : {
 						chart : {
 							backgroundColor : '#ecf0f1',
@@ -110,7 +111,6 @@
 						    enabled: true,
 						    backgroundColor: 'none',
 				            useHTML: true,
-				            followPointer: true,
 				            hideDelay: 3,
 				            showDelay: 0,
 				            positioner: function(boxWidth, boxHeight, point) {
@@ -120,21 +120,14 @@
 				                };
 				            },
 				            formatter: function(){
-				            	var points = this;
-				            	var test;
-				            	var tooltip;
+				            	var tooltip, timestamp;
+				            	timestamp = this;
 				            	
-								test = $http({
-						            url   : '/api/stats/devicerange/'+CurrentSuite.currentSuiteInfo.id+'/'+CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][points.points[0].point.index],
-						            method: 'GET',
-						            cache: true,
-						        });
+				            	tooltip = getTooltipPercentageString(timestamp.points);
 				            	
-				            	tooltip = getTooltipPercentageString(points.points);
-				            	
-				            	test.success(function(dataObj, status, headers, config){
-						        	
-						        	var deviceObj = getTooltipDeviceList(dataObj);
+				            	ChartService.getTooltipData(CurrentSuite.currentSuiteInfo.id,CurrentSuite.timestampRaw[CurrentSuite.currentSuiteInfo.id][timestamp.points[0].point.index])
+				            	.then(function(dataObj){
+				            		var deviceObj = getTooltipDeviceList(dataObj);
 						        	
 						        	tooltip += "<div>";
 						        	for(var platform in deviceObj){
@@ -146,24 +139,11 @@
 						        	}
 						        	
 						        	tooltip +="</div></div>";
-						        	points.points[0].series.chart.tooltip.label.textSetter(tooltip);
-						        }).error(function(data, status, headers, config){
-						        	addErrorMessage(config, "change");
-						        });
+						        	timestamp.points[0].series.chart.tooltip.label.textSetter(tooltip);
+				            	});
 				            	return tooltip+'<br><b>Loading Devices...</b></div></div>';
 				            },
 						},
-						plotOptions : {
-							series : {
-								cursor : 'pointer',
-								point : {
-								},
-								marker : {
-									enabled: false,
-									lineWidth : 1,
-								}
-							}
-						}
 					},
 					title : {
 						text : ""
@@ -233,6 +213,10 @@
 			tooltip += "</table>";
 			return tooltip;
 		}
+		
+	    function highlightPoint(index){
+	    	service.mainChartConfig.xAxis.plotLines[0].value = index;
+	    }
 		
 		function getTooltipDeviceList(list){
 			var deviceKeeper = {};

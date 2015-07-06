@@ -6,9 +6,9 @@
 		.controller('GlobalCtrl', GlobalCtrl);
 		
 			
-	GlobalCtrl.$inject = ['$scope', '$rootScope', '$location', 'CurrentSuite', 'Utilities','LocalStorage','SuiteHandler'];
+	GlobalCtrl.$inject = ['$scope', '$rootScope', '$location', 'CurrentSuite', 'Utilities','LocalStorage','SuiteHandler','Charts'];
 	
-	function GlobalCtrl ($scope, $rootScope, $location,CurrentSuite, Utilities, LocalStorage, SuiteHandler){
+	function GlobalCtrl ($scope, $rootScope, $location,CurrentSuite, Utilities, LocalStorage, SuiteHandler, Charts){
 		
 		$scope.CurrentSuite = CurrentSuite;
 		$scope.Utilities = Utilities;
