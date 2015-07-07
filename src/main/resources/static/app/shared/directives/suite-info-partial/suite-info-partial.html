@@ -16,6 +16,12 @@
           			</span>
           		</th>
           		<th class="table-right">
+          			<span name="passed" ng-click="sortBy('stats.total')">Total</span>
+          			<span ng-show="predicate === 'stats.total'" ng-click="sortBy('stats.total')" class="keep-space">
+          				<span ng-class="reverseSort ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:10px"></span>
+          			</span>
+          		</th>
+          		<th class="table-right">
           			<span name="passed" ng-click="sortBy('stats.passed')">Passed</span>
           			<span ng-show="predicate === 'stats.passed'" ng-click="sortBy('stats.passed')" class="keep-space">
           				<span ng-class="reverseSort ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'" aria-hidden="true" style="font-size:10px"></span>
@@ -58,6 +64,13 @@
 	                  	ng-style="{'background-color': style.getBgCo(object.result),'border-color':style.getBorderColor(object.result)}">
 						<p id="{{type}}-name-{{$index}}">
 		                  	{{object.name}}
+						</p>
+					</td>
+					<td 
+						ng-style="{'background-color': style.getBgCo(object.result),'border-color':style.getBorderColor(object.result)}"
+						ng-click="loadFunction(object); NavCtrl.setState(toState);loadFunctionTwo(object);">
+						<p id="{{type}}-passfail-{{$index}}">
+		                   	{{object.stats.total}}
 						</p>
 					</td>
 					<td 
