@@ -13,130 +13,107 @@
 		config="ctrl.Charts.mainChartConfig">
 	</highchart>
 	
-	<!-- Amount dropdown -->
-	<div class="btn-group" style='margin: 1px' align='center'>
-		<h5 
-			style='margin-bottom: 0px'>
-			Choose amount to load
-		</h5>
-		<button 
-			style='width: 150px' 
-			id='suite_runs'
-			class="btn btn-default dropdown-toggle" 
-			type="button"
-			id="numberof_suite_dropdown" 
-			data-toggle="dropdown"
-			aria-expanded="true" 
-			title="Select suite run to display">
-			{{Utilities.resultAmount}}
-			<span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu scrollable-menu" id='suite_runs_drop' style="cursor:pointer">
-			<li ng-repeat="run in Utilities.runValues">
-				<a
-					id='run-amount-{{run}}'
-					ng-click="Utilities.setResultAmount(run)">
-					{{run}} 
-				</a>
-			</li>
-		</ul>
-	</div>
-
-	<!-- remove a graphline -->
-	<div class='btn-group' align='center'>
-		<h5 style='margin-bottom: 0px'>
-			Choose a line to remove
-		</h5>
-		<button 
-			id='button_break'
-			ng-disabled="ctrl.trashcanEmpty()"
-			style='width: 150px; margin: 1px' 
-			class="btn btn-default dropdown-toggle" 
-			type="button"
-			id="remove_graph_line" 
-			data-toggle="dropdown">
-			<span class="glyphicon glyphicon-trash"></span>
-		</button>
-		<ul class="dropdown-menu" role="menu">
-			<li 
-				id='remove-{{serie.name}}' 
-				ng-repeat='serie in ctrl.Charts.mainChartConfig.series'
-				ng-click='ctrl.remove(serie)'>
-				<a style='cursor: pointer'> 
-					<span
-						class='glyphicon glyphicon-trash' 
-						aria-hidden='true'>
-					</span>
-					&nbsp;{{serie.name}}
-				</a>
-			</li>
-		</ul>
-	</div>
+	<div class="graph-options">
+		<!-- Amount dropdown -->
+		<div class="btn-group">
+			<h5>
+				Amount to load
+			</h5>
+			<button 
+				class="btn btn-default dropdown-toggle" 
+				type="button"
+				id="numberof_suite_dropdown" 
+				data-toggle="dropdown"
+				aria-expanded="true" 
+				title="Select suite run to display">
+				{{Utilities.resultAmount}}
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu scrollable-menu" id='suite_runs_drop' style="cursor:pointer">
+				<li ng-repeat="run in Utilities.runValues">
+					<a
+						id='run-amount-{{run}}'
+						ng-click="Utilities.setResultAmount(run)">
+						{{run}} 
+					</a>
+				</li>
+			</ul>
+		</div>
 	
-	<!-- Choose graph type -->
-	<div class="btn-group" style='margin: 1px' align='center'>
-		<h5 
-			style='margin-bottom: 0px'>
-			Choose graph type
-		</h5>
-		<button 
-			style='width: 150px'
-			name="graph-type" 
-			class="btn btn-default dropdown-toggle" 
-			type="button"
-			data-toggle="dropdown"
-			aria-expanded="true" 
-			title="Choose graph type to display">
-			{{Utilities.currentGraphType}}
-			<span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu scrollable-menu" id='suite_runs_drop' style="cursor:pointer">
-			<li ng-repeat="type in Utilities.graphTypes track by $index">
-				<a
-					id='type-{{type}}'
-					ng-click="Utilities.setGraphType(type)">
-					{{type}} 
-				</a>
-			</li>
-		</ul>
-	</div>
-	
-	<!-- Load graph data buttons -->
-	<div style='float: right'>
+		<!-- remove a graphline -->
+		<div class='btn-group'>
+			<h5>
+				Remove a series
+			</h5>
+			<button 
+				ng-disabled="ctrl.trashcanEmpty()"
+				class="btn btn-default dropdown-toggle" 
+				type="button"
+				id="remove_graph_line" 
+				data-toggle="dropdown">
+				<span class="glyphicon glyphicon-trash"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li 
+					id='remove-{{serie.name}}' 
+					ng-repeat='serie in ctrl.Charts.mainChartConfig.series'
+					ng-click='ctrl.remove(serie)'>
+					<a style='cursor: pointer'> 
+						<span
+							class='glyphicon glyphicon-trash' 
+							aria-hidden='true'>
+						</span>
+						&nbsp;{{serie.name}}
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+		<!-- Choose graph type -->
+		<div class="btn-group">
+			<h5>
+				Graph type
+			</h5>
+			<button 
+				name="graph-type" 
+				class="btn btn-default dropdown-toggle" 
+				type="button"
+				data-toggle="dropdown"
+				aria-expanded="true" 
+				title="Choose graph type to display">
+				{{Utilities.currentGraphType}}
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu scrollable-menu" id='suite_runs_drop' style="cursor:pointer">
+				<li ng-repeat="type in Utilities.graphTypes track by $index">
+					<a
+						id='type-{{type}}'
+						ng-click="Utilities.setGraphType(type)">
+						{{type}} 
+					</a>
+				</li>
+			</ul>
+		</div>
+		
 		<button 
 			id='button_reload'
-			class="btn btn-default" 
+			class="btn btn-default load-button" 
 			ng-disabled='Charts.mainChartConfig.loading'
 			ng-click="ctrl.loadMainChart(CurrentSuite.currentSuiteInfo.id, false); checkQuestions()"
-			style="width: 175px;float:right; margin-top:10px"
 			onClick="document.getElementById('button_reload').className = 'btn btn-default'">
-			Clear graph and reload
-		</button>
-		
-		<br>
-		
-		<button 
-			id='add_graph_line' 
-			ng-disabled='Charts.mainChartConfig.loading'
-			ng-click="ctrl.loadMainChart(CurrentSuite.currentSuiteInfo.id, true)"
-			class="btn btn-default"
-			type="button"
-			style="width: 175px;float:right; margin-top:10px">
-			Add choices to graph
+			Clear and reload
 		</button>
 	</div>
-
-	<br>
-	<div style='display: inline-block;'>
+	
+	<div class="graph-options">
 	
 	<!-- Graph data type dropdown -->
-		<div class="btn-group" align='center'>
-			<h5 style='margin-bottom: 0px'>
-				Choose data to display
+		<div class="btn-group">
+			<h5>
+				Data to display
 			</h5>
 			<button 
 				id='choose_graph_view'
-				style='width: 150px; margin: 1px' 
 				class="btn btn-default dropdown-toggle" 
 				type="button"
 				id="suite-dropdown" 
@@ -158,12 +135,11 @@
 		
 		<!-- Break on button -->
 		<div class='btn-group' align='center'>
-			<h5 style='margin-bottom: 0px'>
-				Create a line for each:
+			<h5>
+				Series criteria
 			</h5>
 			<button 
 				id='choose_break_point'
-				style='width: 150px;' 
 				class="btn btn-default dropdown-toggle" 
 				type="button"
 				id="suite-dropdown" 
@@ -188,7 +164,16 @@
 			id="clear-button" 
 			class="btn btn-default specs-clear-button"
 			ng-click="ctrl.SuiteHandler.clearAllChosen()">
-			Clear all checkboxes
+			Clear check boxes
+		</button>
+		
+		<button 
+			id='add_graph_line' 
+			ng-disabled='Charts.mainChartConfig.loading'
+			ng-click="ctrl.loadMainChart(CurrentSuite.currentSuiteInfo.id, true)"
+			class="btn btn-default load-button"
+			type="button">
+			Add series to graph
 		</button>
 	</div>
 	
