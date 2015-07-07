@@ -99,8 +99,7 @@
 			id='button_reload'
 			class="btn btn-default load-button" 
 			ng-disabled='Charts.mainChartConfig.loading'
-			ng-click="ctrl.loadMainChart(CurrentSuite.currentSuiteInfo.id, false); checkQuestions()"
-			onClick="document.getElementById('button_reload').className = 'btn btn-default'">
+			ng-click="ctrl.loadMainChart(CurrentSuite.currentSuiteInfo.id, false); checkQuestions()">
 			Clear and reload
 		</button>
 	</div>
@@ -207,7 +206,7 @@
 								<icon-checkbox content="browser"></icon-checkbox>
 								<div 
 									id="browser-{{browser.browsername}}" 
-									ng-click='ctrl.setChosen(browser); Utilities.newContent()'
+									ng-click='ctrl.setChosen(browser);'
 									class='reports-cursor-inline browser-name'>
 									{{browser.browsername}}
 								</div> 
@@ -234,9 +233,9 @@
 											<td 
 												id="spec-{{platform.osname}}" 
 												class="platform-name platform-{{platform.chosen}} icon-checkbox-guard" 
-												ng-click="Utilities.newContent();ctrl.togglePlatformChosen(platform)">
+												ng-click="ctrl.togglePlatformChosen(platform)">
 												<p 
-													ng-click="Utilities.newContent();ctrl.togglePlatformChosen(platform)"
+													ng-click="ctrl.togglePlatformChosen(platform)"
 													class="accordion-name-container text-left">
 													{{platform.osname}}
 												</p>
@@ -260,7 +259,7 @@
 												<icon-checkbox content="device"></icon-checkbox>
 												<div 
 													id="device-{{device.devicename}}" 
-													ng-click='ctrl.setChosen(device); Utilities.newContent()'
+													ng-click='ctrl.setChosen(device);'
 													class='reports-cursor-inline device-name'>
 													{{device.devicename}}
 												</div>
@@ -284,7 +283,7 @@
 												<icon-checkbox content="version"></icon-checkbox>
 												<div 
 													id="version-{{version.osver}}" 
-													ng-click='ctrl.setChosen(version); Utilities.newContent()'
+													ng-click='ctrl.setChosen(version);'
 													class='reports-cursor-inline version-name'>
 													{{version.osver}}
 												</div>

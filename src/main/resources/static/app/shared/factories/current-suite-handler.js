@@ -151,14 +151,12 @@
 				
 				for(i = 0; i < platformLength; i++){
 					if(platforms[i].osname === osname){
-						console.log(platforms[i].osname);
 						versions = platforms[i].versions;
 						versionLength = versions.length;
 						
 						for(j = 0; j < versionLength; j++){
 							if (versions[j].osid === osid) {
 								versions[j].chosen = true;
-								console.log(versions[j]);
 								return;
 							}
 						}
@@ -179,14 +177,12 @@
 				
 				for(i = 0; i < platformLength; i++){
 					if(platforms[i].osname === osname){
-						console.log(platforms[i].osname);
 						devices = platforms[i].devices;
 						deviceLength = devices.length;
 						
 						for(j = 0; j < deviceLength; j++){
 							if (devices[j].deviceid === deviceid) {
 								devices[j].chosen = true;
-								console.log(devices[j]);
 								return;
 							}
 						}
