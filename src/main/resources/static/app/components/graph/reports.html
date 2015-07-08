@@ -22,7 +22,7 @@
 			<button 
 				class="btn btn-default dropdown-toggle" 
 				type="button"
-				id="numberof_suite_dropdown" 
+				id="amount-results" 
 				data-toggle="dropdown"
 				aria-expanded="true" 
 				title="Select suite run to display">
@@ -49,7 +49,7 @@
 				ng-disabled="ctrl.trashcanEmpty()"
 				class="btn btn-default dropdown-toggle" 
 				type="button"
-				id="remove_graph_line" 
+				id="remove-series" 
 				data-toggle="dropdown">
 				<span class="glyphicon glyphicon-trash"></span>
 			</button>
@@ -112,10 +112,9 @@
 				Data to display
 			</h5>
 			<button 
-				id='choose_graph_view'
+				id='choose-data-type'
 				class="btn btn-default dropdown-toggle" 
 				type="button"
-				id="suite-dropdown" 
 				data-toggle="dropdown">
 				{{Utilities.graphView}} 
 				<span class="caret"></span>
@@ -132,13 +131,13 @@
 			</ul>
 		</div>
 		
-		<!-- Break on button -->
+		<!-- criteria button -->
 		<div class='btn-group' align='center'>
 			<h5>
 				Series criteria
 			</h5>
 			<button 
-				id='choose_break_point'
+				id='set-criteria'
 				class="btn btn-default dropdown-toggle" 
 				type="button"
 				id="suite-dropdown" 
