@@ -1,0 +1,224 @@
+<!-- .1 -->
+<div> 
+	<p>{{ctrl.variableName}}</p>
+</div>
+
+<!-- .2 -->
+<div ng-controller="StyleController as StyleCtrl">
+	<p>{{StyleCtrl.variableName}}</p>
+</div>
+
+<!-- .3 -->
+<div >
+	<p ng-repeat="item in ctrl.itemsArray | orderBy: item.category track by $index">{{item.name}}</p>
+</div>
+
+<!-- .4 -->
+<div ui-view></div>
+
+<!-- .5 -->
+<div ng-style="'color': ctrl.getColorFunction()"></div>
+
+<!-- .6 -->
+<div ng-class="'main-content': boolean"></div>
+
+<!-- 
+	Quick side note
+	Double-brackets are only used outside of ng expressions.
+	Lets say you want to use a controllers value in a standard
+	style="" tag. 
+	Here you would have to use: 
+	
+	style="color: {{ctrl.colorValue}}"
+	
+	If this would have been a ng-style tag the syntax would be:
+	
+	ng-style="'color': ctrl.colorValue"
+	
+	So in short: if its outside an ng expressions
+	use double brackets, if it's inside, don't.
+	this is because angular already expects an
+	angular value in an ng expression.
+-->
+ 
+<!-- ---------------------------------------------------------------------------- -->
+
+<div> 
+	<p>{{ctrl.variableName}}</p>
+</div>
+<!-- .1
+
+	To use a variable or a function from the controller
+	associated with the HTML page to display a value
+	use double brackets with the function or variable inside.
+	note that you have to use the ctrl. syntax since we are
+	using the controllerAs syntax.
+	
+	{{ctrl.nameOfFunctionOrVariable}}
+-->
+ 
+ <!-- ---------------------------------------------------------------------------- -->
+ 
+<div ng-controller="StyleController as StyleCtrl">
+	<p>{{StyleCtrl.variableName}}</p>
+</div>
+ <!-- .2
+ 	
+ 	If you want to give an outside controller access to the HTML page
+ 	you can use ng-controller="". This will ONLY give the controller
+ 	access to the element and the children inside it though.
+ 	
+ 	The first argument is the stringified name used in the controllers js file.
+ 	The second argument is the name that will be used when accessing the data 
+ 	from the controller.
+ 	
+ 	an example of this:
+ 	
+ 	<div ng-controller="StyleController as StyleCtrl">
+ 		<p>{{StyleCtrl.value}}</p>	<------------------ This will be displayed.	
+ 	</div>
+ 	<p>{{StyleCtrl.value}}</p> <----------------------- This will not.
+ 	
+ 	Keep in mind that if you want to implement an outside controller
+ 	you want to make sure the name is unique and explanatory enough
+ 	for you to know which one it is. You do not want to go into
+ 	the controllers js files to find out from which the value
+ 	or function comes from.
+  -->
+  
+ <!-- ---------------------------------------------------------------------------- -->
+  
+<div >
+	<p ng-repeat="item in ctrl.itemsArray | orderBy: item.category track by $index">{{item.name}}</p>
+</div>
+<!-- .3
+
+	ng-repeat="" iterates over an array from the controller
+	and creates that element once for every iteration.
+	
+	OBS: ONLY arrays works with this. you can not put an
+	object in the expression and expect it to work.
+	
+	you can simply iterate over an array and be done with it.
+	But you can do so much more!
+	Here we also add a sorting function and a index to each item.
+	These will be explained further down.
+	
+	The syntax is:
+	
+	ng-repeat="item in ctrl.itemsArray
+	
+	'item' - name to reference in HTML for each item in the array iterated over.
+	'ctrl.itemsArray' - The actual array we want to iterate over.
+	
+	As mentioned earlier you can also add a filter mechanism or order the list
+	based on a variable and such. To do these you will have to separate each
+	expression with a '|' to tell angular that "Here we will do something else".
+	
+	orderBy: item.category
+	or
+	orderBy: ['item.category', 'item.name']
+	
+	If you only pass orderBy one argument, the iterator will look at that
+	attribute in every item and order the list based on that attribute.
+	
+	If you want a more specific ordering, such as our suite info where
+	we first order by result of the test, then the name of it and the likes
+	you have to pass it an array.
+	This makes the iterator first order it by the item.category, after that is
+	done it will order each category by item.name.
+	
+	track by $index
+	
+	track by $index should always be added last in the expression and without a |.
+	This is always a good idea since angular does not allow duplicates to be
+	displayed via ng-repeat.
+	
+	This binds each item to a variable called $index. First of all it makes duplicates
+	non-duplicates since angular now have a index to differentiate them by. 
+	It also gives us a variable we can use as a reference within this ng-repeat
+	to point at a specific index in the list.
+	example:
+	
+	<div ng-repeat="item in ctrl.itemArray">
+		<a ng-click="ctrl.function($index)"></a>
+	</div>
+	
+	Lets say the array contains seven objects. Then the repeat will generate
+	seven <a> tags which when clicked will pass its own $index to a function.
+	
+	To display data from the item in itemArray in the HTML simply reference it
+	by the name you choose. in this case: {{item.value}}
+ -->
+   
+ <!-- ---------------------------------------------------------------------------- -->
+ 
+ <div ui-view></div>
+ <!-- .4
+ 	
+ 	This tag will display a state. In this app we have one in the index.html
+ 	which toggles the .html files which is associated with the root states:
+ 	
+ 	home
+ 	grid
+ 	admin
+ 	live-tests
+ 	reports
+ 	screenshots
+ 	
+ 	In reports and screenshots we have child states. so those states
+ 	have their own <div ui-view></div> tag.
+ 	
+ 	they will display their child states content.
+ 	In reports it will displat
+ 	
+ 	reports.classes
+ 	reports.methods
+ 	reports.cases
+ 	
+ 	and in screenshots
+ 	
+ 	screenshots.classes
+ 	screenshots.methods
+-->
+  
+<!-- ---------------------------------------------------------------------------- -->
+   
+<div ng-style="'color': ctrl.getColorFunction()"></div>
+<!-- .5
+	
+	ng-style handles css attributes. the first argument is the attribute
+	to alter, in this case we are altering the color attribute of the
+	div. the second attribute could be a hard coded value or, as in this case,
+	a function that returns a value based on a series of conditions.
+	
+	The important thing to note is that the function must return a string.
+-->
+
+<!-- ---------------------------------------------------------------------------- -->
+
+<div ng-class="'main-content': boolean"></div>
+<!-- .6
+	
+	ng-class sets or removes a css class depending on a boolean.
+	
+	The syntax is: 'classNameToSet': booleanValue
+	
+	The boolean could either be a boolean expression, a hard value from a controller
+	such as ctrl.booleanVariable or a function which return a boolean value
+	such as ctrl.booleanFunction()
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
