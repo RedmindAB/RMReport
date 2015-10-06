@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -80,18 +81,22 @@ public class GraphOptionsBuilder {
 
 	private void addDevice(HashMap<String, Object> map) {
 		String platformName = (String) map.get(OSNAME);
-		JsonObject platform = getPlatform(platformName);
-		int deviceID = (int) map.get(DEVICEID);
-		String device = (String) map.get(DEVICENAME);
-		if (!deviceExists(deviceID)) {
-			JsonObject deviceToAdd = new JsonObject();
-			deviceToAdd.add(DEVICENAME, new JsonPrimitive(device));
-			deviceToAdd.add(DEVICEID, new JsonPrimitive(deviceID));
-			String osver = (String) map.get(OSVER);
-			deviceToAdd.add(OSVER, new JsonPrimitive(osver));
-			deviceToAdd.add(OSID, new JsonPrimitive((Integer) map.get(OSID)));
-			platform.get(DEVICES).getAsJsonArray().add(deviceToAdd);
-			deviceIDs.add(deviceID);
+		try {
+			JsonObject platform = getPlatform(platformName);
+			int deviceID = (int) map.get(DEVICEID);
+			String device = (String) map.get(DEVICENAME);
+			if (!deviceExists(deviceID)) {
+				JsonObject deviceToAdd = new JsonObject();
+				deviceToAdd.add(DEVICENAME, new JsonPrimitive(device));
+				deviceToAdd.add(DEVICEID, new JsonPrimitive(deviceID));
+				String osver = (String) map.get(OSVER);
+				deviceToAdd.add(OSVER, new JsonPrimitive(osver));
+				deviceToAdd.add(OSID, new JsonPrimitive((Integer) map.get(OSID)));
+				platform.get(DEVICES).getAsJsonArray().add(deviceToAdd);
+				deviceIDs.add(deviceID);
+			}
+		} catch (Exception e) {
+			System.err.println("Error adding devices for "+platformName+" in graphoptions");
 		}
 	}
 
@@ -133,21 +138,18 @@ public class GraphOptionsBuilder {
 				os.add(OSNAME, new JsonPrimitive(osName));
 				os.add(OSVERS, new JsonArray());
 				os.add(DEVICES, new JsonArray());
-			} 
-			
-			String osVer = (String) map.get(OSVER);
-			if (!osVers.contains(osVer)) {
+				String osVer = (String) map.get(OSVER);
 				JsonArray versions = os.get(OSVERS).getAsJsonArray();
 				JsonObject ver = new JsonObject();
 				ver.add(OSVER, new JsonPrimitive(osVer));
 				ver.add(OSID, new JsonPrimitive(osid));
 				versions.add(ver);
-				osVers.add(osVer);
-				if (isNew) {
-					platformArray.add(os);
+				if (!osVers.contains(osVer)) {
+					osVers.add(osVer);
+					osIDs.add(osid);
 				}
-				osIDs.add(osid);
-			}
+				platformArray.add(os);
+			} 
 		}
 	}
 	
