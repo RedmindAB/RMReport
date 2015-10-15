@@ -7,13 +7,19 @@ import org.junit.runner.RunWith;
 
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import se.redmind.rmtest.web.route.api.stats.grahoptions.GetGraphOptionsWS;
+import se.redmind.rmtest.web.route.api.stats.grahoptions.GraphOptionsBuilder;
 import se.redmind.rmtest.ws.testsuite.WSSetupHelper;
 import spark.Request;
 import spark.Response;
@@ -39,5 +45,36 @@ public class GetGraphOptionsWSTest extends WSSetupHelper{
 		//Assert browsers to be two because all devices in the testdb has same version of chrome and firefox
 		JsonArray browsers = object.get("browsers").getAsJsonArray();
 		assertEquals(2, browsers.size());
+	}
+	
+	@Test
+	public void miltiVersionsOfOS(){
+ 		GraphOptionsBuilder gob = new GraphOptionsBuilder(getTestValues(2,2,3));
+ 		JsonObject tJson = gob.buildJson();
+ 		System.out.println(new GsonBuilder().setPrettyPrinting().create().toJson(tJson));
+ 		JsonArray platforms = tJson.get("platforms").getAsJsonArray();
+ 		int platformSize = platforms.size();
+ 		assertEquals(2, platformSize);
+	}
+	
+	private List<HashMap<String, Object>> getTestValues(int numOS, int numVersion, int browsers){
+		List<HashMap<String, Object>> testValues = new ArrayList<HashMap<String,Object>>();
+		for (int os = 0; os < numOS; os++) {
+			for (int osVer = 0; osVer < numVersion; osVer++) {
+				for (int browser = 0; browser < browsers; browser++) {
+					HashMap<String,Object> map = new HashMap<String, Object>();
+					map.put(GraphOptionsBuilder.OSNAME, "OS"+os);
+					map.put(GraphOptionsBuilder.OSVER,  "OSver"+osVer);
+					map.put(GraphOptionsBuilder.OSID, os);
+					map.put(GraphOptionsBuilder.DEVICENAME, "device"+os);
+					map.put(GraphOptionsBuilder.DEVICEID, os);
+					map.put(GraphOptionsBuilder.BROWSERNAME, "browser_"+browser);
+					map.put(GraphOptionsBuilder.BROWSERID, browser);
+					map.put(GraphOptionsBuilder.BROWSERVER, ""+browser);
+					testValues.add(map);
+				}
+			}
+		}
+		return testValues;
 	}
 }

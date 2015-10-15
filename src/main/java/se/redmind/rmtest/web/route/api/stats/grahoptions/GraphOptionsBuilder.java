@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -17,11 +18,13 @@ public class GraphOptionsBuilder {
 	private JsonArray platformArray = new JsonArray();
 	private JsonArray browserArray = new JsonArray();
 	private ResultSet rs;
+	private HashSet<String> osList;
 	private HashSet<Integer> osIDs;
 	private HashSet<Integer> deviceIDs;
 	private HashSet<Integer> browser;
 	private HashSet<String> osNames;
 	private HashSet<String> osVers;
+	private boolean buildWithHashMap;
 	
 	public static final String 	OSNAME = "osname", 
 								OSVER = "osver", 
@@ -33,9 +36,9 @@ public class GraphOptionsBuilder {
 								BROWSERNAME = "browsername",
 								BROWSERID = "browserid",
 								BROWSERVER = "browserver";
+	private List<HashMap<String, Object>> hashMapValues;
 	
-	public GraphOptionsBuilder(ResultSet rs) {
-		this.rs = rs;
+	private GraphOptionsBuilder(){
 		this.mainObject.add("platforms", platformArray);
 		this.mainObject.add("browsers", browserArray);
 		this.osIDs = new HashSet<Integer>();
@@ -43,9 +46,35 @@ public class GraphOptionsBuilder {
 		this.deviceIDs = new HashSet<Integer>();
 		this.browser = new HashSet<Integer>();
 		this.osVers = new HashSet<String>();
+		this.osList = new HashSet<String>();
 	}
 	
+	public GraphOptionsBuilder(ResultSet rs) {
+		this();
+		this.rs = rs;
+	}
+	
+	public GraphOptionsBuilder(List<HashMap<String, Object>> hashMapValues) {
+		this();
+		this.hashMapValues = hashMapValues;
+		this.buildWithHashMap = true;
+	}
+
 	public JsonObject buildJson(){
+		if(buildWithHashMap){
+			buildWithHashMap();
+		}
+		else buildWithResultset();
+		return mainObject;
+	}
+
+	private void buildWithHashMap() {
+		for (HashMap<String, Object> combination : hashMapValues) {
+			addOption(combination);
+		}
+	}
+
+	private void buildWithResultset() {
 		try {
 			while (rs.next()) {
 				HashMap<String, Object> map = new HashMap<String, Object>();
@@ -70,7 +99,6 @@ public class GraphOptionsBuilder {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return mainObject;
 	}
 	
 	public void addOption(HashMap<String, Object> map){
@@ -128,8 +156,9 @@ public class GraphOptionsBuilder {
 
 	private void addOS(HashMap<String, Object> map) {
 		int osid = (int) map.get(OSID);
-		if (!osExists(osid)) {
-			String osName = (String) map.get(OSNAME);
+		String osName = (String) map.get(OSNAME);
+		String osVer = (String) map.get(OSVER);
+		if (!osExists(osid, osName, osVer)) {
 			JsonObject os = getPlatform(osName);
 			boolean isNew = os.get(OSNAME) == null;
 			if (isNew) {
@@ -138,23 +167,48 @@ public class GraphOptionsBuilder {
 				os.add(OSNAME, new JsonPrimitive(osName));
 				os.add(OSVERS, new JsonArray());
 				os.add(DEVICES, new JsonArray());
-				String osVer = (String) map.get(OSVER);
 				JsonArray versions = os.get(OSVERS).getAsJsonArray();
-				JsonObject ver = new JsonObject();
-				ver.add(OSVER, new JsonPrimitive(osVer));
-				ver.add(OSID, new JsonPrimitive(osid));
+				JsonObject ver = getVersionObject(osid, osVer);
 				versions.add(ver);
-				if (!osVers.contains(osVer)) {
-					osVers.add(osVer);
-					osIDs.add(osid);
-				}
+				osVers.add(osVer);
+				osIDs.add(osid);
 				platformArray.add(os);
-			} 
+				addOsToOSlist(osid, osName, osVer);
+			}
+			else if(!osContainsVersion(os, osVer)){
+				JsonArray versions = os.get(OSVERS).getAsJsonArray();
+				versions.add(getVersionObject(osid, osVer));
+			}
 		}
 	}
+
+	private JsonObject getVersionObject(int osid, String osVer) {
+		JsonObject ver = new JsonObject();
+		ver.add(OSVER, new JsonPrimitive(osVer));
+		ver.add(OSID, new JsonPrimitive(osid));
+		return ver;
+	}
 	
-	private boolean osExists(int osid){
-		return osIDs.contains(osid);
+	private boolean osContainsVersion(JsonObject os, String osVer) {
+		JsonArray osVers = (JsonArray) os.get(OSVERS);
+		boolean containsVersion = false;
+		if(osVers != null){
+			for (JsonElement versionElm : osVers) {
+				JsonObject version = (JsonObject) versionElm;
+				String versionString = version.get(OSVER).getAsString();
+				containsVersion = versionString.equals(osVer);
+				if(containsVersion) return true;
+			}
+		}
+		return containsVersion;
+	}
+
+	private boolean osExists(int osid, String osName, String osVer){
+		return osList.contains(osIDs+osName+osVer);
+	}
+	
+	private void addOsToOSlist(int osId, String osname, String osVer){
+		osList.add(osId+osname+osVer);
 	}
 	
 	private boolean deviceExists(int deviceid){
