@@ -1,6 +1,7 @@
 package se.redmind.rmtest.report.parser.json;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -98,6 +99,11 @@ public class JsonReport extends Report<JsonObject> {
 			if (!classnames.contains(classname)) classnames.add(classname);
 		}
 		return classnames;
+	}
+
+	@Override
+	protected HashMap<String, String> parameters(JsonObject fullReport) {
+		return new HashMap<String, String>();
 	}
 	
 }

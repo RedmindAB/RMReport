@@ -34,6 +34,8 @@ import se.redmind.rmtest.web.route.api.stats.platform.DeviceStatsPlatform;
 import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteWS;
 import se.redmind.rmtest.web.route.api.suite.bytimestamp.GetSuiteByTimestampWS;
 import se.redmind.rmtest.web.route.api.suite.getsuites.GetSuitesWS;
+import se.redmind.rmtest.web.route.api.suite.parameters.SuiteParametersDAO;
+import se.redmind.rmtest.web.route.api.suite.parameters.SuiteParametersWS;
 import se.redmind.rmtest.web.route.api.suite.syso.GetSuiteSysosWS;
 import se.redmind.rmtest.web.route.api.timestamp.TimestampWS;
 
@@ -75,6 +77,7 @@ public class ApiRouter {
 		get(new CheckForChangeWS("/api/long"));
 		get(new RunDoctorWS("/api/admin/doctor"));
 		get(new TimestampWS("/api/timestamp/:timestamp"));
+		get(new SuiteParametersWS("/api/suite/parameters/:suiteid/:timestamp"));
 		//api/stats/device/fail/:deviceid/:suiteid?limit=x (Return the device fails based on the last timestamps down to the limit)
 		get(new DeviceStatsFailWS("/api/stats/device/fail/:suiteid/:osname"));
 		get(new DeviceStatsPlatform("/api/stats/platform/:suiteid"));

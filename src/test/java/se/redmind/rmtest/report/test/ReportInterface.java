@@ -43,4 +43,7 @@ public interface ReportInterface {
 	@Test
 	public void checkRunTime();
 	
+	@Test
+	public void getParameters();
+	
 }

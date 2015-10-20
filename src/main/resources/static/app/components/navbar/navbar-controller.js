@@ -31,6 +31,7 @@
 		vm.isNavActive						= isNavActive;
 		vm.isActive							= isActive;
 		vm.reloadOnSuiteChange				= reloadOnSuiteChange;
+		vm.setTimestamp						= setTimestamp;
 		
 		
 		/*
@@ -183,6 +184,7 @@
 		function isSmallWindowTarget(){
 			return $window.width < 900  ? '.navbar-collapse' : '';
 		}
+	
 		
 	    /*
 	     * checks the current state and determines if it needs to 
@@ -208,5 +210,9 @@
 				$state.go('.',{notify:true}, {reload:true});
 			}
 	    }
+	    
+	    function setTimestamp(timestamp) {
+			CurrentSuite.currentTimestamp = timestamp;
+		}
 	}
 })();

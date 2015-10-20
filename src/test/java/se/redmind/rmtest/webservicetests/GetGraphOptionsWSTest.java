@@ -16,6 +16,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import se.redmind.rmtest.web.route.api.stats.grahoptions.GetGraphOptionsWS;
@@ -51,10 +52,13 @@ public class GetGraphOptionsWSTest extends WSSetupHelper{
 	public void miltiVersionsOfOS(){
  		GraphOptionsBuilder gob = new GraphOptionsBuilder(getTestValues(2,2,3));
  		JsonObject tJson = gob.buildJson();
- 		System.out.println(new GsonBuilder().setPrettyPrinting().create().toJson(tJson));
  		JsonArray platforms = tJson.get("platforms").getAsJsonArray();
  		int platformSize = platforms.size();
  		assertEquals(2, platformSize);
+ 		JsonObject os1 = (JsonObject) platforms.get(0);
+ 		JsonArray versionArray = os1.get("versions").getAsJsonArray();
+ 		assertEquals(2, versionArray.size());
+ 		assertEquals(3, tJson.get("browsers").getAsJsonArray().size());
 	}
 	
 	private List<HashMap<String, Object>> getTestValues(int numOS, int numVersion, int browsers){

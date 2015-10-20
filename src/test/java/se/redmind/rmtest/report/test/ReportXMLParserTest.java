@@ -3,6 +3,7 @@ package se.redmind.rmtest.report.test;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.BeforeClass;
@@ -197,5 +198,15 @@ public class ReportXMLParserTest {
 				break;
 			}
 		}
+	}
+	
+	@Test
+	public void getParameters(){
+		XMLReport report = (XMLReport) parser.getReportFromFile(file).build();
+		HashMap<String, String> parameters = report.getParameters();
+		assertEquals(1, parameters.size());
+		String superBranch = parameters.get("rmreport.branch");
+		assertNotNull(superBranch);
+		assertEquals("superBranch", superBranch);
 	}
 }

@@ -1,0 +1,12 @@
+<head>
+	<link rel="stylesheet" href="/app/components/parameters/parameters-style.css">
+</head>
+<div>
+	<h3>{{CurrentSuite.currentSuiteInfo.name}} - {{ctrl.getTimestamp()}}</h3>
+	<table class="parameters-table">
+		<tr ng-repeat="(key, value) in ctrl.currentParameters track by $index">
+			<td>{{key}}</td>
+			<td>{{value}}</td> 
+		</tr>
+	</table>
+</div>

@@ -88,6 +88,10 @@ public class DBCon {
             stat.executeUpdate("create index if not exists reportindex on report (timestamp desc)");
             
             stat.executeUpdate("create index if not exists osindex on os (osname)");
+            
+            stat.executeUpdate("CREATE TABLE IF NOT EXISTS parameters (timestamp INTEGER, suite_id INTEGER, parameter, value, PRIMARY KEY (timestamp, suite_id))");
+            
+            stat.executeUpdate("CREATE INDEX IF NOT EXISTS parametersindex ON parameters (timestamp DESC)");
 
         } catch (SQLException e) {
             e.printStackTrace();

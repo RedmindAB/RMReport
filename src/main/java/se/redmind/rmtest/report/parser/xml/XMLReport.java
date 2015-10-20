@@ -2,6 +2,7 @@ package se.redmind.rmtest.report.parser.xml;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -135,6 +136,22 @@ public class XMLReport extends Report<Element>{
 	protected String extractSuitePackage(Element fullReport, String name) {
 		int end = name.lastIndexOf("(");
 		return name.substring(0, end);
+	}
+
+	@Override
+	protected HashMap<String, String> parameters(Element fullReport) {
+		HashMap<String, String> parameters = new HashMap<String, String>();
+		NodeList properties = fullReport.getElementsByTagName("property");
+		for (int i = 0; i < properties.getLength(); i++) {
+			Element item = (Element) properties.item(i);
+			String parameter = item.getAttribute("name");
+			if(parameter.startsWith("rmreport")){
+				String value = item.getAttribute("value");
+				parameters.put(parameter, value);
+			}
+			
+		}
+		return parameters;
 	}
 
 }

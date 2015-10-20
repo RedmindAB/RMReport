@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.create.classinserter.ClassInserter;
+import se.redmind.rmtest.db.create.parameterinserter.ParameterInserter;
 import se.redmind.rmtest.db.create.suiteinserter.SuiteInserter;
 import se.redmind.rmtest.db.create.testcaseinserter.TestCaseInserter;
 import se.redmind.rmtest.db.create.testcaseruninserter.TestCaseRunInserter;
@@ -107,6 +108,8 @@ public class ReportValidator {
 		int suiteID = getSuiteID(report.getSuiteName());
 		HashMap<String, Integer> testCases = getTestCases(report, classIDs);
 		DriverValidation driverValidation = new DriverValidation(report);
+		ParameterInserter parameterInserter = new ParameterInserter();
+		parameterInserter.insertParameters(suiteID, report.getTimestamp(), report.getParameters());
 		return testCaseRunInserter.insertTestCases(report, suiteID, classIDs, testCases, driverValidation);
 	}
 

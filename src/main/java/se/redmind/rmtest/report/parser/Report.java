@@ -34,11 +34,10 @@ public abstract class Report<E> {
 
 	private List<ReportTestCase> testCaseArray;
 	
+	private HashMap<String, String> parameters;
+	
 	public Report(E fullReport) {
-		this.simpleReport = false;
-		this.fullReport = fullReport;
-		this.testCaseArray = new ArrayList<ReportTestCase>();
-		this.presentTestClasses = new ArrayList<String>();
+		this(fullReport, false);
 	}
 	
  	public Report(E fullReport, boolean simpleReport) {
@@ -46,6 +45,7 @@ public abstract class Report<E> {
 		this.fullReport = fullReport;
 		this.testCaseArray = new ArrayList<ReportTestCase>();
 		this.presentTestClasses = new ArrayList<String>();
+		this.parameters = new HashMap<String, String>();
 	}
  	
  	/**
@@ -139,6 +139,13 @@ public abstract class Report<E> {
 	 */
 	protected abstract String extractSuitePackage(E fullReport, String name);
 	
+	/**
+	 * Returns a hashmap representing the system parameters that was set during the testrun.
+	 * @param fullReport
+	 * @return
+	 */
+	protected abstract HashMap<String, String> parameters(E fullReport);
+	
 	@SuppressWarnings("rawtypes")
 	private boolean generateReportFromElement(E fullReport) {
 		String name = getName(fullReport);
@@ -152,6 +159,7 @@ public abstract class Report<E> {
 		this.failures = failures(fullReport);
 		this.time = getTime(fullReport);
 		this.passed = isTestPassed(errors, failures);
+		this.parameters = parameters(fullReport);
 
 		if (!simpleReport) {
 			List<E> testCaseNodes = getTestCases(fullReport);
@@ -233,6 +241,10 @@ public abstract class Report<E> {
 
 	public HashSet<String> getDrivers(){
 		return this.driverSet;
+	}
+	
+	public HashMap<String, String> getParameters(){
+		return parameters;
 	}
 	
 	public boolean convertToFullReport(){

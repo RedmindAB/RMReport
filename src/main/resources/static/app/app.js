@@ -115,5 +115,11 @@ angular
 		    templateUrl: 'app/components/live-tests/live-tests.html',
 		    controller: 'LiveTestsCtrl',
 		    controllerAs: 'ctrl'
+		})
+		.state('parameters',{
+			url:'/parameters',
+			templateUrl:'app/components/parameters/parameters.html',
+			controller: 'ParametersCtrl',
+			controllerAs: 'ctrl'
 		});
     });

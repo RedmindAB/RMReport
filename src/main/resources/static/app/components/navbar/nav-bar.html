@@ -108,7 +108,19 @@
 							ng-style="{'color': style.getNavColor('live-tests')}" 
 							ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
 							data-target=".navbar-collapse"> 
-							Live Tests <sup>beta</sup>
+							Live Tests <sup>alpha</sup>
+						</a>
+					</li>
+					
+					<!-- parameters -->
+					<li id='admin' class='admin' role="presentation" ng-class="{'active': ctrl.isActive('parameters')}">
+						<a 
+							id='parameters_view' 
+							ng-click="NavCtrl.setState('parameters');" 
+							ng-style="{'color': style.getNavColor('parameters')}" 
+							ng-attr-data-toggle="{{isSmallWindowToggle()}}" 
+							data-target=".navbar-collapse"> 
+							Parameters
 						</a>
 					</li>
 				</ul>
@@ -162,7 +174,8 @@
 									id='{{timestamp}}' 
 									ng-click="ctrl.getSuiteSkeletonByTimestamp(timestamp); 
 											ctrl.highlightPoint(timestamp);
-											ctrl.getScreenshotsFromTimestamp(timestamp);">
+											ctrl.getScreenshotsFromTimestamp(timestamp);
+											ctrl.setTimestamp(timestamp)">
 									{{Utilities.makeTimestampReadable(timestamp)}}
 								</a>
 							</li>
