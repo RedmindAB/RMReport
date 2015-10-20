@@ -12,7 +12,6 @@ public class SuiteParametersDAO extends DBBridge {
 	public JsonObject getParameters(String suiteid, String timestamp){
 		JsonObject parameters = new JsonObject();
 		String sql = "SELECT parameter, value FROM parameters WHERE suite_id = "+suiteid+" AND timestamp = "+timestamp;
-		System.out.println(sql);
 		ResultSet rs = readFromDB(sql);
 		try {
 			while (rs.next()) {

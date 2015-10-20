@@ -16,11 +16,9 @@ public class SuiteParametersWS extends CachedRoute {
 
 	@Override
 	public JsonElement handleRequest(Response response, Request request) {
-		System.out.println("Incomming call to parameters");
 		String suiteid = request.params("suiteid");
 		String timestamp = request.params("timestamp");
 		JsonObject parameters = new SuiteParametersDAO().getParameters(suiteid, timestamp);
-		System.out.println("Sending back parameters");
 		return parameters;
 	}
 
