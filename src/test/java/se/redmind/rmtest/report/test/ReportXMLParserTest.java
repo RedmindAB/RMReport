@@ -121,14 +121,6 @@ public class ReportXMLParserTest {
 		assertEquals(0, skipped);
 	}
 	
-	@Test
-	public void getSuiteName(){
-		XMLReport report = (XMLReport) parser.getReportFromFile(file).build();
-		String suiteName = report.getSuiteName();
-		assertEquals("MockedTestSuite", suiteName);
-		
-	}
-	
 	@SuppressWarnings("rawtypes")
 	@Test
 	public void checkFailures(){
@@ -204,7 +196,7 @@ public class ReportXMLParserTest {
 	public void getParameters(){
 		XMLReport report = (XMLReport) parser.getReportFromFile(file).build();
 		HashMap<String, String> parameters = report.getParameters();
-		assertEquals(1, parameters.size());
+		assertEquals(2, parameters.size());
 		String superBranch = parameters.get("rmreport.branch");
 		assertNotNull(superBranch);
 		assertEquals("superBranch", superBranch);

@@ -89,7 +89,7 @@ public class DBCon {
             
             stat.executeUpdate("create index if not exists osindex on os (osname)");
             
-            stat.executeUpdate("CREATE TABLE IF NOT EXISTS parameters (timestamp INTEGER, suite_id INTEGER, parameter, value, PRIMARY KEY (timestamp, suite_id))");
+            stat.executeUpdate("CREATE TABLE IF NOT EXISTS parameters (timestamp INTEGER, suite_id INTEGER, parameter, value, PRIMARY KEY (timestamp, suite_id, parameter))");
             
             stat.executeUpdate("CREATE INDEX IF NOT EXISTS parametersindex ON parameters (timestamp DESC)");
 
@@ -110,6 +110,7 @@ public class DBCon {
 			stat.execute("DELETE FROM os");
 			stat.execute("DELETE FROM device");
 			stat.execute("DELETE FROM browser");
+			stat.execute("DELEtE FROM parameters");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

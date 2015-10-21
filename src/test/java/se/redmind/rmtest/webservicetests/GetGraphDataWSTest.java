@@ -26,7 +26,7 @@ public class GetGraphDataWSTest extends WSSetupHelper{
 		JsonArray array = new JsonArray();
 		JsonObject object = new JsonObject();
 		object.addProperty("name", name);
-		object.addProperty("suiteid", 1);
+		object.addProperty("suiteid", 2);
 		object.addProperty("reslimit", reslimit);
 		
 		//add OS's
@@ -84,7 +84,7 @@ public class GetGraphDataWSTest extends WSSetupHelper{
 		JsonArray array = gson.fromJson(result.toString(), JsonArray.class);
 		JsonObject resultJson = array.get(0).getAsJsonObject();
 		assertEquals("nexus 6", resultJson.get("name").getAsString());
-		assertEquals(10, resultJson.get("data").getAsJsonArray().size());
+		assertEquals(9, resultJson.get("data").getAsJsonArray().size());
 	}
 	
 	@Test
@@ -108,11 +108,11 @@ public class GetGraphDataWSTest extends WSSetupHelper{
 		//checks values in the first result
 		JsonObject resultJson = array.get(0).getAsJsonObject();
 		assertEquals("first array", resultJson.get("name").getAsString());
-		assertEquals(10, resultJson.get("data").getAsJsonArray().size());
+		assertEquals(9, resultJson.get("data").getAsJsonArray().size());
 		
 		//checks values in second result
 		resultJson = array.get(1).getAsJsonObject();
 		assertEquals("second array", resultJson.get("name").getAsString());
-		assertEquals(10, resultJson.get("data").getAsJsonArray().size());
+		assertEquals(9, resultJson.get("data").getAsJsonArray().size());
 	}
 }

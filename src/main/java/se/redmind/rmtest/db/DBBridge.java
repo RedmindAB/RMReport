@@ -131,8 +131,12 @@ public abstract class DBBridge {
 		return connection;
 	}
 	
-	public static void updateLastUpdated(){
-		lastUpdated = new Date();
+	public static synchronized void updateLastUpdated(){
+		updateLastUpdated(0);
+	}
+	
+	public static synchronized void updateLastUpdated(int minusMiliseconds){
+		lastUpdated = new Date(System.currentTimeMillis()-minusMiliseconds);
 		WSCache.getInstance().clear();
 	}
 	

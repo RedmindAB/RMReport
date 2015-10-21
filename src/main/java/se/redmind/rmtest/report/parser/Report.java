@@ -305,4 +305,8 @@ public abstract class Report<E> {
 		this.testCaseArray = testCaseArray;
 	}
 	
+	public void setParameters(HashMap<String, String> parameters){
+		this.parameters = parameters;
+	}
+	
 }

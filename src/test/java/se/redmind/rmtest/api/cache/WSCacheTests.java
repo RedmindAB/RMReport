@@ -21,7 +21,7 @@ public class WSCacheTests {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		DBBridge.updateLastUpdated();
+		DBBridge.updateLastUpdated(1000);
 	}
 	
 	@Before
@@ -33,16 +33,16 @@ public class WSCacheTests {
 	@Test
 	public void pathOnly() {
 		JsonObject jsonObject = new JsonObject();
-		jsonObject.add("hej", new JsonPrimitive("då"));
+		jsonObject.add("hej", new JsonPrimitive("da"));
 		String key = "/api/stats/device/fail/1/android";
 		cache.add(key, "null", jsonObject);
 		JsonObject asJsonObject = cache.get(key, "null").getAsJsonObject();
 		assertNotNull(asJsonObject);
-		assertEquals("då", asJsonObject.get("hej").getAsString());
+		assertEquals("da", asJsonObject.get("hej").getAsString());
 	}
 
 	@Test
-	public void pathAndBody(){
+	public void pathAndBody() throws InterruptedException{
 		JsonArray ar = getAnArray(5);
 		String path = "/api/stats/graph/graphdata";
 		String queryParams = "null";

@@ -1,5 +1,6 @@
 package se.redmind.rmtest.web.route.api.cache;
 
+import java.util.HashMap;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -9,12 +10,12 @@ import com.google.gson.JsonElement;
 
 public class WSCache {
 	
-	private ConcurrentHashMap<String, WSCacheContainer> cacheMap;
+	private HashMap<String, WSCacheContainer> cacheMap;
 	
 	private static WSCache instance;
 	
 	private WSCache() {
-		cacheMap = new ConcurrentHashMap<String, WSCacheContainer>();
+		cacheMap = new HashMap<String, WSCacheContainer>();
 	}
 	
 	public static WSCache getInstance(){
@@ -60,7 +61,8 @@ public class WSCache {
 	public JsonElement get(String path, String body, String queryParams){
 		String key = path+queryParams+body;
 		WSCacheContainer wsCacheContainer = cacheMap.get(key);
-		return getJson(wsCacheContainer);
+		JsonElement result = getJson(wsCacheContainer);
+		return result;
 	}
 
 	private JsonElement getJson(WSCacheContainer wsCacheContainer) {

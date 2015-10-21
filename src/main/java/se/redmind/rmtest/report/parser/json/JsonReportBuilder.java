@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -52,6 +53,7 @@ public class JsonReportBuilder {
 		report.setTime(getTime());
 		report.setFailures(getfailures());
 		report.setTestCaseArray(getTestcases());
+		report.setParameters(new HashMap<String, String>());
 		return report;
 	}
 	
@@ -136,7 +138,8 @@ public class JsonReportBuilder {
 	private String getSuiteName(){
 		String fullSuiteName = reportJson.get("suite").getAsString();
 		int start = fullSuiteName.lastIndexOf('.');
-		return fullSuiteName.substring(start+1);
+		String suiteName = fullSuiteName.substring(start+1);
+		return suiteName;
 	}
 	
 	
