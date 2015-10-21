@@ -209,4 +209,17 @@ public class ReportXMLParserTest {
 		assertNotNull(superBranch);
 		assertEquals("superBranch", superBranch);
 	}
+	
+	@Test
+	public void customReportName(){
+		XMLReport report = (XMLReport) parser.getReportFromFile(file).build();
+		assertEquals("customSuiteName", report.getSuiteName());
+	}
+	
+	@Test
+	public void getTheDefaultSuiteName(){
+		XMLReport report = (XMLReport) parser.getReportFromFile(file).build();
+		report.getParameters().remove("rmreport.suitename");
+		assertEquals("MockedTestSuite", report.getSuiteName());
+	}
 }

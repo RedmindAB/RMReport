@@ -216,6 +216,8 @@ public abstract class Report<E> {
 	}
 	
 	public String getSuiteName() {
+		String customName = parameters.get("rmreport.suitename");
+		if(customName != null) return customName;
 		return this.suite_name;
 	}
 	
