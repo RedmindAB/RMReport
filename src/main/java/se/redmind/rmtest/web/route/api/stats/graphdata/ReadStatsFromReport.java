@@ -27,7 +27,7 @@ public class ReadStatsFromReport extends DBBridge{
 	public static final String TESTCASES = "testcases";
 	public static final String CLASSES = "classes";
 	public static String RESLIMIT = "reslimit", SUITEID = "suiteid", CLASSID = "class_id",CONDITIONS = "conditions";
-	private String megaQuery = "SELECT timestamp, SUM(time) AS time, SUM(result = 'passed') AS passed, SUM(result = 'failure') AS failure,  SUM(result = 'error') AS error,  SUM(result = 'skipped') AS skipped FROM report "
+	private String megaQuery = "SELECT timestamp, AVG(time) AS time, SUM(result = 'passed') AS passed, SUM(result = 'failure') AS failure,  SUM(result = 'error') AS error,  SUM(result = 'skipped') AS skipped FROM report "
 									+ "WHERE timestamp >= {minTimestamp}"
 									+ " AND suite_id = {suiteid} "
 									+ "{conditions}"
