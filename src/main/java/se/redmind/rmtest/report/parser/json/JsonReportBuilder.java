@@ -53,10 +53,22 @@ public class JsonReportBuilder {
 		report.setTime(getTime());
 		report.setFailures(getfailures());
 		report.setTestCaseArray(getTestcases());
-		report.setParameters(new HashMap<String, String>());
+		report.setParameters(getParameter());
 		return report;
 	}
 	
+	private HashMap<String, String> getParameter() {
+		HashMap<String, String> parametersMap = new HashMap<String,String>();
+		JsonObject parametersJson = reportJson.get("properties").getAsJsonObject();
+		Set<Entry<String, JsonElement>> parametersEnties = parametersJson.entrySet();
+		for (Entry<String, JsonElement> entry : parametersEnties) {
+			String key = entry.getKey();
+			String value = entry.getValue().getAsString();
+			parametersMap.put(key, value);
+		}
+		return parametersMap;
+	}
+
 	private List<ReportTestCase> getTestcases() {
 		JsonArray tests = reportJson.get("tests").getAsJsonArray();
 		List<ReportTestCase> results = new ArrayList<ReportTestCase>();

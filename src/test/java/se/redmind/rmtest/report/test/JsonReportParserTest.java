@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.Before;
@@ -141,6 +142,24 @@ public class JsonReportParserTest{
 			Driver driver = reportTestCase.getDriver();
 			assertNotNull(driver);
 		}
+	}
+	
+	@Test
+	public void getParameters(){
+		JsonReport report = getReport();
+		HashMap<String, String> parameters = report.getParameters();
+		assertNotNull(parameters);
+		assertEquals(2, parameters.size());
+	}
+	
+	@Test
+	public void getCustomSuiteName(){
+		JsonReport report = getReport();
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("rmreport.suitename", "customSuiteName");
+		report.setParameters(params);
+		String suiteName = report.getSuiteName();
+		assertEquals("customSuiteName", suiteName);
 	}
 	
 	private JsonReport getReport(){

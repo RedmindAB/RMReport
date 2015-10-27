@@ -103,7 +103,15 @@ public class JsonReport extends Report<JsonObject> {
 
 	@Override
 	protected HashMap<String, String> parameters(JsonObject fullReport) {
-		return new HashMap<String, String>();
+		HashMap<String, String> parametersMap = new HashMap<String,String>();
+		JsonObject parametersJson = fullReport.get("properties").getAsJsonObject();
+		Set<Entry<String, JsonElement>> parametersEnties = parametersJson.entrySet();
+		for (Entry<String, JsonElement> entry : parametersEnties) {
+			String key = entry.getKey();
+			String value = entry.getValue().getAsString();
+			parametersMap.put(key, value);
+		}
+		return parametersMap;
 	}
 	
 }

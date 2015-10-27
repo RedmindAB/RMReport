@@ -45,7 +45,7 @@ public abstract class Report<E> {
 		this.fullReport = fullReport;
 		this.testCaseArray = new ArrayList<ReportTestCase>();
 		this.presentTestClasses = new ArrayList<String>();
-		this.parameters = new HashMap<String, String>();
+		this.parameters = getParameters();
 	}
  	
  	/**
