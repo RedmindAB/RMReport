@@ -115,7 +115,7 @@ public class JsonReportBuilder {
 			return ResultType.FAILURE;
 		case "error":
 			return ResultType.ERROR;
-		case "ignored":
+		case "skipped":
 			return ResultType.SKIPPED;
 		default:
 			return ResultType.PASSED;

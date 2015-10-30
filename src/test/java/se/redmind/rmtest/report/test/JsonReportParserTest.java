@@ -19,6 +19,7 @@ import se.redmind.rmtest.report.parser.json.JsonReport;
 import se.redmind.rmtest.report.parser.json.JsonReportBuilder;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import static org.junit.Assert.*;
@@ -160,6 +161,18 @@ public class JsonReportParserTest{
 		report.setParameters(params);
 		String suiteName = report.getSuiteName();
 		assertEquals("customSuiteName", suiteName);
+	}
+	
+	@Test
+	public void testSkippedTests(){
+		JsonReport report = getReport();
+		List<ReportTestCase> testCaseArray = report.getTestCaseArray();
+		int skipped = 0;
+		for (ReportTestCase reportTestCase : testCaseArray) {
+			String result = reportTestCase.getResult();
+			if(result.equals("skipped")) skipped++;
+		}
+		assertEquals(2, skipped);
 	}
 	
 	private JsonReport getReport(){
