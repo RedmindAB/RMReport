@@ -115,7 +115,7 @@ public class JsonReportParserTest{
 				tests++;
 			}
 		}
-		assertEquals(6, tests);
+		assertEquals(4, tests);
 	}
 
 	@Test
