@@ -59,13 +59,15 @@ public class JsonReportBuilder {
 	
 	private HashMap<String, String> getParameter() {
 		HashMap<String, String> parametersMap = new HashMap<String,String>();
-		JsonObject parametersJson = reportJson.get("properties").getAsJsonObject();
-		Set<Entry<String, JsonElement>> parametersEnties = parametersJson.entrySet();
-		for (Entry<String, JsonElement> entry : parametersEnties) {
-			String key = entry.getKey();
-			if(key.startsWith("rmreport") || key.startsWith("rmt")){
-				String value = entry.getValue().getAsString();
-				parametersMap.put(key, value);
+		if(reportJson.has("properties")){
+			JsonObject parametersJson = reportJson.get("properties").getAsJsonObject();
+			Set<Entry<String, JsonElement>> parametersEnties = parametersJson.entrySet();
+			for (Entry<String, JsonElement> entry : parametersEnties) {
+				String key = entry.getKey();
+				if(key.startsWith("rmreport") || key.startsWith("rmt")){
+					String value = entry.getValue().getAsString();
+					parametersMap.put(key, value);
+				}
 			}
 		}
 		return parametersMap;
@@ -150,6 +152,7 @@ public class JsonReportBuilder {
 	}
 
 	private String getSuiteName(){
+		System.out.println();
 		String fullSuiteName = reportJson.get("suite").getAsString();
 		int start = fullSuiteName.lastIndexOf('.');
 		String suiteName = fullSuiteName.substring(start+1);

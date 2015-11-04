@@ -27,7 +27,9 @@ import static org.junit.Assert.*;
 public class JsonReportParserTest{
 
 	private File jsonFile = new File(System.getProperty("user.dir")+"/statictests/testRes.json");
+	private File jsonFileWithNoProperties = new File(System.getProperty("user.dir")+"/statictests/testRes_noProp.json");
 	private JsonObject reportJson;
+	private JsonObject reportJson_noProperties;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -37,6 +39,7 @@ public class JsonReportParserTest{
 	@Before
 	public void before(){
 		reportJson = new Gson().fromJson(getJson(jsonFile), JsonObject.class);
+		reportJson_noProperties = new Gson().fromJson(getJson(jsonFileWithNoProperties), JsonObject.class);
 	}
 
 	private String getJson(File jsonFile) {
@@ -175,8 +178,19 @@ public class JsonReportParserTest{
 		assertEquals(2, skipped);
 	}
 	
+	@Test
+	public void testReportWithoutProperties(){
+		JsonReport report = getReportWithNoProperties();
+		HashMap<String, String> parameters = report.getParameters();
+		assertEquals(0, parameters.size());
+	}
+	
 	private JsonReport getReport(){
 		return new JsonReportBuilder(reportJson).build();
+	}
+	
+	private JsonReport getReportWithNoProperties(){
+		return new JsonReportBuilder(reportJson_noProperties).build();
 	}
 
 }
