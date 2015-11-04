@@ -63,8 +63,10 @@ public class JsonReportBuilder {
 		Set<Entry<String, JsonElement>> parametersEnties = parametersJson.entrySet();
 		for (Entry<String, JsonElement> entry : parametersEnties) {
 			String key = entry.getKey();
-			String value = entry.getValue().getAsString();
-			parametersMap.put(key, value);
+			if(key.startsWith("rmreport") || key.startsWith("rmt")){
+				String value = entry.getValue().getAsString();
+				parametersMap.put(key, value);
+			}
 		}
 		return parametersMap;
 	}
