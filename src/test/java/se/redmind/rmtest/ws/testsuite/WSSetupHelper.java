@@ -11,12 +11,12 @@ import se.redmind.rmtest.report.init.ReportInit;
 public class WSSetupHelper{
 
 	private static String reportPath = System.getProperty("user.dir")+"/reports_for_test";
-	private static String dbPath = System.getProperty("user.dir")+"/testRMtest.db";
-	
+	private static String dbPath = System.getProperty("user.dir")+"/testRMTest.db";
+
 	public WSSetupHelper() {
 		beforeClass();
 	}
-	
+
 	public static void beforeClass(){
 		boolean testmode = DBCon.isTestmode();
 		if (!testmode) {
@@ -26,7 +26,7 @@ public class WSSetupHelper{
 			new InMemoryDBHandler("testRMTest").init();
 		}
 	}
-	
+
 	public static void deleteOldDatabase(){
 		//remove testdb
 		File dbFile = new File(dbPath);
