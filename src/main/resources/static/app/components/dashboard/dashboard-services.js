@@ -19,13 +19,13 @@
 			getClasses: classes
 		};
 		
-		function getDevices(suiteid){
+		function getDevices(suiteid, limit){
 			DeviceData.devices = [];
 		    var promises = [];
 
 		    if (DeviceData.platforms.length > 0) {
 			    angular.forEach(DeviceData.existingPlatforms, function(key) {
-					var promise = $http.get('/api/stats/device/fail/' + suiteid + '/' + key + "?limit=50")
+					var promise = $http.get('/api/stats/device/fail/' + suiteid + '/' + key + "?limit="+limit)
 					.success(function(data, status, headers, config){ 
 					}).error(function(data, status, headers, config){
 					});
@@ -39,11 +39,11 @@
 		    }
 		}
 		
-		function getPlatforms(suiteid) {
+		function getPlatforms(suiteid, limit) {
 			var promises = [];
 			DeviceData.existingPlatforms = [];
 			for (var i = 0; i < DeviceData.platforms.length; i++) {
-				var promise = $http.get('/api/stats/device/fail/' + suiteid + '/' + DeviceData.platforms[i] + "?limit=50")
+				var promise = $http.get('/api/stats/device/fail/' + suiteid + '/' + DeviceData.platforms[i] + "?limit="+limit)
 				.success(function(data, status, headers, config){ 
 				}).error(function(data, status, headers, config){
 				});
@@ -58,13 +58,14 @@
 		    });
 		}
 		
-		function getClasses(suiteid) {
+		function getClasses(suiteid, limit) {
+			if(!limit) limit = 10;
 			var promises = [];
 			DeviceData.className = [];
 			DeviceData.classes = [];
 			DeviceData.lastFail = [];
 			
-			var promise = $http.get('/api/stats/methodfail/' + suiteid + "?limit=50" + "&maxres=10")
+			var promise = $http.get('/api/stats/methodfail/' + suiteid + "?limit=50" + "&maxres="+limit)
 			.success(function(data, status, headers, config){ 
 			}).error(function(data, status, headers, config){
 			});

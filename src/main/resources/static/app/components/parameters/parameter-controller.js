@@ -13,6 +13,7 @@
 		vm.getTimestamp = getTimestamp;
 		vm.getParameters = getParameters;
 		vm.currentParameters = getParameters();
+		vm.removePrefix = true;
 		
 		$scope.$watch(function(){return CurrentSuite.currentTimestamp}, function(){
 			getParameters();
@@ -27,6 +28,13 @@
 			ParameterService.getParameters(CurrentSuite.currentSuiteInfo.id, CurrentSuite.currentTimestamp).then(function(data) {
 				vm.currentParameters = data;
 			});
+		}
+		
+		vm.formatText = function formatText(input){
+			if($scope.removePrefix){
+				return "rem "+input;
+			}
+			return "awda"+input;
 		}
 		
 	}
