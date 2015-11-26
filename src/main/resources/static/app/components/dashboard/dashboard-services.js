@@ -12,14 +12,17 @@
 		var existingPlatforms = getPlatforms;
 		var devices = getDevices;
 		var classes = getClasses;
+		var methodPass = getMethodPass;
 		
 		return {
 			getPlatforms: existingPlatforms,
 			getDevices: devices,
-			getClasses: classes
+			getClasses: classes,
+			getMethodPass: methodPass
 		};
 		
 		function getDevices(suiteid, limit){
+			if(!limit) limit = 50;
 			DeviceData.devices = [];
 		    var promises = [];
 
@@ -40,6 +43,7 @@
 		}
 		
 		function getPlatforms(suiteid, limit) {
+			if(!limit) limit = 50;
 			var promises = [];
 			DeviceData.existingPlatforms = [];
 			for (var i = 0; i < DeviceData.platforms.length; i++) {
@@ -58,14 +62,30 @@
 		    });
 		}
 		
+		function getMethodPass(suiteid, limit) {
+			if(!limit) limit = 50;
+			var promises = [];
+			return $http.get('/api/stats/methodpass/'+suiteid+'?limit='+limit)
+			.then(completeGetParameters)
+			.catch(errorGetParameters);
+			
+			function completeGetParameters(response){
+				return response.data;
+			}
+			
+			function errorGetParameters(response){
+				console.log("error, error, ERROR");
+			}
+		}
+		
 		function getClasses(suiteid, limit) {
-			if(!limit) limit = 10;
+			if(!limit) limit = 50;
 			var promises = [];
 			DeviceData.className = [];
 			DeviceData.classes = [];
 			DeviceData.lastFail = [];
 			
-			var promise = $http.get('/api/stats/methodfail/' + suiteid + "?limit=50" + "&maxres="+limit)
+			var promise = $http.get('/api/stats/methodfail/' + suiteid + "?limit="+limit+"&maxres="+10)
 			.success(function(data, status, headers, config){ 
 			}).error(function(data, status, headers, config){
 			});

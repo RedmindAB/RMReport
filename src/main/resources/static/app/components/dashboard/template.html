@@ -1,5 +1,14 @@
 <div id='messages'>
-	<div class='modal-container'>  
+	<div class="form-inline clearfix">
+		<div class="pull-right right-padding">
+			<form>
+				<lable for="dash-max-timestmaps">Max runs</lable>
+				<input id="dash-max-timestamps" type="number" class="reports-filter form-control tool-tip reports-filter-input" style="width:175px;margin:0px" ng-model="ctrl.limit">
+				<button type="submit" class="btn btn-default" ng-click="ctrl.updatePage()">Update <span class="glyphicon glyphicon-refresh"></span></button>
+			</form>
+		</div>
+	</div>
+	<div>  
 		<div class="modal-content" ng-style="{'background-color':ctrl.DeviceData.modalColors[0]}">
 			<div class='modal-header'>
 			 		<div ng-repeat='platform in ctrl.DeviceData.existingPlatforms track by $index'>
@@ -32,73 +41,60 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	
-	<div class='modal-container'>
+
 		<div class="modal-content" ng-style="{'background-color':ctrl.DeviceData.modalColors[1]}">
 			<div class='modal-header'>
-				<div ng-repeat='class in ctrl.DeviceData.classes[0] | limitTo: 1'>
-		  			<div ng-if='ctrl.DeviceData.classes.length'></div>      
-			  		<table class="table table-dash">
-			   			<thead>
-			     			<tr>
-			        			<th>#</th>
-			        			<th>Test Case Name</th>
-			        			<th>Total Tests</th>
-			        			<th>Total Failed</th>
-			        			<th>Fail Percentage</th>
-			        			<th>Last Failure</th>
-			      			</tr>
-			    		</thead>
-						<tbody>
-			      			<tr ng-repeat='class in ctrl.DeviceData.classes[0] | orderBy: "-ratioFail"'>
-								<td class='table-td-hash-width'>{{$index+1}}</td>
-								<td>{{class.testcaseName}}</td>
-								<td>{{class.total}}</td>
-								<td>{{class.fail}}</td>
-								<td>{{class.ratioFail | number:2}}%</td>
-								<td>
-									<div ng-if='ctrl.DeviceData.lastFail[$index] === 0'>This run</div>
-									<div ng-if='ctrl.DeviceData.lastFail[$index] !== 0'>{{ctrl.DeviceData.lastFail[$index]}} runs ago</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+				<h4 align='center'>Most failing tests</h4>
+		  		<table class="table table-dash">
+		   			<thead>
+		     			<tr>
+		        			<th>#</th>
+		        			<th>Test Case Name</th>
+		        			<th>Total Tests</th>
+		        			<th>Total Failed</th>
+		        			<th>Fail Percentage</th>
+		        			<th>Last Failure</th>
+		      			</tr>
+		    		</thead>
+					<tbody>
+		      			<tr ng-repeat='class in ctrl.DeviceData.classes[0] | orderBy: "-ratioFail"'>
+							<td class='table-td-hash-width'>{{$index+1}}</td>
+							<td>{{class.testcaseName}}</td>
+							<td>{{class.total}}</td>
+							<td>{{class.fail}}</td>
+							<td>{{class.ratioFail | number:2}}%</td>
+							<td>
+								<div ng-if='ctrl.DeviceData.lastFail[$index] === 0'>This run</div>
+								<div ng-if='ctrl.DeviceData.lastFail[$index] !== 0'>{{ctrl.DeviceData.lastFail[$index]}} runs ago</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
-	</div>
-	<div class='modal-container'>
+
+
 		<div class="modal-content" ng-style="{'background-color':ctrl.DeviceData.modalColors[1]}">
 			<div class='modal-header'>
-				<div ng-repeat='class in ctrl.DeviceData.classes[0] | limitTo: 1'>
-		  			<div ng-if='ctrl.DeviceData.classes.length'></div>      
-			  		<table class="table table-dash">
-			   			<thead>
-			     			<tr>
-			        			<th>#</th>
-			        			<th>Test Case Name</th>
-			        			<th>Total Tests</th>
-			        			<th>Total Failed</th>
-			        			<th>Fail Percentage</th>
-			        			<th>Last Failure</th>
-			      			</tr>
-			    		</thead>
-						<tbody>
-			      			<tr ng-repeat='class in ctrl.DeviceData.classes[0] | orderBy: "-ratioFail"'>
-								<td class='table-td-hash-width'>{{$index+1}}</td>
-								<td>{{class.testcaseName}}</td>
-								<td>{{class.total}}</td>
-								<td>{{class.fail}}</td>
-								<td>{{class.ratioFail | number:2}}%</td>
-								<td>
-									<div ng-if='ctrl.DeviceData.lastFail[$index] === 0'>This run</div>
-									<div ng-if='ctrl.DeviceData.lastFail[$index] !== 0'>{{ctrl.DeviceData.lastFail[$index]}} runs ago</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+				<h4 align='center'>Test by stability</h4>
+		  		<table class="table table-dash">
+		   			<thead>
+		     			<tr>
+		        			<th>#</th>
+		        			<th class="clickable" ng-click="ctrl.methodPassOrder='classname'; ctrl.methodPassReverse=!ctrl.methodPassReverse">Class <span class="glyphicon glyphicon-sort"></span></th>
+		        			<th class="clickable" ng-click="ctrl.methodPassOrder='methodname'; ctrl.methodPassReverse=!ctrl.methodPassReverse">Method <span class="glyphicon glyphicon-sort"></span></th>
+		        			<th class="clickable" ng-click="ctrl.methodPassOrder='averagepass'; ctrl.methodPassReverse=!ctrl.methodPassReverse">Average pass <span class="glyphicon glyphicon-sort"></span></th>
+		      			</tr>
+		    		</thead>
+					<tbody>
+		      			<tr ng-repeat='method in ctrl.methodPass | orderBy:ctrl.methodPassOrder:ctrl.methodPassReverse track by $index'>
+							<td class='table-td-hash-width'>{{$index+1}}</td>
+							<td>{{method.classname}}</td>
+							<td>{{method.methodname}}</td>
+							<td>{{method.averagepass | number}}</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
