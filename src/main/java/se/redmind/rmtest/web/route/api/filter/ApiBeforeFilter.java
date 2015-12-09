@@ -9,7 +9,7 @@ import spark.Filter;
 import spark.Request;
 import spark.Response;
 
-public class ApiBeforeFilter extends Filter {
+public class ApiBeforeFilter implements Filter {
 
 	Logger log = LogManager.getLogger("API");
 	

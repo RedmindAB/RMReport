@@ -3,10 +3,10 @@ package se.redmind.rmtest.web.route.api.stats.grahoptions;
 import java.sql.ResultSet;
 import java.util.HashMap;
 
-import se.redmind.rmtest.db.DBBridge;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+
+import se.redmind.rmtest.db.DBBridge;
 
 public class GetGraphOptionsDAO extends DBBridge{
 

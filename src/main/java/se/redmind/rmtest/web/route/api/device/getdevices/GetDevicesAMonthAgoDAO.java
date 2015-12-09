@@ -3,14 +3,14 @@ package se.redmind.rmtest.web.route.api.device.getdevices;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import se.redmind.rmtest.db.DBBridge;
-import se.redmind.rmtest.db.lookup.report.ReportDbLookup;
-import se.redmind.rmtest.util.CalendarCounter;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+
+import se.redmind.rmtest.db.DBBridge;
+import se.redmind.rmtest.db.lookup.report.ReportDbLookup;
+import se.redmind.rmtest.util.CalendarCounter;
 
 public class GetDevicesAMonthAgoDAO extends DBBridge{
 	

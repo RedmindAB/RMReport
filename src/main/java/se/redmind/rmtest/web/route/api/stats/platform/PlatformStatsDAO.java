@@ -4,11 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-import se.redmind.rmtest.db.DBBridge;
-import se.redmind.rmtest.web.route.api.util.timestamp.TimestampUtil;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonPrimitive;
+
+import se.redmind.rmtest.db.DBBridge;
+import se.redmind.rmtest.web.route.api.util.timestamp.TimestampUtil;
 
 public class PlatformStatsDAO extends DBBridge{
 

@@ -6,12 +6,12 @@ import java.util.HashMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import se.redmind.rmtest.web.route.api.ErrorResponse;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+
+import se.redmind.rmtest.web.route.api.ErrorResponse;
 
 public class GetGraphDataDAO {
 

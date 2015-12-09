@@ -16,7 +16,7 @@ public class RunRMDoctorTest {
 
 	@Test
 	public void test() {
-		RunDoctorWS ws = new RunDoctorWS("");
+		RunDoctorWS ws = new RunDoctorWS();
 		Request req = mock(Request.class);
 		Response res = mock(Response.class);
 		Object handle = ws.handle(req, res);

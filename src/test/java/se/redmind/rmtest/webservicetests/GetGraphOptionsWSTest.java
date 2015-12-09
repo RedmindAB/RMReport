@@ -35,7 +35,7 @@ public class GetGraphOptionsWSTest extends WSSetupHelper{
 		when(request.queryParams("suiteid")).thenReturn("1");
 		when(request.queryParams("limit")).thenReturn("5");
 		
-		GetGraphOptionsWS ws = new GetGraphOptionsWS("");
+		GetGraphOptionsWS ws = new GetGraphOptionsWS();
 		
 		Object result = ws.handle(request, response);
 		Gson gson = new Gson();

@@ -4,11 +4,8 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class GetMethodsWS extends Route {
+public class GetMethodsWS implements Route {
 
-	public GetMethodsWS(String path) {
-		super(path);
-	}
 
 	/**
 	 * @api {get} /method/getmethods

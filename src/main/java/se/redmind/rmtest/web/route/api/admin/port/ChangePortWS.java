@@ -6,11 +6,8 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class ChangePortWS extends Route {
+public class ChangePortWS implements Route {
 
-	public ChangePortWS(String path) {
-		super(path);
-	}
 	
 	/**
 	 * @api {put} /admin/port/:portnum

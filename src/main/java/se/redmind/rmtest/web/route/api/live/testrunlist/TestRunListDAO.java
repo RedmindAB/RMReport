@@ -2,11 +2,11 @@ package se.redmind.rmtest.web.route.api.live.testrunlist;
 
 import java.util.List;
 
-import se.redmind.rmtest.liveteststream.LiveStreamContainer;
-import se.redmind.rmtest.liveteststream.TestRun;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
+import se.redmind.rmtest.liveteststream.LiveStreamContainer;
+import se.redmind.rmtest.liveteststream.TestRun;
 
 public class TestRunListDAO {
 

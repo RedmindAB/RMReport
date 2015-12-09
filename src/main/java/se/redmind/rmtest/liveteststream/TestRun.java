@@ -1,12 +1,9 @@
 package se.redmind.rmtest.liveteststream;
 
-import java.util.Date;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
-
-import javax.swing.text.DateFormatter;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;

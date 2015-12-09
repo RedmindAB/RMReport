@@ -15,9 +15,6 @@ import org.w3c.dom.NodeList;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonPrimitive;
-
 public class XMLReport extends Report<Element>{
 	
 	private Logger log = LogManager.getLogger(XMLReport.class);

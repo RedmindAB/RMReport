@@ -5,10 +5,10 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import com.google.gson.JsonArray;
+
 import se.redmind.rmtest.db.DBBridge;
 import se.redmind.rmtest.web.route.api.screenshot.ScreenshotFolderDAO;
-
-import com.google.gson.JsonArray;
 
 public class ScreenshotStructureDAO extends DBBridge {
 

@@ -6,12 +6,11 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class ScreenshotByFilenameWS extends Route {
+public class ScreenshotByFilenameWS implements Route {
 
 	ScreenshotHandler screenshotHandler;
 	
-	public ScreenshotByFilenameWS(String path) {
-		super(path);
+	public ScreenshotByFilenameWS() {
 		screenshotHandler = new ScreenshotHandler();
 	}
 	

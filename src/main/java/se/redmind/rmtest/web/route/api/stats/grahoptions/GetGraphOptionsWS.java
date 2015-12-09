@@ -4,11 +4,8 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class GetGraphOptionsWS extends Route {
+public class GetGraphOptionsWS implements Route {
 
-	public GetGraphOptionsWS(String path) {
-		super(path);
-	}
 
 	/**
 	 * @api {get} /stats/options

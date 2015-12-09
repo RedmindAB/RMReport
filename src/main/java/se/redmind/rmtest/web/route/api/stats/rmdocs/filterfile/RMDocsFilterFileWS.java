@@ -1,18 +1,15 @@
 package se.redmind.rmtest.web.route.api.stats.rmdocs.filterfile;
 
 
-import java.io.IOException;
-
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class RMDocsFilterFileWS extends Route {
+public class RMDocsFilterFileWS implements Route {
 
 	RMDocsFilterFileDAO dao;
 	
-	public RMDocsFilterFileWS(String path) {
-		super(path);
+	public RMDocsFilterFileWS() {
 		dao = new RMDocsFilterFileDAO();
 	}
 

@@ -4,14 +4,10 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class GetDriverByTestcaseWS extends Route {
+public class GetDriverByTestcaseWS implements Route {
 
 	
 	
-	public GetDriverByTestcaseWS(String path) {
-		super(path);
-		// TODO Auto-generated constructor stub
-	}
 
 	/**
 	 * @api {get} /driver/bytestcase

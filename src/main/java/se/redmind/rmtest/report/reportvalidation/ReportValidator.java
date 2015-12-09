@@ -25,7 +25,6 @@ import se.redmind.rmtest.report.parser.ReportXMLParser;
 import se.redmind.rmtest.report.parser.json.JsonReport;
 import se.redmind.rmtest.report.parser.json.JsonReportBuilder;
 import se.redmind.rmtest.report.parser.xml.XMLReport;
-import se.redmind.rmtest.report.parser.xml.XMLReportTestCase;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
 
 public class ReportValidator {

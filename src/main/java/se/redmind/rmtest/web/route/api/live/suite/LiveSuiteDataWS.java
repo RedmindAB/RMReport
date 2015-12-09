@@ -6,11 +6,8 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class LiveSuiteDataWS extends Route {
+public class LiveSuiteDataWS implements Route {
 
-	public LiveSuiteDataWS(String path) {
-		super(path);
-	}
 	
 	
 	/**

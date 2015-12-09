@@ -27,7 +27,7 @@ public class GetLatestSuiteWSTest extends WSSetupHelper{
 		Response response = mock(Response.class);
 		when(request.queryParams("suiteid")).thenReturn("1");
 		
-		GetLatestSuiteWS ws = new GetLatestSuiteWS("");
+		GetLatestSuiteWS ws = new GetLatestSuiteWS();
 		
 		Object result = ws.handle(request, response);
 		Gson gson = new Gson();

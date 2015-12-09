@@ -4,12 +4,8 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class GetDevicesAMonthAgoWS extends Route {
+public class GetDevicesAMonthAgoWS implements Route {
 
-	public GetDevicesAMonthAgoWS(String path) {
-		super(path);
-	}
-	
 	/**
 	 *@api {get} /device/notrunforamonth
 	 *@apiName NotRunForAMonth

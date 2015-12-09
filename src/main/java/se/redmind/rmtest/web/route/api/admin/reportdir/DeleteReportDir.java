@@ -5,11 +5,8 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class DeleteReportDir extends Route {
+public class DeleteReportDir implements Route {
 
-	public DeleteReportDir(String path) {
-		super(path);
-	}
 
 	@Override
 	public Object handle(Request request, Response response) {

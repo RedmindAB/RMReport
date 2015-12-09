@@ -12,13 +12,10 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class LiveSuiteChange extends Route {
+public class LiveSuiteChange implements Route {
 	
 	Logger log = LogManager.getLogger(LiveSuiteChange.class);
 
-	public LiveSuiteChange(String path) {
-		super(path);
-	}
 
 	/**
 	 * @api {get} /live/:UUID/:lastChangeID

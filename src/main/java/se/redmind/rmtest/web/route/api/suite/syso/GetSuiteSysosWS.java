@@ -5,16 +5,14 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class GetSuiteSysosWS extends Route {
+public class GetSuiteSysosWS implements Route {
 
 	private String basedir;
 	
-	public GetSuiteSysosWS(String path) {
-		super(path);
+	public GetSuiteSysosWS() {
 	}
 	
 	public GetSuiteSysosWS(String path, String basedir) {
-		super(path);
 		this.basedir = basedir;
 	}
 

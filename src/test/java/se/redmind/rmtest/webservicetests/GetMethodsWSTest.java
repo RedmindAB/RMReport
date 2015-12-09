@@ -25,7 +25,7 @@ public class GetMethodsWSTest extends WSSetupHelper{
 		Response response = mock(Response.class);
 		when(request.queryParams("classid")).thenReturn("1");
 		
-		GetMethodsWS ws = new GetMethodsWS("");
+		GetMethodsWS ws = new GetMethodsWS();
 		
 		Object result = ws.handle(request, response);
 		Gson gson = new Gson();
@@ -40,7 +40,7 @@ public class GetMethodsWSTest extends WSSetupHelper{
 		Response response = mock(Response.class);
 		when(request.queryParams("classid")).thenReturn("-1");
 		
-		GetMethodsWS ws = new GetMethodsWS("");
+		GetMethodsWS ws = new GetMethodsWS();
 		
 		Object result = ws.handle(request, response);
 		Gson gson = new Gson();

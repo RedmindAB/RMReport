@@ -24,7 +24,7 @@ public class GetClassesWSTest extends WSSetupHelper{
 		when(request.body()).thenReturn("");
 		when(request.pathInfo()).thenReturn("awdawd");
 		
-		GetClassesWS ws = new GetClassesWS("");
+		GetClassesWS ws = new GetClassesWS();
 		
 		Object result = ws.handle(request, response);
 		Gson gson = new Gson();

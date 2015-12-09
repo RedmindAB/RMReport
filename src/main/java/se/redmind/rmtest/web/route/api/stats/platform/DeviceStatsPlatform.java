@@ -6,10 +6,6 @@ import spark.Response;
 
 public class DeviceStatsPlatform extends RouteUtil {
 
-	public DeviceStatsPlatform(String path) {
-		super(path);
-	}
-
 	@Override
 	public Object handle(Request request, Response response) {
 		int suiteid = extractInt(request, "suiteid");

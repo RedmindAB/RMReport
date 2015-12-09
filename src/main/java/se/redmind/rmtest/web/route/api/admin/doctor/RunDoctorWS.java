@@ -6,11 +6,8 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class RunDoctorWS extends Route {
+public class RunDoctorWS implements Route {
 
-	public RunDoctorWS(String path) {
-		super(path);
-	}
 
 	@Override
 	public Object handle(Request request, Response response) {

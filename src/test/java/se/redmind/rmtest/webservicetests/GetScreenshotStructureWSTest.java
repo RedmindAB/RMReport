@@ -28,7 +28,7 @@ public class GetScreenshotStructureWSTest extends WSSetupHelper{
 		when(request.queryParams("classid")).thenReturn("1");
 		when(request.queryParams("timestamp")).thenReturn("20150101080000");
 		
-		ScreenshotStructureWS ws = new ScreenshotStructureWS("");
+		ScreenshotStructureWS ws = new ScreenshotStructureWS();
 		
 		Object result = ws.handle(request, response);
 		Gson gson = new Gson();

@@ -15,8 +15,6 @@ import se.redmind.rmtest.db.lookup.testcase.TestcaseDbLookup;
 import se.redmind.rmtest.report.parser.Driver;
 import se.redmind.rmtest.report.parser.Report;
 import se.redmind.rmtest.report.parser.ReportTestCase;
-import se.redmind.rmtest.report.parser.xml.XMLReport;
-import se.redmind.rmtest.report.parser.xml.XMLReportTestCase;
 import se.redmind.rmtest.report.reportvalidation.DriverValidation;
 import se.redmind.rmtest.util.StringKeyValueParser;
 

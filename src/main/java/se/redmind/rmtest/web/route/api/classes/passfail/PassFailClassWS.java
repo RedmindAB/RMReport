@@ -1,16 +1,12 @@
 package se.redmind.rmtest.web.route.api.classes.passfail;
 
+import com.google.gson.Gson;
+
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
-import com.google.gson.Gson;
-
-public class PassFailClassWS extends Route {
-
-	public PassFailClassWS(String path) {
-		super(path);
-	}
+public class PassFailClassWS implements Route {
 
 	/**
 	 * @api {get} /class/passfail

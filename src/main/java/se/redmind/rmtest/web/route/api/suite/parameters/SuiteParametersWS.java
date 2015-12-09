@@ -1,6 +1,5 @@
 package se.redmind.rmtest.web.route.api.suite.parameters;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -9,10 +8,6 @@ import spark.Request;
 import spark.Response;
 
 public class SuiteParametersWS extends CachedRoute {
-
-	public SuiteParametersWS(String path) {
-		super(path);
-	}
 
 	@Override
 	public JsonElement handleRequest(Response response, Request request) {

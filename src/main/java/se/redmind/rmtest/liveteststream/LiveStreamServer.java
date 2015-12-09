@@ -7,8 +7,6 @@ import java.net.Socket;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import se.redmind.rmtest.web.properties.ConfigHandler;
-
 public class LiveStreamServer implements Runnable {
 
 	Logger log = LogManager.getLogger(LiveStreamServer.class); 

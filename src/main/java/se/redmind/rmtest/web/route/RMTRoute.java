@@ -1,13 +1,12 @@
 package se.redmind.rmtest.web.route;
 
+import static spark.Spark.after;
 import static spark.Spark.get;
 import static spark.Spark.setPort;
 import static spark.Spark.staticFileLocation;
+
 import se.redmind.rmtest.web.properties.ConfigHandler;
 import se.redmind.rmtest.web.route.api.ApiRouter;
-import spark.Request;
-import spark.Response;
-import spark.Route;
 
 public class RMTRoute {
 
@@ -34,18 +33,15 @@ public class RMTRoute {
 	
 	private void init(){
 		staticFileLocation("/static");
-		get(new Route("/") {
-			@Override
-			public Object handle(Request request, Response response) {
-				return null;
-			}
+		get("/", (req, res) -> {
+			return null;
 		});
-		get(new Route("/api/doc") {
-			@Override
-			public Object handle(Request request, Response response) {
-				response.redirect("/api/doc/index.html");
-				return response;
-			}
+		after("/api/*", (req, res) -> {
+			res.header("Content-Encoding", "gzip");
+		});
+		get("/api/doc", (req, res) -> {
+			res.redirect("/api/doc/index.html");
+			return res;
 		});
 	}
 	

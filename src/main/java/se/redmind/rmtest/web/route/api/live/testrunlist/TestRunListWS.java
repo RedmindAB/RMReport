@@ -4,12 +4,8 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class TestRunListWS extends Route{
+public class TestRunListWS implements Route{
 
-	public TestRunListWS(String path) {
-		super(path);
-		// TODO Auto-generated constructor stub
-	}
 	
 	
 	/**

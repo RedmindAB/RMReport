@@ -2,11 +2,10 @@ package se.redmind.rmtest.web.route.api.cache;
 
 import java.util.HashMap;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-
-import se.redmind.rmtest.db.DBBridge;
 
 import com.google.gson.JsonElement;
+
+import se.redmind.rmtest.db.DBBridge;
 
 public class WSCache {
 	

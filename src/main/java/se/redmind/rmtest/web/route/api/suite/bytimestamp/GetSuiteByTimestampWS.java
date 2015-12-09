@@ -4,11 +4,8 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class GetSuiteByTimestampWS extends Route {
+public class GetSuiteByTimestampWS implements Route {
 
-	public GetSuiteByTimestampWS(String path) {
-		super(path);
-	}
 
 	/**
 	 * @api {get} /suite/bytimestamp

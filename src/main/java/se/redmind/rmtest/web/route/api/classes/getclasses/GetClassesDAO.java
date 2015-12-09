@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import se.redmind.rmtest.db.DBBridge;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+
+import se.redmind.rmtest.db.DBBridge;
 
 public class GetClassesDAO extends DBBridge {
 

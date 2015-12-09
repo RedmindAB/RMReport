@@ -23,7 +23,7 @@ public class GetDriverByTestcaseWSTest extends WSSetupHelper{
 		when(request.queryParams("id")).thenReturn("1");
 		when(request.queryParams("timestamp")).thenReturn("20150101080000");
 		
-		GetDriverByTestcaseWS ws = new GetDriverByTestcaseWS("");
+		GetDriverByTestcaseWS ws = new GetDriverByTestcaseWS();
 		
 		Object result = ws.handle(request, response);
 		Gson gson = new Gson();

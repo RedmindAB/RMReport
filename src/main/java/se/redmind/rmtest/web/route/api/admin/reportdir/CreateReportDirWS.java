@@ -5,26 +5,21 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+
 import se.redmind.rmtest.util.FileUtil;
 import se.redmind.rmtest.web.properties.ConfigHandler;
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
-
-public class CreateReportDirWS extends Route {
+public class CreateReportDirWS implements Route {
 
 	Logger log = LogManager.getLogger(CreateReportDirWS.class);
 	private JsonArray errorArray;
-	
-	public CreateReportDirWS(String path) {
-		super(path);
-	}
-
 	
 	/**
 	 * @api {post} /admin/reportdir

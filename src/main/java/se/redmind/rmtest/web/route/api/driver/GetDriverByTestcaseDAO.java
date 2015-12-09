@@ -3,13 +3,13 @@ package se.redmind.rmtest.web.route.api.driver;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import se.redmind.rmtest.db.DBBridge;
-import se.redmind.rmtest.db.jdbm.message.MessageDAO;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+
+import se.redmind.rmtest.db.DBBridge;
+import se.redmind.rmtest.db.jdbm.message.MessageDAO;
 
 public class GetDriverByTestcaseDAO extends DBBridge {
 

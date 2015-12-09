@@ -4,12 +4,8 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class GetLatestSuiteWS extends Route {
+public class GetLatestSuiteWS implements Route {
 
-	public GetLatestSuiteWS(String path) {
-		super(path);
-	}
-	
 	/**
 	 * @api {get} /suite/latestbyid
 	 * @apiName Get latest by id

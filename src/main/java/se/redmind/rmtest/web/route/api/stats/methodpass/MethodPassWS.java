@@ -10,9 +10,6 @@ import spark.Response;
 
 public class MethodPassWS extends CachedRoute {
 
-	public MethodPassWS(String path) {
-		super(path);
-	}
 
 	@Override
 	public JsonElement handleRequest(Response response, Request request) {

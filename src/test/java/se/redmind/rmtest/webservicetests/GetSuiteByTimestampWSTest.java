@@ -24,7 +24,7 @@ public class GetSuiteByTimestampWSTest extends WSSetupHelper{
 		when(request.queryParams("suiteid")).thenReturn("1");
 		when(request.queryParams("timestamp")).thenReturn("20150101080000");
 		
-		GetSuiteByTimestampWS ws = new GetSuiteByTimestampWS("");
+		GetSuiteByTimestampWS ws = new GetSuiteByTimestampWS();
 		
 		Object result = ws.handle(request, response);
 		Gson gson = new Gson();

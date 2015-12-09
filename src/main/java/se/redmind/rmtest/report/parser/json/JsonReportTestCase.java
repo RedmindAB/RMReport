@@ -1,8 +1,8 @@
 package se.redmind.rmtest.report.parser.json;
 
-import se.redmind.rmtest.report.parser.ReportTestCase;
-
 import com.google.gson.JsonObject;
+
+import se.redmind.rmtest.report.parser.ReportTestCase;
 
 public class JsonReportTestCase extends ReportTestCase<JsonObject> {
 

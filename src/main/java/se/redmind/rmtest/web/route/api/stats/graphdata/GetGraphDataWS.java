@@ -5,21 +5,20 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import se.redmind.rmtest.web.route.api.CachedRoute;
-import spark.Request;
-import spark.Response;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+
+import se.redmind.rmtest.web.route.api.CachedRoute;
+import spark.Request;
+import spark.Response;
 
 public class GetGraphDataWS extends CachedRoute {
 
 	Logger log = LogManager.getLogger(GetGraphDataWS.class);
 	private boolean logEnable;
 	
-	public GetGraphDataWS(String path) {
-		super(path);
+	public GetGraphDataWS() {
 		logEnable = true;
 	}
 

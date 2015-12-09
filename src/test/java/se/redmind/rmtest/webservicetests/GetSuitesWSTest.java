@@ -26,7 +26,7 @@ public class GetSuitesWSTest extends WSSetupHelper{
 		Request request = mock(Request.class);
 		Response response = mock(Response.class);
 		
-		GetSuitesWS ws = new GetSuitesWS("");
+		GetSuitesWS ws = new GetSuitesWS();
 		
 		Object result = ws.handle(request, response);
 		Gson gson = new Gson();

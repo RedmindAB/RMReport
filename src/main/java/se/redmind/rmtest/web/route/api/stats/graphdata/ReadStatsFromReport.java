@@ -9,12 +9,12 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import se.redmind.rmtest.db.DBBridge;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+
+import se.redmind.rmtest.db.DBBridge;
 
 public class ReadStatsFromReport extends DBBridge{
 

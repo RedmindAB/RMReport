@@ -5,13 +5,10 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class CheckForChangeWS extends Route {
+public class CheckForChangeWS implements Route {
 	
 	LongPollingHandler lpHandler = null;
 	
-	public CheckForChangeWS(String path) {
-		super(path);
-	}
 
 	@Override
 	public Object handle(Request request, Response response) {

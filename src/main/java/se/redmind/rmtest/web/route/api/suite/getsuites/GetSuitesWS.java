@@ -4,11 +4,7 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class GetSuitesWS extends Route{
-
-	public GetSuitesWS(String path) {
-		super(path);
-	}
+public class GetSuitesWS implements Route{
 
 	/**
 	 * @api {get} /suite/getsuites

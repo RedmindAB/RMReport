@@ -1,8 +1,5 @@
 package se.redmind.rmtest.web.route.api.stats.rmdocs.filterfile;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.attribute.FileAttribute;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

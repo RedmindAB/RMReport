@@ -28,7 +28,7 @@ public class PassFailClassWSTest extends WSSetupHelper {
 		when(request.queryParams("timestamp")).thenReturn("20150110080009");
 		when(request.queryParams("testcaseid")).thenReturn("1");
 		
-		PassFailClassWS ws = new PassFailClassWS("");
+		PassFailClassWS ws = new PassFailClassWS();
 		
 		Object result = ws.handle(request, response);
 		Gson gson = new Gson();

@@ -11,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 import se.redmind.rmtest.db.DBCon;
 import se.redmind.rmtest.db.lookup.report.ReportExist;
 import se.redmind.rmtest.report.parser.Report;
-import se.redmind.rmtest.report.parser.xml.XMLReport;
 import se.redmind.rmtest.report.reporthandler.ReportHandler;
 import se.redmind.rmtest.report.reportloader.ReportLoader;
 import se.redmind.rmtest.report.reportvalidation.ReportValidator;

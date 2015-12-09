@@ -56,7 +56,7 @@ public class GetGraphDataWSTest extends WSSetupHelper{
 		String generateRequestJson = generateRequestJson("nexus 6", 5, new int[0], new int[0], new int[0], new int[0], new int[0]).toString();
 		when(request.body()).thenReturn(generateRequestJson);
 		when(request.pathInfo()).thenReturn("awdawd");
-		GetGraphDataWS ws = new GetGraphDataWS("");
+		GetGraphDataWS ws = new GetGraphDataWS();
 		ws.setLoggingEnabled(false);
 		
 		Object result = ws.handle(request, response);
@@ -76,7 +76,7 @@ public class GetGraphDataWSTest extends WSSetupHelper{
 		when(request.body()).thenReturn(generateRequestJson);
 		when(request.pathInfo()).thenReturn("awdawd");
 		
-		GetGraphDataWS ws = new GetGraphDataWS("");
+		GetGraphDataWS ws = new GetGraphDataWS();
 		ws.setLoggingEnabled(false);
 		
 		Object result = ws.handle(request, response);
@@ -97,7 +97,7 @@ public class GetGraphDataWSTest extends WSSetupHelper{
 		firstArray.addAll(secondArray);
 		when(request.body()).thenReturn(new Gson().toJson(firstArray));
 		when(request.pathInfo()).thenReturn("awdawd");
-		GetGraphDataWS ws = new GetGraphDataWS("");
+		GetGraphDataWS ws = new GetGraphDataWS();
 		ws.setLoggingEnabled(false);
 		
 		Object result = ws.handle(request, response);

@@ -2,7 +2,6 @@ package se.redmind.rmtest.report.parser;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.w3c.dom.Element;
 
 
 public abstract class ReportTestCase<E> {

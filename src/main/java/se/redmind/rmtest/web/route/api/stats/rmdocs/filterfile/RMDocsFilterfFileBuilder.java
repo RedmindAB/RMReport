@@ -2,8 +2,6 @@ package se.redmind.rmtest.web.route.api.stats.rmdocs.filterfile;
 
 import java.util.TreeMap;
 
-import org.apache.logging.log4j.util.Strings;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
