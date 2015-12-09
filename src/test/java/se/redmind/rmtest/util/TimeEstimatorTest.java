@@ -6,20 +6,21 @@ import org.junit.Test;
 
 public class TimeEstimatorTest {
 
-	int ticks = 1000;
-	int range = 100;
+	int ticks = 100;
+	int range = 10;
 	
 	@Test
 	public void getMeterTest() throws InterruptedException{
 		TimeEstimator est = new TimeEstimator(ticks);
 		est.start();
-		System.out.println(est.getTopMeter());
+		String topMeter = est.getTopMeter();
+		System.out.println(topMeter);
 		System.out.print(" ");
 		for (int i = 0; i < ticks; i++) {
 			est.addTick();
 			est.meassure();
-			Thread.sleep(1);
 		}
+		assertEquals(topMeter.length(), est.totalDone+2);
 	}
 	
 	@Test
