@@ -30,7 +30,7 @@
 		vm.getMethodPass		= getMethodPass;
 		vm.limit				= 50;
 		vm.updatePage			= update;
-		
+		vm.lastRunRMDocs		= lastRunRMDocs;
 		
 		init();
 		
@@ -71,6 +71,15 @@
 			DashboardServices.getMethodPass(suiteid, vm.limit).then(function(result){
 				vm.methodPass = result;
 			});
+		}
+		
+		function lastRunRMDocs(limit, threshold, downloadAsFile){
+			var file = "";
+			if(downloadAsFile){
+				file = "&file";
+			}
+			var url = "/api/stats/rmdocs/"+CurrentSuite.currentSuiteInfo.id+"?limit="+limit+"&threshold="+threshold+file;
+			window.location.assign(url);
 		}
 		
 		function update(){

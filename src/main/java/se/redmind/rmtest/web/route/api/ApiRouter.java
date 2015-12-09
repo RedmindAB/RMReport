@@ -32,6 +32,7 @@ import se.redmind.rmtest.web.route.api.stats.graphdata.GetGraphDataWS;
 import se.redmind.rmtest.web.route.api.stats.methodfail.MethodFailWS;
 import se.redmind.rmtest.web.route.api.stats.methodpass.MethodPassWS;
 import se.redmind.rmtest.web.route.api.stats.platform.DeviceStatsPlatform;
+import se.redmind.rmtest.web.route.api.stats.rmdocs.filterfile.RMDocsFilterFileWS;
 import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteWS;
 import se.redmind.rmtest.web.route.api.suite.bytimestamp.GetSuiteByTimestampWS;
 import se.redmind.rmtest.web.route.api.suite.getsuites.GetSuitesWS;
@@ -89,6 +90,7 @@ public class ApiRouter {
 		get(new LiveSuiteChange("/api/live/:UUID/:lastchange"));
 		
 		get(new MethodPassWS("/api/stats/methodpass/:suiteid"));
+		get(new RMDocsFilterFileWS("/api/stats/rmdocs/:suiteid"));
 	}
 	
 	

@@ -72,8 +72,6 @@
 				</table>
 			</div>
 		</div>
-
-
 		<div class="modal-content" ng-style="{'background-color':ctrl.DeviceData.modalColors[1]}">
 			<div class='modal-header'>
 				<h4 align='center'>Test by stability</h4>
@@ -95,6 +93,23 @@
 						</tr>
 					</tbody>
 				</table>
+			</div>
+		</div>
+		<div class="modal-content" ng-style="{'background-color':ctrl.DeviceData.modalColors[1]}">
+			<div class='modal-header'>
+				<h4 align='center'>RMDocs files</h4>
+		  		<div>
+		  			<table class="table">
+		  				<tr>
+		  					<td>
+				  				<p>Download last run as RMDocs filter file, where all test need to have 100% pass</p>
+		  					</td>
+		  					<td>
+					  			<button type="button" ng-click="ctrl.lastRunRMDocs(1,100,true)">Download</button>
+		  					</td>
+		  				</tr>
+		  			</table>
+		  		</div>
 			</div>
 		</div>
 	</div>
