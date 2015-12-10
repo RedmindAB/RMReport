@@ -19,7 +19,7 @@ public class RMDocsFilterFileWS implements Route {
 		int threshhold = getThreshhold(request);
 		Integer limit = getLimit(request);
 		boolean isFile = isFile(request);
-		String res = dao.getResultsAsText(suiteid, limit, threshhold); 
+		String res = dao.getResultsAsText(suiteid, limit, threshhold);
 		if (isFile) {
 			response.type("application/octet-binary");
 			return res; 
@@ -38,7 +38,7 @@ public class RMDocsFilterFileWS implements Route {
 		try {
 			return Integer.valueOf(request.queryParams("limit"));
 		} catch (Exception e) {
-			return 20;
+			return 1;
 		}
 	}
 	

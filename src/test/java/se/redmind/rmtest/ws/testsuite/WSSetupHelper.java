@@ -11,11 +11,22 @@ import se.redmind.rmtest.report.init.ReportInit;
 public class WSSetupHelper{
 
 	private static String reportPath = System.getProperty("user.dir")+"/reports_for_test";
+	private static String staticTests = System.getProperty("user.dir")+"/statictests";
 	private static String dbPath = System.getProperty("user.dir")+"/testRMTest.db";
-
+	private boolean useStaticTests;
+	
 	public WSSetupHelper() {
 		beforeClass();
 	}
+	
+	public WSSetupHelper(boolean useStaticTests){
+		this.useStaticTests = useStaticTests;
+		if(useStaticTests){
+			reportPath = staticTests;
+		}
+		beforeClass();
+	}
+	
 
 	public static void beforeClass(){
 		boolean testmode = DBCon.isTestmode();

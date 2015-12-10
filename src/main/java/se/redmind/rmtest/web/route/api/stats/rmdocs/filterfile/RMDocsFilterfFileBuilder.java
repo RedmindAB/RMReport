@@ -21,8 +21,8 @@ public class RMDocsFilterfFileBuilder {
 	public String getAsText(){
 		for (JsonElement element : data) {
 			JsonObject json = element.getAsJsonObject();
-			int avgPass = json.get("medel").getAsInt();
-			if(avgPass >= threshhold){
+			double avgPass = json.get("medel").getAsDouble();
+			if(avgPass < threshhold){
 				String key = getKey(json);
 				String rawBrowser = json.get("browsername").getAsString();
 				String browser = fixBrowserSpaces(rawBrowser);

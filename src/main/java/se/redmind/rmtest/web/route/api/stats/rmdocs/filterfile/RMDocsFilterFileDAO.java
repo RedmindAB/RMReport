@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.sqlite.jdbc4.JDBC4PreparedStatement;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -11,7 +13,7 @@ import se.redmind.rmtest.db.DBBridge;
 
 public class RMDocsFilterFileDAO extends DBBridge {
 
-	private final String sql = 	"SELECT class.classname, testcase.testcasename, AVG(report.result = 'passed') * 100 AS medel, SUM(report.result != 'passed') AS totalfail, COUNT(report.result) AS totaltests, browser.browsername "
+	public static final String sql = 	"SELECT class.classname, testcase.testcasename, AVG(report.result = 'passed') * 100 AS medel, SUM(report.result != 'passed') AS totalfail, COUNT(report.result) AS totaltests, browser.browsername "
 								+"FROM report INNER JOIN class ON (class.class_id = report.class_id) INNER JOIN testcase ON (testcase.testcase_id = report.testcase_id) INNER JOIN browser ON (report.browser_id = browser.browser_id) "
 								+"WHERE "
 								+"report.timestamp >= (SELECT DISTINCT MIN(timestamp) FROM (SELECT DISTINCT timestamp FROM report WHERE report.suite_id = ? ORDER BY timestamp DESC LIMIT ?)) "
