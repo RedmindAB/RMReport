@@ -5,6 +5,7 @@ import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.Spark.put;
 
+import se.redmind.rmtest.web.properties.ConfigDAO;
 import se.redmind.rmtest.web.route.api.admin.config.GetConfigWS;
 import se.redmind.rmtest.web.route.api.admin.doctor.RunDoctorWS;
 import se.redmind.rmtest.web.route.api.admin.port.ChangePortWS;
@@ -14,7 +15,6 @@ import se.redmind.rmtest.web.route.api.admin.reportdir.DeleteReportDirsWS;
 import se.redmind.rmtest.web.route.api.admin.reportdir.UpdateReportDirWS;
 import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesWS;
 import se.redmind.rmtest.web.route.api.classes.passfail.PassFailClassWS;
-import se.redmind.rmtest.web.route.api.device.getdevices.GetDevicesAMonthAgoWS;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseWS;
 import se.redmind.rmtest.web.route.api.live.change.LiveSuiteChange;
 import se.redmind.rmtest.web.route.api.live.suite.LiveSuiteDataWS;
@@ -32,12 +32,14 @@ import se.redmind.rmtest.web.route.api.stats.methodfail.MethodFailWS;
 import se.redmind.rmtest.web.route.api.stats.methodpass.MethodPassWS;
 import se.redmind.rmtest.web.route.api.stats.platform.DeviceStatsPlatform;
 import se.redmind.rmtest.web.route.api.stats.rmdocs.filterfile.RMDocsFilterFileWS;
+import se.redmind.rmtest.web.route.api.stats.testreport.TestReportWS;
 import se.redmind.rmtest.web.route.api.suite.byid.GetLatestSuiteWS;
 import se.redmind.rmtest.web.route.api.suite.bytimestamp.GetSuiteByTimestampWS;
 import se.redmind.rmtest.web.route.api.suite.getsuites.GetSuitesWS;
 import se.redmind.rmtest.web.route.api.suite.parameters.SuiteParametersWS;
 import se.redmind.rmtest.web.route.api.suite.syso.GetSuiteSysosWS;
 import se.redmind.rmtest.web.route.api.timestamp.TimestampWS;
+import spark.template.freemarker.FreeMarkerEngine;
 
 public class ApiRouter {
 
@@ -65,7 +67,6 @@ public class ApiRouter {
 		get("/api/selenium/griddata",new SeleniumGridWS());
 		
 		//added to apidocs, but no result example added.
-		get("/api/device/notrunforamonth", new GetDevicesAMonthAgoWS());
 		put("/api/admin/reportdir",new UpdateReportDirWS());
 		put("/api/admin/port/:portnum",new ChangePortWS());
 		post("/api/admin/reportdir",new CreateReportDirWS());
@@ -89,6 +90,7 @@ public class ApiRouter {
 		
 		get("/api/stats/methodpass/:suiteid",new MethodPassWS());
 		get("/api/stats/rmdocs/:suiteid", new RMDocsFilterFileWS());
+		get("/api/stats/testreport/:suiteid", new TestReportWS(), new FreeMarkerEngine());
 	}
 	
 	

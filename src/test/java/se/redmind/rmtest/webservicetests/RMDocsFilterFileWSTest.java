@@ -18,17 +18,16 @@ import spark.Response;
 public class RMDocsFilterFileWSTest extends WSSetupHelper {
 	
 	public RMDocsFilterFileWSTest() {
-		super(true);
+		super();
 	}
 	
 	@Test
 	public void testFilteredBrowsers(){
 		Request request = mock(Request.class);
 		Response response = mock(Response.class);
-		when(request.params("suiteid")).thenReturn("1");
+		when(request.params("suiteid")).thenReturn("3");
 		System.out.println(RMDocsFilterFileDAO.sql);
 		RMDocsFilterFileWS ws = new RMDocsFilterFileWS();
-		
 		
 		String res = (String) ws.handle(request, response);
 		
@@ -46,10 +45,9 @@ public class RMDocsFilterFileWSTest extends WSSetupHelper {
 	public void testFilteredBrowsersExtended(){
 		Request request = mock(Request.class);
 		Response response = mock(Response.class);
-		when(request.params("suiteid")).thenReturn("1");
+		when(request.params("suiteid")).thenReturn("3");
 		when(request.queryParams("treshold")).thenReturn("75");
 		RMDocsFilterFileWS ws = new RMDocsFilterFileWS();
-		
 		
 		String res = (String) ws.handle(request, response);
 		
@@ -70,7 +68,7 @@ public class RMDocsFilterFileWSTest extends WSSetupHelper {
 	public void testFilteredBrowsersWith75PercentPass(){
 		Request request = mock(Request.class);
 		Response response = mock(Response.class);
-		when(request.params("suiteid")).thenReturn("2");
+		when(request.params("suiteid")).thenReturn("4");
 		when(request.queryParams("threshold")).thenReturn("30");
 		when(request.queryParams("limit")).thenReturn("10");
 		RMDocsFilterFileWS ws = new RMDocsFilterFileWS();

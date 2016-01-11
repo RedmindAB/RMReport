@@ -29,7 +29,7 @@ public class MethodPassWS extends CachedRoute {
 		return suiteid;
 	}
 
-	private JsonObject getError(String erroMessage) {
+	private JsonObject getError(String errorMessage) {
 		JsonObject jsonObject = new JsonObject();
 		jsonObject.addProperty("error", errorMessage);
 		return jsonObject;

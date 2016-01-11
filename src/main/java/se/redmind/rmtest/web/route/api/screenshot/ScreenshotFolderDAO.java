@@ -5,15 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import se.redmind.rmtest.testhome.TestHome;
+import se.redmind.rmtest.web.properties.ConfigHandler;
 
 public class ScreenshotFolderDAO {
 
+	private final String screenshotPath; 
+	
 	public ScreenshotFolderDAO() {
-		
+		screenshotPath = setPath();
 	}
 	
 	public File[] getFilesByTimestamp(String timestamp){
-		String path = getPath()+timestamp;
+		String path = this.screenshotPath+"/"+timestamp;
 		return getFiles(path);
 	}
 	
@@ -22,7 +25,7 @@ public class ScreenshotFolderDAO {
 	}
 	
 	public File getScreenshot(String timestamp, String filename){
-		String path = getPath()+timestamp+"/"+filename;
+		String path = this.screenshotPath+"/"+timestamp+"/"+filename;
 		return new File(path);
 	}
 	
@@ -51,8 +54,18 @@ public class ScreenshotFolderDAO {
 		return filenames;
 	}
 	
-	public String getPath(){
-		return TestHome.main()+"/RMR-Screenshots/";
+	private String getTestHomePath(){
+		return TestHome.main()+"/RMR-Screenshots";
+	}
+	
+	private String setPath(){
+		String screenshotPath = ConfigHandler.getInstance().getScreenshotFolder();
+		if(new File(screenshotPath).exists()){
+			return screenshotPath;
+		}
+		else {
+			return getTestHomePath();
+		}
 	}
 	
 	

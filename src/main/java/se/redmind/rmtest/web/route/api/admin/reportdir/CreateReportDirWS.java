@@ -20,6 +20,13 @@ public class CreateReportDirWS implements Route {
 
 	Logger log = LogManager.getLogger(CreateReportDirWS.class);
 	private JsonArray errorArray;
+	private boolean isTest;
+	
+	public CreateReportDirWS(boolean test) {
+		this.isTest = test;
+	}
+	
+	public CreateReportDirWS() {}
 	
 	/**
 	 * @api {post} /admin/reportdir
@@ -38,10 +45,10 @@ public class CreateReportDirWS implements Route {
 	public Object handle(Request request, Response response) {
 		errorArray = new JsonArray();
 		String reportdirs = request.body();
-		JsonArray dirArray = new Gson().fromJson(reportdirs, JsonArray.class);
+		JsonArray dirArray = extractBody(reportdirs);
 		if (dirArray == null) return badRequest(response, "Bad format or empty body.");
 		
-		ConfigHandler cHandler = ConfigHandler.getInstance();
+		ConfigHandler cHandler = ConfigHandler.getInstance(isTest);
 		boolean error = handleRequest(dirArray, cHandler);
 		if (!error) return true;
 		else {
@@ -49,6 +56,15 @@ public class CreateReportDirWS implements Route {
 			return new Gson().toJson(errorArray);
 		}
 		
+	}
+
+	private JsonArray extractBody(String reportdirs) {
+		try {
+			JsonArray dirArray = new Gson().fromJson(reportdirs, JsonArray.class);
+			return dirArray;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 

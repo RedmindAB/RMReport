@@ -15,7 +15,8 @@ public class DBCon {
     private static DBCon dbInstance = null;
     private static Connection conn;
     private static Connection imConnection;
-    private static boolean testMode;
+    private static volatile boolean testMode;
+    private static String currentDBName;
     
     
     public Connection getConnection() {
@@ -23,29 +24,45 @@ public class DBCon {
     }
 
     public static DBCon getDbInstance()  {
-        if(dbInstance == null){
-            dbInstance = new DBCon();
-                conn = dbInstance.connect("RMTest.db");
-                dbInstance.create(conn);
-                testMode = false;
-        }
+        try {
+			if(dbInstance == null|| dbInstance.getConnection().isClosed()){
+			    dbInstance = new DBCon();
+			    currentDBName = "RMTest.db";
+		        conn = dbInstance.connect(currentDBName);
+		        dbInstance.create(conn);
+		        testMode = false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
         return dbInstance;
     }
     
     public static DBCon getDbTestInstance()  {
-        if(dbInstance == null || testMode == false){
-            dbInstance = new DBCon();
-                conn = dbInstance.connect("testRMTest.db");
-                dbInstance.create(conn);
-                testMode = true;
-        }
+        try {
+			if(dbInstance == null || testMode == false || dbInstance.getConnection().isClosed()){
+			    dbInstance = new DBCon();
+			    currentDBName = "testRMTest.db";
+		        conn = dbInstance.connect(currentDBName);
+		        dbInstance.create(conn);
+		        testMode = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return dbInstance;
     }
     
     public Connection getInMemoryConnection(){
-    	if (imConnection == null) {
-			imConnection = connect(":memory:");
-			create(imConnection);
+    	try {
+			if (imConnection == null || imConnection.isClosed()) {
+				imConnection = connect(":memory:");
+				create(imConnection);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
     	return imConnection;
     }
@@ -128,8 +145,10 @@ public class DBCon {
     
     public void dropIMDB(){
     	try {
-			imConnection.close();
-			imConnection = null;
+    		if(imConnection != null){
+    			imConnection.close();
+    			imConnection = null;
+    		}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -138,4 +157,15 @@ public class DBCon {
     public static boolean isTestmode(){
     	return testMode;
     }
+    
+    public String getCurrentDBName(){
+    	return currentDBName;
+    }
+
+	public static void closeAllConnections() {
+		testMode = false;
+		DBCon dbInstance = DBCon.getDbInstance();
+		dbInstance.dropDatabase(dbInstance.getConnection());
+		dbInstance.dropIMDB();
+	}
 }

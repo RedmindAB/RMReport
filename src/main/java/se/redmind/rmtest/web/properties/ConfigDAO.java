@@ -19,22 +19,41 @@ public class ConfigDAO {
 	Logger log = LogManager.getLogger(ConfigDAO.class);
 	
 	private static ConfigDAO configDAO;
-	private final String filePath;
+	private String filePath;
 	private File configFile;
 	private Gson gson;
 	private boolean isNew;
+
+	private boolean test;
 	
 	
 	private ConfigDAO(){
-		this.filePath = System.getProperty("user.dir")+"/config.json";
+		this(false);
+	}
+
+	
+	private ConfigDAO(boolean test){
+		this.test = test;
+		setFilePath();
 		this.configFile = new File(filePath);
 		this.isNew = !configFile.exists();
 		this.gson = new GsonBuilder().setPrettyPrinting().create();
 	}
 	
+	private void setFilePath() {
+		String fileName = "/config.json";
+		if(test){
+			fileName = "/configTest.json";
+		}
+		this.filePath = System.getProperty("user.dir")+fileName;
+	}
+	
 	public static ConfigDAO getInstance(){
+		return getInstance(false);
+	}
+	public static ConfigDAO getInstance(boolean test) {
 		if (configDAO == null) {
-			configDAO = new ConfigDAO();
+			configDAO = new ConfigDAO(test);
 		}
 		return configDAO;
 	}
@@ -84,4 +103,10 @@ public class ConfigDAO {
 	public boolean isNew(){
 		return isNew;
 	}
+
+
+	public String getFileName() {
+		return configFile.getName();
+	}
+
 }

@@ -12,7 +12,7 @@ public class GetSuiteSysosWS implements Route {
 	public GetSuiteSysosWS() {
 	}
 	
-	public GetSuiteSysosWS(String path, String basedir) {
+	public GetSuiteSysosWS(String basedir) {
 		this.basedir = basedir;
 	}
 
@@ -37,8 +37,8 @@ public class GetSuiteSysosWS implements Route {
 			Integer suiteid = Integer.valueOf(request.queryParams("suiteid"));
 			
 			GetSuiteSysosDAO getSuiteSysosDAO;
-			if (basedir != null) getSuiteSysosDAO = new GetSuiteSysosDAO();
-			else getSuiteSysosDAO = new GetSuiteSysosDAO(basedir);
+			if (basedir != null) getSuiteSysosDAO = new GetSuiteSysosDAO(basedir);
+			else getSuiteSysosDAO = new GetSuiteSysosDAO();
 			result = getSuiteSysosDAO.getSysos(timestamp, suiteid);
 		} catch (Exception e) {
 			return new ErrorResponse(e.getMessage(), GetSuiteSysosWS.class).toString();

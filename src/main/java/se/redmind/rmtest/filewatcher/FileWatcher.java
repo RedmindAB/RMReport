@@ -69,7 +69,7 @@ public class FileWatcher extends Thread {
                 }
                 if (updatedReports) {
                     log.info("Updating in memory DB");
-                    new InMemoryDBHandler("RMTest").updateInMemoryDB();
+                    InMemoryDBHandler.getInstance().init();
                     log.info("Clearing WebService cache");
                     WSCache.getInstance().clear();
                 }

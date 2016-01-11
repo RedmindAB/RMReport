@@ -8,16 +8,28 @@ import com.google.gson.JsonPrimitive;
 public class ConfigHandler {
 	
 	private static ConfigHandler configHandler;
+	public static final String TEST_CONFIG_PATH = System.getProperty("user.dir")+"/configTest.json";
 	private ConfigDAO configDAO;
 	private ConfigJson configJson;
 	private ConfigJson backup;
 	private boolean autoCommit;
 	
 	private ConfigHandler(){
-		this.configDAO = ConfigDAO.getInstance();
+		this(false);
+	}
+	
+	private ConfigHandler(boolean test) {
+		this.configDAO = ConfigDAO.getInstance(test);
 		this.configJson = configDAO.load();
 		this.autoCommit = true;
 		init();
+	}
+
+	public static ConfigHandler getInstance(boolean test){
+		if (configHandler == null) {
+			configHandler = new ConfigHandler(test);
+		}
+		return configHandler;
 	}
 	
 	public static ConfigHandler getInstance(){
@@ -88,7 +100,6 @@ public class ConfigHandler {
 		for (int i = 0; i < reportPaths.size(); i++) {
 			if (reportPaths.get(i).getAsString().equals(old)) {
 				reportPaths.set(i, new JsonPrimitive(newPath));
-				System.out.println("new path: "+newPath+"\nold path"+old+"\n"+reportPaths);
 				autoCommit();
 				break;
 			}
@@ -117,7 +128,6 @@ public class ConfigHandler {
 		String[] reportPaths = getReportPaths();
 		for (String string : reportPaths) {
 			if (string.equals(reportDir)) {
-				System.out.println("Path exists");
 				return true;
 			}
 		}
@@ -155,6 +165,26 @@ public class ConfigHandler {
 
 	public int getLiveStreamPort() {
 		return configJson.getLivePort();
+	}
+
+	public String getFileName() {
+		return ConfigDAO.getInstance().getFileName();
+	}
+
+	public void clearReportPaths() {
+		configJson.setReportPaths(new JsonArray());
+	}
+
+	public void saveLiveStreamPort(int liveStreamPort) {
+		configJson.setLivePort(liveStreamPort);
+	}
+	
+	public String getScreenshotFolder(){
+		return configJson.getScreenshotFolder();
+	}
+
+	public void setScreenshotFolder(String screenshotFolder) {
+		this.configJson.setScreenshotFolder(screenshotFolder);
 	}
 
 }

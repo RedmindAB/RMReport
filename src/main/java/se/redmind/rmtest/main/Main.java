@@ -24,7 +24,7 @@ public class Main {
 		ConfigHandler.getInstance();
 		log.info("Starting database...");
 		//starts the database.
-		DBCon.getDbInstance();
+		startDatabase(args);
 		log.info("Stating database done");
 		//Searches though the report directory for reports that are not added yet.
 		String[] testDirectories = ConfigHandler.getInstance().getReportPaths();
@@ -35,15 +35,29 @@ public class Main {
 		System.out.println("Added "+addedreports+" reports.");
 		//init the In Memory DB
 		log.info("Init the in memory db...");
-		new InMemoryDBHandler("RMTest").init();
+		InMemoryDBHandler.getInstance().init();
 		log.info("Init the in memory db DONE!");
+		
 		//Listens to file changes in the report directories.
 		FileWatcher.Run();
 		
 		//start the webserver.
 		int port = setupPort(args);
+		log.info("Init LiveStream");
 		new LiveStreamInit(ConfigHandler.getInstance().getLiveStreamPort()).init();
+		log.info("Init WebServer");
 		new RMTRoute(port);
+	}
+
+	private static void startDatabase(String[] args) {
+		try {
+			if(args[0].equals("autotest")){
+				System.out.println("Running RMReport in testmode");
+				DBCon.getDbTestInstance();
+			}
+		} catch (Exception e) {
+			DBCon.getDbInstance();
+		}
 	}
 
 	private static int setupPort(String[] args) {

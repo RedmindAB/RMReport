@@ -40,7 +40,7 @@ public class GetScreenshotStructureWSTest extends WSSetupHelper{
 		JsonObject firstObjectInArray = array.get(0).getAsJsonObject();
 		JsonArray testcaseArray = firstObjectInArray.get("testcases").getAsJsonArray();
 		//asserting size of 8 because there are 4 devices with 2 browsers each.
-		assertEquals(8, testcaseArray.size());
+		assertEquals(24, testcaseArray.size());
 		
 		JsonObject firstObject = testcaseArray.get(0).getAsJsonObject();
 		JsonArray screenshots = firstObject.get("screenshots").getAsJsonArray();

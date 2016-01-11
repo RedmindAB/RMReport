@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import com.google.gson.JsonObject;
 
 import se.redmind.rmtest.db.DBBridge;
+import se.redmind.rmtest.web.route.api.ErrorResponse;
 
 public class SuiteParametersDAO extends DBBridge {
 
@@ -20,8 +21,7 @@ public class SuiteParametersDAO extends DBBridge {
 				parameters.addProperty(parameter, value);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return new ErrorResponse(e.getMessage(), SuiteParametersDAO.class).getJson();
 		}
 		return parameters;
 	}

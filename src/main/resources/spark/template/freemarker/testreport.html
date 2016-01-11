@@ -1,0 +1,28 @@
+<html>
+<head>
+  <title>Welcome!</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h1>
+		    ${ip}
+		</h1>
+		<table class="table table-bordered table-striped" >
+			<th>Class name</th>
+			<th>Method name</th>
+			<th>Another name</th>
+			<#list tests as test>
+				<tr>
+					<td>${test.klass}</td>
+					<td>${test.name}</td>
+					<td>${test.result}</td>
+				</tr>
+			</#list>
+		</table>
+		<#list parameters?keys as key>
+			<div>${key} : ${parameters[key]}</div>
+		</#list>
+	</div>
+</body>
+</html>

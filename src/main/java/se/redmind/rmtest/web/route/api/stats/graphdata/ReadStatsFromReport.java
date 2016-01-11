@@ -48,12 +48,6 @@ public class ReadStatsFromReport extends DBBridge{
 		return readFromDB(sql);
 	}
 	
-	public List<HashMap<String, String>> getGraphData(JsonObject params, long minTimestamp){
-		String sql = getQueryFromJsonObject(params, minTimestamp);
-		ResultSet rs = readFromDB(sql,params.get("reslimit").getAsInt());
-		return extractResultSetToGraphData(rs);
-	}
-	
 	public HashMap<Long, JsonObject> getGraphDataAsHashMap(JsonObject params, long minTimestamp){
 		//Build the MegaQuery from Mordor. (One dose not simply ask the database for data) 
 		String sql = getQueryFromJsonObject(params, minTimestamp);
@@ -117,66 +111,6 @@ public class ReadStatsFromReport extends DBBridge{
 		}
 		sb.append(")");
 	}
-	
-	@Deprecated
-	protected List<HashMap<String, String>> extractResultSetToGraphData(ResultSet rs) {
-		List<HashMap<String, String>> result = new ArrayList<HashMap<String,String>>();
-    	try {
-    		String currentTimestamp = null;
-    		float time = 0;
-    		int fail = 0;
-    		int pass = 0;
-    		int error = 0;
-			while (rs.next()) {
-				boolean isCurrentTimestampNull = currentTimestamp == null;
-				if (isCurrentTimestampNull || !currentTimestamp.equals(rs.getString("timestamp"))) {
-					if (!isCurrentTimestampNull) {
-						HashMap<String, String> hashMap = new HashMap<String,String>();
-						hashMap.put("timestamp", currentTimestamp);
-						hashMap.put("time", ""+time);
-						hashMap.put("pass", ""+pass);
-						hashMap.put("fail", ""+fail);
-						hashMap.put("error", ""+error);
-						result.add(hashMap);
-					}
-					currentTimestamp = rs.getString("timestamp");
-					fail = 0;
-					pass = 0;
-					error = 0;
-					time = 0f;
-				}
-				String res = rs.getString("result");
-				switch (res) {
-				case "passed":
-					pass+=1;
-					break;
-				case "error":
-					error+=1;
-					break;
-				case "failure":
-					fail+=1;
-				default:
-					break;
-				}
-				time+=rs.getFloat("time");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-    	return result;
-    }
-	
-	@Deprecated
-	public List<HashMap<String, String>> getReportListData(int suiteid){
-	    	HashMap<String, String> map = new HashMap<>();
-	    	map.put("suiteid", ""+suiteid);
-	    	String sql = stringParser.getString(GET_REPORTS_BY_SUITEID, map);
-	    	ResultSet rs = readFromDB(sql);
-	    	List<HashMap<String, String>> result = extractResultSetToGraphData(rs);
-	    	return result;
-	    }
 	 
 	 protected HashMap<Long, JsonObject> extractGraphData(ResultSet rs) {
 	    	HashMap<Long, JsonObject> graphMap = new HashMap<Long, JsonObject>();

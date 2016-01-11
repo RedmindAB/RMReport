@@ -13,27 +13,38 @@ public class InMemoryDBHandler {
 	public static final int timestamplimit = 150;
 	public static boolean updatingIMDB = false;
 	private String dbname;
+	private boolean initiated = false;
+	private static InMemoryDBHandler instance;
 	
-	public InMemoryDBHandler(String dbname) {
-		this.dbname = dbname;
+	private InMemoryDBHandler() {
+		this.dbname = DBCon.getDbInstance().getCurrentDBName();
+	}
+	
+	public static InMemoryDBHandler getInstance(){
+		if(instance == null){
+			instance = new InMemoryDBHandler();
+		}
+		return instance;
 	}
 	
 	public void init(){
-		try {
-			Statement initStatement = connection.createStatement();
-			initStatement.execute(getAttachDatabaseSQL());
-			List<Integer> suiteids = getSuites();
-			if (suiteids == null) {
-				return;
+		if(!initiated){
+			try {
+				Statement initStatement = connection.createStatement();
+				initStatement.execute(getAttachDatabaseSQL());
+				List<Integer> suiteids = getSuites();
+				if (suiteids == null) {
+					return;
+				}
+				for (Integer suiteid : suiteids) {
+					System.out.println("Loading suite: #"+suiteid);
+					initStatement.execute("INSERT INTO report SELECT * FROM rmtest.report WHERE suite_id = "+suiteid+" AND rmtest.report.timestamp >= (SELECT MIN(timestamp) FROM (SELECT DISTINCT timestamp FROM rmtest.report WHERE suite_id = "+suiteid+" ORDER BY timestamp DESC LIMIT "+timestamplimit+"));");
+				}
+				updateSmallTables(initStatement);
+				initiated = true;
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-			for (Integer suiteid : suiteids) {
-				System.out.println("Loading suite: #"+suiteid);
-				initStatement.execute("INSERT INTO report SELECT * FROM rmtest.report WHERE suite_id = "+suiteid+" AND rmtest.report.timestamp >= (SELECT MIN(timestamp) FROM (SELECT DISTINCT timestamp FROM rmtest.report WHERE suite_id = "+suiteid+" ORDER BY timestamp DESC LIMIT "+timestamplimit+"));");
-			}
-			updateSmallTables(initStatement);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 	
@@ -53,7 +64,7 @@ public class InMemoryDBHandler {
 	}
 	
 	public String getAttachDatabaseSQL(){
-		String databasePath = System.getProperty("user.dir")+"/"+dbname+".db";
+		String databasePath = System.getProperty("user.dir")+"/"+dbname;
 		return "ATTACH DATABASE '"+databasePath+"' AS rmtest;";
 	}
 	
@@ -67,6 +78,7 @@ public class InMemoryDBHandler {
 			DBCon.getDbInstance().dropIMDB();
 			connection = DBCon.getDbInstance().getInMemoryConnection();
 			System.out.println("Updating in memory database");
+			initiated = false;
 			init();
 			updatingIMDB = false;
 	}

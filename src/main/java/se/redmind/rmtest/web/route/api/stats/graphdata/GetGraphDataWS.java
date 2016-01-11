@@ -86,25 +86,15 @@ public class GetGraphDataWS extends CachedRoute {
 	 */
 	@Override
 	public JsonElement handleRequest(Response response, Request request) {
+		JsonElement res = null;
 		try {
 			String data = request.body();
-//			if (logEnable) log(request, data);
 			JsonArray json = new Gson().fromJson(data, JsonArray.class);
-			JsonElement res = new GetGraphDataDAO().getGraphData(json);
-			return res;
+			res = new GetGraphDataDAO().getGraphData(json);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
-	}
-	
-	private void log(Request request, String body) {
-		HttpServletRequest rawRequest = request.raw();
-		String contextPath = request.pathInfo();
-		String type = rawRequest.getMethod();
-		String id = rawRequest.getSession().getId();
-		
-		log.debug("session id: {} type: {} - {} data: {}", id, type, contextPath, body);
+		return res;
 	}
 	
 	public void setLoggingEnabled(boolean active){

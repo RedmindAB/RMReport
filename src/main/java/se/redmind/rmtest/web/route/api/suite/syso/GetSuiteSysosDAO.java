@@ -16,6 +16,7 @@ public class GetSuiteSysosDAO {
 	}
 	
 	public GetSuiteSysosDAO() {
+		
 	}
 	
 	public String getSysos(long timestamp, int suiteid){

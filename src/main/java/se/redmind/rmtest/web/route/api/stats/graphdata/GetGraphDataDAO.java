@@ -55,6 +55,7 @@ public class GetGraphDataDAO {
 		try {
 			JsonObject firstParams = getFirstJson(paramsArray);
 			reslimit = firstParams.get("reslimit").getAsInt();
+			if(reslimit<=0) this.error = true;
 			suite_id = firstParams.get("suiteid").getAsInt();
 		} catch (Exception e) {
 			log.error("Could not extract variables for graphdata from response");
@@ -64,11 +65,11 @@ public class GetGraphDataDAO {
 	
 	private ErrorResponse checkErrors(JsonObject params){
 		JsonArray badParams = new JsonArray();
-		if (suite_id<1) {
+		if (suite_id<=1) {
 			badParams.add(new JsonPrimitive("suite id was not set to a valid value"));
 			log.error("suite id (suite_id) was not set to a valid value");
 		}
-		if (reslimit<1) {
+		if (reslimit<=0) {
 			badParams.add(new JsonPrimitive("reslimit is not set to a valid value"));
 			log.error("result limit (reslimit) was not set to a valid value");
 		}

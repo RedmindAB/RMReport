@@ -11,6 +11,7 @@ public class ConfigJson {
 	private int port;
 	private JsonArray reportPaths;
 	private int livePort;
+	private String screenshotFolder;
 	
 	public String getGridQueryServletURL() {
 		return gridQueryServletURL;
@@ -45,12 +46,22 @@ public class ConfigJson {
 	@Override
 	public ConfigJson clone(){
 		ConfigJson backup = new ConfigJson();
+		backup.setReportPaths(new JsonArray());
 		backup.setGridQueryServletURL(this.gridQueryServletURL);
 		backup.setPort(this.port);
+		backup.setScreenshotFolder(this.screenshotFolder);
 		for (JsonElement path : reportPaths) {
 			backup.addReportPath(path.getAsString());
 		}
 		return backup;
+	}
+	
+	public String getScreenshotFolder() {
+		return this.screenshotFolder == null ? "" : this.screenshotFolder;
+	}
+	
+	public void setScreenshotFolder(String screenshotFolder){
+		this.screenshotFolder = screenshotFolder;
 	}
 	
 }
