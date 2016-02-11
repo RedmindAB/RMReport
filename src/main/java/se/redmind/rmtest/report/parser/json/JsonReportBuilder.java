@@ -54,7 +54,7 @@ public class JsonReportBuilder {
 	}
 	
 	private HashMap<String, String> getParameter() {
-		HashMap<String, String> parametersMap = new HashMap<String,String>();
+		HashMap<String, String> parametersMap = new HashMap<>();
 		if(reportJson.has("properties")){
 			JsonObject parametersJson = reportJson.get("properties").getAsJsonObject();
 			Set<Entry<String, JsonElement>> parametersEnties = parametersJson.entrySet();
@@ -71,10 +71,13 @@ public class JsonReportBuilder {
 
 	private List<ReportTestCase> getTestcases() {
 		JsonArray tests = reportJson.get("tests").getAsJsonArray();
-		List<ReportTestCase> results = new ArrayList<ReportTestCase>();
+		List<ReportTestCase> results = new ArrayList<>();
 		for (JsonElement entry : tests) {
 			JsonObject test = entry.getAsJsonObject();
 			JsonReportTestCase testCase = new JsonReportTestCase();
+			if (test.get("isGherkin").getAsBoolean()) {
+				testCase.setGherkinSteps(getGherkinSteps(test));
+			}
 			testCase.setTime(test.get("runTime").getAsDouble());
 			testCase.setMessage(getTestMessage(test));
 			testCase.setName(test.get("method").getAsString());
@@ -86,7 +89,7 @@ public class JsonReportBuilder {
 		return results;
 	}
 
-	private Driver getDriver(JsonObject test) {
+    private Driver getDriver(JsonObject test) {
 		Driver driver = new Driver();
 		JsonObject deviceInfo = test.get("deviceInfo").getAsJsonObject();
 		driver.setDevice(deviceInfo.get("device").getAsString());
@@ -124,8 +127,7 @@ public class JsonReportBuilder {
 
 	private String getTestMessage(JsonObject test) {
 		try {
-			String message = test.get("failureMessage").getAsString();
-			return message;
+            return test.get("failureMessage").getAsString();
 		} catch (Exception e) {
 			return "";
 		}
@@ -151,9 +153,20 @@ public class JsonReportBuilder {
 		System.out.println();
 		String fullSuiteName = reportJson.get("suite").getAsString();
 		int start = fullSuiteName.lastIndexOf('.');
-		String suiteName = fullSuiteName.substring(start+1);
-		return suiteName;
+        return fullSuiteName.substring(start+1);
 	}
-	
+
+    private List<String> getGherkinSteps(JsonObject test) {
+        JsonArray steps = test.get("steps").getAsJsonArray();
+        if (steps == null) System.out.println("test = null");
+        List<String> gherkinSteps = new ArrayList<>();
+        for (JsonElement entry : steps) {
+            JsonObject step = entry.getAsJsonObject();
+            for (Entry<String, JsonElement> element : step.entrySet()) {
+                gherkinSteps.add(element.getValue().getAsString());
+            }
+        }
+        return gherkinSteps;
+    }
 	
 }

@@ -3,6 +3,8 @@ package se.redmind.rmtest.report.parser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+
 
 public abstract class ReportTestCase<E> {
 	
@@ -21,7 +23,8 @@ public abstract class ReportTestCase<E> {
 	TIME = "time";
 	
 	private boolean broken;
-							
+	private List<String> gherkinSteps;
+
 	public static enum ResultType {PASSED, ERROR, FAILURE, SKIPPED};
 	private ResultType resultType;
 	
@@ -225,6 +228,10 @@ public abstract class ReportTestCase<E> {
 
 	public void setTime(double time) {
 		this.time = time;
+	}
+
+	public void setGherkinSteps(List<String> gherkinSteps) {
+		this.gherkinSteps = gherkinSteps;
 	}
 	
 }
