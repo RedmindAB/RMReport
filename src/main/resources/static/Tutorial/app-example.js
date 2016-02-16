@@ -7,7 +7,7 @@ angular
     
     .config(function($urlRouterProvider, $stateProvider){//.3
     	
-    $urlRouterProvider.otherwise("/home");//.4
+    $urlRouterProvider.otherwise("/home")//.4
     
 		.state('home',{//.5
 		    url:'/home',
@@ -107,7 +107,7 @@ angular
 	 * whenever a new state is loaded. This apps
 	 * base <ui-view> is found in index.html
 	 */
-	$urlRouterProvider.otherwise("/home");
+	$urlRouterProvider.otherwise("/home")
 	
 		/*.5
 		 * 
