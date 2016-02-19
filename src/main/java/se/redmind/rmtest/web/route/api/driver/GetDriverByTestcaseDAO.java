@@ -24,7 +24,11 @@ public class GetDriverByTestcaseDAO extends DBBridge {
 		return new Gson().toJson(jsonArray);
 	}
 	public JsonArray getDriverAndMessageFromLastRun(int testcaseId, String timestamp){
-		String SELECT_ALL_FROM_REPORT_OS_DEVICE_BROWSER = "select testcase.testcasename, device.devicename, os.osname, os.osversion, browser.browsername, browser.browserversion, time, report.result, report.message from report inner join os on os.os_id = report.os_id inner join device on device.device_id = report.device_id inner join browser on browser.browser_id = report.browser_id inner join testcase on testcase.testcase_id = report.testcase_id where report.testcase_id = ";
+		String SELECT_ALL_FROM_REPORT_OS_DEVICE_BROWSER = "select testcase.testcasename, device.devicename, os.osname, " +
+                "os.osversion, browser.browsername, browser.browserversion, time, report.result, report.message, " +
+                "testcase.is_gherkin from report inner join os on os.os_id = report.os_id inner join device on device" +
+                ".device_id = report.device_id inner join browser on browser.browser_id = report.browser_id inner join " +
+                "testcase on testcase.testcase_id = report.testcase_id where report.testcase_id = ";
 		String AND_TIMESTAMP = " and timestamp = ";
 		String sql = SELECT_ALL_FROM_REPORT_OS_DEVICE_BROWSER+testcaseId+AND_TIMESTAMP+"'"+timestamp+"'";
 //    	System.out.println(sql);
@@ -41,6 +45,7 @@ public class GetDriverByTestcaseDAO extends DBBridge {
 				jsonObject.add("browserversion", new JsonPrimitive(rs.getString("browserversion")));
 				jsonObject.add("timetorun", new JsonPrimitive(rs.getString("time")));
 				jsonObject.add("result", new JsonPrimitive(rs.getString("result")));
+				jsonObject.add("isgherkin", new JsonPrimitive(rs.getBoolean("is_gherkin")));
 				String dbMessageId = rs.getString("message");
 				String message = getMessage(dbMessageId);
 				jsonObject.add("message", new JsonPrimitive(message));

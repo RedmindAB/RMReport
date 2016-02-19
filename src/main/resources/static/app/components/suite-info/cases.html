@@ -63,7 +63,7 @@
 	                <!-- Case info -->
 	                <div 
 	                	id="case-name-{{$index}}" 
-	                	style='display:inline' 
+	                	style='display:inline'
 	                	class='accordion-name-container'>
 	                    {{case.osname}} - {{case.osversion}} - {{case.devicename}} - {{case.browsername}} - {{case.result}}
 	                </div>
@@ -78,13 +78,21 @@
 				</div>
             </accordion-heading>
             
-            <!-- Message container -->
-            <div ng-if="case.result === 'failure' || case.result === 'error'">
-	            <pre class="select stack-trace" ng-if="case.message !== ''">{{case.message}}</pre>
-	            <pre class="stack-trace" ng-if="case.message === ''">No message to display</pre>
-            </div>
+
             <pre class="stack-trace" ng-if="case.result === 'passed'">This test passed</pre>
             <pre class="stack-trace" ng-if="case.result === 'skipped'">This test was skipped or ignored</pre>
+
+			<!-- Steps container -->
+			<div ng-if="case.isgherkin == true">
+				<pre ng-repeat="step in CurrentSuite.currentSteps"
+                     ng-class="ctrl.getClass(step.result)">{{step.stepname}}</pre>
+			</div>
+
+            <!-- Message container -->
+            <div ng-if="case.result === 'failure' || case.result === 'error'">
+                <pre class="select stack-trace" ng-if="case.message !== ''">{{case.message}}</pre>
+                <pre class="stack-trace" ng-if="case.message === ''">No message to display</pre>
+            </div>
         </accordion-group>
     </div>
 </accordion>

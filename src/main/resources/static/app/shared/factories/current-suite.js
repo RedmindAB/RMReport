@@ -20,6 +20,7 @@
 		    	currentMethods: 			[],
 		    	currentDriver: 				[],
 		    	currentCases: 				[],
+				currentSteps:				[],
 		    	currentDriverRuns: 			[],
 				currentTimestampArray: 		[],
 				activeQueries: 				[],

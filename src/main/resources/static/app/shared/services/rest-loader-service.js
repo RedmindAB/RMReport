@@ -16,6 +16,7 @@
 		vm.createHomeChartFromID 		= createHomeChartFromID;
 		vm.getCases 					= getCases;
 		vm.loadMainChart 				= loadMainChart;
+		vm.getSteps						= getSteps;
 		
 		
 	    function addCaseToGraph(osName, osVersion, deviceName, browserName, browserVer, createMainChart){
@@ -67,6 +68,17 @@
 		    }).error(function(data, status, headers, config){
 		    	console.error(data);
 		    });
+		}
+
+		function getSteps() {
+			$http.get('/api/gherkin/getgherkinsteps?testcase_id=' + CurrentSuite.currentMethod.id + '&timestamp=' + CurrentSuite.currentTimestamp)
+				.success(function (data, status, headers, config) {
+					if (data) {
+						CurrentSuite.currentSteps = data;
+					}
+				}).error(function (data, status, header, config) {
+				console.error(data);
+			});
 		}
 		
 	    function loadMainChart(suiteID, newLine, createMainChart,name) {

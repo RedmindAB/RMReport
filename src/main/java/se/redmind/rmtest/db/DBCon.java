@@ -87,28 +87,38 @@ public class DBCon {
         try {
             stat = conn.createStatement();
 
-            stat.executeUpdate("create table if not exists suite (suitename, suite_id integer primary key autoincrement)");
+            stat.executeUpdate("CREATE TABLE IF NOT EXISTS suite (suitename, suite_id INTEGER PRIMARY KEY AUTOINCREMENT)");
 
-            stat.executeUpdate("create table if not exists class (classname, class_id integer primary key autoincrement)");
+            stat.executeUpdate("CREATE TABLE IF NOT EXISTS class (classname, class_id INTEGER PRIMARY KEY AUTOINCREMENT)");
             
-            stat.executeUpdate("create table if not exists device (devicename, device_id integer primary key autoincrement)");
+            stat.executeUpdate("CREATE TABLE IF NOT EXISTS device (devicename, device_id INTEGER PRIMARY KEY AUTOINCREMENT)");
             
-            stat.executeUpdate("create table if not exists browser (browsername, browserversion, browser_id integer primary key autoincrement)");
+            stat.executeUpdate("CREATE TABLE IF NOT EXISTS browser (browsername, browserversion, browser_id INTEGER PRIMARY KEY AUTOINCREMENT)");
             
-            stat.executeUpdate("create table if not exists os (osname, osversion, os_id integer primary key autoincrement)");
+            stat.executeUpdate("CREATE TABLE IF NOT EXISTS os (osname, osversion, os_id INTEGER PRIMARY KEY AUTOINCREMENT)");
 
-            stat.executeUpdate("create table if not exists testcase (testcasename, testcase_id integer primary key autoincrement, class_id integer, foreign key (class_id) references class (class_id))");
+            stat.executeUpdate("CREATE TABLE IF NOT EXISTS testcase (testcasename, testcase_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "class_id INTEGER, is_gherkin INTEGER DEFAULT 0, FOREIGN KEY (class_id) REFERENCES class (class_id))");
 
-            stat.executeUpdate("create table if not exists report (suite_id integer, class_id integer, testcase_id integer, device_id integer, browser_id integer, os_id integer, timestamp integer, result, message, time float, " +
-                    "foreign key (os_id) references os (os_id), foreign key (browser_id) references browser (browser_id), foreign key (device_id) references device (device_id),foreign key (suite_id) references suite (suite_id), foreign key (class_id) references class (class_id), foreign key (testcase_id) references testcase (testcase_id))");
-            
-            stat.executeUpdate("create index if not exists reportindex on report (timestamp desc)");
-            
-            stat.executeUpdate("create index if not exists osindex on os (osname)");
-            
-            stat.executeUpdate("CREATE TABLE IF NOT EXISTS parameters (timestamp INTEGER, suite_id INTEGER, parameter, value, PRIMARY KEY (timestamp, suite_id, parameter))");
-            
-            stat.executeUpdate("CREATE INDEX IF NOT EXISTS parametersindex ON parameters (timestamp DESC)");
+            stat.executeUpdate("CREATE TABLE IF NOT EXISTS report (suite_id INTEGER, class_id INTEGER, testcase_id INTEGER, " +
+                    "device_id INTEGER, browser_id INTEGER, os_id INTEGER, timestamp INTEGER, result, message, time FLOAT, " +
+                    "FOREIGN KEY (os_id) REFERENCES os (os_id), FOREIGN KEY (browser_id) REFERENCES browser (browser_id), " +
+                    "FOREIGN KEY (device_id) REFERENCES device (device_id),FOREIGN KEY (suite_id) REFERENCES suite (suite_id), " +
+                    "FOREIGN KEY (class_id) REFERENCES class (class_id), FOREIGN KEY (testcase_id) REFERENCES testcase (testcase_id))");
+
+			stat.executeUpdate("CREATE TABLE IF NOT EXISTS steps (stepname, testcase_id INTEGER, timestamp INTEGER, " +
+					"step_id INTEGER, result, PRIMARY KEY(testcase_id, timestamp, step_id), FOREIGN KEY (testcase_id) " +
+					"REFERENCES testcase(testcase_id), FOREIGN KEY (timestamp) REFERENCES report(timestamp)) ");
+
+			stat.executeUpdate("CREATE INDEX IF NOT EXISTS reportindex ON report (timestamp DESC)");
+
+			stat.executeUpdate("CREATE INDEX IF NOT EXISTS osindex ON os (osname)");
+
+			stat.executeUpdate("CREATE TABLE IF NOT EXISTS parameters (timestamp INTEGER, suite_id INTEGER, parameter, value, " +
+                    "PRIMARY KEY (timestamp, suite_id, parameter))");
+
+			stat.executeUpdate("CREATE INDEX IF NOT EXISTS parametersindex ON parameters (timestamp DESC)");
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -127,7 +137,8 @@ public class DBCon {
 			stat.execute("DELETE FROM os");
 			stat.execute("DELETE FROM device");
 			stat.execute("DELETE FROM browser");
-			stat.execute("DELEtE FROM parameters");
+			stat.execute("DELETE FROM parameters");
+			stat.execute("DELETE FROM steps");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

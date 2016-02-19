@@ -18,13 +18,30 @@
 		vm.getOrder			= getOrder;
 		vm.sortBy 			= sortBy;
 		vm.addCaseToGraph 	= addCaseToGraph;
-		
-		
+		vm.getClass			= getClass;
+
 		getCases();
-		
-		
+		getSteps();
+
 		function getCases(){
 			RestLoader.getCases();
+		}
+
+		function getSteps(){
+			RestLoader.getSteps();
+		}
+
+		function getClass(result){
+			switch (result) {
+				case 'passed':
+					return 'bg-success stack-trace';
+				case 'failure':
+					return 'bg-danger stack-trace';
+				case 'skipped':
+					return 'bg-warning stack-trace';
+				default:
+					return 'stack-trace';
+			}
 		}
 		
 	    function addCaseToGraph(osName, osVersion, deviceName, browserName, browserVer){

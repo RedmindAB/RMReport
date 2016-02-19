@@ -9,10 +9,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 
 import se.redmind.rmtest.report.parser.Driver;
 import se.redmind.rmtest.report.parser.ReportTestCase;
@@ -75,7 +72,7 @@ public class JsonReportBuilder {
 		for (JsonElement entry : tests) {
 			JsonObject test = entry.getAsJsonObject();
 			JsonReportTestCase testCase = new JsonReportTestCase();
-			if (test.get("isGherkin").getAsBoolean()) {
+			if (test.has("isGherkin") && test.get("isGherkin").getAsBoolean()) {
 				testCase.setGherkinSteps(getGherkinSteps(test));
 			}
 			testCase.setTime(test.get("runTime").getAsDouble());
@@ -157,8 +154,7 @@ public class JsonReportBuilder {
 	}
 
     private List<String> getGherkinSteps(JsonObject test) {
-        JsonArray steps = test.get("steps").getAsJsonArray();
-        if (steps == null) System.out.println("test = null");
+		JsonArray steps = test.get("steps").getAsJsonArray();
         List<String> gherkinSteps = new ArrayList<>();
         for (JsonElement entry : steps) {
             JsonObject step = entry.getAsJsonObject();

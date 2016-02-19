@@ -16,6 +16,7 @@ import se.redmind.rmtest.web.route.api.admin.reportdir.UpdateReportDirWS;
 import se.redmind.rmtest.web.route.api.classes.getclasses.GetClassesWS;
 import se.redmind.rmtest.web.route.api.classes.passfail.PassFailClassWS;
 import se.redmind.rmtest.web.route.api.driver.GetDriverByTestcaseWS;
+import se.redmind.rmtest.web.route.api.gherkin.GetGherkinStepsWS;
 import se.redmind.rmtest.web.route.api.live.change.LiveSuiteChange;
 import se.redmind.rmtest.web.route.api.live.suite.LiveSuiteDataWS;
 import se.redmind.rmtest.web.route.api.live.testrunlist.TestRunListWS;
@@ -59,6 +60,7 @@ public class ApiRouter {
 		get("/api/class/getclasses",new GetClassesWS());
 		get("/api/class/passfail",new PassFailClassWS());
 		get("/api/method/getmethods",new GetMethodsWS());
+		get("/api/gherkin/getgherkinsteps", new GetGherkinStepsWS());
 		get("/api/driver/bytestcase",new GetDriverByTestcaseWS());
 		post("/api/stats/graphdata",new GetGraphDataWS());
 		get("/api/stats/options",new GetGraphOptionsWS());

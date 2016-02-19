@@ -23,7 +23,9 @@ public abstract class ReportTestCase<E> {
 	TIME = "time";
 	
 	private boolean broken;
-	private List<String> gherkinSteps;
+    private boolean isGherkin = false;
+
+    private List<String> gherkinSteps;
 
 	public static enum ResultType {PASSED, ERROR, FAILURE, SKIPPED};
 	private ResultType resultType;
@@ -181,6 +183,14 @@ public abstract class ReportTestCase<E> {
 	public Driver getDriver(){
 		return this.driver;
 	}
+
+    public boolean isGherkin() {
+        return isGherkin;
+    }
+
+    public List<String> getGherkinSteps() {
+        return gherkinSteps;
+    }
 	
 	public void setDriver(Driver driver){
 		this.driver = driver;
@@ -231,6 +241,7 @@ public abstract class ReportTestCase<E> {
 	}
 
 	public void setGherkinSteps(List<String> gherkinSteps) {
+        isGherkin = true;
 		this.gherkinSteps = gherkinSteps;
 	}
 	

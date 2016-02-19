@@ -15,11 +15,22 @@ import se.redmind.rmtest.db.DBBridge;
 public class TestcaseDbLookup extends DBBridge {
 
     public static Connection conn;
-    String GET_TESTCASE_ID = "select testcase_id from testcase where testcasename= ";
+    String GET_TESTCASE_ID = "SELECT testcase_id FROM testcase WHERE testcasename= ";
+    String AND_CLASS_ID = " AND class_id= ";
     String GET_ALL_FROM_TESTCASE = "SELECT * FROM testcase";
 
     public int getTestCaseID(String testCaseName){
         ResultSet rs = readFromDB(GET_TESTCASE_ID+"'"+testCaseName+"'");
+        try {
+            return rs.getInt(1);
+        } catch (SQLException e) {
+//            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    public int getTestCaseID(String testCaseName, String class_id){
+        ResultSet rs = readFromDB(GET_TESTCASE_ID+"'"+testCaseName+"'"+AND_CLASS_ID+"'"+class_id+"'");
         try {
             return rs.getInt(1);
         } catch (SQLException e) {
@@ -42,7 +53,4 @@ public class TestcaseDbLookup extends DBBridge {
 		}
 		return hs;
     }
-
-   
-
 }

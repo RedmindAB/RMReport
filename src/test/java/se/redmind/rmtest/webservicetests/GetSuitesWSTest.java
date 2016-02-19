@@ -31,7 +31,7 @@ public class GetSuitesWSTest extends WSSetupHelper{
 		Object result = ws.handle(request, response);
 		Gson gson = new Gson();
 		JsonArray array = gson.fromJson(result.toString(), JsonArray.class);
-		assertEquals(6, array.size());
+		assertEquals(7, array.size());
 //		assertEquals(1, array.get(0).getAsJsonObject().get("id").getAsInt());
 	}
 }
