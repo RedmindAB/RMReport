@@ -3,6 +3,7 @@ package se.redmind.report.auto.nav;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -34,7 +35,7 @@ public class VisualNav extends BaseNav{
 	}
 	
 	public void chooseClass(String id){
-		driverFluentWait(15).until(ExpectedConditions.presenceOfElementLocated(By.className("suite-info-partial-table")));
+		driverFluentWait(15).until(ExpectedConditions.visibilityOfElementLocated(By.className("suite-info-partial-table")));
 		WebElement suites = getElementByClass("suite-info-partial-table");
 		List<WebElement> findElements = suites.findElements(By.tagName("p"));
 		for (WebElement listItem : findElements) {
@@ -179,8 +180,10 @@ public class VisualNav extends BaseNav{
 	}
 	
 	public void goToScopeByID(String byID){
-		driverFluentWait(15).until(ExpectedConditions.presenceOfElementLocated(By.id(byID)));
-		getElementByID(byID).click();
+		driverFluentWait(15).until(ExpectedConditions.elementToBeClickable(By.id(byID)));
+		WebElement element = getElementByID(byID);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", element);
+		element.click();
 	}
 	
 	public WebElement getGoBackButton(){

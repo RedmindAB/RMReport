@@ -1,6 +1,6 @@
 package se.redmind.report.auto.nav;
 
-import java.util.ArrayList;
+import java.awt.Toolkit;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -17,7 +17,9 @@ abstract class BaseNav extends HTMLPage{
 	public BaseNav(WebDriver pDriver) {
 		super(pDriver);
 		this.driver.get("http://localhost:4567");
-		this.driver.manage().window().setSize(new Dimension(1920, 1080));
+		int width = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+		int height = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+		this.driver.manage().window().setSize(new Dimension(width, height));
 		initialWait();
 		navigate();
 	}
@@ -262,6 +264,10 @@ abstract class BaseNav extends HTMLPage{
 		livetestsButton.click();
 		driverFluentWait(15).until(new UrlChanged(before));
 		
+	}
+	
+	protected void maximizeScreen(){
+		driver.manage().window().maximize();
 	}
 	
 }

@@ -1,19 +1,14 @@
 package se.redmind.report.auto.nav;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import org.apache.xalan.trace.EndSelectionEvent;
 import org.openqa.selenium.By;
-import org.openqa.selenium.By.ByName;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.google.gson.annotations.Until;
 
-import se.redmind.report.auto.expectedconditions.ChartReloadFinished;
 import se.redmind.report.auto.expectedconditions.SizeOfWebelement;
 import se.redmind.report.auto.expectedconditions.UrlChanged;
 
@@ -84,7 +79,9 @@ public class SuiteController extends BaseController {
 	public void clickOnBar(String type, String index){
 		String currentUrl = driver.getCurrentUrl();
 		driverFluentWait(15).until(ExpectedConditions.presenceOfElementLocated(By.id(type+"-"+index)));
-		getElementByID(type+"-"+index).click();
+		WebElement element = getElementByID(type+"-"+index);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", element);
+		driverFluentWait(15).until(ExpectedConditions.elementToBeClickable(element)).click();
 		if (!type.equals("case")) {
 			driverFluentWait(15).until(new UrlChanged(currentUrl));
 		}
@@ -100,15 +97,18 @@ public class SuiteController extends BaseController {
 	}
 	
 	public void checkBoxOn(String type, String index){
-		driverFluentWait(15).until(ExpectedConditions.presenceOfElementLocated(By.id(type+"-name-"+index)));
+		driverFluentWait(15).until(ExpectedConditions.visibilityOfElementLocated(By.id(type+"-name-"+index)));
 		WebElement element =getElementByID("checkbox"+index);
 		WebElement box = element.findElement(By.tagName("span"));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", box);
 		box.click();
 	}
 	
 	public void clickThisTestOnly(String index){
-		driverFluentWait(15).until(ExpectedConditions.presenceOfElementLocated(By.id("case-thistest-"+index)));
-		getElementByID("case-thistest-"+index).click();
+		driverFluentWait(15).until(ExpectedConditions.elementToBeClickable(By.id("case-thistest-"+index)));
+		WebElement element = getElementByID("case-thistest-"+index);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", element);
+		element.click();
 		//driverFluentWait(20).until(new ChartReloadFinished());
 		driverFluentWait(15).until(ExpectedConditions.invisibilityOfElementLocated(By.className("highcharts-loading")));
 	}
